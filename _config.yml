@@ -14,13 +14,12 @@
 # You can create any custom variable you would like, and they will be accessible
 # in the templates via {{ site.myvariable }}.
 title: some words
-subtitle: a subtitle
-name: site name
+subtitle: many of them true
 url: https://blog.karmanivero.us
 repository: karmaniverous/karmaniverous.github.io
 email:
 description: >- # this means to ignore newlines until "baseurl:"
-  resume bullets / will read differently at the / threshold of heaven
+  resume bullets / may read differently at the / threshold of heaven
 twitter_username: karmaniverous
 github_username: karmaniverous
 minimal_mistakes_skin: contrast
@@ -62,35 +61,35 @@ plugins:
 author:
   name   : "Jason W."
   avatar : "/assets/images/bio-photo.jpg"
-  bio    : "resume bullets<br />will read differently at the<br />threshold of heaven"
+  bio    : "resume bullets<br />may read differently at the<br />threshold of heaven"
   links:
-    - label: "Website"
-      icon: "fas fa-fw fa-link"
-      url: "https://tribify.me"
-    - label: "Twitter"
-      icon: "fab fa-fw fa-twitter-square"
-      url: "https://twitter.com/karmaniverous"
     - label: "GitHub"
       icon: "fab fa-fw fa-github"
       url: "https://github.com/karmaniverous"
+    - label: "Twitter"
+      icon: "fab fa-fw fa-twitter-square"
+      url: "https://twitter.com/karmaniverous"
     - label: "Telegram"
       icon: "fab fa-fw fa-telegram"
       url: "https://t.me/karmaniverous"
+    - label: "tiny poems"
+      icon: "fas fa-fw fa-quote-left"
+      url: "https://tinypoems.blog"
 
 footer:
   links:
-    - label: "Website"
-      icon: "fas fa-fw fa-link"
-      url: "https://tribify.me"
-    - label: "Twitter"
-      icon: "fab fa-fw fa-twitter-square"
-      url: "https://twitter.com/karmaniverous"
     - label: "GitHub"
       icon: "fab fa-fw fa-github"
       url: "https://github.com/karmaniverous"
+    - label: "Twitter"
+      icon: "fab fa-fw fa-twitter-square"
+      url: "https://twitter.com/karmaniverous"
     - label: "Telegram"
       icon: "fab fa-fw fa-telegram"
       url: "https://t.me/karmaniverous"
+    - label: "tiny poems"
+      icon: "fas fa-fw fa-quote-left"
+      url: "https://tinypoems.blog"
 
 defaults:
   # _posts
