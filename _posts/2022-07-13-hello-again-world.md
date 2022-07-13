@@ -1,5 +1,6 @@
 ---
 title: "Hello (Again) World!"
+excerpt: "You spend years of perfectly good writing time building gilded prisons for your words. If only there were a simple, beautiful way to write PORTABLE words."
 categories:
   - Blog
 tags:
@@ -7,13 +8,11 @@ tags:
   - writing
 ---
 
-You spend perfectly good writing time building a gilded prison for your words. If only there were a way to write simple, beautiful, _portable_ words.
-
-<!--more-->
-
 I can't remember how many blogs I've had.
 
-Different times, different collaborators, different platforms... that last is a bitch, because try pulling your work our of your decade-old [DotNetNuke](https://www.dnnsoftware.com/) database backup to migrate to WordPress. 
+You spend years of perfectly good writing time building gilded prisons for your words. If only there were a simple, beautiful way to write _portable_ words.
+
+Different times, different collaborators, different platforms. That last is a bitch, because try pulling three years of work out of a decades-old [DotNetNuke](https://www.dnnsoftware.com/) database backup to migrate to WordPress. 
 
 It's on a Zip drive someplace. :roll_eyes:
 
