@@ -1,6 +1,8 @@
 ---
 title: "Hello (Again) World!"
 excerpt: "You spend years of perfectly good writing time building gilded prisons for your words. If only there were a simple, beautiful way to write PORTABLE words."
+header:
+  teaser: /assets/images/jekyll-square.png
 categories:
   - Blog
 tags:
