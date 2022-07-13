@@ -15,3 +15,6 @@ group :jekyll_plugins do
   gem "jekyll-include-cache"
   gem "jekyll-algolia"
 end
+
+# Required to get the site to run locally.
+gem "webrick"
