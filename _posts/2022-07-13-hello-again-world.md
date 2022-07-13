@@ -62,7 +62,7 @@ I found the second one solved [here](https://talk.jekyllrb.com/t/load-error-cann
 gem "webrick"
 ```
 
-You might need to run `bundle install` again, not sure.
+You might need to run `bundle install` again, not sure. Won't hurt.
 
 Anyway, after that you should be able to run `bundle exec jekyll serve`, watch your site build, and see it locally at [http://127.0.0.1:4000](http://127.0.0.1:4000). Make a content change, save it, and your pages will rebuild instantly!
 
