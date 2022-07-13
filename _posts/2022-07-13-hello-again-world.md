@@ -56,7 +56,7 @@ I found a reference to the first error [here](https://github.com/github/pages-ge
 github: [metadata]
 ```
 
-I found the second one solved [here](https://talk.jekyllrb.com/t/load-error-cannot-load-such-file-webrick/5417/2). TL/DR: run `gem install webrick` and then add this line to the bottom of your Gemfile:
+I found the second one solved [here](https://talk.jekyllrb.com/t/load-error-cannot-load-such-file-webrick/5417/2). TL/DR: run `gem install webrick` and then add this line to the bottom of your `Gemfile`:
 
 ```ruby
 gem "webrick"
