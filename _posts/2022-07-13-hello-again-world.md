@@ -10,13 +10,11 @@ tags:
 
 I can't remember how many blogs I've had.
 
-You spend years of perfectly good writing time building gilded prisons for your words. If only there were a simple, beautiful way to write _portable_ words.
-
 Different times, different collaborators, different platforms. That last is a bitch, because try pulling three years of work out of a decades-old [DotNetNuke](https://www.dnnsoftware.com/) database backup to migrate to WordPress. 
 
 It's on a Zip drive someplace. :roll_eyes:
 
-So the platform is the thing, almost more than the words. You want writing to be easy, so you spend hundreds of hours of perfectly good writing time building a gilded prison for your words. If only there were a way to write simple, beautiful, _portable_ words.
+So the platform is the thing, almost more than the words. You want writing to be easy and pleasant, so you spend years of perfectly good writing time building gilded prisons for your words. If only there were a simple, beautiful way to write _portable_ words.
 
 Well.
 
