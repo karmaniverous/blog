@@ -10,6 +10,10 @@ tags:
   - writing
 ---
 
+<figure class="align-left" style="margin-top: 10px; margin-bottom: 10px; width: 150px;">
+    <img src="{{ site.url }}{{ site.baseurl }}/assets/images/jekyll-square.png">
+</figure>
+
 I can't remember how many blogs I've had.
 
 Different times, different collaborators, different platforms. That last is a bitch, because try pulling three years of work out of a decades-old [DotNetNuke](https://www.dnnsoftware.com/) database backup to migrate to WordPress. 
