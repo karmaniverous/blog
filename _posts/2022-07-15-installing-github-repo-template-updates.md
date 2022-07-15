@@ -1,6 +1,6 @@
 ---
-title: "Installing Repo Template Updates with Git Diff"
-excerpt: "Your project depends on a repo template that has released a new version. How do you integrate the changes?"
+title: "Installing GitHub Repo Template Updates"
+excerpt: "Your project depends on a GitHub repo template that has released a new version. How do you integrate the changes?"
 header:
   teaser: /assets/images/git-diff-square.png
 categories:
@@ -30,7 +30,7 @@ One obvious strategy is to work through [the commit list](https://github.com/kar
 
 But try it. Flipping back and forth between the GitHub commit list and VS Code is just *cumbersome*. There has to be a better way, right?
 
-## CLI Wizard Version
+## CLI Wizard Version: git difftool
 
 Meet [`git difftool`](https://git-scm.com/docs/git-difftool).
 
