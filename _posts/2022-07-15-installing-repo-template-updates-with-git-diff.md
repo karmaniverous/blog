@@ -1,5 +1,5 @@
 ---
-title: "Installing Repo Template Upgrades with Git Diff"
+title: "Installing Repo Template Updates with Git Diff"
 excerpt: "Your project depends on a repo template that has released a new version. How do you integrate the changes?"
 header:
   teaser: /assets/images/git-diff-square.png
