@@ -8,6 +8,7 @@ categories:
 tags:
   - jekyll
   - writing
+toc: false
 ---
 
 <figure class="align-left" style="margin-top: 10px; margin-bottom: 10px; width: 150px;">
