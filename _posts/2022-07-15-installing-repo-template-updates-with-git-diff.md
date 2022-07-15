@@ -21,6 +21,9 @@ Meanwhile: you have moved on. You've added a ton of your own code, maybe already
 
 So how do you incorporate the changes in the template update?
 
+**TL/DR:** Do [this](#pro-tools-version-gitlens).
+{: .notice--info}
+
 Here's a simple example. I have a [NextJS project template](https://github.com/karmaniverous/template-nextjs) I am currently using in several different projects. Every time I think up a new feature in one of those projects, I add it to the template. I'd like to find an efficient method for getting those changes out to the other projects that depend on that template.
 
 One obvious strategy is to work through [the commit list](https://github.com/karmaniverous/template-nextjs/commits/master) and evaluate whether it makes sense to incorporate each given commit into the target project. In fact, that may be the ONLY strategy... a template is just a starting point, after all, and each project will rapidly diverge and become its own unique flower.
@@ -31,9 +34,12 @@ But try it. Flipping back and forth between the GitHub commit list and VS Code i
 
 Meet [`git difftool`](https://git-scm.com/docs/git-difftool).
 
-Briefly, `git diff` is a command that lets you visualize and selectively merge the diff between two git commits, including the ones at the head of a working tree. And `git difftool` lets you to run `git diff` using a third-party tool. Like, for example, VS Code.
+Briefly, [`git diff`](https://git-scm.com/docs/git-diff) is a command that lets you visualize and selectively merge the diff between two git commits, including the ones at the head of a working tree. And `git difftool` lets you to run `git diff` using a third-party tool. Like, for example, VS Code.
 
-So here's the strategy in a few simple steps. Fair disclosure: I'm opinionated in favor of VS Code. If you want to leave the relevant parts out, you're on your own.
+**Fair Disclosure:** I'm opinionated in favor of VS Code. If you want to leave out the VS Code-specific parts below, you're on your own.
+{: .notice--info}
+
+So here's the strategy in a few simple steps:
 
 1. If you haven't already done so, set VS Code up as your Git editor. To do that, run:
 
@@ -84,7 +90,7 @@ When you perform that last step, your terminal will present you the names of cha
 
 The template version is on the left, and your local version is on the right. Use the buttons in the vertical divider or edit manually as needed, then save and close the file, and your terminal will move on to the next one.
 
-When you're done, you're done. See the `git difftool` documentation for command lien options that let you skip files or focus on specific ones.
+When you're done, you're done. See the `git difftool` documentation for command line options that let you skip files or focus on specific ones.
 
 ## Pro Tools Version: GitLens
 
