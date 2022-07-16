@@ -119,7 +119,6 @@ defaults:
       related: true
       toc: true
       toc_sticky: true
-      words_per_minute: 200
   # _pages
   - scope:
       path: "_pages"
