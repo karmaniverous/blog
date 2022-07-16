@@ -22,7 +22,7 @@ description: >- # this means to ignore newlines until "baseurl:"
   resume bullets / may read differently at the / threshold of heaven
 twitter_username: karmaniverous
 github_username: karmaniverous
-minimal_mistakes_skin: contrast
+minimal_mistakes_skin: karmaniverous
 search: true
 
 # Build settings
@@ -115,9 +115,11 @@ defaults:
       read_time: true
       comments: true
       share: true
+      show_date: true
       related: true
       toc: true
       toc_sticky: true
+      words_per_minute: 200
   # _pages
   - scope:
       path: "_pages"
