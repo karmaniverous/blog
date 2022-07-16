@@ -34,7 +34,7 @@ But try it. Flipping back and forth between the GitHub commit list and VS Code i
 
 Meet [`git difftool`](https://git-scm.com/docs/git-difftool).
 
-Briefly, [`git diff`](https://git-scm.com/docs/git-diff) is a command that lets you visualize and selectively merge the diff between two git commits, including the ones at the head of a working tree. And `git difftool` lets you to run `git diff` using a third-party tool. Like, for example, VS Code.
+Briefly, [`git diff`](https://git-scm.com/docs/git-diff) is a command that lets you visualize and selectively merge the diff between two git commits, including the ones at the head of a working tree. And `git difftool` lets you run `git diff` using a third-party tool. Like, for example, VS Code.
 
 **Fair Disclosure:** I'm opinionated in favor of VS Code. If you want to leave out the VS Code-specific parts below, you're on your own.
 {: .notice--info}
