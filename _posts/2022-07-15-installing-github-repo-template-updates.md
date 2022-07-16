@@ -60,7 +60,7 @@ So here's the strategy in a few simple steps:
     ```
     [Same reference](https://stackoverflow.com/questions/30024353/how-to-use-visual-studio-code-as-default-editor-for-git).
 
-1. Go get the repo URL (`<template-repo-url>`) and branch name (`<template-remote-branch>`) of the template you want to diff against. Add a new remote to that template branch your local git repo and fetch its state. Your primary remote is probably called `origin`. Let's call this one `template`. In your terminal:
+1. <a id="step-3" />Go get the repo URL (`<template-repo-url>`) and branch name (`<template-remote-branch>`) of the template you want to diff against. Add a new remote to that template branch your local git repo and fetch its state. Your primary remote is probably called `origin`. Let's call this one `template`. In your terminal:
 
     ```bash
     git remote add template <template-repo-url> -t <template-remote-branch> -f
@@ -73,7 +73,7 @@ So here's the strategy in a few simple steps:
     git branch template --track template/<template-remote-branch>
     ```
 
-5. Check out the local branch you want to diff against the template and run this:
+1. Check out the local branch you want to diff against the template and run this:
 
     ```
     git difftool template
@@ -100,7 +100,14 @@ It's a much better experience! Here's how to get there:
 
 1. Install [GitLens](https://marketplace.visualstudio.com/items?itemName=eamodio.gitlens) is VS Code.
 
-1. Complete step 3 from the previous section in order to create the remote template branch. You do NOT need a local branch.
+1. Perform <a href="#step-3">step 3 from the previous section</a>, repeated here for your convenience. Go get the repo URL (`<template-repo-url>`) and branch name (`<template-remote-branch>`) of the template you want to diff against. Add a new remote to that template branch your local git repo and fetch its state. Your primary remote is probably called `origin`. Let's call this one `template`. In your terminal:
+
+    ```bash
+    git remote add template <template-repo-url> -t <template-remote-branch> -f
+    ```
+    [Reference](https://jigarius.com/blog/multiple-git-remote-repositories)
+
+    You do NOT need to create a local branch.
 
 1. GitLens will have added a bunch of stuff to your Source Control tab. Open up the Search & Compare section and click the Compare References button.
 
