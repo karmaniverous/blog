@@ -59,7 +59,7 @@ plugins:
   - jekyll-include-cache
 
 author:
-  name   : "karmaniverous"
+  name   : "Jason Williscroft"
   avatar : "/assets/images/bio-photo.jpg"
   bio    : "resume bullets<br />may read differently at the<br />threshold of heaven"
   links:
