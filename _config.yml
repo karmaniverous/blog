@@ -142,3 +142,7 @@ comments:
 
 # Required to get the site to run locally.
 github: [metadata]
+
+analytics:
+  google:
+    tracking_id: G-6W3P8PWB9V
