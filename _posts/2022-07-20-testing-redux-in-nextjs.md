@@ -120,7 +120,10 @@ Finally I found [this comment](https://github.com/reduxjs/redux-toolkit/issues/1
 
 So it appears that right now the only reliable way to use Redux from ES6 code is by laundering it through a transpiler. Which, with all due respect to Mark and team at ReduxJS who are putting out an incredible product for freesies, is NOT okay.
 
-What to do?
+**Translation:** Not the way I wish software worked! Lord knows I know how hard this is, and I don't mean to cast any aspersions on the Redux team! They're doing a bang-up job and for free. Scholars and gentlemen, every one of them. I just wish this were easier. Now quit punching me, Twitter! :rofl:
+{: .notice--warning}
+
+Anyway... what to do?
 
 ## The Solution
 
