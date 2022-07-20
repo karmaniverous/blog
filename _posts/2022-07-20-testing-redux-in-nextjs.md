@@ -31,7 +31,7 @@ Anyway, now I'm making heavy use of Redux Toolkit's [`createEntityAdapter`](http
 
 ## Some Weirdness
 
-By the time you read this, I will have inccorporated all this stuff into my template, so for context here's a link to [the most recent release that doesn't yet address this problem](https://github.com/karmaniverous/template-nextjs/tree/0.0.7).
+By the time you read this, I will have incorporated all this stuff into my template, so for context here's a link to [the most recent release that doesn't yet address this problem](https://github.com/karmaniverous/template-nextjs/tree/0.0.7).
 
 Some points to note:
 
