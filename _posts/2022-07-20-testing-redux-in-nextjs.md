@@ -142,3 +142,6 @@ So I did that. Here's [the commit](https://github.com/karmaniverous/template-nex
 But what's the larger lesson here?
 
 ***The map is not the territory.*** A JSX file is not a React component, and it has no obligation to contain one. It's just a bunch of text that will be parsed in a particular way, according to your development environment's configuration. If you have a use case where that parsing would be beneficial, then use a JSX file.
+
+**P.S.** In my rush to get this done and get back to work, I committed my test file before actually RUNNING the tests. So of course there were some typos. [This release](https://github.com/karmaniverous/template-nextjs/releases/tag/0.0.8) ties everything up with a bow, and all the tests actually pass.
+{: .notice--info}
