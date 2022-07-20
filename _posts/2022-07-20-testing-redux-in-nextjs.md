@@ -96,7 +96,7 @@ Not so fast. The project still builds, but now Mocha shows a different error:
     <a href="{{ site.url }}{{ site.baseurl }}/assets/images/mocha-test-explorer-error-output-2.png"><img src="{{ site.url }}{{ site.baseurl }}/assets/images/mocha-test-explorer-error-output-2.png"></a>
 </figure>
 
-Now that just seems perverted. Why is the Redux Toolkit a CommonJS module? Seems like they would have worked that out. Nevertheless, there's a workaround right in the error message, let's try it out.
+Now that just seems perverted. Why is the Redux Toolkit a CommonJS module? Seems like they would have worked that out by now. Nevertheless, there's a workaround right in the error message, let's try it out.
 
 I replaced each Redux Toolkit import with the two-step suggested in the error message. Here's [the commit](https://github.com/karmaniverous/template-nextjs/commit/bf497acd1a6f566ddb11e22824e58854036b5910). NOW we're good, right?
 
