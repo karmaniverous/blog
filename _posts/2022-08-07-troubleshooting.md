@@ -1,6 +1,6 @@
 ---
-title: "Karmic Rule Zero"
-excerpt: "Minimize external dependencies and try not to use shitty libraries. – Karmic Rules for Writing Pretty Good Code"
+title: "Karmic Rule One"
+excerpt: "Troubleshooting works just like the regular kind: you won't hit your target if you don't have one. – Karmic Rules for Writing Pretty Good Code"
 header:
   teaser: /assets/images/dharma-wheel.png
 categories:
@@ -15,5 +15,5 @@ toc: false
     <img src="{{ site.url }}{{ site.baseurl }}/assets/images/dharma-wheel.png">
 </figure>
 
-> Minimize external dependencies and try not to use shitty libraries. 
+> Troubleshooting works just like the regular kind: you won't hit your target if you don't have one. 
 > <cite><a href="https://github.com/karmaniverous/rules">Karmic Rules for Writing Pretty Good Code</a></cite>
