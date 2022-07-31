@@ -1,6 +1,6 @@
 ---
 title: "Unexpected Mutations"
-excerpt: "An unexpected (and probably inintended) function parameter mutation inside the web3.js library had me questioning my sanity for a couple of hours."
+excerpt: "An unexpected (and probably unintended) function parameter mutation inside the web3.js library had me questioning my sanity for a couple of hours."
 header:
   teaser: /assets/images/web3js-logo.jpg
 categories:
