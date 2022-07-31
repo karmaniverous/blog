@@ -63,6 +63,9 @@ author:
   avatar : "/assets/images/bio-photo.jpg"
   bio    : "resume bullets<br />may read differently at the<br />threshold of heaven"
   links:
+    - label: "Karmic Rules"
+      icon: "fas fa-fw fa-dharmachakra"
+      url: "https://github.com/karmaniverous/rules"
     - label: "GitHub"
       icon: "fab fa-fw fa-github"
       url: "https://github.com/karmaniverous"
@@ -84,6 +87,9 @@ author:
 
 footer:
   links:
+    - label: "Karmic Rules"
+      icon: "fas fa-fw fa-dharmachakra"
+      url: "https://github.com/karmaniverous/rules"
     - label: "GitHub"
       icon: "fab fa-fw fa-github"
       url: "https://github.com/karmaniverous"
