@@ -108,3 +108,6 @@ Game.getParams = async (options) =>
 Now I'm passing a shallow copy of the `options` object to `web3`, which it can mutate all it wants, and I don't care.
 
 Problem solved!
+
+**Update:** I raised [an issue](https://github.com/ChainSafe/web3.js/issues/5304) on the `web3` GitHub project. Interested to see how that goes.
+{: .notice--info}
