@@ -89,7 +89,7 @@ Vercel's intent with this is clear. Nevertheless, when I visit my new subdomain,
 
 Yet when I visit either of the automatically-generated domains, I see the application home page, as expected.
 
-It seems pretty clear what is going on here: despite the clear indication that my custom domain is a `preview` deployment, Vercel has set the `NEXT_PUBLIC_VERCEL_ENV` environment variable to `production`.
+Pretty obvious what is going on here: despite the clear indication that my custom domain is a `preview` deployment, Vercel has set the `NEXT_PUBLIC_VERCEL_ENV` environment variable to `production`.
 
 😐
 {: style="font-size: 3em; text-align:center;"}
