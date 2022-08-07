@@ -29,7 +29,7 @@ I'll fix the template, eventually. But meanwhile, this Vercel thing is interesti
 
 If you are reading this, you are probably familiar with the `process.env.environment` variable. It's what Node.js uses to identify your runtime environment. In Next.js—which is built on top of Node.js—this is either set to `development` or `production`.
 
-Vercel introduces the concept of a _preview environment_. There are lots of ways to use Vercel, but probably the most common is to connect your Vercel account to GitHub and designate a project branch (i.e. `main`) as your production branch. Vercel creates a build when you deploy to _any_ GitHub branch and attaches it to a randomized domain. A deployment anywhere but your designated production branch is a preview deployment. You can read this state on the front end at `process.env.NEXT_PUBLIC_VERCEL_ENV`.
+Vercel introduces the concept of a _preview environment_. There are lots of ways to use Vercel, but probably the most common is to connect your Vercel account to GitHub and designate a project branch (_e.g._ `main`) as your production branch. Vercel creates a build when you deploy to _any_ GitHub branch and attaches it to a randomized domain. A deployment anywhere but your designated production branch is a preview deployment. You can read this state on the front end at `process.env.NEXT_PUBLIC_VERCEL_ENV`.
 
 If you're looking at `process.env.NEXT_PUBLIC_VERCEL_ENV` on a published branch, its value will either be `production` or `preview`. If you're looking for it in your development environment, it won't be set—think about it—unless you set it explicitly from an environment file using something like [`dotenv`](https://www.npmjs.com/package/dotenv).
 
@@ -77,7 +77,7 @@ This is handy when you want to publish links to preview versions of your applica
 
 But I thought I'd be cute.
 
-If you've got a domain (e.g. `mydomain.com`) attached to your Vercel project, Vercel also offers the ability to attach a custom subdomain to your preview branch. So, following the example above, I could create `preview-0-3-0.mydomain.com`. 
+If you've got a domain (_e.g._ `mydomain.com`) attached to your Vercel project, Vercel also offers the ability to attach a custom subdomain to your preview branch. So, following the example above, I could create `preview-0-3-0.mydomain.com`. 
 
 Nice, right? The configuration looks like this:
 
