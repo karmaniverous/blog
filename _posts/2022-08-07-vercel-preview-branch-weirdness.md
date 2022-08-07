@@ -27,7 +27,7 @@ I'll fix the template, eventually. But meanwhile, this Vercel thing is interesti
 
 ## The Setup
 
-If you are readiong this, you are probably familiar with the `process.env.environment` variable. It's what Node.js uses to identify your runtime environment. In Next.js—which is built on top of Node.js—this is either set to `development` or `production`.
+If you are reading this, you are probably familiar with the `process.env.environment` variable. It's what Node.js uses to identify your runtime environment. In Next.js—which is built on top of Node.js—this is either set to `development` or `production`.
 
 Vercel introduces the concept of a _preview environment_. There are lots of ways to use Vercel, but probably the most common is to connect your Vercel account to GitHub and designate a project branch (i.e. `main`) as your production branch. Vercel creates a build when you deploy to _any_ GitHub branch and attaches it to a randomized domain. A deployment anywhere but your designated production branch is a preview deployment. You can read this state on the front end at `process.env.NEXT_PUBLIC_VERCEL_ENV`.
 
