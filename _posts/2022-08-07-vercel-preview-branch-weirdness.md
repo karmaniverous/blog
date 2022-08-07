@@ -100,7 +100,7 @@ I'm not going to go very far out of my way to fix this.
 
 Instead, I've opened [a ticket](https://github.com/vercel/vercel/discussions/8340) with Vercel and hope they will resolve the issue soon. Meanwhile, I've altered all my preview deployment links to point to the (way less sexy) automatically generated domains.
 
-There is still the question of the Vercel dependency in my template. I intend to fix this (here's [the ticket](https://github.com/karmaniverous/template-nextjs/issues/20)) but I do have some larger fish to fry. 
+There is still the question of the Vercel dependency in my template. I intend to fix this (here's [my own ticket](https://github.com/karmaniverous/template-nextjs/issues/20)) but I do have some larger fish to fry. 
 
 If you want to use my template but the Vercel dependency is a problem for you, feel free to drop a comment below and I'll bump it up in my queue.
 
