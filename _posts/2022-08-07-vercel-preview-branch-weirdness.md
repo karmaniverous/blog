@@ -33,7 +33,7 @@ Vercel introduces the concept of a _preview environment_. There are lots of ways
 
 If you're looking at `process.env.NEXT_PUBLIC_VERCEL_ENV` on a published branch, its value will either be `production` or `preview`. If you're looking for it in your development environment, it won't be set—think about it—unless you set it explicitly from an environment file using something like [`dotenv`](https://www.npmjs.com/package/dotenv).
 
-So my Next.js template has a Coming Soon page. To make it work, I have entries in three environment files:
+So my Next.js template has a Coming Soon page. To make it work, I have entries in two environment files:
 
 `.env.development`
 ```sh
@@ -64,11 +64,11 @@ if (route !== '/coming-soon' && isComingSoon) redirect(res, '/coming-soon');
 if (route === '/coming-soon' && !isComingSoon) redirect(res, '/');
 ```
 
-Get it? I can set `NEXT_PUBLIC_COMING_SOON` to make the Coming Soon page appear (or not) in `development` or `production`, but it _never_ appears in `preview`, because **preview**. I'm sure there is a way to do this without the dependency on a Vercel-specific environment variable, but so far I haven't _needed_ one. 
+Get it? I can set `NEXT_PUBLIC_COMING_SOON` to make the Coming Soon page appear (or not) in `development` or `production`, but it _never_ appears in `preview`, because ***preview***. I'm sure there is a way to do this without the dependency on a Vercel-specific environment variable, but so far I haven't _needed_ one. 
 
 ## The Problem
 
-As I mentioned above, every time you push to a GitHub Branch, Vercel builds your project and deploys it to a unique URL. Two, actually: one is always generated, and another is specific to the attached GitHub branch. For example, if I pushed application `myapp` to GitHub branch 'preview-0-3-0', the application would deploy to domains like these:
+As I mentioned above, every time you push to a GitHub Branch, Vercel builds your project and deploys it to a unique URL. Two, actually: one is always generated, and another is specific to the attached GitHub branch. For example, if I pushed application `myapp` to GitHub branch `preview-0-3-0`, the application would deploy to domains like these:
 
 * `myapp-9z3i9bqtd-myaccount.vercel.app`
 * `myapp-git-preview-0-3-0-myaccount.vercel.app`
@@ -85,18 +85,23 @@ Nice, right? The configuration looks like this:
     <a href="{{ site.url }}{{ site.baseurl }}/assets/images/vercel-preview-branch.png"><img src="{{ site.url }}{{ site.baseurl }}/assets/images/vercel-preview-branch.png"></a>
 </figure>
 
-Vercel's intent with this seems pretty clear. Nevertheless, when I visit my new subdomain, what do I see? _The Coming Soon page!_
+Vercel's intent with this is clear. Nevertheless, when I visit my new subdomain, what do I see? _The Coming Soon page!_
 
 Yet when I visit either of the automatically-generated domains, I see the application home page, as expected.
 
 It seems pretty clear what is going on here: despite the clear indication that my custom domain is a `preview` deployment, Vercel has set the `NEXT_PUBLIC_VERCEL_ENV` environment variable to `production`.
 
 :neutral_face:
+{: style="font-size: 2em; text-align:center;"}
 
 ## The Solution (Kind Of)
 
-I'm not going to go very far out of my way to fix this. Instead, I've opened a ticket with Vercel and hope they will resolve the issue soon. Meanwhile, I've altered all my preview deployment links to point to the (way less sexy) automatically generated domains.
+I'm not going to go very far out of my way to fix this. 
 
-There is still the question of the Vercel dependency in my template. I do intend to fix this (here's [the ticket](https://github.com/karmaniverous/template-nextjs/issues/20)) but I do have some larger fish to fry. If you want to use my template but the Vercel dependency is a problem for you, feel free to drop a comment below and I'll bump it up in my queue.
+Instead, I've opened [a ticket](https://github.com/vercel/vercel/discussions/8340) with Vercel and hope they will resolve the issue soon. Meanwhile, I've altered all my preview deployment links to point to the (way less sexy) automatically generated domains.
 
-Or, you know, roll up your sleeves and fix it for me. [#opensource](https://twitter.com/hashtag/openSource)
+There is still the question of the Vercel dependency in my template. I intend to fix this (here's [the ticket](https://github.com/karmaniverous/template-nextjs/issues/20)) but I do have some larger fish to fry. 
+
+If you want to use my template but the Vercel dependency is a problem for you, feel free to drop a comment below and I'll bump it up in my queue.
+
+Or, you know, roll up your sleeves and fix it for me! [#opensource](https://twitter.com/hashtag/openSource)
