@@ -54,7 +54,7 @@ But what's a format?
 
 Simply put, an event's format is a plan for the event, expressed in units of time. For example, every episode of *Saturday Night Live* follows [this exact format](https://snl.fandom.com/wiki/Saturday_Night_Live_Episode_Synopsis). The format is so consistent that, in 45 years of weekly run time, the show only deviated from its published format [*nine times*](https://www.ranker.com/list/every-time-snl-changed-its-format/dave-schilling).
 
-Imagine trying to figure out what to do with 67 minutes of non-commercial air time every Saturday night. That is a HUGELY complex problem!
+Imagine trying to figure out what to do with 67 minutes of non-commercial air time, with tens of millions of viewers, EVERY Saturday night. That is a HUGELY complex problem!
 
 Compare that with trying to fill just the five-minute opening monologue segment. Still not trivial, obviously... but also a MUCH simpler challenge than the whole!
 
