@@ -1,6 +1,6 @@
 ---
 title: "How to Run an Event That Doesn't Suck"
-excerpt: "Distilling 18 months of experience with 80+ online events down into a letter to a friend."
+excerpt: "Distilling 18 months of experience with 80+ online events involving thousands of attendees down into a letter to a friend."
 header:
   teaser: /assets/images/event.png
 categories:
@@ -223,6 +223,28 @@ But assuming you DO have the time, here's what you can do here:
 * **Your promise.** Remember? It was to honor the value of the time your attendees shared with you. You kept that promise, maybe right down to the minute... so REMIND THEM YOU DID THAT! The second-to-last thing your attendees should hear from you is confirmation that you actually kept your promise. Might sound silly. Isn't. Ignore at your peril! 
 
 * **Your thanks.** Don't be shy. Mean it. Be brief, be bold, and be done.
+
+## Some Extras
+
+If you follow the plan I laid out above, you will generate an absolute MOUNTAIN of content!
+
+Between regular weekly meetups and other stuff, RINGKNOCKER produced over 80 events. Each one of those generated:
+
+* 90 min of raw video
+* A full text transcript
+* Up to a dozen or more short video clips of speaker presentations, member intros & updates, etc.
+* A unique opening monologue.
+
+That is a LOT of raw material! Here's how we used it:
+
+* We used the opening monologue as a blog post over the key short video from the event.
+* We posted the raw video and transcript as private content for attendees.
+* All the short videos went up on the YouTube channel and out as social media posts.
+* We mined each transcript for dozens of short text excerpts that also went out on social media.
+
+The full operation was a hefty part-time job for myself, an operations assistant, and a video editor. It never actually broke even on costs, but that's on me... Lord knows I'm better at making things (and running events, I guess) than I am at running a business. 
+
+But my point is: if you ARE thinking about generating a stream of revenue from your events and you DO know how to leverage social media to accomplish that, this template will give you plenty of material to work with.
 
 ## Still Want To Do This?
 
