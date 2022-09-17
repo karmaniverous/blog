@@ -112,7 +112,7 @@ I admit it, I'm no Johnny Carson. Ok... Jay Leno. Ok... whoever the new guy is. 
 
 But that isn't the point of an opening monologue, at least not the way I did it. Instead, there are TWO points:
 
-* **Nobody shows up on time.** Well... almost nobody. So you need a little slack at the beginning of the show so people can come in, get settled, and start paying attention. If the room is utterly silent, people will start wondering why they came. *So dance, monkey!*
+* **Nobody shows up on time.** Well... *almost* nobody. So you need a little slack at the beginning of the show so people can come in, get settled, and start paying attention. If the room is utterly silent, people will start wondering why they came. *So dance, monkey!*
 
 * **Who the hell are you, anyway?** Nobody cares about your bio, at least not yet. Why should they? So give them a reason to care. Reward the people who actually showed up on time by sharing a bit of yourself that the latecomers won't get to see.
 
