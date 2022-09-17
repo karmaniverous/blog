@@ -58,7 +58,7 @@ Imagine trying to figure out what to do with 67 minutes of non-commercial air ti
 
 Compare that with trying to fill just the five-minute opening monologue segment. Still not trivial, obviously... but also a MUCH simpler challenge than the whole!
 
-As any engineer will immediately understand, this is the power of *problem decomposition*: break a tough nut into simpler pieces, and then solve many easy problems instead of one hard one. That's what a good format does for you.
+As any engineer will immediately understand, this is the power of *problem decomposition*: break a tough nut down into simpler pieces, and then solve many easy problems instead of one hard one. That's what a good format does for you.
 
 With that in mind, here's the RINGKNOCKER format for a 90-minute meetup. I'll dig into the details in the sections below:
 
