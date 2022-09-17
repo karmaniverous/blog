@@ -80,7 +80,7 @@ With that in mind, here's the RINGKNOCKER format for a 90-minute meetup. I'll di
 
 Your event schedule is a **PROMISE** to your attendees.
 
-**This is non-negotiable!** Remember that YOUR event is just ONE event in everybody's day. It is VERY easy to run over time. **Do NOT run over time!** If your event is scheduled to run from 12-1:30pm, then END IT at 1:30pm... no natter what time you actually started... whether you have completed your agenda or not!
+**This is non-negotiable!** Remember that YOUR event is just ONE event in everybody's day. It is VERY easy to run over time. **Do NOT run over time!** If your event is scheduled to run from 12-1:30pm, then END IT at 1:30pm... no matter what time you actually started... whether you have completed your agenda or not!
 
 There are two reasons behind this iron-clad rule:
 
