@@ -28,7 +28,7 @@ I'm a software engineer by trade, and I won't pretend to possess some arcane sec
 
 If your event is competently organized and offers the occasional small flash of brilliance, many attendees will return for more, and bring friends to boot! But if your event can't get out of its own way, it won't matter how brilliant your content is: most attendees will never darken your door again.
 
-I can't help you be brilliant. That's on you. But what I'm going to share here is a template for creating an operating an event—more properly, a *series* of events—that is virtually guaranteed not to disappoint. It's a pretty good formula that you can easily build on in whatever ways make sense.
+I can't help you be brilliant. That's on you. But what I'm going to share here is a template for creating and operating an event—more properly, a *series* of events—that is virtually guaranteed not to disappoint. It's a pretty good formula that you can easily build on in whatever ways make sense.
 
 ## Why Am I Writing This?
 
