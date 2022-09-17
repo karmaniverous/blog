@@ -1,6 +1,6 @@
 ---
 title: "How to Run an Event That Doesn't Suck"
-excerpt: ""
+excerpt: "Distilling 18 months of experience with 80+ online events down into a letter to a friend."
 header:
   teaser: /assets/images/event.png
 categories:
