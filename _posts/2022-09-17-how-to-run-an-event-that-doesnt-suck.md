@@ -177,7 +177,7 @@ Every format has its own demands, and you might have one guest speaker, several,
 
 * **Stay engaged!** Don't just sit there playing with your phone. Everybody in the audience has questions, all the time, but NONE of them wants to interrupt the flow and ask. So stay engaged. Ask the speaker for clarification. Satisfy your curiosity. Turn a flat monologue into a dynamic conversation, where your whole job is to be a good student and make the speaker look like a stone-cold genius by comparison.
 
-    **PRO TIP:** Do NOT blind-side yiour speakers! Make sure they know ahead of time that you want to step in with a couple of questions. Assure them that the goal is to ask the dumb questions the audience might be afraid to ask. Know how much time they need to deliver their message, and take that into account when you step in, because...
+    **PRO TIP:** Do NOT blind-side your speakers! Make sure they know ahead of time that you want to step in with a couple of questions. Assure them that the goal is to ask the dumb questions the audience might be afraid to ask. Know how much time they need to deliver their message, and take that into account when you step in, because...
     {: .notice--info}
 
 * **You're STILL in charge of the clock!** If you've scheduled time for Q&A, then you can trade it against presentation time if the speaker runs on or if you've asked too many questions. But the clock is king, no matter WHO is talking.
