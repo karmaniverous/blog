@@ -135,7 +135,7 @@ Here's the RINGKNOCKER version, which fits into the *Background & Mission* secti
 
 {% include video id="oK-ZGNGCRUY" provider="youtube" %}
 
-With slight variations in wording, I told that EXACT SAME STORY every single week for nearly TWO YEARS! It was our legend. It was why we spent our Thursday nights together on a Zoom call instead of doing damned near anything else. 
+With slight variations in wording, I told that EXACT SAME STORY every single week for nearly TWO YEARS! It was our Legend. It was why we spent our Thursday nights together on a Zoom call instead of doing damned near anything else. 
 
 I had attendees who heard me tell that story 40+ times and not ONE of them ever suggested maybe I skip it this time.
 
