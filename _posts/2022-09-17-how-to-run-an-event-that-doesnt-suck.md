@@ -139,7 +139,7 @@ With slight variations in wording, I told that EXACT SAME STORY every single wee
 
 I had attendees who heard me tell that story 40+ times and not ONE of them ever suggested maybe I skip it this time.
 
-Why? Because legends MATTER. Your group's legend is the reason they are there with you instead of watching a ball game or having dinner with their families. So tell the freaking story.
+Why? Because legends MATTER. Your group's Legend is the reason they are there with you instead of watching a ball game or having dinner with their families. So tell the freaking story.
 
 Is that intimidating? Consider this: everybody's there for a reason, right? **THEY ALREADY KNOW THE LEGEND!** They just need YOU to say it out loud.
 
