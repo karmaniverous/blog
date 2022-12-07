@@ -17,9 +17,7 @@ toc: true
 
 [ChatGPT](https://openai.com/blog/chatgpt/) is the latest AI conversational model based on GPT 3.5 from [OpenAI](https://openai.com/). You can try it [here](https://chat.openai.com/).
 
-ChatGPT responds to its prompts almost instantly, so the conversational flow is absurdly smooth. 
-
-At the beginning of the exchange that follows, I've tried to share a sense of the back-and-forth. Toward the end I iterated my prompts a bit in order to show just how far the engine can be pushed.
+ChatGPT responds to its prompts almost instantly, so the conversational flow is absurdly smooth. At the beginning of the exchange that follows, I tried to convey the feel of the back-and-forth. Toward the end I iterated my prompts a bit in order to show just how far the engine can be pushed.
 
 All of it is an EXACT copy-and-paste from ChatGPT. I have edited NOTHING.
 
