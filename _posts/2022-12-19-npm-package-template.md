@@ -77,7 +77,7 @@ absolute requirement, but you'll be glad you did.
     See [Configuring `package.json`](#configuring-packagejson) for info on the
     rest of these settings.
 
-1.  Install dependencies by running `npm install`.
+1.  Install dependencies by running `npm install`. This may produce an audit report. See [Vulnerabilities](#vulnerabilities) below for more info.
 
 1.  Run your tests from the command line:
 
@@ -155,6 +155,38 @@ this command:
 
 ```
 npm run release
+```
+
+## Vulnerabilities
+
+At the time of this writing, running `npm install` will generate the following vulnerability warning:
+
+```text
+6 vulnerabilities (3 high, 3 critical)
+```
+
+If you run `npm audit`, you will find that all of these vulnerabilities relate to the following dev dependencies, all of which are to do with docs generation:
+
+```bash
+npm list underscore
+
+# @karmaniverous/npm-package-template@0.5.1-0
+# ├─┬ concat-md@0.5.0
+# │ └─┬ doctoc@1.4.0
+# │   └── underscore@1.8.3
+# └─┬ jsdoc-to-markdown@8.0.0
+#   └─┬ jsdoc-api@8.0.0
+#     └─┬ jsdoc@4.0.0
+#       └── underscore@1.13.6
+
+npm list trim
+
+# @karmaniverous/npm-package-template@0.5.1-0
+# └─┬ concat-md@0.5.0
+#   └─┬ doctoc@1.4.0
+#     └─┬ @textlint/markdown-to-ast@6.0.9
+#       └─┬ remark-parse@5.0.0
+#         └── trim@0.0.1
 ```
 
 ## NPM Scripts
