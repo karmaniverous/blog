@@ -2,7 +2,7 @@
 title: "Unexpected Mutations"
 excerpt: "An unexpected (and probably unintended) function parameter mutation inside the web3.js library had me questioning my sanity for a couple of hours."
 header:
-  teaser: /assets/images/web3js-logo.jpg
+  teaser: /assets/images/logo-web3js.jpg
 categories:
   - Blog
 tags:
@@ -12,7 +12,7 @@ toc: false
 ---
 
 <figure class="align-left" style="margin-top: 10px; margin-bottom: 10px; width: 150px;">
-    <img src="{{ site.url }}{{ site.baseurl }}/assets/images/web3js-logo.jpg">
+    <img src="{{ site.url }}{{ site.baseurl }}/assets/images/logo-web3js.jpg">
 </figure>
 
 Today was one of those days. 

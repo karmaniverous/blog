@@ -2,7 +2,7 @@
 title: "Vercel Preview Branch Weirdness"
 excerpt: "An accidental hosting environment dependency revealed an irritating bug in Vercel's preview deployment logic."
 header:
-  teaser: /assets/images/vercel-logo.png
+  teaser: /assets/images/logo-vercel.png
 categories:
   - Blog
 tags:
@@ -13,7 +13,7 @@ toc: true
 ---
 
 <figure class="align-left" style="margin-top: 10px; margin-bottom: 10px; width: 150px;">
-    <img src="{{ site.url }}{{ site.baseurl }}/assets/images/vercel-logo.png">
+    <img src="{{ site.url }}{{ site.baseurl }}/assets/images/logo-vercel.png">
 </figure>
 
 I've got a very handy [Next.js project template](https://github.com/karmaniverous/template-nextjs) out there that I am using as the basis of a number of projects.

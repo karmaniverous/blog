@@ -1,8 +1,8 @@
 ---
-title: "NPM Package Template"
-excerpt: "An ES6 NPM package project template featuring a CLI, test support, automated API docs, release management & more!"
+title: "React Component NPM Package Template"
+excerpt: "An ES6 React component NPM package project template featuring front & back end test support, automated API docs, release management & more!"
 header:
-  teaser: /assets/images/logo-npm.svg
+  teaser: /assets/images/logo-react.png
 categories:
   - Blog
 tags:
@@ -12,10 +12,10 @@ toc: true
 ---
 
 <figure class="align-left" style="margin-top: 10px; margin-bottom: 10px; width: 150px;">
-    <img src="{{ site.url }}{{ site.baseurl }}/assets/images/logo-npm.svg">
+    <img src="{{ site.url }}{{ site.baseurl }}/assets/images/logo-react.png">
 </figure>
 
-You wrote a sweet piece of code! Releasing it on [NPM](https://www.npmjs.com/)
+You wrote a sweet React component! Releasing it on [NPM](https://www.npmjs.com/)
 seems like the obvious next step. Right?
 
 Try it. Not as easy to do from scratch as you might think.
@@ -23,20 +23,18 @@ Try it. Not as easy to do from scratch as you might think.
 So here's a plug-and-play NPM package template that offers the following
 features:
 
-- Support for the latest ES6 goodies with
+- Support for the latest ES6 + JSX goodies with
   [`eslint`](https://www.npmjs.com/package/eslint) _uber alles_.
-
-- A command line interface for your widget with
-  [`commander`](https://www.npmjs.com/package/commander).
 
 - Automated [`lodash`](https://www.npmjs.com/package/lodash) cherry-picking with
   [`babel-plugin-lodash`](https://www.npmjs.com/package/babel-plugin-lodash).
 
-- [`mocha`](https://www.npmjs.com/package/mocha) &
-  [`chai`](https://www.npmjs.com/package/chai) for testing, with examples, and a
-  sweet testing console.
+- Front & back-end testing with [`mocha`](https://www.npmjs.com/package/mocha),
+  [`chai`](https://www.npmjs.com/package/chai), and the
+  [React Testing Library](https://www.npmjs.com/package/@testing-library/react).
+  Includes examples and a sweet testing console!
 
-- Secure environment-variable access to [`package.json`](https://github.com/karmaniverous/npm-package-template/blob/main/package.json) data.
+- Secure environment-variable access to [`package.json`](https://github.com/karmaniverous/react-component-npm-package-template/blob/main/package.json) data.
 
 - Code formatting at every save & paste with
   [`prettier`](https://www.npmjs.com/package/prettier).
@@ -49,11 +47,11 @@ features:
 - One-button release to GitHub & publish to NPM with
   [`release-it`](https://www.npmjs.com/package/release-it).
 
-[Clone This Repo On GitHub!](https://github.com/karmaniverous/npm-package-template/generate){: .btn .btn--primary .btn--large}
+[Clone This Repo On GitHub!](https://github.com/karmaniverous/react-component-npm-package-template/generate){: .btn .btn--primary .btn--large}
 {: .text-center}
 
-If you want to create a React component in an NPM package, try my
-[React Component NPM Package Template](https://github.com/karmaniverous/react-component-npm-package-template)
+If you want to create a non-React NPM package, try my regular
+[NPM Package Template](https://github.com/karmaniverous/npm-package-template)
 instead!
 {: .notice--info}
 
@@ -75,10 +73,10 @@ absolute requirement, but you'll be glad you did.
     1. Click the Download link.
 
        <figure>
-        <img src="/assets/images/npm-package-template-extensions.png" style="width: 250px;">
+        <img src="/assets/images/react-component-npm-package-template-extensions.png" style="width: 250px;">
        </figure>
 
-1.  Set the version in [`package.json`](https://github.com/karmaniverous/npm-package-template/blob/main/package.json) to `0.0.0`.
+1.  Set the version in [`package.json`](https://github.com/karmaniverous/react-component-npm-package-template/blob/main/package.json) to `0.0.0`.
 
     See [Configuring `package.json`](#configuring-packagejson) for info on the
     rest of these settings.
@@ -90,51 +88,27 @@ absolute requirement, but you'll be glad you did.
     ```bash
     npm run test
 
-    #  foo
-    #    ✔ with input
-    #    ✔ without input
+    # Component
+    #   missing testid
+    #     ✔ renders
+    #   with testid
+    #     ✔ renders
+    #     ✔ is unaffected by click
     #
-    #  2 passing (5ms)
+    # 3 passing (99ms)
     ```
 
     If you installed the VS Code extensions referenced above, use the `Testing`
     panel to visualize & run your unit tests.
      <figure>
-      <img src="/assets/images/npm-package-template-testing-panel.png">
+      <img src="/assets/images/react-component-npm-package-template-testing-panel.png">
      </figure>
 
-1.  Package your code and link it locally by running:
 
-    ```bash
-    npm run package
-    npm link
-    ```
-
-1.  Enter a few of your package CLI commands:
-
-    ```bash
-    npm-package-template
-
-    # foo nil!
-
-    npm-package-template -f bar
-
-    # foo bar!
-
-    npm-package-template -v
-
-    # 0.0.0
-    ```
-
-1.  Clean up by unlinking your package.
-
-    ```bash
-    npm unlink -g @karmaniverous/npm-package-template
-    ```
 
 ### Create Local Environment Variable File
 
-Look for [`.env.local.template`](https://github.com/karmaniverous/npm-package-template/blob/main/.env.local.template) in your project
+Look for [`.env.local.template`](https://github.com/karmaniverous/react-component-npm-package-template/blob/main/.env.local.template) in your project
 directory. Copy this file and remove the `.template` extension from the copy.
 
 **Do not simply rename this file!** Anybody who pulls your repo will need this
@@ -211,38 +185,17 @@ npm list trim
 
 ### Develop Package Exports
 
-All custom package code lives in the [`src/export`](https://github.com/karmaniverous/npm-package-template/blob/main/src/export) directory.
-Structure the contents of this directory however you like.
+All custom package code lives in the [`src`](https://github.com/karmaniverous/react-component-npm-package-template/blob/main/src) directory. Structure the
+contents of this directory however you like.
 
-All package exports come together in
-[`src/export/index.mjs`](src/export/index.mjs). You can cherry-pick from your
-own source and organize your exports however you like. You can even
-[re-export](https://jamesknelson.com/re-exporting-es6-modules/) imports from
-other packages!
+All package exports come together in [`src/index.jsx`](src/index.jsx). You can
+cherry-pick from your own source and organize your exports however you like. You
+can even [re-export](https://jamesknelson.com/re-exporting-es6-modules/) imports
+from other packages!
 
-Do not move or rename [`src/export/index.mjs`](src/export/index.mjs), or your
-build will break!
+Do not move or rename [`src/index.jsx`](src/index.jsx) or your build will
+break.
 {: .notice--warning}
-
-### Develop Package CLI
-
-All custom command-line interface (CLI) code lives in the [`src/cli`](https://github.com/karmaniverous/npm-package-template/blob/main/src/cli)
-directory. Structure the contents of this directory however you like.
-
-The sample CLI is built using the very excellent
-[`commander`](https://www.npmjs.com/package/commander) package, but you can use
-whatever you want.
-
-The only constraints:
-
-- [`src/cli/index.mjs`](src/cli/index.mjs) is the execution point of your CLI.
-  Do not move or rename this file or your build will break.
-
-- [`src/cli/index.mjs`](src/cli/index.mjs) must begin with the following line:
-
-  ```js
-  #!/usr/bin/env node
-  ```
 
 ### Pass `package.json` Data Into Environment Variables
 
@@ -251,11 +204,11 @@ This template uses
 to replace environment variable references in your code with string literals at
 build time.
 
-Currently it is pulling `version` from [`package.json`](https://github.com/karmaniverous/npm-package-template/blob/main/package.json) into
+Currently it is pulling `version` from [`package.json`](https://github.com/karmaniverous/react-component-npm-package-template/blob/main/package.json) into
 `process.env.NODE_PACKAGE_VERSION`. The same technique will work for any value
 from a source you would rather not load at run time.
 
-To add more values, see the comments in [`babel.config.js`](https://github.com/karmaniverous/npm-package-template/blob/main/babel.config.js).
+To add more values, see the comments in [`babel.config.js`](https://github.com/karmaniverous/react-component-npm-package-template/blob/main/babel.config.js).
 
 ### Create & Run Unit Tests
 
@@ -271,7 +224,7 @@ The default configuration will recognize any file as a test file that...
 - is not located in the `node_modules` or `lib` directories.
 
 The sample code packages tests next to the source code they exercise. If you
-prefer to segregate your tests into a directory outside [`src`](https://github.com/karmaniverous/npm-package-template/blob/main/src/) (e.g.
+prefer to segregate your tests into a directory outside [`src`](https://github.com/karmaniverous/react-component-npm-package-template/blob/main/src/) (e.g.
 `test`), that will work as well.
 
 Either way, all test files meeting the above conditions will be excluded from
@@ -291,12 +244,26 @@ reflect your `describe` hierarchy. It will also decorate your test source code
 with test running and status reporting controls.
 
 <figure>
-  <img src="/assets/images/npm-package-template-testing-panel.png">
+  <img src="/assets/images/react-component-npm-package-template-testing-panel.png">
 </figure>
 
 ### Test Your Build
 
+#### Back-End Tests
+
 `TODO`
+
+#### Front-End Tests
+
+This template supports front-end React component testing using the
+[React Testing Library](https://www.npmjs.com/package/@testing-library/react)
+(RTL). This library allows your tests to interact with your component in a
+headless browser environment.
+
+See [`Component.test.jsx`](https://github.com/karmaniverous/react-component-npm-package-template/blob/main/src/Component/Component.test.jsx) for a simple
+example, and visit the
+[RTL documentation](https://testing-library.com/docs/react-testing-library/intro/)
+for more info!
 
 ### Generate Documentation
 
@@ -304,8 +271,7 @@ with test running and status reporting controls.
 
 ### Integration-Test Your Package
 
-Generally, NPM packages are meant either to be included in other packages or to
-be invoked from the command line. This template supports both.
+A React component only makes sense when embedded in a React application.
 
 To package your code and add it directly to your local development environment
 as a global package, WITHOUT publishing it first to NPM, run these commands:
@@ -315,40 +281,18 @@ npm run package
 npm link
 ```
 
-You can now import your package into a JS module in any other package like this:
+You can now import your package assets into your React application like this:
 
 ```js
-// ES6
-import myTemplate from '@karmaniverous/npm-package-template'; // default export
-import { foo } from '@karmaniverous/npm-package-template'; // named export
-
-// CommonJS
-const myTemplate = require('@karmaniverous/npm-package-template'); // default export
-const { foo } = require('@karmaniverous/npm-package-template'); // named export
-```
-
-You can also invoke your package's CLI from the command line, just like any
-other global package with a CLI:
-
-```bash
-npm-package-template
-
-# foo nil!
-
-npm-package-template -f b
-
-# foo bar!
-
-npm-package-template -v
-
-# 0.0.0
+import Component from '@karmaniverous/react-component-npm-package-template'; // default export
+import { useComponent } from '@karmaniverous/react-component-npm-package-template'; // named export
 ```
 
 When you're finished, clean up your global environment by unlinking your
 package:
 
 ```bash
-npm unlink -g @karmaniverous/npm-package-template
+npm unlink -g @karmaniverous/react-component-npm-package-template
 ```
 
 ### Create & Publish a Release
@@ -390,28 +334,15 @@ for more info about NPM package scope & access.
 #### Configuring `package.json`
 
 When you publish an NPM package, NPM gets most of its info from your
-[`package.json`](https://github.com/karmaniverous/npm-package-template/blob/main/package.json) file.
+[`package.json`](https://github.com/karmaniverous/react-component-npm-package-template/blob/main/package.json) file.
 
-Set the following values in [`package.json`](https://github.com/karmaniverous/npm-package-template/blob/main/package.json), using the template
+Set the following values in [`package.json`](https://github.com/karmaniverous/react-component-npm-package-template/blob/main/package.json), using the template
 file as an example.
 
 This info is critical. You can't publish your package properly without it:
 
 - `name` – The desired package name on NPM. Include scope if relevant. See
   [Package Scope & Access](#package-scope--access) for more info.
-
-- `bin` – The desired command-line invocation. Set the KEY as indicated (`mycli`
-  by default):
-
-  ```js
-  {
-    ...,
-    "bin": {
-      "mycli": "lib/cli/index.js" // Change "mycli".
-    },
-    ...
-  }
-  ```
 
 - `version` - Your package version. Uses
   [semantic versioning](https://www.geeksforgeeks.org/introduction-semantic-versioning/).
@@ -507,29 +438,6 @@ Follow
 [these instructions](https://karmanivero.us/blog/installing-github-repo-template-updates/).
 
 ## FAQ
-
-### Why do most of your source files have an `.mjs` extension?
-
-Because this template is a
-[CommonJS package](https://nodejs.org/api/packages.html#type)!
-
-Which is weird, right? Becuae
-[right at the top of this document](#npm-package-template) we demanded _support
-for the latest ES6 goodies!_
-
-Meanwhile, your NPM package is only useful if it will run anywhere it needs to
-run. So the code you publish to NPM should support the lowest-common-denominator
-platform, meaning it _has_ to be a CommonJS package.
-
-We get there in two steps:
-
-1. Compose our fancy ES6 code in `.mjs` files in the [`src`](https://github.com/karmaniverous/npm-package-template/blob/main/src/) directory.
-   This is what we push to GitHub.
-
-1. Invoke [`babel`](https://babeljs.io/) via `npm run build` to transpile the
-   ES6 contents of the [`src`](https://github.com/karmaniverous/npm-package-template/blob/main/src/) directory into `.js` files in the `lib`
-   directory. This directory does NOT get pushed to GitHub... but it DOES get
-   published to NPM!
 
 ### How do I import a `.json` file into an ES6 module?
 

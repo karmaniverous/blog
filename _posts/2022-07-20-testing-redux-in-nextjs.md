@@ -2,7 +2,7 @@
 title: "Testing Redux in NextJS"
 excerpt: "If you’re testing ES6 code referencing Redux in a transpiled build environment, you can save yourself a lot of trouble by putting your tests into JSX files."
 header:
-  teaser: /assets/images/redux-logo.png
+  teaser: /assets/images/logo-redux.png
 categories:
   - Blog
 tags:
@@ -15,7 +15,7 @@ tags:
 ---
 
 <figure class="align-left" style="margin-top: 10px; margin-bottom: 10px; width: 150px;">
-    <img src="{{ site.url }}{{ site.baseurl }}/assets/images/redux-logo.png">
+    <img src="{{ site.url }}{{ site.baseurl }}/assets/images/logo-redux.png">
 </figure>
 
 Here's a pretty straightforward problem...
