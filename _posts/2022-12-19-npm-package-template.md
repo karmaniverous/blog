@@ -74,7 +74,9 @@ absolute requirement, but you'll be glad you did.
     1. Enter `@recommended` into the search box
     1. Click the Download link.
 
-       <img src="/assets/images/npm-package-template-extensions.png" width="250">
+       <figure>
+        <img src="/assets/images/npm-package-template-extensions.png" style="width: 250px;">
+       </figure>
 
 1.  Set the version in [`package.json`](https://github.com/karmaniverous/npm-package-template/blob/main/package.json) to `0.0.0`.
 
@@ -97,8 +99,9 @@ absolute requirement, but you'll be glad you did.
 
     If you installed the VS Code extensions referenced above, use the `Testing`
     panel to visualize & run your unit tests.
-
-     <img src="/assets/images/npm-package-template-testing-panel.png" width="600">
+     <figure>
+      <img src="/assets/images/npm-package-template-testing-panel.png">
+     </figure>
 
 1.  Build your package and link it locally by running:
 
@@ -287,7 +290,9 @@ extension will suface all of your tests into a sidebar console, nested to
 reflect your `describe` hierarchy. It will also decorate your test source code
 with test running and status reporting controls.
 
-<img src="/assets/images/npm-package-template-testing-panel.png" width="600">
+<figure>
+  <img src="/assets/images/npm-package-template-testing-panel.png">
+</figure>
 
 ### Test Your Build
 
