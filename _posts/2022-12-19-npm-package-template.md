@@ -49,9 +49,13 @@ features:
 - One-button release to GitHub & publish to NPM with
   [`release-it`](https://www.npmjs.com/package/release-it).
 
+[Clone This Repo On GitHub!](https://github.com/karmaniverous/npm-package-template/generate){: .btn .btn--primary .btn--large}
+{: .text-center}
+
 If you want to create a React component in an NPM package, use my
 [React Component NPM Package Template](https://github.com/karmaniverous/react-component-npm-package-template)
 instead!
+{: .notice--info}
 
 ## Setting Up Your Dev Environment
 
@@ -132,6 +136,7 @@ directory. Copy this file and remove the `.template` extension from the copy.
 
 **Do not simply rename this file!** Anybody who pulls your repo will need this
 template to create the same file in his own local environment.
+{: .notice--warning}
 
 ### Connect to GitHub
 
@@ -212,8 +217,9 @@ own source and organize your exports however you like. You can even
 [re-export](https://jamesknelson.com/re-exporting-es6-modules/) imports from
 other packages!
 
-Do not move or rename [`src/export/index.mjs`](src/export/index.mjs) or your
-build will break.
+Do not move or rename [`src/export/index.mjs`](src/export/index.mjs), or your
+build will break!
+{: .notice--warning}
 
 ### Develop Package CLI
 
@@ -545,6 +551,7 @@ const { version } = pkg;
 syntax yet, so while the statement above is valid, by default it would cause a
 build error.
 
-**This template includes
+This template includes
 [`@babel/plugin-syntax-import-assertions`](https://www.npmjs.com/package/@babel/plugin-syntax-import-assertions),
-which adds support for import assertions to Babel.**
+which adds support for import assertions to Babel.
+{: .notice--info}
