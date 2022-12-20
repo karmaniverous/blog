@@ -20,7 +20,7 @@ seems like the obvious next step. Right?
 
 Try it. Not as easy to do from scratch as you might think.
 
-So here's a plug-and-play NPM package template that offers the following
+So here's a plug-and-play [react component NPM package template](https://github.com/karmaniverous/react-component-npm-package-template) that offers the following
 features:
 
 - Support for the latest ES6 + JSX goodies with
@@ -47,11 +47,11 @@ features:
 - One-button release to GitHub & publish to NPM with
   [`release-it`](https://www.npmjs.com/package/release-it).
 
-[Clone This Repo On GitHub!](https://github.com/karmaniverous/react-component-npm-package-template/generate){: .btn .btn--primary .btn--large}
+[See it on GitHub!](https://github.com/karmaniverous/react-component-npm-package-template){: .btn .btn--info .btn--large}&nbsp;&nbsp;&nbsp;[Clone the Repo!](https://github.com/karmaniverous/react-component-npm-package-template/generate){: .btn .btn--primary .btn--large}
 {: .text-center}
 
 If you want to create a non-React NPM package, try my regular
-[NPM Package Template](https://github.com/karmaniverous/npm-package-template)
+[NPM Package Template](/blog/npm-package-template)
 instead!
 {: .notice--info}
 
