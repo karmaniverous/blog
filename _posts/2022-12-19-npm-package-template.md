@@ -219,6 +219,10 @@ npm list trim
 #         └── trim@0.0.1
 ```
 
+{: .notice--info}
+
+These vulnerable dependencies will NOT be included in your NPM package!
+
 ## Package Structure
 
 This template produces a hybrid NPM package that features both native ES and
