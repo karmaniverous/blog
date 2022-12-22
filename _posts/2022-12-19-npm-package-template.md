@@ -1,14 +1,13 @@
 ---
+# prettier-ignore
 title: "NPM Package Template"
-excerpt:
-  "An ES6 NPM package project template featuring a CLI, test support, automated
-  API docs, release management & more!"
+excerpt: "An ES6 NPM package project template featuring a CLI, test support, automated API docs, release management & more!"
 header:
   og_image: /assets/images/logo-npm.png
   teaser: /assets/images/logo-npm.png
 categories:
   - Blog
-tags:
+tags:   
   - npm
   - template
 toc: true
@@ -601,8 +600,8 @@ You can exert fine control over the final result by doing the following:
   This is your API documentation template.
   [`jsdoc2md`](https://www.npmjs.com/package/jsdoc-to-markdown) will render
   documentation based on the [JSDoc](https://jsdoc.app/index.html)-formatted
-  comments in your source code and render them at the `{{ '{{' }}>main}}` tag in the
-  template. Add any other content in Markdown format.
+  comments in your source code and render them at the `{{ '{{' }}>main}}` tag in
+  the template. Add any other content in Markdown format.
 
 - **Edit
   [`4-footer.md`](https://github.com/karmaniverous/npm-package-template/blob/main/doc/4-footer.md).**
@@ -666,8 +665,8 @@ There are several ways to accomplish these:
    pre-release version) to install your package into another package as a
    dependency, and test as required.
 
-Each of these approaches has its trade-offs, but a smart plan is to skip the first and do the last
-two, in that order.
+Each of these approaches has its trade-offs, but a smart plan is to skip the
+first and do the last two, in that order.
 
 **_If the second approach passes, why bother with the third?_**
 

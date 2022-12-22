@@ -1,4 +1,5 @@
 ---
+# prettier-ignore
 title: "Karmic Rule Zero"
 excerpt: "Minimize external dependencies and try not to use shitty libraries. – Karmic Rules for Writing Pretty Good Code"
 header:
@@ -17,4 +18,5 @@ toc: false
 </figure>
 
 > Minimize external dependencies and try not to use shitty libraries.
-> <cite><a href="https://github.com/karmaniverous/rules">Karmic Rules for Writing Pretty Good Code</a></cite>
+> <cite><a href="https://github.com/karmaniverous/rules">Karmic Rules for
+> Writing Pretty Good Code</a></cite>

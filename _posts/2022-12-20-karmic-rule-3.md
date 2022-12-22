@@ -1,4 +1,5 @@
 ---
+# prettier-ignore
 title: "Karmic Rule Three"
 excerpt: "If you want to get a complex process right, template it. – Karmic Rules for Writing Pretty Good Code"
 header:

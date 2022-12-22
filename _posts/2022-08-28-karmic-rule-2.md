@@ -1,4 +1,5 @@
 ---
+# prettier-ignore
 title: "Karmic Rule Two"
 excerpt: "Nothing raises issues like contact with reality. – Karmic Rules for Writing Pretty Good Code"
 header:
@@ -17,4 +18,5 @@ toc: false
 </figure>
 
 > Nothing raises issues like contact with reality.
-> <cite><a href="https://github.com/karmaniverous/rules">Karmic Rules for Writing Pretty Good Code</a></cite>
+> <cite><a href="https://github.com/karmaniverous/rules">Karmic Rules for
+> Writing Pretty Good Code</a></cite>

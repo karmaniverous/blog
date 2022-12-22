@@ -1,4 +1,5 @@
 ---
+# prettier-ignore
 title: "React Component NPM Package Template"
 excerpt: "An ES6 React component NPM package project template featuring front & back end test support, automated API docs, release management & more!"
 header:
