@@ -662,7 +662,7 @@ There are several ways to accomplish these:
    pre-release version) to install your package into another package as a
    dependency, and test as required.
 
-Each of these approaches has its trade-offs, but a smart plan is to do the last
+Each of these approaches has its trade-offs, but a smart plan is to skip the first and do the last
 two, in that order.
 
 **_If the second approach passes, why bother with the third?_**
