@@ -371,7 +371,9 @@ a [browserslist query](https://github.com/browserslist/browserslist#queries).
 
 The template's default distribution is located at
 [`dist/default`](https://github.com/karmaniverous/npm-package-template/tree/main/dist/default)
-and uses `browserslist` query `"defaults"`.
+and uses
+[`.babelrc`](https://github.com/karmaniverous/npm-package-template/blob/main/dist/default/.babelrc)
+to set `browserslist` query `"defaults"`.
 
 Package `require` entry points are defined in
 [`package.json`](https://github.com/karmaniverous/npm-package-template/blob/main/package.json)
@@ -585,7 +587,7 @@ When you run `npm run doc`, these two steps happen in order:
    `.md` file in
    [`doc`](https://github.com/karmaniverous/npm-package-template/blob/main/doc)
    into your main
-   [README](https://github.com/karmaniverous/npm-package-template/blob/main/README.md)
+   [`README`](https://github.com/karmaniverous/npm-package-template/blob/main/README.md)
    file. Files are concatenated in filename order (hence the numbered files).
 
 You can exert fine control over the final result by doing the following:
@@ -613,7 +615,7 @@ You can exert fine control over the final result by doing the following:
 - **Edit
   [`4-footer.md`](https://github.com/karmaniverous/npm-package-template/blob/main/doc/4-footer.md).**
   This footer will appear at the bottom of your
-  [README](https://github.com/karmaniverous/npm-package-template/blob/main/README.md)
+  [`README`](https://github.com/karmaniverous/npm-package-template/blob/main/README.md)
   file.
 
 Some tips:
@@ -631,6 +633,18 @@ Some tips:
   CLI, and as a side bonus you just need to run `mycli -h` to copy & paste your
   full CLI documentation.
 
+  ```text
+  > mycli -h
+  Usage: mycli [options]
+
+  Foos your bar.
+
+  Options:
+    -b, --bar <string>  foo what?
+    -v, --version       display package version
+    -h, --help          display help for command
+  ```
+
 - Take full advantage of [JSDoc](https://jsdoc.app/index.html) by leveraging
   [`@typedef`](https://jsdoc.app/tags-typedef.html) syntax (an
   [example](https://github.com/karmaniverous/serify-deserify/blob/main/lib/options/types.js))
@@ -640,7 +654,7 @@ Some tips:
 {: .notice--warning}
 
 **Don't edit your
-[README](https://github.com/karmaniverous/npm-package-template/blob/main/README.md)
+[`README`](https://github.com/karmaniverous/npm-package-template/blob/main/README.md)
 file directly!** Any changes you make will be lost the next time you run
 `npm run doc`.
 
@@ -830,7 +844,8 @@ for more info on available options.
 The release process is currently generating this warning:
 
 ```text
-WARNING Unable to verify if user karmaniverous is a collaborator for @karmaniverous/npm-package-template.
+WARNING Unable to verify if user karmaniverous is a collaborator
+for @karmaniverous/npm-package-template.
 ```
 
 The warning appears to be coming from NPM; when I disable NPM publishing the
