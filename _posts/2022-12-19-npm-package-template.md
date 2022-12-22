@@ -87,7 +87,9 @@ absolute requirement, but you'll be glad you did.
     - Click the Download link.
 
        <figure>
-        <img src="/assets/images/npm-package-template-extensions.png" style="width: 250px;">
+        <a href="/assets/images/npm-package-template-extensions.png">
+          <img src="/assets/images/npm-package-template-extensions.png" style="width: 250px;">
+        </a>
        </figure>
 
 1.  Zero the package version and install dependencies by running these commands:
@@ -116,7 +118,9 @@ absolute requirement, but you'll be glad you did.
     panel to visualize & run your unit tests.
 
      <figure>
-      <img src="/assets/images/npm-package-template-testing-panel.png">
+      <a href="/assets/images/npm-package-template-testing-panel.png">
+       <img src="/assets/images/npm-package-template-testing-panel.png">
+      </a>
      </figure>
 
 1.  Package your code and link it locally by running:
@@ -556,7 +560,9 @@ reflect your `describe` hierarchy. It will also decorate your test source code
 with test running and status reporting controls.
 
 <figure>
-  <img src="/assets/images/npm-package-template-testing-panel.png">
+  <a href="/assets/images/npm-package-template-testing-panel.png">
+    <img src="/assets/images/npm-package-template-testing-panel.png">
+  </a>
 </figure>
 
 ## Generate Documentation
@@ -679,7 +685,9 @@ that your `.npmignore` files _blocked_ everything they should have (e.g.
 environment secrets, dev tool configs).
 
 <figure>
-  <img src="/assets/images/serify-deserify-code-tab.png">
+  <a href="/assets/images/serify-deserify-code-tab.png">
+    <img src="/assets/images/serify-deserify-code-tab.png">
+  </a>
 </figure>
 
 ## Create & Publish a Release
