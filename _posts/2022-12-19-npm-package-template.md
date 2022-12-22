@@ -63,6 +63,12 @@ that offers the following features:
 .btn--large}&nbsp;&nbsp;&nbsp;[Clone the Repo!](https://github.com/karmaniverous/npm-package-template/generate){:
 .btn .btn--primary .btn--large}
 
+{: .notice--info}
+
+If you want to create a React component in an NPM package, try my
+[React Component NPM Package Template](/blog/react-component-npm-package-template)
+instead!
+
 ## Setting Up Your Dev Environment
 
 **Use [VS Code](https://code.visualstudio.com/) as your code editor!** Not an
