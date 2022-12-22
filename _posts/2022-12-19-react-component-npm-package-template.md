@@ -24,10 +24,10 @@ Try it. Not as easy to do from scratch as you might think.
 
 {: .notice--warning}
 
-I just completely refactored this template but haven't yet updated this
+**I just completely refactored this template** but haven't yet updated this
 documentaion. Everything works beautifully, and for a gist of the changes see
-the very similar [NPM Package Template](/npm-package-template). I'll bring this
-page in sync with the changes soon!
+the very similar [NPM Package Template](/blog/npm-package-template). I'll bring
+this page in sync with the changes soon!
 
 So here's a plug-and-play
 [react component NPM package template](https://github.com/karmaniverous/react-component-npm-package-template)
