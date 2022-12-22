@@ -65,7 +65,7 @@ that offers the following features:
 
 {: .notice--info}
 
-If you want to create a React component in an NPM package, try my
+**If you want to create a React component** in an NPM package, try my
 [React Component NPM Package Template](/blog/react-component-npm-package-template)
 instead!
 
