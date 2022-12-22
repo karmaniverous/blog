@@ -22,6 +22,13 @@ seems like the obvious next step. Right?
 
 Try it. Not as easy to do from scratch as you might think.
 
+{: .notice--warning}
+
+I just refactored this template's file & export structure but haven't yet
+updated this documentaion. Everything works beautifully, and for a gist of the
+changes see the very similar [NPM Package Template](/npm-package-template). I'll
+bring this page in sync with the changes soon!
+
 So here's a plug-and-play
 [react component NPM package template](https://github.com/karmaniverous/react-component-npm-package-template)
 that offers the following features:
