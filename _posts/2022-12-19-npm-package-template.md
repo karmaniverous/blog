@@ -597,7 +597,7 @@ You can exert fine control over the final result by doing the following:
   This is your API documentation template.
   [`jsdoc2md`](https://www.npmjs.com/package/jsdoc-to-markdown) will render
   documentation based on the [JSDoc](https://jsdoc.app/index.html)-formatted
-  comments in your source code and render them at the `{{>main}}` tag in the
+  comments in your source code and render them at the `{{ '{{' }}>main}}` tag in the
   template. Add any other content in Markdown format.
 
 - **Edit
