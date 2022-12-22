@@ -4,8 +4,8 @@ excerpt:
   "An ES6 NPM package project template featuring a CLI, test support, automated
   API docs, release management & more!"
 header:
-  og_image: https://karmanivero.us/assets/images/logo-npm.svg
-  teaser: /assets/images/logo-npm.svg
+  og_image: /assets/images/logo-npm.png
+  teaser: /assets/images/logo-npm.png
 categories:
   - Blog
 tags:
@@ -15,7 +15,7 @@ toc: true
 ---
 
 <figure class="align-left" style="margin-top: 10px; margin-bottom: 10px; width: 150px;">
-    <img src="{{ site.url }}{{ site.baseurl }}/assets/images/logo-npm.svg">
+    <img src="{{ site.url }}{{ site.baseurl }}/assets/images/logo-npm.png">
 </figure>
 
 You wrote a sweet piece of code! Releasing it on [NPM](https://www.npmjs.com/)
