@@ -1,6 +1,8 @@
 ---
 title: "NPM Package Template"
-excerpt: "An ES6 NPM package project template featuring a CLI, test support, automated API docs, release management & more!"
+excerpt:
+  "An ES6 NPM package project template featuring a CLI, test support, automated
+  API docs, release management & more!"
 header:
   teaser: /assets/images/logo-npm.svg
 categories:
@@ -18,15 +20,18 @@ toc: true
 You wrote a sweet piece of code! Releasing it on [NPM](https://www.npmjs.com/)
 seems like the obvious next step. Right?
 
-Try it. Not as easy to do from scratch as you might think.
+_Try it!_ Not as easy to do as you might think. At high quality. From scratch.
 
-So here's a plug-and-play [NPM package template](https://github.com/karmaniverous/npm-package-template) that offers the following
-features:
+So here's a plug-and-play
+[NPM package template](https://github.com/karmaniverous/npm-package-template)
+that offers the following features:
 
-- Support for the latest ES6 goodies with
+- Tree-shakable support for the latest ES6 goodies with
   [`eslint`](https://www.npmjs.com/package/eslint) _uber alles_.
 
-- A command line interface for your widget with
+- CJS distributions targeting specific browser support scenarios.
+
+- Command line interfaces for your widget with
   [`commander`](https://www.npmjs.com/package/commander).
 
 - Automated [`lodash`](https://www.npmjs.com/package/lodash) cherry-picking with
@@ -36,7 +41,9 @@ features:
   [`chai`](https://www.npmjs.com/package/chai) for testing, with examples, and a
   sweet testing console.
 
-- Secure environment-variable access to [`package.json`](https://github.com/karmaniverous/npm-package-template/blob/main/package.json) data.
+- In-code access to
+  [`package.json`](https://github.com/karmaniverous/npm-package-template/blob/main/package.json)
+  data, with no warnings to ignore.
 
 - Code formatting at every save & paste with
   [`prettier`](https://www.npmjs.com/package/prettier).
@@ -49,13 +56,18 @@ features:
 - One-button release to GitHub & publish to NPM with
   [`release-it`](https://www.npmjs.com/package/release-it).
 
-[See it on GitHub!](https://github.com/karmaniverous/npm-package-template){: .btn .btn--info .btn--large}&nbsp;&nbsp;&nbsp;[Clone the Repo!](https://github.com/karmaniverous/npm-package-template/generate){: .btn .btn--primary .btn--large}
 {: .text-center}
+
+[See it on GitHub!](https://github.com/karmaniverous/npm-package-template){:
+.btn .btn--info
+.btn--large}&nbsp;&nbsp;&nbsp;[Clone the Repo!](https://github.com/karmaniverous/npm-package-template/generate){:
+.btn .btn--primary .btn--large}
+
+{: .notice--info}
 
 If you want to create a React component in an NPM package, try my
 [React Component NPM Package Template](/blog/react-component-npm-package-template)
 instead!
-{: .notice--info}
 
 ## Setting Up Your Dev Environment
 
@@ -70,20 +82,23 @@ absolute requirement, but you'll be glad you did.
 1.  VS Code will ask to install a bunch of recommended extensions. Accept all of
     them. If you miss this prompt, follow these steps:
 
-    1. Open the VS Code Extensions tab
-    1. Enter `@recommended` into the search box
-    1. Click the Download link.
+    - Open the VS Code Extensions tab
+    - Enter `@recommended` into the search box
+    - Click the Download link.
 
        <figure>
         <img src="/assets/images/npm-package-template-extensions.png" style="width: 250px;">
        </figure>
 
-1.  Set the version in [`package.json`](https://github.com/karmaniverous/npm-package-template/blob/main/package.json) to `0.0.0`.
+1.  Zero the package version and install dependencies by running these commands:
 
-    See [Configuring `package.json`](#configuring-packagejson) for info on the
-    rest of these settings.
+    ```bash
+    npm version 0.0.0
+    npm install
+    ```
 
-1.  Install dependencies by running `npm install`. This may produce an audit report. See [Vulnerabilities](#vulnerabilities) below for more info.
+    This may produce an audit report. See [Vulnerabilities](#vulnerabilities)
+    below for more info.
 
 1.  Run your tests from the command line:
 
@@ -99,6 +114,7 @@ absolute requirement, but you'll be glad you did.
 
     If you installed the VS Code extensions referenced above, use the `Testing`
     panel to visualize & run your unit tests.
+
      <figure>
       <img src="/assets/images/npm-package-template-testing-panel.png">
      </figure>
@@ -113,15 +129,15 @@ absolute requirement, but you'll be glad you did.
 1.  Enter a few of your package CLI commands:
 
     ```bash
-    npm-package-template
+    mycli
 
     # foo nil!
 
-    npm-package-template -f bar
+    mycli -f bar
 
     # foo bar!
 
-    npm-package-template -v
+    mycli -v
 
     # 0.0.0
     ```
@@ -134,12 +150,15 @@ absolute requirement, but you'll be glad you did.
 
 ### Create Local Environment Variable File
 
-Look for [`.env.local.template`](https://github.com/karmaniverous/npm-package-template/blob/main/.env.local.template) in your project
-directory. Copy this file and remove the `.template` extension from the copy.
+Look for
+[`.env.local.template`](https://github.com/karmaniverous/npm-package-template/blob/main/.env.local.template)
+in your project directory. Copy this file and remove the `.template` extension
+from the copy.
+
+{: .notice--warning}
 
 **Do not simply rename this file!** Anybody who pulls your repo will need this
 template to create the same file in his own local environment.
-{: .notice--warning}
 
 ### Connect to GitHub
 
@@ -165,15 +184,17 @@ this command:
 npm run release
 ```
 
-## Vulnerabilities
+### Vulnerabilities
 
-At the time of this writing, running `npm install` will generate the following vulnerability warning:
+At the time of this writing, running `npm install` will generate the following
+vulnerability warning:
 
 ```text
 6 vulnerabilities (3 high, 3 critical)
 ```
 
-If you run `npm audit`, you will find that all of these vulnerabilities relate to the following dev dependencies, all of which are to do with docs generation:
+If you run `npm audit`, you will find that all of these vulnerabilities relate
+to the following dev dependencies, all of which are to do with docs generation:
 
 ```bash
 npm list underscore
@@ -197,67 +218,307 @@ npm list trim
 #         └── trim@0.0.1
 ```
 
+## Package Structure
+
+This template produces a hybrid NPM package that features both native ES and
+platform-specific CommonJS module entry points as well as a native ES CLI.
+
+The template supports tree-shakable `import` from its native ES library entry
+point at at
+[`lib/index.js`](https://github.com/karmaniverous/npm-package-template/blob/main/lib/index.js).
+**This is where you write your source code!** See
+[Develop `import` Entry Points](#develop-import-entry-points) for more info on
+developing to this entry point and adding new ones.
+
+The template supports `require` from its platform-specific CommonJS library
+entry point configured at
+[`dist/default`](https://github.com/karmaniverous/npm-package-template/tree/main/dist/default).
+This code is generated by Babel. See
+[Configure 'require' Entry Points](#configure-require-entry-points) for more
+info on configuring this entry point and adding new ones.
+
+The template features a native ES command-line interface (CLI) entry point at
+[`bin/mycli/index.js`](https://github.com/karmaniverous/npm-package-template/blob/main/bin/mycli/index.js).
+**This is where you write your CLI!** See
+[Develop CLI Entry Points](#develop-cli-entry-points) below for more info on
+configuring this entry point and adding new ones.
+
+After you've [set up your dev environment](#setting-up-your-dev-environment),
+your package will look like this. The Git & NPM columns indicate which files
+participate in `git push` and `npm publish`, respectively.
+
+```text
+git npm    Item                         Description
+---------------------------------------------------------------------------
+        └─ npm-package-template ....... package root
+ x ....... ├─ .babelrc ................ global Babel config
+ x . x ... ├─ .env .................... global env variables
+ ......... ├─ .env.local .............. create from template
+ x . x ... ├─ .env.local.template ..... local env secrets template
+ x ....... ├─ .eslintrc.json .......... global ESLint config
+ x ....... ├─ .gitignore .............. package git ignore
+ x ....... ├─ .npmignore .............. package npm ignore
+ x ....... ├─ .vscode ................. VS Code project config
+ x ....... │  ├─ extensions.json ...... recommended extensions
+ x ....... │  └─ settings.json ........ project settings
+ x . x ... ├─ bin ..................... all CLI source code (ES)
+ x . x ... │  └─ mycli ................ mycli code (ES)
+ x . x ... │     └─ index.js .......... mycli entry point (ES)
+ x . x ... ├─ dist .................... all CommonJS distributions
+ x . x ... │  ├─ default .............. specific CommonJS distribution
+ x ....... │  │  ├─ .babelrc .......... Babel target settings
+ x ....... │  │  ├─ .gitignore ........ don't send the lib to git...
+ x ....... │  │  ├─ .npmignore ........ but DO send it to NPM
+ x . x ... │  │  └─ lib/ .............. dist code (generated by Babel)
+ x . x ... │  └─ package.json ......... dist code is CommonJS
+ x ....... ├─ doc ..................... all documentation config
+ x ....... │  ├─ .prettierignore ...... ignore handlebars formatting
+ x ....... │  ├─ 1-main.md ............ your main README content
+ x ....... │  ├─ 2-cli.md ............. your CLI documentation
+ x ....... │  ├─ 3-api.md ............. api docs (generated by jsdoc)
+ x ....... │  ├─ 4-footer.md .......... your README footer
+ x ....... │  ├─ api-template.hbs ..... your API docs template
+ x ....... │  └─ jsdoc.config.json .... ignore test code
+ x . x ... ├─ lib ..................... your library source code (ES)
+ x . x ... │  ├─ foo .................. structure your code how you like
+ x . x ... │  │  ├─ foo.js ............ source code module (ES)
+ x ....... │  │  └─ foo.test.js ....... test script (ES)
+ x . x ... │  ├─ index.js ............. library import entry point (ES)
+ x . x ... │  └─ package_info ......... expose info from package.json (CJS)
+ x ....... │     ├─ .eslintrc.json .... no Babel config file needed here
+ x . x ... │     ├─ package.json ...... this is CJS code
+ x . x ... │     └─ package_info.js ... source code module (JCS)
+ x ....... ├─ package-lock.json ....... dependencies (managed by npm)
+ x . x ... ├─ package.json ............ package config
+ x . x ... └─ README.md ............... generated by jsdoc
+```
+
 ## NPM Scripts
 
-| Script            |            Description                                                                   |
-| ----------------- | ----------------------------------------------------------------------------- |
-| `npm run test`    | Runs all unit tests from the command line.                                    |
-| `npm run build`   | Builds the project into the `lib` directory.                                  |
-| `npm run doc`     | Builds the README file from the `doc` directory.                              |
-| `npm run package` | Runs `test`, `build`, and `doc` to exercise your full packaging process.      |
-| `npm run release` | Packages your code, creates a GitHub release, and publishes your code to NPM. |
+| Script                                                      | Description                                                                                                                                                                                       |
+| ----------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `npm run lint`                                              | Executes [`eslint`](https://www.npmjs.com/package/eslint) to find errors in your code.                                                                                                            |
+| `npm run test`                                              | Executes [`mocha`](https://www.npmjs.com/package/mocha) to run all unit tests.                                                                                                                    |
+| `npm run build`                                             | Executes [`babel`](https://babeljs.io/docs/en/babel-cli) to build all CJS distributions.                                                                                                          |
+| `npm run doc`                                               | Executes [`jsdoc2md`](https://www.npmjs.com/package/jsdoc-to-markdown) to build your README file from the [`doc`](https://github.com/karmaniverous/npm-package-template/tree/main/doc) directory. |
+| `npm run package`                                           | Runs `lint`, `test`, `build` & `doc` to exercise your full packaging process.                                                                                                                     |
+| <span style="white-space: nowrap;">`npm run release`</span> | Runs `package` & executes [`release-it`](https://www.npmjs.com/package/release-it) to create a GitHub release & publish your code to NPM.                                                         |
 
-## Common Tasks
+## Develop `import` Entry Points
 
-### Develop Package Exports
+All custom library code lives in the
+[`lib`](https://github.com/karmaniverous/npm-package-template/blob/main/lib)
+directory. This is native ES code and you can structure it however you like.
 
-All custom package code lives in the [`src/export`](https://github.com/karmaniverous/npm-package-template/blob/main/src/export) directory.
-Structure the contents of this directory however you like.
+Package `import` entry points are defined in
+[`package.json`](https://github.com/karmaniverous/npm-package-template/blob/main/package.json)
+like this:
 
-All package exports come together in
-[`src/export/index.mjs`](src/export/index.mjs). You can cherry-pick from your
-own source and organize your exports however you like. You can even
-[re-export](https://jamesknelson.com/re-exporting-es6-modules/) imports from
-other packages!
+```json
+{
+  "exports": {
+    ".": {
+      "import": "./lib/index.js"
+    }
+  }
+}
+```
 
-Do not move or rename [`src/export/index.mjs`](src/export/index.mjs), or your
-build will break!
+There is currently a single `import` entry point defined at the package root,
+which points to
+[`lib/index.js`](https://github.com/karmaniverous/npm-package-template/blob/main/lib/index.js).
+The entry point will expose whatever this module exports, and can be referenced
+in an ES module like this:
+
+```js
+import { foo, PACKAGE_INFO } from '@karmaniverous/npm-package-template`;
+```
+
+Some key guidelines:
+
+- Avoid using module default exports, even internally. This can create
+  unexpected weirdness in the Babel-generated CJS distributions. Use named
+  exports instead.
+
+See the
+[Node Package Entry Points](https://nodejs.org/docs/latest-v18.x/api/packages.html#package-entry-points)
+documentation for more info on defining additional entry points.
+
 {: .notice--warning}
 
-### Develop Package CLI
+Do not move or rename
+[`lib/index.js`](https://github.com/karmaniverous/npm-package-template/blob/main/lib/index.js)
+without making matching changes in
+[`package.json`](https://github.com/karmaniverous/npm-package-template/blob/main/package.json),
+or your ES exports will not work!
 
-All custom command-line interface (CLI) code lives in the [`src/cli`](https://github.com/karmaniverous/npm-package-template/blob/main/src/cli)
-directory. Structure the contents of this directory however you like.
+## Configure `require` Entry Points
 
-The sample CLI is built using the very excellent
-[`commander`](https://www.npmjs.com/package/commander) package, but you can use
-whatever you want.
+The CJS distributions behind your `require` entry points are generated by Babel
+from your ES source code in
+[`lib`](https://github.com/karmaniverous/npm-package-template/blob/main/lib).
+Each distribution is optimized for a set of browser constraints as expressed by
+a [browserslist query](https://github.com/browserslist/browserslist#queries).
 
-The only constraints:
+The template's default distribution is located at
+[`dist/default`](https://github.com/karmaniverous/npm-package-template/tree/main/dist/default)
+and uses `browserslist` query `"defaults"`.
 
-- [`src/cli/index.mjs`](src/cli/index.mjs) is the execution point of your CLI.
-  Do not move or rename this file or your build will break.
+Package `require` entry points are defined in
+[`package.json`](https://github.com/karmaniverous/npm-package-template/blob/main/package.json)
+like this:
 
-- [`src/cli/index.mjs`](src/cli/index.mjs) must begin with the following line:
+```json
+{
+  "exports": {
+    ".": {
+      "require": "./dist/default/lib/index.js"
+    }
+  }
+}
+```
 
-  ```js
-  #!/usr/bin/env node
-  ```
+There is currently a single `require` entry point defined at the package root,
+which points to `dist/default/lib/index.js`. The entry point will expose
+whatever this module exports, and can be referenced in CJS code like this:
 
-### Pass `package.json` Data Into Environment Variables
+```js
+const { foo, PACKAGE_INFO } = require('@karmaniverous/npm-package-template`);
+```
 
-This template uses
-[`babel-plugin-transform-inline-environment-variables`](https://www.npmjs.com/package/babel-plugin-transform-inline-environment-variables)
-to replace environment variable references in your code with string literals at
-build time.
+See the
+[Node Package Entry Points](https://nodejs.org/docs/latest-v18.x/api/packages.html#package-entry-points)
+documentation for more info on defining additional entry points.
 
-Currently it is pulling `version` from [`package.json`](https://github.com/karmaniverous/npm-package-template/blob/main/package.json) into
-`process.env.NODE_PACKAGE_VERSION`. The same technique will work for any value
-from a source you would rather not load at run time.
+To create a new CJS distribution:
 
-To add more values, see the comments in [`babel.config.js`](https://github.com/karmaniverous/npm-package-template/blob/main/babel.config.js).
+1. Duplicate the `default` directory in `dist` and give the copy a meaningful
+   name (e.g. `mydist`).
 
-### Create & Run Unit Tests
+1. In the new directory's `.babelrc` file, change the `targets` value to reflect
+   this distribution's
+   [`browserslist` query](https://github.com/browserslist/browserslist#queries):
+
+   ```json
+   {
+     "targets": "new query"
+   }
+   ```
+
+1. Add a new `require` entry point and a new `build` script step to your
+   project's
+   [`package.json`](https://github.com/karmaniverous/npm-package-template/blob/main/package.json):
+
+   ```json
+   {
+     "exports": {
+       "./mydist": {
+         "require": "./dist/mydist/lib/index.js"
+       }
+     },
+     "scripts": {
+       "build": "babel lib -d dist/default/lib --delete-dir-on-start --config-file ./dist/default/.babelrc && babel lib -d dist/mydist/lib --delete-dir-on-start --config-file ./dist/mydist/.babelrc"
+     }
+   }
+   ```
+
+1. Build the new distribution with `npm run build`.
+
+{: .notice--warning}
+
+Do not move or rename
+[`dist/default.js`](https://github.com/karmaniverous/npm-package-template/blob/main/dist/default)
+without making matching changes in
+[`package.json`](https://github.com/karmaniverous/npm-package-template/blob/main/package.json),
+or your CJS exports will not work!
+
+## Develop CLI Entry Points
+
+Each command-line interface (CLI) entry point is a subdirectory of your
+[`bin`](https://github.com/karmaniverous/npm-package-template/blob/main/bin)
+directory. These are native ES code and you can structure them internally
+however you like.
+
+CLI entry points are defined in
+[`package.json`](https://github.com/karmaniverous/npm-package-template/blob/main/package.json)
+like this:
+
+```json
+{
+  "bin": {
+    "mycli": "bin/mycli/index.js"
+  }
+}
+```
+
+There is currently a single CLI entry point defined at the package root, which
+points to
+[`bin/mycli/index.js`](https://github.com/karmaniverous/npm-package-template/blob/main/bin/mycli/index.js)
+and exposes the `mycli` command.
+
+See the
+[NPM documentaion](https://docs.npmjs.com/cli/v9/configuring-npm/package-json#bin)
+documentation for more info on defining CLI entry points.
+
+To create a new CLI entry point:
+
+1. Create a new subdirectory under
+   [`bin`](https://github.com/karmaniverous/npm-package-template/blob/main/bin)
+   (e.g. `myothercli`).
+
+1. Add an `index.js` file expressing your command logic, along with other
+   supporting code. Use [`commander`](https://www.npmjs.com/package/commander)
+   for great results!
+
+1. Add the new CLI entry point to your
+   [`package.json`](https://github.com/karmaniverous/npm-package-template/blob/main/package.json)
+   like this:
+
+```json
+{
+  "bin": {
+    "myothercli": "bin/myothercli/index.js"
+  }
+}
+```
+
+{: .notice--warning}
+
+Do not move or rename
+[`bin/mycli/index.js`](https://github.com/karmaniverous/npm-package-template/blob/main/bin/mycli/index.js)
+without making matching changes in
+[`package.json`](https://github.com/karmaniverous/npm-package-template/blob/main/package.json),
+or your CLI will not work!
+
+## Access `package.json` Data From Your Code
+
+The new
+[import assertions proposal](https://github.com/tc39/proposal-import-assertions)
+permits `import` of a variety of MIME types, including JSON.
+
+This package includes Babel & ESLint support for import assertions. So, in
+principle, you can `import`
+[`package.json`](https://github.com/karmaniverous/npm-package-template/blob/main/package.json)
+directly into your code with this command:
+
+```js
+import packageJson from "./package.json" assert { type: "json" };
+```
+
+This does in fact work, but the "experimental code" generates a Node warning at
+runtime. There are good reasons to leverage import assertions in your own code,
+but for this limited application (pulling specific values from
+[`package.json`](https://github.com/karmaniverous/npm-package-template/blob/main/package.json)),
+I thought it would be helpful to add
+[a small CJS module](https://github.com/karmaniverous/npm-package-template/blob/main/lib/package_info/package_info.js)
+that pulls it off with no warnings.
+
+This module exposes select keys (currently, just `version`) on the
+`PACKAGE_INFO` object at the package root entry point. To add more keys, just
+add exports to
+[this module](https://github.com/karmaniverous/npm-package-template/blob/main/lib/package_info/package_info.js).
+
+## Create & Run Unit Tests
 
 By default, this template supports
 [`mocha`](https://www.npmjs.com/package/mocha) tests using the
@@ -268,14 +529,14 @@ assertion syntax.
 The default configuration will recognize any file as a test file that...
 
 - has `.test.` just before its file name extension (i.e. `example.test.js`).
-- is not located in the `node_modules` or `lib` directories.
+- is not located in the `node_modules` or `dist` directories.
 
 The sample code packages tests next to the source code they exercise. If you
-prefer to segregate your tests into a directory outside [`src`](https://github.com/karmaniverous/npm-package-template/blob/main/src/) (e.g.
-`test`), that will work as well.
+prefer to segregate your tests and related artifacts into a `test` directory,
+that will work as well.
 
-Either way, all test files meeting the above conditions will be excluded from
-the build.
+Either way, all test files meeting the above conditions and _anything_ under a
+`test` directory will be excluded from the build.
 
 To enable `mocha`-specific linting in your test files, add the following
 directive at the top of every test file:
@@ -294,69 +555,135 @@ with test running and status reporting controls.
   <img src="/assets/images/npm-package-template-testing-panel.png">
 </figure>
 
-### Test Your Build
+## Generate Documentation
 
-`TODO`
+When you run `npm run doc`, these two steps happen in order:
 
-### Generate Documentation
+1. [`jsdoc2md`](https://www.npmjs.com/package/jsdoc-to-markdown) parses the
+   source code in
+   [`lib`](https://github.com/karmaniverous/npm-package-template/tree/main/lib)
+   for [JSDoc](https://jsdoc.app/index.html)-formatted comments, and generates
+   API documenation in
+   [`doc/3-api.md`](https://github.com/karmaniverous/npm-package-template/blob/main/doc/3-api.md)
+   using
+   [`doc/api-template.hbs`](https://github.com/karmaniverous/npm-package-template/blob/main/doc/api-template.hbs)
+   as a template. It ignores test files and anything with the
+   [`@private`](https://jsdoc.app/tags-private.html) tag.
 
-`TODO`
+2. [`concat-md`](https://www.npmjs.com/package/concat-md) concatenates every
+   `.md` file in
+   [`doc`](https://github.com/karmaniverous/npm-package-template/blob/main/doc)
+   into your main
+   [README](https://github.com/karmaniverous/npm-package-template/blob/main/README.md)
+   file. Files are concatenated in filename order (hence the numbered files).
 
-### Integration-Test Your Package
+You can exert fine control over the final result by doing the following:
 
-Generally, NPM packages are meant either to be included in other packages or to
-be invoked from the command line. This template supports both.
+- **Edit
+  [`1-main.md`](https://github.com/karmaniverous/npm-package-template/blob/main/doc/1-main.md).**
+  This is the main content of your README file. At a minimum it should contain a
+  header and a brief description of the project, but it can be whatever you
+  want.
 
-To package your code and add it directly to your local development environment
-as a global package, WITHOUT publishing it first to NPM, run these commands:
+- **Edit or delete
+  [`2-cli.md`](https://github.com/karmaniverous/npm-package-template/blob/main/doc/2-cli.md).**
+  This is your CLI documentation. The easiest way to get this is to run your
+  CLI's help function on the command line & copy the result (e.g. `mycli -h`).
+  If your package has no CLI, just delete this file.
 
-```bash
-npm run package
-npm link
-```
+- **Edit
+  [`api-template.hbs`](https://github.com/karmaniverous/npm-package-template/blob/main/doc/api-template.hbs).**
+  This is your API documentation template.
+  [`jsdoc2md`](https://www.npmjs.com/package/jsdoc-to-markdown) will render
+  documentation based on the [JSDoc](https://jsdoc.app/index.html)-formatted
+  comments in your source code and render them at the `{{>main}}` tag in the
+  template. Add any other content in Markdown format.
 
-You can now import your package into a JS module in any other package like this:
+- **Edit
+  [`4-footer.md`](https://github.com/karmaniverous/npm-package-template/blob/main/doc/4-footer.md).**
+  This footer will appear at the bottom of your
+  [README](https://github.com/karmaniverous/npm-package-template/blob/main/README.md)
+  file.
 
-```js
-// ES6
-import myTemplate from '@karmaniverous/npm-package-template'; // default export
-import { foo } from '@karmaniverous/npm-package-template'; // named export
+Some tips:
 
-// CommonJS
-const myTemplate = require('@karmaniverous/npm-package-template'); // default export
-const { foo } = require('@karmaniverous/npm-package-template'); // named export
-```
+- Add whatever additional `.md` files you like! Just remember they will be
+  rendered in filename order.
 
-You can also invoke your package's CLI from the command line, just like any
-other global package with a CLI:
+- If your main content is really long, consider linking to a blog post instead
+  (like this one!). That way you can update your documentation without having to
+  create a new release.
 
-```bash
-npm-package-template
+- Use [`commander`](https://www.npmjs.com/package/commander) to
+  [create your CLI](#develop-cli-entry-points) and take full advantage of its
+  help system (e.g. program & option descriptions). This gives you a more usable
+  CLI, and as a side bonus you just need to run `mycli -h` to copy & paste your
+  full CLI documentation.
 
-# foo nil!
+- Take full advantage of [JSDoc](https://jsdoc.app/index.html) by leveraging
+  [`@typedef`](https://jsdoc.app/tags-typedef.html) syntax (an
+  [example](https://github.com/karmaniverous/serify-deserify/blob/main/lib/options/types.js))
+  and importing types from a common file (another
+  [example](https://github.com/karmaniverous/serify-deserify/blob/d935ad091d43b4aefc4677c067ac706b89f4cf66/lib/serify/serify.js#L5)).
 
-npm-package-template -f b
+{: .notice--warning}
 
-# foo bar!
+**Don't edit your
+[README](https://github.com/karmaniverous/npm-package-template/blob/main/README.md)
+file directly!** Any changes you make will be lost the next time you run
+`npm run doc`.
 
-npm-package-template -v
+## Integration-Test Your Package
 
-# 0.0.0
-```
+Your unit tests exercise your code _internally_. Integration testing validates
+your code _externally_, and might include the following:
 
-When you're finished, clean up your global environment by unlinking your
-package:
+- Testing your `import` entry points from external code.
 
-```bash
-npm unlink -g @karmaniverous/npm-package-template
-```
+- Testing your `require` entry points from external code.
 
-### Create & Publish a Release
+- Testing your CLI entry points from the command line.
+
+There are several ways to accomplish these:
+
+1. Run `npm run link` to install a global symlink to your local package. This
+   has an effect similar to `npm install -g my-package`, and will enable you to
+   test your CLI entry points from your local command line without publishing to
+   NPM.
+
+1. Run `npm install c:/package-path/my-package` to install your package as a
+   file dependency in another package. This will enable you to test your
+   `import` and `require` entry points without publishing to NPM. Run a global
+   install or use `npx mycli` to test your CLI entry points.
+
+1. [Publish a release](#create--publish-a-release) to NPM with a pre-release
+   version number. Then run `npm install my-package 0.0.1-0` (reflecting the
+   pre-release version) to install your package into another package as a
+   dependency, and test as required.
+
+Each of these approaches has its trade-offs, but a smart plan is to do the last
+two, in that order.
+
+**_If the second approach passes, why bother with the third?_**
+
+Because your local project contains _all_ your files, whereas your package
+`.npmignore` files determine which ones actually get published to NPM. That last
+approach validates that your published package has the expected contents.
+
+As a final check, review your package's Code tab at NPM in order to validate
+that your `.npmignore` files _blocked_ everything they should have (e.g.
+environment secrets, dev tool configs).
+
+<figure>
+  <img src="/assets/images/serify-deserify-code-tab.png">
+</figure>
+
+## Create & Publish a Release
 
 Before you can publish a package to [NPM](https://www.npmjs.com/), you'll need
 to set up an NPM account.
 
-#### Package Scope & Access
+### Package Scope & Access
 
 Your NPM user name is a [_scope_](https://docs.npmjs.com/about-scopes). If you
 create an organization, its unique organization name is also a scope.
@@ -387,64 +714,60 @@ flexibility in naming them.
 [Click here](https://docs.npmjs.com/packages-and-modules/introduction-to-packages-and-modules)
 for more info about NPM package scope & access.
 
-#### Configuring `package.json`
+### Configuring `package.json`
 
 When you publish an NPM package, NPM gets most of its info from your
-[`package.json`](https://github.com/karmaniverous/npm-package-template/blob/main/package.json) file.
+[`package.json`](https://github.com/karmaniverous/npm-package-template/blob/main/package.json)
+file.
 
-Set the following values in [`package.json`](https://github.com/karmaniverous/npm-package-template/blob/main/package.json), using the template
-file as an example.
+Set the following values in
+[`package.json`](https://github.com/karmaniverous/npm-package-template/blob/main/package.json),
+using the template file as an example.
 
 This info is critical. You can't publish your package properly without it:
 
 - `name` – The desired package name on NPM. Include scope if relevant. See
   [Package Scope & Access](#package-scope--access) for more info.
 
-- `bin` – The desired command-line invocation. Set the KEY as indicated (`mycli`
-  by default):
-
-  ```js
-  {
-    ...,
-    "bin": {
-      "mycli": "lib/cli/index.js" // Change "mycli".
-    },
-    ...
-  }
-  ```
-
-- `version` - Your package version. Uses
+- `version` – Your package version. Uses
   [semantic versioning](https://www.geeksforgeeks.org/introduction-semantic-versioning/).
   Set this initially to `0.0.0` and the template's
   [release process](#create--publish-a-release) will manage it from there.
 
-- `publishConfig.access` - `restricted` for private packages, otherwise
+- `publishConfig.access` – `restricted` for private packages, otherwise
   `public`. See [Package Scope & Access](#package-scope--access) for more info.
 
-- `repository.url` - GitHub repository URL.
+- `exports` – Your [`import`](#develop-import-entry-points) and
+  [`require`](#configure-require-entry-points) entry points. Click the links for
+  more info.
+
+- `bin` – Your CLI entry points. See
+  [Develop CLI Entry Points](#develop-cli-entry-points) above for more info.
 
 This info is important but you can always update it in the next release:
 
-- `author` - Your name, however you'd like it to appear.
+- `author` – Your name, however you'd like it to appear.
 
-- `bugs.url` - A URL for users to report bugs. By default, use the
+- `bugs.url` – A URL for users to report bugs. By default, use the
   [issues page](https://github.com/karmaniverous/npm-package-template/issues) of
   your GitHub repo.
 
-- `description` - A text description of your package. Will be used as the META
+- `description` – A text description of your package. Will be used as the META
   description of your NPM package page, so keep it under 160 chars.
 
-- `homepage` - The main web page of your project. By default, use your GitHub
+- `homepage` – The main web page of your project. By default, use your GitHub
   repo's
   [README link](https://github.com/karmaniverous/npm-package-template#readme).
 
-- `keywords` - An array of strings that will appear as tags on the NPM package
+- `keywords` – An array of strings that will appear as tags on the NPM package
   page.
 
-- `license` - The license associated with your package. See this list of
+- `license` – The license associated with your package. See this list of
   [valid license identifiers](https://spdx.org/licenses/).
 
-#### Generating the Release
+- `repository.url` – GitHub repository URL.
+
+### Generating the Release
 
 Before you begin, ensure you have committed all changes to your working branch.
 
@@ -454,7 +777,9 @@ Run this command:
 npm run package
 ```
 
-This will run all of your tests, generate all of your documentation, and create your build. If there are any issues, fix them. If you make any changes, commit them.
+This will check your code for errors, run all of your tests, generate all of
+your documentation, and create your build. If there are any issues, fix them. If
+you make any changes, commit them.
 
 Now run this command:
 
@@ -462,7 +787,9 @@ Now run this command:
 npm run release
 ```
 
-This will generate your package _again_, just to validate there are no more changes. You will then be asked to select a release increment. Otherwise accept all defaults.
+This will generate your package _again_, just to validate there are no more
+changes. You will then be asked to select a release increment. Otherwise accept
+all defaults.
 
 Your release will be generated on GitHub and published to NPM.
 
@@ -501,71 +828,7 @@ The warning doesn't appear to affect the publishing process.
 [Click here](https://github.com/release-it/release-it/issues/960) to track this
 issue.
 
-### Integrate a Template Update
+## Integrate a Template Update
 
 Follow
 [these instructions](https://karmanivero.us/blog/installing-github-repo-template-updates/).
-
-## FAQ
-
-### Why do most of your source files have an `.mjs` extension?
-
-Because this template is a
-[CommonJS package](https://nodejs.org/api/packages.html#type)!
-
-Which is weird, right? Becuae
-[right at the top of this document](#npm-package-template) we demanded _support
-for the latest ES6 goodies!_
-
-Meanwhile, your NPM package is only useful if it will run anywhere it needs to
-run. So the code you publish to NPM should support the lowest-common-denominator
-platform, meaning it _has_ to be a CommonJS package.
-
-We get there in two steps:
-
-1. Compose our fancy ES6 code in `.mjs` files in the [`src`](https://github.com/karmaniverous/npm-package-template/blob/main/src/) directory.
-   This is what we push to GitHub.
-
-1. Invoke [`babel`](https://babeljs.io/) via `npm run build` to transpile the
-   ES6 contents of the [`src`](https://github.com/karmaniverous/npm-package-template/blob/main/src/) directory into `.js` files in the `lib`
-   directory. This directory does NOT get pushed to GitHub... but it DOES get
-   published to NPM!
-
-### How do I import a `.json` file into an ES6 module?
-
-CommonJS allows you to `require` a `.json` file directly into a JavaScript
-object, as in
-[this example from `babel.config.js`](https://github.com/karmaniverous/npm-package-template/blob/3b63de057330fbe47e49645cb0bc735c59683100/babel.config.js#L1-L2):
-
-```js
-const { version } = require('./package.json');
-```
-
-The `require` function is not valid in ES6. You might consider doing this
-instead...
-
-```js
-import pkg from './package.json';
-const { version } = pkg;
-```
-
-But you would find that the `import` statement is not valid for the `json` MIME
-type.
-
-This has been addressed with
-[_import assertions_](https://v8.dev/features/import-assertions), so now you can
-write this:
-
-```js
-import pkg from './package.json' assert { type: 'json' };
-const { version } = pkg;
-```
-
-[@babel/core](https://www.npmjs.com/package/@babel/core) doesn't support this
-syntax yet, so while the statement above is valid, by default it would cause a
-build error.
-
-This template includes
-[`@babel/plugin-syntax-import-assertions`](https://www.npmjs.com/package/@babel/plugin-syntax-import-assertions),
-which adds support for import assertions to Babel.
-{: .notice--info}

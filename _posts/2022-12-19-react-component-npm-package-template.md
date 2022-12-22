@@ -1,6 +1,8 @@
 ---
 title: "React Component NPM Package Template"
-excerpt: "An ES6 React component NPM package project template featuring front & back end test support, automated API docs, release management & more!"
+excerpt:
+  "An ES6 React component NPM package project template featuring front & back
+  end test support, automated API docs, release management & more!"
 header:
   teaser: /assets/images/logo-react.png
 categories:
@@ -20,8 +22,9 @@ seems like the obvious next step. Right?
 
 Try it. Not as easy to do from scratch as you might think.
 
-So here's a plug-and-play [react component NPM package template](https://github.com/karmaniverous/react-component-npm-package-template) that offers the following
-features:
+So here's a plug-and-play
+[react component NPM package template](https://github.com/karmaniverous/react-component-npm-package-template)
+that offers the following features:
 
 - Support for the latest ES6 + JSX goodies with
   [`eslint`](https://www.npmjs.com/package/eslint) _uber alles_.
@@ -34,7 +37,9 @@ features:
   [React Testing Library](https://www.npmjs.com/package/@testing-library/react).
   Includes examples and a sweet testing console!
 
-- Secure environment-variable access to [`package.json`](https://github.com/karmaniverous/react-component-npm-package-template/blob/main/package.json) data.
+- Secure environment-variable access to
+  [`package.json`](https://github.com/karmaniverous/react-component-npm-package-template/blob/main/package.json)
+  data.
 
 - Code formatting at every save & paste with
   [`prettier`](https://www.npmjs.com/package/prettier).
@@ -47,13 +52,17 @@ features:
 - One-button release to GitHub & publish to NPM with
   [`release-it`](https://www.npmjs.com/package/release-it).
 
-[See it on GitHub!](https://github.com/karmaniverous/react-component-npm-package-template){: .btn .btn--info .btn--large}&nbsp;&nbsp;&nbsp;[Clone the Repo!](https://github.com/karmaniverous/react-component-npm-package-template/generate){: .btn .btn--primary .btn--large}
 {: .text-center}
 
-If you want to create a non-React NPM package, try my regular
-[NPM Package Template](/blog/npm-package-template)
-instead!
+[See it on GitHub!](https://github.com/karmaniverous/react-component-npm-package-template){:
+.btn .btn--info
+.btn--large}&nbsp;&nbsp;&nbsp;[Clone the Repo!](https://github.com/karmaniverous/react-component-npm-package-template/generate){:
+.btn .btn--primary .btn--large}
+
 {: .notice--info}
+
+If you want to create a non-React NPM package, try my regular
+[NPM Package Template](/blog/npm-package-template) instead!
 
 ## Setting Up Your Dev Environment
 
@@ -76,12 +85,15 @@ absolute requirement, but you'll be glad you did.
         <img src="/assets/images/react-component-npm-package-template-extensions.png" style="width: 250px;">
        </figure>
 
-1.  Set the version in [`package.json`](https://github.com/karmaniverous/react-component-npm-package-template/blob/main/package.json) to `0.0.0`.
+1.  Set the version in
+    [`package.json`](https://github.com/karmaniverous/react-component-npm-package-template/blob/main/package.json)
+    to `0.0.0`.
 
     See [Configuring `package.json`](#configuring-packagejson) for info on the
     rest of these settings.
 
-1.  Install dependencies by running `npm install`. This may produce an audit report. See [Vulnerabilities](#vulnerabilities) below for more info.
+1.  Install dependencies by running `npm install`. This may produce an audit
+    report. See [Vulnerabilities](#vulnerabilities) below for more info.
 
 1.  Run your tests from the command line:
 
@@ -104,16 +116,17 @@ absolute requirement, but you'll be glad you did.
       <img src="/assets/images/react-component-npm-package-template-testing-panel.png">
      </figure>
 
-
-
 ### Create Local Environment Variable File
 
-Look for [`.env.local.template`](https://github.com/karmaniverous/react-component-npm-package-template/blob/main/.env.local.template) in your project
-directory. Copy this file and remove the `.template` extension from the copy.
+Look for
+[`.env.local.template`](https://github.com/karmaniverous/react-component-npm-package-template/blob/main/.env.local.template)
+in your project directory. Copy this file and remove the `.template` extension
+from the copy.
+
+{: .notice--warning}
 
 **Do not simply rename this file!** Anybody who pulls your repo will need this
 template to create the same file in his own local environment.
-{: .notice--warning}
 
 ### Connect to GitHub
 
@@ -141,13 +154,15 @@ npm run release
 
 ## Vulnerabilities
 
-At the time of this writing, running `npm install` will generate the following vulnerability warning:
+At the time of this writing, running `npm install` will generate the following
+vulnerability warning:
 
 ```text
 6 vulnerabilities (3 high, 3 critical)
 ```
 
-If you run `npm audit`, you will find that all of these vulnerabilities relate to the following dev dependencies, all of which are to do with docs generation:
+If you run `npm audit`, you will find that all of these vulnerabilities relate
+to the following dev dependencies, all of which are to do with docs generation:
 
 ```bash
 npm list underscore
@@ -173,7 +188,7 @@ npm list trim
 
 ## NPM Scripts
 
-| Script            |            Description                                                                   |
+| Script            | Description                                                                   |
 | ----------------- | ----------------------------------------------------------------------------- |
 | `npm run test`    | Runs all unit tests from the command line.                                    |
 | `npm run build`   | Builds the project into the `lib` directory.                                  |
@@ -185,17 +200,18 @@ npm list trim
 
 ### Develop Package Exports
 
-All custom package code lives in the [`src`](https://github.com/karmaniverous/react-component-npm-package-template/blob/main/src) directory. Structure the
-contents of this directory however you like.
+All custom package code lives in the
+[`src`](https://github.com/karmaniverous/react-component-npm-package-template/blob/main/src)
+directory. Structure the contents of this directory however you like.
 
 All package exports come together in [`src/index.jsx`](src/index.jsx). You can
 cherry-pick from your own source and organize your exports however you like. You
 can even [re-export](https://jamesknelson.com/re-exporting-es6-modules/) imports
 from other packages!
 
-Do not move or rename [`src/index.jsx`](src/index.jsx) or your build will
-break.
 {: .notice--warning}
+
+Do not move or rename [`src/index.jsx`](src/index.jsx) or your build will break.
 
 ### Pass `package.json` Data Into Environment Variables
 
@@ -204,11 +220,13 @@ This template uses
 to replace environment variable references in your code with string literals at
 build time.
 
-Currently it is pulling `version` from [`package.json`](https://github.com/karmaniverous/react-component-npm-package-template/blob/main/package.json) into
-`process.env.NODE_PACKAGE_VERSION`. The same technique will work for any value
-from a source you would rather not load at run time.
+Currently it is pulling `version` from
+[`package.json`](https://github.com/karmaniverous/react-component-npm-package-template/blob/main/package.json)
+into `process.env.NODE_PACKAGE_VERSION`. The same technique will work for any
+value from a source you would rather not load at run time.
 
-To add more values, see the comments in [`babel.config.js`](https://github.com/karmaniverous/react-component-npm-package-template/blob/main/babel.config.js).
+To add more values, see the comments in
+[`babel.config.js`](https://github.com/karmaniverous/react-component-npm-package-template/blob/main/babel.config.js).
 
 ### Create & Run Unit Tests
 
@@ -224,8 +242,9 @@ The default configuration will recognize any file as a test file that...
 - is not located in the `node_modules` or `lib` directories.
 
 The sample code packages tests next to the source code they exercise. If you
-prefer to segregate your tests into a directory outside [`src`](https://github.com/karmaniverous/react-component-npm-package-template/blob/main/src/) (e.g.
-`test`), that will work as well.
+prefer to segregate your tests into a directory outside
+[`src`](https://github.com/karmaniverous/react-component-npm-package-template/blob/main/src/)
+(e.g. `test`), that will work as well.
 
 Either way, all test files meeting the above conditions will be excluded from
 the build.
@@ -260,8 +279,9 @@ This template supports front-end React component testing using the
 (RTL). This library allows your tests to interact with your component in a
 headless browser environment.
 
-See [`Component.test.jsx`](https://github.com/karmaniverous/react-component-npm-package-template/blob/main/src/Component/Component.test.jsx) for a simple
-example, and visit the
+See
+[`Component.test.jsx`](https://github.com/karmaniverous/react-component-npm-package-template/blob/main/src/Component/Component.test.jsx)
+for a simple example, and visit the
 [RTL documentation](https://testing-library.com/docs/react-testing-library/intro/)
 for more info!
 
@@ -284,8 +304,8 @@ npm link
 You can now import your package assets into your React application like this:
 
 ```js
-import Component from '@karmaniverous/react-component-npm-package-template'; // default export
-import { useComponent } from '@karmaniverous/react-component-npm-package-template'; // named export
+import Component from "@karmaniverous/react-component-npm-package-template"; // default export
+import { useComponent } from "@karmaniverous/react-component-npm-package-template"; // named export
 ```
 
 When you're finished, clean up your global environment by unlinking your
@@ -334,10 +354,12 @@ for more info about NPM package scope & access.
 #### Configuring `package.json`
 
 When you publish an NPM package, NPM gets most of its info from your
-[`package.json`](https://github.com/karmaniverous/react-component-npm-package-template/blob/main/package.json) file.
+[`package.json`](https://github.com/karmaniverous/react-component-npm-package-template/blob/main/package.json)
+file.
 
-Set the following values in [`package.json`](https://github.com/karmaniverous/react-component-npm-package-template/blob/main/package.json), using the template
-file as an example.
+Set the following values in
+[`package.json`](https://github.com/karmaniverous/react-component-npm-package-template/blob/main/package.json),
+using the template file as an example.
 
 This info is critical. You can't publish your package properly without it:
 
@@ -385,7 +407,9 @@ Run this command:
 npm run package
 ```
 
-This will run all of your tests, generate all of your documentation, and create your build. If there are any issues, fix them. If you make any changes, commit them.
+This will run all of your tests, generate all of your documentation, and create
+your build. If there are any issues, fix them. If you make any changes, commit
+them.
 
 Now run this command:
 
@@ -393,7 +417,9 @@ Now run this command:
 npm run release
 ```
 
-This will generate your package _again_, just to validate there are no more changes. You will then be asked to select a release increment. Otherwise accept all defaults.
+This will generate your package _again_, just to validate there are no more
+changes. You will then be asked to select a release increment. Otherwise accept
+all defaults.
 
 Your release will be generated on GitHub and published to NPM.
 
@@ -446,14 +472,14 @@ object, as in
 [this example from `babel.config.js`](https://github.com/karmaniverous/npm-package-template/blob/3b63de057330fbe47e49645cb0bc735c59683100/babel.config.js#L1-L2):
 
 ```js
-const { version } = require('./package.json');
+const { version } = require("./package.json");
 ```
 
 The `require` function is not valid in ES6. You might consider doing this
 instead...
 
 ```js
-import pkg from './package.json';
+import pkg from "./package.json";
 const { version } = pkg;
 ```
 
@@ -465,7 +491,7 @@ This has been addressed with
 write this:
 
 ```js
-import pkg from './package.json' assert { type: 'json' };
+import pkg from "./package.json" assert { type: "json" };
 const { version } = pkg;
 ```
 
@@ -473,7 +499,8 @@ const { version } = pkg;
 syntax yet, so while the statement above is valid, by default it would cause a
 build error.
 
+{: .notice--info}
+
 This template includes
 [`@babel/plugin-syntax-import-assertions`](https://www.npmjs.com/package/@babel/plugin-syntax-import-assertions),
 which adds support for import assertions to Babel.
-{: .notice--info}
