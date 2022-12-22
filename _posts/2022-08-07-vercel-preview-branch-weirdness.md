@@ -2,6 +2,7 @@
 title: "Vercel Preview Branch Weirdness"
 excerpt: "An accidental hosting environment dependency revealed an irritating bug in Vercel's preview deployment logic."
 header:
+  og_image: /assets/images/logo-vercel.png
   teaser: /assets/images/logo-vercel.png
 categories:
   - Blog
@@ -20,8 +21,8 @@ I've got a very handy [Next.js project template](https://github.com/karmaniverou
 
 I host all of these projects on [Vercel](https://vercel.com/), because srsly why wouldn't I. So this morning I pulled one of those low-priority, high-irritation issues off my backlog and discovered two things:
 
-* My template has a dependency on the Vercel hosting environment, as opposed to the Next.js platform.
-* Vercel's preview domains don't exactly work as advertised.
+- My template has a dependency on the Vercel hosting environment, as opposed to the Next.js platform.
+- Vercel's preview domains don't exactly work as advertised.
 
 I'll fix the template, eventually. But meanwhile, this Vercel thing is interesting.
 
@@ -36,6 +37,7 @@ If you're looking at `process.env.NEXT_PUBLIC_VERCEL_ENV` on a published branch,
 So my Next.js template has a Coming Soon page. To make it work, I have entries in two environment files:
 
 `.env.development`
+
 ```sh
 # Mimic runtime environment in dev.
 NEXT_PUBLIC_VERCEL_ENV=development
@@ -45,6 +47,7 @@ NEXT_PUBLIC_COMING_SOON=0
 ```
 
 `.env.production`
+
 ```sh
 # Show/hide coming soon page.
 NEXT_PUBLIC_COMING_SOON=1
@@ -54,30 +57,30 @@ Then there's logic [here](https://github.com/karmaniverous/template-nextjs/blob/
 
 ```jsx
 const isComingSoon =
-  process.env.NEXT_PUBLIC_COMING_SOON === '1' &&
-  process.env.NEXT_PUBLIC_VERCEL_ENV !== 'preview';
+  process.env.NEXT_PUBLIC_COMING_SOON === "1" &&
+  process.env.NEXT_PUBLIC_VERCEL_ENV !== "preview";
 
 // If app is coming soon, route all traffic to coming-soon endpoint.
-if (route !== '/coming-soon' && isComingSoon) redirect(res, '/coming-soon');
+if (route !== "/coming-soon" && isComingSoon) redirect(res, "/coming-soon");
 
 // If app is not coming soon, route all coming-soon traffic to home.
-if (route === '/coming-soon' && !isComingSoon) redirect(res, '/');
+if (route === "/coming-soon" && !isComingSoon) redirect(res, "/");
 ```
 
-Get it? I can set `NEXT_PUBLIC_COMING_SOON` to make the Coming Soon page appear (or not) in `development` or `production`, but it _never_ appears in `preview`, because ***preview***. I'm sure there is a way to do this without the dependency on a Vercel-specific environment variable, but so far I haven't _needed_ one. 
+Get it? I can set `NEXT_PUBLIC_COMING_SOON` to make the Coming Soon page appear (or not) in `development` or `production`, but it _never_ appears in `preview`, because **_preview_**. I'm sure there is a way to do this without the dependency on a Vercel-specific environment variable, but so far I haven't _needed_ one.
 
 ## The Problem
 
 As I mentioned above, every time you push to a GitHub Branch, Vercel builds your project and deploys it to a unique URL. Two, actually: one is always generated, and another is specific to the attached GitHub branch. For example, if I pushed application `myapp` to GitHub branch `preview-0-3-0`, the application would deploy to domains like these:
 
-* `myapp-9z3i9bqtd-myaccount.vercel.app`
-* `myapp-git-preview-0-3-0-myaccount.vercel.app`
+- `myapp-9z3i9bqtd-myaccount.vercel.app`
+- `myapp-git-preview-0-3-0-myaccount.vercel.app`
 
 This is handy when you want to publish links to preview versions of your application, which—if you use my template—will _never_ display the Coming Soon page.
 
 But I thought I'd be cute.
 
-If you've got a domain (_e.g._ `mydomain.com`) attached to your Vercel project, Vercel also offers the ability to attach a custom subdomain to your preview branch. So, following the example above, I could create `preview-0-3-0.mydomain.com`. 
+If you've got a domain (_e.g._ `mydomain.com`) attached to your Vercel project, Vercel also offers the ability to attach a custom subdomain to your preview branch. So, following the example above, I could create `preview-0-3-0.mydomain.com`.
 
 Nice, right? The configuration looks like this:
 
@@ -96,11 +99,11 @@ Pretty obvious what is going on here: despite the clear indication that my custo
 
 ## The Solution (Kind Of)
 
-I'm not going to go very far out of my way to fix this. 
+I'm not going to go very far out of my way to fix this.
 
 Instead, I've opened [a ticket](https://github.com/vercel/vercel/discussions/8340) with Vercel and hope they will resolve the issue soon. Meanwhile, I've altered all my preview deployment links to point to the (way less sexy) automatically generated domains.
 
-There is still the question of the Vercel dependency in my template. I intend to fix this (here's [my own ticket](https://github.com/karmaniverous/template-nextjs/issues/20)) but I do have some larger fish to fry. 
+There is still the question of the Vercel dependency in my template. I intend to fix this (here's [my own ticket](https://github.com/karmaniverous/template-nextjs/issues/20)) but I do have some larger fish to fry.
 
 If you want to use my template but the Vercel dependency is a problem for you, feel free to drop a comment below and I'll bump it up in my queue.
 

@@ -2,6 +2,7 @@
 title: "Poodle Wars: A Conversation with ChatGPT"
 excerpt: "Love letters to killer poodles. An artificially intelligent exploration into the depths of the ridiculous."
 header:
+  og_image: /assets/images/killer-poodle.png
   teaser: /assets/images/killer-poodle.png
 categories:
   - Blog
@@ -33,7 +34,7 @@ Draw your own conclusions.
 >
 > The team, led by a seasoned CIA operative named Jack, must navigate the complex and dangerous world of international espionage as they race against time to stop the poodles. Along the way, they encounter a host of obstacles, including rival agents, powerful government officials, and even a traitor within their own ranks.
 >
->As the mission becomes increasingly perilous, Jack and his team must use all of their skills and cunning to stay one step ahead of their enemies and prevent the poodles from being unleashed on the world. In the end, they must face off against the mastermind behind the poodle program in a final, explosive showdown.
+> As the mission becomes increasingly perilous, Jack and his team must use all of their skills and cunning to stay one step ahead of their enemies and prevent the poodles from being unleashed on the world. In the end, they must face off against the mastermind behind the poodle program in a final, explosive showdown.
 
 ## More Details
 
@@ -45,9 +46,9 @@ Draw your own conclusions.
 >
 > As the Soviet poodle program gains momentum, the U.S. government becomes increasingly concerned about the potential threat posed by these deadly animals. In response, they assemble a team of top agents and experts to track down and neutralize the poodles before they can be used against America.
 >
->The team, led by a seasoned CIA operative named Jack, must navigate the complex and dangerous world of international espionage as they race against time to stop the poodles. Along the way, they encounter a host of obstacles, including rival agents, powerful government officials, and even a traitor within their own ranks.
+> The team, led by a seasoned CIA operative named Jack, must navigate the complex and dangerous world of international espionage as they race against time to stop the poodles. Along the way, they encounter a host of obstacles, including rival agents, powerful government officials, and even a traitor within their own ranks.
 >
->As the mission becomes increasingly perilous, Jack and his team must use all of their skills and cunning to stay one step ahead of their enemies and prevent the poodles from being unleashed on the world. In the end, they must face off against the mastermind behind the poodle program in a final, explosive showdown.
+> As the mission becomes increasingly perilous, Jack and his team must use all of their skills and cunning to stay one step ahead of their enemies and prevent the poodles from being unleashed on the world. In the end, they must face off against the mastermind behind the poodle program in a final, explosive showdown.
 
 ## Poodles with Lasers
 
@@ -110,7 +111,7 @@ Draw your own conclusions.
 > The trailer opens with a shot of a group of poodles running through the streets of a city at night. The camera zooms in on one poodle in particular, Snickers, who is seen leaping and bounding through the air, her sharp claws and teeth glinting in the moonlight.
 >
 > Cut to a shot of Jack, the CIA operative, standing in the shadows, watching Snickers with a mixture of admiration and fear.
-> 
+>
 > Cut to Natasha, the Russian agent, standing on a rooftop, her gun trained on Snickers. She pulls the trigger, but Snickers dodges the bullet and leaps towards Natasha, snarling.
 >
 > Cut to a shot of Ivan, the Soviet mastermind, laughing maniacally as he watches the poodles wreak havoc on the city below.
@@ -132,7 +133,7 @@ Draw your own conclusions.
 > Yes, the premise is silly, but the execution is top-notch. The action is intense, the special effects are impressive, and the performances are solid across the board. Tom Hardy is particularly good as the lead, bringing a surprising amount of depth and emotion to his character.
 >
 > But what really sets this movie apart is its underlying themes. It's a clever commentary on the dangers of genetic engineering and the corrupting influence of power. It also has a lot to say about the nature of loyalty and the blurred lines between good and evil.
-> 
+>
 > I found myself completely engrossed in the story and the world of the film. It's definitely not for everyone, but if you're willing to suspend your disbelief and go along for the ride, you'll be in for a wild and thought-provoking experience.
 >
 > In short, I loved this movie. I know it's not a popular opinion, and I'm sure many will dismiss it as ridiculous, but I think it's a hidden gem. Do yourself a favor and give it a chance. You won't be disappointed.
@@ -177,12 +178,6 @@ Draw your own conclusions.
 
 **What's the best way to train a poodle for Poodle Wars?**
 
-> To train a poodle for Poodle Wars, you'll need to start by teaching them some basic commands like "sit" and "stay". Then, once they've mastered those, you can move on to more advanced training like "attack" and "laser-eyed death stare". 
-> 
+> To train a poodle for Poodle Wars, you'll need to start by teaching them some basic commands like "sit" and "stay". Then, once they've mastered those, you can move on to more advanced training like "attack" and "laser-eyed death stare".
+>
 > Just make sure to give them plenty of treats and praise along the way. No one wants a grumpy poodle on the battlefield!
-
-
-
-
-
-

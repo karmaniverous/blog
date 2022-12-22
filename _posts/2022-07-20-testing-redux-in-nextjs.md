@@ -2,6 +2,7 @@
 title: "Testing Redux in NextJS"
 excerpt: "If you’re testing ES6 code referencing Redux in a transpiled build environment, you can save yourself a lot of trouble by putting your tests into JSX files."
 header:
+  og_image: /assets/images/logo-redux.png
   teaser: /assets/images/logo-redux.png
 categories:
   - Blog
@@ -24,7 +25,7 @@ I've got a bunch of NextJS projects in the air that depend on [this template](ht
 
 I've written a lot of tests on both back-end and front-end processes, but none over Redux. No excuses... I'm pretty new to Redux and have been focused on learning and using it at the expense of testing it, which is just as dumb as it sounds. :roll_eyes:
 
-Anyway, now I'm making heavy use of Redux Toolkit's [`createEntityAdapter`](https://redux-toolkit.js.org/api/createEntityAdapter) and I am *totally* out of excuses. So yesterday I started writing tests, and I immediately ran into trouble.
+Anyway, now I'm making heavy use of Redux Toolkit's [`createEntityAdapter`](https://redux-toolkit.js.org/api/createEntityAdapter) and I am _totally_ out of excuses. So yesterday I started writing tests, and I immediately ran into trouble.
 
 **TL/DR:** If you're testing ES6 code referencing Redux in a transpiled build environment and have installed [the new JSX Transform](https://reactjs.org/blog/2020/09/22/introducing-the-new-jsx-transform.html), you can save yourself a lot of trouble by putting your tests into JSX files.
 {: .notice--info}
@@ -35,16 +36,16 @@ By the time you read this, I will have incorporated all this stuff into my templ
 
 Some points to note:
 
-* The project is a CommonJS package. It has to be, because on build Babel is going to transpile all of our sweet ES6 code down into ES5.
+- The project is a CommonJS package. It has to be, because on build Babel is going to transpile all of our sweet ES6 code down into ES5.
 
-* It's a React project, so there are a lot of JSX files, which thanks to [the new JSX Transform](https://reactjs.org/blog/2020/09/22/introducing-the-new-jsx-transform.html) know how to behave like ES6 code.
+- It's a React project, so there are a lot of JSX files, which thanks to [the new JSX Transform](https://reactjs.org/blog/2020/09/22/introducing-the-new-jsx-transform.html) know how to behave like ES6 code.
 
-* Because we're in CommonJS land, Node will assume that any JS file in the project is a CommonJS module, meaning it won't support any ES6 features like `import` statements. So if we want to write an ES6 module, we have to put it into an MJS file. This includes tests, which of course will want to `import` all of our sweet ES6 code.
+- Because we're in CommonJS land, Node will assume that any JS file in the project is a CommonJS module, meaning it won't support any ES6 features like `import` statements. So if we want to write an ES6 module, we have to put it into an MJS file. This includes tests, which of course will want to `import` all of our sweet ES6 code.
 
 Now here's something odd. If you look at the [/state](https://github.com/karmaniverous/template-nextjs/tree/0.0.7/state) directory, where I keep all my Redux code, you will notice two things:
 
-* I'm performing ES6-style imports.
-* The files all have JS extensions.
+- I'm performing ES6-style imports.
+- The files all have JS extensions.
 
 These are all JS files because they grew up around a bunch of JS sample code. Nothing ever broke, so I never thought about fixing it.
 
@@ -58,7 +59,7 @@ Now let's introduce some entity state.
 
 I don't want this to become a whole disquisition on [`createEntityAdapter`](https://redux-toolkit.js.org/api/createEntityAdapter), so just know that this is a layer in the Redux Toolkit that gives you what amounts to a NoSQL database inside Redux. Super useful. But since you are now interacting with your Redux Store via this intermediate layer&mdash;which you need to configure&mdash;it makes sense to add some test support.
 
-I'm going to make three changes in the repo: 
+I'm going to make three changes in the repo:
 
 1. I'm going to add a new `entitySlice.js` to manage state for a generalized entity record that consists of a unique entityKey and timestamps indicating when the record was created and last updated. We'll add actions to let us add, update, and remove entities, and a selector that lets us fetch an array of all entities or just one by entityKey. **Why is this a JS file?** I'm just following the weird pattern I already described [above](#the-setup).
 
@@ -82,9 +83,9 @@ Doesn't look like much, but clicking on it gave me this:
     <a href="{{ site.url }}{{ site.baseurl }}/assets/images/mocha-test-explorer-error-output.png"><img src="{{ site.url }}{{ site.baseurl }}/assets/images/mocha-test-explorer-error-output.png"></a>
 </figure>
 
-Now *that's* interesting! On the face of it, it looks like [the weirdness](#some-weirdness) I described above&mdash;where somehow I get to use ES6 syntax in my Redux-related JS files&mdash;has finally come back to bite me.
+Now _that's_ interesting! On the face of it, it looks like [the weirdness](#some-weirdness) I described above&mdash;where somehow I get to use ES6 syntax in my Redux-related JS files&mdash;has finally come back to bite me.
 
-Ok, fair enough. Probably long past time I took care of that anyway. So I refactored all of my Redux-related JS files to MJS extensions, including any `include` references to them. 
+Ok, fair enough. Probably long past time I took care of that anyway. So I refactored all of my Redux-related JS files to MJS extensions, including any `include` references to them.
 
 Here's [the commit](https://github.com/karmaniverous/template-nextjs/commit/b4903eeca1dbbc5e3f022c589b209ac23c8e97c7). That ought to do it, right?
 
@@ -108,7 +109,7 @@ No. Not good. Now the BUILD fails! Here's the error:
 
 I tried a couple of desperate moves (i.e. `import * as ReduxToolkit from...`) with similar results. No joy.
 
-I mean Redux is only the single most popular state management system in modern software development. W the actual F is going *on* here?
+I mean Redux is only the single most popular state management system in modern software development. W the actual F is going _on_ here?
 
 Finally I found [this comment](https://github.com/reduxjs/redux-toolkit/issues/1960#issuecomment-1021236838) by [Mark Erikson](https://github.com/markerikson) of the ReduxJS team, dated this past January:
 
@@ -131,9 +132,9 @@ There's another article I haven't written yet, and it's about testing [React](ht
 
 The TL/DR on that one was laughably simple: I just converted all my React components to JSX files (which they probably should have been to begin with) and let [the new JSX Transform](https://reactjs.org/blog/2020/09/22/introducing-the-new-jsx-transform.html) do its thing. At the end, the tests ran and the build succeeded. Problem solved.
 
-So this got me to thinking... 
+So this got me to thinking...
 
-My Redux tests have *nothing* to do with React. But they *do* seem to need the kind of special handling that the JSX transform provides. What if I just converted all my MJS test files (at least the ones that reference Redux) to JSX files? 
+My Redux tests have _nothing_ to do with React. But they _do_ seem to need the kind of special handling that the JSX transform provides. What if I just converted all my MJS test files (at least the ones that reference Redux) to JSX files?
 
 So I did that. Here's [the commit](https://github.com/karmaniverous/template-nextjs/commit/eba265d1421302c35eec8fec9d64bb2f6e8e73a6). And the result?
 
@@ -141,7 +142,7 @@ So I did that. Here's [the commit](https://github.com/karmaniverous/template-nex
 
 But what's the larger lesson here?
 
-***The map is not the territory.*** A JSX file is not a React component, and it has no obligation to contain one. It's just a bunch of text that will be parsed in a particular way, according to your development environment's configuration. If you have a use case where that parsing would be beneficial, then use a JSX file.
+**_The map is not the territory._** A JSX file is not a React component, and it has no obligation to contain one. It's just a bunch of text that will be parsed in a particular way, according to your development environment's configuration. If you have a use case where that parsing would be beneficial, then use a JSX file.
 
 **P.S.** In my rush to get this done and get back to work, I committed my test file before actually RUNNING the tests. So of course there were some typos. [This release](https://github.com/karmaniverous/template-nextjs/releases/tag/0.0.8) ties everything up with a bow, and all the tests actually pass.
 {: .notice--info}

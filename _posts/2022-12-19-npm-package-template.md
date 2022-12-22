@@ -4,6 +4,7 @@ excerpt:
   "An ES6 NPM package project template featuring a CLI, test support, automated
   API docs, release management & more!"
 header:
+  og_image: /assets/images/logo-npm.svg
   teaser: /assets/images/logo-npm.svg
 categories:
   - Blog

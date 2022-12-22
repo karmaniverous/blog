@@ -1,9 +1,8 @@
 ---
 title: "React Component NPM Package Template"
-excerpt:
-  "An ES6 React component NPM package project template featuring front & back
-  end test support, automated API docs, release management & more!"
+excerpt: "An ES6 React component NPM package project template featuring front & back end test support, automated API docs, release management & more!"
 header:
+  og_image: /assets/images/logo-react.png
   teaser: /assets/images/logo-react.png
 categories:
   - Blog
