@@ -41,10 +41,6 @@ that offers the following features:
   [React Testing Library](https://www.npmjs.com/package/@testing-library/react).
   Includes examples and a sweet testing console!
 
-- Secure environment-variable access to
-  [`package.json`](https://github.com/karmaniverous/react-component-npm-package-template/blob/main/package.json)
-  data.
-
 - Code formatting at every save & paste with
   [`prettier`](https://www.npmjs.com/package/prettier).
 
@@ -88,15 +84,15 @@ absolute requirement, but you'll be glad you did.
         <img src="/assets/images/react-component-npm-package-template-extensions.png" style="width: 250px;">
        </figure>
 
-1.  Set the version in
-    [`package.json`](https://github.com/karmaniverous/react-component-npm-package-template/blob/main/package.json)
-    to `0.0.0`.
+1.  Zero the package version and install dependencies by running these commands:
 
-    See [Configuring `package.json`](#configuring-packagejson) for info on the
-    rest of these settings.
+    ```bash
+    npm version 0.0.0
+    npm install
+    ```
 
-1.  Install dependencies by running `npm install`. This may produce an audit
-    report. See [Vulnerabilities](#vulnerabilities) below for more info.
+    This may produce an audit report. See [Vulnerabilities](#vulnerabilities)
+    below for more info.
 
 1.  Run your tests from the command line:
 
@@ -115,8 +111,11 @@ absolute requirement, but you'll be glad you did.
 
     If you installed the VS Code extensions referenced above, use the `Testing`
     panel to visualize & run your unit tests.
+
      <figure>
-      <img src="/assets/images/react-component-npm-package-template-testing-panel.png">
+      <a href="/assets/images/react-component-npm-package-template-testing-panel.png">
+       <img src="/assets/images/react-component-npm-package-template-testing-panel.png">
+      </a>
      </figure>
 
 ### Create Local Environment Variable File
@@ -155,7 +154,7 @@ this command:
 npm run release
 ```
 
-## Vulnerabilities
+### Vulnerabilities
 
 At the time of this writing, running `npm install` will generate the following
 vulnerability warning:

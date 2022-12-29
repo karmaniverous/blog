@@ -17,7 +17,7 @@ toc: true
     <img src="{{ site.url }}{{ site.baseurl }}/assets/images/logo-aws.png">
 </figure>
 
-Getting your applicaion's back end up and running on AWS is not a trivial exercise, especially if you want a robust and extensible result that will support a modern development process.
+Getting your application's back end up and running on [Amazon Web Services](https://aws.amazon.com/) (AWS) is not a trivial exercise, especially if you want a robust and extensible result that will support a modern development process.
 
 Here's a plug-and-play [AWS API template](https://github.com/karmaniverous/aws-api-template) that offers the following features:
 
