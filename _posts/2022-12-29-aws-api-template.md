@@ -227,7 +227,7 @@ Copy each of these files and remove the `template` extension from the copy.
 
 In the future, this will be accomplished with a single CLI command. ([#10](https://github.com/karmaniverous/aws-api-template/issues/10))
 
-## Connect to GitHub
+### Connect to GitHub
 
 This template supports automated release management with [`release-it`](https://github.com/release-it/release-it).
 
