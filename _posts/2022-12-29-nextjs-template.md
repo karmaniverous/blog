@@ -30,7 +30,7 @@ Here's a plug-and-play [Next.js template](https://github.com/karmaniverous/nextj
 
 - Configured to act as a front end & authentication client for my [AWS API Template](https://github.com/karmaniverous/aws-api-template) on the back end.
 
-- Fully integrated applicaion state management with the [Redux Toolkit](https://redux-toolkit.js.org/), including support for difficult-to-serialize types like `Date` & `BigInt`.
+- Fully integrated application state management with the [Redux Toolkit](https://redux-toolkit.js.org/), including support for difficult-to-serialize types like `Date` & `BigInt`.
 
 - Responsive UX with [Semantic UI React](https://react.semantic-ui.com/) with LESS theme overrides enabled & ready for input!
 
