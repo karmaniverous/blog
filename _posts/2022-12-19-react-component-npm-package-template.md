@@ -24,10 +24,7 @@ Try it. Not as easy to do from scratch as you might think.
 
 {: .notice--warning}
 
-**I just completely refactored this template** but haven't yet updated this
-documentaion. Everything works beautifully, and for a gist of the changes see
-the very similar [NPM Package Template](/blog/npm-package-template). I'll bring
-this page in sync with the changes soon!
+**I just completely refactored this template** but haven't yet updated this documentaion. Everything works beautifully, and for a gist of the changes see the very similar [NPM Package Template](/blog/npm-package-template). I'll bring this page in sync with the changes soon!
 
 So here's a plug-and-play
 [react component NPM package template](https://github.com/karmaniverous/react-component-npm-package-template)
@@ -81,8 +78,7 @@ absolute requirement, but you'll be glad you did.
 
 1.  Clone the new repository to your local machine.
 
-1.  VS Code will ask to install a bunch of recommended extensions. Accept all of
-    them. If you miss this prompt, follow these steps:
+1.  VS Code will ask to install a bunch of recommended extensions. Accept all of them. If you miss this prompt, follow these steps:
 
     1. Open the VS Code Extensions tab
     1. Enter `@recommended` into the search box
@@ -311,8 +307,8 @@ npm link
 You can now import your package assets into your React application like this:
 
 ```js
-import Component from "@karmaniverous/react-component-npm-package-template"; // default export
-import { useComponent } from "@karmaniverous/react-component-npm-package-template"; // named export
+import Component from '@karmaniverous/react-component-npm-package-template'; // default export
+import { useComponent } from '@karmaniverous/react-component-npm-package-template'; // named export
 ```
 
 When you're finished, clean up your global environment by unlinking your
@@ -479,14 +475,14 @@ object, as in
 [this example from `babel.config.js`](https://github.com/karmaniverous/npm-package-template/blob/3b63de057330fbe47e49645cb0bc735c59683100/babel.config.js#L1-L2):
 
 ```js
-const { version } = require("./package.json");
+const { version } = require('./package.json');
 ```
 
 The `require` function is not valid in ES6. You might consider doing this
 instead...
 
 ```js
-import pkg from "./package.json";
+import pkg from './package.json';
 const { version } = pkg;
 ```
 
@@ -498,7 +494,7 @@ This has been addressed with
 write this:
 
 ```js
-import pkg from "./package.json" assert { type: "json" };
+import pkg from './package.json' assert { type: 'json' };
 const { version } = pkg;
 ```
 

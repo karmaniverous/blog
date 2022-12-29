@@ -2,5 +2,10 @@
   "editor.formatOnPaste": true,
   "editor.formatOnSave": true,
   "editor.defaultFormatter": "esbenp.prettier-vscode",
-  "prettier.proseWrap": "always"
+  "editor.tabSize": 2,
+  "prettier.singleQuote": true,
+  "yaml.format.singleQuote": true,
+  "[markdown]": {
+    "editor.wordWrap": "bounded"
+  }
 }
