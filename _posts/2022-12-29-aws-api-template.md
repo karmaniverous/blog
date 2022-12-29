@@ -495,7 +495,10 @@ To accomplish this, follow these steps:
 
 You can continue to release new versions within this major version. Just don't advance this branch to a new major version, or you will overwrite your existing next-version stacks!
 
-[TODO] Figure out how to prevent this from happening ([#11](https://github.com/karmaniverous/aws-api-template/issues/11)).
+{: .notice--primary}
+
+**TODO**<br><br>
+Figure out how to prevent this from happening ([#11](https://github.com/karmaniverous/aws-api-template/issues/11)).
 
 ### Deleting a Stack
 
@@ -515,7 +518,10 @@ To delete a Stack, follow these instructions:
 
 1. Delete the Stack.
 
-[TODO] Automate this process ([#10](https://github.com/karmaniverous/aws-api-template/issues/10)).
+{: .notice--primary}
+
+**TODO**<br><br>
+Automate this process ([#10](https://github.com/karmaniverous/aws-api-template/issues/10)).
 
 ## Some Thoughts About DevOps
 
