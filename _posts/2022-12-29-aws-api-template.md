@@ -524,6 +524,10 @@ To delete a Stack, follow these instructions:
 
 1. Delete the Stack.
 
+{: .notice--info}
+
+**If you intend to redeploy this stack,** you may need to wait about 20 min for the CNAME records of the deleted stack to flush from DNS. If you redeploy too soon, you may see an error indicaing a DNS conflict.
+
 {: .notice--primary}
 
 **TODO**<br><br>
