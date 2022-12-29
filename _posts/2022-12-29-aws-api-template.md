@@ -37,9 +37,15 @@ Here's a plug-and-play [AWS API template](https://github.com/karmaniverous/aws-a
 
 - Automatically build and deploy the relevant Stack following every code push with [AWS CodePipeline](https://aws.amazon.com/codepipeline/). See [Automated Deployment](#automated-deployment) below for more info.
 
-  {: .notice--info}
+- Code formatting at every save & paste with
+  [`prettier`](https://www.npmjs.com/package/prettier).
 
-  This template's repo branches are in fact hooked into CodePipeline to support deployments to demo environments. Consequently you will see many references to the `karmanivero.us` domain. Obviously, you'll need to replace these with references to your own domain.
+- One-button release to GitHub with
+  [`release-it`](https://www.npmjs.com/package/release-it).
+
+{: .notice--info}
+
+This template's repo branches are in fact hooked into CodePipeline to support deployments to demo environments. Consequently you will see many references to the `karmanivero.us` domain. Obviously, you'll need to replace these with references to your own domain.
 
 {: .text-center}
 
