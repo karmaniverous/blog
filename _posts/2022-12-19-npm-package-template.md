@@ -842,3 +842,7 @@ for more info on available options.
 
 Follow
 [these instructions](https://karmanivero.us/blog/installing-github-repo-template-updates/).
+
+## Issues
+
+- The documentation system is choking on dynamic import assertions for for now I've added an exclusion to the one directory that uses them ([packageInfo](https://github.com/karmaniverous/npm-package-template/tree/main/lib/packageInfo)).
