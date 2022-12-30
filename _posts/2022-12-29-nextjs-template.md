@@ -365,3 +365,7 @@ Follow [these instructions](https://karmanivero.us/blog/installing-github-repo-t
 {: .notice--primary}
 
 **TODO**
+
+## Issues
+
+- Authorization fails in local `prod` (i.e. `npm run build && npm run start` in your dev environment). This behavior arises from [this NextAuth issue](https://github.com/nextauthjs/next-auth/issues/6229). I'm tracking it actively.

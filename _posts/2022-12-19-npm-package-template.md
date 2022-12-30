@@ -838,23 +838,6 @@ npm run release -- patch --ci
 See the [`release-it` README](https://github.com/release-it/release-it#readme)
 for more info on available options.
 
-### Weird NPM Warning
-
-The release process is currently generating this warning:
-
-```text
-WARNING Unable to verify if user karmaniverous is a collaborator
-for @karmaniverous/npm-package-template.
-```
-
-The warning appears to be coming from NPM; when I disable NPM publishing the
-warning goes away. My NPM account IS linked to my GitHub account, so that isn't
-the issue.
-
-The warning doesn't appear to affect the publishing process.
-[Click here](https://github.com/release-it/release-it/issues/960) to track this
-issue.
-
 ## Integrate a Template Update
 
 Follow
