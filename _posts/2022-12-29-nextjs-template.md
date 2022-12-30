@@ -137,8 +137,8 @@ Because this is a Next.js template, it works perfectly when deployed to [Vercel]
 Look for these files in your project directory:
 
 - `.env.local.template`
-- `.env.dev.local.template`
-- `.env.prod.local.template`
+- `.env.development.local.template`
+- `.env.production.local.template`
 
 Copy each of these files and remove the `template` extension from the copy.
 
@@ -242,6 +242,30 @@ Out of the box, this template leverages the Semantic UI `default` theme. Switch 
 [Click here](https://semantic-ui.com/usage/theming.html) to learn more about Semantic UI themes.
 
 ### Page Model
+
+{: .notice--primary}
+
+**TODO**
+
+### Redirects
+
+{: .notice--primary}
+
+**TODO**
+
+#### Global Redirects
+
+{: .notice--primary}
+
+**TODO**
+
+#### Back-End Redirects
+
+{: .notice--primary}
+
+**TODO**
+
+#### Front-End Redirects
 
 {: .notice--primary}
 
