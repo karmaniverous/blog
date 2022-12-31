@@ -210,11 +210,12 @@ If VS Code didn't ask, follow these steps to install all workspace-recommended e
      <img src="/assets/images/aws-api-template-extensions.png" style="width: 250px;">
    </figure>
 
-Run the following command to install project dependencies:
+Zero the package version and install dependencies by running these commands:
 
-```bash
-npm install
-```
+    ```bash
+    npm version 0.0.0
+    npm install
+    ```
 
 Set the version in [`package.json`](https://github.com/karmaniverous/aws-api-template/blob/main/package.json) to `0.0.0`.
 

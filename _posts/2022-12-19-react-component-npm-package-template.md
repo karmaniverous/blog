@@ -215,21 +215,6 @@ from other packages!
 
 Do not move or rename [`src/index.jsx`](src/index.jsx) or your build will break.
 
-### Pass `package.json` Data Into Environment Variables
-
-This template uses
-[`babel-plugin-transform-inline-environment-variables`](https://www.npmjs.com/package/babel-plugin-transform-inline-environment-variables)
-to replace environment variable references in your code with string literals at
-build time.
-
-Currently it is pulling `version` from
-[`package.json`](https://github.com/karmaniverous/react-component-npm-package-template/blob/main/package.json)
-into `process.env.NODE_PACKAGE_VERSION`. The same technique will work for any
-value from a source you would rather not load at run time.
-
-To add more values, see the comments in
-[`babel.config.js`](https://github.com/karmaniverous/react-component-npm-package-template/blob/main/babel.config.js).
-
 ### Create & Run Unit Tests
 
 By default, this template supports
@@ -448,45 +433,3 @@ for more info on available options.
 
 Follow
 [these instructions](https://karmanivero.us/blog/installing-github-repo-template-updates/).
-
-## FAQ
-
-### How do I import a `.json` file into an ES6 module?
-
-CommonJS allows you to `require` a `.json` file directly into a JavaScript
-object, as in
-[this example from `babel.config.js`](https://github.com/karmaniverous/npm-package-template/blob/3b63de057330fbe47e49645cb0bc735c59683100/babel.config.js#L1-L2):
-
-```js
-const { version } = require('./package.json');
-```
-
-The `require` function is not valid in ES6. You might consider doing this
-instead...
-
-```js
-import pkg from './package.json';
-const { version } = pkg;
-```
-
-But you would find that the `import` statement is not valid for the `json` MIME
-type.
-
-This has been addressed with
-[_import assertions_](https://v8.dev/features/import-assertions), so now you can
-write this:
-
-```js
-import pkg from './package.json' assert { type: 'json' };
-const { version } = pkg;
-```
-
-[@babel/core](https://www.npmjs.com/package/@babel/core) doesn't support this
-syntax yet, so while the statement above is valid, by default it would cause a
-build error.
-
-{: .notice--info}
-
-This template includes
-[`@babel/plugin-syntax-import-assertions`](https://www.npmjs.com/package/@babel/plugin-syntax-import-assertions),
-which adds support for import assertions to Babel.
