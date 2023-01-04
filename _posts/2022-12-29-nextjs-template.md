@@ -58,7 +58,7 @@ Deploying a vanilla Next.js application is easy, but getting it to a point where
 
 This template is highly opinionated with respect to toolchain. It is _hard_ to get all of these bits to work together. It is _way_ easier to cut out the bits you don't need than figure out how to slot in the things you do. So that's what we have here.
 
-Because this is a Next.js template, it works perfectly when deployed to [Vercel](https://vercel.com/). I've tried hard to make it host-agnostic, though, and I know for a fact that it works just as well deployed to [AWS Amplify](https://aws.amazon.com/amplify). It should work fine at any host that supports Next.js.
+Because this is a Next.js template, it works perfectly when deployed to [Vercel](https://vercel.com/). I've tried hard to make it host-agnostic, though, and I know for a fact that it works just as well deployed to [AWS Amplify](https://aws.amazon.com/amplify). It should work fine (possibly with some tweaks to the build process) at any host that supports Next.js.
 
 ## Setting Up Your Dev Environment
 
