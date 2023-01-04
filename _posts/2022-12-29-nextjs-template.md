@@ -184,7 +184,7 @@ npm run release
 
 ### Environment Variables
 
-Next.js has a \tortured relationship with environment variables and dotenv files.
+Next.js has a tortured relationship with environment variables and dotenv files.
 
 Modern software applications are configuration-driven. I ought to be able to deploy the same application into my various testing and production environments, each with a unique set of configurations.
 
@@ -197,7 +197,7 @@ In a rational world, there are four categories of dotenv file:
 | Environment |   No    | `.env.test`       |
 | Environment |   Yes   | `.env.test.local` |
 
-The first two are application-wide, but I should be able to create as many versions of the last two as I have environments and load them appropriately on deployment.
+The first two are application-wide, but I should be able to create as many versions of the last two as I have environments, and load them appropriately on deployment.
 
 Non-secret files generally get pushed to the code repository, whereas secret files are preserved locally and their contents encoded into each environment's build pipeline.
 
@@ -209,11 +209,11 @@ The issues:
 
 - Next.js has complex rules around which variables are visible where (server side or in the browser).
 
-There is no easy way to get Next.js to load different dotenv files from a different location. See the [Next.js docs](https://nextjs.org/docs/basic-features/environment-variables) for more info.
+- There is no easy way to get Next.js to load different dotenv files from a different location.
 
-Meanwhile, deployment environments also get a say.
+See the [Next.js docs](https://nextjs.org/docs/basic-features/environment-variables) for more info. Meanwhile, deployment environments also get a say.
 
-Next.js can only load the files that are actually available to it. On your ocal development environment, everything will work as expected. [Vercel](https://vercel.com/solutions/nextjs) (the native Next.js platform) and [AWS Amplify](https://docs.amplify.aws/guides/hosting/nextjs/q/platform/js/) (also an excellent choice) expose different sets of files to the Next.js build engine at different points in the process.
+Next.js can only load the files that are actually available to it. On your local development environment, everything will work as expected. [Vercel](https://vercel.com/solutions/nextjs) (the native Next.js platform) and [AWS Amplify](https://docs.amplify.aws/guides/hosting/nextjs/q/platform/js/) (also an excellent choice) expose different sets of files to the Next.js build engine at different points in the process.
 
 Finally, there is a way to load environment variables directly into Next.js, although doing so exposes ALL such variables to the browser, instead of just the ones with the `NEXT_PUBLIC_` prefix.
 
@@ -259,7 +259,7 @@ The application-scoped dotenv files have names and locations as expected by Next
 
 When running locally, they will be loaded. When deploying remotely as part of a build process, the application secrets will not be available and must be integrated with the build process as described below.
 
-Environment-scoped dotenv files do NOT have names or locations as expected, and Next.js will NOT pick them up. Accordingly, I've added code to [next.config.mjs](https://github.com/karmaniverous/nextjs-template/blob/322e666ea612acd48e8f8a093172486ed2df111c/next.config.mjs#L17-L20) that loads these files based on an environment token passed on on the `ENV` variable. So to run Next.js locally using the `test` runtime environment, you would run:
+Environment-scoped dotenv files do NOT have names or locations as expected, and Next.js will NOT pick them up. Accordingly, I've added code to [next.config.mjs](https://github.com/karmaniverous/nextjs-template/blob/322e666ea612acd48e8f8a093172486ed2df111c/next.config.mjs#L17-L20) that loads these files based on an environment token passed into the `ENV` variable. So to run Next.js locally using the `test` runtime environment, you would run:
 
 ```bash
 cross-env ENV=test npm run dev
@@ -269,13 +269,13 @@ Note that this ALSO loads application secrets, thus exposing them to the browser
 
 #### Build Config
 
-As a general rule, all application and environment secrets must be encoded into any remote build process. Both Vercel and AWS Amplify support build-specific environment variables, so each must be configured accordingly.
+As a general rule, all application and environment secrets must be encoded into any remote build process. Both [Vercel](https://vercel.com/docs/concepts/projects/environment-variables) and [AWS Amplify](https://docs.aws.amazon.com/amplify/latest/userguide/environment-variables.html) support build-specific environment variables, so each must be configured accordingly.
 
 For Vercel, this is sufficient.
 
 For Amplify, there is an additional problem: the contents of the `env` directory are not even available to `next.config.mjs`. So I've included an [`amplify.yml`](https://github.com/karmaniverous/nextjs-template/blob/main/amplify.yml) build script that merges all available environment variables, secret and otherwise, into the one `.env` file that Amplify seems to understand.
 
-#### Environment Variable Bottom Line
+#### dotenv Bottom Line
 
 Follow these rules:
 
