@@ -137,10 +137,11 @@ Because this is a Next.js template, it works perfectly when deployed to [Vercel]
 Look for these files in your project directory:
 
 - `.env.local.template`
-- `.env.development.local.template`
-- `.env.production.local.template`
+- `env/.env.dev.local.template`
+- `env/.env.test.local.template`
+- `env/.env.test.local.template`
 
-Copy each of these files and remove the `template` extension from the copy.
+Copy each of these files to the same location and remove the `template` extension from the copy.
 
 **Do not simply rename these files!** Anybody who pulls your repo will need these templates to create the same files in his own local environment.
 
@@ -183,9 +184,110 @@ npm run release
 
 ### Environment Variables
 
-{: .notice--primary}
+Next.js has a \tortured relationship with environment variables and dotenv files.
 
-**TODO**
+Modern software applications are configuration-driven. I ought to be able to deploy the same application into my various testing and production environments, each with a unique set of configurations.
+
+In a rational world, there are four categories of dotenv file:
+
+| Scope       | Secret? | Example           |
+| ----------- | :-----: | ----------------- |
+| Application |   No    | `.env`            |
+| Application |   Yes   | `.env.local`      |
+| Environment |   No    | `.env.test`       |
+| Environment |   Yes   | `.env.test.local` |
+
+The first two are application-wide, but I should be able to create as many versions of the last two as I have environments and load them appropriately on deployment.
+
+Non-secret files generally get pushed to the code repository, whereas secret files are preserved locally and their contents encoded into each environment's build pipeline.
+
+The issues:
+
+- Next.js only supports _three_ such environments, which _must_ be named `development`, `test`, and `production`.
+
+- Next.js doesn't load these files consistently across environments.
+
+- Next.js has complex rules around which variables are visible where (server side or in the browser).
+
+There is no easy way to get Next.js to load different dotenv files from a different location. See the [Next.js docs](https://nextjs.org/docs/basic-features/environment-variables) for more info.
+
+Meanwhile, deployment environments also get a say.
+
+Next.js can only load the files that are actually available to it. On your ocal development environment, everything will work as expected. [Vercel](https://vercel.com/solutions/nextjs) (the native Next.js platform) and [AWS Amplify](https://docs.amplify.aws/guides/hosting/nextjs/q/platform/js/) (also an excellent choice) expose different sets of files to the Next.js build engine at different points in the process.
+
+Finally, there is a way to load environment variables directly into Next.js, although doing so exposes ALL such variables to the browser, instead of just the ones with the `NEXT_PUBLIC_` prefix.
+
+So it's a rich tapestry.
+
+This template expresses an approach that offers the following features:
+
+- You can define as many environments as you want and name them however you like.
+
+- It works in your local dev environment and works well with both Vercel and AWS Amplify.
+
+- Public variables are consistently visible in the browser when prefixed with `NEXT_PUBLIC_`, and private variables are only visible on the server side.
+
+By way of demonstration, this template's live [`dev`](https://nextjs-template-dev.karmanivero.us/), [`test`](https://nextjs-template-test.karmanivero.us/), and [`prod`](https://nextjs-template.karmanivero.us/) demo environments integrate perfectly with my [AWS API Template](/blog/aws-api-template)'s corresponding demo environments.
+
+There are three components to this approach:
+
+- dotenv files
+- Next.js config
+- Build config
+
+#### dotenv Files
+
+Application-scoped dotenv files live in the main project directory. There are three of them:
+
+| File                  | Description                                                                                                                                                                 |
+| --------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `.env`                | Application settings. Syncs with the code repo.                                                                                                                             |
+| `.env.local`          | Application secrets. Does _not_ sync with the repo.                                                                                                                         |
+| `.env.local.template` | Application secrets template. Syncs with the repo. Copy it the first time you pull the repo to create an application secrets file and populate it to support local testing. |
+
+Environment-scoped dotenv files live in the `env` directory. There is no limit to the number and names of supported environments. Each environment requires three files, e.g. for the `test` environment:
+
+| File                       | Description                                                                                                                                                                 |
+| -------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `.env.test`                | Environment settings. Syncs with the code repo.                                                                                                                             |
+| `.env.test.local`          | Environment secrets. Does _not_ sync with the repo.                                                                                                                         |
+| `.env.test.local.template` | Environment secrets template. Syncs with the repo. Copy it the first time you pull the repo to create an environment secrets file and populate it to support local testing. |
+
+#### Next.js Config
+
+The application-scoped dotenv files have names and locations as expected by Next.js.
+
+When running locally, they will be loaded. When deploying remotely as part of a build process, the application secrets will not be available and must be integrated with the build process as described below.
+
+Environment-scoped dotenv files do NOT have names or locations as expected, and Next.js will NOT pick them up. Accordingly, I've added code to [next.config.mjs](https://github.com/karmaniverous/nextjs-template/blob/322e666ea612acd48e8f8a093172486ed2df111c/next.config.mjs#L17-L20) that loads these files based on an environment token passed on on the `ENV` variable. So to run Next.js locally using the `test` runtime environment, you would run:
+
+```bash
+cross-env ENV=test npm run dev
+```
+
+Note that this ALSO loads application secrets, thus exposing them to the browser! This is not a problem because these `.local` files are _only_ available locally. Application & environment secrets are loaded differently in the remote build process, and since these files are not present their contents will NOT be exposed to the browser in remote deployments.
+
+#### Build Config
+
+As a general rule, all application and environment secrets must be encoded into any remote build process. Both Vercel and AWS Amplify support build-specific environment variables, so each must be configured accordingly.
+
+For Vercel, this is sufficient.
+
+For Amplify, there is an additional problem: the contents of the `env` directory are not even available to `next.config.mjs`. So I've included an [`amplify.yml`](https://github.com/karmaniverous/nextjs-template/blob/main/amplify.yml) build script that merges all available environment variables, secret and otherwise, into the one `.env` file that Amplify seems to understand.
+
+#### Environment Variable Bottom Line
+
+Follow these rules:
+
+- Use the four types of file as described in [dotenv Files](#dotenv-files) above.
+
+- If you want a variable to be available in the browser, prefix its name with `NEXT_PUBLIC_`.
+
+- Encode all application & environment secrets into your build process.
+
+- Additionally encode an `ENV` variable into your build process that carries your environment token (e.g. `dev`, `test`, or `prod`).
+
+- If you are deployng to AWS Amplify, and need to add more application or environment secrets, use the pattern in the [`amplify.yml`](https://github.com/karmaniverous/nextjs-template/blob/main/amplify.yml) `preBuild` section to integrate your new secrets with the build.
 
 ### State Model
 
