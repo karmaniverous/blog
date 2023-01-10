@@ -1,7 +1,7 @@
 ---
 # prettier-ignore
 title: "A Modern Agile Project Manifesto"
-excerpt: ""
+excerpt: "A battle-tested, all-inclusive starting point for a modern Agile project."
 header:
   og_image: /assets/images/iteration.png
   teaser: /assets/images/iteration.png
