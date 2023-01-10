@@ -527,3 +527,7 @@ This could take many forms, including:
 - Changing the frequency or procedures for Standups, Backlog Grooming or other meetings.
 
 Everything is on the table! If the point of the Agile Methodology is to find out what works and then do it on purpose, then Retrospectives are how we make that a reality.
+
+{: .notice--info}
+
+The outcome of an effective Sprint Retrospective is a change to **this exact document!**
