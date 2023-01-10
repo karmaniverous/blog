@@ -22,11 +22,11 @@ I've participated in and led a LOT of Agile projects. Some have been more Agile 
 
 If you're an Agile practitioner, you know that the method _by design_ conforms to the team, so that no two teams practice the exact same flavor of Agile.
 
-But it helps to have a solid starting point: a plan that covers all the bases, that you can run with out of the gate and then modify as your sprint retrospectives roll in.
+But it helps to have a solid starting point: a plan that covers all the bases, that you can run with out of the gate and then modify as your Sprint retrospectives roll in.
 
 Even better if that plan reflects the tools you actually use, which in many large organizations and projects are going to be [Jira](https://www.atlassian.com/software/jira) and [Confluence](https://www.atlassian.com/software/confluence).
 
-This is the intent of the document below. I've refined it over many projects at institutions large and small. It NEVER survives more than a few sprints intact, but then that's the point, isn't it?
+This is the intent of the document below. I've refined it over many projects at institutions large and small. It NEVER survives more than a few Sprints intact, but then that's the point, isn't it?
 
 I hope it serves you well.
 
@@ -347,7 +347,7 @@ A two-week Sprint comprises 10 working days. An Issue may only be assigned to a 
 
 Agile is a _practice_, not a philosophy. There are lots of different ways to practice Agile, but they all include most of the features described above.
 
-At Karmaniverous, we will apply the [Scrum](https://www.atlassian.com/agile/scrum) method with two-week sprints.
+At Karmaniverous, we will apply the [Scrum](https://www.atlassian.com/agile/scrum) method with two-week Sprints.
 
 ### Sprints & Releases
 
