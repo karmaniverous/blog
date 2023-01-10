@@ -5,10 +5,10 @@
 /* Colors */
 $text-color: #000 !default;
 $muted-text-color: $text-color !default;
-$primary-color: #8E7C93 !default;
+$primary-color: #8e7c93 !default;
 $border-color: mix(#fff, $text-color, 75%) !default;
 $footer-background-color: #000 !default;
-$link-color: #3423A6 !default;
+$link-color: #3423a6 !default;
 $masthead-link-color: $text-color !default;
 $masthead-link-color-hover: $text-color !default;
 $navicon-link-color-hover: mix(#fff, $text-color, 80%) !default;
@@ -47,6 +47,10 @@ $base0f: #b18a3d !default;
 }
 
 .page__footer-follow .social-icons i,
-.page__footer-follow .social-icons .svg-inline--fa  {
+.page__footer-follow .social-icons .svg-inline--fa {
   color: inherit;
+}
+
+table > tbody td {
+  vertical-align: top;
 }
