@@ -454,13 +454,19 @@ Everybody is encouraged to throw Issues into the Backlog as they come up. Captur
 
 The Backlog will usually contain lots of Issues that are incomplete or poorly articulated. The purpose of Backlog Grooming is to go through the Backlog and...
 
-- **Fix the easy stuff on the spot**, including the identification of blockers and the decomposition of tasks.
-
-- **Create new tickets to account for the hard stuff**, so somebody can be assigned to do the research, design, or decomposition required to flesh those tickets out.
+- **Assign every Issue to the correct project Phase.** Is it in scope for the current Phase? If not, let's drop it in the right bucket & forget about it for now.
 
 - **Size every Issue.** How much work will an Issue take to resolve?
 
-- **Prioritize the result.**
+- **Prioritize every Issue.** Which are the most important?
+
+- **Sequence every Issue.** What order must they be completed in to account for dependency?
+
+- **Identify blockers.** What’s standing in the way of completing this Issue?
+
+- **Decompose complex Issues.** How can we break big Issues into bite-sized pieces?
+
+- **Fix the easy stuff on the spot, and create new tickets to account for the hard stuff**, so somebody can be assigned to do the work required to flesh those tickets out.
 
 Backlog Grooming is NEVER finished!
 
