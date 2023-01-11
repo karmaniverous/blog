@@ -32,7 +32,7 @@ I hope it serves you well.
 
 {: .notice--warning}
 
-**Jira & Confluence are complex products!** My goal with this article is not to to teach you how to configure Atlassian tools, but to articulate a solid starting point for your Agile process. Tweaking your tools is up to you. If you get stuck, [leave a comment](#disqus_thread) and I'll see if I can help.
+**Jira & Confluence are complex products!** My goal with this article is not to teach you how to configure Atlassian tools, but to articulate a solid starting point for your Agile process. Tweaking your tools is up to you. If you get stuck, [leave a comment](#disqus_thread) and I'll see if I can help.
 
 ## Agile @Karmaniverous
 
