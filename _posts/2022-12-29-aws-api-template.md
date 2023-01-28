@@ -33,6 +33,8 @@ Here's a plug-and-play [AWS API template](https://github.com/karmaniverous/aws-a
 
 - Deployable from the command line to multiple [AWS CloudFormation](https://aws.amazon.com/cloudformation/) Stacks, each exposing an independent environment (e.g. `dev`, `test`, and `prod`), with its own authentication provider, at configurable endpoints.
 
+- Unit testing support with [`mocha`](https://www.npmjs.com/package/mocha) and [`chai`](https://www.npmjs.com/package/chai). Includes examples and a sweet testing console!
+
 - Built-in backwards compatibility. Every major release triggers the deployment of an independent Stack on every environment. Share key resources across Stacks so you can bring your users with you across major versions.
 
 - Automatically build and deploy the relevant Stack following every code push with [AWS CodePipeline](https://aws.amazon.com/codepipeline/). See [Automated Deployment](#automated-deployment) below for more info.
@@ -108,13 +110,15 @@ The key AWS configuration file in the project is [`serverless.yml`](https://gith
 
 Everybody understands `.env` environment variable files, so that seemed to be a great way to go, which is nominally supported by the [Serverless Dotenv Plugin](https://www.serverless.com/plugins/serverless-dotenv-plugin). Unfortunately, I couldn't get it to work.
 
-So I eliminated this dependency and am relying instead on the very robust [`dotenv-cli`](https://www.npmjs.com/package/dotenv-cli) tool, which does everything the plugin promises and works like a charm.
+So I eliminated this dependency and am relying instead on my own [`get-dotenv`](https://www.npmjs.com/package/@karmaniverous/get-dotenv) package, which adds some handy features to the very robust [`dotenv-cli`](https://www.npmjs.com/package/dotenv-cli) tool, actually does everything the plugin only promises, and works like a charm.
 
-Because of this, you will almost NEVER run `sls` directly! Instead, you will preface it with `dotenv` and your target environment, like this:
+Because of this, you will almost NEVER run `sls` directly! Instead, you will preface it with `npx getdotenv` and specify your `.env` file directories & target environment, like this:
 
 ```bash
-dotenv -c dev -- sls deploy
+npx getdotenv -p ./ ./env -e dev -- sls deploy --verbose
 ```
+
+... except you wouldn't do THAT either, because this command is now encapsulated in the package script `npm run deploy`.
 
 More info on this in the relevant sections below. Later I will encapsulate this approach and some other useful features into a CLI wrapper for `sls`. ([#10](https://github.com/karmaniverous/aws-api-template/issues/10))
 
@@ -161,7 +165,7 @@ Rather than install Node.js directly, it is better to install it & manage versio
    # all platforms
    nvm install 18.12.1
    nvm use 18.12.1
-   npm install -g serverless dotenv-cli
+   npm install -g serverless
    ```
 
 1. Install Git for your operating system from [this page](https://git-scm.com/download).
@@ -219,14 +223,53 @@ npm install
 
 Set the version in [`package.json`](https://github.com/karmaniverous/aws-api-template/blob/main/package.json) to `0.0.0`.
 
+### Vulnerabilities
+
+At the time of this writing, running `npm install` will generate the following
+vulnerability warning:
+
+```text
+6 vulnerabilities (3 high, 3 critical)
+```
+
+If you run `npm audit`, you will find that all of these vulnerabilities relate
+to the following dev dependencies, all of which are to do with docs generation:
+
+```bash
+
+> npm list trim
+
+# @karmaniverous/aws-api-template@0.2.1
+# └─┬ concat-md@0.5.0
+#   └─┬ doctoc@1.4.0
+#     └─┬ @textlint/markdown-to-ast@6.0.9
+#       └─┬ remark-parse@5.0.0
+#         └── trim@0.0.1
+
+> npm list underscore
+
+# @karmaniverous/aws-api-template@0.2.1
+# ├─┬ concat-md@0.5.0
+# │ └─┬ doctoc@1.4.0
+# │   └── underscore@1.8.3
+# └─┬ jsdoc-to-markdown@8.0.0
+#   └─┬ jsdoc-api@8.0.0
+#     └─┬ jsdoc@4.0.0
+#       └── underscore@1.13.6
+```
+
+{: .notice--info}
+
+These vulnerable dependencies support the development environment only and will NOT be included in your production code!
+
 ### Create Local Environment Variable Files
 
 Look for these files in your project directory:
 
 - `.env.local.template`
-- `.env.dev.local.template`
-- `.env.test.local.template`
-- `.env.prod.local.template`
+- `env/.env.dev.local.template`
+- `env/.env.test.local.template`
+- `env/.env.prod.local.template`
 
 Copy each of these files and remove the `template` extension from the copy.
 
@@ -269,7 +312,7 @@ Add those two values in the appropriate spots in `.env.local`.
 Enter the following command in a terminal window:
 
 ```bash
-dotenv -c dev -- sls offline
+npm run offline
 ```
 
 A local server should start with an endpoint at [`http://localhost:3000/v0-dev/hello`](http://localhost:3000/v0-dev/hello). If you navigate to this endpoint in a browser, you should see a blob of JSON with the message `Hello world!`
@@ -316,7 +359,7 @@ Follow these steps to prepare your AWS account to receive your deployment. Where
 1. Run the following command to create an API Gateway custom domain at `<API_SUBDOMAIN>.<ROOT_DOMAIN>`.
 
    ```bash
-   dotenv -- sls create_domain
+   npx getdotenv -- sls create_domain
    ```
 
 That's it. You're now all set to deploy to any Stage at AWS!
@@ -326,10 +369,14 @@ That's it. You're now all set to deploy to any Stage at AWS!
 Run the following command to deploy a [Stage](#environments-api-versions-stages--stacks) to [Environment](#environments-api-versions-stages--stacks) `<env>` (e.g. `dev`, `test`, or `prod`) for the configured [API Version](<(#environments-api-versions-stages--stacks)>):
 
 ```bash
-dotenv -c <env> -- sls deploy --verbose
+npm run deploy -- -e <env token>]
 ```
 
-If this is your first time, try deploying to the `dev` Environment.
+If this is your first time, try deploying to the `dev` Environment. In this case, you can just run
+
+```bash
+npm run deploy
+```
 
 Deployments take a few minutes and are differential, so the first one to any Stack will take the longest.
 
@@ -541,7 +588,7 @@ It's your project. Do what you want! But if you're interested, here's a rational
 - During the development process you're probably working in some feature branch & trying run your project locally. The corresponding command in our case is
 
   ```
-  dotenv -c dev -- sls offline
+  npm run offline
   ```
 
   When this fails, you iterate until it doesn't.
@@ -549,7 +596,7 @@ It's your project. Do what you want! But if you're interested, here's a rational
 - Local builds only take you so far, and there are a ton of AWS services that can only exist remotely. So your next step is to try a remote `dev` build using
 
   ```
-  dotenv -c dev -- sls deploy --verbose
+  npm run deploy
   ```
 
   If you've [set up your CodePipelines](#automated-deployment), the same thing will happen when you merge your feature branch with the `dev` branch.
