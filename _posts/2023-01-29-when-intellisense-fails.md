@@ -1,7 +1,7 @@
 ---
 # prettier-ignore
 title: "When IntelliSense Fails: How to Avoid TypeScript While Avoiding TypeScript"
-excerpt: "Sure you could transpile perfectly good ES code into the same thing + TS types. But sweet mother of everything, WHY??"
+excerpt: "Sure you could transpile perfectly good ES6 code into the same thing + TS types. But sweet mother of everything, WHY??"
 header:
   og_image: /assets/images/logo-vscode.png
   teaser: /assets/images/logo-vscode.png
@@ -34,9 +34,11 @@ This is the sort of thing that could have me drinking tequila at 10 in the morni
 
 **I rebel!**
 
-I am writing JavaScript. I do NOT want to transpile my very sweet ES code, already thoughtfully decorated with JSDoc, into the EXACT SAME THING just so my code can be augmented with types in a language I am studiously trying to avoid.
+I am writing JavaScript. I do NOT want to transpile my very sweet ES6 code, already thoughtfully decorated with JSDoc, into the EXACT SAME THING just so my code can be augmented with types in a language I am studiously trying to avoid.
 
-That's coo-coo. As far as I am concerned, my ES code IS my ES distribution. I want to point my `package.json` `exports['.'].import` key at my `lib` directory (where my source lives) and have done with it. This should just WORK, and if it doesn't, then the problem lies with the TOOL and not with my code.
+That's coo-coo.
+
+As far as I am concerned, **my ES6 code IS my ES6 distribution!** I want to point my `package.json` `exports['.'].import` key at my `lib` directory (where my source lives) and have done with it. This should just WORK, and if it doesn't, then the problem lies with the TOOL and not with my code.
 
 So.
 
