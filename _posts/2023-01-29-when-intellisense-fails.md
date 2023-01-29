@@ -1,7 +1,7 @@
 ---
 # prettier-ignore
 title: "When IntelliSense Fails: How to Avoid TypeScript While Avoiding TypeScript"
-excerpt: "Sure you could transpile perfectly serviceable ES code into ES code + TS type. But sweet mother of everything, WHY?"
+excerpt: "Sure you could transpile perfectly good ES code into the same thing + TS types. But sweet mother of everything, WHY??"
 header:
   og_image: /assets/images/logo-vscode.png
   teaser: /assets/images/logo-vscode.png
