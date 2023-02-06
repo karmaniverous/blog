@@ -259,16 +259,16 @@ Item                                 Description
 
 ### NPM Scripts
 
-| Script                    | Description                                  |
-| ------------------------- | -------------------------------------------- |
-| `npm run analyze`         | Analyze browser & server bundles.            |
-| `npm run analyze:browser` | Analyze browser bundle.                      |
-| `npm run analyze:server`  | Analyze server bundle.                       |
-| `npm run build`           | Generate a Next.js production build.         |
-| `npm run dev`             | Build & run the Next.js application locally. |
-| `npm run release`         | Create a new release & publish to GitHub.    |
-| `npm run start`           | Run the Next.js production build locally.    |
-| `npm run test`            | Execute unit tests.                          |
+| Script                    | Description                                                                       |
+| ------------------------- | --------------------------------------------------------------------------------- |
+| `npm run analyze`         | Analyze browser & server bundles.                                                 |
+| `npm run analyze:browser` | Analyze browser bundle.                                                           |
+| `npm run analyze:server`  | Analyze server bundle.                                                            |
+| `npm run build`           | Generate a Next.js production build.                                              |
+| `npm run dev`             | Build & run the Next.js application locally.                                      |
+| `npm run release`         | Run unit tests & production build, then create a new release & publish to GitHub. |
+| `npm run start`           | Build & run the Next.js production build locally.                                 |
+| `npm run test`            | Execute unit tests.                                                               |
 
 ### Environment Variables
 
