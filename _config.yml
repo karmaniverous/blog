@@ -57,65 +57,66 @@ plugins:
   - jekyll-feed
   - jemoji
   - jekyll-include-cache
+  - jekyll-spaceship
 
 author:
-  name   : "Jason Williscroft"
-  avatar : "/assets/images/bio-photo.jpg"
-  bio    : "resume bullets<br />may read differently at the<br />threshold of heaven"
+  name: 'Jason Williscroft'
+  avatar: '/assets/images/bio-photo.jpg'
+  bio: 'resume bullets<br />may read differently at the<br />threshold of heaven'
   links:
-    - label: "Karmic Rules"
-      icon: "fas fa-fw fa-dharmachakra"
-      url: "https://github.com/karmaniverous/rules"
-    - label: "GitHub"
-      icon: "fab fa-fw fa-github"
-      url: "https://github.com/karmaniverous"
-    - label: "LinkedIn"
-      icon: "fab fa-fw fa-linkedin"
-      url: "https://www.linkedin.com/in/jscroft/"
-    - label: "Twitter"
-      icon: "fab fa-fw fa-twitter-square"
-      url: "https://twitter.com/karmaniverous"
-    - label: "Telegram"
-      icon: "fab fa-fw fa-telegram"
-      url: "https://t.me/karmaniverous"
-    - label: "Ringknocker"
-      icon: "fas fa-fw fa-heart"
-      url: "https://ringknocker.net"
-    - label: "tiny poems"
-      icon: "fas fa-fw fa-quote-left"
-      url: "https://tinypoems.blog"
+    - label: 'Karmic Rules'
+      icon: 'fas fa-fw fa-dharmachakra'
+      url: 'https://github.com/karmaniverous/rules'
+    - label: 'GitHub'
+      icon: 'fab fa-fw fa-github'
+      url: 'https://github.com/karmaniverous'
+    - label: 'LinkedIn'
+      icon: 'fab fa-fw fa-linkedin'
+      url: 'https://www.linkedin.com/in/jscroft/'
+    - label: 'Twitter'
+      icon: 'fab fa-fw fa-twitter-square'
+      url: 'https://twitter.com/karmaniverous'
+    - label: 'Telegram'
+      icon: 'fab fa-fw fa-telegram'
+      url: 'https://t.me/karmaniverous'
+    - label: 'Ringknocker'
+      icon: 'fas fa-fw fa-heart'
+      url: 'https://ringknocker.net'
+    - label: 'tiny poems'
+      icon: 'fas fa-fw fa-quote-left'
+      url: 'https://tinypoems.blog'
 
 footer:
   links:
-    - label: "Karmic Rules"
-      icon: "fas fa-fw fa-dharmachakra"
-      url: "https://github.com/karmaniverous/rules"
-    - label: "GitHub"
-      icon: "fab fa-fw fa-github"
-      url: "https://github.com/karmaniverous"
-    - label: "LinkedIn"
-      icon: "fab fa-fw fa-linkedin"
-      url: "https://www.linkedin.com/in/jscroft/"
-    - label: "Twitter"
-      icon: "fab fa-fw fa-twitter-square"
-      url: "https://twitter.com/karmaniverous"
-    - label: "Telegram"
-      icon: "fab fa-fw fa-telegram"
-      url: "https://t.me/karmaniverous"
-    - label: "Ringknocker"
-      icon: "fas fa-fw fa-heart"
-      url: "https://ringknocker.net"
-    - label: "tiny poems"
-      icon: "fas fa-fw fa-quote-left"
-      url: "https://tinypoems.blog"
+    - label: 'Karmic Rules'
+      icon: 'fas fa-fw fa-dharmachakra'
+      url: 'https://github.com/karmaniverous/rules'
+    - label: 'GitHub'
+      icon: 'fab fa-fw fa-github'
+      url: 'https://github.com/karmaniverous'
+    - label: 'LinkedIn'
+      icon: 'fab fa-fw fa-linkedin'
+      url: 'https://www.linkedin.com/in/jscroft/'
+    - label: 'Twitter'
+      icon: 'fab fa-fw fa-twitter-square'
+      url: 'https://twitter.com/karmaniverous'
+    - label: 'Telegram'
+      icon: 'fab fa-fw fa-telegram'
+      url: 'https://t.me/karmaniverous'
+    - label: 'Ringknocker'
+      icon: 'fas fa-fw fa-heart'
+      url: 'https://ringknocker.net'
+    - label: 'tiny poems'
+      icon: 'fas fa-fw fa-quote-left'
+      url: 'https://tinypoems.blog'
 
 defaults:
   # _posts
   - scope:
-      path: ""
+      path: ''
       type: posts
     values:
-      excerpt_separator: "<!--more-->"
+      excerpt_separator: '<!--more-->'
       layout: single
       author_profile: true
       read_time: true
@@ -127,7 +128,7 @@ defaults:
       toc_sticky: true
   # _pages
   - scope:
-      path: "_pages"
+      path: '_pages'
       type: pages
     values:
       layout: single
@@ -142,9 +143,9 @@ tag_archive:
   path: /tags/
 
 comments:
-  provider: "disqus"
+  provider: 'disqus'
   disqus:
-    shortname: "some-words"
+    shortname: 'some-words'
 
 # Required to get the site to run locally.
 github: [metadata]

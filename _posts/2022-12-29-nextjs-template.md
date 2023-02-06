@@ -166,21 +166,109 @@ npm run release
 
 ## Project Architecture
 
-{: .notice--primary}
+Basic project architecture is driven by the requirements of Next.js.
 
-**TODO**
+Next.js exposes a `pages` directory, which contains three categories of file that correspond to application routes.
+
+- `_app.jsx` is the Application component described in [Page Model](#page-model) below. It expresses the "frame" of the application, and all other visible components are injected into it.
+- The `api` sub directory exposes a special category of routes that receive HTTP requests and run on the server side.
+- All other files within he `pages` directory translate to routes visible on the front end.
+
+Paths inside the `pages` directory support a square bracket syntax that translates to route variables available at run time (e.g. `/pages/api/customer/[customerId]/index.jsx`).
+
+A key feature is the existence of a [state layer](#state-model) provided by the [Redux Toolkit](https://redux-toolkit.js.org/). Properly executed, this layer should handle most external requests and manage most state that needs to be passed between React components.
 
 ### File Structure
 
-{: .notice--primary}
-
-**TODO**
+```text
+Item                                 Description
+---------------------------------------------------------------------------------------------------------
+└─ nextjs-template ................. package root
+   ├─ .babelrc ..................... global Babel config
+   ├─ .env ......................... public global variables
+   ├─ .env.local ................... locally-maintained private global variables
+   ├─ .env.local.template .......... private global variable template
+   ├─ .eslintignore ................ global ESLint ignore file
+   ├─ .eslintrc.json ............... global ESLint config file
+   ├─ .prettierignore .............. global Prettier ignore file
+   ├─ .vscode ...................... VS Code project config
+   │  ├─ extensions.json ........... recommended extensions
+   │  └─ settings.json ............. project settings
+   ├─ amplify.yml .................. AWS Amplify build script
+   ├─ components ................... React components (contents obvy vary by project)
+   │  ├─ content ................... content-related React components
+   │  │  ├─ ApiQuery.jsx ........... tests a query (optionally authenticated) & displays result
+   │  │  ├─ ApiTest.jsx ............ displays a set of queries
+   │  │  ├─ HomePage.jsx ........... displays ApiTest on a public page
+   │  │  └─ PrivatePage.jsx ........ displays ApiTest on a private page
+   │  ├─ page ...................... common page components
+   │  │  ├─ PageFooter.jsx ......... common page footer
+   │  │  ├─ PageHeader.jsx ......... common page header
+   │  │  ├─ RenderIf.jsx ........... conditionally renders a component based on current page & auth state
+   │  │  ├─ ScrollTarget.jsx ....... HOC decorates a component with a smooth-scroll target
+   │  │  └─ sidebar ................ common sidebar components
+   │  │     ├─ LinkMenuItem.jsx .... conditionally renders a menu item as an icon link
+   │  │     ├─ PageMenuItem.jsx .... renders a state-sensitive menu item targeted at a page
+   │  │     ├─ ScrollMenuItem.jsx .. renders a menu item targeted at a scroll location
+   │  │     ├─ SidebarButton.jsx ... renders a button that triggers an overlay menu on mobile devices
+   │  │     ├─ SidebarItems.jsx .... renders all sidebar items
+   │  │     └─ SidebarLinks.jsx .... renders sidebar links repeated in page footer
+   │  └─ session ................... common session management components
+   │     ├─ SessionDropdown.jsx .... renders session dropdown button
+   │     ├─ SessionMenuItem.jsx .... renders session menu item
+   │     └─ useSignOut.jsx ......... encapsulates sign-out behavior
+   ├─ env .......................... environment-specific environment variables
+   │  ├─ .env.dev .................. public dev environment variables
+   │  ├─ .env.dev.local ............ locally-maintained private dev environment variables
+   │  ├─ .env.dev.local.template ... private dev environment variable template
+   │  ├─ ... ....................... other environment variables
+   ├─ middleware.js ................ NextAuth.js middleware config
+   ├─ next-env.d.ts ................ Next.js required file
+   ├─ next.config.mjs .............. Next.js configuration
+   ├─ package-lock.json ............ package dependencies (managed by npm)
+   ├─ package.json ................. package config
+   ├─ pages ........................ Next.js page & api routes
+   │  ├─ api ....................... Next.js api routes
+   │  │  ├─ auth ................... NextAuth authentication route
+   │  │     └─ [...nextauth].jsx ... NextAuth.js authentication endpoint
+   │  │  ├─ hello.jsx .............. Sample public api endpoint
+   │  │  └─ private ................ Sample private api route
+   │  │     └─ hello.jsx ........... Sample private api endpoint
+   │  ├─ coming-soon.jsx ........... coming soon route
+   │  ├─ index.jsx ................. public home page route
+   │  ├─ private.jsx ............... sample private page route
+   │  └─ _app.jsx .................. Application component
+   ├─ public ....................... public assets
+   │  └─ images .................... public image assets
+   │     ├─ favicon/ ............... public favicon assets
+   │     └─ logo.png ............... site logo
+   ├─ README.md .................... package README file
+   ├─ semantic-ui .................. Semantic UI custom theme assets
+   │  ├─ site/ ..................... Semantic UI custom theme variables & overrides
+   │  └─ theme.config .............. Semantic UI custom theme config
+   ├─ state ........................ Redux Toolkit state layer
+   │  ├─ entitySlice.mjs ........... Sample Entity state
+   │  ├─ pageSlice.mjs ............. Application page state
+   │  └─ store.mjs ................. Redux Store definition
+   ├─ styles.css ................... misc styles not defined in Semantic UI theme
+   ├─ test ......................... unit tests
+   │  ├─ entity.test.jsx ........... sample Entity state tests
+   │  └─ sample.test.mjs ........... sample unit tests
+   └─ tsconfig.json ................ required file
+```
 
 ### NPM Scripts
 
-{: .notice--primary}
-
-**TODO**
+| Script                    | Description                                  |
+| ------------------------- | -------------------------------------------- |
+| `npm run analyze`         | Analyze browser & server bundles.            |
+| `npm run analyze:browser` | Analyze browser bundle.                      |
+| `npm run analyze:server`  | Analyze server bundle.                       |
+| `npm run build`           | Generate a Next.js production build.         |
+| `npm run dev`             | Build & run the Next.js application locally. |
+| `npm run release`         | Create a new release & publish to GitHub.    |
+| `npm run start`           | Run the Next.js production build locally.    |
+| `npm run test`            | Execute unit tests.                          |
 
 ### Environment Variables
 

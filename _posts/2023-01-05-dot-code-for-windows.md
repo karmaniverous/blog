@@ -53,3 +53,7 @@ You're welcome. 😎
 {: .text-center}
 
 [See it on GitHub!](https://github.com/karmaniverous/dot-code){: .btn .btn--primary .btn--large}
+
+{: .notice--warning}
+
+**30 days later:** Holy cow I use this thing ALL the time! Just goes to show, you just never know which one of you widgets will wind up being the killer app. Is it getting a lot of play? I dunno. Nor do I CARE, as long as I get to use it lol.

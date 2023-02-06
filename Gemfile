@@ -14,6 +14,7 @@ group :jekyll_plugins do
   gem "jemoji"
   gem "jekyll-include-cache"
   gem "jekyll-algolia"
+  gem 'jekyll-spaceship'
 end
 
 # Required to get the site to run locally.
