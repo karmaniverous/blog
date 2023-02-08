@@ -473,17 +473,23 @@ This template decouples route components, page components, and page contents. As
 
 This diagram illustrates these relationships:
 
-<!-- prettier-ignore-start -->
+<figure>
+<a href="/assets/images/nextjs-template-page-model.png">
+  <img src="/assets/images/nextjs-template-page-model.png">
+</a>
+</figure>
+
+<!-- prettier-ignore-start
 @startuml
 
 object "Application Component" as Application [[https://veterancrowdnetwork.atlassian.net/wiki/spaces/TECH/pages/2326730/Application+Component]]
 note left
-- Next.js root page component at 
+- Next.js root page component at
   pages/_app.jsx
 - Performs server-side redirections.
-- Completes server-side state 
+- Completes server-side state
   initialization.
-- Invokes client-side state 
+- Invokes client-side state
   initialization.
 - Renders page frame.
 end note
@@ -513,7 +519,7 @@ Page "1" o-- "*" UI : configures >
 Page "1" o-- "*" Page : configures >
 
 @enduml
-<!-- prettier-ignore-end -->
+prettier-ignore-end -->
 
 #### Application Component
 
