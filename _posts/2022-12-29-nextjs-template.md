@@ -482,7 +482,7 @@ This diagram illustrates these relationships:
 <!-- prettier-ignore-start
 @startuml
 
-object "Application Component" as Application [[https://veterancrowdnetwork.atlassian.net/wiki/spaces/TECH/pages/2326730/Application+Component]]
+object "Application Component" as Application
 note left
 - Next.js root page component at
   pages/_app.jsx
@@ -494,7 +494,7 @@ note left
 - Renders page frame.
 end note
 
-object "Route Component" as Route [[https://veterancrowdnetwork.atlassian.net/wiki/spaces/TECH/pages/2294090/Route+Components]]
+object "Route Component" as Route
 note left
 - Located within the pages directory.
 - Extracts route variables.
@@ -502,7 +502,7 @@ note left
 - Selects & configures page component.
 end note
 
-object "Page Component" as Page [[https://veterancrowdnetwork.atlassian.net/wiki/spaces/TECH/pages/2261273/Page+Components]]
+object "Page Component" as Page
 note left
 - Top of in-frame display hierarchy.
 - Abstracts common page elements
