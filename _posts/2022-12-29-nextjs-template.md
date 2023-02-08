@@ -387,25 +387,55 @@ Getting Redux Toolkit to play nicely with Next.js is not a trivial exercise and 
 
 Redux Toolkit features the [createEntityAdapter](https://redux-toolkit.js.org/api/createEntityAdapter) (CRA), which generates a set of prebuilt reducers and selectors for performing CRUD operations on a normalized state structure containing instances of a particular type of data object. **Think of it as a NoSQL database in your Redux state!**
 
-The front-end application doesn't leverage CRA, but I've included a sample [entity slice](https://github.com/karmaniverous/nextjs-template/tree/main/state/entitySlice.mjs) in my state model and written [some tests](https://github.com/karmaniverous/nextjs-template/tree/main/test/entity.test.jsx) to demonstrate ow it works.
+The sample front-end application doesn't leverage CRA. Any significant data-based implementation probbly should, though, so I've included a sample [entity slice](https://github.com/karmaniverous/nextjs-template/tree/main/state/entitySlice.mjs) in my state model and written [some tests](https://github.com/karmaniverous/nextjs-template/tree/main/test/entity.test.jsx) to demonstrate how it works.
+
+The State Model comprises the Redux Store and its component slice definitions, all of which are located in the [`state`](https://github.com/karmaniverous/nextjs-template/tree/main/state) directory.
 
 #### Redux Store
 
-{: .notice--primary}
+The Redux Store is located at [`state/store.mjs`](https://github.com/karmaniverous/nextjs-template/blob/main/state/store.mjs).
 
-**TODO**
+The Store brings together slice reducers defined elsewhere in the [`state`](https://github.com/karmaniverous/nextjs-template/tree/main/state) directory. It also adds middleware to the state layer, and applies the [`next-redux-wrapper`](https://github.com/kirill-konshin/next-redux-wrapper) that conforms the Next.js page model to Redux.
+
+Notably the store adds the [`serify-deserify`](https://www.npmjs.com/package/@karmaniverous/serify-deserify) middleware, which resolves some difficulty around persisting complex types in your Redux Store.
+
+This file will normally only require updates under these circumstances:
+
+- If you add a slice to your state layer, import the slice reducer here and add it to the master reducer definition.
+
+- If you wish to change your Redux middleware configuration or add new middleware, do it here.
 
 #### Page Slice
 
+The [Page slice](https://github.com/karmaniverous/nextjs-template/blob/main/state/pageSlice.mjs) tracks the following broad application states:
+
+| State            | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           |
+| ---------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `baseUrl`        | This is the application's base url for the current environment. It is set [here](https://github.com/karmaniverous/nextjs-template/blob/ff7a223f947b4accbc78cb04936562d38a606974/pages/_app.jsx#L256-L261) on the server side at initial load and should not need to be set again thereafter.                                                                                                                                                                                                                                                                                                                                                                          |
+| `comingSoon`     | This reflects the value of the COMING_SOON environment variable (defined in the corresponding [`env`](https://github.com/karmaniverous/nextjs-template/tree/main/env) public file) and is used [here](https://github.com/karmaniverous/nextjs-template/blob/ff7a223f947b4accbc78cb04936562d38a606974/pages/_app.jsx#L243-L253) on the server side to redirect the application to the [`coming-soon`](https://github.com/karmaniverous/nextjs-template/blob/main/pages/coming-soon.jsx) route if true. It is also consumed in [sidebar components](https://github.com/karmaniverous/nextjs-template/tree/main/components/page/sidebar) to display links as approprate. |
+| `currentPage`    | This enumerated value is defined [here](https://github.com/karmaniverous/nextjs-template/blob/ff7a223f947b4accbc78cb04936562d38a606974/state/pageSlice.mjs#L5-L8) and indicates the application's current page. This value is set directly within a [Page Component](#page-components) to identify the current page. To navigate to a different page Instead, use the [`resolveRoute`](https://github.com/karmaniverous/nextjs-template/blob/ff7a223f947b4accbc78cb04936562d38a606974/state/pageSlice.mjs#L62-L72) helper function to get the correct route and pass this value to the `pushRoute` state.                                                             |
+| `logoutUrl`      | This is derived [here](https://github.com/karmaniverous/nextjs-template/blob/ff7a223f947b4accbc78cb04936562d38a606974/pages/_app.jsx#L262-L268) on the server side at initial load based on the environment's AWS Cognito configuration and is passed to NextAuth.js as appropriate.                                                                                                                                                                                                                                                                                                                                                                                  |
+| `pushRoute`      | A change to this state invokes [this function](https://github.com/karmaniverous/nextjs-template/blob/ff7a223f947b4accbc78cb04936562d38a606974/pages/_app.jsx#L49-L58) in `_app.jsx` to push the new route, change page state as appropriate, and reset `pushRoute`.                                                                                                                                                                                                                                                                                                                                                                                                   |
+| `sidebarVisible` | This controls the visibility of the overlay sidebar at mobile resolutions. It is set by the [`SidebarButton`](https://github.com/karmaniverous/nextjs-template/blob/main/components/page/sidebar/SidebarButton.jsx) component and consumed in [`_app.jsx`](https://github.com/karmaniverous/nextjs-template/blob/main/pages/_app.jsx).                                                                                                                                                                                                                                                                                                                                |
+| `siteName`       | This state composes the canonical site name with a token reflecting the environment. It is consumed in the [`SidebarItems`](https://github.com/karmaniverous/nextjs-template/blob/main/components/page/sidebar/SidebarItems.jsx) component and wherever else appropriate.                                                                                                                                                                                                                                                                                                                                                                                             |
+
+`currentPage` reflects _logical_ page state, and is intended to be decoupled from the actual route or page component in use. This permits sidebar and related components to reflect current page in a manner that is intuitive to the user.
+
+To add a new value:
+
+- Add a new value to the [`PAGES`](https://github.com/karmaniverous/nextjs-template/blob/ff7a223f947b4accbc78cb04936562d38a606974/state/pageSlice.mjs#L5-L8) enumeration.
+
+- Update the [`resolveRoute`](https://github.com/karmaniverous/nextjs-template/blob/ff7a223f947b4accbc78cb04936562d38a606974/state/pageSlice.mjs#L62-L72) helper function to map the new value to the appropriate route.
+
 {: .notice--primary}
 
-**TODO**
+[`resolveRoute`](https://github.com/karmaniverous/nextjs-template/blob/ff7a223f947b4accbc78cb04936562d38a606974/state/pageSlice.mjs#L62-L72) currently maps routes based solely on a [`PAGES`](https://github.com/karmaniverous/nextjs-template/blob/ff7a223f947b4accbc78cb04936562d38a606974/state/pageSlice.mjs#L5-L8) value. Feel free to add more logic to support more complex behaviors.
 
 #### Entity Slice
 
-{: .notice--primary}
+The [Entity slice](https://github.com/karmaniverous/nextjs-template/blob/main/state/entitySlice.mjs) does not participate in the sample application. It is included to illustrate the use of [`createEntityAdapter`](https://redux-toolkit.js.org/api/createEntityAdapter) and related functionality.
 
-**TODO**
+See the [source code](https://github.com/karmaniverous/nextjs-template/blob/main/state/entitySlice.mjs) and associated [unit tests](https://github.com/karmaniverous/nextjs-template/blob/main/test/entity.test.jsx) for more info.
 
 ### User Authentication
 
@@ -427,15 +457,101 @@ Semantic UI has a fantastic LESS-based theming system. It was a HUGE challenge g
 
 All aspects of the site theme can be controlled by modifying the contents of the [`semantic-ui`](https://github.com/karmaniverous/nextjs-template/tree/main/semantic-ui) directory.
 
-Out of the box, this template leverages the Semantic UI `default` theme. Switch themes globally or at a component level by modifying [`theme.config`](https://github.com/karmaniverous/nextjs-template/tree/main/theme.config). Override every conceivable aspect of the current theme, with full access to all related LESS variables, by editing the templates in the `site` directory. To examine existing themes and borrow their settings as overrides, see the contents of `node_modules/semantic-ui-less/themes`.
+Out of the box, this template leverages the Semantic UI `default` theme. Switch themes globally or at a component level by modifying [`theme.config`](https://github.com/karmaniverous/nextjs-template/tree/main/theme.config). Override every conceivable aspect of the current theme, with full access to all related LESS variables, by editing the templates in the [`site`](https://github.com/karmaniverous/nextjs-template/tree/main/semantic-ui/site) directory.
+
+To examine existing themes and borrow their settings as overrides, follow the instructions to [set up your dev environment](#setting-up-your-dev-environment) and see the contents of directory `node_modules/semantic-ui-less/themes`.
 
 [Click here](https://semantic-ui.com/usage/theming.html) to learn more about Semantic UI themes.
 
 ### Page Model
 
-{: .notice--primary}
+This template decouples route components, page components, and page contents. As a result:
 
-**TODO**
+- Page components can be reused for similar use cases across multiple route components.
+
+- Page components can be conditionally displayed or composed with route components or other page components.
+
+This diagram illustrates these relationships:
+
+<!-- prettier-ignore-start -->
+@startuml
+
+object "Application Component" as Application [[https://veterancrowdnetwork.atlassian.net/wiki/spaces/TECH/pages/2326730/Application+Component]]
+note left
+- Next.js root page component at 
+  pages/_app.jsx
+- Performs server-side redirections.
+- Completes server-side state 
+  initialization.
+- Invokes client-side state 
+  initialization.
+- Renders page frame.
+end note
+
+object "Route Component" as Route [[https://veterancrowdnetwork.atlassian.net/wiki/spaces/TECH/pages/2294090/Route+Components]]
+note left
+- Located within the pages directory.
+- Extracts route variables.
+- Manages route-specific state.
+- Selects & configures page component.
+end note
+
+object "Page Component" as Page [[https://veterancrowdnetwork.atlassian.net/wiki/spaces/TECH/pages/2261273/Page+Components]]
+note left
+- Top of in-frame display hierarchy.
+- Abstracts common page elements
+  across routes.
+- Manages page-specific state.
+- Renders page content.
+end note
+
+object "Content Component" as UI
+
+Application "1" o-- "1" Route : prop injection <
+Route "1" o-- "*" Page : configures >
+Page "1" o-- "*" UI : configures >
+Page "1" o-- "*" Page : configures >
+
+@enduml
+<!-- prettier-ignore-end -->
+
+#### Application Component
+
+The Next.js Application component is located at [\_app.jsx](https://github.com/karmaniverous/nextjs-template/blob/main/pages/_app.jsx).
+
+The Application component sets the "frame" of the page. It renders:
+
+- All global `META` and `LINK` tags.
+- The page header & footer.
+- The page sidebar or sidebar overlay, depending on page resolution.
+
+This component also handles any changes to `pushRoute` state (see [Page Slice](#page-slice) above for more info).
+
+Additionally, this component's [`getInitialProps`](https://github.com/karmaniverous/nextjs-template/blob/ff7a223f947b4accbc78cb04936562d38a606974/pages/_app.jsx#L233) function handles any server-side processing required prior to initial page load, including:
+
+- Composing initial client-side state derived from server-side secrets or requiring access to the request object.
+
+- Performing server-side redirects requiring logic beyond simple route-mapping (e.g. to the [Coming Soon page](#coming-soon-page)).
+
+#### Route Components
+
+Route components include all those located within the applications [`pages`](https://github.com/karmaniverous/nextjs-template/tree/main/pages) directory, besides [\_app.jsx](https://github.com/karmaniverous/nextjs-template/blob/main/pages/_app.jsx).
+
+These components can exploit [Next.js dynamic routing conventions](https://nextjs.org/docs/routing/dynamic-routes) to extract parameters from the requested route.
+
+In principle, route components could display any content. In practice, it is useful to abstract display to Page Components and allow Route Components to focus on:
+
+- Extracting route parameters and setting appropriate state.
+
+- Determining which [Page Components](#page-components) to display and passing appropriate configuration to them.
+
+#### Page Components
+
+The Page Component is the top of the in-frame display hierarchy.
+
+Every Page Coponent should exploit [`setCurrentpage`](https://github.com/karmaniverous/nextjs-template/blob/ff7a223f947b4accbc78cb04936562d38a606974/state/pageSlice.mjs#L33-L35) to set the `currentPage` state as illustrated [here](https://github.com/karmaniverous/nextjs-template/blob/ff7a223f947b4accbc78cb04936562d38a606974/components/content/HomePage.jsx#L23-L26).
+
+Beyond this, every Page Component is resonsible for managing its own display and state as with any other React component.
 
 ### Redirects
 
