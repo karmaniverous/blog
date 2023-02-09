@@ -195,28 +195,31 @@ Item                                 Description
    │  ├─ extensions.json ........... recommended extensions
    │  └─ settings.json ............. project settings
    ├─ amplify.yml .................. AWS Amplify build script
-   ├─ components ................... React components (contents obvy vary by project)
-   │  ├─ content ................... content-related React components
+   ├─ components ................... React components
+   │  ├─ application ............... application-level components
+   │  │  ├─ layout ................. application-level layout components
+   │  │  │  ├─ PageFooter.jsx ...... common page footer
+   │  │  │  └─ PageHeader.jsx ...... common page header
+   │  │  ├─ session ................ application-level session management components
+   │  │  │  ├─ SessionDropdown.jsx . renders session dropdown button
+   │  │  │  ├─ SessionMenuItem.jsx . renders session menu item
+   │  │  │  └─ useSignOut.jsx ...... encapsulates sign-out behavior
+   │  │  ├─ sidebar ................ application-level sidebar components
+   │  │  |  ├─ LinkMenuItem.jsx .... conditionally renders a menu item as an icon link
+   │  │  |  ├─ PageMenuItem.jsx .... renders a state-sensitive menu item targeted at a page
+   │  │  |  ├─ ScrollMenuItem.jsx .. renders a menu item targeted at a scroll location
+   │  │  |  ├─ SidebarButton.jsx ... renders a button that triggers an overlay menu on mobile devices
+   │  │  |  ├─ SidebarItems.jsx .... renders all sidebar items
+   │  │  |  └─ SidebarLinks.jsx .... renders sidebar links repeated in page footer
+   │  │  └─ util ................... application-level utility components
+   │  │     ├─ RenderIf.jsx ........ conditionally renders a component based on current page & auth state
+   │  │     └─ ScrollTarget.jsx .... HOC decorates a component with a smooth-scroll target
+   │  ├─ content ................... content-level components (Page Component children)
    │  │  ├─ ApiQuery.jsx ........... tests a query (optionally authenticated) & displays result
-   │  │  ├─ ApiTest.jsx ............ displays a set of queries
-   │  │  ├─ HomePage.jsx ........... displays ApiTest on a public page
-   │  │  └─ PrivatePage.jsx ........ displays ApiTest on a private page
-   │  ├─ page ...................... common page components
-   │  │  ├─ PageFooter.jsx ......... common page footer
-   │  │  ├─ PageHeader.jsx ......... common page header
-   │  │  ├─ RenderIf.jsx ........... conditionally renders a component based on current page & auth state
-   │  │  ├─ ScrollTarget.jsx ....... HOC decorates a component with a smooth-scroll target
-   │  │  └─ sidebar ................ common sidebar components
-   │  │     ├─ LinkMenuItem.jsx .... conditionally renders a menu item as an icon link
-   │  │     ├─ PageMenuItem.jsx .... renders a state-sensitive menu item targeted at a page
-   │  │     ├─ ScrollMenuItem.jsx .. renders a menu item targeted at a scroll location
-   │  │     ├─ SidebarButton.jsx ... renders a button that triggers an overlay menu on mobile devices
-   │  │     ├─ SidebarItems.jsx .... renders all sidebar items
-   │  │     └─ SidebarLinks.jsx .... renders sidebar links repeated in page footer
-   │  └─ session ................... common session management components
-   │     ├─ SessionDropdown.jsx .... renders session dropdown button
-   │     ├─ SessionMenuItem.jsx .... renders session menu item
-   │     └─ useSignOut.jsx ......... encapsulates sign-out behavior
+   │  │  └─ ApiTest.jsx ............ displays a set of queries
+   │  └─ page ...................... Page Components
+   │     ├─ HomePage.jsx ........... displays ApiTest on a public page
+   │     └─ PrivatePage.jsx ........ displays ApiTest on a private page
    ├─ env .......................... environment-specific environment variables
    │  ├─ .env.dev .................. public dev environment variables
    │  ├─ .env.dev.local ............ locally-maintained private dev environment variables
@@ -409,15 +412,15 @@ This file will normally only require updates under these circumstances:
 
 The [Page slice](https://github.com/karmaniverous/nextjs-template/blob/main/state/pageSlice.mjs) tracks the following broad application states:
 
-| State            | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           |
-| ---------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `baseUrl`        | This is the application's base url for the current environment. It is set [here](https://github.com/karmaniverous/nextjs-template/blob/ff7a223f947b4accbc78cb04936562d38a606974/pages/_app.jsx#L256-L261) on the server side at initial load and should not need to be set again thereafter.                                                                                                                                                                                                                                                                                                                                                                          |
-| `comingSoon`     | This reflects the value of the COMING_SOON environment variable (defined in the corresponding [`env`](https://github.com/karmaniverous/nextjs-template/tree/main/env) public file) and is used [here](https://github.com/karmaniverous/nextjs-template/blob/ff7a223f947b4accbc78cb04936562d38a606974/pages/_app.jsx#L243-L253) on the server side to redirect the application to the [`coming-soon`](https://github.com/karmaniverous/nextjs-template/blob/main/pages/coming-soon.jsx) route if true. It is also consumed in [sidebar components](https://github.com/karmaniverous/nextjs-template/tree/main/components/page/sidebar) to display links as approprate. |
-| `currentPage`    | This enumerated value is defined [here](https://github.com/karmaniverous/nextjs-template/blob/ff7a223f947b4accbc78cb04936562d38a606974/state/pageSlice.mjs#L5-L8) and indicates the application's current page. This value is set directly within a [Page Component](#page-components) to identify the current page. To navigate to a different page Instead, use the [`resolveRoute`](https://github.com/karmaniverous/nextjs-template/blob/ff7a223f947b4accbc78cb04936562d38a606974/state/pageSlice.mjs#L62-L72) helper function to get the correct route and pass this value to the `pushRoute` state.                                                             |
-| `logoutUrl`      | This is derived [here](https://github.com/karmaniverous/nextjs-template/blob/ff7a223f947b4accbc78cb04936562d38a606974/pages/_app.jsx#L262-L268) on the server side at initial load based on the environment's AWS Cognito configuration and is passed to NextAuth.js as appropriate.                                                                                                                                                                                                                                                                                                                                                                                  |
-| `pushRoute`      | A change to this state invokes [this function](https://github.com/karmaniverous/nextjs-template/blob/ff7a223f947b4accbc78cb04936562d38a606974/pages/_app.jsx#L49-L58) in `_app.jsx` to push the new route, change page state as appropriate, and reset `pushRoute`.                                                                                                                                                                                                                                                                                                                                                                                                   |
-| `sidebarVisible` | This controls the visibility of the overlay sidebar at mobile resolutions. It is set by the [`SidebarButton`](https://github.com/karmaniverous/nextjs-template/blob/main/components/page/sidebar/SidebarButton.jsx) component and consumed in [`_app.jsx`](https://github.com/karmaniverous/nextjs-template/blob/main/pages/_app.jsx).                                                                                                                                                                                                                                                                                                                                |
-| `siteName`       | This state composes the canonical site name with a token reflecting the environment. It is consumed in the [`SidebarItems`](https://github.com/karmaniverous/nextjs-template/blob/main/components/page/sidebar/SidebarItems.jsx) component and wherever else appropriate.                                                                                                                                                                                                                                                                                                                                                                                             |
+| State            | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  |
+| ---------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `baseUrl`        | This is the application's base url for the current environment. It is set [here](https://github.com/karmaniverous/nextjs-template/blob/ff7a223f947b4accbc78cb04936562d38a606974/pages/_app.jsx#L256-L261) on the server side at initial load and should not need to be set again thereafter.                                                                                                                                                                                                                                                                                                                                                                                 |
+| `comingSoon`     | This reflects the value of the COMING_SOON environment variable (defined in the corresponding [`env`](https://github.com/karmaniverous/nextjs-template/tree/main/env) public file) and is used [here](https://github.com/karmaniverous/nextjs-template/blob/ff7a223f947b4accbc78cb04936562d38a606974/pages/_app.jsx#L243-L253) on the server side to redirect the application to the [`coming-soon`](https://github.com/karmaniverous/nextjs-template/blob/main/pages/coming-soon.jsx) route if true. It is also consumed in [sidebar components](https://github.com/karmaniverous/nextjs-template/tree/main/components/application/sidebar) to display links as approprate. |
+| `currentPage`    | This enumerated value is defined [here](https://github.com/karmaniverous/nextjs-template/blob/ff7a223f947b4accbc78cb04936562d38a606974/state/pageSlice.mjs#L5-L8) and indicates the application's current page. This value is set directly within a [Page Component](#page-components) to identify the current page. To navigate to a different page Instead, use the [`resolveRoute`](https://github.com/karmaniverous/nextjs-template/blob/ff7a223f947b4accbc78cb04936562d38a606974/state/pageSlice.mjs#L62-L72) helper function to get the correct route and pass this value to the `pushRoute` state.                                                                    |
+| `logoutUrl`      | This is derived [here](https://github.com/karmaniverous/nextjs-template/blob/ff7a223f947b4accbc78cb04936562d38a606974/pages/_app.jsx#L262-L268) on the server side at initial load based on the environment's AWS Cognito configuration and is passed to NextAuth.js as appropriate.                                                                                                                                                                                                                                                                                                                                                                                         |
+| `pushRoute`      | A change to this state invokes [this function](https://github.com/karmaniverous/nextjs-template/blob/ff7a223f947b4accbc78cb04936562d38a606974/pages/_app.jsx#L49-L58) in `_app.jsx` to push the new route, change page state as appropriate, and reset `pushRoute`.                                                                                                                                                                                                                                                                                                                                                                                                          |
+| `sidebarVisible` | This controls the visibility of the overlay sidebar at mobile resolutions. It is set by the [`SidebarButton`](https://github.com/karmaniverous/nextjs-template/blob/main/components/application/sidebar/SidebarButton.jsx) component and consumed in [`_app.jsx`](https://github.com/karmaniverous/nextjs-template/blob/main/pages/_app.jsx).                                                                                                                                                                                                                                                                                                                                |
+| `siteName`       | This state composes the canonical site name with a token reflecting the environment. It is consumed in the [`SidebarItems`](https://github.com/karmaniverous/nextjs-template/blob/main/components/application/sidebar/SidebarItems.jsx) component and wherever else appropriate.                                                                                                                                                                                                                                                                                                                                                                                             |
 
 `currentPage` reflects _logical_ page state, and is intended to be decoupled from the actual route or page component in use. This permits sidebar and related components to reflect current page in a manner that is intuitive to the user.
 
@@ -511,33 +514,43 @@ In principle, route components could display any content. In practice, it is use
 
 The Page Component is the top of the in-frame display hierarchy.
 
-Every Page Coponent should exploit [`setCurrentpage`](https://github.com/karmaniverous/nextjs-template/blob/ff7a223f947b4accbc78cb04936562d38a606974/state/pageSlice.mjs#L33-L35) to set the `currentPage` state as illustrated [here](https://github.com/karmaniverous/nextjs-template/blob/ff7a223f947b4accbc78cb04936562d38a606974/components/content/HomePage.jsx#L23-L26).
+Every Page Component should exploit [`setCurrentpage`](https://github.com/karmaniverous/nextjs-template/blob/2b5223e57e53f73532f63819bf835ce2156d69b4/components/page/HomePage.jsx#L23-L26).
 
 Beyond this, every Page Component is resonsible for managing its own display and state as with any other React component.
 
 ### Redirects
 
-{: .notice--primary}
+Out of the box, Next.js supports [fairly robust server-side redirects](https://nextjs.org/docs/api-reference/next.config.js/redirects). But there are always occasions when you need more... either more robust redirect logic on the server side, or a no-hassle mechanism to support redirects on the client side.
 
-**TODO**
+This template supports all three.
 
 #### Global Redirects
 
-{: .notice--primary}
+Global redirects in this Next.js template are configured in [`next.config.mjs`](https://github.com/karmaniverous/nextjs-template/blob/main/next.config.mjs). Note that none of these are configured in this template by default.
 
-**TODO**
+Next.js global redirects support all kinds of pattern matching based on the contents the path, query string, request headers, and cookies. See the [Next.js documentation](https://nextjs.org/docs/api-reference/next.config.js/redirects) for more info.
 
 #### Back-End Redirects
 
-{: .notice--primary}
+There are scenarios where you need more than simple pattern-matching to perform a server-side redirect.
 
-**TODO**
+A good example in this template is the [Coming Soon page](#coming-soon-page), where redirects depend on the value of the `COMING_SOON` environment variable, whose value may differ from one anvironment to another.
+
+Redirects in this case are performed in the [Application component](#application-component)'s [`getInitialProps`](https://github.com/karmaniverous/nextjs-template/blob/ff7a223f947b4accbc78cb04936562d38a606974/pages/_app.jsx#L233) function. On initial load, this function has access to:
+
+- The full request object.
+- Public & private environment variables.
+- The initial Redux state.
+
+Redirect here is performed using the [`redirect`](https://github.com/karmaniverous/nextjs-template/blob/ff7a223f947b4accbc78cb04936562d38a606974/pages/_app.jsx#L223-L231) helper function. See the template's [`getInitialProps`](https://github.com/karmaniverous/nextjs-template/blob/ff7a223f947b4accbc78cb04936562d38a606974/pages/_app.jsx#L233) function for more info.
 
 #### Front-End Redirects
 
-{: .notice--primary}
+Redirects on the front end can be performed directly using [`next/router`](https://nextjs.org/docs/api-reference/next/router).
 
-**TODO**
+A special category is a redirect to any page defined in the [`PAGES`](https://github.com/karmaniverous/nextjs-template/blob/ff7a223f947b4accbc78cb04936562d38a606974/state/pageSlice.mjs#L5-L8) enumeration and supported by the [`resolveRoute`](https://github.com/karmaniverous/nextjs-template/blob/ff7a223f947b4accbc78cb04936562d38a606974/state/pageSlice.mjs#L62-L72) helper function.
+
+In this case, use the [`setCurrentpage`](https://github.com/karmaniverous/nextjs-template/blob/ff7a223f947b4accbc78cb04936562d38a606974/state/pageSlice.mjs#L33-L35) reducer to set the `currentPage` state as illustrated [here](https://github.com/karmaniverous/nextjs-template/blob/2b5223e57e53f73532f63819bf835ce2156d69b4/components/page/HomePage.jsx#L23-L26).
 
 ## Components
 
@@ -567,7 +580,7 @@ export const config = { matcher: ['/private'] };
 
 If an unauthenticated user attempts to access this page, he will be redirected to a login page.
 
-Note that the link to the Private page only appears in the sidebar when the user is authenticated. This is accomplished in [`SidebarItems.jsx`](/components/page/SidebarItems.jsx). Note that `router.push` does not support shallow routing to protected pages!
+Note that the link to the Private page only appears in the sidebar when the user is authenticated. This is accomplished in [`SidebarItems.jsx`](/components/application/sidebar/SidebarItems.jsx). Note that `router.push` does not support shallow routing to protected pages!
 
 ### Coming Soon Page
 
