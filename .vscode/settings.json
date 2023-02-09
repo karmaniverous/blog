@@ -7,5 +7,12 @@
   "yaml.format.singleQuote": true,
   "[markdown]": {
     "editor.wordWrap": "bounded"
-  }
+  },
+  "svg.preview.background": "editor",
+  "plantuml.diagramsRoot": "assets/plantuml",
+  "plantuml.exportFormat": "svg",
+  "plantuml.exportOutDir": "_includes",
+  "plantuml.lintDiagramNoName": false,
+  "plantuml.exportIncludeFolderHeirarchy": false,
+  "plantuml.exportSubFolder": false
 }

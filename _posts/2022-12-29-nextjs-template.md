@@ -168,13 +168,13 @@ npm run release
 
 Basic project architecture is driven by the requirements of Next.js.
 
-Next.js exposes a `pages` directory, which contains three categories of file that correspond to application routes.
+Next.js exposes a [`pages`](https://github.com/karmaniverous/nextjs-template/tree/main/pages) directory, which contains three categories of file that correspond to application routes.
 
-- `_app.jsx` is the Application component described in [Page Model](#page-model) below. It expresses the "frame" of the application, and all other visible components are injected into it.
-- The `api` sub directory exposes a special category of routes that receive HTTP requests and run on the server side.
-- All other files within he `pages` directory translate to routes visible on the front end.
+- [`_app.jsx`](https://github.com/karmaniverous/nextjs-template/blob/main/pages/_app.jsx) defines the Application component described in [Page Model](#page-model) below. It expresses the "frame" of the application, and all other visible components are injected into it.
+- The [`api`](https://github.com/karmaniverous/nextjs-template/tree/main/pages/api) subdirectory exposes a special category of routes that receive HTTP requests and run on the server side.
+- All other files within the [`pages`](https://github.com/karmaniverous/nextjs-template/tree/main/pages) directory translate to routes visible on the front end.
 
-Paths inside the `pages` directory support a square bracket syntax that translates to route variables available at run time (e.g. `/pages/api/customer/[customerId]/index.jsx`).
+Paths inside the [`pages`](https://github.com/karmaniverous/nextjs-template/tree/main/pages) directory support a square bracket syntax that translates to route variables available at run time (e.g. `/pages/api/customer/[customerId]/index.jsx`).
 
 A key feature is the existence of a [state layer](#state-model) provided by the [Redux Toolkit](https://redux-toolkit.js.org/). Properly executed, this layer should handle most external requests and manage most state that needs to be passed between React components.
 
@@ -474,52 +474,8 @@ This template decouples route components, page components, and page contents. As
 This diagram illustrates these relationships:
 
 <figure>
-<a href="/assets/images/nextjs-template-page-model.png">
-  <img src="/assets/images/nextjs-template-page-model.png">
-</a>
+  {% include nextjs-template-page-model.svg %}
 </figure>
-
-<!-- prettier-ignore-start
-@startuml
-
-object "Application Component" as Application
-note left
-- Next.js root page component at
-  pages/_app.jsx
-- Performs server-side redirections.
-- Completes server-side state
-  initialization.
-- Invokes client-side state
-  initialization.
-- Renders page frame.
-end note
-
-object "Route Component" as Route
-note left
-- Located within the pages directory.
-- Extracts route variables.
-- Manages route-specific state.
-- Selects & configures page component.
-end note
-
-object "Page Component" as Page
-note left
-- Top of in-frame display hierarchy.
-- Abstracts common page elements
-  across routes.
-- Manages page-specific state.
-- Renders page content.
-end note
-
-object "Content Component" as UI
-
-Application "1" o-- "1" Route : prop injection <
-Route "1" o-- "*" Page : configures >
-Page "1" o-- "*" UI : configures >
-Page "1" o-- "*" Page : configures >
-
-@enduml
-prettier-ignore-end -->
 
 #### Application Component
 
