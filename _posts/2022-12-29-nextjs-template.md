@@ -552,17 +552,13 @@ A special category is a redirect to any page defined in the [`PAGES`](https://gi
 
 In this case, use the [`setCurrentpage`](https://github.com/karmaniverous/nextjs-template/blob/ff7a223f947b4accbc78cb04936562d38a606974/state/pageSlice.mjs#L33-L35) reducer to set the `currentPage` state as illustrated [here](https://github.com/karmaniverous/nextjs-template/blob/2b5223e57e53f73532f63819bf835ce2156d69b4/components/page/HomePage.jsx#L23-L26).
 
-## Components
-
-{: .notice--primary}
-
-**TODO**
-
 ## Configured Pages
 
-{: .notice--primary}
+The template application has three pages configures:
 
-**TODO**
+- The [Public Home Page](#public-home-page) is visible at the root domain in the [`dev`](https://nextjs-template-dev.karmanivero.us/) and [`test`](https://nextjs-template-test.karmanivero.us/) environments.
+
+- The [Private Page](#private-page) is visible to authenticated users in the [`dev`](https://nextjs-template-dev.karmanivero.us/) and [`test`](https://nextjs-template-test.karmanivero.us/) environments.
 
 ### Public Home Page
 
