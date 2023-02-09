@@ -136,10 +136,10 @@ Because this is a Next.js template, it works perfectly when deployed to [Vercel]
 
 Look for these files in your project directory:
 
-- `.env.local.template`
-- `env/.env.dev.local.template`
-- `env/.env.test.local.template`
-- `env/.env.test.local.template`
+- [`.env.local.template`](https://github.com/karmaniverous/nextjs-template/blob/main/.env.local.template)
+- [`env/.env.dev.local.template`](https://github.com/karmaniverous/nextjs-template/blob/main/env/.env.dev.local.template)
+- [`env/.env.test.local.template`](https://github.com/karmaniverous/nextjs-template/blob/main/env/.env.test.local.template)
+- [`env/.env.prod.local.template`](https://github.com/karmaniverous/nextjs-template/blob/main/env/.env.prod.local.template)
 
 Copy each of these files to the same location and remove the `template` extension from the copy.
 
@@ -176,7 +176,7 @@ Next.js exposes a [`pages`](https://github.com/karmaniverous/nextjs-template/tre
 
 Paths inside the [`pages`](https://github.com/karmaniverous/nextjs-template/tree/main/pages) directory support a square bracket syntax that translates to route variables available at run time (e.g. `/pages/api/customer/[customerId]/index.jsx`).
 
-A key feature is the existence of a [state layer](#state-model) provided by the [Redux Toolkit](https://redux-toolkit.js.org/). Properly executed, this layer should handle most external requests and manage most state that needs to be passed between React components.
+A key feature is the [state layer](#state-model) provided by the [Redux Toolkit](https://redux-toolkit.js.org/). Properly executed, this layer should handle most external requests and manage most state that needs to be passed between React components.
 
 ### File Structure
 
