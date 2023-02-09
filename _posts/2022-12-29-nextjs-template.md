@@ -347,7 +347,7 @@ The application-scoped dotenv files have names and locations as expected by Next
 
 When running locally, they will be loaded. When deploying remotely as part of a build process, the application secrets will not be available and must be integrated with the build process as described below.
 
-Environment-scoped dotenv files do NOT have names or locations as expected, and Next.js will NOT pick them up. Accordingly, I've added code to [next.config.mjs](https://github.com/karmaniverous/nextjs-template/blob/322e666ea612acd48e8f8a093172486ed2df111c/next.config.mjs#L17-L20) that loads these files based on an environment token passed into the `ENV` variable. So to run Next.js locally using the `test` runtime environment, you would run:
+Environment-scoped dotenv files do NOT have names or locations as expected, and Next.js will NOT pick them up. Accordingly, I've added code to [`next.config.mjs`](https://github.com/karmaniverous/nextjs-template/blob/322e666ea612acd48e8f8a093172486ed2df111c/next.config.mjs#L17-L20) that loads these files based on an environment token passed into the `ENV` variable. So to run Next.js locally using the `test` runtime environment, you would run:
 
 ```bash
 cross-env ENV=test npm run dev
@@ -361,7 +361,7 @@ As a general rule, all application and environment secrets must be encoded into 
 
 For Vercel, this is sufficient.
 
-For Amplify, there is an additional problem: the contents of the `env` directory are not even available to `next.config.mjs`. So I've included an [`amplify.yml`](https://github.com/karmaniverous/nextjs-template/blob/main/amplify.yml) build script that merges all available environment variables, secret and otherwise, into the one `.env` file that Amplify seems to understand.
+For Amplify, there is an additional problem: the contents of the `env` directory are not even available to [`next.config.mjs`](https://github.com/karmaniverous/nextjs-template/blob/main/next.config.mjs). So I've included an [`amplify.yml`](https://github.com/karmaniverous/nextjs-template/blob/main/amplify.yml) build script that merges all available environment variables, secret and otherwise, into the one `.env` file that Amplify seems to understand.
 
 #### dotenv Bottom Line
 
