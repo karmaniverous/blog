@@ -36,7 +36,7 @@ My [Next.js Template](/nextjs-template) [`dev` environment demo](https://nextjs-
 
 Most surprising is that the stack trace fingers [`lodash`](https://www.npmjs.com/package/lodash) as the culprit. Hard to imagine a more deeply-vetted package, and my usage of it is about as vanilla as it comes.
 
-Once I did a little digging, I found people yelling about this all over the place. Turns out the [Next.js 13](https://nextjs.org/blog/next-13) release added strict execution to their middleware, and it's playing havoc with some popular packages.
+Once I did a little digging, I found people yelling about this all over the place. Turns out the [Next.js 13 Edge Runtime](https://nextjs.org/docs/api-reference/edge-runtime#unsupported-apis) constraints are playing havoc with some popular packages.
 
 [This comment](https://github.com/lodash/lodash/issues/5525#issuecomment-1329049661) was particularly interesting, because the author found the culprit in [`lodash`](https://www.npmjs.com/package/lodash)!
 
