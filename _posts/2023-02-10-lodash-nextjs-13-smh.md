@@ -48,7 +48,7 @@ const root =
   freeGlobalThis || freeGlobal || freeSelf || Function('return this')();
 ```
 
-That's... disappointing. Until [`lodash`](https://www.npmjs.com/package/lodash) patches this, a lot of people are going to have to do a lot of workarounds. Including me!
+That's... _disappointing_. Until [`lodash`](https://www.npmjs.com/package/lodash) patches this, a lot of people are going to have to do a lot of workarounds. Including me!
 
 Fortunately, I found a pretty easy one. Most [`lodash`](https://www.npmjs.com/package/lodash) functions are also published as individual packages. I was able to drop the stand-alone [`lodash.isplainobject`](https://www.npmjs.com/package/lodash.isplainobject) dependency into my logger package and my build proceeded without error.
 
