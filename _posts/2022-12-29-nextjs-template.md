@@ -560,12 +560,6 @@ The template application has three pages configures:
 
 - The [Private Page](#private-page) is visible to authenticated users in the [`dev`](https://nextjs-template-dev.karmanivero.us/) and [`test`](https://nextjs-template-test.karmanivero.us/) environments.
 
-### Public Home Page
-
-{: .notice--primary}
-
-**TODO**
-
 ### Private Page
 
 The page at `/private` is only visible to authenticated users. This is accomplished by adding the route pattern to the `config` variable in [`middleware.js`](/middleware.js), like this:
@@ -592,12 +586,6 @@ If it is `false`, then the application will display.
 In the development environment, both variables may be set explicitly in `.env.development`. In deployed environments, they are set explicitly in `.env.production` but may be overridden in your deployment pipeline.
 
 If you are hosted at Vercel, the hosting environment will populate the `NEXT_PUBLIC_VERCEL_ENV` environment variable to reflect your deployment type. This value will be `production` on your production branch and `preview` on all other branches.
-
-## Unit Testing
-
-{: .notice--primary}
-
-**TODO**
 
 ## Common Tasks
 
@@ -639,9 +627,7 @@ Follow [these instructions](https://karmanivero.us/blog/installing-github-repo-t
 
 ### Why are all your tests `.jsx` files?
 
-{: .notice--primary}
-
-**TODO**
+I know, right? And you're gonna HATE [the answer](https://karmanivero.us/blog/testing-redux-in-nextjs/).
 
 ## Issues
 
