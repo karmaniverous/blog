@@ -55,3 +55,9 @@ Fortunately, I found a pretty easy one. Most [`lodash`](https://www.npmjs.com/pa
 That works for my logging application, but in the more general case I'd be giving up function chaining and other goodies built into the full [`lodash`](https://www.npmjs.com/package/lodash) package.
 
 Meanwhile, I'm subscribed to [this GitHub issue](https://github.com/lodash/lodash/issues/5525) and am tracking it closely!
+
+# Update
+
+The edge-network logging problem turned out to be enough of a pain in the ass that I published my new [`edge-logger`](https://www.npmjs.com/package/@karmaniverous/edge-logger) package to solve it across all my projects.
+
+Give it a shot and let me know what you think!
