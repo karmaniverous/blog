@@ -3,7 +3,9 @@ source "https://rubygems.org"
 gem "github-pages", group: :jekyll_plugins
 
 gem "tzinfo-data"
-gem "wdm", "~> 0.1.0" if Gem.win_platform?
+
+# wdm throws errors, apparently "tainting" is deprecated. https://github.com/jekyll/jekyll/issues/9615
+# gem "wdm", "~> 0.1.0" if Gem.win_platform? 
 
 # If you have any plugins, put them here!
 group :jekyll_plugins do
