@@ -20,10 +20,10 @@ Today left me feeling pretty sure everybody else knows some stuff I don't.
 
 It all started with the [`@category`](https://typedoc.org/tags/category/) tag. See, I want to use it with [TypeDoc](https://typedoc.org) to generate sidebar navigation categories in API documentation pages like [this one](https://karmanivero.us/string-utilities/). Which is awesome, by the way, and built into my [Typescript NPM Package Template](https://github.com/karmaniverous/npm-package-template-ts).
 
+And it's also less of a shameless plug than it sounds, because (a) I use that template a LOT, and (b) the freaking `@category` tag was throwing a linting error. Like, _everywhere_.
+
 **TL/DR:** Add [this file](https://github.com/TypeStrong/typedoc/blob/master/tsdoc.json) to your package root to get [`eslint-plugin-tsdoc`](https://www.npmjs.com/package/eslint-plugin-tsdoc) to support [TypeDoc](https://typedoc.org) right out of the box!
 {: .notice--info}
-
-And it's also less of a shameless plug than it sounds, because (a) I use that template a LOT, and (b) the freaking `@category` tag was throwing a linting error. Like, _everywhere_.
 
 The source of the error was [`eslint-plugin-tsdoc`](https://www.npmjs.com/package/eslint-plugin-tsdoc), which stinks becuse that ESLint plugin has exactly ONE rule. So it's either on or off. And I _really_ want to lint my TSDoc comments. But TypeDoc defines a few _extra_ tags—like `@category`—that `eslint-plugin-tsdoc` doesn't know about. So I was stuck.
 
