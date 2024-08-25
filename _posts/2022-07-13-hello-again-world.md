@@ -24,7 +24,7 @@ bitch, because try pulling three years of work out of a decades-old
 [DotNetNuke](https://www.dnnsoftware.com/) database backup to migrate to
 WordPress.
 
-It's on a Zip drive someplace. :roll_eyes:
+It's on a Zip drive someplace. 🙄
 
 So the platform is the thing, almost more than the words. You want writing to be
 easy and pleasant, so you spend years of perfectly good writing time building

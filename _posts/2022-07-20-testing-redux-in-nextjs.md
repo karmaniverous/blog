@@ -31,7 +31,7 @@ with [Mocha](https://mochajs.org/) + [Chai](https://www.chaijs.com/).
 I've written a lot of tests on both back-end and front-end processes, but none
 over Redux. No excuses... I'm pretty new to Redux and have been focused on
 learning and using it at the expense of testing it, which is just as dumb as it
-sounds. :roll_eyes:
+sounds. 🙄
 
 Anyway, now I'm making heavy use of Redux Toolkit's
 [`createEntityAdapter`](https://redux-toolkit.js.org/api/createEntityAdapter)
@@ -197,7 +197,7 @@ okay.
 **Translation:** Not the way I wish software worked! Lord knows I know how hard
 this is, and I don't mean to cast any aspersions on the Redux team! They're
 doing a bang-up job and for free. Scholars and gentlemen, every one of them. I
-just wish this were easier. Now quit punching me, Twitter! :rofl: {:
+just wish this were easier. Now quit punching me, Twitter! 🤣 {:
 .notice--warning}
 
 Anyway... what to do?
