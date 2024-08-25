@@ -105,7 +105,7 @@ invocations, I console logged it after each one. After `farm.getGames`, the
 
 ```js
 {
-  from: "0xD28D1f59...";
+  from: '0xD28D1f59...';
 }
 ```
 
@@ -148,7 +148,9 @@ Problem solved!
 
 **Update:** I raised
 [an issue](https://github.com/ChainSafe/web3.js/issues/5304) on the `web3`
-GitHub project. Interested to see how that goes. {: .notice--info}
+GitHub project. Interested to see how that goes.
+{: .notice--info}
 
 **Closure:** They [fixed it](https://github.com/ChainSafe/web3.js/issues/5304)!
-I love it when the system works. 😁 {: .notice--success}
+I love it when the system works. 😁
+{: .notice--success}

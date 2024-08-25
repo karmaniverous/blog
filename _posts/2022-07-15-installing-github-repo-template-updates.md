@@ -27,7 +27,8 @@ from the original template.
 
 So how do you incorporate the changes in the template update?
 
-**TL/DR:** Do [this](#pro-tools-version-gitlens). {: .notice--info}
+**TL/DR:** Do [this](#pro-tools-version-gitlens).
+{: .notice--info}
 
 Here's a simple example. I have a
 [NextJS project template](https://github.com/karmaniverous/template-nextjs) I am
@@ -56,7 +57,8 @@ the ones at the head of a working tree. And `git difftool` lets you run
 `git diff` using a third-party tool. Like, for example, VS Code.
 
 **Fair Disclosure:** I'm opinionated in favor of VS Code. If you want to leave
-out the VS Code-specific parts below, you're on your own. {: .notice--info}
+out the VS Code-specific parts below, you're on your own.
+{: .notice--info}
 
 So here's the strategy in a few simple steps:
 
@@ -174,7 +176,8 @@ ahead/behind or by changed file. Click on a file to visualize the diff.
 **Gotcha Warning:** When you click on one of those files and visualize the diff,
 the resulting editor will be READ-ONLY! To open an editable version, click the
 middle button (_Open Changes with Working File_) that pops up when you mouse
-over the file. {: .notice--warning}
+over the file.
+{: .notice--warning}
 
 ## Either Way
 

@@ -205,7 +205,8 @@ These people want to be your friends... so tell it to THEM.
 it takes. Revise it until it fits the format. Then shred the paper: nobody wants
 you to read to them, but that PROCESS will make it stick in your head and your
 delivery will be WAY better than if you went in cold. It's an hour of your time
-you will NEVER regret spending! {: .notice--info}
+you will NEVER regret spending!
+{: .notice--info}
 
 > You don't have to be PERFECT. With just a little practice, you won't SUCK, and
 > that's good enough!
@@ -239,7 +240,8 @@ So do that. Do it EVERY TIME the group comes together.
 
 **PRO TIP:** Legends are LEGENDARY. Every person in the room has at least one
 good reason why the world would love people like him, if only it knew. Most of
-them have the SAME reason. So give it a voice. {: .notice--info}
+them have the SAME reason. So give it a voice.
+{: .notice--info}
 
 > Besides watching the clock, reciting the Legend of your community is your only
 > other job that really matters.
@@ -294,7 +296,8 @@ or none at all. Here are some general principles:
   time that you want to step in with a couple of questions. Assure them that the
   goal is to ask the dumb questions the audience might be afraid to ask. Know
   how much time they need to deliver their message, and take that into account
-  when you step in, because... {: .notice--info}
+  when you step in, because...
+  {: .notice--info}
 
 - **You're STILL in charge of the clock!** If you've scheduled time for Q&A,
   then you can trade it against presentation time if the speaker runs on or if
