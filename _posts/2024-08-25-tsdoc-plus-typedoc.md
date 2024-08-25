@@ -8,7 +8,11 @@ header:
 categories:
   - Blog
 tags:
-  - writing
+  - typescript
+  - typedoc
+  - tsdoc
+  - template
+  - ai
 toc: false
 ---
 
