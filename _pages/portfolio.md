@@ -8,7 +8,7 @@ toc: true
 toc_sticky: true
 ---
 
-Some of these are projects I've worked on, and some are super-useful tools I've created: built for you with ❤️ on Bali!
+Some of these are projects I've worked on, and some are super-useful tools I've created. Built for you with ❤️ on Bali!
 
 ## VeteranCrowd
 
@@ -43,5 +43,69 @@ This template puts it all together in a way that just WORKS, right out of the bo
 I use this template for all of my Typescript projects, and I keep it up-to-date with the latest tools & best practices. So use it with confidence!
 
 [See it on GitHub!](https://github.com/karmaniverous/npm-package-template-ts){:
+.btn .btn--info
+.btn--large}
+
+## Serify-Deserify
+
+Reversibly transform unserializable values into serializable ones. Includes Redux middleware.
+
+[See it on GitHub!](https://github.com/karmaniverous/serify-deserify){:
+.btn .btn--info
+.btn--large}
+
+## Metastructure
+
+Config-driven, enterprise-grade, open-source application infrastructure. DRY as a bone!
+
+[See it on GitHub!](https://github.com/karmaniverous/metastructure){:
+.btn .btn--info
+.btn--large}
+
+## Entity Manager
+
+Configurably decorate entity objects with sharded index keys.
+
+[See it on GitHub!](https://github.com/karmaniverous/entity-manager){:
+.btn .btn--info
+.btn--large}
+
+## GetDotenv
+
+Manage environment variables from dotenv files across multiple environments. Supports async/CLI operations, dynamic variables, custom CLI creation & more!
+
+[See it on GitHub!](https://github.com/karmaniverous/get-dotenv){:
+.btn .btn--info
+.btn--large}
+
+## Serverless Lodash Plugin
+
+Write variable expressions in serverless.yml using the full Lodash feature set, plus some extra goodies!
+
+[See it on GitHub!](https://github.com/karmaniverous/serverless-lodash-plugin){:
+.btn .btn--info
+.btn--large}
+
+## Dot-Code
+
+An AutoHotKey script that launches VS Code from File Explorer when you type Alt-Win-.
+
+[See it on GitHub!](https://github.com/karmaniverous/dot-code){:
+.btn .btn--info
+.btn--large}
+
+## JSON Map
+
+A hyper-generic JSON mapping library.
+
+[See it on GitHub!](https://github.com/karmaniverous/jsonmap){:
+.btn .btn--info
+.btn--large}
+
+## json2tf
+
+Convert complex JSON objects to Terraform notation.
+
+[See it on GitHub!](https://github.com/karmaniverous/json2tf){:
 .btn .btn--info
 .btn--large}
