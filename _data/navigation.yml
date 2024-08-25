@@ -1,9 +1,8 @@
+# main links
 main:
-  - title: "Posts"
+  - title: 'Portfolio'
+    url: /portfolio/
+  - title: 'Archive'
     url: /posts/
-  - title: "Categories"
-    url: /categories/
-  - title: "Tags"
+  - title: 'Tags'
     url: /tags/
-#  - title: "About"
-#    url: /about/
