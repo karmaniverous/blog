@@ -102,6 +102,14 @@ A hyper-generic JSON mapping library.
 .btn .btn--info
 .btn--large}
 
+## String Utilities
+
+String utilities & tagged template functions I use a lot. Super tree-shakable package so use what you need at very little cost!
+
+[See it on GitHub!](https://github.com/karmaniverous/string-utilities){:
+.btn .btn--info
+.btn--large}
+
 ## json2tf
 
 Convert complex JSON objects to Terraform notation.
