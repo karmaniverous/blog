@@ -50,7 +50,7 @@ The best answer I've come up with is _cross-posting:_ publish to my blog and the
 
 As a software developer, I'm allergic to WET work. _WET_ being the opposite of [DRY](https://en.wikipedia.org/wiki/Don%27t_repeat_yourself): _Don't Repeat Yourself_ is a core principle in software engineering. It REALLY runs across the grain to post the same content twice!
 
-But I think I can make it make sense by thinking in terms of process. My blog is where I post drafts, and iterate on them until I've ironed out the kinds. LinkedIn is where I post the final, polished version. So the blog is a _workbench_, and LinkedIn is a _showroom_.
+But I think I can make it make sense by thinking in terms of process. My blog is where I post drafts, and iterate on them until I've ironed out the kinks. LinkedIn is where I post the final, polished version. So the blog is a _workbench_, and LinkedIn is a _showroom_.
 
 The key is that I need not to care that all my real traffic & interaction will be on LinkedIn, not my blog. But since I'm not trying to monetize my blog, and I'm not really getting any traffic there anyway, _sama sama_.
 
