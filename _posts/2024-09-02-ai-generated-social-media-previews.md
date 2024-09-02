@@ -3,8 +3,8 @@
 title: "AI-Generated Social Media Previews"
 excerpt: "I've generally been underwhelmed by ChatGPT and the like. Fun toy: not much practical use, so far. But this is an exception!"
 header:
-  og_image: /assets/images/logo-linkedin.png
-  teaser: /assets/images/logo-linkedin.png
+  og_image: /assets/images/social-preview.png
+  teaser: /assets/images/social-preview.png
 categories:
   - Blog
 tags:
@@ -14,7 +14,7 @@ toc: false
 ---
 
 <figure class="align-left" style="margin-top: 10px; margin-bottom: 10px; width: 150px;">
-    <img src="{{ site.url }}{{ site.baseurl }}/assets/images/logo-linkedin.png">
+    <img src="{{ site.url }}{{ site.baseurl }}/assets/images/social-preview.png">
 </figure>
 
 I've generally been underwhelmed by ChatGPT and the like. Fun toy: not much practical use, so far. But this is an exception!
