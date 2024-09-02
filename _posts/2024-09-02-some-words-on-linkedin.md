@@ -46,12 +46,14 @@ Ugh.
 
 I could publish to my blog and post a link to LinkedIn. But in my experience, that just doesn't work: LinkedIn users like to stay on LinkedIn, and the platform is really engineered to emphasize native content. So a link to an external site is just not going to get the same traction as a native post, if it gets any at all.
 
-The best answer I've come up with is _cross-posting_: publish to my blog and then post a copy to LinkedIn. This is more work, but if I'm smart about it, it's just a LITTLE more work. So that's what I'm doing.
+The best answer I've come up with is _cross-posting:_ publish to my blog and then post a copy to LinkedIn. This is more work, but if I'm smart about it, it's just a LITTLE more work. So that's what I'm doing.
 
-As a software developer, I'm allergic to WET work. "WET" being the opposite of [DRY](https://en.wikipedia.org/wiki/Don%27t_repeat_yourself): _Don't Repeat Yourself_ is a core principle in software engineering. It REALLY runs across the grain to post the same content twice!
+As a software developer, I'm allergic to WET work. _WET_ being the opposite of [DRY](https://en.wikipedia.org/wiki/Don%27t_repeat_yourself): _Don't Repeat Yourself_ is a core principle in software engineering. It REALLY runs across the grain to post the same content twice!
 
 But I think I can make it make sense by thinking in terms of process. My blog is where I post drafts, and iterate on them until I've ironed out the kinds. LinkedIn is where I post the final, polished version. So the blog is a _workbench_, and LinkedIn is a _showroom_.
 
-The key is that I need not to care that all my real traffic & interaction will be on LinkedIn, not my blog. But since I'm not trying to monetize my blog, and I'm not really getting any traffic there anyway, I think I can live with that.
+The key is that I need not to care that all my real traffic & interaction will be on LinkedIn, not my blog. But since I'm not trying to monetize my blog, and I'm not really getting any traffic there anyway, _sama sama_.
 
-I think. 😅
+Also, since I _am_ a software developer, at some later date I can probably automate the cross-posting process. For technical reasons that may be a little fraught, but with a little work I can probably eliminate _most_ of the heavy lifting.
+
+I think I can live with that. I think. 😅
