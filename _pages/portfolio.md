@@ -117,3 +117,11 @@ Convert complex JSON objects to Terraform notation.
 [See it on GitHub!](https://github.com/karmaniverous/json2tf){:
 .btn .btn--info
 .btn--large}
+
+## Mock DB
+
+Mock DynamoDB-style query & scan behavior with local JSON data.
+
+[See it on GitHub!](https://github.com/karmaniverous/mock-db){:
+.btn .btn--info
+.btn--large}
