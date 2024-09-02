@@ -52,4 +52,6 @@ As a software developer, I'm allergic to WET work. "WET" being the opposite of [
 
 But I think I can make it make sense by thinking in terms of process. My blog is where I post drafts, and iterate on them until I've ironed out the kinds. LinkedIn is where I post the final, polished version. So the blog is a _workbench_, and LinkedIn is a _showroom_.
 
-I can live with that. I think. 😅
+The key is that I need not to care that all my real traffic & interaction will be on LinkedIn, not my blog. But since I'm not trying to monetize my blog, and I'm not really getting any traffic there anyway, I think I can live with that.
+
+I think. 😅
