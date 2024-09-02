@@ -22,13 +22,13 @@ RINGKNOCKER was open exclusively to current & former military officers. Our prim
 
 It was an awesome experience, and by the end of it I was DEEPLY connected on LinkedIn, with over 12,000 connections... probably including YOU, if you're reading this.
 
-We also had a TON of content on social media, LinkedIn, and especially on our WordPress website. Which is where this store really begins.
+We also had a TON of content on social media, LinkedIn, and especially on our WordPress website. Which is where this story really begins.
 
-All good things must come to an end, and RINGKNOCKER was no exception. So when I shut down the website in 2021, I found myself in posession of MySQL database backup containing a novel's worth of some of the best writing I had ever done. It was an exact copy... but in any real sense completely inaccessible. If I wanted to extract an article from it, the hassle would rarely be worth the effort.
+All good things must come to an end, and RINGKNOCKER was no exception. So when I shut down the website in 2021, I found myself in posession of a MySQL database backup containing a novel's worth of some of the best writing I had ever done. It was an exact copy... but in any real sense completely inaccessible. If I wanted to extract an article from it, the hassle would rarely be worth the effort.
 
-This wasn't my first rodeo in that ring. Back in the early 2000s I shared a blog with my dad for a couple of years. It was a DotNetNuke site, and I still have THAT database backup, too. If anything, it's even more inaccessible than the RINGKNOCKER content.
+This wasn't my first rodeo in that ring. Back in the early 2000s I shared a blog with my dad for a couple of years. It was a [DotNetNuke](<https://en.wikipedia.org/wiki/DNN_(software)>) site, and I still have THAT database backup, too. If anything, it's even more inaccessible than the RINGKNOCKER content.
 
-I ultimately found a pretty good alternative. My [current blog](https://karmanivero.us) is a Jekyll site hosted on GitHub Pages. This isn't a solution I would recomment to anybody who isn't a software developer, but here are its most important features:
+I ultimately found a pretty good alternative. My [current blog](https://karmanivero.us) is a [Jekyll](https://jekyllrb.com/) site hosted on [GitHub Pages](https://pages.github.com/). This isn't a solution I would recomment to anybody who isn't a software developer, but here are its most important features:
 
 - It's a full-featured website, so I can present whatever content I want, exactly how I want.
 
