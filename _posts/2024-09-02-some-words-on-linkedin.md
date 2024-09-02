@@ -24,7 +24,7 @@ It was an awesome experience, and by the end of it I was DEEPLY connected on Lin
 
 We also had a TON of content on social media, LinkedIn, and especially on our WordPress website. Which is where this story really begins.
 
-All good things must come to an end, and RINGKNOCKER was no exception. So when I shut down the website in 2021, I found myself in possession of a MySQL database backup containing a novel's worth of some of the best writing I had ever done. It was an exact copy... but in any real sense completely inaccessible. If I wanted to extract an article from it, the hassle would rarely be worth the effort.
+All good things must come to an end, and RINGKNOCKER was no exception. So when I shut down the website in 2021, I found myself in possession of a MySQL database backup containing a novel's worth of some of the best writing I had ever done. **It was an exact copy... but in any real sense completely inaccessible.** If I wanted to extract an article from it, the hassle would rarely be worth the effort.
 
 This wasn't my first rodeo in that ring. Back in the early 2000s I shared a blog with my dad for a couple of years. It was a [DotNetNuke](<https://en.wikipedia.org/wiki/DNN_(software)>) site, and I still have THAT database backup, too. If anything, it's even more inaccessible than the RINGKNOCKER content.
 
