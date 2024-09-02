@@ -24,15 +24,15 @@ It was an awesome experience, and by the end of it I was DEEPLY connected on Lin
 
 We also had a TON of content on social media, LinkedIn, and especially on our WordPress website. Which is where this story really begins.
 
-All good things must come to an end, and RINGKNOCKER was no exception. So when I shut down the website in 2021, I found myself in posession of a MySQL database backup containing a novel's worth of some of the best writing I had ever done. It was an exact copy... but in any real sense completely inaccessible. If I wanted to extract an article from it, the hassle would rarely be worth the effort.
+All good things must come to an end, and RINGKNOCKER was no exception. So when I shut down the website in 2021, I found myself in possession of a MySQL database backup containing a novel's worth of some of the best writing I had ever done. It was an exact copy... but in any real sense completely inaccessible. If I wanted to extract an article from it, the hassle would rarely be worth the effort.
 
 This wasn't my first rodeo in that ring. Back in the early 2000s I shared a blog with my dad for a couple of years. It was a [DotNetNuke](<https://en.wikipedia.org/wiki/DNN_(software)>) site, and I still have THAT database backup, too. If anything, it's even more inaccessible than the RINGKNOCKER content.
 
-I ultimately found a pretty good alternative. My [current blog](https://karmanivero.us) is a [Jekyll](https://jekyllrb.com/) site hosted on [GitHub Pages](https://pages.github.com/). This isn't a solution I would recomment to anybody who isn't a software developer, but here are its most important features:
+I ultimately found a pretty good alternative. My [current blog](https://karmanivero.us) is a [Jekyll](https://jekyllrb.com/) site hosted on [GitHub Pages](https://pages.github.com/). This isn't a solution I would recommend to anybody who isn't a software developer, but here are its most important features:
 
 - It's a full-featured website, so I can present whatever content I want, exactly how I want.
 
-- The content is TEXT. No databases, and though GitHub hosts the website, there is alwas an EXACT copy on my desktop and in a GitHub repository in the cloud. So I ALWAYS have direct access. I'll never lose another piece of writing.
+- The content is TEXT. No databases, and though GitHub hosts the website, there is always an EXACT copy on my desktop and in a GitHub repository in the cloud. So I ALWAYS have direct access. I'll never lose another piece of writing.
 
 BUT... when I publish an article on LinkedIn, thanks to my network, it gets MASSIVE distribution. When I publish something on my blog, well, it doesn't. Hard to stay motivated when you're writing in a vacuum!
 
@@ -56,4 +56,4 @@ The key is that I need not to care that all my real traffic & interaction will b
 
 Also, since I _am_ a software developer, at some later date I can probably automate the cross-posting process. For technical reasons that may be a little fraught, but with a little work I can probably eliminate _most_ of the heavy lifting.
 
-I think I can live with that. I think. 😅
+I can live with that. I think. 😅
