@@ -20,9 +20,7 @@ I'm fascinated by creative process: the road from idea to execution.
 
 Want to see something funny? Let's ask Google about the [steps in the creative process](https://www.google.com/search?q=steps+in+the+creative+process):
 
-<figure>
-    <img src="{{ site.url }}{{ site.baseurl }}/assets/images/creative-process-steps.png">
-</figure>
+{% include figure image_path="/assets/images/creative-process-steps.png" caption="How many steps in the creative process?" %}
 
 Pretty much everybody agrees that the creative process HAS steps... but NOBODY agrees on what they are!
 
@@ -30,9 +28,7 @@ Having made that observation, though, I think there's one step that stands out f
 
 For lack of a better term, let's call this step _Triage:_
 
-<figure>
-    <img src="{{ site.url }}{{ site.baseurl }}/assets/images/idea-triage.png">
-</figure>
+{% include figure image_path="/assets/images/idea-triage.png" caption="Idea Triage" %}
 
 You see the problem, right? You've got a bunch of ideas. You can't execute on EVERYTHING. You HAVE to choose. Any resources (e.g. time & money) you commit to a BAD idea are resources you'll NEVER be able to commit to any of the very few GOOD ideas in your pile.
 
