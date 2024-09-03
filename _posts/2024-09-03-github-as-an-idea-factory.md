@@ -1,6 +1,6 @@
 ---
 # prettier-ignore
-title: "Idea Triage on GitHub"
+title: "Idea Discovery on GitHub"
 excerpt: "Coming up with ideas is easy. Deciding which ones to execute on is HARD. Here's a kitchen-sink approach using engagement as a metric of market potential."
 header:
   og_image: /assets/images/logo-linkedin.png
@@ -26,9 +26,9 @@ Pretty much everybody agrees that the creative process HAS steps... but NOBODY a
 
 Having made that observation, though, I think there's one step that stands out from the others just because it involves a kind of categorical shift. On one side of it, you've got a whole whiteboard full of ideas. On the other side, you've got a SINGLE idea that you're actually going to execute.
 
-For lack of a better term, let's call this step _Triage:_
+For lack of a better term, let's call this step _Discovery:_
 
-{% include figure image_path="/assets/images/idea-triage.png" caption="Idea Triage" %}
+{% include figure image_path="/assets/images/idea-discovery.png" caption="Idea Discovery" %}
 
 You see the problem, right? You've got a bunch of ideas. You can't execute on EVERYTHING. You HAVE to choose. Any resources (e.g. time & money) you commit to a BAD idea are resources you'll NEVER be able to commit to any of the very few GOOD ideas in your pile.
 
@@ -76,9 +76,9 @@ Now, to be fair, GitHub's user base skews heavily toward software engineering. S
 
 Also, if you already have a huge social media following someplace else, then you're probably better off posting your ideas there. I think the fundamental concept still holds, though:
 
-- Idea triage is a thing.
+- Idea discovery is a thing.
 
-- A good approach to idea triage is to post EVERYTHING in front of an interested audience, and let engagement be your metric of market potential.
+- A good approach to idea discovery is to post EVERYTHING in front of an interested audience, and let engagement be your metric of market potential.
 
 I just started this experiment, so right now I've just got a couple of ideas on [my list](https://github.com/stars/karmaniverous/lists/ideas). Plenty more in the backlog; I'll post more as they occur to me or (more likely) as they jump back out at me from my own archives.
 
