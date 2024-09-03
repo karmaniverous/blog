@@ -34,7 +34,7 @@ You see the problem, right? You've got a bunch of ideas. You can't execute on EV
 
 If your ideas are significant, this is a super high-risk moment! So how do you choose?
 
-Back in 2019 I had a pretty good idea: use very cheap social media ads to collect engagement data on ALL my ideas! In principle, this would allow me to make a data-driven decision about which ideas to execute. Here's [a presentation](/assets/images/idea-triage.png) I gave back then describing an execution of this process and its outcome.
+Back in 2019 I had a pretty good idea: use very cheap social media ads to collect engagement data on ALL my ideas! In principle, this would allow me to make a data-driven decision about which ideas to execute. Here's [a presentation](/assets/documents/twitter-ad-discovery.pdf) I gave back then describing an execution of this process and its outcome.
 
 It worked pretty well, too... until I got shut down by literally every social media platform I tried it on! So a lesson learned there about hitching your wagon to social media. 🤣
 
