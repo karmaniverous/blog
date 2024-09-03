@@ -3,8 +3,8 @@
 title: "Idea Discovery on GitHub"
 excerpt: "Coming up with ideas is easy. Deciding which ones to execute on is HARD. Here's a kitchen-sink approach using engagement as a metric of market potential."
 header:
-  og_image: /assets/images/logo-linkedin.png
-  teaser: /assets/images/logo-linkedin.png
+  og_image: /assets/images/idea-discovery.jpg
+  teaser: /assets/images/idea-discovery.jpg
 categories:
   - Blog
 tags:
@@ -13,7 +13,7 @@ toc: false
 ---
 
 <figure class="align-left" style="margin-top: 10px; margin-bottom: 10px; width: 150px;">
-    <img src="{{ site.url }}{{ site.baseurl }}/assets/images/logo-linkedin.png">
+    <img src="{{ site.url }}{{ site.baseurl }}/assets/images/idea-discovery.jpg">
 </figure>
 
 I'm fascinated by creative process: the road from idea to execution.
