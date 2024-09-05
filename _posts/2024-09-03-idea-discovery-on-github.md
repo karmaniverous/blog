@@ -48,15 +48,15 @@ I've got a few stars, and I'm proud of them! Earning a new one is always a rush.
 
 An interesting thing about GitHub repos: they don't ALWAYS contain code! In fact, if you look at today's list of [trending repositories](https://github.com/trending) on GitHub, the top ten include:
 
-- [**awesome-chatgpt-prompts**](https://github.com/f/awesome-chatgpt-prompts) - A collection of prompts for the OpenAI GPT-3 chatbot. (109k stars)
+- [**awesome-chatgpt-prompts**](https://github.com/f/awesome-chatgpt-prompts) - A collection of prompts for the OpenAI GPT-3 chatbot. **(109k stars)**
 
-- [**MLOps-basics**](https://github.com/graviraja/MLOps-Basics) - An introductory course on machine learning. (4.9k stars)
+- [**MLOps-basics**](https://github.com/graviraja/MLOps-Basics) - An introductory course on machine learning. **(4.9k stars)**
 
-- [**PayloadsAllTheThings**](https://github.com/swisskyrepo/PayloadsAllTheThings) - A list of useful payloads and bypasses for Web Application Security. (59.7k stars)
+- [**PayloadsAllTheThings**](https://github.com/swisskyrepo/PayloadsAllTheThings) - A list of useful payloads and bypasses for Web Application Security. **(59.7k stars)**
 
 If you're counting, that's almost a THIRD of the top ten trending repositories on GitHub! And the star counts are (forgive me) astronomical. By way of comparison, [my most popular repo](https://github.com/karmaniverous/serify-deserify) has just 30 stars.
 
-So a couple of weeks ago I had another idea: what if I started publishing my ideas to GitHub as well, each in its own repostory? I could use the star count as a measure of how many developers found my ideas useful.
+So a couple of weeks ago I had another idea: what if I started publishing my ideas to GitHub as well, each in its own repository? I could use the star count as a measure of how many developers found my ideas useful.
 
 Also, as a container for a developing idea, a GitHub repo has some interesting features:
 
