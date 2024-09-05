@@ -1,7 +1,7 @@
 ---
 # prettier-ignore
 title: "Radash: The New Lodash"
-excerpt: "If you use Typescript and are still using Lodash: stop. Give Radash a try."
+excerpt: "If you use Typescript and are still using Lodash: stop. It's time for a change Give Radash a try!"
 header:
   og_image: /assets/images/radash-the-new-lodash.png
   teaser: /assets/images/radash-the-new-lodash.png
@@ -66,7 +66,7 @@ That's encouraging.
 
 Radash is entirely type-safe. The types that come out of a function are the expected transformations of the types that go in, every time... and they're all Typescript native types. Which makes Radash type-compatible with just about anything.
 
-Moreover, like Lodash, Radash includes a small library of typ guards. Unlike the Lodash equivalents , they were INTENDED to be type guards from the start, and they actually WORK.
+Moreover, like Lodash, Radash includes a small library of type guards. Unlike the Lodash equivalents , they were INTENDED to be type guards from the start, and they actually WORK.
 
 Radash is also _small_. The whole library weighs in at 306kb, vs. 1.41Mb for Lodash, and the library is MUCH more tree-shakable. So unless you are using the entire library, its effect on your bundle size will be minimal.
 
