@@ -299,4 +299,4 @@ Well... _this._
 
 As I mentioned above, iteration is the heart & soul of modern software development. It works just like any other [Hero's Journey](https://en.wikipedia.org/wiki/Hero%27s_journey): you've got to hoof it some ways down the road before you can see very far into the distance.
 
-More to come. Meanwhile: time to iterate!
+More to come. Meanwhile: **_time to iterate!_**
