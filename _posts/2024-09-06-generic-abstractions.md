@@ -285,13 +285,13 @@ const config: EntityManagerConfig<MyEntityMap> = {
 const entityManager = new EntityManager(config);
 ```
 
-... and inernally the types will just _work_. The `MyEntityMap` type will impose design-time constraints on the `config` object and the rest of my code, and prevent me (and other users of `EntityManager`) from making expensive mistakes while coding.
+... and internally the types will just _work_. The `MyEntityMap` type will impose design-time constraints on the `config` object and the rest of my code, and prevent me (and other users of `EntityManager`) from making expensive mistakes while coding.
 
 ## What... That's It?
 
 Seems like kind of a ragged ending to a long article, doesn't it. Know why?
 
-Because the very act of writing this article sent me into a couple of new directions that will significantly (and positively!) affect the outcome for `EntityManager`.
+Because **the very act of writing this article sent me into a couple of new directions** that will significantly (and positively!) affect the outcome for `EntityManager`.
 
 Remember the question at the top of the article? _What the hell do I actually_ do _with my time?_
 
