@@ -3,7 +3,7 @@
 title: "Generic Abstractions"
 excerpt: "Modern software development works just like any other Hero's Journey: you've got to hoof it some ways down the road before you can see very far into the distance."
 header:
-  og_image: /assets/images/generic-abstractions.png
+  og_image: /assets/images/generic-abstractions-og.jpg
   teaser: /assets/images/generic-abstractions.png
 categories:
   - Blog
