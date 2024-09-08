@@ -476,9 +476,7 @@ This template decouples route components, page components, and page contents. As
 
 This diagram illustrates these relationships:
 
-<figure>
-  {% include nextjs-template-page-model.svg %}
-</figure>
+{% include 2022-12-29-nextjs-template-page-model.svg %}
 
 #### Application Component
 

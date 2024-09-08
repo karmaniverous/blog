@@ -1,0 +1,17 @@
+{
+  "[markdown]": {
+    "editor.wordWrap": "bounded"
+  },
+  "diffEditor.ignoreTrimWhitespace": false,
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "editor.formatOnPaste": true,
+  "editor.formatOnSave": true,
+  "git.autofetch": true,
+  "git.enableSmartCommit": true,
+  "plantuml.render": "Local",
+  "plantuml.exportFormat": "",
+  "plantuml.diagramsRoot": "diagrams",
+  "plantuml.exportIncludeFolderHeirarchy": false,
+  "plantuml.exportOutDir": "assets/diagrams",
+  "plantuml.exportSubFolder": false
+}

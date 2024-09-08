@@ -1,0 +1,41 @@
+@startuml entity-manager-abstractions
+
+allowmixing
+
+top to bottom direction
+
+package "before refactor" as before {
+    component "Serverless Framework\nService" as beforeService
+
+    class "DynamoDbWrapper" as beforeDynamoDbWrapper 
+
+    component "aws-service-search" as AwsServiceSearch
+
+    class "EntityManager" as beforeEntityManager
+
+    beforeService --> beforeDynamoDbWrapper: injects
+    beforeService --> beforeEntityManager: depends on
+    beforeDynamoDbWrapper -> beforeEntityManager: into
+    beforeDynamoDbWrapper --> AwsServiceSearch: depends on
+}
+
+package "after refactor" as after {
+    component "Serverless Framework\nService" as Service
+
+    class DynamoDbWrapper 
+
+    class EntityManager
+
+    class MockDb
+
+    component "entity-tools" as EntityTools
+
+    Service --> DynamoDbWrapper: injects
+    DynamoDbWrapper -> EntityManager: into
+    Service --> EntityManager: depends on
+    EntityManager --> EntityTools: depends on
+    EntityManager --> MockDb: tests\nagainst
+    MockDb -> EntityTools: depends on
+}
+
+@enduml

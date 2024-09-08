@@ -1,4 +1,4 @@
-@startuml
+@startuml nextjs-template-page-model
 
 object "[[#application-component Application Component]]" as Application
 note left
