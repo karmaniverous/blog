@@ -3,8 +3,8 @@
 title: "Generic Abstractions"
 excerpt: "Modern software development works just like any other Hero's Journey: you've got to hoof it some ways down the road before you can see very far into the distance."
 header:
-  og_image: /assets/images/radash-the-new-lodash.png
-  teaser: /assets/images/radash-the-new-lodash.png
+  og_image: /assets/images/generic-abstractions.png
+  teaser: /assets/images/generic-abstractions.png
 categories:
   - Blog
 tags:
@@ -14,7 +14,7 @@ toc: false
 ---
 
 <figure class="align-left" style="margin-top: 10px; margin-bottom: 10px; width: 150px;">
-    <img src="{{ site.url }}{{ site.baseurl }}/assets/images/radash-the-new-lodash.png">
+    <img src="{{ site.url }}{{ site.baseurl }}/assets/images/generic-abstractions.png">
 </figure>
 
 A few days ago I [posted](/blog/mock-db/) about the genesis of my new [`mock-db`](https://github.com/karmaniverous/mock-db) library, which mocks [DynamoDB](https://aws.amazon.com/dynamodb/)-like behavior with local JSON data.
