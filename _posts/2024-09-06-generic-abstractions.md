@@ -60,7 +60,7 @@ The problem with **_encode your schema directly into your data_** is that it isn
 
 - `entity-manager` provides a simple wrapper around the AWS SDK that lets you do easy things like get & update records, as well as fantastically hard things like one-shot multi-range, multi-shard, filtered secondary index queries... _without having to write a single line of DynamoDB-specific code!_
 
-So on the one hand `entity-manager` provides an opinionated, out-of-the-box answer to the question of how to structure NoSQL data. And on the other hand, it replaces a _ton_ of code with a simple configuration that looks and works consistently across every independenct microservice in your entire back end.
+So on the one hand `entity-manager` provides an opinionated, out-of-the-box answer to the question of how to structure NoSQL data. And on the other hand, it replaces a _ton_ of code with a simple configuration that looks and works consistently across every independent microservice in your entire back end.
 
 Pound for pound, `entity-manager` is by far the most successful piece of software I've ever written.
 
@@ -102,7 +102,7 @@ The switch to Typescript has a lot of knock-on effects. For example:
 
 - The current version of `entity-manager` uses a database [provider model](https://en.wikipedia.org/wiki/Provider_model): the library itself is generic with respect to database platform, and then there's another library that provides the DynamoDB-specific logic. Over a couple of years of development, that line got a little blurred, such that some generic functionality snuck into the DynamoDB provider, and some DynamoDB-specific functionality snuck into the implementations that consume both libraries. The Typescript refactor is a great opportunity to clean that up.
 
-- Strong typing gives me an opportunity to apply configuration at two distinctly different levels: _type_ configurations, which directly affect developers consuming the libraries while they're writing code, and _runtime_ configurations, which affect the behavior of the library at runtime. This is a great way to improve the developer experience... and since I'm also the primary _consumer_ of these libraries, that means _my_ experience!
+- Strong typing gives me an opportunity to apply configuration at two distinctly different levels: _type_ configurations, which directly affect developers consuming the libraries while they're writing code, and _runtime_ configurations, which affect the behavior of the library at runtime. This is a great way to improve the developer experience... and since I'm also the primary _consumer_ of these libraries, that means improving _my_ experience!
 
 ## Abstractions
 
@@ -138,7 +138,7 @@ A core principle in software engineering is _DRY:_ [_Don't Repeat Yourself_](htt
 
 Easy: I created a _third_ library, called [`entity-tools`](https://github.com/karmaniverous/entity-tools), and made it a dependency of _both!_
 
-Also, a class called `DynamoDbWrapper` encapsulates the DynamoDB-specific stuff and injects it into `EntityManager`. `DynamoDBWrapper` has a unique dependency called `aws-service-search` that handles some of that load. But in retrospect it didn't really make sense for `aws-service-search` to be a distict dependency, so as this work proceeds I'll be merging it into `DynamoDbWrapper` when that class gets its own Typescrit refactor in a few weeks.
+Also, a class called `DynamoDbWrapper` encapsulates the DynamoDB-specific stuff and injects it into `EntityManager`. `DynamoDBWrapper` has a unique dependency called `aws-service-search` that handles some of that load. But in retrospect it didn't really make sense for `aws-service-search` to be a distinct dependency, so as this work proceeds I'll be merging it into `DynamoDbWrapper` when that class gets its own Typescript refactor in a few weeks.
 
 Put it all together, and here's the before & after:
 
@@ -156,7 +156,7 @@ Is that an awful word, or what?
 
 As soon as Typescript enters the picture—stay with me here—everything gets _typed_.
 
-From a trivial perspective, this means that Typescript will complain if I try to do something dumb like treat a string as an integer. I can kind of cheat, accidentally or on purpose, by using the special-purpose `any` type, which means exactly what it implies. But if I'm smart, I'll set Typescipt up to complain when I do _that_, too. Which leaves me no alternative but to type consistently.
+From a trivial perspective, this means that Typescript will complain if I try to do something dumb like treat a string as an integer. I can kind of cheat, accidentally or on purpose, by using the special-purpose `any` type, which means exactly what it implies. But if I'm smart, I'll set Typescript up to complain when I do _that_, too. Which leaves me no alternative but to type consistently.
 
 But what does that actually _mean_?
 
@@ -230,7 +230,7 @@ This recursive type definition describes a bunch of scalar types, as well as JSO
 export class EntityManager<P = DefaultProperty> { ... }
 ```
 
-Say my database can't handle structured data like JSON objects and arrays. I can define a new property type that and create a new instance of `EntityManager` like this:
+Say my database can't handle structured data like JSON objects and arrays. I can define an appropriate new property type and create a new instance of `EntityManager` like this:
 
 ```ts
 type CustomProperty = string | number | boolean | null | undefined;
