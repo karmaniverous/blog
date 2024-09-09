@@ -1,7 +1,7 @@
 ---
 # prettier-ignore
 title: "What Good Looks Like: A Real-World Typescript Refactor"
-excerpt: "Watch a hideously complex Javascript configuration object collapse into declarative goodness thanks to type safety and generic design."
+excerpt: "Watch a complex Javascript configuration object collapse into declarative goodness thanks to type safety, abstraction, and generic design."
 header:
   og_image: /assets/images/generic-abstractions-og.jpg
   teaser: /assets/images/generic-abstractions.png
@@ -17,7 +17,7 @@ toc: true
     <img src="{{ site.url }}{{ site.baseurl }}/assets/images/generic-abstractions.png">
 </figure>
 
-Yesterday I posted [a bit of a screed](/blog/generic-abstractions) about iteration and the use of abstraction & generic desgn.
+Yesterday I posted [a bit of a screed](/blog/generic-abstractions) about iteration and the use of abstraction & generic design.
 
 I left the ending a little ragged, as the act of writing it had focused my thoughts and opened up an avenue of approach to a solution. Which was really the point of writing the thing in the first place.
 
