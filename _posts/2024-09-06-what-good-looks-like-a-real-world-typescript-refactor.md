@@ -201,7 +201,7 @@ The `User` & `Email` interfaces describe the entities themselves, in a way that 
 Here's the actual config object:
 
 ```ts
-export const config: Config<MyEntityMap, 'entityPK', 'entitySK'> = {
+export const config: Config<EntityMap, 'entityPK', 'entitySK'> = {
   entities: {
     user: {
       indexes: {
