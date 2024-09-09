@@ -3,8 +3,8 @@
 title: "What Good Looks Like: A Real-World Typescript Refactor"
 excerpt: "Watch a complex Javascript configuration object collapse into declarative goodness thanks to type safety, abstraction, and generic design."
 header:
-  og_image: /assets/images/generic-abstractions-og.jpg
-  teaser: /assets/images/generic-abstractions.png
+  og_image: /assets/images/what-good-looks-like-banner.jpg
+  teaser: /assets/images/what-good-looks-like-square.jpg
 categories:
   - Blog
 tags:
@@ -14,7 +14,7 @@ toc: true
 ---
 
 <figure class="align-left" style="margin-top: 10px; margin-bottom: 10px; width: 150px;">
-    <img src="{{ site.url }}{{ site.baseurl }}/assets/images/generic-abstractions.png">
+    <img src="{{ site.url }}{{ site.baseurl }}/assets/images/what-good-looks-like-square.jpg">
 </figure>
 
 Yesterday I posted [a bit of a screed](/blog/generic-abstractions) about iteration and the use of abstraction & generic design.
@@ -194,7 +194,7 @@ interface EntityMap {
 }
 ```
 
-The `User` & `Email` interfaces describe the entities themselves, in a way that is useful to drive `entity-manager` and also wherever else those entities show up. Note that we've used the special `never` type to indicate properties that the developer should not populate directly because `entity-manager` is going to generate them for us.
+The `User` & `Email` interfaces describe the entities themselves, in a way that is useful to drive `entity-manager` and also wherever else those entities show up in the code. Note that we've used the special `never` type to indicate properties the developer should not populate directly because `entity-manager` is going to generate them for us.
 
 `EntityMap` tells `entity-manager` which parts of the configuration object will be associated with which entities.
 
@@ -257,7 +257,7 @@ Typescript will alert the developer immediately if he...
 
 - Manually populates a value on a `User` or `Email` entity _anywhere else in his code_ that `entity-manager` is supposed to generate for us.
 
-This, my friends, is what _good_ looks like.
+**This, my friends, is what _good_ looks like.**
 
 ## Next Steps
 
