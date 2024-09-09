@@ -253,6 +253,8 @@ Moreover, thanks to type safety, it's almost impossible to screw this up! Typesc
 
 - Fails to specify exactly the right `hashKey` and `uniqueKey` properties.
 
+- Populates a value on a `User` or `Email` entity that `entity-manager` is supposed to generate for us
+
 This, my friends, is what _good_ looks like.
 
 ## Next Steps
