@@ -1,8 +1,46 @@
 ---
-layout: home
-author_profile: true
+title: a bullet point
+tagline: resume bullets<br />may read differently at the <br />threshhold of heaven
+layout: splash
+header:
+  overlay_filter: rgba(32, 0, 32, 0.5)
+  overlay_image: /assets/images/splash-header.jpg
+  caption: <b>jason williscroft</b><br />monkey whisperer<br />software engineer<br />grammar nerd<br />language geek<br />tiny poet<br />gym rat<br />yogi
+  actions:
+    - label: <i class="fa-brands fa-x-twitter fa-2xl"></i>
+      url: https://x.com/karmaniverous
+    - label: <i class="fa-brands fa-github fa-2xl"></i>
+      url: https://github.com/karmaniverous
+    - label: <i class="fa-brands fa-linkedin-in fa-2xl"></i>
+      url: https://github.com/karmaniverous
+    - label: <i class="fa-brands fa-telegram fa-2xl"></i>
+      url: https://t.me/karmaniverous
+feature_row:
+  - image_path: assets/images/monkey-see.jpg
+    title: 'my face'
+    excerpt: "Not telling you which one of these monkeys is me, but the other guy says I'm the ugly one."
+  - image_path: /assets/images/bali.jpg
+    title: 'my place'
+    excerpt: "I've lived on Bali since 2019 and speak Bahasa Indonesia well enough to do business here."
+  - image_path: /assets/images/bio-photo.jpg
+    title: 'my spirit animal'
+    excerpt: "I'm a former U.S. Marine & Navy Surface Warfare Officer and apparently it shows."
+haiku:
+  - excerpt: '<strong><em>i traded these chains<br />for a walking stick and a<br />pocket full of sand</em></strong><br />&nbsp;'
 ---
 
-After traveling the world for over a half century, I finally found a place to
-keep all my stuff that doesn't charge me a monthly storage fee or take a plane
-ticket to visit!
+{% include feature_row %} 
+
+<h2 class="archive__subtitle">
+  {{ site.data.ui-text[site.locale].recent_posts | default: "Recent Posts" }}
+</h2>
+
+{% if paginator %} {% assign posts = paginator.posts %} {% else %} {% assign
+posts = site.posts %} {% endif %} {% assign entries_layout = page.entries_layout
+| default: 'grid' %}
+<div class="entries-{{ entries_layout }}">
+  {% for post in posts %} {% include archive-single.html type=entries_layout %}
+  {% endfor %}
+</div>
+
+{% include paginator.html %}

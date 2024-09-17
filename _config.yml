@@ -21,7 +21,7 @@ locale: 'en-US'
 title: 'some words'
 title_separator: '-'
 subtitle: 'many of them true'
-name: 'Your Name'
+name: 'Jason Williscroft'
 description: 'resume bullets / may read differently at the / threshold of heaven'
 url: https://karmanivero.us
 # baseurl: # the subpath of your site, e.g. "/blog"
@@ -123,36 +123,36 @@ author:
   # email:
   links:
     - label: 'X'
-      icon: 'fab fa-fw fa-square-x-twitter'
+      icon: 'fa-brands fa-square-x-twitter'
       url: 'https://twitter.com/karmaniverous'
     - label: 'GitHub'
-      icon: 'fab fa-fw fa-github'
+      icon: 'fa-brands fa-github'
       url: 'https://github.com/karmaniverous'
     - label: 'LinkedIn'
-      icon: 'fab fa-fw fa-linkedin'
+      icon: 'fa-brands fa-linkedin'
       url: 'https://www.linkedin.com/in/jscroft/'
     - label: 'Telegram'
-      icon: 'fab fa-fw fa-telegram'
+      icon: 'fa-brands fa-telegram'
       url: 'https://t.me/karmaniverous'
     - label: 'Tiny Poems'
-      icon: 'fab fa-fw fa-square-x-twitter'
+      icon: 'fa-brands fa-square-x-twitter'
       url: 'https://twitter.com/17morae'
 
 # Site Footer
 footer:
   links:
-    - label: 'X'
-      icon: 'fab fa-fw fa-square-x-twitter'
+    - label: ''
+      icon: 'fa-brands fa-x-twitter'
       url: 'https://twitter.com/karmaniverous'
-    - label: 'GitHub'
-      icon: 'fab fa-fw fa-github'
+    - label: ''
+      icon: 'fa-brands fa-github'
       url: 'https://github.com/karmaniverous'
-    - label: 'Telegram'
-      icon: 'fab fa-fw fa-telegram'
-      url: 'https://t.me/karmaniverous'
-    - label: 'LinkedIn'
-      icon: 'fab fa-fw fa-linkedin'
+    - label: ''
+      icon: 'fa-brands fa-linkedin'
       url: 'https://www.linkedin.com/in/jscroft/'
+    - label: ''
+      icon: 'fa-brands fa-telegram'
+      url: 'https://t.me/karmaniverous'
 
 # Reading Files
 include:
@@ -219,7 +219,7 @@ permalink: /:categories/:title/
 timezone: # https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
 
 # Pagination with jekyll-paginate
-paginate: 5 # amount of posts to show
+paginate: 8 # amount of posts to show
 paginate_path: /page:num/
 
 # Pagination with jekyll-paginate-v2
@@ -230,7 +230,7 @@ pagination:
   # enabled: true
   debug: false
   collection: 'posts'
-  per_page: 10
+  per_page: 8
   permalink: '/page/:num/'
   title: ':title - page :num'
   limit: 0
