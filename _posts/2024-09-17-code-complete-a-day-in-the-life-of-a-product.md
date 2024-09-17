@@ -44,7 +44,7 @@ So I built `entity-manager` because I needed it. And I built it as a hyper-gener
 When you create a generic solution to an entire category of problems, you don't just build the thing differently. **_You build a different thing._**
 {: .notice--info}
 
-My initial implementation of the VeteranCrowd back end was in Javascript, so early verions of `entity-manager` followed suit.
+My initial implementation of the VeteranCrowd back end was in Javascript, so early versions of `entity-manager` followed suit.
 
 But early on we refactored our front end into Typescript, and the [Serverless Framework](https://www.serverless.com/) underlying our back end has shifted to Typescript-first with [version 4](https://www.serverless.com/blog/serverless-framework-v4-general-availability). So like it or not (and I _do_ like it), our back end will be moving to Typescript soon enough.
 
@@ -123,7 +123,7 @@ Real serverless applications have _lots_ of moving parts, including:
 
 - Coherent architectural & design patterns that unify all those services so they can be managed with a single set of tools.
 
-- An infrastructure that can move all the parts from development through test and into production with a maximum of automation and a minumum of fuss.
+- An infrastructure that can move all the parts from development through test and into production with a maximum of automation and a minimum of fuss.
 
 **_... at scale!_**
 
@@ -131,7 +131,7 @@ A couple of years ago I published a Javascript-based [AWS API Template](/blog/aw
 
 Two years of build & production across 16 services have taught me a _lot_.
 
-Some of it, naturally, is application-specific, and clearly there is no percentage in sharing my employer's secrets.
+Some of it, naturally, is application-specific, and **clearly there is no percentage in sharing my employer's secrets**.
 
 But most of the really big lessons I've learned in the last couple of years would apply equally well to _any_ real-world, massively scalable serverless application. And as I've learned these lessons, I've been careful to organize them into hyper-generic, open-source libraries like `entity-manager`.
 
