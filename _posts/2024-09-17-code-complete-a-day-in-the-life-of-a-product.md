@@ -1,7 +1,7 @@
 ---
 # prettier-ignore
 title: "Code Complete: A Day in the Life of a Product"
-excerpt: ""
+excerpt: "We’re all professionals here, right? And we all know there’s often quite a gap between what gets posted to social media and the reality on the ground."
 header:
   og_image: /assets/images/code-complete-tests-preview.jpg
   teaser: /assets/images/code-complete-tests.jpg
