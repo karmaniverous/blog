@@ -14,7 +14,7 @@ toc: true
 ---
 
 <figure class="align-left" style="margin-top: 10px; margin-bottom: 10px; width: 150px;">
-    <img src="{{ site.url }}{{ site.baseurl }}/assets/images/killer-poodle.png">
+    <img src="/assets/images/killer-poodle.png">
 </figure>
 
 [ChatGPT](https://openai.com/blog/chatgpt/) is the latest AI conversational

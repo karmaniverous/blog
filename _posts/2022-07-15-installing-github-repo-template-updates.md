@@ -12,7 +12,7 @@ tags:
 ---
 
 <figure class="align-left" style="margin-top: 10px; margin-bottom: 10px; width: 150px;">
-    <img src="{{ site.url }}{{ site.baseurl }}/assets/images/git-diff-square.png">
+    <img src="/assets/images/git-diff-square.png">
 </figure>
 
 Tell me if this sounds familiar...
@@ -118,8 +118,8 @@ changed files one at a time and ask if you want to open them. If you do, you
 will see a diff view like this in your VS Code editor:
 
 <figure >
-    <a href="{{ site.url }}{{ site.baseurl }}/assets/images/git-difftool-screenshot.png">
-        <img src="{{ site.url }}{{ site.baseurl }}/assets/images/git-difftool-screenshot.png">
+    <a href="/assets/images/git-difftool-screenshot.png">
+        <img src="/assets/images/git-difftool-screenshot.png">
     </a>
     <figcaption>Click to enlarge.</figcaption>
 </figure>

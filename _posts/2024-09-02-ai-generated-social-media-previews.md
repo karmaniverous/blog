@@ -14,7 +14,7 @@ toc: false
 ---
 
 <figure class="align-left" style="margin-top: 10px; margin-bottom: 10px; width: 150px;">
-    <img src="{{ site.url }}{{ site.baseurl }}/assets/images/social-preview.png">
+    <img src="/assets/images/social-preview.png">
 </figure>
 
 I've generally been underwhelmed by ChatGPT and the like. Fun toy: not much practical use, so far. But this is an exception!

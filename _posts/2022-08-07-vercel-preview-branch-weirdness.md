@@ -15,7 +15,7 @@ toc: true
 ---
 
 <figure class="align-left" style="margin-top: 10px; margin-bottom: 10px; width: 150px;">
-    <img src="{{ site.url }}{{ site.baseurl }}/assets/images/logo-vercel.png">
+    <img src="/assets/images/logo-vercel.png">
 </figure>
 
 I've got a very handy
@@ -83,14 +83,14 @@ page, based on these settings:
 
 ```jsx
 const isComingSoon =
-  process.env.NEXT_PUBLIC_COMING_SOON === "1" &&
-  process.env.NEXT_PUBLIC_VERCEL_ENV !== "preview";
+  process.env.NEXT_PUBLIC_COMING_SOON === '1' &&
+  process.env.NEXT_PUBLIC_VERCEL_ENV !== 'preview';
 
 // If app is coming soon, route all traffic to coming-soon endpoint.
-if (route !== "/coming-soon" && isComingSoon) redirect(res, "/coming-soon");
+if (route !== '/coming-soon' && isComingSoon) redirect(res, '/coming-soon');
 
 // If app is not coming soon, route all coming-soon traffic to home.
-if (route === "/coming-soon" && !isComingSoon) redirect(res, "/");
+if (route === '/coming-soon' && !isComingSoon) redirect(res, '/');
 ```
 
 Get it? I can set `NEXT_PUBLIC_COMING_SOON` to make the Coming Soon page appear
@@ -123,7 +123,7 @@ branch. So, following the example above, I could create
 Nice, right? The configuration looks like this:
 
 <figure>
-    <a href="{{ site.url }}{{ site.baseurl }}/assets/images/vercel-preview-branch.png"><img src="{{ site.url }}{{ site.baseurl }}/assets/images/vercel-preview-branch.png"></a>
+    <a href="/assets/images/vercel-preview-branch.png"><img src="/assets/images/vercel-preview-branch.png"></a>
 </figure>
 
 Vercel's intent with this is clear. Nevertheless, when I visit my new subdomain,

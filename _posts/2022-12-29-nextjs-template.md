@@ -15,7 +15,7 @@ toc: true
 ---
 
 <figure class="align-left" style="margin-top: 10px; margin-bottom: 10px; width: 150px;">
-    <img src="{{ site.url }}{{ site.baseurl }}/assets/images/logo-nextjs.png">
+    <img src="/assets/images/logo-nextjs.png">
 </figure>
 
 Getting a [Next.js](https://nextjs.org/) application up and running is not a trivial exercise, especially if you want a robust and extensible result that will support a modern development process.

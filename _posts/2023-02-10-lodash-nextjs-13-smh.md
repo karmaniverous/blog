@@ -16,7 +16,7 @@ toc: false
 ---
 
 <figure class="align-left" style="margin-top: 10px; margin-bottom: 10px; width: 150px;">
-    <img src="{{ site.url }}{{ site.baseurl }}/assets/images/logo-lodash.png">
+    <img src="/assets/images/logo-lodash.png">
 </figure>
 
 I recently updated my [Next.js Template](/nextjs-template) to [Next.js 13](https://nextjs.org/blog/next-13) and have been wrestling with some consequences around middleware interactions with [NextAuth.js](https://next-auth.js.org/).

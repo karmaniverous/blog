@@ -17,7 +17,7 @@ tags:
 ---
 
 <figure class="align-left" style="margin-top: 10px; margin-bottom: 10px; width: 150px;">
-    <img src="{{ site.url }}{{ site.baseurl }}/assets/images/logo-redux.png">
+    <img src="/assets/images/logo-redux.png">
 </figure>
 
 Here's a pretty straightforward problem...
@@ -120,13 +120,13 @@ useful, but
 offered this in the sidebar:
 
 <figure class="align-center" style="width: 313px">
-    <img src="{{ site.url }}{{ site.baseurl }}/assets/images/mocha-test-explorer-sidebar-error.png">
+    <img src="/assets/images/mocha-test-explorer-sidebar-error.png">
 </figure>
 
 Doesn't look like much, but clicking on it gave me this:
 
 <figure>
-    <a href="{{ site.url }}{{ site.baseurl }}/assets/images/mocha-test-explorer-error-output.png"><img src="{{ site.url }}{{ site.baseurl }}/assets/images/mocha-test-explorer-error-output.png"></a>
+    <a href="/assets/images/mocha-test-explorer-error-output.png"><img src="/assets/images/mocha-test-explorer-error-output.png"></a>
 </figure>
 
 Now _that's_ interesting! On the face of it, it looks like
@@ -147,7 +147,7 @@ That ought to do it, right?
 Not so fast. The project still builds, but now Mocha shows a different error:
 
 <figure>
-    <a href="{{ site.url }}{{ site.baseurl }}/assets/images/mocha-test-explorer-error-output-2.png"><img src="{{ site.url }}{{ site.baseurl }}/assets/images/mocha-test-explorer-error-output-2.png"></a>
+    <a href="/assets/images/mocha-test-explorer-error-output-2.png"><img src="/assets/images/mocha-test-explorer-error-output-2.png"></a>
 </figure>
 
 Now that just seems perverted. Why is the Redux Toolkit a CommonJS module? Seems
@@ -162,7 +162,7 @@ NOW we're good, right?
 No. Not good. Now the BUILD fails! Here's the error:
 
 <figure>
-    <a href="{{ site.url }}{{ site.baseurl }}/assets/images/mocha-test-explorer-error-output-3.png"><img src="{{ site.url }}{{ site.baseurl }}/assets/images/mocha-test-explorer-error-output-3.png"></a>
+    <a href="/assets/images/mocha-test-explorer-error-output-3.png"><img src="/assets/images/mocha-test-explorer-error-output-3.png"></a>
 </figure>
 
 I tried a couple of desperate moves (i.e. `import * as ReduxToolkit from...`)

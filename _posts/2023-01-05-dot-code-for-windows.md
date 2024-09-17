@@ -15,7 +15,7 @@ toc: false
 ---
 
 <figure class="align-left" style="margin-top: 10px; margin-bottom: 10px; width: 150px;">
-    <img src="{{ site.url }}{{ site.baseurl }}/assets/images/logo-autohotkey.png">
+    <img src="/assets/images/logo-autohotkey.png">
 </figure>
 
 This can't just be my problem...

@@ -15,7 +15,7 @@ toc: false
 ---
 
 <figure class="align-left" style="margin-top: 10px; margin-bottom: 10px; width: 150px;">
-    <img src="{{ site.url }}{{ site.baseurl }}/assets/images/logo-vscode.png">
+    <img src="/assets/images/logo-vscode.png">
 </figure>
 
 The handful of people who actually pay attention to these words may be aware that I maintain a growing list of small GitHub projects that do useful things.

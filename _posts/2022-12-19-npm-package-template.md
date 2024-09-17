@@ -14,7 +14,7 @@ toc: true
 ---
 
 <figure class="align-left" style="margin-top: 10px; margin-bottom: 10px; width: 150px;">
-    <img src="{{ site.url }}{{ site.baseurl }}/assets/images/logo-npm.png">
+    <img src="/assets/images/logo-npm.png">
 </figure>
 
 You wrote a sweet piece of code! Releasing it on [NPM](https://www.npmjs.com/)

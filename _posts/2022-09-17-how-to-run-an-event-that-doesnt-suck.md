@@ -13,7 +13,7 @@ toc: true
 ---
 
 <figure class="align-left" style="margin-top: 10px; margin-bottom: 10px; width: 150px;">
-    <img src="{{ site.url }}{{ site.baseurl }}/assets/images/event.png">
+    <img src="/assets/images/event.png">
 </figure>
 
 From March 2020 through September 2021 I ran an online community of military

@@ -14,7 +14,7 @@ toc: false
 ---
 
 <figure class="align-left" style="margin-top: 10px; margin-bottom: 10px; width: 150px;">
-    <img src="{{ site.url }}{{ site.baseurl }}/assets/images/dharma-wheel.png">
+    <img src="/assets/images/dharma-wheel.png">
 </figure>
 
 > Minimize external dependencies and try not to use shitty libraries.

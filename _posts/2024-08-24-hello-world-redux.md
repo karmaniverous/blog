@@ -13,7 +13,7 @@ toc: false
 ---
 
 <figure class="align-left" style="margin-top: 10px; margin-bottom: 10px; width: 150px;">
-    <img src="{{ site.url }}{{ site.baseurl }}/assets/images/hello-world-redux.png">
+    <img src="/assets/images/hello-world-redux.png">
 </figure>
 
 We've been here [before](/blog/hello-again-world).

@@ -13,7 +13,7 @@ toc: false
 ---
 
 <figure class="align-left" style="margin-top: 10px; margin-bottom: 10px; width: 150px;">
-    <img src="{{ site.url }}{{ site.baseurl }}/assets/images/radash-the-new-lodash.png">
+    <img src="/assets/images/radash-the-new-lodash.png">
 </figure>
 
 Back before the dawn of recorded history—say, before early 2015—things were _different_.

@@ -14,7 +14,7 @@ toc: true
 ---
 
 <figure class="align-left" style="margin-top: 10px; margin-bottom: 10px; width: 150px;">
-    <img src="{{ site.url }}{{ site.baseurl }}/assets/images/logo-aws.png">
+    <img src="/assets/images/logo-aws.png">
 </figure>
 
 Getting your application's back end up and running on [Amazon Web Services](https://aws.amazon.com/) (AWS) is not a trivial exercise, especially if you want a robust and extensible result that will support a modern development process.

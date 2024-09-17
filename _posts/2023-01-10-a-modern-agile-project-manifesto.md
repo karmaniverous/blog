@@ -15,7 +15,7 @@ toc: true
 ---
 
 <figure class="align-left" style="margin-top: 10px; margin-bottom: 10px; width: 150px;">
-    <img src="{{ site.url }}{{ site.baseurl }}/assets/images/iteration.png">
+    <img src="/assets/images/iteration.png">
 </figure>
 
 I've participated in and led a LOT of Agile projects. Some have been more Agile than others, and many of you know the pain behind THOSE words. 🤣
@@ -68,7 +68,7 @@ This approach to project management took us from the horse-and-buggy era to asse
 In the real world, as project complexity increases, change becomes inevitable.
 
 <figure >
-  <img src="{{ site.url }}{{ site.baseurl }}/assets/images/change-is-inevitable.png">
+  <img src="/assets/images/change-is-inevitable.png">
   <figcaption>Change is inevitable!</figcaption>
 </figure>
 
@@ -128,7 +128,7 @@ Any Slack channel can be attached to a Jira project using the [Jira Cloud App fo
 If appropriate—say if the channel represents an Epic­—then messages reflecting changes to the relevant tickets can be automatically posted in that Slack channel. In any case, simply mentioning an Issue ID from the attached project will link the ticket to the channel. Here's an example:
 
 <figure >
-  <img src="{{ site.url }}{{ site.baseurl }}/assets/images/slack-jira-integration.png">
+  <img src="/assets/images/slack-jira-integration.png">
   <figcaption>Jira Cloud App for Slack</figcaption>
 </figure>
 

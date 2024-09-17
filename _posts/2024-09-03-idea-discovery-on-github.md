@@ -13,7 +13,7 @@ toc: false
 ---
 
 <figure class="align-left" style="margin-top: 10px; margin-bottom: 10px; width: 150px;">
-    <img src="{{ site.url }}{{ site.baseurl }}/assets/images/idea-discovery.jpg">
+    <img src="/assets/images/idea-discovery.jpg">
 </figure>
 
 I'm fascinated by creative process: the road from idea to execution.

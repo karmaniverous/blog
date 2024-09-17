@@ -14,7 +14,7 @@ toc: true
 ---
 
 <figure class="align-left" style="margin-top: 10px; margin-bottom: 10px; width: 150px;">
-    <img src="{{ site.url }}{{ site.baseurl }}/assets/images/what-good-looks-like-square.jpg">
+    <img src="/assets/images/what-good-looks-like-square.jpg">
 </figure>
 
 Yesterday I posted [a bit of a screed](/blog/generic-abstractions) about iteration and the use of abstraction & generic design.
