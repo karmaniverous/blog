@@ -3,8 +3,8 @@
 title: "Unifying Web Presence with GitHub Pages"
 excerpt: ""
 header:
-  og_image: /assets/images/code-complete-tests-preview.jpg
-  teaser: /assets/images/code-complete-tests.jpg
+  og_image: /assets/images/unify-web-presence-banner.jpg
+  teaser: /assets/images/unify-web-presence-square.jpg
 categories:
   - Blog
 tags:
@@ -13,7 +13,7 @@ tags:
 ---
 
 <figure class="align-left" style="margin-top: 10px; margin-bottom: 10px; width: 150px;">
-    <img src="/assets/images/code-complete-tests.jpg">
+    <img src="/assets/images/unify-web-presence-square.jpg">
 </figure>
 
 A couple of years ago I shifted all of my personal web publishing (blogging, portfolio, etc.) to GitHub Pages. I've written [here](/blog/hello-again-world), and more recently [here](/blog/hello-world-redux), about how & why I did that.
