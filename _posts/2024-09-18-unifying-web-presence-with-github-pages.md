@@ -1,7 +1,7 @@
 ---
 # prettier-ignore
 title: "Unifying Web Presence with GitHub Pages"
-excerpt: ""
+excerpt: "Eliminate content collisions with your primary GitHub Pages domain & unify all your GitHub project documentation pages under a single subdomain."
 header:
   og_image: /assets/images/unify-web-presence-banner.jpg
   teaser: /assets/images/unify-web-presence-square.jpg
