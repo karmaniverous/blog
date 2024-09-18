@@ -20,6 +20,9 @@ A couple of years ago I shifted all of my personal web publishing (blogging, por
 
 This week I faced a different but related challenge. The solution turned out super satisfactory and super simple, so I thought I'd share.
 
+**TL/DR:** Use your documentation subdomain as your _primary_ GitHub Pages domain, and you can publish docs from all your repos under a single subdomain while avoiding content collisions with your main domain.
+{: .notice--info}
+
 ## The Problem
 
 For the sake of this discussion, remember my GitHub user name is `karmaniverous`.
