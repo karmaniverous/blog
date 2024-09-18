@@ -54,3 +54,9 @@ $base0f: #b18a3d !default;
 table > tbody td {
   vertical-align: top;
 }
+
+.button-row--left {
+  display: flex;
+  gap: 1em;
+  justify-content: flex-start;
+}

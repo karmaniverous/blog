@@ -17,7 +17,7 @@ VeteranCrowd is a platform that connects U.S. Military Veterans with offers from
 Under the hood, it is MUCH more: the platform is highly scalable and super generic. Even in its current state, it can validate membership in virtually ANY group and provide offers to them.
 
 [Visit VeteranCrowd Online!](https://veterancrowd.com){:
-.btn .btn--info
+.btn .btn--primary
 .btn--large}
 
 ## TypeScript NPM Package Template
@@ -43,7 +43,7 @@ This template puts it all together in a way that just WORKS, right out of the bo
 I use this template for all of my Typescript projects, and I keep it up-to-date with the latest tools & best practices. So use it with confidence!
 
 [See it on GitHub!](https://github.com/karmaniverous/npm-package-template-ts){:
-.btn .btn--info
+.btn .btn--primary
 .btn--large}
 
 ## Serify-Deserify
@@ -51,31 +51,37 @@ I use this template for all of my Typescript projects, and I keep it up-to-date 
 Reversibly transform unserializable values into serializable ones. Includes Redux middleware.
 
 [See it on GitHub!](https://github.com/karmaniverous/serify-deserify){:
-.btn .btn--info
+.btn .btn--primary
 .btn--large}
 
 ## Metastructure
 
 Config-driven, enterprise-grade, open-source application infrastructure. DRY as a bone!
 
-[See it on GitHub!](https://github.com/karmaniverous/metastructure){:
-.btn .btn--info
-.btn--large}
+<div class="button-row--left">
+    <a href="https://github.com/karmaniverous/metastructure" class="btn btn--primary btn--large">See it on GitHub!</a>
+
+    <a href="https://github.com/karmaniverous/metastructure/wiki" class="btn btn--info btn--large">Read the Wiki!</a>
+
+</div>
 
 ## Entity Manager
 
 Configurably decorate entity objects with sharded index keys.
 
-[See it on GitHub!](https://github.com/karmaniverous/entity-manager){:
-.btn .btn--info
-.btn--large}
+<div class="button-row--left">
+    <a href="https://github.com/karmaniverous/entity-manager" class="btn btn--primary btn--large">See it on GitHub!</a>
+
+    <a href="https://docs.karmanivero.us/entity-manager" class="btn btn--info btn--large">API Docs</a>
+
+</div>
 
 ## GetDotenv
 
 Manage environment variables from dotenv files across multiple environments. Supports async/CLI operations, dynamic variables, custom CLI creation & more!
 
 [See it on GitHub!](https://github.com/karmaniverous/get-dotenv){:
-.btn .btn--info
+.btn .btn--primary
 .btn--large}
 
 ## Serverless Lodash Plugin
@@ -83,7 +89,7 @@ Manage environment variables from dotenv files across multiple environments. Sup
 Write variable expressions in serverless.yml using the full Lodash feature set, plus some extra goodies!
 
 [See it on GitHub!](https://github.com/karmaniverous/serverless-lodash-plugin){:
-.btn .btn--info
+.btn .btn--primary
 .btn--large}
 
 ## Dot-Code
@@ -91,7 +97,7 @@ Write variable expressions in serverless.yml using the full Lodash feature set, 
 An AutoHotKey script that launches VS Code from File Explorer when you type Alt-Win-.
 
 [See it on GitHub!](https://github.com/karmaniverous/dot-code){:
-.btn .btn--info
+.btn .btn--primary
 .btn--large}
 
 ## JSON Map
@@ -99,29 +105,35 @@ An AutoHotKey script that launches VS Code from File Explorer when you type Alt-
 A hyper-generic JSON mapping library.
 
 [See it on GitHub!](https://github.com/karmaniverous/jsonmap){:
-.btn .btn--info
+.btn .btn--primary
 .btn--large}
 
 ## String Utilities
 
 String utilities & tagged template functions I use a lot. Super tree-shakable package so use what you need at very little cost!
 
-[See it on GitHub!](https://github.com/karmaniverous/string-utilities){:
-.btn .btn--info
-.btn--large}
+<div class="button-row--left">
+    <a href="https://github.com/karmaniverous/string-utilities" class="btn btn--primary btn--large">See it on GitHub!</a>
+
+    <a href="https://docs.karmanivero.us/string-utilities" class="btn btn--info btn--large">API Docs</a>
+
+</div>
 
 ## json2tf
 
 Convert complex JSON objects to Terraform notation.
 
 [See it on GitHub!](https://github.com/karmaniverous/json2tf){:
-.btn .btn--info
+.btn .btn--primary
 .btn--large}
 
 ## Mock DB
 
 Mock DynamoDB-style query & scan behavior with local JSON data.
 
-[See it on GitHub!](https://github.com/karmaniverous/mock-db){:
-.btn .btn--info
-.btn--large}
+<div class="button-row--left">
+    <a href="https://github.com/karmaniverous/mock-db" class="btn btn--primary btn--large">See it on GitHub!</a>
+
+    <a href="https://docs.karmanivero.us/mock-db" class="btn btn--info btn--large">API Docs</a>
+
+</div>
