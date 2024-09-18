@@ -62,7 +62,7 @@ If you wanted to explore the [`entity-manager` repo](https://github.com/karmaniv
 
 The good news is that it _works_. If you want to manage & query NoSQL data at scale, `entity-manager` is a solid choice.
 
-Also, thanks to [TypeDoc](https://typedoc.org/), the `entity-manager` API is reasonably well-documented. My [build process](https://github.com/karmaniverous/npm-package-template-ts) generates a very nice [API reference](https://karmanivero.us/entity-manager/) directly from the Typescript source code, so if you don't mind doing a little digging, you could probably get yourself up and running without too much trouble.
+Also, thanks to [TypeDoc](https://typedoc.org/), the `entity-manager` API is reasonably well-documented. My [build process](https://github.com/karmaniverous/npm-package-template-ts) generates a very nice [API reference](https://docs.karmanivero.us/entity-manager/) directly from the Typescript source code, so if you don't mind doing a little digging, you could probably get yourself up and running without too much trouble.
 
 The bad news is that there's a whole layer of _conceptual_ documentation that as yet just doesn't exist.
 
@@ -70,19 +70,19 @@ In order to use `entity-manager` effectively, you need to understand:
 
 - The [single-page design pattern](https://aws.amazon.com/blogs/compute/creating-a-single-table-design-with-amazon-dynamodb/)
 
-- Partition sharding strategies and how to [configure](https://karmanivero.us/entity-manager/interfaces/index.ShardBump.html) them.
+- Partition sharding strategies and how to [configure](https://docs.karmanivero.us/entity-manager/interfaces/entity_manager.ShardBump.html) them.
 
-- How to define an [Entity](https://karmanivero.us/entity-manager/types/index.ConfigEntity.html)
+- How to define an [Entity](https://docs.karmanivero.us/entity-manager/types/entity_manager.ConfigEntity.html)
 
-- How to define [generated properties](https://karmanivero.us/entity-manager/types/index.ConfigEntityGenerated.html) & indexes
+- How to define [generated properties](https://docs.karmanivero.us/entity-manager/types/entity_manager.ConfigEntityGenerated.html) & indexes
 
-- [Transcodes](https://karmanivero.us/entity-manager/types/index.Transcodes-1.html) and how to connect them to generated property & index elements
+- [Transcodes](https://docs.karmanivero.us/entity-manager/types/entity_manager.Transcodes-1.html) and how to connect them to generated property & index elements
 
-- How to write a [ShardQueryFunction](https://karmanivero.us/entity-manager/types/index.ShardQueryFunction.html) & pass it to the [`EntityManager`](https://karmanivero.us/entity-manager/classes/index.EntityManager.html) class
+- How to write a [ShardQueryFunction](https://docs.karmanivero.us/entity-manager/types/entity_manager.ShardQueryFunction.html) & pass it to the [`EntityManager`](https://docs.karmanivero.us/entity-manager/classes/entity_manager.EntityManager.html) class
 
-- How to [add generated keys](https://karmanivero.us/entity-manager/classes/index.EntityManager.html#addKeys) to your data items & [remove them](https://karmanivero.us/entity-manager/classes/index.EntityManager.html#removeKeys).
+- How to [add generated keys](https://docs.karmanivero.us/entity-manager/classes/entity_manager.EntityManager.html#addKeys) to your data items & [remove them](https://docs.karmanivero.us/entity-manager/classes/entity_manager.EntityManager.html#removeKeys).
 
-- How to [query your data](https://karmanivero.us/entity-manager/classes/index.EntityManager.html#query).
+- How to [query your data](https://docs.karmanivero.us/entity-manager/classes/entity_manager.EntityManager.html#query).
 
 If you followed any of those links, you're rolling your eyes right now. 🤣
 
