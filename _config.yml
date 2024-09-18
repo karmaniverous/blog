@@ -16,6 +16,7 @@ remote_theme: 'mmistakes/minimal-mistakes@4.26.2'
 minimal_mistakes_skin: 'karmaniverous' # "air", "aqua", "contrast", "dark", "default", "dirt", "neon", "mint", "plum", "sunrise"
 
 # Site Settings
+collections_dir: collections
 locale: 'en-US'
 # rtl: # true, false (default) # turns direction of the page into right to left for RTL languages
 title: 'some words'
@@ -311,3 +312,24 @@ defaults:
       related: true
       toc: true
       toc_sticky: true
+  # _entity-manager
+  - scope:
+      path: ''
+      type: 'entity-manager'
+    values:
+      layout: single
+      read_time: false
+      author_profile: false
+      share: false
+      comments: false
+      toc_sticky: true
+      sidebar:
+        nav: 'entity-manager'
+
+collections:
+  entity-manager:
+    order:
+      - querying-data.md
+      - intro.md
+    output: true
+    permalink: projects/:collection/:path/
