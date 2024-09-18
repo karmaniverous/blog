@@ -44,7 +44,7 @@ This isn't as ridiculous as it sounds. There's a lot more to the `foo` project t
 
 So how do I make this work?
 
-## Custom Subdomains
+## Custom Subdomains?
 
 When I assigned the `karmanivero.us` domain to my `karmaniverous.github.io` repo, I set it as the default Pages domain for _all_ of my GitHub repos. That's why I didn't have to do anything special to get my `foo` API documentation to display at `karmanivero.us/foo`. As soon as I enabled Pages on the `foo` repo, the content showed up.
 
