@@ -119,7 +119,7 @@ analytics:
 author:
   name: 'Jason Williscroft'
   avatar: '/assets/images/bio-photo.jpg'
-  bio: 'resume bullets<br />may read differently at the<br />threshold of heaven'
+  bio: '<em>resume bullets<br />may read differently at the<br />threshold of heaven</em>'
   # email:
   links:
     - label: 'X'
