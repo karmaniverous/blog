@@ -12,7 +12,7 @@ tags:
   - writing
 ---
 
-<figure class="align-left" style="margin-top: 10px; margin-bottom: 10px; width: 150px;">
+<figure class="align-left drop-image">
     <img src="/assets/images/unify-web-presence-square.jpg">
 </figure>
 

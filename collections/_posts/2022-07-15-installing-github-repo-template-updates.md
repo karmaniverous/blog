@@ -11,7 +11,7 @@ tags:
   - git
 ---
 
-<figure class="align-left" style="margin-top: 10px; margin-bottom: 10px; width: 150px;">
+<figure class="align-left drop-image">
     <img src="/assets/images/git-diff-square.png">
 </figure>
 

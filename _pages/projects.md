@@ -1,6 +1,6 @@
 ---
-permalink: /portfolio/
-title: 'Portfolio'
+permalink: /projects/
+title: 'Projects'
 layout: single
 author_profile: true
 share: true
@@ -8,7 +8,9 @@ toc: true
 toc_sticky: true
 ---
 
-Some of these are projects I've worked on, and some are super-useful tools I've created. Built for you with ❤️ on Bali!
+Some of these are projects I've worked on, and some are super-useful tools I've created.
+
+Built for you with ❤️ on Bali!
 
 ## VeteranCrowd
 
@@ -42,7 +44,7 @@ This template puts it all together in a way that just WORKS, right out of the bo
 
 I use this template for all of my Typescript projects, and I keep it up-to-date with the latest tools & best practices. So use it with confidence!
 
-[See it on GitHub!](https://github.com/karmaniverous/npm-package-template-ts){:
+[<i class="fa-brands fa-github fa-2xl"></i>](https://github.com/karmaniverous/npm-package-template-ts){:
 .btn .btn--primary
 .btn--large}
 
@@ -50,7 +52,7 @@ I use this template for all of my Typescript projects, and I keep it up-to-date 
 
 Reversibly transform unserializable values into serializable ones. Includes Redux middleware.
 
-[See it on GitHub!](https://github.com/karmaniverous/serify-deserify){:
+[<i class="fa-brands fa-github fa-2xl"></i>](https://github.com/karmaniverous/serify-deserify){:
 .btn .btn--primary
 .btn--large}
 
@@ -59,9 +61,9 @@ Reversibly transform unserializable values into serializable ones. Includes Redu
 Config-driven, enterprise-grade, open-source application infrastructure. DRY as a bone!
 
 <div class="button-row--left">
-    <a href="https://github.com/karmaniverous/metastructure" class="btn btn--primary btn--large">See it on GitHub!</a>
+    <a href="https://github.com/karmaniverous/metastructure/wiki" class="btn btn--info btn--large">Project Docs</a>
 
-    <a href="https://github.com/karmaniverous/metastructure/wiki" class="btn btn--info btn--large">Read the Wiki!</a>
+    <a href="https://github.com/karmaniverous/metastructure" class="btn btn--primary btn--large"><i class="fa-brands fa-github fa-2xl"></i></a>
 
 </div>
 
@@ -70,9 +72,9 @@ Config-driven, enterprise-grade, open-source application infrastructure. DRY as 
 Configurably decorate entity objects with sharded index keys.
 
 <div class="button-row--left">
-    <a href="https://github.com/karmaniverous/entity-manager" class="btn btn--primary btn--large">See it on GitHub!</a>
+    <a href="/projects/entity-manager" class="btn btn--info btn--large">Project Docs</a>
 
-    <a href="https://docs.karmanivero.us/entity-manager" class="btn btn--info btn--large">API Docs</a>
+    <a href="https://github.com/karmaniverous/entity-manager" class="btn btn--primary btn--large"><i class="fa-brands fa-github fa-2xl"></i></a>
 
 </div>
 
@@ -80,7 +82,7 @@ Configurably decorate entity objects with sharded index keys.
 
 Manage environment variables from dotenv files across multiple environments. Supports async/CLI operations, dynamic variables, custom CLI creation & more!
 
-[See it on GitHub!](https://github.com/karmaniverous/get-dotenv){:
+[<i class="fa-brands fa-github fa-2xl"></i>](https://github.com/karmaniverous/get-dotenv){:
 .btn .btn--primary
 .btn--large}
 
@@ -88,7 +90,7 @@ Manage environment variables from dotenv files across multiple environments. Sup
 
 Write variable expressions in serverless.yml using the full Lodash feature set, plus some extra goodies!
 
-[See it on GitHub!](https://github.com/karmaniverous/serverless-lodash-plugin){:
+[<i class="fa-brands fa-github fa-2xl"></i>](https://github.com/karmaniverous/serverless-lodash-plugin){:
 .btn .btn--primary
 .btn--large}
 
@@ -96,7 +98,7 @@ Write variable expressions in serverless.yml using the full Lodash feature set, 
 
 An AutoHotKey script that launches VS Code from File Explorer when you type Alt-Win-.
 
-[See it on GitHub!](https://github.com/karmaniverous/dot-code){:
+[<i class="fa-brands fa-github fa-2xl"></i>](https://github.com/karmaniverous/dot-code){:
 .btn .btn--primary
 .btn--large}
 
@@ -104,7 +106,7 @@ An AutoHotKey script that launches VS Code from File Explorer when you type Alt-
 
 A hyper-generic JSON mapping library.
 
-[See it on GitHub!](https://github.com/karmaniverous/jsonmap){:
+[<i class="fa-brands fa-github fa-2xl"></i>](https://github.com/karmaniverous/jsonmap){:
 .btn .btn--primary
 .btn--large}
 
@@ -113,9 +115,9 @@ A hyper-generic JSON mapping library.
 String utilities & tagged template functions I use a lot. Super tree-shakable package so use what you need at very little cost!
 
 <div class="button-row--left">
-    <a href="https://github.com/karmaniverous/string-utilities" class="btn btn--primary btn--large">See it on GitHub!</a>
-
     <a href="https://docs.karmanivero.us/string-utilities" class="btn btn--info btn--large">API Docs</a>
+
+    <a href="https://github.com/karmaniverous/string-utilities" class="btn btn--primary btn--large"><i class="fa-brands fa-github fa-2xl"></i></a>
 
 </div>
 
@@ -123,7 +125,7 @@ String utilities & tagged template functions I use a lot. Super tree-shakable pa
 
 Convert complex JSON objects to Terraform notation.
 
-[See it on GitHub!](https://github.com/karmaniverous/json2tf){:
+[<i class="fa-brands fa-github fa-2xl"></i>](https://github.com/karmaniverous/json2tf){:
 .btn .btn--primary
 .btn--large}
 
@@ -132,8 +134,8 @@ Convert complex JSON objects to Terraform notation.
 Mock DynamoDB-style query & scan behavior with local JSON data.
 
 <div class="button-row--left">
-    <a href="https://github.com/karmaniverous/mock-db" class="btn btn--primary btn--large">See it on GitHub!</a>
-
     <a href="https://docs.karmanivero.us/mock-db" class="btn btn--info btn--large">API Docs</a>
+
+    <a href="https://github.com/karmaniverous/mock-db" class="btn btn--primary btn--large"><i class="fa-brands fa-github fa-2xl"></i></a>
 
 </div>

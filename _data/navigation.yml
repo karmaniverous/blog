@@ -1,24 +1,19 @@
 # main links
 main:
-  - title: 'Portfolio'
-    url: /portfolio/
+  - title: 'Projects'
+    url: /projects/
   - title: 'Archive'
     url: /posts/
   - title: 'Tags'
     url: /tags/
 
 entity-manager:
-  - title: Get entity-manager
+  - title: Entity Manager
     children:
+      - title: Introduction
+        url: /projects/entity-manager/intro/
+      - title: '&nbsp;'
       - title: GitHub
         url: https://github.com/karmaniverous/entity-manager
       - title: NPM
         url: https://npmjs.com/karmaniverous/entity-manager
-  - title: 'API'
-    url: https://docs.karmanivero.us/entity-manager
-  - title: Documentation
-    children:
-      - title: Intro
-        url: projects/entity-manager/intro
-      - title: Querying Data
-        url: projects/entity-manager/querying-data
