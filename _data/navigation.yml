@@ -12,8 +12,10 @@ entity-manager:
     children:
       - title: Introduction
         url: /projects/entity-manager/intro/
+      - title: SQL vs NoSQL
+        url: /projects/entity-manager/sql-vs-nosql/
       - title: '&nbsp;'
-      - title: GitHub
+      - title: <i class="fa-brands fa-github fa-lg"></i>&nbsp;&nbsp;GitHub
         url: https://github.com/karmaniverous/entity-manager
-      - title: NPM
+      - title: <i class="fa-solid fa-heart fa-lg"></i>&nbsp;&nbsp;NPM
         url: https://www.npmjs.com/package/@karmaniverous/entity-manager

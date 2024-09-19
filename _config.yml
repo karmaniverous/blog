@@ -338,5 +338,6 @@ collections:
   entity-manager:
     order:
       - intro.md
+      - sql-vs-nosql.md
     output: true
     permalink: projects/:collection/:path/
