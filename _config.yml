@@ -325,10 +325,11 @@ defaults:
       type: 'entity-manager'
     values:
       layout: single
-      read_time: false
+      read_time: true
       author_profile: false
-      share: false
+      share: true
       comments: false
+      toc: true
       toc_sticky: true
       sidebar:
         nav: 'entity-manager'

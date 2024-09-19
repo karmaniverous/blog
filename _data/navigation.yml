@@ -16,4 +16,4 @@ entity-manager:
       - title: GitHub
         url: https://github.com/karmaniverous/entity-manager
       - title: NPM
-        url: https://npmjs.com/karmaniverous/entity-manager
+        url: https://www.npmjs.com/package/@karmaniverous/entity-manager
