@@ -88,17 +88,17 @@ Entity Manager takes a highly opinionated approach to this pattern. If we start 
 
 A data object in a DynamoDB table is uniquely identified by its _primary key_. This can take one of two forms, chosen at design time:
 
-- a _simple primary key_ is a single property that uniquely identifies the object. In DynamoDB-land, this is called the _partition key_. In more general NoSQL terms, this is a _hash key_.
+- a **simple primary key** is a single property that uniquely identifies the object. In DynamoDB-land, this is called the _partition key_. In more general NoSQL terms, this is a _hash key_.
 
-- a _composite primary key_ is a combination of two properties that uniquely identify the object. In DynamoDB-land, these are the _partition key_ and the _sort key_. In more general NoSQL terms, this is a _hash key_ and a _range key_.
+- a **composite primary key** is a combination of two properties that uniquely identify the object. In DynamoDB-land, these are the _partition key_ and the _sort key_. In more general NoSQL terms, this is a _hash key_ and a _range key_.
 
-For reasons that will become clear, Entity Manager requires a composite primary key for all data entities. And to keep this discussion as general as possible, we'll refer to its components as the _hash key_ and _range key_.
+For reasons that will become clear, **Entity Manager requires a composite primary key for all data entities**. And to keep this discussion as general as possible, we'll refer to its components as the _hash key_ and _range key_.
 
-All high-performance NoSQL databases (including DynamoDB) makes a clear distinction between two very different kinds of data retrieval operations:
+All high-performance NoSQL databases (including DynamoDB) make a clear distinction between two very different kinds of data retrieval operations:
 
-- **Scan** operations read _every_ record in a table. At scale, finding an individual record with a scan is _very_ slow and _very_ expensive. Scans are to be avoided whenever possible.
+- **Scan** operations read _every_ record in a table. At scale, finding an individual record with a scan is _very_ slow and _very_ expensive. _Scans are to be avoided whenever possible._
 
-- **Query** operations read _an ordered subset_ of records in a table. At scale, finding an individual record with a query is _very_ fast and _very_ cheap. Queries are the preferred way to access data in a NoSQL database.
+- **Query** operations read _an ordered subset_ of records in a table. At scale, finding an individual record with a query is _very_ fast and _very_ cheap. _Queries are the preferred way to access data in a NoSQL database._
 
 In DynamoDB and other NoSQL databases, whatever else may be true, queries obey one hard rule: **a query can only be performed on records with the same hash key!**
 
@@ -124,7 +124,7 @@ Leaving out other properties, here's what two such records might look like:
 
 While this strategy does support the query, it fails to support an even more fundamental data operation: retrieving an individual record by its unique identifier.
 
-If we have reserved the hash key to differentiate between User and Email records, and we want to retrieve either one by its unique identifier, then we have no other choice: the range key _must_ contain the record's unique identifier! But there's a problem: whereas both the User and Email records had a `created` property, they use _different_ properties for their unique identifiers.
+If we have reserved the hash key to differentiate between User and Email records, and we want to retrieve either one by its unique identifier, then we have no other choice: **the range key _must_ contain the record's unique identifier!** But there's a problem: whereas both the User and Email records had a `created` property, they use _different_ properties for their unique identifiers.
 
 The range key must be the same property on every record, so we'll have to create another new property:
 
