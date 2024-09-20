@@ -1,13 +1,15 @@
 ---
 title: SQL vs NoSQL
-permalink: /projects/entity-manager/sql-vs-nosql/
+excerpt: A well-tuned NoSQL database can outperform an RDBMS by orders of magnitude at scale... but not for free! **Entity Manager** helps close the gap.
 header:
-  og_image: /assets/collections/entity-manager/project-banner.jpg
-  teaser: /assets/collections/entity-manager/project-logo-square.jpg
+  og_image: /assets/collections/entity-manager/sql-vs-nosql-banner.jpg
+  overlay_image: /assets/collections/entity-manager/sql-vs-nosql-banner-half.jpg
+  teaser: /assets/collections/entity-manager/sql-vs-nosql-logo-square.jpg
+permalink: /projects/entity-manager/sql-vs-nosql/
 ---
 
 <figure class="align-left drop-image">
-    <img src="/assets/collections/entity-manager/project-logo-square.jpg">
+    <img src="/assets/collections/entity-manager/sql-vs-nosql-square.jpg">
 </figure>
 
 Traditional [Relational Database Management Systems](https://en.wikipedia.org/wiki/Relational_database) like [MySQL](https://www.mysql.com/) and [SQL Server](https://www.microsoft.com/en-us/sql-server) provide a high degree of flexibility in specifying data schemas and querying data. These advantages come at the cost of performance at scale.
@@ -74,4 +76,18 @@ Based on the developer's schema configuration and query parameters, **Entity Man
 
 - return a combined, deduped, sorted result set along with an efficiently dehydrated page key for the next query.
 
-> **Entity Manager** completely decouples the way NoSQL data queried from the way it is scaled.
+> **Entity Manager** completely decouples the way NoSQL data is queried from the way it is scaled.
+
+## Closing the Gap
+
+RDBMS systems have been around for a long time. These platforms are mature, and there is a vast ecosystem of tools and libraries that support them. They offer natural abstractions that make them easy to learn, efficient to implement, and safe to maintain in production.
+
+NoSQL databases are relatively new. They offer high performance at scale, but they require a developer to understand and exploit low-level details like indexing and partitioning to achieve that performance. They offer no natural abstractions to help a developer manage the complexity of these details.
+
+A NoSQL database is often _not_ the right choice. But when it is, these two outcomes happen more often than they should:
+
+- **Developers will choose an RDBMS anyway**, trading a perception of safety against performance at scale. The end result is often a risky and expensive rebuild in the future as the application scales.
+
+- **Developers will choose NoSQL but implement it wrong**, by avoiding strong patterns like the [single-table design pattern](https://aws.amazon.com/blogs/compute/creating-a-single-table-design-with-amazon-dynamodb/) out of fear of the resulting complexity. The end result is often the worst of both worlds: complexity _and_ poor performance at scale.
+
+**Entity Manager** helps close this gap by encapsulating much of the complexity of a NoSQL implementation. This allows a developer to achieve the scalability & performance of a NoSQL database with a level of flexibility and safety approaching that of a traditional RDBMS.

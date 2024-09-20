@@ -333,8 +333,6 @@ Traditionally, Story Points have been a purely relative measure, not connected t
 
 To keep things easy and conservative, Story Point estimates are drawn from a limited palette of numbers (often [some variation on a Fibonacci sequence](https://www.productplan.com/glossary/fibonacci-agile-estimation/)). Whatever your estimate is, choose the smallest number equal to or greater than it from the list.
 
-{: .notice--info}
-
 Valid Story Point values at Karmaniverous are none (i.e. not yet sized), 0 (i.e. a trivial piece of work), 0.25, 0.5, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89...
 
 A two-week Sprint comprises 10 working days. An Issue may only be assigned to a Sprint is it can be completed within that Sprint. The largest valid Story Point value that fits inside a Sprint is 8. Therefore no Issue worth more than 8 Story Points may be assigned to a Sprint!

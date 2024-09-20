@@ -226,7 +226,7 @@ timezone: # https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
 
 # Pagination with jekyll-paginate
 paginate: 8 # amount of posts to show
-paginate_path: /page:num/
+paginate_path: /page/:num/
 
 # Pagination with jekyll-paginate-v2
 # See https://github.com/sverrirs/jekyll-paginate-v2/blob/master/README-GENERATOR.md#site-configuration
@@ -234,7 +234,7 @@ paginate_path: /page:num/
 pagination:
   # Set enabled to true to use paginate v2
   # enabled: true
-  debug: false
+  debug: true
   collection: 'posts'
   per_page: 8
   permalink: '/page/:num/'
@@ -324,20 +324,28 @@ defaults:
       path: ''
       type: 'entity-manager'
     values:
+      author_profile: false
+      comments: false
+      header:
+        actions:
+          - label: <i class="fa-brands fa-github fa-2xl"></i>
+            url: https://github.com/karmaniverous/entity-manager
+          - label: <i class="fa-brands fa-npm fa-2xl"></i>
+            url: https://npmjs.com/package/@karmaniverous/entity-manaager
+        caption: '[**Entity Manager** project documentation](/projects/entity-manager/)'
+        overlay_filter: rgba(32, 0, 32, 0.6)
+        overlay_image: /assets/collections/entity-manager/entity-manager-banner-half.jpg
+        og_image: /assets/collections/entity-manager/entity-manager-banner.jpg
+        teaser: /assets/collections/entity-manager/entity-manager-logo-square.jpg
       layout: single
       read_time: true
-      author_profile: false
       share: true
-      comments: false
-      toc: true
-      toc_sticky: true
       sidebar:
         nav: 'entity-manager'
+      toc_sticky: true
+      toc: true
 
 collections:
   entity-manager:
-    order:
-      - intro.md
-      - sql-vs-nosql.md
     output: true
     permalink: projects/:collection/:path/
