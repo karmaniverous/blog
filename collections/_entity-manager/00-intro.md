@@ -10,14 +10,14 @@ redirect_from:
     <img src="/assets/collections/entity-manager/entity-manager-square.jpg">
 </figure>
 
-The **Entity Manager** package implements rational indexing & cross-shard querying at scale in your NoSQL database so you can focus on your application logic.
+The **Entity Manager** package implements rational indexing & cross-shard querying at scale in your [NoSQL](https://en.wikipedia.org/wiki/NoSQL) database so you can focus on your application logic.
 
 Traditional [relational database](https://en.wikipedia.org/wiki/Relational_database) systems like [MySQL](https://www.mysql.com/) implement indexing & scaling strategies at a platform level based on schemas defined at design time.
 
 **This documentation is under construction!** There is a _lot_ to unpack here, so it will be a few weeks before I can call it done. Meanwhile, please feel free to [reach out](https://github.com/karmaniverous/entity-manager/discussions) with any questions or feedback!
 {: .notice--info}
 
-[NoSQL](https://en.wikipedia.org/wiki/NoSQL) platforms like [DynamoDB](https://aws.amazon.com/dynamodb/) offer far better performance at scale, but structured index & shard keys must be defined as data elements and exploited by application logic in data retrieval & cross-shard queries.
+NoSQL platforms like [DynamoDB](https://aws.amazon.com/dynamodb/) offer far better performance at scale, but structured index & shard keys must be defined as data elements and exploited by application logic in data retrieval & cross-shard queries.
 
 > NoSQL shifts the burden of complexity from the database platform to the developer. **Entity Manager** sweeps it under the rug.
 
