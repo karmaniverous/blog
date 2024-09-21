@@ -4,7 +4,7 @@ excerpt: A well-tuned NoSQL database can outperform an RDBMS by orders of magnit
 header:
   og_image: /assets/collections/entity-manager/sql-vs-nosql-banner.jpg
   overlay_image: /assets/collections/entity-manager/sql-vs-nosql-banner-half.jpg
-  teaser: /assets/collections/entity-manager/sql-vs-nosql-logo-square.jpg
+  teaser: /assets/collections/entity-manager/sql-vs-nosql-square.jpg
 permalink: /projects/entity-manager/sql-vs-nosql/
 ---
 

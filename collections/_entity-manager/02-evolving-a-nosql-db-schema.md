@@ -1,11 +1,15 @@
 ---
 title: Evolving a NoSQL Database Schema
-excerpt: Some words about evolving a NoSQL database schema.
+excerpt: In a NoSQL environment, **Entity Manager** organizes the physical distribution of data to support efficient query operations.
 permalink: /projects/entity-manager/evolving-a-nosql-db-schema/
+header:
+  og_image: /assets/collections/entity-manager/evolving-a-nosql-db-schema-banner.jpg
+  overlay_image: /assets/collections/entity-manager/evolving-a-nosql-db-schema-banner-half.jpg
+  teaser: /assets/collections/entity-manager/evolving-a-nosql-db-schema-square.jpg
 ---
 
 <figure class="align-left drop-image">
-    <img src="/assets/collections/entity-manager/entity-manager-square.jpg">
+    <img src="/assets/collections/entity-manager/evolving-a-nosql-db-schema-square.jpg">
 </figure>
 
 **Entity Manager** works by interpreting your configured database schema in a very particular, very opinionated way.
@@ -76,7 +80,7 @@ An Email record has no `updated` property becuase no property on the Email recor
 
 The primary job of a table in a relational database is to support [schema & query abstraction](/projects/entity-manager/sql-vs-nosql). Tables are intended to map cleanly to data entities, and **it is the database engine's job to organize the physical distribution of data** to support efficient query operations.
 
-> Highly available data is in one physical location.
+> To be highly available, data must be in one physical location.
 
 In a DynamoDB database (as with any NoSQL database) there is no such abstraction layer. Consequently, **it is the developer's job to organize the physical distribution of data** to support efficient query operations.
 
