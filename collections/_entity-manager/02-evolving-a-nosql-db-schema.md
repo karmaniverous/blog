@@ -57,7 +57,7 @@ Here's the resulting data model (see the entity notes below for more info):
 | `userId`             | `string` | Unique id of User. _This value never changes!_                                                   |
 | `updated`            | `number` | Timestamp of last record update.                                                                 |
 
-`firstNameCanonical` and `lastNameCanonical` are provided to support searching for Users by name. Canonicalizing a name converts it to a consisten case and removes diacritics and non-word characters. So _Gómez-Juárez-Álvarez_ becomes _gomezjuarezalvarez_.
+`firstNameCanonical` and `lastNameCanonical` are provided to support searching for Users by name. Canonicalizing a name converts it to a consistent case and removes diacritical marks and non-word characters. So _Gómez-Juárez-Álvarez_ becomes _gomezjuarezalvarez_.
 
 **_Why doesn't Entity Manager perform canonicalization internally?_** All **Entity Manager** data transformations are _reversible_ to support safe data migration. Canonicalization throws away data, so your application should perform any canonicalization _before_ sending data to **Entity Manager**.
 {: .notice--info}
@@ -80,9 +80,9 @@ The primary job of a table in a relational database is to support [schema & quer
 
 In a DynamoDB database (as with any NoSQL database) there is no such abstraction layer. Consequently, **it is the developer's job to organize the physical distribution of data** to support efficient query operations.
 
-In order to be physicaly "close" to one another in any meaningful sense, related DynamoDB data entities _must_ be stored in the same table. This is the origin of the [single-table design pattern](https://aws.amazon.com/blogs/compute/creating-a-single-table-design-with-amazon-dynamodb/).
+In order to be physicaly "close" to one another in any meaningful sense, related DynamoDB records _must_ be stored in the same table. This is the origin of the [single-table design pattern](https://aws.amazon.com/blogs/compute/creating-a-single-table-design-with-amazon-dynamodb/).
 
-Entity Manager takes a highly opinionated approach to this pattern. If we start from the assumption that all User and Email entities MUST live on the same table, the following sections will explain the design constraints at work in DynamoDB and how to implement a table design that Entity Manager can support.
+Entity Manager takes a highly opinionated approach to this pattern. We'll start from the assumption that all User and Email entities _must_ live on the same table, and the following sections will explain the design constraints at work in DynamoDB and how to implement a table design that Entity Manager can support.
 
 ### Keys, Indexes & Queries
 
@@ -92,7 +92,7 @@ A record in a DynamoDB table is uniquely identified by its _primary key_. This c
 
 - a **composite primary key** is a combination of two properties that uniquely identify the record. In DynamoDB-land, these are the _partition key_ and the _sort key_. In more general NoSQL terms, these are respectively a _hash key_ and a _range key_.
 
-For reasons that will become clear, **Entity Manager requires a composite primary key for all data entities**. To keep this discussion as general as possible, we'll refer to its components as the _hash key_ and the _range key_.
+For reasons that will become clear below, **Entity Manager requires a composite primary key for all data entities**. To keep this discussion as general as possible, we'll refer to its components as the _hash key_ and the _range key_.
 
 All high-performance NoSQL databases (including DynamoDB) make a clear distinction between two very different kinds of data retrieval operations:
 
@@ -114,9 +114,9 @@ We will discuss [secondary indexes](#secondary-indexes) in the next section, but
 
 In a query:
 
-- The hash key is _fixed_, so the return set is limited to records with a hash key value equal to the query parameter.
+- The hash key is _fixed_, so the return set is limited to records with a hash key value equal to the query's hash key parameter.
 
-- Within the constraints set by the hash key parameter, records are quickly compared to range key constraints to find records with range key values that are equal to, greater than, less than, or between the query parameters.
+- Within the constraints set by the hash key parameter, records are quickly compared to range key constraints to find records with range key values that are equal to, greater than, less than, or between the query's range key parameters.
 
 The most fundamental kind of query retrieves a single record of a given entity type by its unique identifier. Our table design must support this kind of query, therefore:
 
@@ -124,7 +124,7 @@ The most fundamental kind of query retrieves a single record of a given entity t
 
 - A record's _range key_ must contain its unique identifier.
 
-If you examine the User and Email entities in our data model, you'll see that there is no property on either that identifies the entity type. We will need to create this property.
+If you examine the User and Email entities in our [data model](#user-service-data-model), you'll see that there is no property on either that identifies the entity type. We will need to create this property.
 
 Also, while each entity has a unique identifier, these exist on _different_ properties. DynamoDB expects to find a range key on the _same_ property of every record. We will therefore need to create a new property for the range key as well.
 
@@ -137,7 +137,7 @@ Leaving out other properties, here's what two such records might look like. The 
 | ⚙️  | `rangeKey` | `'userId#wf5yU_5f63gqauSOLpP5O'` | `'email#me@karmanivero.us'` |
 |     | `userId`   | `'wf5yU_5f63gqauSOLpP5O'`        | `'wf5yU_5f63gqauSOLpP5O'`   |
 
-Note that the generated `rangeKey` property value contains the unique property _name_ as well as its value! This is an important Entity Manager feature that enables the safe construction of composite keys and super-efficient query at scale. More on this to come!
+Note that the generated `rangeKey` property value contains the unique property _name_ as well as its value! This is an important **Entity Manager** feature that enables the safe construction of composite keys and super-efficient query at scale. More on this to come!
 {: .notice--info}
 
 ### Secondary Indexes
@@ -153,7 +153,7 @@ This is a good start, but here are a few other obvious cases we might need to su
 
 Remember that DynamoDB has _physically organized_ our User service table data according to our primary key design. If we want to write a query that uses a different property as its hash or range key, we need to create a [secondary index](https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/SecondaryIndexes.html).
 
-The technical details of secondary indexes are beyond the scope of this document but are easily accessible for your data platform. The sections below will focus on how Entity Manager interacts with them.
+The technical details of secondary indexes are beyond the scope of this document but are easily accessible for your data platform. The sections below will focus on the relevant record properties and how Entity Manager interacts with them.
 {: .notice--info}
 
 #### Simple Range Key Index
@@ -165,33 +165,39 @@ If we'd like to find a list of Users created in the past 30 days, then we need a
 - differentiate by entity type, and
 - sort by creation date.
 
-Here's what the index might look like:
+We could use the same argument to find users whose records were recently updated. And while we're at it, we'd also like to be able to find a User by a piece of his phone number!
+
+Here's what the required indexes might look like:
 
 | Index     | Index Component | Record Property |
 | --------- | --------------- | --------------- |
 | `created` | Hash Key        | `hashKey`       |
 |           | Range Key       | `created`       |
+| `phone`   | Hash Key        | `hashKey`       |
+|           | Range Key       | `phone`         |
+| `updated` | Hash Key        | `hashKey`       |
+|           | Range Key       | `updated`       |
 
-This index requires us to generate no new properties beyond what we created above, and has the added advantage of allowing us to find Email records by creation date as well.
+These indexes require us to generate no new properties beyond what we created above, and have the added advantage of allowing us to find Email records by creation date as well (remember, the Email entity has no `phone` or `updated` properties).
 
 #### Composite Range Key Index
 
 Our next task is to create an index that lets us query User records by the first letter of `firstName`. This is a bit more complex.
 
-Recall the every query implicitly includes a _sort_ as well. How would we like our result set to be sorted?
+Recall that every query implicitly includes a _sort_ as well. How would we like our result set to be sorted?
 
 Naively, we might consider an index like this:
 
-| Index       | Index Component | Record Property |
-| ----------- | --------------- | --------------- |
-| `firstName` | Hash Key        | `hashKey`       |
-|             | Range Key       | `firstName`     |
+| Index       | Index Component | Record Property      |
+| ----------- | --------------- | -------------------- |
+| `firstName` | Hash Key        | `hashKey`            |
+|             | Range Key       | `firstNameCanonical` |
 
-The problem with this approach is that, while the result set _will_ be sorted by first name, all of the "John" records will appear in an effectively random order. Intuitively, we'd like those to appear in a useful order as well, say by `lastName`.
+The problem with this approach is that, while the result set _will_ be sorted by first name, all of the "John" records will appear in an effectively random order. Intuitively, we'd like those to appear in a useful order as well, say by `lastNameCanonical`.
 
-To achieve this, we need to create a new property that combines `firstName` and `lastName` in a way that allows us to query by `firstName` and sort by `lastName`. Also, while we are at it, it probably makes sense to be able to do the same thing on the basis of `lastName`.
+To achieve this, we need to create a new property that combines `firstNameCanonical` and `lastNameCanonical` in a way that allows us to query by `firstNameCanonical` and sort by `lastNameCanonical`. Also, while we are at it, it probably makes sense to be able to do the same thing on the basis of `lastNameCanonical`.
 
-Finally, as our system scales into millions of users, we will probably have more than one "John Smith" in the database. In these cases, it still makes sense to have some kind of rational sort, even if we won't be likely to _search_ on it. So let's sort by `created` in the case of a tie.
+Finally, as our system scales into millions of users, we will probably have more than one "John Smith" in the database. In these cases, it still makes sense to have some kind of rational sort, even if we won't be likely to _search_ on it. So let's sort by `created` or `updated` in case of a tie.
 
 Here are our sample records from above, with the relevant properties added:
 
@@ -206,8 +212,10 @@ Here are our sample records from above, with the relevant properties added:
 |     | `lastName`           | `'Williscroft'`                  |                               |
 |     | `lastNameCanonical`  | `'williscroft'`                  |                               |
 | ⚙️  | `lastNameRangeKey`   | `'lastNameCanonical#williscroft  | firstNameCanonical#jason      | created#1726880933'` |     |
+|     | `[phone]`            | `'17739999999'`                  |                               |
 | ⚙️  | `rangeKey`           | `'userId#wf5yU_5f63gqauSOLpP5O'` | `'email#me@karmanivero.us'`   |
 |     | `userId`             | `'wf5yU_5f63gqauSOLpP5O'`        | `'wf5yU_5f63gqauSOLpP5O'`     |
+|     | `updated`            | `1726880933`                     |                               |
 
 A couple of key points:
 
@@ -225,6 +233,10 @@ Here's the full set of indexes our table now supports:
 |             | Range Key       | `firstNameRangeKey` |
 | `lastName`  | Hash Key        | `hashKey`           |
 |             | Range Key       | `lastNameRangeKey`  |
+| `phone`     | Hash Key        | `hashKey`           |
+|             | Range Key       | `phone`             |
+| `updated`   | Hash Key        | `hashKey`           |
+|             | Range Key       | `updated`           |
 
 #### Alternate Hash Key Index
 
@@ -235,9 +247,9 @@ To find all email records for a given User, we have a couple of choices. Here's 
 | `user` | Hash Key        | `hashKey`       |
 |        | Range Key       | `userId`        |
 
-If my query specifies a hash key of `user` a range constraint of `equal to 'wf5yU_5f63gqauSOLpP5O'`, then my query will indeed return all email records for the User with `userId` equal to `wf5yU_5f63gqauSOLpP5O`. But there are a couple of problems with this approach:
+If my query specifies a hash key of `email` a range constraint of `equal to 'wf5yU_5f63gqauSOLpP5O'`, then my query will indeed return all email records for the User with `userId` equal to `'wf5yU_5f63gqauSOLpP5O'`. But there are a couple of problems with this approach:
 
-- The range key values are a nanoid: effectively a random string. This will allow me to find a match, but the resulting sort order is not likely to be useful.
+- The range key values are a [nanoid](https://github.com/ai/nanoid): effectively a random string. This will allow me to find a match, but the resulting sort order is not likely to be useful.
 
 - The range key constraint is operating against _all emails in the system_. A different choice of hash key would narrow this down and give us better performance.
 
@@ -247,18 +259,20 @@ Instead, let's try this:
 | ------------- | --------------- | --------------- |
 | `userCreated` | Hash Key        | `userId`        |
 |               | Range Key       | `created`       |
+| `userUpdated` | Hash Key        | `userId`        |
+|               | Range Key       | `updated`       |
 
-Setting the index hash key to `userId` has _significantly_ limited the record set any range key constraint is applied against. In fact, to satisfy the our test case (finding the Emails of a given User), we don't need a range key constraint at all! The range key will simply sort our records in a useful way: by creation date.
+Setting these index hash keys to `userId` has _significantly_ limited the record set any range key constraint is applied against. In fact, to satisfy the our test case (finding the Emails of a given User), we don't need a range key constraint at all! The indexes will simply sort our records in a useful way: by `created` or `updated`, respectively.
 
 Note that we didn't need to create any new generated properties to support this case.
 
 #### External Hash Key Index
 
-Our final case was to find all User records for a given Beneficiary.
+Our final case was to find all User records for a given Beneficiary, sorted either by `created` or `updated`.
 
 On one hand, this is interesting because `beneficiaryId` is a property of the Beneficiary entity, which lives on [another service](#a-microservices-application).
 
-On the other hand, this should feel familiar: just as with `userId`, we can use the hash key on our new index to constrain the result set down to just the User records we're interested in.
+On the other hand, this should feel familiar: just as with `userId` above, we can use the hash keys on our new indexes to constrain the result sets down to just the User records we're interested in.
 
 Here's the index:
 
@@ -266,16 +280,16 @@ Here's the index:
 | -------------------- | --------------- | --------------- |
 | `beneficiaryCreated` | Hash Key        | `beneficiaryId` |
 |                      | Range Key       | `created`       |
+| `beneficiaryUpdated` | Hash Key        | `beneficiaryId` |
+|                      | Range Key       | `updated`       |
 
-Note that User and Email records on our table _both_ have a `created` property. So in addition to finding all User records for a given Beneficiary, this index also supports:
+This indexes support:
 
-- Finding all Emails of Users related to a Beneficiary.
+- Finding the oldest or most- or least-recently created or updated User records for a given Beneficiary.
 
-- Finding the oldest or most recently created User records for a given Beneficiary.
+- Displaying a Beneficiary's Users in the order they were created or updated.
 
-- Displaying a Beneficiary's Users in the order they were created.
-
-While we're at it, though, consider that a Beneficiary Manager will likely also want to sort and search related Users by name. So let's add these indexes:
+While we're at it, though, consider that a Beneficiary Manager will likely also want to sort and search related Users by name, and perhaps locate them by phone number. So let's add these indexes as well:
 
 | Index                  | Index Component | Record Property     |
 | ---------------------- | --------------- | ------------------- |
@@ -283,6 +297,8 @@ While we're at it, though, consider that a Beneficiary Manager will likely also 
 |                        | Range Key       | `firstNameRangeKey` |
 | `beneficiaryLastName`  | Hash Key        | `beneficiaryId`     |
 |                        | Range Key       | `lastNameRangeKey`  |
+| `beneficiaryPhone`     | Hash Key        | `beneficiaryId`     |
+|                        | Range Key       | `phone`             |
 
 #### Rounding Out Index Requirements
 
@@ -300,10 +316,9 @@ Here's a recap of our table structure so far with generated properties:
 |     | `lastName`           | `'Williscroft'`                  |                               |
 |     | `lastNameCanonical`  | `'williscroft'`                  |                               |
 | ⚙️  | `lastNameRangeKey`   | `'lastNameCanonical#williscroft  | firstNameCanonical#jason      | created#1726880933'` |     |
+|     | `[phone]`            | `'17739999999'`                  |                               |
 | ⚙️  | `rangeKey`           | `'userId#wf5yU_5f63gqauSOLpP5O'` | `'email#me@karmanivero.us'`   |
 |     | `userId`             | `'wf5yU_5f63gqauSOLpP5O'`        | `'wf5yU_5f63gqauSOLpP5O'`     |
-
-Let's add one more wrinkle with respect to indexes. In addition to listing records on order of creation, it is often very useful to know which ones were _updated_ most recently. So let's add index support for this as well.
 
 Here's a consolidated list of the resulting indexes:
 
@@ -315,6 +330,8 @@ Here's a consolidated list of the resulting indexes:
 |                        | Range Key       | `firstNameRangeKey` |
 | `beneficiaryLastName`  | Hash Key        | `beneficiaryId`     |
 |                        | Range Key       | `lastNameRangeKey`  |
+| `beneficiaryPhone`     | Hash Key        | `beneficiaryId`     |
+|                        | Range Key       | `phone`             |
 | `beneficiaryUpdated`   | Hash Key        | `beneficiaryId`     |
 |                        | Range Key       | `updated`           |
 | `created`              | Hash Key        | `hashKey`           |
@@ -323,7 +340,13 @@ Here's a consolidated list of the resulting indexes:
 |                        | Range Key       | `firstNameRangeKey` |
 | `lastName`             | Hash Key        | `hashKey`           |
 |                        | Range Key       | `lastNameRangeKey`  |
+| `phone`                | Hash Key        | `hashKey`           |
+|                        | Range Key       | `lastNameRangeKey`  |
 | `updated`              | Hash Key        | `hashKey`           |
+|                        | Range Key       | `updated`           |
+| `userCreated`          | Hash Key        | `userId`            |
+|                        | Range Key       | `created`           |
+| `userUpdated`          | Hash Key        | `userId`            |
 |                        | Range Key       | `updated`           |
 
 One thing we haven't discussed yet is [_projection_](https://docs.aws.amazon.com/amazondynamodb/latest/APIReference/API_Projection.html). Once your query has applied hash & range key constraints, you may wish to filter the result set by additional properties. These properties will need to be included in the index.
@@ -334,11 +357,13 @@ We'll address this in a later section.
 
 So far we have ignored a major issue related to scale.
 
-In [Keys, Indexes & Queries](#keys-indexes--queries) above we observed that in a NoSQL table or index, data is always partitioned by its hash key value. We also pointed out that any query is always constrained to a single hash key value, also known as a _data partition_. These observations drove the index design process above.
+In [Keys, Indexes & Queries](#keys-indexes--queries) above we observed that a NoSQL table or index always partitions data by its hash key value. We also pointed out that any query is always constrained to a single hash key value, also known as a _data partition_. These observations drove the index design process above.
 
 Here's the issue: **in a real-world NoSQL database, there is a limit to the maximum size of a data partition!**
 
-In DynamoDB, the maximum size of a data partition is 10 GB. [In the presence of a Local Secondary Index](https://repost.aws/questions/QUx0mIILjaR5GjwYllYNpbKA/in-dynamodb-what-s-partition-size-limitation-of-a-table-without-lsi) (LSI), this imposes a hard limit on the amount of data that can be indexed by a single hash key value. Without an LSI, hash key values can cross partition lines, but you will still pay a performance penalty for doing so. So even if your specific database design theoretically permits infinite partition size, it's a good practice to keep partition sizes under control.
+In DynamoDB, the maximum size of a data partition is 10 GB. [In the presence of a Local Secondary Index](https://repost.aws/questions/QUx0mIILjaR5GjwYllYNpbKA/in-dynamodb-what-s-partition-size-limitation-of-a-table-without-lsi) (LSI), this imposes a hard limit on the amount of data that can be indexed by a single hash key value. Without an LSI, hash key values can cross partition lines, but you will still pay a performance penalty for doing so.
+
+> Even if your specific database design theoretically permits infinite partition size, it's a good practice to keep partition sizes under control.
 
 Here's a breakdown of the storage requirements so far for our example User record:
 
@@ -354,15 +379,18 @@ Here's a breakdown of the storage requirements so far for our example User recor
 |     | `lastNameCanonical`  | `'williscroft'`                  |                            11 |
 | ⚙️  | `lastNameRangeKey`   | `'lastNameCanonical#williscroft  |      firstNameCanonical#jason | created#1726880933'` | 49  |
 | ⚙️  | `rangeKey`           | `'userId#wf5yU_5f63gqauSOLpP5O'` |                            28 |
+|     | `phone`              | `'17739999999'`                  |                            11 |
 |     | `userId`             | `'wf5yU_5f63gqauSOLpP5O'`        |                            21 |
-|     |                      | **Total**                        |                       **212** |
+|     |                      | **Total**                        |                       **223** |
 
-Let's nearly double this to 512 bytes (0.5 KB) per record, to account for name variations and the addition of new User properties and indexes. With this record size, we can fit 20 million User records in the single partition defined by a `hashKey` value of `user`.
+Let's nearly double this to 512 bytes (0.5 KB) per record, to account for name & phone variations and the addition of a few new User properties and indexes. With this record size, we can fit 20 million User records into the single partition defined by a `hashKey` value of `user`.
 
 **Keep in mind that our sample User record is very small!** The maximum size of a DynamoDB record is 400 KB. If your records approach this size, you only have room for 25,000 records in each data partition!
 {: .notice--info}
 
-By contrast, Facebook has around 3 _billion_ users. So if Facebook were implemented on DynamoDB with a similar User record size, it would need at least 150 partitions to store all of its User records! How would this work?
+By contrast, **Facebook has around 3 _billion_ users!** So if Facebook were implemented on DynamoDB with a similar User record size, it would need at least 150 partitions to store all of its User records!
+
+How would this work?
 
 The answer: create a **shard key**.
 
@@ -380,7 +408,7 @@ Now, as long as we are careful about assigning shard keys `'1'` and `'2'` to the
 
 Unforfunately, we've also introduced some new problems:
 
-- How do we know which shard key to use for a given User record?
+- How do we know which shard key to assign to a given User record?
 
 - How do we apply the shard key to alternate hash keys?
 
@@ -392,7 +420,7 @@ As presented above, the shard key is really a component of the hash key. And the
 
 So the shard key must be determined at the time of record creation. It must also be drawn from a limited set of possible values, since each unique shard key value produces an additional data partition that must be queried in parallel to search across all partitions.
 
-**Entity Manager** solves this problem by applying a [hash function](https://en.wikipedia.org/wiki/Hash_function) to the record's unique identifier (in this case `userId`), and constraining the output to a limited set of possible values.
+**Entity Manager** solves this problem by applying a [hash function](https://en.wikipedia.org/wiki/Hash_function) to the record's unique identifier (in this case `userId` or `email`), and constraining the output to a limited set of possible values.
 
 So in this example, given an appropriate **Entity Manager** configuration, a `userId` value of `'wf5yU_5f63gqauSOLpP5O'` will _always_ produce a `hashKey` value of `'user!1'`, and a `userId` value of `'SUv7FfJDUsWOmfQg2wp7o'` will _always_ produce a `hashKey` value of `'user!2'`.
 
@@ -404,36 +432,46 @@ In [Secondary Indexes](#secondary-indexes) above we created the following indexe
 
 | Index                  | Index Component | Record Property     |
 | ---------------------- | --------------- | ------------------- |
-| `beneficiaryCreated`   | Hash Key        | `beneficiaryId`     |
+| `beneficiaryCreated`   | Hash Key        | `beneficiaryId` 👈  |
 |                        | Range Key       | `created`           |
-| `beneficiaryFirstName` | Hash Key        | `beneficiaryId`     |
+| `beneficiaryFirstName` | Hash Key        | `beneficiaryId` 👈  |
 |                        | Range Key       | `firstNameRangeKey` |
-| `beneficiaryLastName`  | Hash Key        | `beneficiaryId`     |
+| `beneficiaryLastName`  | Hash Key        | `beneficiaryId` 👈  |
 |                        | Range Key       | `lastNameRangeKey`  |
-| `beneficiaryUpdated`   | Hash Key        | `beneficiaryId`     |
+| `beneficiaryPhone`     | Hash Key        | `beneficiaryId` 👈  |
+|                        | Range Key       | `phone`             |
+| `beneficiaryUpdated`   | Hash Key        | `beneficiaryId` 👈  |
+|                        | Range Key       | `updated`           |
+| `userCreated`          | Hash Key        | `userId` 👈         |
+|                        | Range Key       | `created`           |
+| `userUpdated`          | Hash Key        | `userId` 👈         |
 |                        | Range Key       | `updated`           |
 
-Since the records in these indexes have approximately the same cardinality as the User table itself, they also need to be sharded. Every indexed record contains a copy of the record's primary key, so even an index like `beneficiaryCreated` that does not reference `userId` directly will still contain that property and can be sharded on the basis of its value.
+But since the records in these indexes have approximately the same cardinality as the User table itself, they _also_ need to be sharded!
+
+Every indexed record contains a copy of the record's primary key, so even an index like `beneficiaryCreated` that does not reference `userId` directly will still contain that property and can be sharded on the basis of its value.
 
 We can therefore update our generated fields and index definitions to account for sharding across of all indexes on the User service table.
 
-Here's the updated set of User service table properties:
+Here's the updated set of User service table properties. I've marked the new and updated hash key properties with a 👉:
 
-| ⚙️  | Property                 | User Record                      | Email Record                          |
-| :-: | ------------------------ | -------------------------------- | ------------------------------------- | -------------------- | --- |
-|     | `beneficiaryId`          | `'JCcwi4vyqwMJdaBwbjLG3'`        |                                       |
-|     | `created`                | `1726880933`                     | `1726880947`                          |
-|     | `email`                  |                                  | `'me@karmanivero.us'`                 |
-| ⚙️  | `hashKey`                | `'user!1'`                       | `'email!'`                            |
-|     | `firstName`              | `'Jason'`                        |                                       |
-|     | `firstNameCanonical`     | `jason`                          |                                       |
-| ⚙️  | `firstNameRangeKey`      | `'firstNameCanonical#jason       | lastNameCanonical#williscroft         | created#1726880933'` |     |
-|     | `lastName`               | `'Williscroft'`                  |                                       |
-|     | `lastNameCanonical`      | `'williscroft'`                  |                                       |
-| ⚙️  | `lastNameRangeKey`       | `'lastNameCanonical#williscroft  | firstNameCanonical#jason              | created#1726880933'` |     |
-| ⚙️  | `rangeKey`               | `'userId#wf5yU_5f63gqauSOLpP5O'` | `'email#me@karmanivero.us'`           |
-| ⚙️  | `userBeneficiaryHashKey` | `'user!1                         | beneficiaryId#JCcwi4vyqwMJdaBwbjLG3'` |                      |
-|     | `userId`                 | `'wf5yU_5f63gqauSOLpP5O'`        | `'wf5yU_5f63gqauSOLpP5O'`             |
+|    ⚙️    | Property                 | User Record                      | Email Record                          |
+| :------: | ------------------------ | -------------------------------- | ------------------------------------- | -------------------- | ------------------------------ | --- |
+|          | `beneficiaryId`          | `'JCcwi4vyqwMJdaBwbjLG3'`        |                                       |
+|          | `created`                | `1726880933`                     | `1726880947`                          |
+|          | `email`                  |                                  | `'me@karmanivero.us'`                 |
+| ⚙️<br>👉 | `hashKey`                | `'user!1'`                       | `'email!'`                            |
+|          | `firstName`              | `'Jason'`                        |                                       |
+|          | `firstNameCanonical`     | `jason`                          |                                       |
+|    ⚙️    | `firstNameRangeKey`      | `'firstNameCanonical#jason       | lastNameCanonical#williscroft         | created#1726880933'` |                                |
+|          | `lastName`               | `'Williscroft'`                  |                                       |
+|          | `lastNameCanonical`      | `'williscroft'`                  |                                       |
+|    ⚙️    | `lastNameRangeKey`       | `'lastNameCanonical#williscroft  | firstNameCanonical#jason              | created#1726880933'` |                                |
+|          | `[phone]`                | `'17739999999'`                  |                                       |
+|    ⚙️    | `rangeKey`               | `'userId#wf5yU_5f63gqauSOLpP5O'` | `'email#me@karmanivero.us'`           |
+| ⚙️<br>👉 | `userBeneficiaryHashKey` | `'user!1                         | beneficiaryId#JCcwi4vyqwMJdaBwbjLG3'` |                      |
+|          | `userId`                 | `'wf5yU_5f63gqauSOLpP5O'`        | `'wf5yU_5f63gqauSOLpP5O'`             |
+| ⚙️<br>👉 | `userHashKey`            | `'user!1                         | userId#wf5yU_5f63gqauSOLpP5O'`        | `'user!1             | userId#wf5yU_5f63gqauSOLpP5O'` |     |
 
 Note the new value of `hashKey` for the Email record: `'email!'`.
 
@@ -441,26 +479,43 @@ So far we've addressed sharding on the _User_ entity. Since an Email record is s
 
 This illustrates an important Entity Manager feature: **entities in your Entity Manager configuration can be sharded _independendly_**, even though they occupy the same database table!
 
-Here are the resulting User service table indexes, adjusted for the presence of the new alternate hash key:
+Here are the resulting User service table indexes, adjusted for the presence of the new alternate hash key. I marked the changes with a 👈:
 
-| Index                      | Index Component | Record Property          |
-| -------------------------- | --------------- | ------------------------ |
-| `created`                  | Hash Key        | `hashKey`                |
-|                            | Range Key       | `created`                |
-| `firstName`                | Hash Key        | `hashKey`                |
-|                            | Range Key       | `firstNameRangeKey`      |
-| `lastName`                 | Hash Key        | `hashKey`                |
-|                            | Range Key       | `lastNameRangeKey`       |
-| `updated`                  | Hash Key        | `hashKey`                |
-|                            | Range Key       | `updated`                |
-| `userBeneficiaryCreated`   | Hash Key        | `userBeneficiaryHashKey` |
-|                            | Range Key       | `created`                |
-| `userBeneficiaryFirstName` | Hash Key        | `userBeneficiaryHashKey` |
-|                            | Range Key       | `firstNameRangeKey`      |
-| `userBeneficiaryLastName`  | Hash Key        | `userBeneficiaryHashKey` |
-|                            | Range Key       | `lastNameRangeKey`       |
-| `userBeneficiaryUpdated`   | Hash Key        | `userBeneficiaryHashKey` |
-|                            | Range Key       | `updated`                |
+| Index                         | Index Component | Record Property          |
+| ----------------------------- | --------------- | ------------------------ |
+| `created`                     | Hash Key        | `hashKey`                |
+|                               | Range Key       | `created`                |
+| `firstName`                   | Hash Key        | `hashKey`                |
+|                               | Range Key       | `firstNameRangeKey`      |
+| `lastName`                    | Hash Key        | `hashKey`                |
+|                               | Range Key       | `lastNameRangeKey`       |
+| `phone`                       | Hash Key        | `hashKey`                |
+|                               | Range Key       | `phone`                  |
+| `updated`                     | Hash Key        | `hashKey`                |
+|                               | Range Key       | `updated`                |
+| `userBeneficiaryCreated` 👈   | Hash Key        | `userBeneficiaryHashKey` |
+|                               | Range Key       | `created`                |
+| `userBeneficiaryFirstName` 👈 | Hash Key        | `userBeneficiaryHashKey` |
+|                               | Range Key       | `firstNameRangeKey`      |
+| `userBeneficiaryLastName` 👈  | Hash Key        | `userBeneficiaryHashKey` |
+|                               | Range Key       | `lastNameRangeKey`       |
+| `userBeneficiaryPhone` 👈     | Hash Key        | `userBeneficiaryHashKey` |
+|                               | Range Key       | `phone`                  |
+| `userBeneficiaryUpdated` 👈   | Hash Key        | `userBeneficiaryHashKey` |
+|                               | Range Key       | `updated`                |
+| `updated`                     | Hash Key        | `hashKey`                |
+|                               | Range Key       | `updated`                |
+| `userCreated` 👈              | Hash Key        | `userHashKey`            |
+|                               | Range Key       | `created`                |
+| `userUpdated` 👈              | Hash Key        | `userHashKey`            |
+|                               | Range Key       | `updated`                |
+
+Note the absence of a `userPhone` index. We would only want this if we needed to:
+
+- search for user emails directly by user phone number, or
+- sort user emails by user phone number.
+
+Both of these cases feel like a step too far, so we won't bother.
 
 #### Cross-Shard Querying
 
@@ -470,7 +525,7 @@ The bad news is: **_we CAN'T!_**
 
 On a NoSQL platform like DynamoDB, a query is _always_ constrained to a single data partition. So if we want to search across 150 partitions, we're just going to have to run a similar-but-different query on every... single... one.
 
-**The problem is actually even worse.** DynamoDB queries are _paged_, meaning that a single query returns only a limited number of records, along with a _page key_ indicating where along the result set (which is sorted by range key) to start the next query.
+**In practice, the problem is even worse!** DynamoDB queries are _paged_, meaning that a single query returns only a limited number of records, along with a _page key_ indicating where along the result set (which is sorted by range key) to start the next query.
 
 So a search across 150 partitions is really a _paged_ search across 150 partitions, where each result set is only sorted within its own partition and returns its own, independent page key.
 
@@ -488,13 +543,15 @@ Consequently, after conducting this massive parallel query, involving 150 partit
 
 Here's the good news: **_Entity Manager CAN!_**
 
-With **Entity Manager** in place, a developer need only focus on formulating a _simple_ query on a _single_ shard against a _single_ index. **Entity Manager** will:
+With **Entity Manager** in place, a developer need only focus on formulating a _simple_ query on a _single_ shard against a _single_ index.
+
+**Entity Manager** will:
 
 - construct and execute throttled, parallel queries against all relevant indexes across the entire effective shard key space, and
 
 - dedupe & sort the result set, and
 
-- return the result set along with a _page key map_ (basically a highly-compressed string representation of all the page keys) that can easily be passed back to Entity Manager to retrieve the next page of results.
+- return the result set along with a _page key map_ (a highly-compressed string representation of all the page keys) that can easily be passed back to Entity Manager to retrieve the next page of results.
 
 ## Recap
 
@@ -516,20 +573,22 @@ Upcoming pages will dig deeply into how **Entity Manager** can be configured to 
 ### Table Properties
 
 | ⚙️  | Property                 | User Record                      | Email Record                          |
-| :-: | ------------------------ | -------------------------------- | ------------------------------------- | -------------------- | --- |
+| :-: | ------------------------ | -------------------------------- | ------------------------------------- | -------------------- | ------------------------------ | --- |
 |     | `beneficiaryId`          | `'JCcwi4vyqwMJdaBwbjLG3'`        |                                       |
 |     | `created`                | `1726880933`                     | `1726880947`                          |
 |     | `email`                  |                                  | `'me@karmanivero.us'`                 |
 | ⚙️  | `hashKey`                | `'user!1'`                       | `'email!'`                            |
 |     | `firstName`              | `'Jason'`                        |                                       |
 |     | `firstNameCanonical`     | `jason`                          |                                       |
-| ⚙️  | `firstNameRangeKey`      | `'firstNameCanonical#jason       | lastNameCanonical#williscroft         | created#1726880933'` |     |
+| ⚙️  | `firstNameRangeKey`      | `'firstNameCanonical#jason       | lastNameCanonical#williscroft         | created#1726880933'` |                                |
 |     | `lastName`               | `'Williscroft'`                  |                                       |
 |     | `lastNameCanonical`      | `'williscroft'`                  |                                       |
-| ⚙️  | `lastNameRangeKey`       | `'lastNameCanonical#williscroft  | firstNameCanonical#jason              | created#1726880933'` |     |
+| ⚙️  | `lastNameRangeKey`       | `'lastNameCanonical#williscroft  | firstNameCanonical#jason              | created#1726880933'` |                                |
+|     | `[phone]`                | `'17739999999'`                  |                                       |
 | ⚙️  | `rangeKey`               | `'userId#wf5yU_5f63gqauSOLpP5O'` | `'email#me@karmanivero.us'`           |
 | ⚙️  | `userBeneficiaryHashKey` | `'user!1                         | beneficiaryId#JCcwi4vyqwMJdaBwbjLG3'` |                      |
 |     | `userId`                 | `'wf5yU_5f63gqauSOLpP5O'`        | `'wf5yU_5f63gqauSOLpP5O'`             |
+| ⚙️  | `userHashKey`            | `'user!1                         | userId#wf5yU_5f63gqauSOLpP5O'`        | `'user!1             | userId#wf5yU_5f63gqauSOLpP5O'` |     |
 
 ### Indexes
 
@@ -541,6 +600,8 @@ Upcoming pages will dig deeply into how **Entity Manager** can be configured to 
 |                            | Range Key       | `firstNameRangeKey`      |
 | `lastName`                 | Hash Key        | `hashKey`                |
 |                            | Range Key       | `lastNameRangeKey`       |
+| `phone`                    | Hash Key        | `hashKey`                |
+|                            | Range Key       | `phone`                  |
 | `updated`                  | Hash Key        | `hashKey`                |
 |                            | Range Key       | `updated`                |
 | `userBeneficiaryCreated`   | Hash Key        | `userBeneficiaryHashKey` |
@@ -549,5 +610,13 @@ Upcoming pages will dig deeply into how **Entity Manager** can be configured to 
 |                            | Range Key       | `firstNameRangeKey`      |
 | `userBeneficiaryLastName`  | Hash Key        | `userBeneficiaryHashKey` |
 |                            | Range Key       | `lastNameRangeKey`       |
+| `userBeneficiaryPhone`     | Hash Key        | `userBeneficiaryHashKey` |
+|                            | Range Key       | `phone`                  |
 | `userBeneficiaryUpdated`   | Hash Key        | `userBeneficiaryHashKey` |
+|                            | Range Key       | `updated`                |
+| `updated`                  | Hash Key        | `hashKey`                |
+|                            | Range Key       | `updated`                |
+| `userCreated`              | Hash Key        | `userHashKey`            |
+|                            | Range Key       | `created`                |
+| `userUpdated`              | Hash Key        | `userHashKey`            |
 |                            | Range Key       | `updated`                |
