@@ -481,7 +481,7 @@ Note the new value of `hashKey` for the Email record: `'email!'`.
 
 So far we've addressed sharding on the _User_ entity. Since an Email record is so much smaller, we can fit a _lot_ more Email records into an individual partition. So for now we are assuming that Email records are _unsharded_, resulting in an empty shard key.
 
-This illustrates an important Entity Manager feature: **entities in your Entity Manager configuration can be sharded _independendly_**, even though they occupy the same database table!
+This illustrates an important **Entity Manager** feature: **entities in your Entity Manager configuration can be sharded _independendly_**, even though they occupy the same database table!
 
 Here are the resulting User service table indexes, adjusted for the presence of the new alternate hash key. I marked the changes with a 👈:
 
