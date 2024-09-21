@@ -432,7 +432,7 @@ More on this in a later section!
 
 #### Alternate Hash Keys
 
-In [Secondary Indexes](#secondary-indexes) above we created the following indexes that use an alternate User property as the index hash key:
+In [Secondary Indexes](#secondary-indexes) above we created the following indexes that use an alternate User property (marked with 👈) as the index hash key:
 
 | Index                  | Index Component | Record Property     |
 | ---------------------- | --------------- | ------------------- |
