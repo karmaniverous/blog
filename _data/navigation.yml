@@ -2,6 +2,8 @@
 main:
   - title: 'Projects'
     url: /projects/
+  - title: 'Bali'
+    url: /bali/
   - title: 'Archive'
     url: /posts/
   - title: 'Tags'

@@ -1,6 +1,6 @@
 ---
 permalink: /projects/
-title: 'Projects'
+title: Projects
 layout: single
 author_profile: true
 share: true
