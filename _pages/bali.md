@@ -42,7 +42,7 @@ Beyond getting you back out to sea, I can help you with:
 
 - **Company formation** to help you establish a legal presence in Indonesia.
 
-- **Deal negotiation** to help you get the best price on your engine overhail or the best terms on that new lease.
+- **Deal negotiation** to help you get the best price on your engine overhaul or the best terms on your land lease.
 
 - **Land acquisition** to help you find and acquire the perfect spot for your new villa or resort.
 
