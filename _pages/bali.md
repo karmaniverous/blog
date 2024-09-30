@@ -30,7 +30,7 @@ I came to Bali as a [_digital nomad_](https://en.wikipedia.org/wiki/Digital_noma
 
 When the COVID epidemic hit, I decided to stay and make a life here. I have a local company and can legally do business in Indonesia.
 
-I speak Bahasa Indonesia well and have a ton of Indonesian contacts, both here on Bali and across Indonesia. I'm also a former Navy officer & ocean racer, and have helped more than one stranded boat crew marshall local resources to refit an engine in a remote Indonesian anchorage.
+I speak Bahasa Indonesia well and have a ton of Indonesian contacts, both here on Bali and across Indonesia. I'm also a former U.S. Navy officer & ocean racer, and have helped more than one stranded boat crew marshall local resources to refit an engine in a remote Indonesian anchorage.
 
 **If you're an English or French speaker in trouble in Indonesia, I can probaby help!**
 
