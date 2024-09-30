@@ -122,6 +122,9 @@ author:
   bio: '<em>resume bullets<br />may read differently at the<br />threshold of heaven</em>'
   # email:
   links:
+    - label: 'Bali'
+      icon: 'fa-solid fa-location-dot'
+      url: '/bali/'
     - label: 'X'
       icon: 'fa-brands fa-square-x-twitter'
       url: 'https://twitter.com/karmaniverous'
@@ -140,9 +143,6 @@ author:
     - label: 'Tiny Poems'
       icon: 'fa-brands fa-square-x-twitter'
       url: 'https://twitter.com/17morae'
-    - label: 'Bali'
-      icon: 'fa-solid fa-location-dot'
-      url: 'https://www.google.com/maps/place/Bali/@-8.4577131,114.7885122,10z'
 
 # Site Footer
 footer:
@@ -162,9 +162,6 @@ footer:
     - label: ''
       icon: 'fa-brands fa-telegram'
       url: 'https://t.me/karmaniverous'
-    - label: ''
-      icon: 'fa-solid fa-location-dot'
-      url: 'https://www.google.com/maps/place/Bali/@-8.4577131,114.7885122,10z'
 
 # Reading Files
 include:
