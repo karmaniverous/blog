@@ -5,9 +5,11 @@ permalink: /bali/
 tagline: i traded these chains<br />for a walking stick and a<br />pocket full of sand
 title: 'Global Experience: Local Knowledge'
 header:
-  overlay_filter: rgba(32, 0, 32, 0.45)
-  overlay_image: /assets/images/bali-banner.jpg
   caption: <b>do&nbsp;business&nbsp;in&nbsp;indonesia</b> •&nbsp;strategic&nbsp;introductions •&nbsp;emergency&nbsp;translation •&nbsp;company&nbsp;formation •&nbsp;deal&nbsp;negotiation •&nbsp;land&nbsp;acquisition •&nbsp;cultural&nbsp;advice •&nbsp;yacht&nbsp;service
+  og_image: /assets/images/bali-banner.jpg
+  overlay_filter: rgba(32, 0, 32, 0.45)
+  overlay_image: /assets/images/bali-banner-half.jpg
+  teaser: /assets/images/bali-square.jpg
 
   actions:
     - label: <i class="fa-brands fa-x-twitter fa-2xl"></i>
@@ -21,7 +23,7 @@ header:
 ---
 
 <figure class="align-left drop-image">
-    <img src="/assets/collections/entity-manager/entity-manager-square.jpg">
+    <img src="/assets/images/bali-square.jpg">
 </figure>
 
 I came to Bali as a [_digital nomad_](https://en.wikipedia.org/wiki/Digital_nomad) in late 2019.
