@@ -4,7 +4,7 @@ layout: single
 permalink: /bali/
 tagline: i traded these chains<br />for a walking stick and a<br />pocket full of sand
 title: 'Global Experience: Local Knowledge'
-description: 'Want to do business in Indonesia? Stuck in a remote Indonesian anchorage with a broken engine? I can help!'
+description: 'Want to do business in Indonesia? I can help!'
 header:
   caption: <b>do&nbsp;business&nbsp;in&nbsp;indonesia</b> •&nbsp;strategic&nbsp;introductions •&nbsp;emergency&nbsp;translation •&nbsp;company&nbsp;formation •&nbsp;deal&nbsp;negotiation •&nbsp;land&nbsp;acquisition •&nbsp;cultural&nbsp;advice •&nbsp;yacht&nbsp;service
   og_image: /assets/images/bali-banner.jpg
