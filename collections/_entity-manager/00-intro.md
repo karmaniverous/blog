@@ -37,8 +37,14 @@ With **Entity Manager**, you can:
 
 ## About This Guide
 
+Entity Manager relies heavily on TypeScript's type system to enforce the structure of your configuration. You _can_ use Entity Manager with Javascript, but Typescript will offer a much better developer experience.
+
+Consequently, this documentation takes a _Typescript-first_ approach! All discussions & code examples will assume you are using Typescript, and we will call out Javascript-specific considerations where appropriate.
+
 Here's a breakdown of the other sections in this guide:
 
 - [**SQL vs NoSQL**](/projects/entity-manager/sql-vs-nosql/) – A comparison of the two database paradigms and how **Entity Manager** bridges the gap.
 
 - [**Evolving a NoSQL Database Schema**](/projects/entity-manager/evolving-a-nosql-db-schema/) – A deep dive into what a NoSQL database schema actually looks like and how **Entity Manager** simplifies the problem.
+
+- [**Entity Manager Configuration**](/projects/entity-manager/configuration/) – Learn how to configure **Entity Manager** to reflect your data model & scaling strategy.

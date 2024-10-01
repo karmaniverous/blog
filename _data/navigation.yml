@@ -18,6 +18,11 @@ entity-manager:
         url: /projects/entity-manager/sql-vs-nosql/
       - title: Evolving a NoSQL DB Schema
         url: /projects/entity-manager/evolving-a-nosql-db-schema/
+      - title: Entity Manager Configuration
+        url: /projects/entity-manager/configuration/
+      - title: '&nbsp;'
+      - title: API Documentation
+        url: https://docs.karmanivero.us/entity-manager/
       - title: '&nbsp;'
       - title: <i class="fa-brands fa-github fa-lg"></i>&nbsp;&nbsp;GitHub
         url: https://github.com/karmaniverous/entity-manager

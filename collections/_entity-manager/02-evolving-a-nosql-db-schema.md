@@ -209,10 +209,10 @@ Here are our sample records from above, with the relevant properties added:
 | :-: | -------------------- | -------------------------------- | ----------------------------- | -------------------- | --- |
 |     | `created`            | `1726880933`                     | `1726880947`                  |
 |     | `email`              |                                  | `'me@karmanivero.us'`         |
-| ⚙️  | `hashKey`            | `'user'`                         | `'email'`                     |
 |     | `firstName`          | `'Jason'`                        |                               |
 |     | `firstNameCanonical` | `'jason'`                        |                               |
 | ⚙️  | `firstNameRangeKey`  | `'firstNameCanonical#jason       | lastNameCanonical#williscroft | created#1726880933'` |     |
+| ⚙️  | `hashKey`            | `'user'`                         | `'email'`                     |
 |     | `lastName`           | `'Williscroft'`                  |                               |
 |     | `lastNameCanonical`  | `'williscroft'`                  |                               |
 | ⚙️  | `lastNameRangeKey`   | `'lastNameCanonical#williscroft  | firstNameCanonical#jason      | created#1726880933'` |     |
@@ -313,15 +313,16 @@ Here's a recap of our table structure so far with generated properties:
 |     | `beneficiaryId`      | `'JCcwi4vyqwMJdaBwbjLG3'`        |                               |
 |     | `created`            | `1726880933`                     | `1726880947`                  |
 |     | `email`              |                                  | `'me@karmanivero.us'`         |
-| ⚙️  | `hashKey`            | `'user'`                         | `'email'`                     |
 |     | `firstName`          | `'Jason'`                        |                               |
 |     | `firstNameCanonical` | `jason`                          |                               |
 | ⚙️  | `firstNameRangeKey`  | `'firstNameCanonical#jason       | lastNameCanonical#williscroft | created#1726880933'` |     |
+| ⚙️  | `hashKey`            | `'user'`                         | `'email'`                     |
 |     | `lastName`           | `'Williscroft'`                  |                               |
 |     | `lastNameCanonical`  | `'williscroft'`                  |                               |
 | ⚙️  | `lastNameRangeKey`   | `'lastNameCanonical#williscroft  | firstNameCanonical#jason      | created#1726880933'` |     |
 |     | `[phone]`            | `'17739999999'`                  |                               |
 | ⚙️  | `rangeKey`           | `'userId#wf5yU_5f63gqauSOLpP5O'` | `'email#me@karmanivero.us'`   |
+|     | `updated`            | `1726880933`                     |                               |
 |     | `userId`             | `'wf5yU_5f63gqauSOLpP5O'`        | `'wf5yU_5f63gqauSOLpP5O'`     |
 
 Here's a consolidated list of the resulting indexes:
@@ -375,17 +376,18 @@ Here's a breakdown of the storage requirements so far for our example User recor
 | :-: | -------------------- | -------------------------------- | ----------------------------: | -------------------- | --- |
 |     | `beneficiaryId`      | `'JCcwi4vyqwMJdaBwbjLG3'`        |                            21 |
 |     | `created`            | `1726880933`                     |                             8 |
-| ⚙️  | `hashKey`            | `'user'`                         |                             4 |
 |     | `firstName`          | `'Jason'`                        |                             5 |
 |     | `firstNameCanonical` | `'jason'`                        |                             5 |
 | ⚙️  | `firstNameRangeKey`  | `'firstNameCanonical#jason       | lastNameCanonical#williscroft | created#1726880933'` | 49  |
+| ⚙️  | `hashKey`            | `'user'`                         |                             4 |
 |     | `lastName`           | `'Williscroft'`                  |                            11 |
 |     | `lastNameCanonical`  | `'williscroft'`                  |                            11 |
 | ⚙️  | `lastNameRangeKey`   | `'lastNameCanonical#williscroft  |      firstNameCanonical#jason | created#1726880933'` | 49  |
 | ⚙️  | `rangeKey`           | `'userId#wf5yU_5f63gqauSOLpP5O'` |                            28 |
 |     | `phone`              | `'17739999999'`                  |                            11 |
+|     | `updated`            | `1726880933`                     |                             8 |
 |     | `userId`             | `'wf5yU_5f63gqauSOLpP5O'`        |                            21 |
-|     |                      | **Total**                        |                       **223** |
+|     |                      | **Total**                        |                       **231** |
 
 Let's nearly double this to 512 bytes (0.5 KB) per record, to account for name & phone variations and the addition of a few new User properties and indexes. With this record size, we can fit 20 million User records into the single partition defined by a `hashKey` value of `user`.
 
@@ -464,15 +466,16 @@ Here's the updated set of User service table properties. I've marked the new and
 |          | `beneficiaryId`          | `'JCcwi4vyqwMJdaBwbjLG3'`        |                                       |
 |          | `created`                | `1726880933`                     | `1726880947`                          |
 |          | `email`                  |                                  | `'me@karmanivero.us'`                 |
-| ⚙️<br>👉 | `hashKey`                | `'user!1'`                       | `'email!'`                            |
 |          | `firstName`              | `'Jason'`                        |                                       |
 |          | `firstNameCanonical`     | `jason`                          |                                       |
 |    ⚙️    | `firstNameRangeKey`      | `'firstNameCanonical#jason       | lastNameCanonical#williscroft         | created#1726880933'` |                                |
+| ⚙️<br>👉 | `hashKey`                | `'user!1'`                       | `'email!'`                            |
 |          | `lastName`               | `'Williscroft'`                  |                                       |
 |          | `lastNameCanonical`      | `'williscroft'`                  |                                       |
 |    ⚙️    | `lastNameRangeKey`       | `'lastNameCanonical#williscroft  | firstNameCanonical#jason              | created#1726880933'` |                                |
 |          | `[phone]`                | `'17739999999'`                  |                                       |
 |    ⚙️    | `rangeKey`               | `'userId#wf5yU_5f63gqauSOLpP5O'` | `'email#me@karmanivero.us'`           |
+|          | `updated`                | `1726880933`                     |                                       |
 | ⚙️<br>👉 | `userBeneficiaryHashKey` | `'user!1                         | beneficiaryId#JCcwi4vyqwMJdaBwbjLG3'` |                      |
 |          | `userId`                 | `'wf5yU_5f63gqauSOLpP5O'`        | `'wf5yU_5f63gqauSOLpP5O'`             |
 | ⚙️<br>👉 | `userHashKey`            | `'user!1                         | userId#wf5yU_5f63gqauSOLpP5O'`        | `'user!1             | userId#wf5yU_5f63gqauSOLpP5O'` |     |
@@ -506,8 +509,6 @@ Here are the resulting User service table indexes, adjusted for the presence of 
 | `userBeneficiaryPhone` 👈     | Hash Key        | `userBeneficiaryHashKey` |
 |                               | Range Key       | `phone`                  |
 | `userBeneficiaryUpdated` 👈   | Hash Key        | `userBeneficiaryHashKey` |
-|                               | Range Key       | `updated`                |
-| `updated`                     | Hash Key        | `hashKey`                |
 |                               | Range Key       | `updated`                |
 | `userCreated` 👈              | Hash Key        | `userHashKey`            |
 |                               | Range Key       | `created`                |
@@ -581,46 +582,72 @@ Upcoming pages will dig deeply into how **Entity Manager** can be configured to 
 |     | `beneficiaryId`          | `'JCcwi4vyqwMJdaBwbjLG3'`        |                                       |
 |     | `created`                | `1726880933`                     | `1726880947`                          |
 |     | `email`                  |                                  | `'me@karmanivero.us'`                 |
-| ⚙️  | `hashKey`                | `'user!1'`                       | `'email!'`                            |
 |     | `firstName`              | `'Jason'`                        |                                       |
 |     | `firstNameCanonical`     | `jason`                          |                                       |
 | ⚙️  | `firstNameRangeKey`      | `'firstNameCanonical#jason       | lastNameCanonical#williscroft         | created#1726880933'` |                                |
+| ⚙️  | `hashKey`                | `'user!1'`                       | `'email!'`                            |
 |     | `lastName`               | `'Williscroft'`                  |                                       |
 |     | `lastNameCanonical`      | `'williscroft'`                  |                                       |
 | ⚙️  | `lastNameRangeKey`       | `'lastNameCanonical#williscroft  | firstNameCanonical#jason              | created#1726880933'` |                                |
 |     | `[phone]`                | `'17739999999'`                  |                                       |
 | ⚙️  | `rangeKey`               | `'userId#wf5yU_5f63gqauSOLpP5O'` | `'email#me@karmanivero.us'`           |
+|     | `updated`                | `1726880933`                     |                                       |
 | ⚙️  | `userBeneficiaryHashKey` | `'user!1                         | beneficiaryId#JCcwi4vyqwMJdaBwbjLG3'` |                      |
 |     | `userId`                 | `'wf5yU_5f63gqauSOLpP5O'`        | `'wf5yU_5f63gqauSOLpP5O'`             |
 | ⚙️  | `userHashKey`            | `'user!1                         | userId#wf5yU_5f63gqauSOLpP5O'`        | `'user!1             | userId#wf5yU_5f63gqauSOLpP5O'` |     |
 
 ### Indexes
 
-| Index                      | Index Component | Record Property          |
-| -------------------------- | --------------- | ------------------------ |
-| `created`                  | Hash Key        | `hashKey`                |
-|                            | Range Key       | `created`                |
-| `firstName`                | Hash Key        | `hashKey`                |
-|                            | Range Key       | `firstNameRangeKey`      |
-| `lastName`                 | Hash Key        | `hashKey`                |
-|                            | Range Key       | `lastNameRangeKey`       |
-| `phone`                    | Hash Key        | `hashKey`                |
-|                            | Range Key       | `phone`                  |
-| `updated`                  | Hash Key        | `hashKey`                |
-|                            | Range Key       | `updated`                |
-| `userBeneficiaryCreated`   | Hash Key        | `userBeneficiaryHashKey` |
-|                            | Range Key       | `created`                |
-| `userBeneficiaryFirstName` | Hash Key        | `userBeneficiaryHashKey` |
-|                            | Range Key       | `firstNameRangeKey`      |
-| `userBeneficiaryLastName`  | Hash Key        | `userBeneficiaryHashKey` |
-|                            | Range Key       | `lastNameRangeKey`       |
-| `userBeneficiaryPhone`     | Hash Key        | `userBeneficiaryHashKey` |
-|                            | Range Key       | `phone`                  |
-| `userBeneficiaryUpdated`   | Hash Key        | `userBeneficiaryHashKey` |
-|                            | Range Key       | `updated`                |
-| `updated`                  | Hash Key        | `hashKey`                |
-|                            | Range Key       | `updated`                |
-| `userCreated`              | Hash Key        | `userHashKey`            |
-|                            | Range Key       | `created`                |
-| `userUpdated`              | Hash Key        | `userHashKey`            |
-|                            | Range Key       | `updated`                |
+We will make one final adjustment here.
+
+Recall that this database schema specifically addresses the DynamoDB platform, and that an important reason why the Entity Manager configuration supports index definition is to support the dehydration & rehydration of page keys generated by searches on those indexes.
+
+In DynamoDB, a page key _always_ includes the hash and range keys of the record, even if the search was performed along an index that includes neither. To support a DynamoDB implementation, therefore, the Entity Manager configuration should always include both the hash and range keys of the record in the index definition.
+
+We will add these below where they are missing.
+
+| Index                      | Index Component  | Record Property          |
+| -------------------------- | ---------------- | ------------------------ |
+| `created`                  | Hash Key         | `hashKey`                |
+|                            | Range Key        | `created`                |
+|                            | Page Key Support | `rangeKey`               |
+| `firstName`                | Hash Key         | `hashKey`                |
+|                            | Range Key        | `firstNameRangeKey`      |
+|                            | Page Key Support | `rangeKey`               |
+| `lastName`                 | Hash Key         | `hashKey`                |
+|                            | Range Key        | `lastNameRangeKey`       |
+|                            | Page Key Support | `rangeKey`               |
+| `phone`                    | Hash Key         | `hashKey`                |
+|                            | Range Key        | `phone`                  |
+|                            | Page Key Support | `rangeKey`               |
+| `updated`                  | Hash Key         | `hashKey`                |
+|                            | Range Key        | `updated`                |
+|                            | Page Key Support | `rangeKey`               |
+| `userBeneficiaryCreated`   | Hash Key         | `userBeneficiaryHashKey` |
+|                            | Range Key        | `created`                |
+|                            | Page Key Support | `hashKey`                |
+|                            | Page Key Support | `rangeKey`               |
+| `userBeneficiaryFirstName` | Hash Key         | `userBeneficiaryHashKey` |
+|                            | Range Key        | `firstNameRangeKey`      |
+|                            | Page Key Support | `hashKey`                |
+|                            | Page Key Support | `rangeKey`               |
+| `userBeneficiaryLastName`  | Hash Key         | `userBeneficiaryHashKey` |
+|                            | Range Key        | `lastNameRangeKey`       |
+|                            | Page Key Support | `hashKey`                |
+|                            | Page Key Support | `rangeKey`               |
+| `userBeneficiaryPhone`     | Hash Key         | `userBeneficiaryHashKey` |
+|                            | Range Key        | `phone`                  |
+|                            | Page Key Support | `hashKey`                |
+|                            | Page Key Support | `rangeKey`               |
+| `userBeneficiaryUpdated`   | Hash Key         | `userBeneficiaryHashKey` |
+|                            | Range Key        | `updated`                |
+|                            | Page Key Support | `hashKey`                |
+|                            | Page Key Support | `rangeKey`               |
+| `userCreated`              | Hash Key         | `userHashKey`            |
+|                            | Range Key        | `created`                |
+|                            | Page Key Support | `hashKey`                |
+|                            | Page Key Support | `rangeKey`               |
+| `userUpdated`              | Hash Key         | `userHashKey`            |
+|                            | Range Key        | `updated`                |
+|                            | Page Key Support | `hashKey`                |
+|                            | Page Key Support | `rangeKey`               |
