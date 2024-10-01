@@ -1,6 +1,6 @@
 ---
 title: Entity Manager Configuration
-excerpt: foo
+excerpt: Entity Manager enables efficient put, get, and query operations across entity relationships, indexes, and sharded partitions in a NoSQL database.
 permalink: /projects/entity-manager/configuration/
 ---
 
@@ -10,7 +10,7 @@ permalink: /projects/entity-manager/configuration/
 
 **Entity Manager** is a highly generic tool that enables efficient put, get, and query operations across many entity relationships, indexes, and sharded partitions.
 
-**Entity Manager** was designed to operate within the context of AWS DynamoDB, but should work equally well with any sufficiently similar NoSQL platform.
+**Entity Manager** was designed to operate within the context of AWS [DynamoDB](https://aws.amazon.com/dynamodb/), but should work equally well with any sufficiently similar [NoSQL](https://en.wikipedia.org/wiki/NoSQL) platform.
 
 To accomplish this, **Entity Manager** needs to know:
 
@@ -65,7 +65,7 @@ const defaultTranscodes: Transcodes<DefaultTranscodeMap> = {
 };
 ```
 
-[`radash`](https://github.com/sodiray/radash) is a key **Entity Manager** dependency. `radash` provides a set of type-safe utility functions for working with data. `isInt`, `isNumber`, and `isString` are two such functions.
+[`radash`](https://github.com/sodiray/radash) is a key **Entity Manager** dependency, which provides a set of type-safe utility functions for working with data.
 {: .notice--info}
 
 The purpose of this transcode is to convert a Unix timestamp (which is always a 13-digit integer) into a 13-character numerical string and back. The transcode's `encode` and `decode` functions contain some type validation to catch invalid values in either direction.
@@ -557,3 +557,31 @@ Typescript will enforce the structure of your `Config` object at compile time. T
 Also, some developers will choose to write their code in Javascript and will not be able to leverage compile-time validation at all.
 
 To satisfy both of these cases, the `EntityManager` constructor leverages [`zod`](https://zod.dev/) to validate the `Config` object at runtime. If the object is invalid, the constructor will throw an error with a detailed message explaining the problem.
+
+## Javascript
+
+If you are working in Javascript, you can still use **Entity Manager**! Just be aware that you will not benefit from the compile-time validation that Typescript provides.
+
+When defining [custom transcodes](#custom-transcodes), you will do so without reference to types, so the example above would look like this:
+
+```js
+import { defaultTranscodes } from `@karmaniverous/entity-manager`;
+
+const myTranscodes = {
+  ...defaultTranscodes, // reuse default transcodes
+
+  fix13: { /* same as above */ },
+};
+```
+
+Your [configuration object](#the-config-type) will also be identical to the Typescript version, but without the type annotations:
+
+```js
+import { defaultTranscodes } from `@karmaniverous/entity-manager`;
+
+const config = { /* same as above */ };
+```
+
+The `EntityManager` constructor will still validate your configuration at runtime, so you can be confident that it is correct before proceeding.
+
+Having said that: if you are working in Javascript, you should _really_ consider switching to Typescript! The benefits are enormous, and the learning curve is not as steep as you might think.
