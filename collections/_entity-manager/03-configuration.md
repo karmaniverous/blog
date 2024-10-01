@@ -2,10 +2,14 @@
 title: Entity Manager Configuration
 excerpt: Entity Manager enables efficient put, get, and query operations across entity relationships, indexes, and sharded partitions in a NoSQL database.
 permalink: /projects/entity-manager/configuration/
+header:
+  og_image: /assets/collections/entity-manager/configuration-banner.jpg
+  overlay_image: /assets/collections/entity-manager/configuration-banner-half.jpg
+  teaser: /assets/collections/entity-manager/configuration-square.jpg
 ---
 
 <figure class="align-left drop-image">
-    <img src="/assets/collections/entity-manager/entity-manager-square.jpg">
+    <img src="/assets/collections/entity-manager/configuration-square.jpg">
 </figure>
 
 **Entity Manager** is a highly generic tool that enables efficient put, get, and query operations across many entity relationships, indexes, and sharded partitions.
@@ -29,11 +33,11 @@ To accomplish this, **Entity Manager** needs to know:
 
 As discussed in detail in [Evolving a NoSQL Database Schema](/projects/entity-manager/evolving-a-nosql-db-schema/), **Entity Manager** indexes are supported by special _generated properties_.
 
-Generated properties always have a string type. Within the **Entity Manager** Config object, an entity generated property are specified by a simple array of its component property names. These components can be any non-generated property of the same entity, so long as that property is supported by a _Transcode_.
+Generated properties always have a `string` type. Within the **Entity Manager** config object, an entity generated property is specified by a simple array of its component property names. These components can be any non-generated property of the same entity, so long as that property is supported by a _transcode_.
 
 ### Transcodes
 
-A _transcode_ is a pair of functions that convert a property value to and from a string, such that the resulting strings are guaranteed to sort in the same order as the original values.
+A _transcode_ is a pair of functions that convert a property value to and from a `string` type, such that the resulting strings are guaranteed to sort in the same order as the original values.
 
 Transcodes and related mechanisms are actually defined in the [`@karmaniverous/entity-tools`](https://github.com/karmaniverous/entity-tools) package, which is a dependency of both **Entity Manager** and the [`@karmaniverous/mock-db`](https://github.com/karmaniverous/mock-db) package used to test **Entity Manager**. For developer convenience these are re-exported from the [`@karmaniverous/entity-manager`](https://github.com/karmaniverous/entity-manager) package.
 {: .notice--info}
@@ -127,13 +131,13 @@ const defaultTranscodes: Transcodes<DefaultTranscodeMap> = {
 
 [Click here](https://github.com/karmaniverous/entity-tools/blob/main/src/defaultTranscodes.ts) to review these default transcode definitions.
 
-Note that, like the [`defaultTranscodes`](https://github.com/karmaniverous/entity-tools/blob/main/src/defaultTranscodes.ts) object (which defines multiple transcodes), each example transcode object above has a type of `Transcodes`. This special type ensures that the defined object...
+Note that, like the [`defaultTranscodes`](https://github.com/karmaniverous/entity-tools/blob/main/src/defaultTranscodes.ts) object (which defines multiple transcodes), each example transcode object above has a type of [`Transcodes`](https://docs.karmanivero.us/entity-manager/types/entity_manager.Transcodes-1.html). This special type ensures that the defined object...
 
 - has the correct keys (the transcode names), and
 
 - defines a correctly-typed `encode` and `decode` function for each key.
 
-This is guaranteed by the `Transcodes` type's single type parameter, which is a `TranscodeMap`.
+This is guaranteed by the `Transcodes` type's single type parameter, which is a [`TranscodeMap`](https://docs.karmanivero.us/entity-manager/types/entity_manager.TranscodeMap.html).
 
 ### The `TranscodeMap` Type
 
@@ -143,7 +147,7 @@ A `TranscodeMap` is a simple Record type that defines:
 
 - the type each transcode encodes into or decodes from a string value.
 
-For example, here is the definition of the `DefaultTranscodeMap` type, which drives the `defaultTranscodes` object:
+For example, here is the definition of the [`DefaultTranscodeMap`](https://docs.karmanivero.us/entity-manager/interfaces/entity_manager.DefaultTranscodeMap.html) type, which drives the [`defaultTranscodes`](https://docs.karmanivero.us/entity-manager/variables/entity_manager.defaultTranscodes.html) object:
 
 ```ts
 import { type TranscodeMap } from `@karmaniverous/entity-manager`;
@@ -221,7 +225,7 @@ const myTranscodes: Transcodes<MyTranscodeMap> = {
 
 ## The `Entity` Type
 
-The `Entity` type is a simple Record type that defines the properties of an entity. An `Entity` type should follow these conventions:
+The [`Entity`](https://docs.karmanivero.us/entity-manager/types/entity_manager.Entity.html) type is a simple Record type that defines the properties of an entity. A type extending the `Entity` type should follow these conventions:
 
 - Each key is a property name. All Entity properties should be represented, including generated properties and those with complex types.
 
@@ -238,8 +242,6 @@ interface Email extends Entity {
   userId: string;
 
   // generated properties
-  hashKey: never;
-  rangeKey: never;
   userHashKey: never;
 }
 
@@ -256,9 +258,7 @@ interface User extends Entity {
 
   // generated properties
   firstNameRangeKey: never;
-  hashKey: never;
   lastNameRangeKey: never;
-  rangeKey: never;
   userBeneficiaryHashKey: never;
   userHashKey: never;
 }
@@ -266,7 +266,7 @@ interface User extends Entity {
 
 ## The `EntityMap` Type
 
-The `EntityMap` type is a simple Record type that defines the entities in your data model and assigns their respective `Entity` types. An `EntityMap` type should follow these conventions:
+The [`EntityMap`](https://docs.karmanivero.us/entity-manager/types/entity_manager.EntityMap.html) type is a simple Record type that defines the entities in your data model and assigns their respective `Entity` types. An `EntityMap` type should follow these conventions:
 
 - Each key is the token by which an Entity will be referenced throughout your configuration. All entities should be represented.
 
@@ -285,7 +285,7 @@ interface MyEntityMap extends EntityMap {
 
 ## The Config Type
 
-The `EntityManager` class constructor takes a single argument of the `Config` type.
+The [`EntityManager`](https://docs.karmanivero.us/entity-manager/classes/entity_manager.EntityManager.html) class constructor takes a single argument of the [`Config`](https://docs.karmanivero.us/entity-manager/types/entity_manager.Config.html) type.
 
 `Config` is a highly complex type, which encapsulates numerous rules whose net effect is to prevent the developer from creating an invalid **Entity Manager** configuration.
 
@@ -411,6 +411,9 @@ In a simple **Entity Manager** configuration restricted to default transcodes, o
 {: .notice--info}
 
 The Config object also contains the `hashKey` and `rangeKey` properties, whose values must exactly match those of the `HashKey` and `RangeKey` type parameters, respectively. This is an unavoidable redundancy: while the type parameters help ensure a valid Entity Manager configuration, the corresponding config properties play an important role at runtime.
+
+**The property names specified in `hashKey` and `rangeKey` must not conflict with any entity property name in the `M` type parameter.** If they do, TypeScript will throw a type error.
+{: .notice--warning}
 
 ### Entity Configurations
 
@@ -558,6 +561,57 @@ Also, some developers will choose to write their code in Javascript and will not
 
 To satisfy both of these cases, the `EntityManager` constructor leverages [`zod`](https://zod.dev/) to validate the `Config` object at runtime. If the object is invalid, the constructor will throw an error with a detailed message explaining the problem.
 
+## The `ItemMap` Type
+
+The [`Entity`](#the-entity-type) and [`EntityMap`](#the-entitymap-type) types described above effectively help you define the structure of your data model.
+
+Unfortunately, your `Entity` types are not suitable for representing actual data objects in your application because:
+
+- they use the convention of identifying generated properties with a `never` type, and
+
+- they do _not_ include the `hashKey` and `rangeKey` properties identified elsewhere in your config.
+
+The [`ItemMap`](https://docs.karmanivero.us/entity-manager/types/entity_manager.ItemMap.html) type takes the same type arguments as your `Config` object (except for the final `TranscodeMap` argument, which is not relevant), and returns a type that looks just like your `EntityMap` except that:
+
+- all generated properties initially typed as `never` are replaced with `string` types, and
+
+- `string`-valued hash and range key properties are added with names specified in the `HashKey` and `RangeKey` type parameters, respectively.
+
+Here is an example of how to exploit the `ItemMap` type within the context of the `MyEntityMap` type defined [above](#the-entitymap-type):
+
+```ts
+type MyItemMap = ItemMap<MyEntityMap, 'hashKey', 'rangeKey'>;
+
+type EmailItem = MyItemMap['email'];
+// {
+//   created: number;
+//   email: string;
+//   userId: string;
+//   hashKey: string;
+//   rangeKey: string;
+//   userHashKey: string;
+// }
+
+type UserItem = MyItemMap['user'];
+// {
+//   beneficiaryId: string;
+//   created: number;
+//   firstName: string;
+//   firstNameCanonical: string;
+//   lastName: string;
+//   lastNameCanonical: string;
+//   phone?: string;
+//   updated: number;
+//   userId: string;
+//   firstNameRangeKey: string;
+//   hashKey: string;
+//   lastNameRangeKey: string;
+//   rangeKey: string;
+//   userBeneficiaryHashKey: string;
+//   userHashKey: string;
+// }
+```
+
 ## Javascript
 
 If you are working in Javascript, you can still use **Entity Manager**! Just be aware that you will not benefit from the compile-time validation that Typescript provides.
@@ -582,6 +636,6 @@ import { defaultTranscodes } from `@karmaniverous/entity-manager`;
 const config = { /* same as above */ };
 ```
 
-The `EntityManager` constructor will still validate your configuration at runtime, so you can be confident that it is correct before proceeding.
+The [`EntityManager` constructor](https://docs.karmanivero.us/entity-manager/classes/entity_manager.EntityManager.html#constructor) will still validate your configuration at runtime, so you can be confident that it is correct before proceeding.
 
 Having said that: if you are working in Javascript, you should _really_ consider switching to Typescript! The benefits are enormous, and the learning curve is not as steep as you might think.
