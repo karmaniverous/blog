@@ -45,7 +45,7 @@ Good code encapsulates the understanding that **the work is not done**: _my_ goo
 
 ## What is Self-Documenting Code?
 
-The trivially naive view of self-documenting code is that it is code that is so clear and well-organized that it doesn't need comments.
+The trivially naive view of self-documenting code is that it is code so clear and well-organized that it doesn't need comments.
 
 > Pro tip: adhering strictly to this view is a great way to get yourself fired. **Especially by me.**
 
