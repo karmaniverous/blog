@@ -74,7 +74,7 @@ Here's the resulting data model (see the entity notes below for more info):
 | `email`   | `string` | Email address. _Unique by definition and never changes, so we can use this value as the record's unique id._ |
 | `userId`  | `string` | Unique id of related User.                                                                                   |
 
-An Email record has no `updated` property becuase no property on the Email record is subject to change.
+An Email record has no `updated` property because no property on the Email record is subject to change.
 
 ## Single Table Design
 
@@ -84,7 +84,7 @@ The primary job of a table in a relational database is to support [schema & quer
 
 In a DynamoDB database (as with any NoSQL database) there is no such abstraction layer. Consequently, **it is the developer's job to organize the physical distribution of data** to support efficient query operations.
 
-In order to be physicaly "close" to one another in any meaningful sense, related DynamoDB records _must_ be stored in the same table. This is the origin of the [single-table design pattern](https://aws.amazon.com/blogs/compute/creating-a-single-table-design-with-amazon-dynamodb/).
+In order to be physically "close" to one another in any meaningful sense, related DynamoDB records _must_ be stored in the same table. This is the origin of the [single-table design pattern](https://aws.amazon.com/blogs/compute/creating-a-single-table-design-with-amazon-dynamodb/).
 
 Entity Manager takes a highly opinionated approach to this pattern. We'll start from the assumption that all User and Email entities _must_ live on the same table, and the following sections will explain the design constraints at work in DynamoDB and how to implement a table design that Entity Manager can support.
 
@@ -412,7 +412,7 @@ For example:
 
 Now, as long as we are careful about assigning shard keys `'1'` and `'2'` to the underlying hash key, we can have as many User records as we like without exceeding the partition size limit!
 
-Unforfunately, we've also introduced some new problems:
+Unfortunately, we've also introduced some new problems:
 
 - How do we know which shard key to assign to a given User record?
 
@@ -484,7 +484,7 @@ Note the new value of `hashKey` for the Email record: `'email!'`.
 
 So far we've addressed sharding on the _User_ entity. Since an Email record is so much smaller, we can fit a _lot_ more Email records into an individual partition. So for now we are assuming that Email records are _unsharded_, resulting in an empty shard key.
 
-This illustrates an important **Entity Manager** feature: **entities in your Entity Manager configuration can be sharded _independendly_**, even though they occupy the same database table!
+This illustrates an important **Entity Manager** feature: **entities in your Entity Manager configuration can be sharded _independently_**, even though they occupy the same database table!
 
 Here are the resulting User service table indexes, adjusted for the presence of the new alternate hash key. I marked the changes with a 👈:
 

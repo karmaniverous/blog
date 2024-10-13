@@ -13,5 +13,29 @@
   "plantuml.diagramsRoot": "diagrams",
   "plantuml.exportIncludeFolderHeirarchy": false,
   "plantuml.exportOutDir": "assets/diagrams",
-  "plantuml.exportSubFolder": false
+  "plantuml.exportSubFolder": false,
+  "cSpell.words": [
+    "Álvarez",
+    "automagically",
+    "Batchable",
+    "Bwbj",
+    "canonicalization",
+    "canonicalized",
+    "Canonicalizing",
+    "Ccwi",
+    "Gómez",
+    "gomezjuarezalvarez",
+    "gqau",
+    "Juárez",
+    "Liskov",
+    "Loggable",
+    "nosql",
+    "RDBMS",
+    "shaddap",
+    "sharded",
+    "tsdoc",
+    "unsharded",
+    "vyqw",
+    "williscroft"
+  ]
 }

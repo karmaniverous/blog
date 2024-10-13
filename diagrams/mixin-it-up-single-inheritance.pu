@@ -1,0 +1,31 @@
+@startuml mixin-it-up-single-inheritance
+
+allowmixing
+
+top to bottom direction
+
+package "Batchable()" as Batchable {
+  package "Loggable()" as Loggable {
+    class "Empty Class" as Empty
+  }
+  note left of Loggable
+    can log to an external logger
+  end note
+}
+note top of Batchable
+  can... 
+  - batch & throttle data operations
+  - log to an external logger
+end note
+
+class "EntityManager" as EntityManager
+note left of EntityManager
+  can... 
+  - manage entities
+  - log to an external logger
+  - batch & throttle data operations
+end note
+
+Batchable <|-- EntityManager: inherits
+
+@enduml

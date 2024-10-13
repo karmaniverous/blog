@@ -1,0 +1,30 @@
+@startuml mixin-it-up-multiple-inheritance
+
+allowmixing
+
+top to bottom direction
+
+class "Loggable" as Loggable 
+note left of Loggable
+  can log to an 
+  external logger
+end note
+
+class "Batchable" as Batchable
+note right of Batchable
+  can batch & throttle 
+  data operations
+end note
+
+class "EntityManager" as EntityManager
+note left of EntityManager
+  can... 
+  - manage entities
+  - log to an external logger
+  - batch & throttle data operations
+end note
+
+Loggable <|-- EntityManager: inherits
+Batchable <|-- EntityManager: inherits
+
+@enduml

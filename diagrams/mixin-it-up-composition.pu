@@ -1,0 +1,28 @@
+@startuml mixin-it-up-composition
+
+allowmixing
+
+top to bottom direction
+
+class "Loggable" as Loggable 
+note right of Loggable
+  can log to an 
+  external logger
+end note
+
+class "Batchable" as Batchable
+note left of Batchable
+  can batch & throttle 
+  data operations
+end note
+
+class "EntityManager" as EntityManager
+note left of EntityManager
+  can manage entities
+end note
+
+EntityManager *-- Loggable : belongs to
+EntityManager *-- Batchable: belongs to
+Batchable *- Loggable : belongs to
+
+@enduml
