@@ -32,6 +32,9 @@ When you are writing a Typescript or Javascript class, the [`Loggable`](https://
 
 </div>
 
+**Did the code at the links above look completely different from what you expected?** [Here's why](/blog/mixin-it-up-picking-the-right-problem-to-solve).
+{: .notice--info}
+
 ## Why?
 
 If you've been following along, you will recall that I'm engaged in a Typescript refactor and major upgrade of my [`entity-manager`](https://github.com/karmaniverous/entity-manager) library.
