@@ -362,7 +362,7 @@ Every Sprint should terminate with a Release: a system milestone where everythin
 
 ### Sprint Structure
 
-Each two-week Sprint is framed by a the following meeting structure.
+Each two-week Sprint is framed by the following meeting structure.
 
 <style>
   table.sprint-structure td {
