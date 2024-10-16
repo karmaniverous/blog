@@ -1,7 +1,7 @@
 ---
 # prettier-ignore
 title: "Composition in Action: Finishing the Swing"
-excerpt: ""
+excerpt: "In software engineering, what look to be the easy parts often turn out to be the hard parts. If you're lucky, the reverse is also true, but don't count on it."
 header:
   og_image: https://github.com/karmaniverous/controlled-proxy/raw/main/assets/controlled-proxy-banner.jpg
   teaser: https://github.com/karmaniverous/controlled-proxy/raw/main/assets/controlled-proxy-square.jpg
@@ -18,7 +18,7 @@ tags:
     <img src="https://github.com/karmaniverous/controlled-proxy/raw/main/assets/controlled-proxy-square.jpg">
 </figure>
 
-It is often the case in software engineering that what look to be the easy parts turn out to be the hard parts. If you're lucky, the reverse is also true, but don't count on it. 🤣
+In software engineering, what look to be the easy parts often turn out to be the hard parts. If you're lucky, the reverse is also true, but don't count on it. 🤣
 
 This has certainly been the case with the Typescript refactor of [`entity-manager`](https://github.com/karmaniverous/entity-manager), which I proclaimed [largely code complete](https://karmanivero.us/blog/code-complete-a-day-in-the-life-of-a-product/), oh, about a month ago. The job since then was supposed to be largely about documentation, testing, and encapsulating key [cross-cutting concerns](https://en.wikipedia.org/wiki/Cross-cutting_concern) like injectable logging.
 

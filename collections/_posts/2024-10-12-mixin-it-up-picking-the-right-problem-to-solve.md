@@ -28,7 +28,7 @@ One of the things I love about Typescript is that it is very easy to close the g
 > **TL/DR:** Facing a really thorny problem? Sometimes it just means you've thrown yourself into a briar patch.
 
 <div class="notice--info">
-  <p><strong>This article turned out to be the first of a three-part series!</strong> Here they are in sequence:</p>
+  <p><strong>This article turned out to be the second of a three-part series!</strong> Here they are in sequence:</p>
 
   <ol>
     <li><a href="/blog/loggable-a-typescript-mixin-for-generic-class-logging">Loggable: A TypeScript Mixin for Generic Class Logging</a></li>
