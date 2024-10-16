@@ -30,10 +30,22 @@ When you are writing a Typescript or Javascript class, the [`Loggable`](https://
 
     <a href="https://github.com/karmaniverous/loggable" class="btn btn--primary btn--large"><i class="fa-brands fa-github fa-2xl"></i></a>
 
+    <a href="https://www.npmjs.com/package/@karmaniverous/loggable" class="btn btn--primary btn--large"><i class="fa-brands fa-npm fa-2xl"></i></a>
+
 </div>
 
-**Did the code at the links above look completely different from what you expected?** [Here's why](/blog/mixin-it-up-picking-the-right-problem-to-solve).
-{: .notice--info}
+<div class="notice--info">
+  <p><strong>This article turned out to be the first of a three-part series!</strong> Here they are in sequence:</p>
+
+  <ol>
+    <li><strong>Loggable: A TypeScript Mixin for Generic Class Logging</strong> (you are here)</li>
+
+    <li><a href="/blog/mixin-it-up-picking-the-right-problem-to-solve">Mixin It Up: Picking the Right Problem to Solve</a></li>
+
+    <li><a href="/blog/composition-in-action-finishing-the-swing">Composition in Action: Finishing the Swing</a></li>
+
+  </ol>
+</div>
 
 ## Why?
 

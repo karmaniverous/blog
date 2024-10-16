@@ -25,8 +25,20 @@ One of the things I love about Typescript is that it is very easy to close the g
 
 **Sounds deep, right?** So what does that actually mean?
 
-**TL/DR:** Facing a really thorny problem? Sometimes it just means you've thrown yourself into a briar patch.
-{: .notice--info}
+> **TL/DR:** Facing a really thorny problem? Sometimes it just means you've thrown yourself into a briar patch.
+
+<div class="notice--info">
+  <p><strong>This article turned out to be the first of a three-part series!</strong> Here they are in sequence:</p>
+
+  <ol>
+    <li><a href="/blog/loggable-a-typescript-mixin-for-generic-class-logging">Loggable: A TypeScript Mixin for Generic Class Logging</a></li>
+
+    <li><strong>Mixin It Up: Picking the Right Problem to Solve</strong> (you are here)</li>
+
+    <li><a href="/blog/composition-in-action-finishing-the-swing">Composition in Action: Finishing the Swing</a></li>
+
+  </ol>
+</div>
 
 ## What is Good Code?
 
