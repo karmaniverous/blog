@@ -8,7 +8,7 @@ header:
 categories:
   - Blog
 tags:
-  - writing
+  - typescript
 toc: false
 ---
 

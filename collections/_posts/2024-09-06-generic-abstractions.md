@@ -9,7 +9,6 @@ categories:
   - Blog
 tags:
   - typescript
-  - writing
 toc: true
 ---
 
