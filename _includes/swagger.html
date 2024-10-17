@@ -1,0 +1,16 @@
+<div id="swagger_{{ include.id }}"></div>
+
+<script>
+window.addEventListener('load', function() {
+  const ui = SwaggerUIBundle({
+    url: '{{ include.url }}',
+    dom_id: '#swagger_{{ include.id }}',
+    presets: [
+      SwaggerUIBundle.presets.apis,
+      SwaggerUIStandalonePreset
+    ]
+  })
+
+  window['swagger_{{ include.id }}'] = ui
+});
+</script>
