@@ -1,7 +1,7 @@
 ---
 # prettier-ignore
 title: "Git Flow By Example: Writing Down Your Version Control Process"
-excerpt: "If you haven’t written your project’s version control process down in all its unique glory, then you don’t have one!"
+excerpt: "If you haven’t written down your project’s version control process in all its unique glory, then you don’t have one!"
 header:
   og_image: /assets/images/git-flow-feature-bugfix-branches.png
   teaser: /assets/images/git-flow-square.png
