@@ -130,7 +130,7 @@ So how does this help us with our dependency injection problem?
 
 ## Solving The Problem From Both Ends
 
-Remember that we have two ket requirements that are kind of opposed to one another:
+We have two key requirements that are kind of opposed to one another:
 
 - From the _inside_, our logger should appear exactly the way we want it to, but...
 
@@ -306,7 +306,7 @@ myWinstonInstance.myMethod();
 
 It's fun to show off work you're proud of, and `controlledProxy` is no exception. It's a neat solution to a deceptively hard problem, and I hope it gets some traction out there.
 
-It also solves my _own_ hard problem, which is cool... all the other dependency injectors I found out there carried far more dependency baggage than I cared to inherit, and this widget feel like it strikes a nice balance.
+It also solves my _own_ hard problem, which is cool... all the other dependency injectors I found out there carried far more dependency baggage than I cared to inherit, and this widget feels like it strikes a nice balance.
 
 But that's not why we're here, is it?
 
