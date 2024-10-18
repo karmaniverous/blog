@@ -174,7 +174,7 @@ Consequently, they're also a lot of work to produce. So rather than spending a c
 
 ### The Scenario: VeteranCrowd
 
-[VeteranCrowd](https://www.veterancrowd.com/) (who have given me permission to use their name and some of their design artifacts) is a [FinTech](https://en.wikipedia.org/wiki/Fintech) startup whose platform makes it possible for Merchants to offer great deals to US Military Veterans and members of other exclusive groups with a completely frictionless experience: no loyalty points, no coupon code, no landing pages... in fact no _websites_, as the service works just as well at the cash register as online!
+[VeteranCrowd](https://www.veterancrowd.com/) (who have given me permission to use their name and some of their design artifacts) is a [FinTech](https://en.wikipedia.org/wiki/Fintech) startup whose platform makes it possible for Merchants to offer great deals to US Military Veterans and members of other exclusive groups. The experience is completely frictionless: no loyalty points, no coupon code, no landing pages... in fact no _websites_, as the service works just as well at the cash register as online!
 
 The VeteranCrowd application is built on a microservices architecture and has a lot of moving parts. It's designed from the ground up to scale to millions of users and billions of transactions annually.
 
