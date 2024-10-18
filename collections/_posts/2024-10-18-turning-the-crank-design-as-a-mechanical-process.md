@@ -118,7 +118,7 @@ Just add up all the debits and all the credits for the month. If the results don
 
 Once you've taken the trouble to represent your design as both a drawing _and_ a document that reflects it, you can ask the single most important question in the design process: **_do these two descriptions represent the same thing?_**
 
-If they do, then your design is _consistent_, and anything you build on the basis of that design is highly likely to turn out the way you expect.
+If they do, then your design is _internally consistent_, and anything you build on the basis of that design—at least as expressed at that level—is likely to turn out the way you expect.
 
 If they don't, then whatever you build will _never_ turn out the way you expect... because you have written down two different sets of expectations!
 
