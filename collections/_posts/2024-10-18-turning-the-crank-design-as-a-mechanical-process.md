@@ -114,7 +114,7 @@ If you've ever run a business, you've probably wrestled with [double-entry bookk
 
 Just add up all the debits and all the credits for the month. If the results don't match, you know you have an error in your books! You were able to catch it because double-entry bookkeeping makes it easy to check the _consistency_ of your records.
 
-**Good design artifact work the same way.**
+**Good design artifacts work the same way.**
 
 Once you've taken the trouble to represent your design as both a drawing _and_ a document that reflects it, you can ask the single most important question in the design process: **_do these two descriptions represent the same thing?_**
 
