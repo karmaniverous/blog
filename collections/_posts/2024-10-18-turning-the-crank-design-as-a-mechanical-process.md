@@ -190,7 +190,7 @@ In the sections below, we'll look at high-level design artifacts addressing two 
 
 {% include figure image_path="/assets/images/architecture-vc-business-process.png" caption="_VeteranCrowd core business process._" popup=true %}
 
-This drawing is a high-level design artifact that encapsulates the core business process of the VeteranCrowd application. Using the terminology we developed [above](#design-artifacts), it's more of a _sketch_ than a _diagram_, and it's intended to raise questions rather than answer them.
+This drawing is part of a high-level design artifact that encapsulates the core business process of the VeteranCrowd application. Using the terminology we developed [above](#design-artifacts), it's more of a _sketch_ than a _diagram_, and it's intended to raise questions rather than answer them.
 
 Some key questions asked at this level:
 
