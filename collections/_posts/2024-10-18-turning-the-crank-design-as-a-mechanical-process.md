@@ -126,7 +126,7 @@ If they don't, then whatever you build will _never_ turn out the way you expect.
 
 A bookkeeping error discovered _before_ you submit your quarterly report is _way_ less expensive than one discovered _after_ you submit it.
 
-In exactly the same sense, an error discovered at design time is _far_ less costly than one discover after your code is in production!
+In exactly the same sense, an error discovered at design time is _far_ less costly than one you discover after your code is in production!
 
 ### External Consistency
 
