@@ -160,9 +160,7 @@ Consistency is the basis of all error detection. The complete design artifact is
 
 ## A Redacted Example
 
-It's time to take a stab at demonstrating what really useful design artifacts actually look like.
-
-And we're immediately going to run into a problem:
+It's time to take a stab at demonstrating what really useful design artifacts actually look like... and we're immediately going to run into a problem:
 
 > Really useful design artifacts are specific to the problem they're solving, and proprietary to the organization that's solving it!
 
