@@ -307,4 +307,4 @@ Now schedule weekly design reviews. At each review, pick a handful of related di
 
 - Is this design artifact _externally consistent_ with any higher-level artifacts that drive it, and lower-level artifacts or code that it drives?
 
-And, just like magic, you're there!
+And, just like magic: **you're there!**
