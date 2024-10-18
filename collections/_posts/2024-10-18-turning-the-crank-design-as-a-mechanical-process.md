@@ -156,7 +156,7 @@ In the middle are a series of design artifacts that...
 
 - collectively guarantee that what winds up in production will _actually_ meet business requirements.
 
-Consistency is the basis of all error detection. The complete design artifact is to engineering what double-entry bookkeeping is to accounting: a way to check consistency and catch errors _before_ they put you out of business.
+Consistency is the basis of all error detection. The complete design artifact is to engineering what double-entry bookkeeping is to accounting: a way to check consistency and catch errors _before_ they put you out of business!
 
 ## A Redacted Example
 
