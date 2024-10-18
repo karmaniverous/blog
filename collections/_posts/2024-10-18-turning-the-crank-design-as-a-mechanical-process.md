@@ -4,7 +4,7 @@ title: "Turning the Crank: Design as a Mechanical Process"
 excerpt: "What a good design artifact looks like, what they're actually for, and how to use them efficiently to achieve a better outcome for your project."
 header:
   og_image: /assets/images/architecture-mopop.jpg
-  teaser: /assets/images/architecture-mopop-square.png
+  teaser: /assets/images/architecture-mopop-square.jpg
 categories:
   - Blog
 tags:
@@ -13,7 +13,7 @@ tags:
 ---
 
 <figure class="align-left drop-image">
-    <img src="/assets/images/architecture-mopop-square.png">
+    <img src="/assets/images/architecture-mopop-square.jpg">
 </figure>
 
 Recently a new client asked me to evaluate the state of his application development project.
