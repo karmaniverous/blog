@@ -28,6 +28,8 @@
     "Configurably",
     "Deserify",
     "disqus",
+    "feelz",
+    "Gehry",
     "giscus",
     "Gómez",
     "gomezjuarezalvarez",
@@ -46,12 +48,14 @@
     "Metastructure",
     "mkdn",
     "mkdown",
+    "mopop",
     "naver",
     "nosql",
     "proxied",
     "Rakefile",
     "RDBMS",
     "rdquo",
+    "redactions",
     "rgba",
     "rsquo",
     "Serify",
@@ -61,6 +65,7 @@
     "unserializable",
     "unsharded",
     "vyqw",
+    "webp",
     "williscroft"
   ]
 }
