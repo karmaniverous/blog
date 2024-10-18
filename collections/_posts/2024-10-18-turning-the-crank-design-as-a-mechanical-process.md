@@ -182,7 +182,7 @@ The application has a complex ecosystem of stakeholders, including **Users**, wh
 
 In the sections below, we'll look at high-level design artifacts addressing two distinct architectural perspectives on the VeteranCrowd application:
 
-- **The Core Business Process**: What is the core experience shared by all VeteranCrowd stakeholders that pushes money around?
+- **The Core Business Process**: What is the core experience—shared by all VeteranCrowd stakeholders—that pushes money around?
 
 - **The Application Platform**: What is the physical infrastructure that supports this business process and connects all stakeholders?
 
