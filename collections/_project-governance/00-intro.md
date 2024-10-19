@@ -7,10 +7,10 @@ redirect_from:
 ---
 
 <figure class="align-left drop-image">
-    <img src="/assets/collections/entity-manager/entity-manager-square.jpg">
+    <img src="/assets/collections/project-governance/intro-square.jpg">
 </figure>
 
-This toolkit is a collection of documents, templates, and guides that will help you get an Agile off the ground and keep it on track.
+This toolkit is a collection of documents, templates, and guides that will help you get an Agile project off the ground and keep it on track.
 
 No generic template is going to capture the unique challenges and specific requirements of _your_ project, but most of the tools here have been through the wringer more than once, and starting even one rung up any ladder is usually _way_ better than starting from scratch!
 

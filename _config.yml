@@ -366,9 +366,9 @@ defaults:
             url: https://t.me/karmaniverous
         caption: 'Got questions or feedback? Contact me at one of the links on this page!'
         overlay_filter: rgba(32, 0, 32, 0.6)
-        overlay_image: /assets/collections/entity-manager/entity-manager-banner-half.jpg
-        og_image: /assets/collections/entity-manager/entity-manager-banner.jpg
-        teaser: /assets/collections/entity-manager/entity-manager-logo-square.jpg
+        overlay_image: /assets/collections/project-governance/intro-banner.jpg
+        og_image: /assets/collections/project-governance/intro-banner.jpg
+        teaser: /assets/collections/project-governance/intro-square.jpg
       layout: single
       read_time: true
       share: true

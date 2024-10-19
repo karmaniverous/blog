@@ -22,7 +22,7 @@ Built for you with ❤️ on Bali!
 
 Running a software development project is hard, but it's way easier if you have a plan.
 
-This toolkit is a collection of documents, templates, and guides that will help you get an Agile off the ground and keep it on track.
+This toolkit is a collection of documents, templates, and guides that will help you get an Agile project off the ground and keep it on track.
 
 <div class="button-row--left">
     <a href="/toolkits/project-governance/" class="btn btn--info btn--large">Get the Toolkit!</a>
