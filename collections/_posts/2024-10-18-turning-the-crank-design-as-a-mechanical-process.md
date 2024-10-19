@@ -3,8 +3,8 @@
 title: "Turning the Crank: Design as a Mechanical Process"
 excerpt: "What a good design artifact looks like, what they're actually for, and how to use them efficiently to achieve a better outcome for your project."
 header:
-  og_image: /assets/images/architecture-mopop.jpg
-  teaser: /assets/images/architecture-mopop-square.jpg
+  og_image: /assets/images/architecture-banner.jpg
+  teaser: /assets/images/architecture-square.jpg
 categories:
   - Blog
 tags:
@@ -13,12 +13,12 @@ tags:
 ---
 
 <figure class="align-left drop-image">
-    <img src="/assets/images/architecture-mopop-square.jpg">
+    <img src="/assets/images/architecture-square.jpg">
 </figure>
 
 Recently a new client asked me to evaluate the state of his application development project.
 
-I asked the team to share their architecture and design documentation with me. In response, they sent me a 25-page document that walked through the evolution of the data model and application layout, culminating with their system architecture diagram.
+I asked the team to share their architecture and design documentation with me. In response, they sent me a 25-page document that walked through the evolution of their data model and application layout, culminating with their system architecture diagram.
 
 That diagram is _supposed_ to be the answer to the most important question anybody can ask about the project: **_what will this thing actually be once we've built it?_**
 
@@ -34,7 +34,7 @@ In this article, I hope to demonstrate:
 
 ## The Curse of Generic Architecture
 
-Here's the capstone architectural diagram from that document:
+Here's the capstone architectural diagram from in the document I received from my client's dev team:
 
 {% include figure image_path="/assets/images/architecture-generic.png" caption="_A hyper-generic application architecture_" %}
 
@@ -104,13 +104,13 @@ So a _complete_ design artifact contains...
 
 - a drawing that fits on a single page & conveys its essential message at a glance, and
 
-- a document that unpacks the message and declaratively asks the questions to be answered by the next level of design.
+- a document that unpacks the message and declaratively asks the questions to be answered by the next-lower level of design.
 
 > A complete design artifact is the drawing that encapsulates the design plus the document that unpacks it.
 
 ### Internal Consistency
 
-If you've ever run a business, you've probably wrestled with [double-entry bookkeeping](https://en.wikipedia.org/wiki/Double-entry_bookkeeping). The idea is that every transaction is recorded _twice_, once as a _debit_ and once as a _credit_. It's a huge pain in the neck, but it also delivers a major superpower.
+If you've ever run a business, you've probably wrestled with [double-entry bookkeeping](https://en.wikipedia.org/wiki/Double-entry_bookkeeping). The idea is that every transaction is recorded _twice_, once as a _debit_ and once as a _credit_. Doing everything twice is a huge pain in the neck, but it also delivers a major superpower.
 
 Just add up all the debits and all the credits for the month. If the results don't match, you know you have an error in your books! You were able to catch it because double-entry bookkeeping makes it easy to check the _consistency_ of your records.
 
@@ -142,21 +142,21 @@ Each of the questions it poses will likely be answered by a lower-level design a
 
 Given that these two artifacts exist, here's a point worth investigating: **_does the low-level design drawing actually answer the questions posed by the high-level design document?_**
 
-This is _external consistency_, and it exists _between_ design artifacts at different levels of abstraction.
+This is _external consistency_, and it exists _between_ design artifacts at _different_ levels of abstraction.
 
-> An _externally consistent_ design artifact is one whose drawing answers the questions raised in higher-level artifacts, and whose document raises questions that are answered in lower-level artifacts.
+> An _externally consistent_ design artifact is one whose drawing answers its share of the questions raised in higher-level artifacts, and whose document raises questions that are all answered in lower-level artifacts.
 
 Now you have a _chain_ of consistency. At one end are the highest-level business requirements, and at the other end is the code that (eventually) implements them.
 
-In the middle are a series of design artifacts that...
+In the middle is a hierarchy of design artifacts that...
 
 - progressively decompose the problem, and
 
 - support checks on internal and external consistency, and
 
-- collectively guarantee that what winds up in production will _actually_ meet business requirements.
+- collectively guarantee that what winds up in production will _actually_ reflect business requirements.
 
-Consistency is the basis of all error detection. The complete design artifact is to engineering what double-entry bookkeeping is to accounting: a way to check consistency and catch errors _before_ they put you out of business!
+Consistency is the basis of all error detection. Complete and consistent design artifacts provide to your engineering team what double-entry bookkeeping provides to your accountant: **a reliable method of catching errors _before_ they put you out of business!**
 
 ## A Redacted Example
 
@@ -174,7 +174,9 @@ Consequently, they're also a lot of work to produce. So rather than spending a c
 
 ### The Scenario: VeteranCrowd
 
-[VeteranCrowd](https://www.veterancrowd.com/) (who have given me permission to use their name and some of their design artifacts) is a [FinTech](https://en.wikipedia.org/wiki/Fintech) startup whose platform makes it possible for Merchants to offer great deals to US Military Veterans and members of other exclusive groups. The experience is completely frictionless: no loyalty points, no coupon code, no landing pages... in fact no _websites_, as the service works just as well at the cash register as online!
+[VeteranCrowd](https://www.veterancrowd.com/) (who have given me permission to use their name and some of their design artifacts) is a [FinTech](https://en.wikipedia.org/wiki/Fintech) startup whose platform makes it possible for Merchants to offer great deals to US Military Veterans and members of other exclusive groups.
+
+The experience is completely frictionless: no loyalty points, no coupon code, no landing pages... in fact no _websites_, as the service works just as well at the cash register as online!
 
 The VeteranCrowd application is built on a [microservice architecture](https://en.wikipedia.org/wiki/Microservices) and has a lot of moving parts. It's designed from the ground up to scale to millions of users and billions of transactions annually.
 
@@ -190,11 +192,11 @@ In the sections below, we'll look at high-level design artifacts addressing two 
 
 {% include figure image_path="/assets/images/architecture-vc-business-process.png" caption="_VeteranCrowd core business process._" popup=true %}
 
-This drawing is part of a high-level design artifact that encapsulates the core business process of the VeteranCrowd application. Using the terminology we developed [above](#design-artifacts), it's more of a _sketch_ than a _diagram_, and it's intended to raise questions rather than answer them.
+This drawing is part of a high-level design artifact that encapsulates the core business process of the VeteranCrowd application. Using the terminology we developed [above](#design-artifacts), it's more of a _sketch_ than a _diagram_, and is intended to raise questions rather than answer them.
 
-Some key questions asked at this level:
+Some key questions asked in this design artifact's document:
 
-- Does the application present distinct interfaces to each of its stakeholders, or are they unified?
+- Does the application present distinct user interfaces to each of its stakeholders, or are they unified?
 
 - How does the application handle the flow of money between stakeholders?
 
@@ -202,7 +204,7 @@ Some key questions asked at this level:
 
 - How much of what we see here should be configurable, and at what level?
 
-- What kinds of metrics are required to provide accountability to stakeholders and drive business decisions?
+- What kinds of metrics are required to provide accountability to stakeholders and inform internal business decisions?
 
 - What kind of security is required to protect the interests of stakeholders?
 
@@ -240,6 +242,8 @@ In the above diagram:
 
 - Black lines & circles had already been implemented at this revision. Blue lines had not.
 
+There is _no_ component of this drawing that is not intended to communicate _something_, and the document that unpacks it is _dense_ with detail.
+
 Key questions asked at this level:
 
 - For each entity providing or consuming services: which ones? How many? What kinds of data do they exchange, and with what degrees of latency?
@@ -252,9 +256,11 @@ Key questions asked at this level:
 
 We're looking at a dated revision of this artifact because it did in fact fall out of sync and was replaced by another one that was easier to maintain. I'm showing you this one because this is where we _started_.
 
-Why change? We implemented the drawing above in LucidChart. It makes pretty diagrams, but they can be a pain to update as requirements change.
+Why change? We implemented the drawing above in [LucidChart](https://lucidchart.com/). It makes pretty diagrams, but they can be a pain to update as requirements change.
 
-Most of our current design artifacts are implemented in PlantUML. The diagrams aren't as pretty, but they're implemented and version-controlled as _code_ and can be maintained & updated in a text editor. There's another key lesson in this:
+Most of our current design artifacts are implemented in [PlantUML](https://plantuml.com/). The diagrams aren't as pretty, but they're implemented and version-controlled as _code_, right next to application code when appropriate, and can be maintained & updated in the same code editor we use for everything else.
+
+There's another key lesson in this:
 
 > The easier it is to maintain a design artifact, the more likely it is to remain useful over time!
 
@@ -265,46 +271,76 @@ At the end of the day, the point of design is to help get your product out the d
 
 ## Next Steps
 
-Most readers of this article will not have the luxury of starting from scratch with their design process.
+Most readers of this article will not have the luxury of starting from scratch with a proper design process.
 
-You probably already have a fragmented code base, a disjointed stack of business requirements, and a hyper-generic system architecture diagram much like the one at the top of this article. Your product manager is breathing fire down the back of your your neck.
+Your project probably already has a fragmented code base, a disjointed stack of business requirements, and a hyper-generic system architecture diagram much like [the one at the top of this article](#the-curse-of-generic-architecture).
 
-So what can you do?
+Your product manager already breathes fire down the back of your your neck every morning. So what can you do?
 
 > In a healthy project, design artifacts and project documentation are the same thing.
 
+### Start From Where You Are
+
 One more time, for emphasis: **in a healthy project, the design artifacts _are_ the project documentation!**
 
-If you'd had the luxury to follow this process from project inception, you would have generated your high-level design artifacts, decomposed them into low-level artifacts, written your code, and kept the whole pile in sync with itself. There's a box in your project plan called "project documentation," and you'd have been checking it off as you went.
+If you had followed this process from project inception, you would have generated your high-level design artifacts, decomposed them into low-level artifacts, written your code, and kept the whole pile in sync with itself as the build progressed. There's a box in your project plan called "project documentation," and you'd have been checking it off as you went along.
 
-If you didn't hve that luxury, then you _still_ have a budget for project documentation, which is probably largely unspent. _**So spend it!**_
+If you didn't have that luxury, then you _still_ have a budget for project documentation, which is probably largely unspent. _**So spend it!**_
 
-For most people who write code for a living, the hardest part of the design process outlined above is creating those drawings. We tend to come at things from the other side of our brains.
+Most people who write code for a living find that the hardest part of the design process outlined above is creating those drawings. We (and I'm no exception!) tend to come at things from the other side of our brains.
 
-But the good news is that, if you are documenting a system that _already exists_, you have a _huge_ advantage over the person who has to invent it from scratch: **it's right there in front of you.** The job is more synthesis than abstract invention. Way easier.
+But the good news is that, if you are documenting a system that _already exists_, you have a _huge_ advantage over the person who had to invent it from scratch: **it's right there in front of you!** The job of documenting it is more synthesis than abstract invention.
 
-So...
+Way easier! So...
 
-- Assign somebody who understands the system and can use a drawing tool.
+- Pick somebody who understands the system at a low level and can use a drawing tool. Ask him to create a drawing to represent each self-contained code module. APIs are a good place to start.
 
-- Create a drawing for each design artifact.
+- Got a Business Analyst (BA) on the team? Ask him to create a set of drawings describing key perspectives on the application as a whole. No BA? Do it yourself, or assign the job to the most business-facing member of your team. Your product manager probably needs a break from breathing fire down your neck. 🤣
 
-- Budget the work over time.
+- Budget the work over time. After all, you still have to progress the build!
 
 Once you have even a minimal set of design drawings that describe your system at key levels of abstraction, you'll find the work becomes _much_ easier. For each drawing, you can ask:
 
-- How does this picture implement my higher-level requirements, or connect to the associated diagram if I've already drawn it?
+- How does this picture implement my higher-level requirements, or connect to the associated diagram if I've already drawn it? **The answers go on the higher-level document!**
 
-- How does this picture translate into lower-level requirements that are captured in a lower-level diagram or or implemented in code?
+- How does this picture translate into lower-level requirements that are captured in a lower-level diagram or or implemented in code? **The answers go on _this_ picture's document!**
 
-- Most important: **What existing documentation can I leverage to make this easy?**
+- What existing documentation can I leverage to make this easy? **Much of what you need has probably already been written down, if you can find it.**
 
-The outcome will be a document to go with each design drawing, and thus a complete set of design artifacts.
+The outcome of this process will be a set of design artifacts. They might not be completely consistent, neither internally nor externally, but they'll be a strong start.
 
-Now schedule weekly design reviews. At each review, pick a handful of related diagrams and ask:
+### Iterate
 
-- Is the drawing in this design artifact _internally consistent_ with the document that unpacks it?
+Schedule weekly design reviews. At each review, pick a handful of related diagrams and for each one ask:
 
-- Is this design artifact _externally consistent_ with any higher-level artifacts that drive it, and lower-level artifacts or code that it drives?
+- **Is the drawing in this design artifact _internally consistent_** with the document that unpacks it?
 
-And, just like magic: **you're there!**
+- **Is this design artifact _externally consistent_** with any higher-level artifacts that drive it, and lower-level artifacts or code that it drives?
+
+- **Are any design artifacts _missing_** from the set? If so: what are they, and what should they look like? Write that stuff down on a design ticket and throw it into your backlog!
+
+At this point, you are _already_ using your design artifacts and process the way they are meant to be used. The only difference between your case and the ideal is that your artifacts are not as well-synced as they would be if you'd been running the process all along.
+
+Not to worry! After all, requirement changes happen all the time, and any major requirement change will _also_ throw your design artifacts out of sync with one another and with the build.
+
+**So this is just the job.** Much like regular backlog grooming, nobody expects it to be _done_, at least not for long. The job is to keep the design backlog closely-enough in sync that it serves these two critical purposes:
+
+- **It's a check on _consistency_** between your requirements and your build, allowing you to detect as early as possible those points where business requirements and technical implementation fall out of sync.
+
+- **It's a source of _tasking_**, allowing you to translate detected inconsistencies into actionable work items that can be prioritized, sized, and scheduled as part of your regular backlog grooming process.
+
+## Conclusion
+
+Properly conducted, design is _process_.
+
+If your project started as an idea and evolved into a product, then you have _already_ engaged in a design process. This is inescapable. So the question you should ask yourself is this:
+
+> Have you engaged in your design process on purpose... or by accident?
+
+Most processes deliver better outcomes when they're conducted on purpose, and the design process is no exception.
+
+The process outlined above is certainly not the _only_ way to engage in design... but it's a good one, and it aligns well with other Agile processes that most teams already use.
+
+If you decide to adopt this process in your own project, you won't go far wrong.
+
+Do good work! 🚀
