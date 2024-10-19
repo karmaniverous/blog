@@ -347,8 +347,40 @@ defaults:
         nav: 'entity-manager'
       toc_sticky: true
       toc: true
+  # _project-governance
+  - scope:
+      path: ''
+      type: 'project-governance'
+    values:
+      author_profile: false
+      comments: false
+      header:
+        actions:
+          - label: <i class="fa-brands fa-x-twitter fa-2xl"></i>
+            url: https://x.com/karmaniverous
+          - label: <i class="fa-brands fa-linkedin-in fa-2xl"></i>
+            url: https://www.linkedin.com/in/jscroft
+          - label: <i class="fa-brands fa-whatsapp fa-2xl"></i>
+            url: https://wa.me/17737500338
+          - label: <i class="fa-brands fa-telegram fa-2xl"></i>
+            url: https://t.me/karmaniverous
+        caption: 'Got questions or feedback? Contact me at one of the links on this page!'
+        overlay_filter: rgba(32, 0, 32, 0.6)
+        overlay_image: /assets/collections/entity-manager/entity-manager-banner-half.jpg
+        og_image: /assets/collections/entity-manager/entity-manager-banner.jpg
+        teaser: /assets/collections/entity-manager/entity-manager-logo-square.jpg
+      layout: single
+      read_time: true
+      share: true
+      sidebar:
+        nav: 'project-governance'
+      toc_sticky: true
+      toc: true
 
 collections:
   entity-manager:
     output: true
     permalink: projects/:collection/:path/
+  project-governance:
+    output: true
+    permalink: toolkits/:collection/:path/

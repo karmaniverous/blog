@@ -2,6 +2,8 @@
 main:
   - title: 'Projects'
     url: /projects/
+  - title: 'Toolkits'
+    url: /toolkits/
   - title: 'Bali'
     url: /bali/
   - title: 'Archive'
@@ -28,3 +30,15 @@ entity-manager:
         url: https://github.com/karmaniverous/entity-manager
       - title: <i class="fa-solid fa-heart fa-lg"></i>&nbsp;&nbsp;NPM
         url: https://www.npmjs.com/package/@karmaniverous/entity-manager
+
+project-governance:
+  - title: Project Governance Toolkit
+    children:
+      - title: Introduction
+        url: /toolkits/project-governance/intro/
+      - title: Agile Manifesto
+        url: /toolkits/project-governance/a-modern-agile-project-manifesto/
+      - title: Git Flow By Example
+        url: /toolkits/project-governance/git-flow-by-example-writing-down-your-version-control-process/
+      - title: Design as a Mechanical Process
+        url: /toolkits/project-governance/turning-the-crank-design-as-a-mechanical-process/
