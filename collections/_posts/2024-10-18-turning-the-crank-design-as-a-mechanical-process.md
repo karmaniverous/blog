@@ -24,7 +24,7 @@ That diagram is _supposed_ to be the answer to the most important question anybo
 
 > Architecture is the highest level of design.
 
-In this article, I hope to demonstrate:
+In this article, I will demonstrate:
 
 - What a good design artifact looks like.
 
