@@ -16,7 +16,7 @@ I won't claim that the tools below will solve all of your problems. But most of 
 
 So accept these tools with my compliments, and if you find them useful or have suggestions of your own, please use one of the contact links on this page & let me know!
 
-Built for you with ❤️ on Bali!
+Built for you with ❤️ on [Bali](/bali/)!
 
 ## Project Governance
 

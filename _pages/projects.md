@@ -10,7 +10,7 @@ toc_sticky: true
 
 Some of these are projects I've worked on, and some are super-useful tools I've created.
 
-Built for you with ❤️ on Bali!
+Built for you with ❤️ on [Bali](/bali/)!
 
 ## controlled-proxy
 
