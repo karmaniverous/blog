@@ -1,0 +1,54 @@
+@startuml intermediate-design-abstraction-hierarchy-api
+
+allowmixing
+
+top to bottom direction
+
+skinparam componentStyle rectangle
+
+component "**__High-Level Design__**\n\n//Business Requirements://\n* //Entities//\n* //Processes//\n* //Relationships//" as high #LightCyan
+note left of high
+  **Design artifacts** relating 
+  **business requirements** to
+  other business requirements.
+end note
+high <|- high
+note on link #AliceBlue
+    One design artifact may 
+    spawn others at higher 
+    levels of detail.
+end note
+
+package "API designs live here!" #LightGreen {
+    component "**__Low-Level Design__**\n\n//Technical Abstractions://\n* //API design//\n* //UX wireframe//\n* //DevOps process//" as low #Cyan
+    note left of low
+    **Design artifacts** relating 
+    **technical abstractions** to...
+    * business requirements.
+    * other technical abstractions.
+    end note
+    low <|- low
+    note on link #AliceBlue
+        Identify useful abstractions 
+        and shared functionality as 
+        additional design targets.
+    end note
+}
+
+component "**__Implementation__**\n\n//Technical Artifacts://\n* //Code libraries//\n* //Config docs//\n* //Automation//" as implementation #LightSkyBlue
+note left of implementation
+  **Technical artifacts** that...
+  * **directly** implement technical abstractions.
+  * **indirectly** implement business requirements.
+end note
+implementation <|- implementation
+note on link #AliceBlue
+    Realize low-level design 
+    abstractions as classes, 
+    components & libraries.
+end note
+
+high <|-- low
+low <|-- implementation
+
+@enduml
