@@ -1,5 +1,5 @@
 <figure class="align-left drop-image">
-    <img src="/assets/images/architecture-square.jpg">
+    <img src="/assets/collections/project-governance/design-as-code-square.jpg">
 </figure>
 
 A client of mine is building a web application that features a complex data model, supported by a collection of APIs. My client has asked me to review their design & development processes and help them achieve a better outcome for the project.

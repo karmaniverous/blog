@@ -3,8 +3,8 @@
 title: "Design as Code: A Frictionless Low-Level Design Pipeline"
 excerpt: "A frictionless low-level design process that integrates with your dev cycle and puts design artifacts at a peer level with the rest of your codebase."
 header:
-  og_image: /assets/images/architecture-banner.jpg
-  teaser: /assets/images/architecture-square.jpg
+  og_image: /assets/collections/project-governance/design-as-code-banner.jpg
+  teaser: /assets/collections/project-governance/design-as-code-square.jpg
 categories:
   - Blog
 tags:
