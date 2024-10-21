@@ -42,3 +42,5 @@ project-governance:
         url: /toolkits/project-governance/git-flow-by-example-writing-down-your-version-control-process/
       - title: Design as a Mechanical Process
         url: /toolkits/project-governance/turning-the-crank-design-as-a-mechanical-process/
+      - title: Design As Code
+        url: /toolkits/project-governance/design-as-code-the-frictionless-low-level-design-pipeline/

@@ -1,0 +1,67 @@
+@startuml design-message-post
+
+!include aws.pu
+!include AWSPuml/AWSSimplified.puml
+
+skinparam responseMessageBelowArrow true
+skinparam SequenceMessageAlign left
+skinparam defaulttextalignment left
+
+boundary apiMessage as "api-message"
+StepFunctionsParticipant(stepMessagePost, "message",)
+boundary apiTemplate as "api-template"
+boundary apiUser as "api-user"
+DynamoDBTableParticipant(entityMessage, "message",)
+
+-> apiMessage : **message-post**\n- data\n- [contexts]\n- [recipientId]\n- service\n- [templateId]
+activate apiMessage
+
+    apiMessage -> stepMessagePost : **startExecution**\n- data\n- [contexts]\n- [recipientId]\n- service\n- [templateId]
+    activate stepMessagePost
+
+<-- apiMessage : OK
+deactivate apiMessage
+
+group reduce [contexts]
+    stepMessagePost -> apiTemplate : **templates-get**\n- service\n- [context]\n- [contextId]\n- [templateId]
+    activate apiTemplate
+    note left: select candidate message templates based on post metadata
+
+    apiTemplate --> stepMessagePost : templates
+    deactivate apiTemplate
+end
+
+group distributed map [templates]
+    stepMessagePost -> stepMessagePost : **sourceSchema**\nvalidate template
+    note right #palegreen: distributed maps spawn parallel state machines so message delivery can scale very high
+    note left : end if data does not match sourceSchema.
+    
+    stepMessagePost -> stepMessagePost : **contextMap**\ngenerate recipients
+    note left : end if recipientId populated and not one of generated recipients.
+
+    stepMessagePost -> stepMessagePost : **sourceMap**\nresolve source data
+
+    group distributed map [recipients]
+        stepMessagePost -> apiUser : **user-get**\n- recipientId
+        activate apiUser
+
+        apiUser --> stepMessagePost : recipient user record
+        deactivate apiUser
+
+        stepMessagePost -> stepMessagePost : **recipient preferences**\nresolve messaging channels
+        note left : end preferences resolve to no channels.
+
+        stepMessagePost -> stepMessagePost : **handlebars**\nresolve templates
+
+        stepMessagePost -> entityMessage : **insert message**
+        note left : crud process picks up new message for external distribution
+        activate entityMessage
+
+        entityMessage --> stepMessagePost : message record
+        deactivate entityMessage
+    end
+end
+deactivate stepMessagePost
+
+@enduml
+

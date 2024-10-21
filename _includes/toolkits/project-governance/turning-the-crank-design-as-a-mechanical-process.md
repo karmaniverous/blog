@@ -20,7 +20,7 @@ In this article, I will demonstrate:
 
 ## The Curse of Generic Architecture
 
-Here's the capstone architectural diagram from in the document I received from my client's dev team:
+Here's the capstone architectural diagram in the document I received from my client's dev team:
 
 {% include figure image_path="/assets/images/architecture-generic.png" caption="_A hyper-generic application architecture_" %}
 
@@ -104,6 +104,8 @@ Just add up all the debits and all the credits for the month. If the results don
 
 Once you've taken the trouble to represent your design as both a drawing _and_ a document that reflects it, you can ask the single most important question in the design process: **_do these two descriptions represent the same thing?_**
 
+{% include figure image_path="/assets/diagrams/design-internal-consistency.png" caption="_Design artifact internal consistency._" %}
+
 If they do, then your design is _internally consistent_, and anything you build on the basis of that design—at least as expressed at that level—is likely to turn out the way you expect.
 
 If they don't, then whatever you build will _never_ turn out the way you expect... because you have written down two different sets of expectations!
@@ -127,6 +129,8 @@ Each of the questions it poses will likely be answered by a lower-level design a
 - **Low-Level Design**: The User API should look like _this_.
 
 Given that these two artifacts exist, here's a point worth investigating: **_does the low-level design drawing actually answer the questions posed by the high-level design document?_**
+
+{% include figure image_path="/assets/diagrams/design-external-consistency.png" caption="_Design artifact external consistency._" %}
 
 This is _external consistency_, and it exists _between_ design artifacts at _different_ levels of abstraction.
 
@@ -250,7 +254,7 @@ There's another key lesson in this:
 
 > The easier it is to maintain a design artifact, the more likely it is to remain useful over time!
 
-In future posts, I'll dig deep into the nuts and bolts of **making your design process as frictionless as possible**.
+In future posts, I'll dig deep into the nuts and bolts of [**making your design process as frictionless as possible**]({{ page.cross_links.design_as_code }}).
 {: .notice--info}
 
 At the end of the day, the point of design is to help get your product out the door at the best achievable balance of quality and price. If your design process costs more time and energy than it contributes in clarity and quality, your team will abandon it and rightly so.
@@ -293,15 +297,17 @@ Once you have even a minimal set of design drawings that describe your system at
 
 - What existing documentation can I leverage to make this easy? **Much of what you need has probably already been written down, if you can find it.**
 
-The outcome of this process will be a set of design artifacts. They might not be completely consistent, neither internally nor externally, but they'll be a strong start.
+{% include figure image_path="/assets/diagrams/design-abstraction-hierarchy.png" caption="_Typical project design hierarchy._" popup=true %}
+
+The outcome of this process will be a set of design artifacts representing the current state of your system at different levels of abstraction. They might not be completely consistent, neither [internally](#internal-consistency) nor [externally](#external-consistency), but they'll be a strong start.
 
 ### Iterate
 
 Schedule weekly design reviews. At each review, pick a handful of related diagrams and for each one ask:
 
-- **Is the drawing in this design artifact _internally consistent_** with the document that unpacks it?
+- **Is the drawing in this design artifact [_internally consistent_](#internal-consistency)** with the document that unpacks it?
 
-- **Is this design artifact _externally consistent_** with any higher-level artifacts that drive it, and lower-level artifacts or code that it drives?
+- **Is this design artifact [_externally consistent_](#external-consistency)** with any higher-level artifacts that drive it, and lower-level artifacts or code that it drives?
 
 - **Are any design artifacts _missing_** from the set? If so: what are they, and what should they look like? Write that stuff down on a design ticket and throw it into your backlog!
 

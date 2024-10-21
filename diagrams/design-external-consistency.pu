@@ -1,0 +1,35 @@
+@startuml design-external-consistency
+
+allowmixing
+
+skinparam componentStyle rectangle
+
+package "High-Level Artifact" as artifactHigh #LightCyan {
+  component "Drawing" as drawingHigh
+  component "Document" as documentHigh
+
+  drawingHigh <--> documentHigh
+}
+
+note bottom of documentHigh
+  All issues raised
+  are addressed in some
+  lower-level drawing.
+end note
+
+package "Low-Level Artifacts" as artifactLow #Cyan {
+  component "Drawing" as drawingLow
+  component "Document" as documentLow
+
+  drawingLow <--> documentLow
+}
+
+note top of drawingLow
+  Every element addresses
+  an issue raised in the
+  higher-level document.
+end note
+
+documentHigh <-> drawingLow: "**//external consistency//**"
+
+@enduml

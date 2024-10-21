@@ -23,3 +23,5 @@ So use these as a starting point, and if you find them useful or have suggestion
 - [**Git Flow By Example: Writing Down Your Version Control Process**](/toolkits/project-governance/git-flow-by-example-writing-down-your-version-control-process/) – If you haven’t written down your project’s version control process in all its unique glory, then you don’t have one!
 
 - [**Turning the Crank: Design as a Mechanical Process**](/toolkits/project-governance/turning-the-crank-design-as-a-mechanical-process/) – What a good design artifact looks like, what they're actually for, and how to use them efficiently to achieve a better outcome for your project.
+
+- [**Low-Level Design**](/toolkits/project-governance/design-as-code/) – A blurb about low-level design.

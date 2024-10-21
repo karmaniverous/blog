@@ -11,6 +11,8 @@ tags:
   - architecture
   - design
   - project-governance
+cross_links:
+  design_as_code: /blog/design-as-code-the-frictionless-low-level-design-pipeline
 ---
 
 {% include toolkits/project-governance/turning-the-crank-design-as-a-mechanical-process.md %}

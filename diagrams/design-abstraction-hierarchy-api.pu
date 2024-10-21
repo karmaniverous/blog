@@ -1,4 +1,4 @@
-@startuml intermediate-design-abstraction-hierarchy-api
+@startuml design-abstraction-hierarchy-api
 
 allowmixing
 
@@ -10,7 +10,8 @@ component "**__High-Level Design__**\n\n//Business Requirements://\n* //Entities
 note left of high
   **Design artifacts** relating 
   **business requirements** to
-  other business requirements.
+  * other business requirements.
+  * technical abstractions.
 end note
 high <|- high
 note on link #AliceBlue
@@ -24,8 +25,8 @@ package "API designs live here!" #LightGreen {
     note left of low
     **Design artifacts** relating 
     **technical abstractions** to...
-    * business requirements.
     * other technical abstractions.
+    * technical artifacts & implementations.
     end note
     low <|- low
     note on link #AliceBlue
