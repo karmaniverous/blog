@@ -24,4 +24,4 @@ So use these as a starting point, and if you find them useful or have suggestion
 
 - [**Turning the Crank: Design as a Mechanical Process**](/toolkits/project-governance/turning-the-crank-design-as-a-mechanical-process/) – What a good design artifact looks like, what they're actually for, and how to use them efficiently to achieve a better outcome for your project.
 
-- [**Low-Level Design**](/toolkits/project-governance/design-as-code/) – A blurb about low-level design.
+- [**Design as Code: A Frictionless Low-Level Design Pipeline**](/toolkits/project-governance/design-as-code-a-frictionless-low-level-design-pipeline/) – A frictionless low-level design process that integrates with your dev cycle and puts design artifacts at a peer level with the rest of your codebase.

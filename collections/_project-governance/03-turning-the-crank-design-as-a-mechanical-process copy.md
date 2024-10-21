@@ -7,7 +7,7 @@ header:
   teaser: /assets/images/architecture-square.jpg
 permalink: /toolkits/project-governance/turning-the-crank-design-as-a-mechanical-process/
 cross_links:
-  design_as_code: /toolkits/project-governance/design-as-code-the-frictionless-low-level-design-pipeline
+  design_as_code: /toolkits/project-governance/design-as-code-a-frictionless-low-level-design-pipeline
 ---
 
 {% include toolkits/project-governance/turning-the-crank-design-as-a-mechanical-process.md %}
