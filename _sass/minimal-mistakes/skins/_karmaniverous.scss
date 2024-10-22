@@ -100,9 +100,3 @@ table > tbody td {
 .author__urls-wrapper {
   vertical-align: unset !important;
 }
-
-figure.drop-image + p::first-letter {
-  font-family: serif;
-  initial-letter: 2;
-  margin-right: 0.25em;
-}

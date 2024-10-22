@@ -39,3 +39,11 @@ figure.drop-image {
     width: 33%;
   }
 }
+
+figure.drop-image + p::first-letter {
+  @include breakpoint($small) {
+    font-family: serif;
+    initial-letter: 2;
+    margin-right: 0.25em;
+  }
+}
