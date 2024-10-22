@@ -12,6 +12,21 @@ Some of these are projects I've worked on, and some are super-useful tools I've 
 
 Built for you with ❤️ on [Bali](/bali/)!
 
+## batch-process
+
+In the real world, most async operations against large data sets need to be batched and throttled.
+
+The `batchProcess` function provides a simple, configurable utility for batching and throttling async operations.
+
+<div class="button-row--left">
+    <a href="https://docs.karmanivero.us/batch-process" class="btn btn--info btn--large">API Docs</a>
+
+    <a href="https://github.com/karmaniverous/batch-process" class="btn btn--primary btn--large"><i class="fa-brands fa-github fa-2xl"></i></a>
+
+    <a href="https://www.npmjs.com/package/@karmaniverous/batch-process" class="btn btn--primary btn--large"><i class="fa-brands fa-npm fa-2xl"></i></a>
+
+</div>
+
 ## controlled-proxy
 
 `controlledProxy` allows the behavior of any object to be modified & controlled non-destructively at runtime. It's a **universal dependency injector** that can be used to solve a wide variety of problems.
@@ -25,7 +40,7 @@ Built for you with ❤️ on [Bali](/bali/)!
 
 </div>
 
-## Dot-Code
+## dot-code
 
 An AutoHotKey script that launches VS Code from File Explorer when you type Alt-Win-.
 
@@ -33,7 +48,7 @@ An AutoHotKey script that launches VS Code from File Explorer when you type Alt-
 .btn .btn--primary
 .btn--large}
 
-## Entity Manager
+## entity-manager
 
 Configurably decorate entity objects with sharded index keys.
 
@@ -46,7 +61,7 @@ Configurably decorate entity objects with sharded index keys.
 
 </div>
 
-## GetDotenv
+## get-dotenv
 
 Manage environment variables from dotenv files across multiple environments. Supports async/CLI operations, dynamic variables, custom CLI creation & more!
 
@@ -57,7 +72,7 @@ Manage environment variables from dotenv files across multiple environments. Sup
 
 </div>
 
-## JSON Map
+## jsonmap
 
 A hyper-generic JSON mapping library.
 
@@ -79,7 +94,7 @@ Convert complex JSON objects to Terraform notation.
 
 </div>
 
-## Metastructure
+## metastructure
 
 Config-driven, enterprise-grade, open-source application infrastructure. DRY as a bone!
 
@@ -92,7 +107,7 @@ Config-driven, enterprise-grade, open-source application infrastructure. DRY as 
 
 </div>
 
-## Mock DB
+## mock-db
 
 Mock DynamoDB-style query & scan behavior with local JSON data.
 
@@ -105,7 +120,7 @@ Mock DynamoDB-style query & scan behavior with local JSON data.
 
 </div>
 
-## Serify-Deserify
+## serify-deserify
 
 Reversibly transform unserializable values into serializable ones. Includes Redux middleware.
 
@@ -116,7 +131,7 @@ Reversibly transform unserializable values into serializable ones. Includes Redu
 
 </div>
 
-## Serverless Lodash Plugin
+## serverless-lodash-plugin
 
 Write variable expressions in serverless.yml using the full Lodash feature set, plus some extra goodies!
 
@@ -127,7 +142,7 @@ Write variable expressions in serverless.yml using the full Lodash feature set, 
 
 </div>
 
-## String Utilities
+## string-utilities
 
 String utilities & tagged template functions I use a lot. Super tree-shakable package so use what you need at very little cost!
 
