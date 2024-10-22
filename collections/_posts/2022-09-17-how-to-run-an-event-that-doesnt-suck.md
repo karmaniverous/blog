@@ -3,17 +3,18 @@
 title: "How to Run an Event That Doesn't Suck"
 excerpt: "Distilling 18 months of experience with 80+ online events, involving thousands of attendees, down into a letter to a friend."
 header:
-  og_image: /assets/images/event.png
-  teaser: /assets/images/event.png
+  og_image: /assets/images/how-to-run-an-event-that-doesnt-suck-banner.jpg
+  teaser: /assets/images/how-to-run-an-event-that-doesnt-suck-square.jpg
 categories:
   - Blog
 tags:
   - howto
+  - events
 toc: true
 ---
 
 <figure class="align-left drop-image">
-    <img src="/assets/images/event.png">
+    <img src="/assets/images/how-to-run-an-event-that-doesnt-suck-square.jpg">
 </figure>
 
 From March 2020 through September 2021 I ran an online community of military
