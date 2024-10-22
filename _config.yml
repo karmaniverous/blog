@@ -73,7 +73,7 @@ comments:
 
 search: true
 # search_full_content: # true, false (default)
-# search_provider: # lunr (default), algolia, google
+search_provider: google
 # lunr:
 #   search_within_pages: # true, false (default)
 # algolia:
@@ -81,9 +81,9 @@ search: true
 #   index_name: # YOUR_INDEX_NAME
 #   search_only_api_key: # YOUR_SEARCH_ONLY_API_KEY
 #   powered_by: # true (default), false
-# google:
-#   search_engine_id: # YOUR_SEARCH_ENGINE_ID
-#   instant_search: # false (default), true
+google:
+  search_engine_id: 960ee5d1b2fec4509
+  instant_search: true
 
 # SEO Related
 # google_site_verification:
@@ -99,7 +99,7 @@ twitter:
 #   username:
 #   app_id:
 #   publisher:
-# og_image: # Open Graph/Twitter default site image
+og_image: /assets/images/splash-header.jpg
 
 # For specifying social profiles
 # - https://developers.google.com/structured-data/customize/social-profiles
