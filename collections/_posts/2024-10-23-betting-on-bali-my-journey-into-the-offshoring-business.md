@@ -18,7 +18,7 @@ tags:
 
 I've lived on the island of Bali in Indonesia for the past five years. I do business locally, I speak [Bahasa Indonesia](https://en.wikipedia.org/wiki/Indonesian_language), and I've come to call this island my home.
 
-Foreigners are nominally welcome to live in Indonesia, but they are _much_ more welcome when they contribute meaningfully to the Indonesian economy and the lives of local people. **John Galt Services** (no website yet, it's _that_ new!) is a startup that deploys young, tech-savvy Indonesians remotely to augment your customer service or tech-support operation.
+Foreigners are nominally welcome to live in Indonesia, but they are much _more_ welcome when they contribute meaningfully to the Indonesian economy and the lives of local people. **John Galt Services** (no website yet, it's _that_ new!) is a startup that deploys young, tech-savvy Indonesians remotely to augment your customer service or tech-support operation.
 
 In other words: **I'm laying down a _big_ bet on Bali!** 🚀
 
