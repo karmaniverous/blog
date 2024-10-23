@@ -1,7 +1,7 @@
 ---
 # prettier-ignore
 title: "Betting on Bali: My Journey Into the Offshoring Business"
-excerpt: "Young Indonesian technical professionals are best deal in the world for customer service and tech support."
+excerpt: "I’m laying down a big bet on Bali! Let me share the evidence that has inspired me to take this leap. Maybe it will inspire you to jump in with me!"
 header:
   og_image: /assets/images/betting-on-bali-banner.jpg
   teaser: /assets/images/betting-on-bali-square.jpg
@@ -22,7 +22,7 @@ Foreigners are nominally welcome to live in Indonesia, but they are _much_ more 
 
 In other words: **I'm laying down a _big_ bet on Bali!** 🚀
 
-Let me share the evidence that has inspired me to take this personal and professional leap. Maybe it will inspire you to walk with me!
+Let me share the evidence that has inspired me to take this personal and professional leap. Maybe it will inspire you to jump in with me!
 
 ## English
 
