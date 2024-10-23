@@ -32,6 +32,8 @@ Every day as I make my rounds I meet young Indonesian technology and business pr
 
 Bali's thriving tourism industry has created a strong incentive among locals to learn English and practice it regularly. **The cool Indonesian kids sitting in Pererenan cafes speak English with one another.**
 
+{% include figure image_path="/assets/images/betting-on-bali-pererenan.jpg" caption="_Cool kids in Pererenan._" popup=true %}
+
 According to the [EF English Proficiency Index 2022](https://www.ef.com/assetscdn/WIBIwq6RdJvcD9bc8RMd/cefcom-epi-site/reports/2022/ef-epi-2022-english.pdf), Indonesia ranks moderately globally, but my impression is that _most_ of that English proficiency in Indonesia lives right here on Bali.
 
 ## Technical Expertise
@@ -52,6 +54,8 @@ This heritage is _real_, and it hasn't gone away: there's a group of people harv
 
 So when an Indonesian rolls up his sleeves to go to work... he _means_ it.
 
+{% include figure image_path="/assets/images/betting-on-bali-rice-farming.jpg" caption="_No easy day: rice farming on Bali._" popup=true %}
+
 This hardworking attitude translates into a high level of dedication in professional roles. Employers can expect an Indonesian team to be not only technically proficient, but also aware of how their work is perceived and eager to earn the praise of their customers.
 
 ## Teamwork
@@ -69,6 +73,8 @@ On Bali, hospitality is a virtue.
 The island relies heavily on tourism, which contributes [over 60% of its GDP](http://www.disparda.baliprov.go.id/en). This is not an accident: [kindness to strangers](https://www.taracousineau.com/social-emotional-intelligence-what-a-village-in-bali-can-teach-us/) was a key part of Balinese culture long before the island became a tourist hub.
 
 Beyond being a very nice place to live, Bali is also a playground for the very young and the very rich: a crowd not noted for their humility. Which is to say that I regularly witness acts of kindness and tolerance on the part of Balinese service workers under conditions that would try the patience of the Buddha.
+
+{% include figure image_path="/assets/images/betting-on-bali-influencers.jpg" caption='_"Influencer" paying his respects to a Balinese family temple._' popup=true %}
 
 These folks can handle your most challenging customers with grace. No sweat.
 
@@ -136,6 +142,8 @@ This is important, because my business is _your_ business! And Bali is my home. 
 
 - Bridge any gaps between your existing workforce and your Bali team so they can all pull hard in the same direction.
 
+{% include figure image_path="/assets/images/betting-on-bali-business.jpg" caption='_Doing business on Bali._' popup=true %}
+
 We believe that happy employees lead to happy customers. We provide a supportive and growth-oriented work environment, and our emphasis on learning from mistakes empowers our staff to put the needs of your customers first.
 
 As a result, expect your Bali team's strong work ethic, technical proficiency, and service-oriented mindset to help you deliver exceptional customer experiences!
@@ -172,7 +180,7 @@ That's a 34% improvement over baseline: not too shabby.
 
 John Galt's most advantageous payment terms offer a fully-trained, closely-managed, well-equipped full-time support resource for a **total cost of $48,000 per year**.
 
-This represents a 14% price advantage over the inshoring scenario above, and **a whopping 44% savings over what you are probably paying right now!**
+This represents a 14% price advantage over the domestic onshoring scenario described above, and **a whopping 44% savings over what you are probably paying right now!**
 
 Other options are available, including half-time resources and quarterly or monthly payment terms. This gives you the ability to **limit your offshoring commitment** and **scale your support team** based on actual demand without unnecessary overhead.
 
@@ -195,6 +203,8 @@ In the last five years, I've come to understand that **the _least_ appreciated r
 
 These kids are just awesome.
 
+{% include figure image_path="/assets/images/betting-on-bali-your-team.jpg" caption='_Your Bali team!_' popup=true %}
+
 So on the one hand, **John Galt Services** is my bid to make a solid contribution to the local economy that justifies my _KITAS_, which is the piece of paper that allows me to live here.
 
 But on the other hand, John Galt is kind of a ringer. A rigged bet. An insider trade. Because apparently I've figured something out that not too many people know, and I'm willing to stake my resources and reputation on it:
@@ -207,6 +217,6 @@ Partnering with a startup always involves an element of risk.
 
 The argument I've made above in favor of offshoring your support needs to Bali is the same one I've made to _myself_ in favor of hanging out my shingle and offering to support those needs.
 
-I found the argument compelling, so here we are. **Maybe you do, too!**
+I found the argument compelling, so here we are. Maybe you do, too.
 
-If so: [let's talk](https://calendly.com/karmaniverous)!
+**_If so: [let's talk](https://calendly.com/karmaniverous)!_**
