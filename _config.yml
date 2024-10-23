@@ -143,6 +143,9 @@ author:
     - label: 'Tiny Poems'
       icon: 'fa-brands fa-square-x-twitter'
       url: 'https://twitter.com/17morae'
+    - label: 'Meet With Me'
+      icon: 'fa-regular fa-calendar-plus'
+      url: 'https://calendly.com/karmaniverous'
 
 # Site Footer
 footer:
@@ -162,6 +165,9 @@ footer:
     - label: ''
       icon: 'fa-brands fa-telegram'
       url: 'https://t.me/karmaniverous'
+    - label: ''
+      icon: 'fa-regular fa-calendar-plus'
+      url: 'https://calendly.com/karmaniverous'
 
 # Reading Files
 include:
@@ -364,6 +370,8 @@ defaults:
             url: https://wa.me/17737500338
           - label: <i class="fa-brands fa-telegram fa-2xl"></i>
             url: https://t.me/karmaniverous
+          - label: <i class="fa-regular fa-calendar-plus fa-2xl"></i>
+            url: https://calendly.com/karmaniverous
         caption: 'Got questions or feedback? Contact me at one of the links on this page!'
         overlay_filter: rgba(32, 0, 32, 0.6)
         overlay_image: /assets/collections/project-governance/intro-banner.jpg

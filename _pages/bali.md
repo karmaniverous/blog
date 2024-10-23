@@ -21,6 +21,8 @@ header:
       url: https://wa.me/17737500338
     - label: <i class="fa-brands fa-telegram fa-2xl"></i>
       url: https://t.me/karmaniverous
+    - label: <i class="fa-regular fa-calendar-plus fa-2xl"></i>
+      url: https://calendly.com/karmaniverous
 ---
 
 <figure class="align-left drop-image">
