@@ -3,8 +3,8 @@
 title: "Betting on Bali: My Journey Into the Offshoring Business"
 excerpt: "Young Indonesian technical professionals are best deal in the world for customer service and tech support."
 header:
-  # og_image: /assets/images/design-as-code-banner.jpg
-  teaser: /assets/images/tanah-square.png
+  og_image: /assets/images/betting-on-bali-banner.jpg
+  teaser: /assets/images/betting-on-bali-square.jpg
 categories:
   - Blog
 tags:
@@ -13,7 +13,7 @@ tags:
 ---
 
 <figure class="align-left drop-image">
-    <img src="/assets/images/tanah-square.png">
+    <img src="/assets/images/betting-on-bali-square.jpg">
 </figure>
 
 I've lived on the island of Bali in Indonesia for the past five years. I do business locally, I speak [Bahasa Indonesia](https://en.wikipedia.org/wiki/Indonesian_language), and I've come to call this island my home.
