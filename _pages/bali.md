@@ -52,3 +52,7 @@ Beyond getting you back out to sea, I can help you with:
 - **Cultural advice** to help you avoid the pitfalls of doing business in a _very_ foreign land.
 
 The best way to reach me immediately is via [WhatsApp](https://wa.me/17737500338)!
+
+## Learn More
+
+- [Betting on Bali: My Journey Into The Offshoring Business](/blog/betting-on-bali-my-journey-into-the-offshoring-business) - I’m laying down a big bet on Bali! Let me share the evidence that has inspired me to take this leap. Maybe it will inspire you to jump in with me!
