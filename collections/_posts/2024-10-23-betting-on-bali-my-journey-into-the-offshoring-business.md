@@ -1,7 +1,7 @@
 ---
 # prettier-ignore
 title: "Betting on Bali: My Journey Into the Offshoring Business"
-excerpt: ""
+excerpt: "Young Indonesian technical professionals are best deal in the world for customer service and tech support."
 header:
   # og_image: /assets/images/design-as-code-banner.jpg
   teaser: /assets/images/tanah-square.png
