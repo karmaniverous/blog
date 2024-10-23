@@ -13,6 +13,5 @@ tags:
   - confluence
   - project-governance
 toc: true
+redirect_to: /toolkits/project-governance/a-modern-agile-project-manifesto/
 ---
-
-{% include toolkits/project-governance/a-modern-agile-project-manifesto.md %}

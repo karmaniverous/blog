@@ -15,6 +15,5 @@ cross_links:
   agile_manifesto: /blog/a-modern-agile-project-manifesto
   turning_the_crank: /blog/turning-the-crank-design-as-a-mechanical-process
 swagger: true
+redirect_to: /toolkits/project-governance/design-as-code-a-frictionless-low-level-design-pipeline/
 ---
-
-{% include toolkits/project-governance/design-as-code-a-frictionless-low-level-design-pipeline.md %}

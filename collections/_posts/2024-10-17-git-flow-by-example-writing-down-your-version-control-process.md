@@ -9,6 +9,5 @@ categories:
   - Blog
 tags:
   - project-governance
+redirect_to: /toolkits/project-governance/git-flow-by-example-writing-down-your-version-control-process/
 ---
-
-{% include toolkits/project-governance/git-flow-by-example-writing-down-your-version-control-process.md %}
