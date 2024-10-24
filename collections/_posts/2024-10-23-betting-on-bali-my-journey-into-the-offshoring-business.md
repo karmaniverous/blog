@@ -96,7 +96,7 @@ Bali boasts a robust technological infrastructure.
 
 Indonesia in general averages fixed internet speeds [around 30 Mbps](https://www.speedtest.net/global-index/indonesia#fixed), and urban areas on Bali like Denpasar and Kuta routinely post speeds twice as high. This is more than sufficient for customer service and tech support operations.
 
-The Indonesian government's [Palapa Ring Project](https://www.kominfo.go.id/) aims to improve internet connectivity across the archipelago, including Bali8. This commitment to infrastructure supports the viability of offshoring operations here.
+The Indonesian government's [Palapa Ring Project](https://www.kominfo.go.id/) aims to improve internet connectivity across the archipelago, including Bali. This commitment to infrastructure supports the viability of offshoring operations here.
 
 ## Time Zone
 
