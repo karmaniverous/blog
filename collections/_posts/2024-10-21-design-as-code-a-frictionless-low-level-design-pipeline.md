@@ -16,4 +16,5 @@ cross_links:
   turning_the_crank: /blog/turning-the-crank-design-as-a-mechanical-process
 swagger: true
 redirect_to: /toolkits/project-governance/design-as-code-a-frictionless-low-level-design-pipeline/
+read_time_override: 21
 ---

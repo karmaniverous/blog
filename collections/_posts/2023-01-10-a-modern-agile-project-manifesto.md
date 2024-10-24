@@ -14,4 +14,5 @@ tags:
   - project-governance
 toc: true
 redirect_to: /toolkits/project-governance/a-modern-agile-project-manifesto/
+read_time_override: 18
 ---

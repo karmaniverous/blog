@@ -10,4 +10,5 @@ categories:
 tags:
   - project-governance
 redirect_to: /toolkits/project-governance/git-flow-by-example-writing-down-your-version-control-process/
+read_time_override: 16
 ---

@@ -12,4 +12,5 @@ tags:
   - design
   - project-governance
 redirect_to: /toolkits/project-governance/turning-the-crank-design-as-a-mechanical-process/
+read_time_override: 16
 ---
