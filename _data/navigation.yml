@@ -20,7 +20,9 @@ entity-manager:
         url: /projects/entity-manager/sql-vs-nosql/
       - title: Evolving a NoSQL DB Schema
         url: /projects/entity-manager/evolving-a-nosql-db-schema/
-      - title: Entity Manager Configuration
+  - title: Usage
+    children:
+      - title: Configuration
         url: /projects/entity-manager/configuration/
   - title: Packages
     children:
@@ -32,7 +34,7 @@ entity-manager:
         url: https://www.npmjs.com/package/@karmaniverous/entity-manager
       - title: <i class="fa-solid fa-book fa-lg"></i>&nbsp;&nbsp;API
         url: https://docs.karmanivero.us/entity-manager/
-      - title: <i class="fa-solid fa-comment fa-lg"></i>&nbsp;&nbsp;Help
+      - title: <i class="fa-regular fa-comment fa-lg"></i>&nbsp;&nbsp;Help
         url: https://github.com/karmaniverous/entity-manager/discussions
       - title: '&nbsp;'
       - title: <strong><code>entity-client-dynamodb</code></strong>
@@ -43,7 +45,7 @@ entity-manager:
         url: https://www.npmjs.com/package/@karmaniverous/entity-client-dynamodb
       - title: <i class="fa-solid fa-book fa-lg"></i>&nbsp;&nbsp;API
         url: https://docs.karmanivero.us/entity-client-dynamodb/
-      - title: <i class="fa-solid fa-comment fa-lg"></i>&nbsp;&nbsp;Help
+      - title: <i class="fa-regular fa-comment fa-lg"></i>&nbsp;&nbsp;Help
         url: https://github.com/karmaniverous/entity-client-dynamodb/discussions
       - title: '&nbsp;'
       - title: <strong><code>entity-tools</code></strong>
@@ -54,7 +56,7 @@ entity-manager:
         url: https://www.npmjs.com/package/@karmaniverous/entity-tools
       - title: <i class="fa-solid fa-book fa-lg"></i>&nbsp;&nbsp;API
         url: https://docs.karmanivero.us/entity-tools/
-      - title: <i class="fa-solid fa-comment fa-lg"></i>&nbsp;&nbsp;Help
+      - title: <i class="fa-regular fa-comment fa-lg"></i>&nbsp;&nbsp;Help
         url: https://github.com/karmaniverous/entity-tools/discussions
       - title: '&nbsp;'
       - title: <strong><code>mock-db</code></strong>
@@ -65,7 +67,7 @@ entity-manager:
         url: https://www.npmjs.com/package/@karmaniverous/mock-db
       - title: <i class="fa-solid fa-book fa-lg"></i>&nbsp;&nbsp;API
         url: https://docs.karmanivero.us/mock-db/
-      - title: <i class="fa-solid fa-comment fa-lg"></i>&nbsp;&nbsp;Help
+      - title: <i class="fa-regular fa-comment fa-lg"></i>&nbsp;&nbsp;Help
         url: https://github.com/karmaniverous/mock-db/discussions
 
 project-governance:

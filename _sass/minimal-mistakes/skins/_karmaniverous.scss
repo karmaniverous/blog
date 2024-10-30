@@ -82,6 +82,10 @@ table > tbody td {
   justify-content: flex-start;
 }
 
+li > .button-row--left {
+  margin-top: 0.5em;
+}
+
 .page__footer-follow {
   display: flex;
   flex-wrap: wrap;
