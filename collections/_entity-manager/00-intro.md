@@ -14,7 +14,7 @@ The **Entity Manager** package implements rational indexing & cross-shard queryi
 
 Traditional [relational database](https://en.wikipedia.org/wiki/Relational_database) systems like [MySQL](https://www.mysql.com/) implement indexing & scaling strategies at a platform level based on schemas defined at design time.
 
-**This documentation is under construction!** There is a _lot_ to unpack here, so it will be a few weeks before I can call it done. Meanwhile, please feel free to [reach out](https://github.com/karmaniverous/entity-manager/discussions) with any questions or feedback!
+**This documentation is under construction!** There is a _lot_ to unpack here, so it will be a few weeks before I can call it done. Meanwhile, please feel free to [reach out](https://github.com/karmaniverous/entity-manager/discussions/) with any questions or feedback!
 {: .notice--info}
 
 NoSQL platforms like [DynamoDB](https://aws.amazon.com/dynamodb/) offer far better performance at scale, but structured index & shard keys must be defined as data elements and exploited by application logic in data retrieval & cross-shard queries.
