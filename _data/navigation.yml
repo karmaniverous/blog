@@ -22,14 +22,51 @@ entity-manager:
         url: /projects/entity-manager/evolving-a-nosql-db-schema/
       - title: Entity Manager Configuration
         url: /projects/entity-manager/configuration/
-      - title: '&nbsp;'
-      - title: API Documentation
-        url: https://docs.karmanivero.us/entity-manager/
-      - title: '&nbsp;'
+  - title: Packages
+    children:
+      - title: <strong><code>entity-manager</code></strong>
+        url: ''
       - title: <i class="fa-brands fa-github fa-lg"></i>&nbsp;&nbsp;GitHub
         url: https://github.com/karmaniverous/entity-manager
       - title: <i class="fa-solid fa-heart fa-lg"></i>&nbsp;&nbsp;NPM
         url: https://www.npmjs.com/package/@karmaniverous/entity-manager
+      - title: <i class="fa-solid fa-book fa-lg"></i>&nbsp;&nbsp;API
+        url: https://docs.karmanivero.us/entity-manager/
+      - title: <i class="fa-solid fa-comment fa-lg"></i>&nbsp;&nbsp;Help
+        url: https://github.com/karmaniverous/entity-manager/discussions
+      - title: '&nbsp;'
+      - title: <strong><code>entity-client-dynamodb</code></strong>
+        url: ''
+      - title: <i class="fa-brands fa-github fa-lg"></i>&nbsp;&nbsp;GitHub
+        url: https://github.com/karmaniverous/entity-client-dynamodb
+      - title: <i class="fa-solid fa-heart fa-lg"></i>&nbsp;&nbsp;NPM
+        url: https://www.npmjs.com/package/@karmaniverous/entity-client-dynamodb
+      - title: <i class="fa-solid fa-book fa-lg"></i>&nbsp;&nbsp;API
+        url: https://docs.karmanivero.us/entity-client-dynamodb/
+      - title: <i class="fa-solid fa-comment fa-lg"></i>&nbsp;&nbsp;Help
+        url: https://github.com/karmaniverous/entity-client-dynamodb/discussions
+      - title: '&nbsp;'
+      - title: <strong><code>entity-tools</code></strong>
+        url: ''
+      - title: <i class="fa-brands fa-github fa-lg"></i>&nbsp;&nbsp;GitHub
+        url: https://github.com/karmaniverous/entity-tools
+      - title: <i class="fa-solid fa-heart fa-lg"></i>&nbsp;&nbsp;NPM
+        url: https://www.npmjs.com/package/@karmaniverous/entity-tools
+      - title: <i class="fa-solid fa-book fa-lg"></i>&nbsp;&nbsp;API
+        url: https://docs.karmanivero.us/entity-tools/
+      - title: <i class="fa-solid fa-comment fa-lg"></i>&nbsp;&nbsp;Help
+        url: https://github.com/karmaniverous/entity-tools/discussions
+      - title: '&nbsp;'
+      - title: <strong><code>mock-db</code></strong>
+        url: ''
+      - title: <i class="fa-brands fa-github fa-lg"></i>&nbsp;&nbsp;GitHub
+        url: https://github.com/karmaniverous/mock-db
+      - title: <i class="fa-solid fa-heart fa-lg"></i>&nbsp;&nbsp;NPM
+        url: https://www.npmjs.com/package/@karmaniverous/mock-db
+      - title: <i class="fa-solid fa-book fa-lg"></i>&nbsp;&nbsp;API
+        url: https://docs.karmanivero.us/mock-db/
+      - title: <i class="fa-solid fa-comment fa-lg"></i>&nbsp;&nbsp;Help
+        url: https://github.com/karmaniverous/mock-db/discussions
 
 project-governance:
   - title: Project Governance Toolkit

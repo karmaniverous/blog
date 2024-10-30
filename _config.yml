@@ -336,11 +336,6 @@ defaults:
       author_profile: false
       comments: false
       header:
-        actions:
-          - label: <i class="fa-brands fa-github fa-2xl"></i>
-            url: https://github.com/karmaniverous/entity-manager
-          - label: <i class="fa-brands fa-npm fa-2xl"></i>
-            url: https://npmjs.com/package/@karmaniverous/entity-manaager
         caption: '[**Entity Manager** project documentation](/projects/entity-manager/)'
         overlay_filter: rgba(32, 0, 32, 0.6)
         overlay_image: /assets/collections/entity-manager/entity-manager-banner-half.jpg
