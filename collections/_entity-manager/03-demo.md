@@ -360,7 +360,7 @@ There are a couple of different ways to run DynamoDB locally. See the [DynamoDB 
 
 We'll focus on executing our tests against a Docker image. A number of different paths will get you to a point where you can execute them. The instructions below document one such path on a Windows machine.
 
-1. Install [Docker Desktop](https://www.docker.com/products/docker-desktop/). It's easy if you have [Chocolatey](https://community.chocolatey.org/) installed: `choco install docker-desktop`.
+1. Install [Docker Desktop](https://www.docker.com/products/docker-desktop/). It's easy if you have [Chocolatey](https://community.chocolatey.org/): `choco install docker-desktop`. You'll want to restart your machine once installation completes.
 
 ## `EntityClient` Configuration
 
