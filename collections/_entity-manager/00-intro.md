@@ -51,9 +51,9 @@ The following sections present a breakdown of this guide.
 
 ### Usage
 
-- [**Getting Started**](/projects/entity-manager/getting-started/) – A blurb about getting started.
+- [**Entity Manager: A Demonstration**](/projects/entity-manager/demo/) – Presents a step-by-step Typescript implementation of a realistic data model against DynamoDB, with the help of Entity Manager.
 
-- [**Configuration**](/projects/entity-manager/configuration/) – Learn how to configure **Entity Manager** to reflect your data model & scaling strategy.
+- [**Entity Manager Configuration**](/projects/entity-manager/configuration/) – Learn how to configure **Entity Manager** to reflect your data model & scaling strategy.
 
 ## Packages
 

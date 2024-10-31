@@ -1,6 +1,6 @@
 ---
 title: 'Entity Manager: A Demonstration'
-excerpt: A blurb about getting started.
+excerpt: Presenting a step-by-step Typescript implementation of a realistic data model against DynamoDB, with the help of Entity Manager.
 permalink: /projects/entity-manager/demo/
 header:
   og_image: /assets/collections/entity-manager/configuration-banner.jpg
