@@ -51,58 +51,83 @@ The following sections present a breakdown of this guide.
 
 ### Usage
 
+- [**Getting Started**](/projects/entity-manager/getting-started/) – A blurb about getting started.
+
 - [**Configuration**](/projects/entity-manager/configuration/) – Learn how to configure **Entity Manager** to reflect your data model & scaling strategy.
 
 ## Packages
 
 The packages in the **Entity Manager** ecosystem work together to provide a comprehensive solution for NoSQL data management.
 
-Most projects will require the first three packages listed below. If you plan to write unit testing around query operations, you may also want to include `mock-db` as a dev dependency.
+### `entity-manager`
 
-- **`entity-manager`** - Provides core functionality & types for defining entities, manipulating items, and querying data.
-  <div class="button-row--left">
-      <a href="https://github.com/karmaniverous/entity-manager" class="btn btn--primary btn--large" title="GitHub Repo"><i class="fa-brands fa-github fa-xl"></i></a>
+Provides core functionality & types for defining entities, manipulating items, and querying data.
 
-      <a href="https://www.npmjs.com/package/@karmaniverous/entity-manager" class="btn btn--primary btn--large" title="NPM Package"><i class="fa-regular fa-heart fa-xl"></i></a>
+<div class="button-row--left">
+    <a href="https://github.com/karmaniverous/entity-manager" class="btn btn--primary btn--large" title="GitHub Repo"><i class="fa-brands fa-github fa-xl"></i></a>
 
-      <a href="https://docs.karmanivero.us/entity-manager" class="btn btn--primary btn--large" title="API Docs"><i class="fa-solid fa-book fa-xl"></i></a>
+    <a href="https://www.npmjs.com/package/@karmaniverous/entity-manager" class="btn btn--primary btn--large" title="NPM Package"><i class="fa-regular fa-heart fa-xl"></i></a>
 
-      <a href="https://github.com/karmaniverous/entity-manager/discussions" class="btn btn--primary btn--large" title="Get Help!"><i class="fa-regular fa-comment fa-xl"></i></a>
+    <a href="https://docs.karmanivero.us/entity-manager" class="btn btn--primary btn--large" title="API Docs"><i class="fa-solid fa-book fa-xl"></i></a>
 
-  </div>
+    <a href="https://github.com/karmaniverous/entity-manager/discussions" class="btn btn--primary btn--large" title="Get Help!"><i class="fa-regular fa-comment fa-xl"></i></a>
 
-- **`entity-client-dynamodb`** - Convenience wrapper for DynamoDB SDK with enhanced batch processing & **Entity Manager** support.
-  <div class="button-row--left">
-      <a href="https://github.com/karmaniverous/entity-client-dynamodb" class="btn btn--primary btn--large" title="GitHub Repo"><i class="fa-brands fa-github fa-xl"></i></a>
+</div>
 
-      <a href="https://www.npmjs.com/package/@karmaniverous/entity-client-dynamodb" class="btn btn--primary btn--large" title="NPM Package"><i class="fa-regular fa-heart fa-xl"></i></a>
+### `entity-manager-demo`
 
-      <a href="https://docs.karmanivero.us/entity-client-dynamodb" class="btn btn--primary btn--large" title="API Docs"><i class="fa-solid fa-book fa-xl"></i></a>
+A working demonstration of **Entity Manager** in action. See [the companion article](/projects/entity-manager/demo/) for a detailed walkthrough!
 
-      <a href="https://github.com/karmaniverous/entity-client-dynamodb/discussions" class="btn btn--primary btn--large" title="Get Help!"><i class="fa-regular fa-comment fa-xl"></i></a>
+<div class="button-row--left">
+    <a href="https://github.com/karmaniverous/entity-manager-demo" class="btn btn--primary btn--large" title="GitHub Repo"><i class="fa-brands fa-github fa-xl"></i></a>
 
-  </div>
+    <a href="https://docs.karmanivero.us/entity-manager-demo" class="btn btn--primary btn--large" title="API Docs"><i class="fa-solid fa-book fa-xl"></i></a>
 
-- **`entity-tools`** - Types & low-level functions for entity operations.
-  <div class="button-row--left">
-      <a href="https://github.com/karmaniverous/entity-tools" class="btn btn--primary btn--large" title="GitHub Repo"><i class="fa-brands fa-github fa-xl"></i></a>
+    <a href="https://github.com/karmaniverous/entity-manager-demo/discussions" class="btn btn--primary btn--large" title="Get Help!"><i class="fa-regular fa-comment fa-xl"></i></a>
 
-      <a href="https://www.npmjs.com/package/@karmaniverous/entity-tools" class="btn btn--primary btn--large" title="NPM Package"><i class="fa-regular fa-heart fa-xl"></i></a>
+</div>
 
-      <a href="https://docs.karmanivero.us/entity-tools" class="btn btn--primary btn--large" title="API Docs"><i class="fa-solid fa-book fa-xl"></i></a>
+### `entity-client-dynamodb`
 
-      <a href="https://github.com/karmaniverous/entity-tools/discussions" class="btn btn--primary btn--large" title="Get Help!"><i class="fa-regular fa-comment fa-xl"></i></a>
+Convenience wrapper for DynamoDB SDK with enhanced batch processing & **Entity Manager** support.
 
-  </div>
+<div class="button-row--left">
+    <a href="https://github.com/karmaniverous/entity-client-dynamodb" class="btn btn--primary btn--large" title="GitHub Repo"><i class="fa-brands fa-github fa-xl"></i></a>
 
-- **`mock-db`** - Mock DynamoDB-style query & scan behavior with local JSON data. Part of the **Entity Manager** test suite.
-  <div class="button-row--left">
-      <a href="https://github.com/karmaniverous/mock-db" class="btn btn--primary btn--large" title="GitHub Repo"><i class="fa-brands fa-github fa-xl"></i></a>
+    <a href="https://www.npmjs.com/package/@karmaniverous/entity-client-dynamodb" class="btn btn--primary btn--large" title="NPM Package"><i class="fa-regular fa-heart fa-xl"></i></a>
 
-      <a href="https://www.npmjs.com/package/@karmaniverous/mock-db" class="btn btn--primary btn--large" title="NPM Package"><i class="fa-regular fa-heart fa-xl"></i></a>
+    <a href="https://docs.karmanivero.us/entity-client-dynamodb" class="btn btn--primary btn--large" title="API Docs"><i class="fa-solid fa-book fa-xl"></i></a>
 
-      <a href="https://docs.karmanivero.us/mock-db" class="btn btn--primary btn--large" title="API Docs"><i class="fa-solid fa-book fa-xl"></i></a>
+    <a href="https://github.com/karmaniverous/entity-client-dynamodb/discussions" class="btn btn--primary btn--large" title="Get Help!"><i class="fa-regular fa-comment fa-xl"></i></a>
 
-      <a href="https://github.com/karmaniverous/mock-db/discussions" class="btn btn--primary btn--large" title="Get Help!"><i class="fa-regular fa-comment fa-xl"></i></a>
+</div>
 
-  </div>
+### `entity-tools`
+
+Types & low-level functions for entity operations.
+
+<div class="button-row--left">
+    <a href="https://github.com/karmaniverous/entity-tools" class="btn btn--primary btn--large" title="GitHub Repo"><i class="fa-brands fa-github fa-xl"></i></a>
+
+    <a href="https://www.npmjs.com/package/@karmaniverous/entity-tools" class="btn btn--primary btn--large" title="NPM Package"><i class="fa-regular fa-heart fa-xl"></i></a>
+
+    <a href="https://docs.karmanivero.us/entity-tools" class="btn btn--primary btn--large" title="API Docs"><i class="fa-solid fa-book fa-xl"></i></a>
+
+    <a href="https://github.com/karmaniverous/entity-tools/discussions" class="btn btn--primary btn--large" title="Get Help!"><i class="fa-regular fa-comment fa-xl"></i></a>
+
+</div>
+
+### `mock-db`
+
+Mock DynamoDB-style query & scan behavior with local JSON data. Part of the **Entity Manager** test suite.
+
+<div class="button-row--left">
+    <a href="https://github.com/karmaniverous/mock-db" class="btn btn--primary btn--large" title="GitHub Repo"><i class="fa-brands fa-github fa-xl"></i></a>
+
+    <a href="https://www.npmjs.com/package/@karmaniverous/mock-db" class="btn btn--primary btn--large" title="NPM Package"><i class="fa-regular fa-heart fa-xl"></i></a>
+
+    <a href="https://docs.karmanivero.us/mock-db" class="btn btn--primary btn--large" title="API Docs"><i class="fa-solid fa-book fa-xl"></i></a>
+
+    <a href="https://github.com/karmaniverous/mock-db/discussions" class="btn btn--primary btn--large" title="Get Help!"><i class="fa-regular fa-comment fa-xl"></i></a>
+
+</div>

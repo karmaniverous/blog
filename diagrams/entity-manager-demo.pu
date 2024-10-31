@@ -1,0 +1,33 @@
+@startuml entity-manager-demo
+
+allowmixing
+
+left to right direction
+
+package "entityManager.ts" as entityManagerTs {
+    interface User
+    interface Email
+    interface MyEntityMap
+    interface DefaultTranscodeMap
+    interface HashKey
+    interface RangeKey
+    interface MyItemMap
+    interface UserItem
+    interface EmailItem
+    object defaultTranscodeMap
+    object myConfig
+    object myEntityManager
+
+    User --o MyEntityMap
+    Email --o MyEntityMap
+    MyEntityMap --o myConfig
+    DefaultTranscodeMap --o myConfig
+    HashKey --o myConfig
+    RangeKey --o myConfig
+    MyEntityMap --> MyItemMap
+    MyItemMap o-- UserItem
+    MyItemMap o-- EmailItem
+    myConfig <-- myEntityManager: implements
+}
+
+@enduml
