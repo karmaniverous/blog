@@ -445,7 +445,19 @@ The `elementTranscodes` property is a Record-type object whose keys are each a p
 
 - The entity property type of a given key (as expressed in the config's `M` type parameter) must match the transcode type of the corresponding value (as expressed in the config's `T` type parameter).
 
-See [above](#the-config-type) for examples.
+In other words, every `elementTranscodes` property must NOT be a [generated property](#generated-properties), and either...
+
+- An element of a [generated property](#generated-properties), or
+
+- An index component.
+
+In practice, the best way to determine which properties should be included in `elementTranscodes` is to create your generated properties & indexes first. Your `elementTranscodes` will be:
+
+- All [generated property](#generated-properties) components, and
+
+- All _ungenerated_ index components.
+
+These rules will be validated at runtime when you parse your configuration object. See [above](#the-config-type) for examples.
 
 #### Generated Properties
 

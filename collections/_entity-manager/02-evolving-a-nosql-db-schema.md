@@ -173,14 +173,14 @@ We could use the same argument to find users whose records were recently updated
 
 Here's what the required indexes might look like:
 
-| Index     | Index Component | Record Property |
-| --------- | --------------- | --------------- |
-| `created` | Hash Key        | `hashKey`       |
-|           | Range Key       | `created`       |
-| `phone`   | Hash Key        | `hashKey`       |
-|           | Range Key       | `phone`         |
-| `updated` | Hash Key        | `hashKey`       |
-|           | Range Key       | `updated`       |
+| Index     | Entities     | Index Component | Record Property |
+| --------- | ------------ | --------------- | --------------- |
+| `created` | Email & User | Hash Key        | `hashKey`       |
+|           |              | Range Key       | `created`       |
+| `phone`   | User         | Hash Key        | `hashKey`       |
+|           |              | Range Key       | `phone`         |
+| `updated` | User         | Hash Key        | `hashKey`       |
+|           |              | Range Key       | `updated`       |
 
 These indexes require us to generate no new properties beyond what we created above, and have the added advantage of allowing us to find Email records by creation date as well (remember, the Email entity has no `phone` or `updated` properties).
 
@@ -192,10 +192,10 @@ Recall that every query implicitly includes a _sort_ as well. How would we like 
 
 Naively, we might consider an index like this:
 
-| Index       | Index Component | Record Property      |
-| ----------- | --------------- | -------------------- |
-| `firstName` | Hash Key        | `hashKey`            |
-|             | Range Key       | `firstNameCanonical` |
+| Index       | Entities | Index Component | Record Property      |
+| ----------- | -------- | --------------- | -------------------- |
+| `firstName` | User     | Hash Key        | `hashKey`            |
+|             |          | Range Key       | `firstNameCanonical` |
 
 The problem with this approach is that, while the result set _will_ be sorted by first name, all of the "John" records will appear in an effectively random order. Intuitively, we'd like those to appear in a useful order as well, say by `lastNameCanonical`.
 
@@ -229,27 +229,27 @@ A couple of key points:
 
 Here's the full set of indexes our table now supports:
 
-| Index       | Index Component | Record Property     |
-| ----------- | --------------- | ------------------- |
-| `created`   | Hash Key        | `hashKey`           |
-|             | Range Key       | `created`           |
-| `firstName` | Hash Key        | `hashKey`           |
-|             | Range Key       | `firstNameRangeKey` |
-| `lastName`  | Hash Key        | `hashKey`           |
-|             | Range Key       | `lastNameRangeKey`  |
-| `phone`     | Hash Key        | `hashKey`           |
-|             | Range Key       | `phone`             |
-| `updated`   | Hash Key        | `hashKey`           |
-|             | Range Key       | `updated`           |
+| Index       | Entities     | Index Component | Record Property     |
+| ----------- | ------------ | --------------- | ------------------- |
+| `created`   | Email & User | Hash Key        | `hashKey`           |
+|             |              | Range Key       | `created`           |
+| `firstName` | User         | Hash Key        | `hashKey`           |
+|             |              | Range Key       | `firstNameRangeKey` |
+| `lastName`  | User         | Hash Key        | `hashKey`           |
+|             |              | Range Key       | `lastNameRangeKey`  |
+| `phone`     | User         | Hash Key        | `hashKey`           |
+|             |              | Range Key       | `phone`             |
+| `updated`   | User         | Hash Key        | `hashKey`           |
+|             |              | Range Key       | `updated`           |
 
 #### Alternate Hash Key Index
 
 To find all email records for a given User, we have a couple of choices. Here's one:
 
-| Index  | Index Component | Record Property |
-| ------ | --------------- | --------------- |
-| `user` | Hash Key        | `hashKey`       |
-|        | Range Key       | `userId`        |
+| Index  | Entities | Index Component | Record Property |
+| ------ | -------- | --------------- | --------------- |
+| `user` | Email    | Hash Key        | `hashKey`       |
+|        |          | Range Key       | `userId`        |
 
 If my query specifies a hash key of `email` a range constraint of `equal to 'wf5yU_5f63gqauSOLpP5O'`, then my query will indeed return all email records for the User with `userId` equal to `'wf5yU_5f63gqauSOLpP5O'`. But there are a couple of problems with this approach:
 
@@ -259,14 +259,14 @@ If my query specifies a hash key of `email` a range constraint of `equal to 'wf5
 
 Instead, let's try this:
 
-| Index         | Index Component | Record Property |
-| ------------- | --------------- | --------------- |
-| `userCreated` | Hash Key        | `userId`        |
-|               | Range Key       | `created`       |
-| `userUpdated` | Hash Key        | `userId`        |
-|               | Range Key       | `updated`       |
+| Index         | Entities | Index Component | Record Property |
+| ------------- | -------- | --------------- | --------------- |
+| `userCreated` | Email    | Hash Key        | `userId`        |
+|               |          | Range Key       | `created`       |
 
-Setting these index hash keys to `userId` has _significantly_ limited the record set any range key constraint is applied against. In fact, to satisfy the our test case (finding the Emails of a given User), we don't need a range key constraint at all! The indexes will simply sort our records in a useful way: by `created` or `updated`, respectively.
+Setting these index hash keys to `userId` has _significantly_ limited the record set any range key constraint is applied against. In fact, to satisfy the our test case (finding the Emails of a given User), we don't need a range key constraint at all! The indexes will simply sort our records in a useful way, meaning by the Email record's `created` timestamp.
+
+_Why didn't we create a `userUpdated` index as well?_ Because, since there is nothing to change on an Email record, we didn't give it a `updated` property. So the index would be useless!
 
 Note that we didn't need to create any new generated properties to support this case.
 
@@ -280,12 +280,12 @@ On the other hand, this should feel familiar: just as with `userId` above, we ca
 
 Here's the index:
 
-| Index                | Index Component | Record Property |
-| -------------------- | --------------- | --------------- |
-| `beneficiaryCreated` | Hash Key        | `beneficiaryId` |
-|                      | Range Key       | `created`       |
-| `beneficiaryUpdated` | Hash Key        | `beneficiaryId` |
-|                      | Range Key       | `updated`       |
+| Index                | Entities | Index Component | Record Property |
+| -------------------- | -------- | --------------- | --------------- |
+| `beneficiaryCreated` | User     | Hash Key        | `beneficiaryId` |
+|                      |          | Range Key       | `created`       |
+| `beneficiaryUpdated` | User     | Hash Key        | `beneficiaryId` |
+|                      |          | Range Key       | `updated`       |
 
 This indexes support:
 
@@ -295,14 +295,14 @@ This indexes support:
 
 While we're at it, though, consider that a Beneficiary Manager will likely also want to sort and search related Users by name, and perhaps locate them by phone number. So let's add these indexes as well:
 
-| Index                  | Index Component | Record Property     |
-| ---------------------- | --------------- | ------------------- |
-| `beneficiaryFirstName` | Hash Key        | `beneficiaryId`     |
-|                        | Range Key       | `firstNameRangeKey` |
-| `beneficiaryLastName`  | Hash Key        | `beneficiaryId`     |
-|                        | Range Key       | `lastNameRangeKey`  |
-| `beneficiaryPhone`     | Hash Key        | `beneficiaryId`     |
-|                        | Range Key       | `phone`             |
+| Index                  | Entities | Index Component | Record Property     |
+| ---------------------- | -------- | --------------- | ------------------- |
+| `beneficiaryFirstName` | User     | Hash Key        | `beneficiaryId`     |
+|                        |          | Range Key       | `firstNameRangeKey` |
+| `beneficiaryLastName`  | User     | Hash Key        | `beneficiaryId`     |
+|                        |          | Range Key       | `lastNameRangeKey`  |
+| `beneficiaryPhone`     | User     | Hash Key        | `beneficiaryId`     |
+|                        |          | Range Key       | `phone`             |
 
 #### Rounding Out Index Requirements
 
@@ -327,32 +327,30 @@ Here's a recap of our table structure so far with generated properties:
 
 Here's a consolidated list of the resulting indexes:
 
-| Index                  | Index Component | Record Property     |
-| ---------------------- | --------------- | ------------------- |
-| `beneficiaryCreated`   | Hash Key        | `beneficiaryId`     |
-|                        | Range Key       | `created`           |
-| `beneficiaryFirstName` | Hash Key        | `beneficiaryId`     |
-|                        | Range Key       | `firstNameRangeKey` |
-| `beneficiaryLastName`  | Hash Key        | `beneficiaryId`     |
-|                        | Range Key       | `lastNameRangeKey`  |
-| `beneficiaryPhone`     | Hash Key        | `beneficiaryId`     |
-|                        | Range Key       | `phone`             |
-| `beneficiaryUpdated`   | Hash Key        | `beneficiaryId`     |
-|                        | Range Key       | `updated`           |
-| `created`              | Hash Key        | `hashKey`           |
-|                        | Range Key       | `created`           |
-| `firstName`            | Hash Key        | `hashKey`           |
-|                        | Range Key       | `firstNameRangeKey` |
-| `lastName`             | Hash Key        | `hashKey`           |
-|                        | Range Key       | `lastNameRangeKey`  |
-| `phone`                | Hash Key        | `hashKey`           |
-|                        | Range Key       | `lastNameRangeKey`  |
-| `updated`              | Hash Key        | `hashKey`           |
-|                        | Range Key       | `updated`           |
-| `userCreated`          | Hash Key        | `userId`            |
-|                        | Range Key       | `created`           |
-| `userUpdated`          | Hash Key        | `userId`            |
-|                        | Range Key       | `updated`           |
+| Index                  | Entities     | Index Component | Record Property     |
+| ---------------------- | ------------ | --------------- | ------------------- |
+| `beneficiaryCreated`   | User         | Hash Key        | `beneficiaryId`     |
+|                        |              | Range Key       | `created`           |
+| `beneficiaryFirstName` | User         | Hash Key        | `beneficiaryId`     |
+|                        |              | Range Key       | `firstNameRangeKey` |
+| `beneficiaryLastName`  | User         | Hash Key        | `beneficiaryId`     |
+|                        |              | Range Key       | `lastNameRangeKey`  |
+| `beneficiaryPhone`     | User         | Hash Key        | `beneficiaryId`     |
+|                        |              | Range Key       | `phone`             |
+| `beneficiaryUpdated`   | User         | Hash Key        | `beneficiaryId`     |
+|                        |              | Range Key       | `updated`           |
+| `created`              | Email & User | Hash Key        | `hashKey`           |
+|                        |              | Range Key       | `created`           |
+| `firstName`            | User         | Hash Key        | `hashKey`           |
+|                        |              | Range Key       | `firstNameRangeKey` |
+| `lastName`             | User         | Hash Key        | `hashKey`           |
+|                        |              | Range Key       | `lastNameRangeKey`  |
+| `phone`                | User         | Hash Key        | `hashKey`           |
+|                        |              | Range Key       | `lastNameRangeKey`  |
+| `updated`              | User         | Hash Key        | `hashKey`           |
+|                        |              | Range Key       | `updated`           |
+| `userCreated`          | Email        | Hash Key        | `userId`            |
+|                        |              | Range Key       | `created`           |
 
 One thing we haven't discussed yet is [_projection_](https://docs.aws.amazon.com/amazondynamodb/latest/APIReference/API_Projection.html). Once your query has applied hash & range key constraints, you may wish to filter the result set by additional properties. These properties will need to be included in the index.
 
@@ -436,22 +434,20 @@ More on this in a later section!
 
 In [Secondary Indexes](#secondary-indexes) above we created the following indexes that use an alternate User property (marked with 👈) as the index hash key:
 
-| Index                  | Index Component | Record Property     |
-| ---------------------- | --------------- | ------------------- |
-| `beneficiaryCreated`   | Hash Key        | `beneficiaryId` 👈  |
-|                        | Range Key       | `created`           |
-| `beneficiaryFirstName` | Hash Key        | `beneficiaryId` 👈  |
-|                        | Range Key       | `firstNameRangeKey` |
-| `beneficiaryLastName`  | Hash Key        | `beneficiaryId` 👈  |
-|                        | Range Key       | `lastNameRangeKey`  |
-| `beneficiaryPhone`     | Hash Key        | `beneficiaryId` 👈  |
-|                        | Range Key       | `phone`             |
-| `beneficiaryUpdated`   | Hash Key        | `beneficiaryId` 👈  |
-|                        | Range Key       | `updated`           |
-| `userCreated`          | Hash Key        | `userId` 👈         |
-|                        | Range Key       | `created`           |
-| `userUpdated`          | Hash Key        | `userId` 👈         |
-|                        | Range Key       | `updated`           |
+| Index                  | Entities | Index Component | Record Property     |
+| ---------------------- | -------- | --------------- | ------------------- |
+| `beneficiaryCreated`   | User     | Hash Key        | `beneficiaryId` 👈  |
+|                        |          | Range Key       | `created`           |
+| `beneficiaryFirstName` | User     | Hash Key        | `beneficiaryId` 👈  |
+|                        |          | Range Key       | `firstNameRangeKey` |
+| `beneficiaryLastName`  | User     | Hash Key        | `beneficiaryId` 👈  |
+|                        |          | Range Key       | `lastNameRangeKey`  |
+| `beneficiaryPhone`     | User     | Hash Key        | `beneficiaryId` 👈  |
+|                        |          | Range Key       | `phone`             |
+| `beneficiaryUpdated`   | User     | Hash Key        | `beneficiaryId` 👈  |
+|                        |          | Range Key       | `updated`           |
+| `userCreated`          | Email    | Hash Key        | `userId` 👈         |
+|                        |          | Range Key       | `created`           |
 
 But since the records in these indexes have approximately the same cardinality as the User table itself, they _also_ need to be sharded!
 
@@ -488,32 +484,30 @@ This illustrates an important **Entity Manager** feature: **entities in your Ent
 
 Here are the resulting User service table indexes, adjusted for the presence of the new alternate hash key. I marked the changes with a 👈:
 
-| Index                         | Index Component | Record Property          |
-| ----------------------------- | --------------- | ------------------------ |
-| `created`                     | Hash Key        | `hashKey`                |
-|                               | Range Key       | `created`                |
-| `firstName`                   | Hash Key        | `hashKey`                |
-|                               | Range Key       | `firstNameRangeKey`      |
-| `lastName`                    | Hash Key        | `hashKey`                |
-|                               | Range Key       | `lastNameRangeKey`       |
-| `phone`                       | Hash Key        | `hashKey`                |
-|                               | Range Key       | `phone`                  |
-| `updated`                     | Hash Key        | `hashKey`                |
-|                               | Range Key       | `updated`                |
-| `userBeneficiaryCreated` 👈   | Hash Key        | `userBeneficiaryHashKey` |
-|                               | Range Key       | `created`                |
-| `userBeneficiaryFirstName` 👈 | Hash Key        | `userBeneficiaryHashKey` |
-|                               | Range Key       | `firstNameRangeKey`      |
-| `userBeneficiaryLastName` 👈  | Hash Key        | `userBeneficiaryHashKey` |
-|                               | Range Key       | `lastNameRangeKey`       |
-| `userBeneficiaryPhone` 👈     | Hash Key        | `userBeneficiaryHashKey` |
-|                               | Range Key       | `phone`                  |
-| `userBeneficiaryUpdated` 👈   | Hash Key        | `userBeneficiaryHashKey` |
-|                               | Range Key       | `updated`                |
-| `userCreated` 👈              | Hash Key        | `userHashKey`            |
-|                               | Range Key       | `created`                |
-| `userUpdated` 👈              | Hash Key        | `userHashKey`            |
-|                               | Range Key       | `updated`                |
+| Index                         | Entities     | Index Component | Record Property          |
+| ----------------------------- | ------------ | --------------- | ------------------------ |
+| `created`                     | Email & User | Hash Key        | `hashKey`                |
+|                               |              | Range Key       | `created`                |
+| `firstName`                   | User         | Hash Key        | `hashKey`                |
+|                               |              | Range Key       | `firstNameRangeKey`      |
+| `lastName`                    | User         | Hash Key        | `hashKey`                |
+|                               |              | Range Key       | `lastNameRangeKey`       |
+| `phone`                       | User         | Hash Key        | `hashKey`                |
+|                               |              | Range Key       | `phone`                  |
+| `updated`                     | User         | Hash Key        | `hashKey`                |
+|                               |              | Range Key       | `updated`                |
+| `userBeneficiaryCreated` 👈   | User         | Hash Key        | `userBeneficiaryHashKey` |
+|                               |              | Range Key       | `created`                |
+| `userBeneficiaryFirstName` 👈 | User         | Hash Key        | `userBeneficiaryHashKey` |
+|                               |              | Range Key       | `firstNameRangeKey`      |
+| `userBeneficiaryLastName` 👈  | User         | Hash Key        | `userBeneficiaryHashKey` |
+|                               |              | Range Key       | `lastNameRangeKey`       |
+| `userBeneficiaryPhone` 👈     | User         | Hash Key        | `userBeneficiaryHashKey` |
+|                               |              | Range Key       | `phone`                  |
+| `userBeneficiaryUpdated` 👈   | User         | Hash Key        | `userBeneficiaryHashKey` |
+|                               |              | Range Key       | `updated`                |
+| `userCreated` 👈              | Email        | Hash Key        | `userHashKey`            |
+|                               |              | Range Key       | `created`                |
 
 Note the absence of a `userPhone` index. We would only want this if we needed to:
 
@@ -583,7 +577,7 @@ Upcoming pages will dig deeply into how **Entity Manager** can be configured to 
 |     | `created`                | `1726880933`                     | `1726880947`                          |
 |     | `email`                  |                                  | `'me@karmanivero.us'`                 |
 |     | `firstName`              | `'Jason'`                        |                                       |
-|     | `firstNameCanonical`     | `jason`                          |                                       |
+|     | `firstNameCanonical`     | `'jason'`                        |                                       |
 | ⚙️  | `firstNameRangeKey`      | `'firstNameCanonical#jason       | lastNameCanonical#williscroft         | created#1726880933'` |                                |
 | ⚙️  | `hashKey`                | `'user!1'`                       | `'email!'`                            |
 |     | `lastName`               | `'Williscroft'`                  |                                       |
@@ -606,48 +600,44 @@ In DynamoDB, a page key _always_ includes the hash and range keys of the record,
 
 We will add these below where they are missing.
 
-| Index                      | Index Component  | Record Property          |
-| -------------------------- | ---------------- | ------------------------ |
-| `created`                  | Hash Key         | `hashKey`                |
-|                            | Range Key        | `created`                |
-|                            | Page Key Support | `rangeKey`               |
-| `firstName`                | Hash Key         | `hashKey`                |
-|                            | Range Key        | `firstNameRangeKey`      |
-|                            | Page Key Support | `rangeKey`               |
-| `lastName`                 | Hash Key         | `hashKey`                |
-|                            | Range Key        | `lastNameRangeKey`       |
-|                            | Page Key Support | `rangeKey`               |
-| `phone`                    | Hash Key         | `hashKey`                |
-|                            | Range Key        | `phone`                  |
-|                            | Page Key Support | `rangeKey`               |
-| `updated`                  | Hash Key         | `hashKey`                |
-|                            | Range Key        | `updated`                |
-|                            | Page Key Support | `rangeKey`               |
-| `userBeneficiaryCreated`   | Hash Key         | `userBeneficiaryHashKey` |
-|                            | Range Key        | `created`                |
-|                            | Page Key Support | `hashKey`                |
-|                            | Page Key Support | `rangeKey`               |
-| `userBeneficiaryFirstName` | Hash Key         | `userBeneficiaryHashKey` |
-|                            | Range Key        | `firstNameRangeKey`      |
-|                            | Page Key Support | `hashKey`                |
-|                            | Page Key Support | `rangeKey`               |
-| `userBeneficiaryLastName`  | Hash Key         | `userBeneficiaryHashKey` |
-|                            | Range Key        | `lastNameRangeKey`       |
-|                            | Page Key Support | `hashKey`                |
-|                            | Page Key Support | `rangeKey`               |
-| `userBeneficiaryPhone`     | Hash Key         | `userBeneficiaryHashKey` |
-|                            | Range Key        | `phone`                  |
-|                            | Page Key Support | `hashKey`                |
-|                            | Page Key Support | `rangeKey`               |
-| `userBeneficiaryUpdated`   | Hash Key         | `userBeneficiaryHashKey` |
-|                            | Range Key        | `updated`                |
-|                            | Page Key Support | `hashKey`                |
-|                            | Page Key Support | `rangeKey`               |
-| `userCreated`              | Hash Key         | `userHashKey`            |
-|                            | Range Key        | `created`                |
-|                            | Page Key Support | `hashKey`                |
-|                            | Page Key Support | `rangeKey`               |
-| `userUpdated`              | Hash Key         | `userHashKey`            |
-|                            | Range Key        | `updated`                |
-|                            | Page Key Support | `hashKey`                |
-|                            | Page Key Support | `rangeKey`               |
+| Index                      | Entities     | Index Component | Record Property          |
+| -------------------------- | ------------ | --------------- | ------------------------ |
+| `created`                  | Email & User | Hash Key        | `hashKey`                |
+|                            |              | Range Key       | `created`                |
+|                            |              | Page Key        | `rangeKey`               |
+| `firstName`                | User         | Hash Key        | `hashKey`                |
+|                            |              | Range Key       | `firstNameRangeKey`      |
+|                            |              | Page Key        | `rangeKey`               |
+| `lastName`                 | User         | Hash Key        | `hashKey`                |
+|                            |              | Range Key       | `lastNameRangeKey`       |
+|                            |              | Page Key        | `rangeKey`               |
+| `phone`                    | User         | Hash Key        | `hashKey`                |
+|                            |              | Range Key       | `phone`                  |
+|                            |              | Page Key        | `rangeKey`               |
+| `updated`                  | User         | Hash Key        | `hashKey`                |
+|                            |              | Range Key       | `updated`                |
+|                            |              | Page Key        | `rangeKey`               |
+| `userBeneficiaryCreated`   | User         | Hash Key        | `userBeneficiaryHashKey` |
+|                            |              | Range Key       | `created`                |
+|                            |              | Page Key        | `hashKey`                |
+|                            |              | Page Key        | `rangeKey`               |
+| `userBeneficiaryFirstName` | User         | Hash Key        | `userBeneficiaryHashKey` |
+|                            |              | Range Key       | `firstNameRangeKey`      |
+|                            |              | Page Key        | `hashKey`                |
+|                            |              | Page Key        | `rangeKey`               |
+| `userBeneficiaryLastName`  | User         | Hash Key        | `userBeneficiaryHashKey` |
+|                            |              | Range Key       | `lastNameRangeKey`       |
+|                            |              | Page Key        | `hashKey`                |
+|                            |              | Page Key        | `rangeKey`               |
+| `userBeneficiaryPhone`     | User         | Hash Key        | `userBeneficiaryHashKey` |
+|                            |              | Range Key       | `phone`                  |
+|                            |              | Page Key        | `hashKey`                |
+|                            |              | Page Key        | `rangeKey`               |
+| `userBeneficiaryUpdated`   | User         | Hash Key        | `userBeneficiaryHashKey` |
+|                            |              | Range Key       | `updated`                |
+|                            |              | Page Key        | `hashKey`                |
+|                            |              | Page Key        | `rangeKey`               |
+| `userCreated`              | Email        | Hash Key        | `userHashKey`            |
+|                            |              | Range Key       | `created`                |
+|                            |              | Page Key        | `hashKey`                |
+|                            |              | Page Key        | `rangeKey`               |
