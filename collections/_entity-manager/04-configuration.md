@@ -296,7 +296,11 @@ This section will cover each element of the `Config` type in depth. First, thoug
 - for clarity, expresses and identifies all default values (normally default values can be omitted).
 
 ```ts
-import { defaultTranscodes, type Config } from `@karmaniverous/entity-manager`;
+import {
+  defaultTranscodes,
+  type Config,
+  type DefaultTranscodeMap
+} from `@karmaniverous/entity-manager`;
 
 const config: Config<
   MyEntityMap,
@@ -304,93 +308,156 @@ const config: Config<
   'rangeKey',          // default value
   DefaultTranscodeMap, // default value
 > = {
+  // Common hash & range key properties for all entities. Must
+  // exactly match HashKey & RangeKey type params.
+  hashKey: 'hashKey',            // default value
+  rangeKey: 'rangeKey',          // default value
+
+  // Delimiters for generated properties & shard keys. Generated
+  // property elements should not contain these characters!
+  generatedKeyDelimiter: '|',    // default value
+  generatedValueDelimiter: '#',  // default value
+  shardKeyDelimiter: '!',        // default value
+
+  // Maximum number of shard queries executed in parallel.
+  throttle: 10,                  // default value
+
+  // Transcode functions for generated properties & page keys.
+  transcodes: defaultTranscodes, // default value
+
+  // Entity-specific configs. Keys must exactly match those of
+  // MyEntityMap.
   entities: {
+    // Email entity config.
     email: {
-      defaultLimit: 10,    // default value
-      defaultPageSize: 10, // default value
-      elementTranscodes: {
-        created: 'timestamp',
-        email: 'string',
-        userId: 'string',
-      },
-      generated: {
-        userHashKey: {
-          atomic: true,
-          components: ['userId'],
-          sharded: true,
-        }
-      },
-      indexes: {
-        created: ['created', 'hashKey', 'rangeKey'],
-        userCreated: ['created', 'hashKey', 'rangeKey', 'userHashKey'],
-      },
-      shardBumps: [ // default value
+      // Source property for the Email entity's hash key.
+      uniqueProperty: 'email',
+
+      // Source property for timestamp used to calculate Email
+      // shard key.
+      timestampProperty: 'created',
+
+      // Default shard bump schedule if not specified. All hash
+      // keys will have a zero-length shard key and be effectively
+      // unsharded.
+      shardBumps: [
         { charBits: 1, chars: 0, timestamp: 0 },
       ],
-      timestampProperty: 'created',
-      uniqueProperty: 'email',
+
+      // Email entity generated properties. These keys must match
+      // the ones with never types in the Email interface defined
+      // above, and are marked with a ⚙️ in the table design.
+      generated: {
+        userHashKey: {
+          // When true, if any element is undefined or null, the
+          // generated property will be undefined. When false,
+          // undefined or null elements will be rendered as an
+          // empty string.
+          atomic: true,
+
+          // Elements of the generated property. These MUST be
+          // ungenerated properties (i.e. not marked with never
+          // in the Email interface) and MUST be included in the
+          // entityTranscodes object below. Elements are applied
+          // in order.
+          elements: ['userId'],
+
+          // When this value is true, the generated property will
+          // be sharded.
+          sharded: true,
+        },
+      },
+
+      // Indexes for the Email entity as specified in the index
+      // design.
+      indexes: {
+        // An index hashKey must be either the global hash key or a
+        // sharded generated property. Its rangeKey must be either
+        // the global range key, an ungenerated scalar property, or
+        // an unsharded generated property. Any ungenerated
+        // properties used MUST be included in the entityTranscodes
+        // object below.
+        created: { hashKey: 'hashKey', rangeKey: 'created' },
+        userCreated: { hashKey: 'userHashKey', rangeKey: 'created' },
+      },
+
+      // Transcodes for ungenerated properties used as generated
+      // property elements or index components. Transcode values
+      // must be valid config transcodes object keys. Since this
+      // config does not define a transcodes object it uses
+      // defaultTranscodes exported by @karmaniverous/entity-tools.
+      elementTranscodes: {
+        created: 'timestamp',
+        userId: 'string',
+      },
     },
+    // User entity config.
     user: {
-      defaultLimit: 10,    // default value
-      defaultPageSize: 10, // default value
+      uniqueProperty: 'userId',
+      timestampProperty: 'created',
+
+      // User entity's shard bump schedule. Hash keys created
+      // before the timestamp are unsharded (1 possible shard key).
+      // Hash keys created afterward have a 1-char, 2-bit shard key
+      // (4 possible shard keys).
+      shardBumps: [{ timestamp: 1730617827000, charBits: 2, chars: 1 }],
+
+      generated: {
+        firstNameRangeKey: {
+          elements: ['firstNameCanonical', 'lastNameCanonical', 'created'],
+        },
+        lastNameRangeKey: {
+          elements: ['lastNameCanonical', 'firstNameCanonical', 'created'],
+        },
+        userBeneficiaryHashKey: {
+          atomic: true,
+          elements: ['beneficiaryId'],
+          sharded: true,
+        },
+        userHashKey: {
+          atomic: true,
+          elements: ['userId'],
+          sharded: true,
+        },
+      },
+      indexes: {
+        created: { hashKey: 'hashKey', rangeKey: 'created' },
+        firstName: { hashKey: 'hashKey', rangeKey: 'firstNameRangeKey' },
+        lastName: { hashKey: 'hashKey', rangeKey: 'lastNameRangeKey' },
+        phone: { hashKey: 'hashKey', rangeKey: 'phone' },
+        updated: { hashKey: 'hashKey', rangeKey: 'updated' },
+        userBeneficiaryCreated: {
+          hashKey: 'userBeneficiaryHashKey',
+          rangeKey: 'created',
+        },
+        userBeneficiaryFirstName: {
+          hashKey: 'userBeneficiaryHashKey',
+          rangeKey: 'firstNameRangeKey',
+        },
+        userBeneficiaryLastName: {
+          hashKey: 'userBeneficiaryHashKey',
+          rangeKey: 'lastNameRangeKey',
+        },
+        userBeneficiaryPhone: {
+          hashKey: 'userBeneficiaryHashKey',
+          rangeKey: 'phone',
+        },
+        userBeneficiaryUpdated: {
+          hashKey: 'userBeneficiaryHashKey',
+          rangeKey: 'updated',
+        },
+      },
       elementTranscodes: {
         beneficiaryId: 'string',
         created: 'timestamp',
-        firstName: 'string',
         firstNameCanonical: 'string',
-        lastName: 'string',
         lastNameCanonical: 'string',
         phone: 'string',
         updated: 'timestamp',
         userId: 'string',
       },
-      indexes: {
-        created: ['created', 'hashKey', 'rangeKey'],
-        firstName: ['firstNameRangeKey', 'hashKey', 'rangeKey'],
-        lastName: ['hashKey', 'lastNameRangeKey', 'rangeKey'],
-        phone: ['hashKey', 'phone', 'rangeKey'],
-        updated: ['hashKey', 'rangeKey', 'updated'],
-        userBeneficiaryCreated: ['created', 'hashKey', 'rangeKey', 'userBeneficiaryHashKey'],
-        userBeneficiaryFirstName: ['firstNameRangeKey', 'hashKey', 'rangeKey', 'userBeneficiaryHashKey'],
-        userBeneficiaryLastName: ['hashKey', 'lastNameRangeKey', 'rangeKey', 'userBeneficiaryHashKey'],
-        userBeneficiaryPhone: ['hashKey', 'phone', 'rangeKey', 'userBeneficiaryHashKey'],
-        userBeneficiaryUpdated: ['hashKey', 'rangeKey', 'updated', 'userBeneficiaryHashKey'],
-        userCreated: ['created', 'hashKey', 'rangeKey', 'userHashKey'],
-        userUpdated: ['hashKey', 'rangeKey', 'updated', 'userHashKey'],
-      },
-      generated: {
-        firstNameRangeKey: {
-          atomic: true,
-          elements: ['firstNameCanonical', 'lastNameCanonical', 'created'],
-          sharded: false,
-        },
-        lastNameRangeKey: {
-          atomic: true,
-          elements: ['lastNameCanonical', 'firstNameCanonical', 'created'],
-          sharded: false,
-        },
-        userBeneficiaryHashKey: {
-          atomic: true,
-          components: ['beneficiaryId'],
-          sharded: true,
-        },
-        userHashKey: {
-          atomic: true,
-          components: ['userId'],
-          sharded: true,
-        },
-      },
-      timestampProperty: 'created',
-      uniqueProperty: 'userId',
     },
   },
-  generatedKeyDelimiter: '|',    // default value
-  generatedValueDelimiter: '#',  // default value
-  hashKey: 'hashKey',            // default value
-  rangeKey: 'rangeKey',          // default value
-  shardKeyDelimiter: '!',        // default value
-  throttle: 10,                  // default value
-  transcodes: defaultTranscodes, // default value
 };
 ```
 
@@ -431,6 +498,42 @@ Subject to implementation requirements, `pageSize` and `limit` can be set on an 
 
 `throttle` is the maximum number of queries that can be conducted in parallel. If not set in the config object, its value defaults to `10`.
 
+#### Indexes
+
+The `indexes` configuration defines the indexes associated with the entity. This configuration serves several purposes:
+
+- Permits dehydration & rehydration of page keys in support of cross-shard, multi-index query operations.
+
+- Permits automatic generation of platform-specific data definitions, for example DynamoDB table definitions via the [`generateTableDefinition`](https://docs.karmanivero.us/entity-client-dynamodb/functions/index.generateTableDefinition.html) in the [`entity-client-dynamodb`](https://github.com/karmaniverous/entity-client-dynamodb) package.
+
+In the future, we will exploit this configuration at the command line to generate platform-specific data definitions, e.g. the CloudFormation specification of a DynamoDB table.
+
+For now, these indexes are used to specify managed queries and to dehydrate & rehydrate the associated page key maps.
+
+The `indexes` property is an object whose keys are the index names, and whose values are objects with the following properties:
+
+| Property        | Type                                                                                                                            | Description                                                                                                                                                                                         |
+| --------------- | ------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `hashKey`       | [`ConfigEntityIndexComponent`](https://docs.karmanivero.us/entity-manager/types/entity_manager.ConfigEntityIndexComponent.html) | The hash key component of the index. Must be either the global hash key or a **sharded** generated property.                                                                                        |
+| `rangeKey`      | [`ConfigEntityIndexComponent`](https://docs.karmanivero.us/entity-manager/types/entity_manager.ConfigEntityIndexComponent.html) | The range key component of the index. Must be either the global range key, a scalar ungenerated property, or an **unsharded** generated property.                                                   |
+| `[projections]` | `string[]`                                                                                                                      | Properties to project from the index, including those not otherwise part of the configuration. May not include the global or index hash or range key. If omitted, all properties will be projected. |
+
+See [here](/projects/entity-manager/evolving-a-nosql-db-schema/#indexes) for a discussion of special index structure considerations within the DynamoDB context.
+
+#### Generated Properties
+
+The `generated` configuration defines each of an entity's generated properties, which are indicated in the entity's entry in the config's `M` (`EntityMap`) type parameter by a `never` type.
+
+_All_ such properties must be represented by a key in the `generated` object. If any are missing, or if any extra keys are present, TypeScript will throw a type error.
+
+The value associated with each key is a configuration object that defines the generated property's structure. This object has the following properties:
+
+| Property     | Type       | Default | Description                                                                                                                                                                               |
+| ------------ | ---------- | ------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `atomic`     | `boolean`  | `false` | If `true`, any missing component results in an `undefined` generated value. If `false`, missing components are rendered as an empty string.                                               |
+| `components` | `string[]` |         | An array of ungenerated property names that will be used to generate the property. Order matters, and only properties defined in [`Element Transcodes`](#element-transcodes) may be used! |
+| `sharded`    | `boolean`  | `false` | If `true`, the generated property will be sharded. If `false`, it will not.                                                                                                               |
+
 #### Element Transcodes
 
 The `elementTranscodes` configuration determines:
@@ -459,43 +562,9 @@ In practice, the best way to determine which properties should be included in `e
 
 These rules will be validated at runtime when you parse your configuration object. See [above](#the-config-type) for examples.
 
-#### Generated Properties
-
-The `generated` configuration defines each of an entity's generated properties, which are indicated in the entity's entry in the config's `M` (`EntityMap`) type parameter by a `never` type.
-
-_All_ such properties must be represented by a key in the `generated` object. If any are missing, or if any extra keys are present, TypeScript will throw a type error.
-
-The value associated with each key is a configuration object that defines the generated property's structure. This object has the following properties:
-
-| Property     | Type       | Default | Description                                                                                                                                                                               |
-| ------------ | ---------- | ------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `atomic`     | `boolean`  | `false` | If `true`, any missing component results in an `undefined` generated value. If `false`, missing components are rendered as an empty string.                                               |
-| `components` | `string[]` |         | An array of ungenerated property names that will be used to generate the property. Order matters, and only properties defined in [`Element Transcodes`](#element-transcodes) may be used! |
-| `sharded`    | `boolean`  | `false` | If `true`, the generated property will be sharded. If `false`, it will not.                                                                                                               |
-
-#### Indexes
-
-The `indexes` configuration defines the indexes associated with the entity.
-
-In the future, we will exploit this configuration at the command line to generate platform-specific data definitions, e.g. the CloudFormation specification of a DynamoDB table.
-
-For now, these indexes are used to specify managed queries and to dehydrate & rehydrate the associated page key maps.
-
-The `indexes` property is a Record-type object whose keys are the index names, and whose values are arrays of entity property names that act as index components.
-
-To articulate a managed query, index names will be passed to a bespoke `ShardQueryFunction`. This function may translate the passed index name to a name used internally by the database, but as a matter of simplicity it makes sense to use the same name for both.
-
-To be valid for inclusion, an index component must be:
-
-- a generated property, or
-
-- an ungenerated property included in the entity's `elementTranscodes` configuration.
-
-The order of index components is not significant. See [here](/projects/entity-manager/evolving-a-nosql-db-schema/#indexes) for a discussion of special index structure considerations within the DynamoDB context.
-
 #### Sharding Strategy
 
-These configuration define the sharding strategy for the entity. See [here](/projects/entity-manager/evolving-a-nosql-db-schema/#shard-keys) for an introduction to the rationale behind sharding and structure of a shard key.
+This configuration defines the sharding strategy for the entity. See [here](/projects/entity-manager/evolving-a-nosql-db-schema/#shard-keys) for an introduction to the rationale behind sharding and structure of a shard key.
 
 Every record created by **Entity Manager** will have a shard key embedded in its hash key. By default, this shard key is an empty string, resulting in a single data partition across the entity.
 
@@ -547,11 +616,11 @@ So long as a new `shardBump` is only added with a _future_ timestamp, your shard
 
 The Entity Manager config defines the following special characters as delimiters, to be used when composing generated property values, including the global `hashKey` and `rangeKey`:
 
-| Property                  | Type     | Default | Description                                                           |
-| ------------------------- | -------- | ------- | --------------------------------------------------------------------- |
-| `generatedKeyDelimiter`   | `string` | `'│'`   | Separates key-value pairs in a generated property.                    |
-| `generatedValueDelimiter` | `string` | `'#'`   | Separates key from value in a generated property key-value pair.      |
-| `shardKeyDelimiter`       | `string` | `'!'`   | Separates entity token from shard key in a sharded generted property. |
+| Property                  | Type     | Default | Description                                                            |
+| ------------------------- | -------- | ------- | ---------------------------------------------------------------------- |
+| `generatedKeyDelimiter`   | `string` | `'│'`   | Separates key-value pairs in a generated property.                     |
+| `generatedValueDelimiter` | `string` | `'#'`   | Separates key from value in a generated property key-value pair.       |
+| `shardKeyDelimiter`       | `string` | `'!'`   | Separates entity token from shard key in a sharded generated property. |
 
 **An entity property used as a generated property element or an index component should _never_ contain any of these delimiter characters!** If this is unavoidable, use these configurations to define an alternate delimiter that will not collide with your entity data.
 {: .notice--warning}
