@@ -104,3 +104,25 @@ li > .button-row--left {
 .author__urls-wrapper {
   vertical-align: unset !important;
 }
+
+.page__lead.under_construction {
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.5);
+  color: orange !important;
+  gap: 0.5em;
+  display: flex;
+  font-size: $type-size-3;
+  font-weight: bold;
+  justify-content: space-between;
+  margin-top: -0.5em;
+  padding: 0.5em;
+}
+
+.page__lead.under_construction div {
+  text-align: center;
+}
+
+.page__lead.under_construction div:first-child,
+.page__lead.under_construction div:last-child {
+  font-size: larger;
+}

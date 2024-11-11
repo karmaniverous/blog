@@ -1,11 +1,12 @@
 ---
 title: Entity Manager Configuration
-excerpt: 'Entity Manager enables efficient put, get, and query operations across entity relationships, indexes, and sharded partitions in a NoSQL database.<span style="color: orange; display: block; font-weight: bold; margin-top: 0.5em;">🚧 UNDER CONSTRUCTION!!! 🚧</span>'
+excerpt: Entity Manager enables efficient put, get, and query operations across entity relationships, indexes, and sharded partitions in a NoSQL database.
 permalink: /projects/entity-manager/configuration/
 header:
   og_image: /assets/collections/entity-manager/configuration-banner.jpg
   overlay_image: /assets/collections/entity-manager/configuration-banner-half.jpg
   teaser: /assets/collections/entity-manager/configuration-square.jpg
+under_construction: true
 ---
 
 <figure class="align-left drop-image">
@@ -15,6 +16,9 @@ header:
 **Entity Manager** is a highly generic tool that enables efficient put, get, and query operations across many entity relationships, indexes, and sharded partitions.
 
 **Entity Manager** was designed to operate within the context of AWS [DynamoDB](https://aws.amazon.com/dynamodb/), but should work equally well with any sufficiently similar [NoSQL](https://en.wikipedia.org/wiki/NoSQL) platform.
+
+**This page is under construction!** The Typescript refactor is nearly complete, and I'm busy building the demo & syncing up this documentation. Please check back soon for updates and [drop me a note](https://github.com/karmaniverous/entity-manager/discussions) with any questions or ideas!.
+{: .notice--warning}
 
 To accomplish this, **Entity Manager** needs to know:
 

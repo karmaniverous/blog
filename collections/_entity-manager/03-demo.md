@@ -1,11 +1,12 @@
 ---
 title: 'Entity Manager: A Demonstration'
-excerpt: 'Presenting a step-by-step Typescript implementation of a realistic data model against DynamoDB, with the help of Entity Manager.<span style="color: orange; display: block; font-weight: bold; margin-top: 0.5em;">🚧 UNDER CONSTRUCTION!!! 🚧</span>'
+excerpt: Presenting a step-by-step Typescript implementation of a realistic data model against DynamoDB, with the help of Entity Manager.
 permalink: /projects/entity-manager/demo/
 header:
   og_image: /assets/collections/entity-manager/configuration-banner.jpg
   overlay_image: /assets/collections/entity-manager/configuration-banner-half.jpg
   teaser: /assets/collections/entity-manager/configuration-square.jpg
+under_construction: true
 ---
 
 <figure class="align-left drop-image">
@@ -18,8 +19,8 @@ At the end of the day, though, you have to implement a _specific_ data model aga
 
 The [`entity-manager-demo`](https://github.com/karmaniverous/entity-manager-demo) repository contains the full implementation documented below.
 
-**Both this article and the accompanying repository are under construction!** It will take a couple of weeks to unpack everything. Meanwhile, please feel free to [reach out](https://github.com/karmaniverous/entity-manager-demo/discussions) with any questions or ideas!
-{: .notice--info}
+**This page is under construction!** The Typescript refactor is nearly complete, and I'm busy building the demo & syncing up this documentation. Please check back soon for updates and [drop me a note](https://github.com/karmaniverous/entity-manager/discussions) with any questions or ideas!.
+{: .notice--warning}
 
 ## An Overview
 
