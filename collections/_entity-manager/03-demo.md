@@ -1,6 +1,6 @@
 ---
 title: 'Entity Manager: A Demonstration'
-excerpt: Presenting a step-by-step Typescript implementation of a realistic data model against DynamoDB, with the help of Entity Manager.
+excerpt: 'Presenting a step-by-step Typescript implementation of a realistic data model against DynamoDB, with the help of Entity Manager.<span style="color: orange; display: block; font-weight: bold; margin-top: 0.5em;">🚧 UNDER CONSTRUCTION!!! 🚧</span>'
 permalink: /projects/entity-manager/demo/
 header:
   og_image: /assets/collections/entity-manager/configuration-banner.jpg

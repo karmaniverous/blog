@@ -1,6 +1,6 @@
 ---
 title: Entity Manager Configuration
-excerpt: Entity Manager enables efficient put, get, and query operations across entity relationships, indexes, and sharded partitions in a NoSQL database.
+excerpt: 'Entity Manager enables efficient put, get, and query operations across entity relationships, indexes, and sharded partitions in a NoSQL database.<span style="color: orange; display: block; font-weight: bold; margin-top: 0.5em;">🚧 UNDER CONSTRUCTION!!! 🚧</span>'
 permalink: /projects/entity-manager/configuration/
 header:
   og_image: /assets/collections/entity-manager/configuration-banner.jpg
