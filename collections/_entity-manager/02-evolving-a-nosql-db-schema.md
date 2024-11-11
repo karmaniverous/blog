@@ -28,7 +28,7 @@ Imagine an application that tracks the credit card transactions of its users.
 
 When a **User** performs a **Credit Card** or online shopping cart **Transaction**, the application rounds the Transaction amount to the nearest dollar and credits that amount to a **Beneficiary** chosen by the User. Online shopping cart Transactions can be related to the User by Credit Card and **Email**, so each User can have more than one Email, which must be unique in the system. Users also sign up with an Email, so there's a particularly close relationship between Users and Emails.
 
-FYI this example is actually a small slice of the real [VeteranCrowd](https://veterancrowd.com) application, which uses **Entity Manager** in production!
+FYI this example is actually a small slice of the real [VeteranCrowd](https://veterancrowd.com) application, which uses **Entity Manager**'s previous JS version in production!
 {: .notice--info}
 
 Here's a breakdown of the entities & relationships in the system. We're building a microservices back end, so each entity will live on a specific service as indicated:
