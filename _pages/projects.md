@@ -155,6 +155,19 @@ String utilities & tagged template functions I use a lot. Super tree-shakable pa
 
 </div>
 
+## string-utilities
+
+Automagically generate a sitemap for your [TypeDoc](https://typedoc.org/) documentation site!
+
+<div class="button-row--left">
+    <a href="https://docs.karmanivero.us/typedoc-plugin-sitemap" class="btn btn--info btn--large">API Docs</a>
+
+    <a href="https://github.com/karmaniverous/typedoc-plugin-sitemap" class="btn btn--primary btn--large"><i class="fa-brands fa-github fa-2xl"></i></a>
+
+    <a href="https://www.npmjs.com/package/@karmaniverous/typedoc-plugin-sitemap" class="btn btn--primary btn--large"><i class="fa-brands fa-npm fa-2xl"></i></a>
+
+</div>
+
 ## TypeScript NPM Package Template
 
 **Writing great TypeScript is only half the battle!** You also need to instrument it, format it, lint it, test it, bundle it, document it, and publish it!
