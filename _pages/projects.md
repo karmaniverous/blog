@@ -155,7 +155,7 @@ String utilities & tagged template functions I use a lot. Super tree-shakable pa
 
 </div>
 
-## string-utilities
+## typedoc-plugin-sitemap
 
 Automagically generate a sitemap for your [TypeDoc](https://typedoc.org/) documentation site!
 
