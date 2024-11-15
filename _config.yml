@@ -12,18 +12,18 @@
 
 # theme                  : "minimal-mistakes-jekyll"
 # remote_theme           : "mmistakes/minimal-mistakes"
-remote_theme: 'mmistakes/minimal-mistakes@4.26.2'
-minimal_mistakes_skin: 'karmaniverous' # "air", "aqua", "contrast", "dark", "default", "dirt", "neon", "mint", "plum", "sunrise"
+remote_theme: "mmistakes/minimal-mistakes@4.26.2"
+minimal_mistakes_skin: "karmaniverous" # "air", "aqua", "contrast", "dark", "default", "dirt", "neon", "mint", "plum", "sunrise"
 
 # Site Settings
 collections_dir: collections
-locale: 'en-US'
+locale: "en-US"
 # rtl: # true, false (default) # turns direction of the page into right to left for RTL languages
-title: 'some words'
-title_separator: '-'
-subtitle: 'many of them true'
-name: 'Jason Williscroft'
-description: 'resume bullets / may read differently at the / threshold of heaven'
+title: "some words"
+title_separator: "-"
+subtitle: "many of them true"
+name: "Jason Williscroft"
+description: "resume bullets / may read differently at the / threshold of heaven"
 url: https://karmanivero.us
 # baseurl: # the subpath of your site, e.g. "/blog"
 repository: karmaniverous/blog
@@ -36,9 +36,9 @@ enable_copy_code_button: true # , false (default)
 # copyright: # "copyright" name, defaults to site.title
 # copyright_url: # "copyright" URL, defaults to site.url
 comments:
-  provider: 'disqus'
+  provider: "disqus"
   disqus:
-    shortname: 'some-words'
+    shortname: "some-words"
   # discourse:
   #   server: # https://meta.discourse.org/t/embedding-discourse-comments-via-javascript/31963 , e.g.: meta.discourse.org
   # facebook:
@@ -117,65 +117,65 @@ analytics:
 
 # Site Author
 author:
-  name: 'Jason Williscroft'
-  avatar: '/assets/images/bio-photo.jpg'
-  bio: '<em>resume bullets<br />may read differently at the<br />threshold of heaven</em>'
+  name: "Jason Williscroft"
+  avatar: "/assets/images/bio-photo.jpg"
+  bio: "<em>resume bullets<br />may read differently at the<br />threshold of heaven</em>"
   # email:
   links:
-    - label: 'Bali'
-      icon: 'fa-solid fa-location-dot'
-      url: '/bali/'
-    - label: 'X'
-      icon: 'fa-brands fa-square-x-twitter'
-      url: 'https://twitter.com/karmaniverous'
-    - label: 'GitHub'
-      icon: 'fa-brands fa-github'
-      url: 'https://github.com/karmaniverous'
-    - label: 'LinkedIn'
-      icon: 'fa-brands fa-linkedin'
-      url: 'https://www.linkedin.com/in/jscroft/'
-    - label: 'WhatsApp'
-      icon: 'fa-brands fa-whatsapp'
-      url: 'https://wa.me/17737500338'
-    - label: 'Telegram'
-      icon: 'fa-brands fa-telegram'
-      url: 'https://t.me/karmaniverous'
-    - label: 'Tiny Poems'
-      icon: 'fa-brands fa-square-x-twitter'
-      url: 'https://twitter.com/17morae'
-    - label: 'Meet With Me'
-      icon: 'fa-regular fa-calendar-plus'
-      url: 'https://calendly.com/karmaniverous'
+    - label: "Bali"
+      icon: "fa-solid fa-location-dot"
+      url: "/bali/"
+    - label: "X"
+      icon: "fa-brands fa-square-x-twitter"
+      url: "https://twitter.com/karmaniverous"
+    - label: "GitHub"
+      icon: "fa-brands fa-github"
+      url: "https://github.com/karmaniverous"
+    - label: "LinkedIn"
+      icon: "fa-brands fa-linkedin"
+      url: "https://www.linkedin.com/in/jscroft/"
+    - label: "WhatsApp"
+      icon: "fa-brands fa-whatsapp"
+      url: "https://wa.me/17737500338"
+    - label: "Telegram"
+      icon: "fa-brands fa-telegram"
+      url: "https://t.me/karmaniverous"
+    - label: "Tiny Poems"
+      icon: "fa-brands fa-square-x-twitter"
+      url: "https://twitter.com/17morae"
+    - label: "Meet With Me"
+      icon: "fa-regular fa-calendar-plus"
+      url: "https://calendly.com/karmaniverous"
 
 # Site Footer
 footer:
   links:
-    - label: ''
-      icon: 'fa-brands fa-x-twitter'
-      url: 'https://twitter.com/karmaniverous'
-    - label: ''
-      icon: 'fa-brands fa-github'
-      url: 'https://github.com/karmaniverous'
-    - label: ''
-      icon: 'fa-brands fa-linkedin'
-      url: 'https://www.linkedin.com/in/jscroft/'
-    - label: ''
-      icon: 'fa-brands fa-square-whatsapp'
-      url: 'https://wa.me/17737500338'
-    - label: ''
-      icon: 'fa-brands fa-telegram'
-      url: 'https://t.me/karmaniverous'
-    - label: ''
-      icon: 'fa-regular fa-calendar-plus'
-      url: 'https://calendly.com/karmaniverous'
+    - label: ""
+      icon: "fa-brands fa-x-twitter"
+      url: "https://twitter.com/karmaniverous"
+    - label: ""
+      icon: "fa-brands fa-github"
+      url: "https://github.com/karmaniverous"
+    - label: ""
+      icon: "fa-brands fa-linkedin"
+      url: "https://www.linkedin.com/in/jscroft/"
+    - label: ""
+      icon: "fa-brands fa-square-whatsapp"
+      url: "https://wa.me/17737500338"
+    - label: ""
+      icon: "fa-brands fa-telegram"
+      url: "https://t.me/karmaniverous"
+    - label: ""
+      icon: "fa-regular fa-calendar-plus"
+      url: "https://calendly.com/karmaniverous"
 
 # Reading Files
 include:
   - .htaccess
   - _pages
 exclude:
-  - '*.sublime-project'
-  - '*.sublime-workspace'
+  - "*.sublime-project"
+  - "*.sublime-workspace"
   - vendor
   - .asset-cache
   - .bundle
@@ -203,8 +203,8 @@ exclude:
 keep_files:
   - .git
   - .svn
-encoding: 'utf-8'
-markdown_ext: 'markdown,mkdown,mkdn,mkd,md'
+encoding: "utf-8"
+markdown_ext: "markdown,mkdown,mkdn,mkd,md"
 
 # Conversion
 markdown: kramdown
@@ -244,16 +244,16 @@ pagination:
   # Set enabled to true to use paginate v2
   # enabled: true
   debug: true
-  collection: 'posts'
+  collection: "posts"
   per_page: 8
-  permalink: '/page/:num/'
-  title: ':title - page :num'
+  permalink: "/page/:num/"
+  title: ":title - page :num"
   limit: 0
-  sort_field: 'date'
+  sort_field: "date"
   sort_reverse: true
-  category: 'posts'
-  tag: ''
-  locale: ''
+  category: "posts"
+  tag: ""
+  locale: ""
   trail:
     before: 2
     after: 2
@@ -315,10 +315,10 @@ compress_html:
 defaults:
   # _posts
   - scope:
-      path: ''
+      path: ""
       type: posts
     values:
-      excerpt_separator: '<!--more-->'
+      excerpt_separator: "<!--more-->"
       layout: single
       author_profile: true
       read_time: true
@@ -330,28 +330,29 @@ defaults:
       toc_sticky: true
   # _entity-manager
   - scope:
-      path: ''
-      type: 'entity-manager'
+      path: ""
+      type: "entity-manager"
     values:
       author_profile: false
       comments: false
       header:
-        caption: '[**Entity Manager** project documentation](/projects/entity-manager/)'
+        caption: "[**Entity Manager** project documentation](/projects/entity-manager/)"
         overlay_filter: rgba(32, 0, 32, 0.6)
         overlay_image: /assets/collections/entity-manager/entity-manager-banner-half.jpg
         og_image: /assets/collections/entity-manager/entity-manager-banner.jpg
-        teaser: /assets/collections/entity-manager/entity-manager-logo-square.jpg
+        teaser: /assets/collections/entity-manager/entity-manager-square.jpg
       layout: single
       read_time: true
+      related: true
       share: true
       sidebar:
-        nav: 'entity-manager'
+        nav: "entity-manager"
       toc_sticky: true
       toc: true
   # _project-governance
   - scope:
-      path: ''
-      type: 'project-governance'
+      path: ""
+      type: "project-governance"
     values:
       author_profile: false
       comments: false
@@ -367,16 +368,17 @@ defaults:
             url: https://t.me/karmaniverous
           - label: <i class="fa-regular fa-calendar-plus fa-2xl"></i>
             url: https://calendly.com/karmaniverous
-        caption: 'Got questions or feedback? Contact me at one of the links on this page!'
+        caption: "Got questions or feedback? Contact me at one of the links on this page!"
         overlay_filter: rgba(32, 0, 32, 0.6)
         overlay_image: /assets/collections/project-governance/intro-banner.jpg
         og_image: /assets/collections/project-governance/intro-banner.jpg
         teaser: /assets/collections/project-governance/intro-square.jpg
       layout: single
       read_time: true
+      related: true
       share: true
       sidebar:
-        nav: 'project-governance'
+        nav: "project-governance"
       toc_sticky: true
       toc: true
 

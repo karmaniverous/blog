@@ -9,6 +9,7 @@ categories:
   - Blog
 tags:
   - nextjs
+  - projects
   - react
   - template
 toc: true
@@ -563,7 +564,7 @@ The template application has three pages configures:
 The page at `/private` is only visible to authenticated users. This is accomplished by adding the route pattern to the `config` variable in [`middleware.js`](/middleware.js), like this:
 
 ```js
-export const config = { matcher: ['/private'] };
+export const config = { matcher: ["/private"] };
 ```
 
 If an unauthenticated user attempts to access this page, he will be redirected to a login page.
@@ -575,8 +576,8 @@ Note that the link to the Private page only appears in the sidebar when the user
 If the following environment variable condition is `true`, the application will display a coming soon page:
 
 ```js
-process.env.NEXT_PUBLIC_COMING_SOON === '1' &&
-  process.env.NEXT_PUBLIC_VERCEL_ENV !== 'preview';
+process.env.NEXT_PUBLIC_COMING_SOON === "1" &&
+  process.env.NEXT_PUBLIC_VERCEL_ENV !== "preview";
 ```
 
 If it is `false`, then the application will display.

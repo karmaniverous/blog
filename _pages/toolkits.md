@@ -1,12 +1,23 @@
 ---
 permalink: /toolkits/
+excerpt: "Why reinvent the wheel? I've been running software projects large & small and putting code into production for nearly 40 years... and I've been keeping notes."
 title: Toolkits
 layout: single
 author_profile: true
 share: true
 toc: true
 toc_sticky: true
+tags:
+  - toolkits
+related: true
+header:
+  og_image: /assets/images/toolkits-banner.jpg
+  teaser: /assets/images/toolkits-square.jpg
 ---
+
+<figure class="align-left drop-image">
+    <img src="/assets/images/toolkits-square.jpg">
+</figure>
 
 Why reinvent the wheel?
 

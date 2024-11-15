@@ -5,6 +5,13 @@ permalink: /projects/entity-manager/intro/
 redirect_from:
   - /projects/entity-manager/
 under_construction: true
+related: true
+tags:
+  - dynamodb
+  - entity-manager
+  - nosql
+  - projects
+  - typescript
 ---
 
 <figure class="align-left drop-image">

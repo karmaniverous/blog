@@ -8,6 +8,7 @@ header:
 categories:
   - Blog
 tags:
+  - projects
   - typescript
 toc: true
 ---

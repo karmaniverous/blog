@@ -3,8 +3,9 @@ author_profile: true
 layout: single
 permalink: /bali/
 tagline: i traded these chains<br />for a walking stick and a<br />pocket full of sand
-title: 'Global Experience: Local Knowledge'
-description: 'Want to do business in Indonesia? I can help!'
+title: "Global Experience: Local Knowledge"
+description: "Want to do business in Indonesia? I can help!"
+excerpt: "Want to do business in Indonesia? I can help!"
 header:
   caption: <b>do&nbsp;business&nbsp;in&nbsp;indonesia</b> •&nbsp;strategic&nbsp;introductions •&nbsp;emergency&nbsp;translation •&nbsp;company&nbsp;formation •&nbsp;deal&nbsp;negotiation •&nbsp;land&nbsp;acquisition •&nbsp;cultural&nbsp;advice •&nbsp;yacht&nbsp;service
   og_image: /assets/images/bali-banner.jpg
@@ -23,6 +24,9 @@ header:
       url: https://t.me/karmaniverous
     - label: <i class="fa-regular fa-calendar-plus fa-2xl"></i>
       url: https://calendly.com/karmaniverous
+related: true
+tags:
+  - bali
 ---
 
 <figure class="align-left drop-image">
@@ -52,7 +56,3 @@ Beyond getting you back out to sea, I can help you with:
 - **Cultural advice** to help you avoid the pitfalls of doing business in a _very_ foreign land.
 
 The best way to reach me immediately is via [WhatsApp](https://wa.me/17737500338)!
-
-## Learn More
-
-- [Betting on Bali: My Journey Into The Offshoring Business](/blog/betting-on-bali-my-journey-into-the-offshoring-business) - I’m laying down a big bet on Bali! Let me share the evidence that has inspired me to take this leap. Maybe it will inspire you to jump in with me!

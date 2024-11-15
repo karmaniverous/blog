@@ -6,6 +6,11 @@ header:
   overlay_image: /assets/images/agile-banner.jpg
   teaser: /assets/images/iteration.png
 permalink: /toolkits/project-governance/a-modern-agile-project-manifesto/
+related: true
+tags:
+  - agile
+  - project-governance
+  - toolkits
 ---
 
 <figure class="align-left drop-image">

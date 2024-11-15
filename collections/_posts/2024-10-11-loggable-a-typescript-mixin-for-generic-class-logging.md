@@ -10,6 +10,7 @@ categories:
 tags:
   - logging
   - mixins
+  - projects
   - typescript
 ---
 
@@ -110,13 +111,13 @@ npm i @karmaniverous/loggable
 By default, [`Loggable`](https://docs.karmanivero.us/loggable/functions/loggable.Loggable.html) uses the `console` logger and disables `debug` logs.
 
 ```ts
-import { Loggable } from '@karmaniverous/loggable';
+import { Loggable } from "@karmaniverous/loggable";
 
 // Defaults to console logger & disables debug logs.
 class MyClass extends Loggable() {
   myMethod() {
-    this.logger.debug('debug log');
-    this.logger.info('info log');
+    this.logger.debug("debug log");
+    this.logger.info("info log");
   }
 }
 
@@ -127,13 +128,13 @@ myInstance.myMethod();
 // info log
 
 // Change disabled logger endpoints on the fly.
-myInstance.loggableOptions.disabled = ['info'];
+myInstance.loggableOptions.disabled = ["info"];
 myInstance.myMethod();
 // debug log
 
 // Use the instance logger directly.
-myInstance.logger.debug('debug log');
-myInstance.logger.info('info log');
+myInstance.logger.debug("debug log");
+myInstance.logger.info("info log");
 // debug log
 
 // Set `enableAll` to `true` to ignore disabled endpoints.
@@ -148,25 +149,25 @@ myInstance.myMethod();
 You can inject a custom logger into a custom base class with custom options.
 
 ```ts
-import { Loggable } from '@karmaniverous/loggable';
-import winston from 'winston';
+import { Loggable } from "@karmaniverous/loggable";
+import winston from "winston";
 
 class MyBaseClass {
   protected repeat(message: string, times: number) {
     return Array.from({ length: times })
       .map(() => message)
-      .join(' ');
+      .join(" ");
   }
 }
 
 // Custom base class, logger & options.
 class MyClass extends Loggable(MyBaseClass, winston, {
-  disabled: ['debug', 'info'],
+  disabled: ["debug", "info"],
 }) {
   myMethod() {
-    this.logger.debug(this.repeat('debug log', 2));
-    this.logger.info(this.repeat('info log', 2));
-    this.logger.error(this.repeat('error log', 2));
+    this.logger.debug(this.repeat("debug log", 2));
+    this.logger.info(this.repeat("info log", 2));
+    this.logger.error(this.repeat("error log", 2));
   }
 }
 
@@ -181,8 +182,8 @@ myInstance.myMethod();
 You can create a generic class that _also_ defers the choice of logger and options!
 
 ```ts
-import { Loggable } from '@karmaniverous/loggable';
-import winston from 'winston';
+import { Loggable } from "@karmaniverous/loggable";
+import winston from "winston";
 
 // This function returns an anonymous class that extends Loggable.
 function MyGenericClass<Logger = Console>(
@@ -192,16 +193,16 @@ function MyGenericClass<Logger = Console>(
   // The anonymous class extends Loggable with the provided logger & options.
   return class extends Loggable(undefined, logger, options) {
     myMethod() {
-      this.logger.debug('debug log');
-      this.logger.info('info log');
-      this.logger.error('error log');
+      this.logger.debug("debug log");
+      this.logger.info("info log");
+      this.logger.error("error log");
     }
   };
 }
 
 // Generate a winston-logged version of my class...
 const MyWinstonLoggedClass = MyGenericClass(winston, {
-  disabled: ['debug', 'info'],
+  disabled: ["debug", "info"],
 });
 
 // ...and instantiate it.

@@ -1,13 +1,108 @@
-{% assign posts = include.posts | where_exp: 'post', 'post.hidden != true' %}
-<div class='page__related'>
-  {% include before-related.html %}
-  <h2 class='page__related-title'>
-    {{ site.data['ui-text'][site.locale].related_label | default: 'You May Also Enjoy' }}
-  </h2>
-  <div class='grid__wrapper'>
-    {% for post in posts limit: 4 %}
-      {% if post.id == page.id %}{% continue %}{% endif %}
-      {% include archive-single.html type="grid" %}
+{% assign minCommonTags = 1 %}
+{% assign commonTagsWeight = 3 %}
+{% assign defaultAge = 32 %}
+{% assign maxRelated = 8 %}
+
+{% assign relevantPosts = "" | split: "" %}
+{% assign now = 'now' | date: '%s' | plus: 0 %}
+{% assign maxLogCommonTags = 1 %}
+
+{% assign posts = site.pages %}
+  {% for collection in site.collections %}
+  {% assign pageCollection = collection.docs | where: 'url', page.url | size %}
+
+  <!-- collection: {{ collection.label }} pageCollection: {{ pageCollection }} -->
+
+  {% unless pageCollection > 0 and collection.label != 'posts' %}
+    {% assign posts = posts | concat: collection.docs %}
+  {% endunless %}
+{% endfor %}
+
+{% for post in posts %}
+  {% unless post.redirect_to or post.url == page.url %}
+    {% assign commonTags = 0 %}
+
+    {% assign tags = post.tags %}
+
+    {% assign sourcePost = posts | where: 'redirect_to', post.url | first %}
+
+    {% if sourcePost %}
+      {% assign tags = tags | concat: sourcePost.tags | uniq %}
+    {% endif %}
+
+    {% for tag in tags %}
+      {% if page.tags contains tag %}
+        {% assign commonTags = commonTags | plus: 1 %}
+      {% endif %}
     {% endfor %}
+
+    {% if commonTags >= minCommonTags %}
+      {% capture logCommonTags %}
+        {% include log2.html value=commonTags %}
+    {% endcapture %}
+      {% assign logCommonTags = logCommonTags | times: 1.0 %}
+      {% if logCommonTags > maxLogCommonTags %}
+        {% assign maxLogCommonTags = logCommonTags %}
+      {% endif %}
+
+      {% assign post_data = "" | split: "" %}
+      {% assign post_data = post_data | push: post.url | push: logCommonTags %}
+      {% assign relevantPosts = relevantPosts | push: post_data %}
+    {% endif %}
+  {% endunless %}
+{% endfor %}
+
+{% if relevantPosts.size > 0 %}
+  {% assign scoredPosts = "" | split: "" %}
+
+  {% for item in relevantPosts %}
+    {% assign post_url = item[0] %}
+    {% assign logCommonTags = item[1] | plus: 0.0 %}
+    {% assign normLogCommonTags = logCommonTags | divided_by: maxLogCommonTags %}
+    {% assign post = posts | where: "url", post_url | first %}
+    {% assign postDate = post.date | date: '%s' | plus: 0.0 %}
+    {% assign ageInSeconds = now | minus: postDate %}
+    {% if ageInSeconds < 60 %}
+      {% assign ageInDays = defaultAge %}
+    {% else %}
+      {% assign ageInDays = ageInSeconds | divided_by: 86400.0 %}
+    {% endif %}
+
+    {% capture logAge %}
+        {% include log2.html value=ageInDays %}
+    {% endcapture %}
+    {% assign logAge = logAge | times: 1.0 %}
+    {% assign relevance = normLogCommonTags | times: commonTagsWeight | minus: logAge | times: 1000 | plus: 50000 | round %}
+    {% assign sort_key = relevance | append: "|" | append: post_url | append: "|" | append: normLogCommonTags | append: "|" | append: logAge %}
+    {% assign scoredPosts = scoredPosts | push: sort_key %}
+  {% endfor %}
+
+  {% assign sorted_relevance_scores = scoredPosts | sort | reverse %}
+
+  <div class='page__related'>
+    {% include before-related.html %}
+    <h2 class='page__related-title'>
+      {{ site.data['ui-text'][site.locale].related_label | default: 'You May Also Enjoy' }}
+    </h2>
+    <div class='grid__wrapper'>
+      {% assign maxRelatedCounter = 0 %}
+        {% for item in sorted_relevance_scores %}
+        {% assign parts = item | split: "|" %}
+        {% assign relevance = parts[0] %}
+        {% assign post_url = parts[1] %}
+        {% assign normLogCommonTags = parts[2] %}
+        {% assign logAge = parts[3] %}
+      {% assign post = posts | where: "url", post_url | first %}
+        <!-- post_url: {{ post_url }} -->
+        <!-- normLogCommonTags: {{ normLogCommonTags }} -->
+        <!-- logAge: {{ logAge }} -->
+        <!-- relevance: {{ relevance }} -->
+        {% include archive-single.html type="grid" %}
+        {% assign maxRelatedCounter = maxRelatedCounter | plus: 1 %}
+        {% if maxRelatedCounter >= maxRelated %}
+          {% break %}
+        {% endif %}
+      {% endfor %}
+    </div>
   </div>
-</div>
+{% endif %}

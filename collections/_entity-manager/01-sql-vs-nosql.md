@@ -6,6 +6,12 @@ header:
   overlay_image: /assets/collections/entity-manager/sql-vs-nosql-banner-half.jpg
   teaser: /assets/collections/entity-manager/sql-vs-nosql-square.jpg
 permalink: /projects/entity-manager/sql-vs-nosql/
+related: true
+tags:
+  - dynamodb
+  - entity-manager
+  - nosql
+  - projects
 ---
 
 <figure class="align-left drop-image">

@@ -10,6 +10,7 @@ categories:
 tags:
   - mixins
   - principles
+  - projects
   - typescript
 ---
 

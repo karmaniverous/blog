@@ -6,6 +6,12 @@ header:
   og_image: /assets/collections/entity-manager/evolving-a-nosql-db-schema-banner.jpg
   overlay_image: /assets/collections/entity-manager/evolving-a-nosql-db-schema-banner-half.jpg
   teaser: /assets/collections/entity-manager/evolving-a-nosql-db-schema-square.jpg
+related: true
+tags:
+  - dynamodb
+  - entity-manager
+  - nosql
+  - projects
 ---
 
 <figure class="align-left drop-image">

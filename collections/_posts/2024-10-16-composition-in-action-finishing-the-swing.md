@@ -10,6 +10,7 @@ categories:
 tags:
   - mixins
   - principles
+  - projects
   - proxies
   - typescript
 ---
@@ -182,7 +183,7 @@ The [`options`](https://docs.karmanivero.us/controlled-proxy/interfaces/controll
 | `target`                        | `object`                                                                                                                  | _required_        | The object to proxy.                                                                                                                                                                                                                                      |
 
 ```ts
-import { controlledProxy } from '@karmaniverous/controlled-proxy';
+import { controlledProxy } from "@karmaniverous/controlled-proxy";
 
 // Create a controlled console logger. Info messages are disabled by default.
 const controlledConsoleLogger = controlledProxy({
@@ -191,8 +192,8 @@ const controlledConsoleLogger = controlledProxy({
 });
 
 // Log messages.
-controlledConsoleLogger.debug('debug log');
-controlledConsoleLogger.info('info log');
+controlledConsoleLogger.debug("debug log");
+controlledConsoleLogger.info("info log");
 // > debug log
 ```
 
@@ -210,7 +211,7 @@ import {
   controlledProxy,
   controlProp,
   disabledMemberHandlerProp,
-} from '@karmaniverous/controlled-proxy';
+} from "@karmaniverous/controlled-proxy";
 
 // Create a controlled console logger. Info messages are disabled by default.
 const controlledConsoleLogger = controlledProxy({
@@ -223,8 +224,8 @@ controlledConsoleLogger[controlProp].debug = false;
 controlledConsoleLogger[controlProp].info = true;
 
 // Log messages.
-controlledConsoleLogger.debug('debug log');
-controlledConsoleLogger.info('info log');
+controlledConsoleLogger.debug("debug log");
+controlledConsoleLogger.info("info log");
 // > info log
 
 // Change the disabled member handler.
@@ -234,8 +235,8 @@ controlledConsoleLogger[disabledMemberHandlerProp] = (
 ) => target.log(`Accessed disabled member: ${prop.toString()}`);
 
 // Log messages again.
-controlledConsoleLogger.debug('debug log');
-controlledConsoleLogger.info('info log');
+controlledConsoleLogger.debug("debug log");
+controlledConsoleLogger.info("info log");
 // > Accessed disabled member: debug
 // > info log
 ```
@@ -245,17 +246,20 @@ controlledConsoleLogger.info('info log');
 Here's an example of the real power of the library: **let's inject a controlled proxy into a class!**
 
 ```ts
-import { controlledProxy, controlProp } from '@karmaniverous/controlled-proxy';
+import {
+  controlledProxy,
+  controlProp,
+} from "@karmaniverous/controlled-proxy";
 
 // Create a class that accepts a proxied logger as a constructor argument.
 class MyClass {
   // Proxied logger must be compatible with console.debug & console.info.
-  constructor(private logger: Pick<Console, 'debug' | 'info'>) {}
+  constructor(private logger: Pick<Console, "debug" | "info">) {}
 
   // Exercise the proxied logger.
   myMethod() {
-    this.logger.debug('debug log');
-    this.logger.info('info log');
+    this.logger.debug("debug log");
+    this.logger.info("info log");
   }
 }
 
@@ -263,8 +267,10 @@ class MyClass {
 // and a custom disabled member handler.
 const controlledConsoleLogger = controlledProxy({
   defaultControls: { debug: false, info: true },
-  defaultDisabledMemberHandler: (target: Console, prop: PropertyKey) =>
-    target.log(`Accessed disabled member: ${prop.toString()}`),
+  defaultDisabledMemberHandler: (
+    target: Console,
+    prop: PropertyKey
+  ) => target.log(`Accessed disabled member: ${prop.toString()}`),
   target: console,
 });
 
@@ -281,12 +287,18 @@ myConsoleInstance.myMethod();
 
 // Create an equivalent controlled winston logger, with all messages enabled by
 // default and a custom disabled member handler.
-import { createLogger, type Logger } from 'winston';
+import { createLogger, type Logger } from "winston";
 
 const controlledWinstonLogger = controlledProxy({
   defaultControls: { debug: true, info: true },
-  defaultDisabledMemberHandler: (target: Logger, prop: PropertyKey) =>
-    target.log('warn', `Accessed disabled member: ${prop.toString()}`),
+  defaultDisabledMemberHandler: (
+    target: Logger,
+    prop: PropertyKey
+  ) =>
+    target.log(
+      "warn",
+      `Accessed disabled member: ${prop.toString()}`
+    ),
   target: createLogger(),
 });
 

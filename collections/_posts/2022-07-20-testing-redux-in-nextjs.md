@@ -11,6 +11,7 @@ tags:
   - chai
   - mocha
   - nextjs
+  - projects
   - react
   - redux
   - testing

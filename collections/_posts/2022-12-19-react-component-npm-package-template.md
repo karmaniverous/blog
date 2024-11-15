@@ -9,6 +9,7 @@ categories:
   - Blog
 tags:
   - npm
+  - projects
   - template
 toc: true
 ---
@@ -291,8 +292,8 @@ npm link
 You can now import your package assets into your React application like this:
 
 ```js
-import Component from '@karmaniverous/react-component-npm-package-template'; // default export
-import { useComponent } from '@karmaniverous/react-component-npm-package-template'; // named export
+import Component from "@karmaniverous/react-component-npm-package-template"; // default export
+import { useComponent } from "@karmaniverous/react-component-npm-package-template"; // named export
 ```
 
 When you're finished, clean up your global environment by unlinking your

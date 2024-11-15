@@ -8,9 +8,10 @@ header:
 categories:
   - Blog
 tags:
-  - windows
-  - vs-code
   - autohotkey
+  - projects
+  - vs-code
+  - windows
 toc: false
 ---
 

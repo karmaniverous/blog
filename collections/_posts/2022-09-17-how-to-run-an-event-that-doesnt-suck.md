@@ -8,6 +8,7 @@ header:
 categories:
   - Blog
 tags:
+  - bali
   - howto
   - events
 toc: true

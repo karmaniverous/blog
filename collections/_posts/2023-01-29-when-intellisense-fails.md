@@ -9,8 +9,9 @@ categories:
   - Blog
 tags:
   - agile
-  - jira
   - confluence
+  - jira
+  - typescript
 toc: false
 ---
 

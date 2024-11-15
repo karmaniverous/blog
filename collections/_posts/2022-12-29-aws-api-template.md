@@ -9,6 +9,7 @@ categories:
   - Blog
 tags:
   - aws
+  - projects
   - template
 toc: true
 ---
@@ -663,13 +664,13 @@ Once you understand the requirements of your new identity provider, follow these
    ```yml
    resources:
    Conditions:
-     CreateUserPool: !Equals ['${env:COGNITO_USER_POOL_ARN}', '*']
+     CreateUserPool: !Equals ["${env:COGNITO_USER_POOL_ARN}", "*"]
      CreateIdentityProviderGoogle: !And
        - !Condition CreateUserPool
        - !Not
        - !Or
-         - !Equals ['${env:GOOGLE_CLIENT_ID}', '*']
-         - !Equals ['${env:GOOGLE_CLIENT_SECRET}', '*']
+         - !Equals ["${env:GOOGLE_CLIENT_ID}", "*"]
+         - !Equals ["${env:GOOGLE_CLIENT_SECRET}", "*"]
    ```
 
 1. Create a new User Pool Identity Provider in [`serverless.yml`](https://github.com/karmaniverous/aws-api-template/blob/main/serverless.yml). It should be similar to the one below but meet the requirements of the new provider:
@@ -682,9 +683,9 @@ Once you understand the requirements of your new identity provider, follow these
        UserPoolId: !Ref UserPool
        ProviderName: Google
        ProviderDetails:
-         client_id: '${env:GOOGLE_CLIENT_ID}'
-         client_secret: '${env:GOOGLE_CLIENT_SECRET}'
-         authorize_scopes: 'profile email openid'
+         client_id: "${env:GOOGLE_CLIENT_ID}"
+         client_secret: "${env:GOOGLE_CLIENT_SECRET}"
+         authorize_scopes: "profile email openid"
        ProviderType: Google
        AttributeMapping:
          email: email
@@ -720,10 +721,10 @@ Normally we would specify a certificate on `karmanivero.us` and `*.karmanivero.u
 ```yaml
 custom:
   customCertificate:
-    certificateName: 'karmanivero.us'
-    hostedZoneNames: 'karmanivero.us.'
+    certificateName: "karmanivero.us"
+    hostedZoneNames: "karmanivero.us."
     subjectAlternativeNames:
-      - '*.karmanivero.us'
+      - "*.karmanivero.us"
 ```
 
 The alternative name is currently creating an issue with this. It looks like the plugin is trying to submit duplicate validation records to the zone file, resulting in an error. See [this pull request](https://github.com/schwamster/serverless-certificate-creator/pull/55) for more info.

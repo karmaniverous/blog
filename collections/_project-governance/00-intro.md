@@ -4,6 +4,10 @@ excerpt: Running a software development project is hard, but it’s way easier i
 permalink: /toolkits/project-governance/intro/
 redirect_from:
   - /toolkits/project-governance/
+related: true
+tags:
+  - project-governance
+  - toolkits
 ---
 
 <figure class="align-left drop-image">

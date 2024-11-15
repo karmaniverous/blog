@@ -7,6 +7,13 @@ header:
   overlay_image: /assets/collections/entity-manager/configuration-banner-half.jpg
   teaser: /assets/collections/entity-manager/configuration-square.jpg
 under_construction: true
+related: true
+tags:
+  - dynamodb
+  - entity-manager
+  - nosql
+  - projects
+  - typescript
 ---
 
 <figure class="align-left drop-image">
@@ -665,9 +672,9 @@ The [`ItemMap`](https://docs.karmanivero.us/entity-manager/types/entity_manager.
 Here is an example of how to exploit the `ItemMap` type within the context of the `MyEntityMap` type defined [above](#the-entitymap-type):
 
 ```ts
-type MyItemMap = ItemMap<MyEntityMap, 'hashKey', 'rangeKey'>;
+type MyItemMap = ItemMap<MyEntityMap, "hashKey", "rangeKey">;
 
-type EmailItem = MyItemMap['email'];
+type EmailItem = MyItemMap["email"];
 // {
 //   created: number;
 //   email: string;
@@ -677,7 +684,7 @@ type EmailItem = MyItemMap['email'];
 //   userHashKey: string;
 // }
 
-type UserItem = MyItemMap['user'];
+type UserItem = MyItemMap["user"];
 // {
 //   beneficiaryId: string;
 //   created: number;

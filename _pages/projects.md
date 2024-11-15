@@ -6,9 +6,22 @@ author_profile: true
 share: true
 toc: true
 toc_sticky: true
+related: true
+tags:
+  - projects
+header:
+  og_image: /assets/images/projects-banner.jpg
+  teaser: /assets/images/projects-square.jpg
+excerpt: "Some of these projects are ones I've worked on, and some are tools I've created. Either way, there's a ton of useful stuff here!"
 ---
 
-Some of these are projects I've worked on, and some are super-useful tools I've created.
+<figure class="align-left drop-image">
+    <img src="/assets/images/projects-square.jpg">
+</figure>
+
+Some of projects listed below are ones I've worked on, and some are tools I've created.
+
+Either way, there's a ton of useful stuff here. Please have a look, and don't hesitate to reach out if you have any questions or suggestions!
 
 Built for you with ❤️ on [Bali](/bali/)!
 

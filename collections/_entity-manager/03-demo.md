@@ -1,5 +1,5 @@
 ---
-title: 'Entity Manager: A Demonstration'
+title: "Entity Manager: A Demonstration"
 excerpt: Presenting a step-by-step Typescript implementation of a realistic data model against DynamoDB, with the help of Entity Manager.
 permalink: /projects/entity-manager/demo/
 header:
@@ -7,6 +7,13 @@ header:
   overlay_image: /assets/collections/entity-manager/configuration-banner-half.jpg
   teaser: /assets/collections/entity-manager/configuration-square.jpg
 under_construction: true
+related: true
+tags:
+  - dynamodb
+  - entity-manager
+  - nosql
+  - projects
+  - typescript
 ---
 
 <figure class="align-left drop-image">
@@ -95,7 +102,7 @@ All packages in the **Entity Manager** ecosystem perform extensive debug logging
 Visit [`logger.ts`](https://github.com/karmaniverous/entity-manager-demo/blob/main/src/logger.ts) to see this code in context.
 
 ```ts
-import { controlledProxy } from '@karmaniverous/controlled-proxy';
+import { controlledProxy } from "@karmaniverous/controlled-proxy";
 
 // Use the console logger. This could easily be replaced with a
 // custom logger like winston.
@@ -146,11 +153,11 @@ While we are at it, we will also construct and export the `Email` and `User` typ
 Here is the definition of `MyEntityMap` from [`entityManager.ts`](https://github.com/karmaniverous/entity-manager-demo/blob/main/src/entityManager.ts):
 
 ```ts
-import type { EntityMap } from '@karmaniverous/entity-manager';
+import type { EntityMap } from "@karmaniverous/entity-manager";
 import type {
   Entity,
   PropertiesNotOfType,
-} from '@karmaniverous/entity-tools';
+} from "@karmaniverous/entity-tools";
 
 // Email entity interface. never types indicate generated properties.
 interface EmailEntity extends Entity {
@@ -224,9 +231,9 @@ Visit [`entityManager.ts`](https://github.com/karmaniverous/entity-manager-demo/
 import {
   type Config,
   EntityManager,
-} from '@karmaniverous/entity-manager';
+} from "@karmaniverous/entity-manager";
 
-import { errorLogger } from './logger';
+import { errorLogger } from "./logger";
 
 // Current timestamp will act as break point for sharding schedule.
 const now = Date.now();
@@ -237,8 +244,8 @@ const now = Date.now();
 const config: Config<MyEntityMap> = {
   // Common hash & range key properties for all entities. Must
   // exactly match HashKey & RangeKey type params.
-  hashKey: 'hashKey',
-  rangeKey: 'rangeKey',
+  hashKey: "hashKey",
+  rangeKey: "rangeKey",
 
   // Entity-specific configs. Keys must exactly match those of
   // MyEntityMap.
@@ -246,11 +253,11 @@ const config: Config<MyEntityMap> = {
     // Email entity config.
     email: {
       // Source property for the Email entity's hash key.
-      uniqueProperty: 'email',
+      uniqueProperty: "email",
 
       // Source property for timestamp used to calculate Email
       // shard key.
-      timestampProperty: 'created',
+      timestampProperty: "created",
 
       // Email entity's shard bump schedule. Records created before
       // now are unsharded (1 possible shard key). Records created
@@ -274,7 +281,7 @@ const config: Config<MyEntityMap> = {
           // in the Email interface) and MUST be included in the
           // entityTranscodes object below. Elements are applied
           // in order.
-          elements: ['userId'],
+          elements: ["userId"],
 
           // When this value is true, the generated property will
           // be sharded.
@@ -291,10 +298,10 @@ const config: Config<MyEntityMap> = {
         // an unsharded generated property. Any ungenerated
         // properties used MUST be included in the entityTranscodes
         // object below.
-        created: { hashKey: 'hashKey', rangeKey: 'created' },
+        created: { hashKey: "hashKey", rangeKey: "created" },
         userCreated: {
-          hashKey: 'userHashKey',
-          rangeKey: 'created',
+          hashKey: "userHashKey",
+          rangeKey: "created",
         },
       },
 
@@ -304,88 +311,88 @@ const config: Config<MyEntityMap> = {
       // config does not define a transcodes object it uses
       // defaultTranscodes exported by @karmaniverous/entity-tools.
       elementTranscodes: {
-        created: 'timestamp',
-        userId: 'string',
+        created: "timestamp",
+        userId: "string",
       },
     },
     // User entity config.
     user: {
-      uniqueProperty: 'userId',
-      timestampProperty: 'created',
+      uniqueProperty: "userId",
+      timestampProperty: "created",
       shardBumps: [{ timestamp: now, charBits: 2, chars: 1 }],
       generated: {
         firstNameRangeKey: {
           atomic: true,
           elements: [
-            'firstNameCanonical',
-            'lastNameCanonical',
-            'created',
+            "firstNameCanonical",
+            "lastNameCanonical",
+            "created",
           ],
         },
         lastNameRangeKey: {
           atomic: true,
           elements: [
-            'lastNameCanonical',
-            'firstNameCanonical',
-            'created',
+            "lastNameCanonical",
+            "firstNameCanonical",
+            "created",
           ],
         },
         userBeneficiaryHashKey: {
           atomic: true,
-          elements: ['beneficiaryId'],
+          elements: ["beneficiaryId"],
           sharded: true,
         },
         userHashKey: {
           atomic: true,
-          elements: ['userId'],
+          elements: ["userId"],
           sharded: true,
         },
       },
       indexes: {
-        created: ['hashKey', 'rangeKey', 'created'],
-        firstName: ['hashKey', 'rangeKey', 'firstNameRangeKey'],
-        lastName: ['hashKey', 'rangeKey', 'lastNameRangeKey'],
-        phone: ['hashKey', 'rangeKey', 'phone'],
-        updated: ['hashKey', 'rangeKey', 'updated'],
+        created: ["hashKey", "rangeKey", "created"],
+        firstName: ["hashKey", "rangeKey", "firstNameRangeKey"],
+        lastName: ["hashKey", "rangeKey", "lastNameRangeKey"],
+        phone: ["hashKey", "rangeKey", "phone"],
+        updated: ["hashKey", "rangeKey", "updated"],
         userBeneficiaryCreated: [
-          'hashKey',
-          'rangeKey',
-          'userBeneficiaryHashKey',
-          'created',
+          "hashKey",
+          "rangeKey",
+          "userBeneficiaryHashKey",
+          "created",
         ],
         userBeneficiaryFirstName: [
-          'hashKey',
-          'rangeKey',
-          'userBeneficiaryHashKey',
-          'firstNameRangeKey',
+          "hashKey",
+          "rangeKey",
+          "userBeneficiaryHashKey",
+          "firstNameRangeKey",
         ],
         userBeneficiaryLastName: [
-          'hashKey',
-          'rangeKey',
-          'userBeneficiaryHashKey',
-          'lastNameRangeKey',
+          "hashKey",
+          "rangeKey",
+          "userBeneficiaryHashKey",
+          "lastNameRangeKey",
         ],
         userBeneficiaryPhone: [
-          'hashKey',
-          'rangeKey',
-          'userBeneficiaryHashKey',
-          'phone',
+          "hashKey",
+          "rangeKey",
+          "userBeneficiaryHashKey",
+          "phone",
         ],
         userBeneficiaryUpdated: [
-          'hashKey',
-          'rangeKey',
-          'userBeneficiaryHashKey',
-          'updated',
+          "hashKey",
+          "rangeKey",
+          "userBeneficiaryHashKey",
+          "updated",
         ],
       },
       elementTranscodes: {
-        beneficiaryId: 'string',
-        created: 'timestamp',
-        firstNameCanonical: 'string',
-        lastNameCanonical: 'string',
-        phone: 'string',
-        updated: 'timestamp',
-        userId: 'string',
+        beneficiaryId: "string",
+        created: "timestamp",
+        firstNameCanonical: "string",
+        lastNameCanonical: "string",
+        phone: "string",
+        updated: "timestamp",
+        userId: "string",
       },
     },
   },
@@ -408,14 +415,14 @@ The [`ItemMap`](http://localhost:4000/projects/entity-manager/configuration/#the
 Visit [`entityManager.ts`](https://github.com/karmaniverous/entity-manager-demo/blob/main/src/entityManager.ts) to see this code in context.
 
 ```ts
-import type { ItemMap } from '@karmaniverous/entity-manager';
+import type { ItemMap } from "@karmaniverous/entity-manager";
 
 // Construct ItemMap type from MyEntityMap.
 type MyItemMap = ItemMap<MyEntityMap>;
 
 // Export EmailItem & UserItem types for use in other modules.
-export type EmailItem = MyItemMap['email'];
-export type UserItem = MyItemMap['user'];
+export type EmailItem = MyItemMap["email"];
+export type UserItem = MyItemMap["user"];
 ```
 
 ## `EntityClient` Configuration
@@ -441,18 +448,18 @@ Otherwise, the [`EntityClientOptions`](https://docs.karmanivero.us/entity-client
 Visit [`entityClient.ts`](https://github.com/karmaniverous/entity-manager-demo/blob/main/src/entityClient.ts) to see this code in context.
 
 ```ts
-import { EntityClient } from '@karmaniverous/entity-client-dynamodb';
+import { EntityClient } from "@karmaniverous/entity-client-dynamodb";
 
-import { errorLogger } from './logger';
+import { errorLogger } from "./logger";
 
 export const entityClient = new EntityClient({
   credentials: {
-    accessKeyId: 'fakeAccessKeyId',
-    secretAccessKey: 'fakeSecretAccessKey',
+    accessKeyId: "fakeAccessKeyId",
+    secretAccessKey: "fakeSecretAccessKey",
   },
-  endpoint: 'http://localhost:8000',
+  endpoint: "http://localhost:8000",
   logger: errorLogger,
-  region: 'local',
+  region: "local",
 });
 ```
 
