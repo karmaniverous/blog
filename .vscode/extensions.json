@@ -1,3 +1,9 @@
 {
-  "recommendations": ["jebbs.plantuml"]
+  "recommendations": [
+    "jebbs.plantuml",
+    "streetsidesoftware.code-spell-checker",
+    "joaompinto.vscode-graphviz",
+    "sissel.shopify-liquid",
+    "esbenp.prettier-vscode"
+  ]
 }

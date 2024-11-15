@@ -72,6 +72,9 @@
   "editor.defaultFormatter": "esbenp.prettier-vscode",
   "editor.formatOnPaste": true,
   "editor.formatOnSave": true,
+  "files.associations": {
+    "*.html": "liquid"
+  },
   "git.autofetch": true,
   "git.enableSmartCommit": true,
   "plantuml.diagramsRoot": "diagrams",
@@ -80,5 +83,10 @@
   "plantuml.exportOutDir": "assets/diagrams",
   "plantuml.exportSubFolder": false,
   "plantuml.render": "Local",
-  "prettier.printWidth": 68
+  "prettier.printWidth": 68,
+  "[liquid]": {
+    "editor.defaultFormatter": "sissel.shopify-liquid",
+    "editor.formatOnPaste": true,
+    "editor.formatOnSave": true
+  }
 }
