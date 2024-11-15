@@ -1,6 +1,6 @@
 ---
 permalink: /toolkits/
-excerpt: "Why reinvent the wheel? I've been running software projects large & small and putting code into production for nearly 40 years... and I've been keeping notes."
+excerpt: "Why reinvent the wheel? I've been running software projects & putting code into production for nearly 40 years... and I've been keeping notes."
 title: Toolkits
 layout: single
 author_profile: true
