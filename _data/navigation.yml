@@ -8,8 +8,8 @@ main:
     url: /bali/
   - title: "Archive"
     url: /blog/
-  - title: "Tags"
-    url: /tags/
+  - title: "Topics"
+    url: /topics/
 
 entity-manager:
   - title: Entity Manager

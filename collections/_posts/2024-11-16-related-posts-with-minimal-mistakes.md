@@ -28,7 +28,7 @@ Content items in Jekyll break down into two broad categories: [pages](https://je
 
 Posts are grouped into [collections](https://jekyllrb.com/docs/collections/), each under its own root path. For example, on this site, all blog posts are under the [`/blog`](/blog) path, and the Entity Manager documentation is collected under the [`/projects/entity-manager`](/projects/entity-manager) path. Each collection also defines its own taxonomic & layout defaults, so it's easy to create a common look and feel for all the posts in a collection.
 
-Jekyll supports the assignment of [tags and categories](https://jekyllrb.com/docs/posts/#tags-and-categories) to any post or page. Most themes have special layouts that leverage these taxonomies to create tag and category indexes like [this one](/tags).
+Jekyll supports the assignment of [tags and categories](https://jekyllrb.com/docs/posts/#tags-and-categories) to any post or page. Most themes have special layouts that leverage these taxonomies to create tag and category indexes like [this one](/topics).
 
 Every post or page can have [front matter](https://jekyllrb.com/docs/front-matter/). This is a block of YAML at the top of the file that defines its tags, categories, title, layout, and other metadata, and also sets variables that can be consumed by the theme to do things like toggling the display of a table of contents or—today's topic—**related content**.
 

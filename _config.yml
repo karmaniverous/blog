@@ -122,9 +122,6 @@ author:
   bio: "<em>resume bullets<br />may read differently at the<br />threshold of heaven</em>"
   # email:
   links:
-    - label: "Bali"
-      icon: "fa-solid fa-location-dot"
-      url: "/bali/"
     - label: "X"
       icon: "fa-brands fa-square-x-twitter"
       url: "https://twitter.com/karmaniverous"
@@ -143,10 +140,7 @@ author:
     - label: "Telegram"
       icon: "fa-brands fa-telegram"
       url: "https://t.me/karmaniverous"
-    - label: "Tiny Poems"
-      icon: "fa-brands fa-square-x-twitter"
-      url: "https://twitter.com/17morae"
-    - label: "Meet With Me"
+    - label: "Meet"
       icon: "fa-regular fa-calendar-plus"
       url: "https://calendly.com/karmaniverous"
 
@@ -297,7 +291,7 @@ category_archive:
   path: /categories/
 tag_archive:
   type: liquid
-  path: /tags/
+  path: /topics/
 # https://github.com/jekyll/jekyll-archives
 # jekyll-archives:
 #   enabled:
