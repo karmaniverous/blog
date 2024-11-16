@@ -1,10 +1,10 @@
 ---
 # prettier-ignore
 title: "Related Posts With Minimal Mistakes"
-excerpt: ""
+excerpt: "Presenting a radically improved related-posts widget for the Minimal Mistakes Jekyll theme."
 header:
-  og_image: /assets/images/betting-on-bali-banner.jpg
-  teaser: /assets/images/betting-on-bali-square.jpg
+  og_image: /assets/images/related-posts-banner.jpg
+  teaser: /assets/images/related-posts-square.jpg
 categories:
   - Blog
 tags:
@@ -12,7 +12,7 @@ tags:
 ---
 
 <figure class="align-left drop-image">
-    <img src="/assets/images/betting-on-bali-square.jpg">
+    <img src="/assets/images/related-posts-square.jpg">
 </figure>
 
 As I publish more and more content, I am increasingly concerned about connecting the dots between the post you are now reading and other, related posts. Just like every other blog in the world, I use a _Related Posts_ section at the bottom of each page for that purpose.
