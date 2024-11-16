@@ -1,0 +1,64 @@
+{% comment %} Get all pages & collection posts (including blog posts). {% endcomment %}
+{% assign posts = site.pages %}
+{% for collection in site.collections %}
+  {% assign posts = posts | concat: collection.docs %}
+{% endfor %}
+
+{% assign now = 'now' | date: '%s' | plus: 0 %}
+{% assign uniqueTags = "" | split: "" %}
+{% assign tagPosts = "" | split: "" %}
+
+{% comment %} Iterate over posts. {% endcomment %}
+{% for post in posts %}
+  {% comment %} Ignore hidden pages & redirects. {% endcomment %}
+  {% unless post.hidden or post.redirect_to %}
+
+    {% comment %} Create a list of tags on post. {% endcomment %}
+  {% assign tags = post.tags | uniq %}
+
+
+    {% comment %} If some post redirected to this page, include its tags too. {% endcomment %}
+    {% assign sourcePost = posts | where: 'redirect_to', post.url | first %}
+    {% if sourcePost %}
+      {% assign tags = tags | concat: sourcePost.tags | uniq %}
+    {% endif %}
+
+    {% comment %} Ignore posts with no tags. {% endcomment %}
+    {% unless tags == empty %}
+      {% comment %} Update unique tag list. {% endcomment %}
+      {% assign uniqueTags = uniqueTags | concat: tags | uniq %}
+
+      {% comment %} Extract post date. {% endcomment %}
+      {% if post.date %}
+        {% assign postDate = post.date | date: '%s' | times: -1 | plus: 9999999999 %}
+      {% else %}
+        {% assign postDate = tags | size | times: -1 | plus: 9999999999 %}
+      {% endif %}
+
+      {% comment %} Iterate across tags. {% endcomment %}
+      {% for tag in tags %}
+        {% comment %} Encode postDate, tag & url in a sortable format & push to tagPosts array. {% endcomment %}
+        {% assign sort_key = postDate | append: "|" | append: tag | append: "|" | append: post.url %}
+        {% assign tagPosts = tagPosts | push: sort_key %}
+      {% endfor %}
+    {% endunless %}
+  {% endunless %}{% endfor %}
+
+{% comment %} Sort tagPosts array. {% endcomment %}
+{% assign tagPosts = tagPosts | sort %}
+
+{% comment %} Iterate over unique tags. {% endcomment %}
+{% for tag in uniqueTags %}
+  {% comment %} Create a list of posts with this tag. {% endcomment %}
+  {% assign postsWithTag = "" | split: "" %}
+  {% for sort_key in tagPosts %}
+    {% assign parts = sort_key | split: "|" %}
+    {% if parts[1] == tag %}
+      {% assign postsWithTag = postsWithTag | push: parts[2] %}
+    {% endif %}
+{% endfor %}
+
+  {% comment %} Create a list of posts with this tag. {% endcomment %}
+  {% assign tagData = "" | split: "" %}
+  {% assign tagData = tagData | push: tag | push: postsWithTag %}
+{% endfor %}

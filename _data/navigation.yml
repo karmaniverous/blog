@@ -1,14 +1,14 @@
 # main links
 main:
-  - title: 'Projects'
+  - title: "Projects"
     url: /projects/
-  - title: 'Toolkits'
+  - title: "Toolkits"
     url: /toolkits/
-  - title: 'Bali'
+  - title: "Bali"
     url: /bali/
-  - title: 'Archive'
-    url: /posts/
-  - title: 'Tags'
+  - title: "Archive"
+    url: /blog/
+  - title: "Tags"
     url: /tags/
 
 entity-manager:

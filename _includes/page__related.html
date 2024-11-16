@@ -6,9 +6,9 @@
 
 {% comment %} Pages don't have a post date. This is their default age (common tags will boost their relevance). {% endcomment %}
 {% assign defaultAge = 32 %}
-{% assign maxRelated = 8 %}
 
-{% assign relevantPosts = "" | split: "" %}{% assign now = 'now' | date: '%s' | plus: 0 %}
+{% comment %} Maximum number of related pages to display. {% endcomment %}
+{% assign maxRelated = 8 %}
 
 {% comment %} Get all pages & collection posts (including blog posts) that are not from the current page's collection unless it is a blog post. {% endcomment %}
 {% assign posts = site.pages %}
@@ -21,12 +21,13 @@
 {% comment %} We're going to log-scale & normalize the common tag count, so we need to track its max value. {% endcomment %}
 {% assign maxLogCommonTags = 1 %}
 
-{% comment %} Iterate over these comparison pages. {% endcomment %}
-{% for post in posts %}
-  {% comment %} Ignore the current page & any redirects. {% endcomment %}
-  {% unless post.redirect_to or post.url == page.url %}
+{% comment %} Iterate over these comparison pages & capture the relevant ones. {% endcomment %}
+{% assign relevantPosts = "" | split: "" %}{% assign now = 'now' | date: '%s' | plus: 0 %}
+  {% for post in posts %}
+  {% comment %} Ignore the current page, hidden pages & redirects. {% endcomment %}
+  {% unless post.url == page.url or post.hidden or post.redirect_to %}
     {% comment %} Create a list of tags on the comparison page. {% endcomment %}
-  {% assign tags = post.tags %}
+  {% assign tags = post.tags | uniq %}
 
     {% comment %} If some post redirected to this page, include its tags too. {% endcomment %}
     {% assign sourcePost = posts | where: 'redirect_to', post.url | first %}
