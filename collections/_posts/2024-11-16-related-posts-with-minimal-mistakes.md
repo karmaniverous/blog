@@ -398,4 +398,4 @@ The related-posts widget implemented in the code above should satisfy a pretty b
 
 If it is, just have a close look at the code. The math is the math, so any customizations will likely be in the logic that selects which posts and pages to evaluate for relevance.
 
-The code that accomplishes this is ugly (thanks Liquid!) but not unclear. SO go nuts, and feel free to drop me a comment if you run into any trouble!
+The code that accomplishes this is ugly (thanks Liquid!) but not unclear. So go nuts, and feel free to drop me a comment if you run into any trouble!
