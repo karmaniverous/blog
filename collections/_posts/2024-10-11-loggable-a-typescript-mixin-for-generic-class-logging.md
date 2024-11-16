@@ -8,8 +8,9 @@ header:
 categories:
   - Blog
 tags:
+  - design
+  - dynamodb
   - logging
-  - mixins
   - projects
   - typescript
 ---

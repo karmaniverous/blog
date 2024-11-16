@@ -8,6 +8,9 @@ header:
 categories:
   - Blog
 tags:
+  - design
+  - documentation
+  - dynamodb
   - projects
   - typescript
 toc: true

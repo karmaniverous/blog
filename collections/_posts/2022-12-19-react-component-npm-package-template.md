@@ -8,8 +8,10 @@ header:
 categories:
   - Blog
 tags:
+  - javascript
   - npm
   - projects
+  - react
   - template
 toc: true
 ---

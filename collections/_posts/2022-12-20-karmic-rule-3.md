@@ -8,8 +8,9 @@ header:
 categories:
   - Blog
 tags:
-  - rules
-  - quote
+  - design
+  - karmic-rules
+  - principles
 toc: false
 ---
 

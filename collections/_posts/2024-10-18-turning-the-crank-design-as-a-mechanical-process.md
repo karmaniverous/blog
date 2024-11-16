@@ -8,7 +8,6 @@ header:
 categories:
   - Blog
 tags:
-  - architecture
   - design
   - project-governance
 redirect_to: /toolkits/project-governance/turning-the-crank-design-as-a-mechanical-process/

@@ -9,7 +9,9 @@ categories:
   - Blog
 tags:
   - aws
+  - javascript
   - projects
+  - serverless
   - template
 toc: true
 ---

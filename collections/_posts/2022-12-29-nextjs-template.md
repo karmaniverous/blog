@@ -8,6 +8,7 @@ header:
 categories:
   - Blog
 tags:
+  - javascript
   - nextjs
   - projects
   - react

@@ -9,9 +9,10 @@ categories:
   - Blog
 tags:
   - aws
-  - edge
-  - lodash
+  - javascript
+  - logging
   - nextjs
+  - troubleshooting
 toc: false
 ---
 
@@ -45,7 +46,10 @@ Once I did a little digging, I found people yelling about this all over the plac
 ```js
 /** Used as a reference to the global object. */
 const root =
-  freeGlobalThis || freeGlobal || freeSelf || Function('return this')();
+  freeGlobalThis ||
+  freeGlobal ||
+  freeSelf ||
+  Function("return this")();
 ```
 
 That's... _disappointing_. Until [`lodash`](https://www.npmjs.com/package/lodash) patches this, a lot of people are going to have to do a lot of workarounds. Including me!

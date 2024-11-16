@@ -9,8 +9,7 @@ categories:
   - Blog
 tags:
   - agile
-  - jira
-  - confluence
+  - atlassian
   - project-governance
 toc: true
 redirect_to: /toolkits/project-governance/a-modern-agile-project-manifesto/

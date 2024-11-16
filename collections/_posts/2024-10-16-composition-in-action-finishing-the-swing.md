@@ -8,10 +8,11 @@ header:
 categories:
   - Blog
 tags:
-  - mixins
+  - design
+  - documentation
+  - logging
   - principles
   - projects
-  - proxies
   - typescript
 ---
 

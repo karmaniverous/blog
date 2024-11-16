@@ -8,6 +8,8 @@ header:
 categories:
   - Blog
 tags:
+  - design
+  - dynamodb
   - typescript
 toc: true
 ---
@@ -60,19 +62,21 @@ const entityConfig = {
       defaultLimit: 10,
       defaultPageSize: 10,
       indexes: {
-        userId: ['entityPK', 'entitySK', 'userId'],
+        userId: ["entityPK", "entitySK", "userId"],
       },
       keys: {
         entityPK: {
-          encode: ({ entityToken = 'email', shardId }) =>
+          encode: ({ entityToken = "email", shardId }) =>
             `${entityToken}!${sn2e`${shardId}`}`,
           decode: (value) =>
-            value.match(/^(?<entityToken>.*)!(?<shardId>.*)$/)?.groups,
+            value.match(/^(?<entityToken>.*)!(?<shardId>.*)$/)
+              ?.groups,
         },
 
         entitySK: {
           encode: ({ email }) => sn2u`email#${email}`,
-          decode: (value) => value.match(/^email#(?<email>.*)$/)?.groups,
+          decode: (value) =>
+            value.match(/^email#(?<email>.*)$/)?.groups,
         },
 
         userId: {
@@ -90,23 +94,25 @@ const entityConfig = {
       defaultLimit: 10,
       defaultPageSize: 10,
       indexes: {
-        created: ['entityPK', 'entitySK', 'created'],
-        firstName: ['entityPK', 'entitySK', 'firstNameSK'],
-        lastName: ['entityPK', 'entitySK', 'lastNameSK'],
-        phone: ['entityPK', 'entitySK', 'phone'],
-        updated: ['entityPK', 'entitySK', 'updated'],
+        created: ["entityPK", "entitySK", "created"],
+        firstName: ["entityPK", "entitySK", "firstNameSK"],
+        lastName: ["entityPK", "entitySK", "lastNameSK"],
+        phone: ["entityPK", "entitySK", "phone"],
+        updated: ["entityPK", "entitySK", "updated"],
       },
       keys: {
         entityPK: {
-          encode: ({ entityToken = 'user', shardId }) =>
+          encode: ({ entityToken = "user", shardId }) =>
             `${entityToken}!${sn2e`${shardId}`}`,
           decode: (value) =>
-            value.match(/^(?<entityToken>.*)!(?<shardId>.*)$/)?.groups,
+            value.match(/^(?<entityToken>.*)!(?<shardId>.*)$/)
+              ?.groups,
         },
 
         entitySK: {
           encode: ({ userId }) => sn2u`userId#${userId}`,
-          decode: (value) => value.match(/^userId#(?<userId>.*)$/)?.groups,
+          decode: (value) =>
+            value.match(/^userId#(?<userId>.*)$/)?.groups,
         },
 
         created: {
@@ -151,7 +157,7 @@ const entityConfig = {
       },
     },
   },
-  shardKeyToken: 'shardId',
+  shardKeyToken: "shardId",
 };
 ```
 
@@ -200,37 +206,37 @@ The `User` & `Email` interfaces describe the entities themselves, in a way that 
 Here's the actual config object:
 
 ```ts
-export const config: Config<EntityMap, 'entityPK', 'entitySK'> = {
+export const config: Config<EntityMap, "entityPK", "entitySK"> = {
   entities: {
     user: {
       indexes: {
-        created: ['entityPK', 'entitySK', 'created'],
-        firstName: ['entityPK', 'entitySK', 'firstNameRK'],
-        lastName: ['entityPK', 'entitySK', 'lastNameRK'],
-        phone: ['entityPK', 'entitySK', 'phone'],
-        updated: ['entityPK', 'entitySK', 'updated'],
+        created: ["entityPK", "entitySK", "created"],
+        firstName: ["entityPK", "entitySK", "firstNameRK"],
+        lastName: ["entityPK", "entitySK", "lastNameRK"],
+        phone: ["entityPK", "entitySK", "phone"],
+        updated: ["entityPK", "entitySK", "updated"],
       },
       generated: {
         firstNameRK: {
-          elements: ['firstNameCanonical', 'lastNameCanonical'],
+          elements: ["firstNameCanonical", "lastNameCanonical"],
         },
         lastNameRK: {
-          elements: ['lastNameCanonical', 'firstNameCanonical'],
+          elements: ["lastNameCanonical", "firstNameCanonical"],
         },
       },
-      timestampProperty: 'created',
-      uniqueProperty: 'userId',
+      timestampProperty: "created",
+      uniqueProperty: "userId",
     },
     email: {
       indexes: {
-        userId: ['entityPK', 'entitySK', 'userId'],
+        userId: ["entityPK", "entitySK", "userId"],
       },
-      timestampProperty: 'created',
-      uniqueProperty: 'email',
+      timestampProperty: "created",
+      uniqueProperty: "email",
     },
   },
-  hashKey: 'entityPK',
-  uniqueKey: 'entitySK',
+  hashKey: "entityPK",
+  uniqueKey: "entitySK",
 };
 ```
 

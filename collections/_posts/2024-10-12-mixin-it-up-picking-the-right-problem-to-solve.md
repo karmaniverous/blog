@@ -8,7 +8,9 @@ header:
 categories:
   - Blog
 tags:
-  - mixins
+  - design
+  - documentation
+  - logging
   - principles
   - projects
   - typescript

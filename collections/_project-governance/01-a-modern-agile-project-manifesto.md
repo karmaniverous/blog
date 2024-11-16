@@ -9,6 +9,7 @@ permalink: /toolkits/project-governance/a-modern-agile-project-manifesto/
 related: true
 tags:
   - agile
+  - atlassian
   - project-governance
   - toolkits
 ---

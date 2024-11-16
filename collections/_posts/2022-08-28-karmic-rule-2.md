@@ -8,8 +8,11 @@ header:
 categories:
   - Blog
 tags:
-  - rules
-  - quote
+  - agile
+  - ethics
+  - project-governance
+  - karmic-rules
+  - principles
 toc: false
 ---
 

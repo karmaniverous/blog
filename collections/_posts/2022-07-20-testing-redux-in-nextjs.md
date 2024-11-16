@@ -8,8 +8,6 @@ header:
 categories:
   - Blog
 tags:
-  - chai
-  - mocha
   - nextjs
   - projects
   - react

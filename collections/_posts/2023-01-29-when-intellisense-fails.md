@@ -8,10 +8,9 @@ header:
 categories:
   - Blog
 tags:
-  - agile
-  - confluence
-  - jira
+  - javascript
   - typescript
+  - vs-code
 toc: false
 ---
 

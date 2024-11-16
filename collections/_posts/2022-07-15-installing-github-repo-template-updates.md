@@ -8,7 +8,7 @@ header:
 categories:
   - Blog
 tags:
-  - git
+  - github
 ---
 
 <figure class="align-left drop-image">

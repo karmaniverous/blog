@@ -8,7 +8,9 @@ header:
 categories:
   - Blog
 tags:
+  - documentation
   - github
+  - jekyll
   - writing
 ---
 

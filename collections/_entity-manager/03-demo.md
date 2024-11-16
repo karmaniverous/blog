@@ -11,6 +11,7 @@ related: true
 tags:
   - dynamodb
   - entity-manager
+  - logging
   - nosql
   - projects
   - typescript

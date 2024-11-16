@@ -9,8 +9,8 @@ categories:
   - Blog
 tags:
   - javascript
-  - vercel
   - nextjs
+  - troubleshooting
 toc: true
 ---
 
@@ -83,14 +83,15 @@ page, based on these settings:
 
 ```jsx
 const isComingSoon =
-  process.env.NEXT_PUBLIC_COMING_SOON === '1' &&
-  process.env.NEXT_PUBLIC_VERCEL_ENV !== 'preview';
+  process.env.NEXT_PUBLIC_COMING_SOON === "1" &&
+  process.env.NEXT_PUBLIC_VERCEL_ENV !== "preview";
 
 // If app is coming soon, route all traffic to coming-soon endpoint.
-if (route !== '/coming-soon' && isComingSoon) redirect(res, '/coming-soon');
+if (route !== "/coming-soon" && isComingSoon)
+  redirect(res, "/coming-soon");
 
 // If app is not coming soon, route all coming-soon traffic to home.
-if (route === '/coming-soon' && !isComingSoon) redirect(res, '/');
+if (route === "/coming-soon" && !isComingSoon) redirect(res, "/");
 ```
 
 Get it? I can set `NEXT_PUBLIC_COMING_SOON` to make the Coming Soon page appear

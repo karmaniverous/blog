@@ -10,6 +10,8 @@ permalink: /toolkits/project-governance/git-flow-by-example-writing-down-your-ve
 related: true
 tags:
   - agile
+  - atlassian
+  - github
   - project-governance
   - toolkits
 ---

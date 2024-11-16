@@ -8,6 +8,8 @@ header:
 categories:
   - Blog
 tags:
+  - documentation
+  - jekyll
   - writing
 toc: false
 ---

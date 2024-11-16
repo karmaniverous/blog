@@ -8,7 +8,6 @@ header:
 categories:
   - Blog
 tags:
-  - architecture
   - design
   - project-governance
 cross_links:
