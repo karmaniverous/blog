@@ -115,7 +115,7 @@ As calculated above, $$R$$ will have a small value in the one-to-two-digit range
 
 Liquid has no native support for a log function, so let's get that out of the way first.
 
-There are a couple of different ways to do this, but we're going to pick an easy, brute-force approach: we're going to look up the nearest whole-number answers and then interpolate between them. This will be accurate enough fr our purposes and will execute very fast, which is good, since we'll need to do it a _lot_.
+There are a couple of different ways to do this, but we're going to pick an easy, brute-force approach: we're going to look up the nearest whole-number answers and then interpolate between them. This will be accurate enough for our purposes and will execute very fast, which is good, since we'll need to do it a _lot_.
 
 Create this file at `_includes/log2.html`:
 
