@@ -128,6 +128,9 @@ author:
     - label: "X"
       icon: "fa-brands fa-square-x-twitter"
       url: "https://twitter.com/karmaniverous"
+    - label: "Mastodon"
+      icon: "fa-brands fa-mastodon"
+      url: "https://techhub.social/@karmaniverous"
     - label: "GitHub"
       icon: "fa-brands fa-github"
       url: "https://github.com/karmaniverous"
@@ -153,6 +156,9 @@ footer:
     - label: ""
       icon: "fa-brands fa-x-twitter"
       url: "https://twitter.com/karmaniverous"
+    - label: ""
+      icon: "fa-brands fa-mastodon"
+      url: "https://techhub.social/@karmaniverous"
     - label: ""
       icon: "fa-brands fa-github"
       url: "https://github.com/karmaniverous"
@@ -360,6 +366,8 @@ defaults:
         actions:
           - label: <i class="fa-brands fa-x-twitter fa-2xl"></i>
             url: https://x.com/karmaniverous
+          - label: <i class="fa-brands fa-mastodon fa-2xl"></i>
+            url: https://techhub.social/@karmaniverous
           - label: <i class="fa-brands fa-linkedin-in fa-2xl"></i>
             url: https://www.linkedin.com/in/jscroft
           - label: <i class="fa-brands fa-whatsapp fa-2xl"></i>

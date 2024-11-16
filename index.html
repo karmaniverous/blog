@@ -9,6 +9,8 @@ header:
   actions:
     - label: <i class="fa-brands fa-x-twitter fa-2xl"></i>
       url: https://x.com/karmaniverous
+    - label: <i class="fa-brands fa-mastodon fa-2xl"></i>
+      url: https://techhub.social/@karmaniverous
     - label: <i class="fa-brands fa-github fa-2xl"></i>
       url: https://github.com/karmaniverous
     - label: <i class="fa-brands fa-linkedin-in fa-2xl"></i>
@@ -31,17 +33,23 @@ feature_row:
     excerpt: "I'm a former U.S. Marine & Navy Surface Warfare Officer and apparently it shows."
 ---
 
-{% include feature_row %} 
+{% include feature_row %}
 
 <h2 class="archive__subtitle">
   {{ site.data.ui-text[site.locale].recent_posts | default: "incoherent screeds" }}
 </h2>
 
-{% if paginator %} {% assign posts = paginator.posts %} {% else %} {% assign
-posts = site.posts %} {% endif %} {% assign entries_layout = page.entries_layout
-| default: 'grid' %}
+{% if paginator %}
+  {% assign posts = paginator.posts %}
+{% else %}
+  {% assign
+ posts = site.posts %}
+{% endif %}
+{% assign entries_layout = page.entries_layout
+ | default: 'grid' %}
 <div class="entries-{{ entries_layout }}">
-  {% for post in posts %} {% include archive-single.html type=entries_layout %}
+  {% for post in posts %}
+    {% include archive-single.html type=entries_layout %}
   {% endfor %}
 </div>
 
