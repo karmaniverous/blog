@@ -5,8 +5,6 @@ excerpt: "Sure you could transpile perfectly good ES6 code into the same thing +
 header:
   og_image: /assets/images/logo-vscode.png
   teaser: /assets/images/logo-vscode.png
-categories:
-  - Blog
 tags:
   - javascript
   - tips

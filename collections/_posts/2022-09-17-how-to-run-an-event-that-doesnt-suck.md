@@ -5,8 +5,6 @@ excerpt: "Distilling 18 months of experience with 80+ online events, involving t
 header:
   og_image: /assets/images/how-to-run-an-event-that-doesnt-suck-banner.jpg
   teaser: /assets/images/how-to-run-an-event-that-doesnt-suck-square.jpg
-categories:
-  - Blog
 tags:
   - bali
   - events

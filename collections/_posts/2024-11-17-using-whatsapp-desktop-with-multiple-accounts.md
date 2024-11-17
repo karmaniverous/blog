@@ -6,8 +6,6 @@ toc: false
 header:
   og_image: /assets/images/dual-whatsapp-banner.jpg
   teaser: /assets/images/dual-whatsapp-square.jpg
-categories:
-  - Blog
 tags:
   - tips
   - windows
@@ -20,6 +18,9 @@ tags:
 Here in Indonesia, WhatsApp is the de-facto official phone and messaging system. People use it _far_ more than traditional phone & SMS, and most businesses maintain a WhatsApp account for customer service.
 
 Since I spend so much time in front of my laptop, I make extensive use of the WhatsApp desktop client. Just make sense.
+
+**TL/DR:** WhatsApp publishes a beta Windows desktop client. [Download it here](https://apps.microsoft.com/detail/9nbdxk71nk08) and attach it to a second WhatsApp account!
+{: .notice--info}
 
 But now that I'm [launching John Galt Services](/betting-on-bali-my-journey-into-the-offshoring-business), I need to maintain a business account. And since I'm deep in the talent-search process, I need to be able to click on a candidate's phone number in [JobStreet](https://id.jobstreet.com/) and have it open in WhatsApp Desktop so I can start a screening conversation.
 
@@ -35,5 +36,5 @@ Just download the [WhatsApp Beta](https://apps.microsoft.com/detail/9nbdxk71nk08
 
 You're welcome. 😎
 
-I'm not a Mac user, but I bet there's a similar solution for macOS. If you know what it is, please share it in the comments!
+I'm not a Mac user, but **I bet there's a similar solution for MacOS.** If you know what it is, please share it in the comments!
 {: .notice--info}

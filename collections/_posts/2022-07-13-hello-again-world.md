@@ -5,8 +5,6 @@ excerpt: "You spend years of perfectly good writing time building gilded prisons
 header:
   og_image: /assets/images/jekyll-square.png
   teaser: /assets/images/jekyll-square.png
-categories:
-  - Blog
 tags:
   - jekyll
   - writing

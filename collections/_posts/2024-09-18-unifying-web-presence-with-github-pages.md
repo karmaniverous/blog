@@ -5,8 +5,6 @@ excerpt: "Eliminate content collisions with your primary GitHub Pages domain & u
 header:
   og_image: /assets/images/unify-web-presence-banner.jpg
   teaser: /assets/images/unify-web-presence-square.jpg
-categories:
-  - Blog
 tags:
   - documentation
   - github

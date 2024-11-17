@@ -5,8 +5,6 @@ excerpt: "A frictionless low-level design process that integrates with your dev 
 header:
   og_image: /assets/collections/project-governance/design-as-code-banner.jpg
   teaser: /assets/collections/project-governance/design-as-code-square.jpg
-categories:
-  - Blog
 tags:
   - design
   - project-governance

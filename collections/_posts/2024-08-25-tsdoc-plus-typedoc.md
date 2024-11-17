@@ -5,8 +5,6 @@ excerpt: "Mastering the obvious, one lexical standard at a time."
 header:
   og_image: /assets/images/tsdoc-plus-typedoc.png
   teaser: /assets/images/tsdoc-plus-typedoc.png
-categories:
-  - Blog
 tags:
   - ai
   - documentation

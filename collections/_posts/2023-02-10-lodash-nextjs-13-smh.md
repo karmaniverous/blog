@@ -5,8 +5,6 @@ excerpt: "Some old carelessness in Lodash plus a stern new outlook in Next.js 13
 header:
   og_image: /assets/images/logo-lodash.png
   teaser: /assets/images/logo-lodash.png
-categories:
-  - Blog
 tags:
   - aws
   - javascript

@@ -5,8 +5,6 @@ excerpt: "What a good design artifact looks like, what they're actually for, and
 header:
   og_image: /assets/images/architecture-banner.jpg
   teaser: /assets/images/architecture-square.jpg
-categories:
-  - Blog
 tags:
   - design
   - project-governance

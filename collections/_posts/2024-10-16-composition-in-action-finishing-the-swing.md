@@ -5,8 +5,6 @@ excerpt: "In software engineering, what look to be the easy parts often turn out
 header:
   og_image: https://github.com/karmaniverous/controlled-proxy/raw/main/assets/controlled-proxy-banner.jpg
   teaser: https://github.com/karmaniverous/controlled-proxy/raw/main/assets/controlled-proxy-square.jpg
-categories:
-  - Blog
 tags:
   - design
   - documentation

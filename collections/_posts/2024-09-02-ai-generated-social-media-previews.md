@@ -5,8 +5,6 @@ excerpt: "I've generally been underwhelmed by ChatGPT and the like. Fun toy: not
 header:
   og_image: /assets/images/social-preview.png
   teaser: /assets/images/social-preview.png
-categories:
-  - Blog
 tags:
   - tips
   - writing

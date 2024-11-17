@@ -5,8 +5,6 @@ excerpt: "Sometimes, when you’re tangled up in a thorny problem, solving it is
 header:
   og_image: /assets/images/mixin-it-up-banner.jpg
   teaser: /assets/images/mixin-it-up-square.jpg
-categories:
-  - Blog
 tags:
   - design
   - documentation

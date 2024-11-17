@@ -5,8 +5,6 @@ excerpt: "A battle-tested, all-inclusive starting point for a modern Agile proje
 header:
   og_image: /assets/images/agile-banner.jpg
   teaser: /assets/images/iteration.png
-categories:
-  - Blog
 tags:
   - agile
   - atlassian

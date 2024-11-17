@@ -5,8 +5,6 @@ excerpt: "Squaring the impossible circle: Where should your content actually liv
 header:
   og_image: /assets/images/logo-linkedin.png
   teaser: /assets/images/logo-linkedin.png
-categories:
-  - Blog
 tags:
   - jekyll
   - writing

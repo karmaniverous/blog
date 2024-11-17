@@ -5,8 +5,6 @@ excerpt: "Presenting a radically improved related-posts widget for the Minimal M
 header:
   og_image: /assets/images/related-posts-banner.jpg
   teaser: /assets/images/related-posts-square.jpg
-categories:
-  - Blog
 tags:
   - jekyll
 ---

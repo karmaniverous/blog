@@ -5,8 +5,6 @@ excerpt: "Rediscovering blogging. Again."
 header:
   og_image: /assets/images/hello-world-redux.png
   teaser: /assets/images/hello-world-redux.png
-categories:
-  - Blog
 tags:
   - documentation
   - jekyll

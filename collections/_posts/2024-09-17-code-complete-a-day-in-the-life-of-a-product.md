@@ -5,8 +5,6 @@ excerpt: "We’re all professionals here, right? And we all know there’s often
 header:
   og_image: /assets/images/code-complete-tests-preview.jpg
   teaser: /assets/images/code-complete-tests.jpg
-categories:
-  - Blog
 tags:
   - design
   - documentation

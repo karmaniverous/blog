@@ -5,8 +5,6 @@ excerpt: "Watch a complex Javascript configuration object collapse into declarat
 header:
   og_image: /assets/images/what-good-looks-like-banner.jpg
   teaser: /assets/images/what-good-looks-like-square.jpg
-categories:
-  - Blog
 tags:
   - design
   - dynamodb

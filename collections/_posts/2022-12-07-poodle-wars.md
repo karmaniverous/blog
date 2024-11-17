@@ -5,8 +5,6 @@ excerpt: "Love letters to killer poodles. An artificially intelligent exploratio
 header:
   og_image: /assets/images/killer-poodle.png
   teaser: /assets/images/killer-poodle.png
-categories:
-  - Blog
 tags:
   - ai
   - funny

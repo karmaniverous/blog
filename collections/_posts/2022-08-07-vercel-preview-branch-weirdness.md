@@ -5,8 +5,6 @@ excerpt: "An accidental hosting environment dependency revealed an irritating bu
 header:
   og_image: /assets/images/logo-vercel.png
   teaser: /assets/images/logo-vercel.png
-categories:
-  - Blog
 tags:
   - javascript
   - nextjs

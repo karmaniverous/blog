@@ -5,8 +5,6 @@ excerpt: "Troubleshooting works just like the regular kind: you won't hit your t
 header:
   og_image: /assets/images/dharma-wheel.png
   teaser: /assets/images/dharma-wheel.png
-categories:
-  - Blog
 tags:
   - karmic-rules
   - principles

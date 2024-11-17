@@ -5,8 +5,6 @@ excerpt: "If you’re testing ES6 code referencing Redux in a transpiled build e
 header:
   og_image: /assets/images/logo-redux.png
   teaser: /assets/images/logo-redux.png
-categories:
-  - Blog
 tags:
   - nextjs
   - projects

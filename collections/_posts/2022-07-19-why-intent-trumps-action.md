@@ -5,8 +5,6 @@ excerpt: "Intent matters more than even massive action, because in the long term
 header:
   og_image: /assets/images/action-vs-intent.png
   teaser: /assets/images/action-vs-intent.png
-categories:
-  - Blog
 tags:
   - ethics
 toc: false

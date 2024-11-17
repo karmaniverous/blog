@@ -5,8 +5,6 @@ excerpt: "Modern software development works just like any other Hero's Journey: 
 header:
   og_image: /assets/images/generic-abstractions-og.jpg
   teaser: /assets/images/generic-abstractions.png
-categories:
-  - Blog
 tags:
   - typescript
 toc: true

@@ -5,8 +5,6 @@ excerpt: "An unexpected (and probably unintended) function parameter mutation in
 header:
   og_image: /assets/images/logo-web3js.jpg
   teaser: /assets/images/logo-web3js.jpg
-categories:
-  - Blog
 tags:
   - web3
   - javascript
@@ -61,7 +59,9 @@ What they have in common is the `options` object.
 At the top of each script, I set...
 
 ```js
-const options = { from: web3.eth.accounts.wallet[accountIndex].address };
+const options = {
+  from: web3.eth.accounts.wallet[accountIndex].address,
+};
 ```
 
 ...and then I use that options object in each contract function invocation in my
@@ -105,7 +105,7 @@ invocations, I console logged it after each one. After `farm.getGames`, the
 
 ```js
 {
-  from: '0xD28D1f59...';
+  from: "0xD28D1f59...";
 }
 ```
 
@@ -132,7 +132,9 @@ once you know about it. Here's how I altered my abstraction layer:
 
 ```js
 Farm.getGames = async (options) => {
-  return await this.contract.methods.getGames().call({ ...options });
+  return await this.contract.methods
+    .getGames()
+    .call({ ...options });
 };
 
 Game.getParams = async (options) =>
