@@ -33,3 +33,6 @@ Here you go: **WhatsApp publishes a beta Windows desktop client!**
 Just download the [WhatsApp Beta](https://apps.microsoft.com/detail/9nbdxk71nk08) app from the Windows Store. You can install & run it right alongside the regular [WhatsApp](https://apps.microsoft.com/detail/9nksqgp7f2nh) app. Attach it to a different WhatsApp account, and hey presto: **two WhatsApp accounts on the same desktop!**
 
 You're welcome. 😎
+
+I'm not a Mac user, but I bet there's a similar solution for macOS. If you know what it is, please share it in the comments!
+{: .notice--info}
