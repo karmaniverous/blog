@@ -1,7 +1,7 @@
 ---
 # prettier-ignore
 title: "Using Two WhatsApp Accounts on the Same Desktop"
-excerpt: "Need to use your personal and business WhatsApp accounts at the same time on the same Windows desktop? Here's how!"
+excerpt: "Need to use your personal and business WhatsApp accounts at the same time on the same desktop? Here's how!"
 header:
   og_image: /assets/images/related-posts-banner.jpg
   teaser: /assets/images/related-posts-square.jpg
