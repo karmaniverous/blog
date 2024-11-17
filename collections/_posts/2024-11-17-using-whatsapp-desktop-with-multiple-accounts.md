@@ -2,6 +2,7 @@
 # prettier-ignore
 title: "Using Two WhatsApp Accounts on the Same Desktop"
 excerpt: "Need to use your personal and business WhatsApp accounts at the same time on the same desktop? Here's how!"
+toc: false
 header:
   og_image: /assets/images/related-posts-banner.jpg
   teaser: /assets/images/related-posts-square.jpg
@@ -18,7 +19,7 @@ tags:
 
 Here in Indonesia, WhatsApp is the de-facto official phone and messaging system. People use it _far_ more than traditional phone & SMS, and most businesses maintain a WhatsApp account for customer service.
 
-Since I spend so much time in front of my laptop, I make extensive use of the WhatsApp windows desktop client. Just make sense.
+Since I spend so much time in front of my laptop, I make extensive use of the WhatsApp desktop client. Just make sense.
 
 But now that I'm [launching John Galt Services](/betting-on-bali-my-journey-into-the-offshoring-business), I need to maintain a business account. And since I'm deep in the talent-search process, I need to be able to click on a candidate's phone number in [JobStreet](https://id.jobstreet.com/) and have it open in WhatsApp Desktop so I can start a screening conversation.
 
