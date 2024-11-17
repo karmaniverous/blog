@@ -9,6 +9,7 @@ categories:
   - Blog
 tags:
   - javascript
+  - tricks
   - typescript
   - vs-code
 toc: false

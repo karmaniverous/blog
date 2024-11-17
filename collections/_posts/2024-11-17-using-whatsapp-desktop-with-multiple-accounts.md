@@ -8,7 +8,8 @@ header:
 categories:
   - Blog
 tags:
-  - jekyll
+  - tricks
+  - windows
 ---
 
 <figure class="align-left drop-image">

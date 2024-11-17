@@ -13,6 +13,7 @@ tags:
   - react
   - redux
   - testing
+  - tricks
 ---
 
 <figure class="align-left drop-image">

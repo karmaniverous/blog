@@ -8,6 +8,7 @@ header:
 categories:
   - Blog
 tags:
+  - tricks
   - writing
 toc: false
 ---
