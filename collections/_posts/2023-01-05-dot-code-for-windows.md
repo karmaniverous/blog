@@ -10,7 +10,7 @@ categories:
 tags:
   - autohotkey
   - projects
-  - tricks
+  - tips
   - vs-code
   - windows
 toc: false

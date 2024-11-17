@@ -8,7 +8,7 @@ header:
 categories:
   - Blog
 tags:
-  - tricks
+  - tips
   - writing
   - ai
 toc: false
