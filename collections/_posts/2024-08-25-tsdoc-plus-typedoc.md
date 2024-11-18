@@ -19,7 +19,7 @@ toc: false
 
 Today left me feeling pretty sure everybody else knows some stuff I don't.
 
-It all started with the [`@category`](https://typedoc.org/tags/category/) tag. See, I want to use it with [TypeDoc](https://typedoc.org) to generate sidebar navigation categories in API documentation pages like [this one](https://karmanivero.us/string-utilities/). Which is awesome, by the way, and built into my [Typescript NPM Package Template](https://github.com/karmaniverous/npm-package-template-ts).
+It all started with the [`@category`](https://typedoc.org/tags/category/) tag. See, I want to use it with [TypeDoc](https://typedoc.org) to generate sidebar navigation categories in API documentation pages like [this one](https://docs.karmanivero.us/string-utilities/). Which is awesome, by the way, and built into my [Typescript NPM Package Template](https://github.com/karmaniverous/npm-package-template-ts).
 
 And it's also less of a shameless plug than it sounds, because (a) I use that template a LOT, and (b) the freaking `@category` tag was throwing a linting error. Like, _everywhere_.
 
