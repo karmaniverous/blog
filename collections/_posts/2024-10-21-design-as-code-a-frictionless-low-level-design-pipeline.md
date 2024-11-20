@@ -9,7 +9,6 @@ tags:
   - agile
   - design
   - documentation
-  - dynamodb
   - project-governance
   - toolkits
 swagger: true

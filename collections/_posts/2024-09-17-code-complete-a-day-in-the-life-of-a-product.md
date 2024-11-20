@@ -6,6 +6,7 @@ header:
   og_image: /assets/images/code-complete-tests-preview.jpg
   teaser: /assets/images/code-complete-tests.jpg
 tags:
+  - aws
   - design
   - documentation
   - dynamodb

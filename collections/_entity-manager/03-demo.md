@@ -9,6 +9,7 @@ header:
 under_construction: true
 related: true
 tags:
+  - aws
   - dynamodb
   - entity-manager
   - logging

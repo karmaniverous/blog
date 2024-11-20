@@ -7,7 +7,6 @@ header:
   teaser: /assets/images/what-good-looks-like-square.jpg
 tags:
   - design
-  - dynamodb
   - entity-manager
   - projects
   - typescript

@@ -7,6 +7,7 @@ redirect_from:
 under_construction: true
 related: true
 tags:
+  - aws
   - dynamodb
   - entity-manager
   - nosql

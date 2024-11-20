@@ -7,7 +7,6 @@ header:
   teaser: https://raw.githubusercontent.com/karmaniverous/loggable/main/assets/loggable-square.jpg
 tags:
   - design
-  - dynamodb
   - entity-manager
   - logging
   - projects

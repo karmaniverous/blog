@@ -8,6 +8,7 @@ header:
   teaser: /assets/collections/entity-manager/evolving-a-nosql-db-schema-square.jpg
 related: true
 tags:
+  - aws
   - dynamodb
   - entity-manager
   - nosql

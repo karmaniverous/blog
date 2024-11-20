@@ -8,6 +8,7 @@ header:
 permalink: /projects/entity-manager/sql-vs-nosql/
 related: true
 tags:
+  - aws
   - dynamodb
   - entity-manager
   - nosql
