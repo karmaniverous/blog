@@ -53,7 +53,7 @@ See [this article section](/projects/entity-manager/evolving-a-nosql-db-schema/#
 
 In the default case sharding is turned off, and the shard key is an empty string.
 
-Can you see where this is going? 👀 _Because I didnt!_
+Can you see where this is going? 👀 _Because I didn't!_
 
 The core Entity Manager package ([`entity-manager`](https://github.com/karmaniverous/entity-manager)) is all about manipulating data records to add appropriate generated properties, remove them, and support searching across shards and indexes. It is exhaustively unit-tested, but at no point does it retrieve a record from a database. At its high level of abstraction, the package doesn't even know what a database _is_.
 
