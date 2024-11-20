@@ -3,8 +3,8 @@
 title: "The Big Miss: Turning Lemons Into Lemonade"
 excerpt: "Today was one of those days when I question my life choices. Watch me dig my way out of a hole with the same shovel I used to dig my way in."
 header:
-  og_image: /assets/images/dual-whatsapp-banner.jpg
-  teaser: /assets/images/dual-whatsapp-square.jpg
+  og_image: /assets/images/lemons-banner.jpg
+  teaser: /assets/images/lemons-square.jpg
 tags:
   - design
   - dynamodb
@@ -16,7 +16,7 @@ tags:
 ---
 
 <figure class="align-left drop-image">
-    <img src="/assets/images/dual-whatsapp-square.jpg">
+    <img src="/assets/images/lemons-square.jpg">
 </figure>
 
 Today was one of those days when I question my life choices. I could have stayed in the freaking Navy.
