@@ -6,10 +6,10 @@ main:
     url: /toolkits/
   - title: "Bali"
     url: /bali/
-  - title: "Archive"
-    url: /blog/
   - title: "Topics"
     url: /topics/
+  - title: "Archive"
+    url: /blog/
 
 entity-manager:
   - title: Entity Manager
