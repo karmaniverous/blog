@@ -8,6 +8,7 @@ header:
 tags:
   - design
   - dynamodb
+  - entity-manager
   - logging
   - projects
   - typescript

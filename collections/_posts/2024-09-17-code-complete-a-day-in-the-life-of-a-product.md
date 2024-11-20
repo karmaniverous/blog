@@ -9,6 +9,7 @@ tags:
   - design
   - documentation
   - dynamodb
+  - entity-manager
   - projects
   - typescript
 toc: true

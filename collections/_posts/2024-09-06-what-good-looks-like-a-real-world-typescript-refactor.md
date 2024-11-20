@@ -8,6 +8,8 @@ header:
 tags:
   - design
   - dynamodb
+  - entity-manager
+  - projects
   - typescript
 toc: true
 ---

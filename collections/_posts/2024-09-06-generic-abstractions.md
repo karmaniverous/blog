@@ -6,6 +6,8 @@ header:
   og_image: /assets/images/generic-abstractions-og.jpg
   teaser: /assets/images/generic-abstractions.png
 tags:
+  - entity-manager
+  - projects
   - typescript
 toc: true
 ---

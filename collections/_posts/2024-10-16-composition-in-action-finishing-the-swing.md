@@ -8,6 +8,7 @@ header:
 tags:
   - design
   - documentation
+  - entity-manage
   - logging
   - principles
   - projects
