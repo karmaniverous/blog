@@ -1,6 +1,6 @@
 ---
 layout: default
-author_profile: false
+author_profile: true
 ---
 
 {% if page.header.overlay_color or page.header.overlay_image or page.header.image %}
@@ -15,15 +15,37 @@ author_profile: false
   {% endunless %}
 {% endif %}
 
+{% case page.type %}
+  {% when 'tag' %}
+    {% assign pageTitle = "Topic Archive: " | append: page.title %}
+  {% when 'category' %}
+    {% assign pageTitle = "Category Archive: " | append: page.title %}
+  {% when 'year' %}
+    {% assign pageTitle = "Year Archive: " | append: page.title %}
+  {% when 'month' %}
+    {% assign pageTitle = "Month Archive: " | append: page.title %}
+  {% when 'day' %}
+    {% assign pageTitle = "Day Archive: " | append: page.title %}
+  {% else %}
+    {% assign pageTitle = "Archive: " | append: page.title %}
+{% endcase %}
+
 <div id="main" role="main">
   {% include sidebar.html %}
 
   <div class="archive">
     {% unless page.header.overlay_color or page.header.overlay_image %}
-      <h1 id="page-title" class="page__title"{% if page.locale %} lang="{{ page.locale }}"{% endif %}>{{ page.title }}</h1>
+      <h1
+        id="page-title"
+        class="page__title"
+        {% if page.locale %}
+        lang="{{ page.locale }}"
+        {% endif %}>{{ pageTitle }}</h1>
     {% endunless %}
     {% for post in page.posts %}
       {% include archive-single.html %}
     {% endfor %}
   </div>
+
+  <a href="#page-title" class="back-to-top">{{ site.data.ui-text[site.locale].back_to_top | default: 'Back to Top' }} &uarr;</a>
 </div>

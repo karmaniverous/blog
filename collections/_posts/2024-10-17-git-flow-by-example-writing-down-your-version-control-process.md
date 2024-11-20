@@ -6,7 +6,11 @@ header:
   og_image: /assets/images/git-flow-feature-bugfix-branches.png
   teaser: /assets/images/git-flow-square.png
 tags:
+  - agile
+  - atlassian
+  - github
   - project-governance
+  - toolkits
 redirect_to: /toolkits/project-governance/git-flow-by-example-writing-down-your-version-control-process/
 read_time_override: 16
 ---

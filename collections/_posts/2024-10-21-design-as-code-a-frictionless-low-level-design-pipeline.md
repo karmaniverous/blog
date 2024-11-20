@@ -6,11 +6,12 @@ header:
   og_image: /assets/collections/project-governance/design-as-code-banner.jpg
   teaser: /assets/collections/project-governance/design-as-code-square.jpg
 tags:
+  - agile
   - design
+  - documentation
+  - dynamodb
   - project-governance
-cross_links:
-  agile_manifesto: /blog/a-modern-agile-project-manifesto
-  turning_the_crank: /blog/turning-the-crank-design-as-a-mechanical-process
+  - toolkits
 swagger: true
 redirect_to: /toolkits/project-governance/design-as-code-a-frictionless-low-level-design-pipeline/
 read_time_override: 21

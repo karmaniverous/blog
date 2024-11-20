@@ -260,6 +260,7 @@ pagination:
 
 # Plugins (previously gems:)
 plugins:
+  - jekyll-archives
   - jekyll-paginate
   - jekyll-sitemap
   - jekyll-gist
@@ -269,6 +270,7 @@ plugins:
 
 # mimic GitHub Pages with --safe
 whitelist:
+  - jekyll-archives
   - jekyll-paginate
   - jekyll-sitemap
   - jekyll-gist
@@ -293,16 +295,16 @@ tag_archive:
   type: liquid
   path: /topics/
 # https://github.com/jekyll/jekyll-archives
-# jekyll-archives:
-#   enabled:
-#     - categories
-#     - tags
-#   layouts:
-#     category: archive-taxonomy
-#     tag: archive-taxonomy
-#   permalinks:
-#     category: /categories/:name/
-#     tag: /tags/:name/
+jekyll-archives:
+  enabled:
+    # - categories
+    - tags
+  layouts:
+    # category: archive-taxonomy
+    tag: archive-taxonomy
+  permalinks:
+    # category: /categories/:name/
+    tag: /topics/:name/
 
 # HTML Compression
 # - https://jch.penibelst.de/
