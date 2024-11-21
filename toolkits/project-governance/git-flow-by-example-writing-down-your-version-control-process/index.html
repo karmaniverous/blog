@@ -1,0 +1,1306 @@
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.26.2 by Michael Rose
+  Copyright 2013-2024 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
+-->
+
+<html lang="en-US" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin _includes/seo.html --><title>Git Flow By Example: Writing Down Your Version Control Process - some words</title>
+<meta name="description" content="If you haven’t written down your project’s version control process in all its unique glory, then you don’t have one!">
+
+
+  <meta name="author" content="Jason Williscroft">
+  
+  <meta property="article:author" content="Jason Williscroft">
+  
+
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="en_US">
+<meta property="og:site_name" content="some words">
+<meta property="og:title" content="Git Flow By Example: Writing Down Your Version Control Process">
+<meta property="og:url" content="https://karmanivero.us/toolkits/project-governance/git-flow-by-example-writing-down-your-version-control-process/">
+
+
+  <meta property="og:description" content="If you haven’t written down your project’s version control process in all its unique glory, then you don’t have one!">
+
+
+
+  <meta property="og:image" content="https://karmanivero.us/assets/images/git-flow-feature-bugfix-branches.png">
+
+
+
+  <meta name="twitter:site" content="@karmaniverous">
+  <meta name="twitter:title" content="Git Flow By Example: Writing Down Your Version Control Process">
+  <meta name="twitter:description" content="If you haven’t written down your project’s version control process in all its unique glory, then you don’t have one!">
+  <meta name="twitter:url" content="https://karmanivero.us/toolkits/project-governance/git-flow-by-example-writing-down-your-version-control-process/">
+
+  
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content="https://karmanivero.us/assets/images/git-flow-feature-bugfix-branches.png">
+  
+
+  
+
+
+
+  <meta property="article:published_time" content="2024-11-21T02:10:13+00:00">
+
+
+
+
+
+
+<link rel="canonical" href="https://karmanivero.us/toolkits/project-governance/git-flow-by-example-writing-down-your-version-control-process/">
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- end _includes/seo.html -->
+
+
+
+  <link href="/feed.xml" type="application/atom+xml" rel="alternate" title="some words Feed">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script type="text/javascript">
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+  window.enable_copy_code_button = true;
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/assets/css/main.css">
+<link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@latest/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@latest/css/all.min.css"></noscript>
+
+
+
+    <link
+  rel="apple-touch-icon"
+  sizes="180x180"
+  href="/assets/favicon/apple-touch-icon.png" />
+<link
+  rel="icon"
+  type="image/png"
+  sizes="32x32"
+  href="/assets/favicon/favicon-32x32.png" />
+<link
+  rel="icon"
+  type="image/png"
+  sizes="16x16"
+  href="/assets/favicon/favicon-16x16.png" />
+<link rel="manifest" href="/assets/favicon/site.webmanifest" />
+<link
+  rel="mask-icon"
+  href="/assets/favicon/safari-pinned-tab.svg"
+  color="#5bbad5" />
+<link rel="shortcut icon" href="/assets/favicon/favicon.ico" />
+<meta name="msapplication-TileColor" content="#2b5797" />
+<meta name="msapplication-config" content="/assets/favicon/browserconfig.xml" />
+<meta name="theme-color" content="#ffffff" />
+
+
+
+<!-- Mathjax Support -->
+<script
+  type="text/javascript"
+  async
+  src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+  </head>
+
+  <body class="layout--single" dir="ltr">
+    <nav class="skip-links">
+  <ul>
+    <li><a href="#site-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">Skip to footer</a></li>
+  </ul>
+</nav>
+
+    
+
+<div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        
+        <a class="site-title" href="/">
+          some words
+          <span class="site-subtitle">many of them true</span>
+        </a>
+        <ul class="visible-links"><li class="masthead__menu-item">
+              <a
+                href="/projects/"
+                
+                
+              >Projects</a>
+            </li><li class="masthead__menu-item">
+              <a
+                href="/toolkits/"
+                
+                
+              >Toolkits</a>
+            </li><li class="masthead__menu-item">
+              <a
+                href="/bali/"
+                
+                
+              >Bali</a>
+            </li><li class="masthead__menu-item">
+              <a
+                href="/topics/"
+                
+                
+              >Topics</a>
+            </li><li class="masthead__menu-item">
+              <a
+                href="/blog/"
+                
+                
+              >Archive</a>
+            </li></ul>
+        
+        <button class="search__toggle" type="button">
+          <span class="visually-hidden">Toggle search</span>
+          <i class="fas fa-search"></i>
+        </button>
+        
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">Toggle menu</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+    <div class="initial-content">
+      
+  
+
+
+
+
+
+
+
+<div class="page__hero--overlay" style=" background-image: linear-gradient(rgba(32, 0, 32, 0.75), rgba(32, 0, 32, 0.75)), url('/assets/images/git-flow-feature-bugfix-branches.png');">
+  
+    <div class="wrapper">
+      <h1
+        id="page-title"
+        class="page__title"
+        itemprop="headline">
+        
+          Git Flow By Example: Writing Down Your Version Control Process
+
+        
+      </h1>
+      
+        <p class="page__lead">If you haven’t written down your project’s version control process in all its unique glory, then you don’t have one!
+</p>
+      
+      
+      
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i
+          class="far fa-clock"
+          aria-hidden="true"
+        ></i>
+        
+          11
+          minute read
+        
+      </span>
+    
+  </p>
+
+
+      
+        <p>
+          
+            <a href="https://x.com/karmaniverous" class="btn btn--light-outline btn--large"><i class="fa-brands fa-x-twitter fa-2xl"></i></a>
+          
+            <a href="https://techhub.social/@karmaniverous" class="btn btn--light-outline btn--large"><i class="fa-brands fa-mastodon fa-2xl"></i></a>
+          
+            <a href="https://www.linkedin.com/in/jscroft" class="btn btn--light-outline btn--large"><i class="fa-brands fa-linkedin-in fa-2xl"></i></a>
+          
+            <a href="https://wa.me/17737500338" class="btn btn--light-outline btn--large"><i class="fa-brands fa-whatsapp fa-2xl"></i></a>
+          
+            <a href="https://t.me/karmaniverous" class="btn btn--light-outline btn--large"><i class="fa-brands fa-telegram fa-2xl"></i></a>
+          
+            <a href="https://calendly.com/karmaniverous" class="btn btn--light-outline btn--large"><i class="fa-regular fa-calendar-plus fa-2xl"></i></a>
+          
+        </p>
+      
+    </div>
+  
+  
+    <span class="page__hero-caption">Got questions or feedback? Contact me at one of the links on this page!
+</span>
+  
+</div>
+
+
+
+
+
+
+<div id="main" role="main">
+  
+  <div class="sidebar sticky">
+  
+  
+    
+      
+      
+      
+      
+    
+    
+      <nav class="nav__list">
+  
+  <input id="ac-toc" name="accordion-toc" type="checkbox" />
+  <label for="ac-toc">Toggle menu</label>
+  <ul class="nav__items">
+    
+      
+      
+        <li>
+          
+            <span class="nav__sub-title">Project Governance Toolkit</span>
+          
+
+          
+          <ul>
+            
+              <li><a href="/toolkits/project-governance/intro/">Introduction</a></li>
+            
+              <li><a href="/toolkits/project-governance/a-modern-agile-project-manifesto/">Agile Manifesto</a></li>
+            
+              <li><a href="/toolkits/project-governance/git-flow-by-example-writing-down-your-version-control-process/" class="active">Git Flow By Example</a></li>
+            
+              <li><a href="/toolkits/project-governance/turning-the-crank-design-as-a-mechanical-process/">Design as a Mechanical Process</a></li>
+            
+              <li><a href="/toolkits/project-governance/design-as-code-a-frictionless-low-level-design-pipeline/">Design As Code</a></li>
+            
+          </ul>
+          
+        </li>
+      
+    
+  </ul>
+</nav>
+
+    
+  
+  </div>
+
+
+
+  <article
+    class="page"
+    itemscope
+    itemtype="https://schema.org/CreativeWork"
+    >
+    <meta itemprop="headline" content="Git Flow By Example: Writing Down Your Version Control Process">
+    <meta itemprop="description" content="If you haven’t written down your project’s version control process in all its unique glory, then you don’t have one!">
+    <meta itemprop="datePublished" content="2024-11-21T02:10:13+00:00">
+    
+
+    <div class="page__inner-wrap">
+      
+
+      <section class="page__content" itemprop="text">
+        
+          <aside class="sidebar__right sticky">
+            <nav class="toc">
+              <header>
+                <h4 class="nav__title">
+                  <i class="fas fa-file-alt"></i>
+                  On this page</h4>
+              </header>
+              <ul class="toc__menu"><li><a href="#custom-by-definition">Custom By Definition</a></li><li><a href="#a-model-git-flow-document">A Model Git Flow Document</a></li><li><a href="#git-flow-karmaniverous">Git Flow @Karmaniverous</a><ul><li><a href="#microservices--semantic-versioning">Microservices &amp; Semantic Versioning</a></li><li><a href="#instance--environments">Instance &amp; Environments</a></li><li><a href="#git-flow-in-microservice-land">Git Flow in Microservice Land</a></li><li><a href="#feature--bugfix-branches">Feature &amp; Bugfix Branches</a></li><li><a href="#release--hotfix">Release &amp; Hotfix</a></li><li><a href="#rollback">Rollback</a></li><li><a href="#branch-naming-policy">Branch Naming Policy</a></li></ul></li><li><a href="#follow-the-breadcrumb-trail">Follow The Breadcrumb Trail</a></li></ul>
+            </nav>
+          </aside>
+        
+        <figure class="align-left drop-image">
+    <img src="/assets/images/git-flow-square.png" />
+</figure>
+
+<p>What does your version control process look like?</p>
+
+<p>Every <a href="https://www.pcisecuritystandards.org/">PCI</a> auditor asks this question on Day One of every audit. In far too many cases, the answer is just two words: <em>Git Flow</em>, usually backed up with <a href="https://www.atlassian.com/git/tutorials/comparing-workflows/gitflow-workflow">this exact hyperlink</a>, or maybe <a href="https://danielkummer.github.io/git-flow-cheatsheet/">this one</a>.</p>
+
+<blockquote>
+  <p><strong>Pro Tip:</strong> Not a great way to start an audit!</p>
+</blockquote>
+
+<p>The reason this is a bad answer is that these documents are purely <em>aspirational</em>. They describe some rather general key characteristics of a Git Flow process. But what they do <em>not</em> describe—because they <em>can’t</em>—are the very <em>specific</em> characteristics of <em>your</em> Git Flow process.</p>
+
+<p>And that’s what the auditor is looking for, because <strong>if you haven’t written your project’s version control process down in all its unique glory, then you don’t <em>have</em> one!</strong></p>
+
+<h2 id="custom-by-definition">Custom By Definition</h2>
+
+<p>Your specific Git Flow process depends on a lot of things, including:</p>
+
+<ul>
+  <li>
+    <p>Your application architecture.</p>
+  </li>
+  <li>
+    <p>Your application technology stack.</p>
+  </li>
+  <li>
+    <p>Your DevOps stack.</p>
+  </li>
+  <li>
+    <p>Your team’s size and composition… specifically its capacity to customize your DevOps stack.</p>
+  </li>
+</ul>
+
+<p>Any version control process worthy of the name needs to take all of this into account, and then—wait for it—<strong>it has to be written down!</strong></p>
+
+<p>In 2024, odds are that you’re an Agile team, and the concept of iteration is not foreign to you. For sure, you are accustomed to iterating over code. If you’re doing it right, you also iterate over requirements.</p>
+
+<p>So consider that your written-down version control process is just another requirement. It’s a <em>meta-requirement</em> that governs the architecture of the factory that ultimately delivers your production code. And that requirement is <em>itself</em> implemented in code, in the form of your DevOps pipeline.</p>
+
+<p>Once your process is clearly written down and subject to frequent, planned iteration, expect your team to find tighter, faster, more efficient ways to generate higher-quality code!</p>
+
+<h2 id="a-model-git-flow-document">A Model Git Flow Document</h2>
+
+<p>The Git Flow document below is one I’ve used in the context of a microservices project.</p>
+
+<p>I do not mean to suggest that it is wholly appropriate for <em>your</em> project, even if yours has a microservices architecture! As I observed above, any such plan depends critically on platform and team characteristics that will be unique to your situation.</p>
+
+<p>So what I hope you will derive from this example is a sense of the form and the level of detail that goes into a version control plan worth iterating over.</p>
+
+<p class="notice--info"><strong>For the record:</strong> The organizations where I use this approach routinely hit 100% in their PCI audits! 🚀</p>
+
+<h2 id="git-flow-karmaniverous">Git Flow @Karmaniverous</h2>
+
+<h3 id="microservices--semantic-versioning">Microservices &amp; Semantic Versioning</h3>
+
+<p>The Application has a microservice architecture.</p>
+
+<p>The front end is a single repository, independently deployed and version-controlled. At this writing, the back end consists of 16 distinct services. These services are also independently deployed and version-controlled. They are largely self-contained, and only interact with the front end and with each other across their respective API Gateway interfaces.</p>
+
+<p>The Application as a whole is assigned a new version number following each release to production. Release notes for these versions aggregate changes across independently versioned components, but is essentially a business-facing property of the Application and is independent of the version control system. Application version is not discussed here.</p>
+
+<p>Every service in the Application uses <a href="https://docs.npmjs.com/about-semantic-versioning">Semantic Versioning</a>, like <em>1.2.3</em>. The left-most value in a semantic versioning tuple is the major version. An Application component advances by a major version when there has been a <em>breaking change</em>.</p>
+
+<p>Most Application services communicate with other services, and the front end communicates with most of them. Every service maintains a version-controlled file that indicates which major version of each of these services it is compatible with. <a href="#">Here</a> is an example of this file in a back-end service, and <a href="#">here</a> is the code that serves the same purpose on the front end.</p>
+
+<p class="notice--info"><strong>The two document links above are non-functional.</strong> They are placeholders for the actual locations of these files in the respective repositories.</p>
+
+<p>Since each service is looking for a specific major version of every service it connects to, we can refine our definition of <em>major version</em> within the Application:</p>
+
+<p class="notice--success"><strong>A service must advance to a new major version</strong> when it makes a change that renders it no longer compatible with other services that currently call it.</p>
+
+<h3 id="instance--environments">Instance &amp; Environments</h3>
+
+<p>An <em>instance</em> of the Application is a complete set of Application services that support one another in a mutually consistent manner. No one Application instance should interact with any other instance.</p>
+
+<p>An <em>environment</em> is the set of resources representing a deployed instance of the Application. Since each service is an independent entity, each must be deployed individually into an environment and may to some degree be tested in isolation. <em>All</em> services (including the front end) must be deployed to an environment for it to be fully operational.</p>
+
+<p>Current examples of environments include:</p>
+
+<ul>
+  <li>
+    <p>Production</p>
+  </li>
+  <li>
+    <p>Release</p>
+  </li>
+  <li>
+    <p>Development</p>
+  </li>
+  <li>
+    <p>Preview environments like <code class="language-plaintext highlighter-rouge">preview/bali</code> and <code class="language-plaintext highlighter-rouge">preview/texas</code></p>
+  </li>
+</ul>
+
+<div class="notice--info">
+  <p><strong>With respect to a given repo, every environment is major-version specific!</strong> If the <code>user</code> service is in <code>v2</code>, then unless one has been deleted, the following <code>user</code> APIs are available to be combined into the <code>dev</code> environment:</p>
+
+  <ul>
+    <li><code>api-user-v0-dev</code></li>
+
+    <li><code>api-user-v1-dev</code></li>
+
+    <li><code>api-user-v2-dev</code></li>
+
+  </ul>
+</div>
+
+<p>Every Application repository has an <code class="language-plaintext highlighter-rouge">env</code> directory whose contents define <em>every</em> supported environment to which that repository’s code deploys. The project CLI leverages these files to facilitate environment-specific operations.</p>
+
+<p>Each environment is “connected” to a branch with the same names in every service and front-end repository. When code is pushed or merged to this branch, it is automatically built and deployed to the respective environment.</p>
+
+<p>Environments fall into two distinct categories:</p>
+
+<ul>
+  <li>
+    <p><strong>Protected environments</strong> are connected to protected branches and can only accept updates via Pull Request, whose rules tighten as environments approach production. A protected environment can be both a source and a target of a Pull Request. For example, developer code can be PRd into <code class="language-plaintext highlighter-rouge">dev</code> and then from <code class="language-plaintext highlighter-rouge">dev</code> to a <code class="language-plaintext highlighter-rouge">release</code> branch, while bugfixes on a <code class="language-plaintext highlighter-rouge">release</code> branch will usually be PRd back to <code class="language-plaintext highlighter-rouge">dev</code>.</p>
+  </li>
+  <li>
+    <p><strong>Preview environments</strong> are connected to unprotected branches and will generally be assigned to an individual developer. The purpose of a preview environment is to validate that code changes build &amp; deploy properly and to test them in the cloud environment.</p>
+  </li>
+</ul>
+
+<p class="notice--warning"><strong>Developers may merge freely INTO preview environments</strong> but should NEVER merge FROM them!</p>
+
+<h3 id="git-flow-in-microservice-land">Git Flow in Microservice Land</h3>
+
+<p>Karmaniverous generally follows the <a href="https://www.atlassian.com/git/tutorials/comparing-workflows/gitflow-workflow">GitFlow workflow</a>. The Karmaniverous process differs in that GitFlow addresses the needs of a monolithic application, whereas the Application exists (so far) across 16 loosely-coupled, independently-versioned code repositories.</p>
+
+<p>The local flavor of GitFlow takes this into account.</p>
+
+<p>As you examine the commit flow illustrations below, remember this: <strong>each of these pictures only illustrates actions in a single repository!</strong></p>
+
+<p>In reality, a correlated change might involve more than one or even <em>all</em> Application repositories! Therefore, in order to keep things clear…</p>
+
+<p class="notice--warning">Correlated changes across multiple code repositories should use branches of the same name!</p>
+
+<p>Branches across the Application fall into two distinct categories:</p>
+
+<ul>
+  <li>
+    <p><strong>Persistent branches</strong> accumulate changes over time and are rarely or never deleted. Persistent branches support the <code class="language-plaintext highlighter-rouge">preview</code>, <code class="language-plaintext highlighter-rouge">dev</code>, <code class="language-plaintext highlighter-rouge">release</code>, and <code class="language-plaintext highlighter-rouge">prod</code> environments.</p>
+  </li>
+  <li>
+    <p><strong>Temporary branches</strong> support the development of a feature or the repair of a defect and are deleted once no longer needed. Code from a temporary branch can be deployed and exercised in the cloud in one of two ways:</p>
+
+    <ul>
+      <li>
+        <p>It can be merged or PRd into an environment’s branch, which will deploy it automatically.</p>
+      </li>
+      <li>
+        <p>It can be deployed directly into a preview environment from the VS Code using the CLI.</p>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="feature--bugfix-branches">Feature &amp; Bugfix Branches</h3>
+
+<figure class=""><a href="/assets/images/git-flow-feature-bugfix-branches.png" class="image-popup" title="Feature &amp; bugfix branches.
+"><img src="/assets/images/git-flow-feature-bugfix-branches.png" alt="" /></a><figcaption>
+      <em>Feature &amp; bugfix branches.</em>
+
+    </figcaption></figure>
+
+<p>The development of new features and the repair of defects in any code repo begins on the <code class="language-plaintext highlighter-rouge">dev</code> branch. It should follow these steps in the IDE (git syntax is flexible, so your version might differ):</p>
+
+<ol>
+  <li>
+    <p><code class="language-plaintext highlighter-rouge">git switch dev</code> to switch to the dev branch.</p>
+  </li>
+  <li>
+    <p><code class="language-plaintext highlighter-rouge">git pull</code> to sync with the remote branch.</p>
+  </li>
+  <li>
+    <p>Is your preview branch consistent with <code class="language-plaintext highlighter-rouge">dev</code>? If not—at least to the extent that it matters—merge <em>every other</em> Application repo from <code class="language-plaintext highlighter-rouge">dev</code> into your preview branch.</p>
+  </li>
+  <li>
+    <p><code class="language-plaintext highlighter-rouge">git checkout -b branchname</code> to create a new local branch.</p>
+  </li>
+  <li>
+    <p><code class="language-plaintext highlighter-rouge">git push -u origin branchname</code> to push it to <code class="language-plaintext highlighter-rouge">origin</code>.</p>
+  </li>
+  <li>
+    <p>Develop within <code class="language-plaintext highlighter-rouge">branchname</code>. As required, deploy directly to your preview environment or merge to your preview branch to check your work.</p>
+  </li>
+  <li>
+    <p>Merge to a preview branch to validate the deployment process.</p>
+  </li>
+  <li>
+    <p>Push your local changes to <code class="language-plaintext highlighter-rouge">origin</code> and PR <code class="language-plaintext highlighter-rouge">branchname</code> to <code class="language-plaintext highlighter-rouge">dev</code>.</p>
+  </li>
+  <li>
+    <p>Delete <code class="language-plaintext highlighter-rouge">branchname</code> once it is merged into <code class="language-plaintext highlighter-rouge">dev</code>.</p>
+  </li>
+</ol>
+
+<p>Some notes about <code class="language-plaintext highlighter-rouge">branchname</code>:</p>
+
+<ul>
+  <li>Every Jira issue features a control allowing you to copy the code to create a related branch. This code branch has a name like <code class="language-plaintext highlighter-rouge">WEB-123-hyphenated-issue-summary</code> and is almost perfect:</li>
+</ul>
+
+<figure class=""><img src="/assets/images/git-flow-new-branch.png" alt="" /><figcaption>
+      <em>Generating a new branch in Jira.</em>
+
+    </figcaption></figure>
+
+<ul>
+  <li>
+    <p>Each branch name should be prefixed with a branch type token, like this: <code class="language-plaintext highlighter-rouge">feat/WEB-123-hyphenated-issue-summary</code>. Valid issue branch type tokens are:</p>
+
+    <ul>
+      <li>
+        <p><code class="language-plaintext highlighter-rouge">feature</code> for feature branches</p>
+      </li>
+      <li>
+        <p><code class="language-plaintext highlighter-rouge">bugfix</code> for bugs in <code class="language-plaintext highlighter-rouge">dev</code> or a <code class="language-plaintext highlighter-rouge">release</code> branch.</p>
+      </li>
+      <li>
+        <p><code class="language-plaintext highlighter-rouge">hotfix</code> for production bugs.</p>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="release--hotfix">Release &amp; Hotfix</h3>
+
+<p>As described above, every Application service (and the front end) is specified to be consistent with a specific major version of every other service it talks to.</p>
+
+<p>When changes to a service render other services no longer able to communicate with it, it gets a new major version, which has the effect of deploying a new environment for the upgraded major version, while leaving the one for the old version in place! Once this happens, it is up to the dev team to migrate data and other assets into this new environment to prepare it to receive traffic.</p>
+
+<p>Those other services remain connected to the previous major version until they are themselves updated (which may or may not require a new major version on their part) and pointed at the new major version of the service under consideration.</p>
+
+<p>The event that kicks all of this off is the <strong>release</strong>. A release (<code class="language-plaintext highlighter-rouge">nr release</code> in the IDE) may only be run on the <code class="language-plaintext highlighter-rouge">dev</code> branch. It performs the following steps:</p>
+
+<ol>
+  <li>
+    <p>Runs the local build and all unit tests.</p>
+  </li>
+  <li>
+    <p>Updates the repo’s package version to indicate a new major, minor, patch, or pre-version.</p>
+  </li>
+  <li>
+    <p>Creates tag <code class="language-plaintext highlighter-rouge">major.minor.patch[-pre]</code> in GitHub.</p>
+  </li>
+  <li>
+    <p>Creates branch <code class="language-plaintext highlighter-rouge">release/major.minor.patch[-pre]</code></p>
+  </li>
+  <li>
+    <p>Deploys the contents to environment <code class="language-plaintext highlighter-rouge">release</code>, which will overwrite content of the same major version or deploy new assets if the major version has changed.</p>
+  </li>
+</ol>
+
+<figure class=""><a href="/assets/images/git-flow-prod-release-hotfix.png" class="image-popup" title="Release to production &amp; hotfix.
+"><img src="/assets/images/git-flow-prod-release-hotfix.png" alt="" /></a><figcaption>
+      <em>Release to production &amp; hotfix.</em>
+
+    </figcaption></figure>
+
+<p>Code that has been elevated to the <code class="language-plaintext highlighter-rouge">release</code> environment should be subjected to extensive system testing. This is not yet automated, but soon will be.</p>
+
+<p>Bugs that are discovered on a <code class="language-plaintext highlighter-rouge">release</code> branch should undergo the same bugfix process as described above, except that the source of the <code class="language-plaintext highlighter-rouge">bugfix</code> branch should be the <code class="language-plaintext highlighter-rouge">release</code> branch rather than <code class="language-plaintext highlighter-rouge">dev</code>. Completed repairs should be system-tested again and then PRd both to the <code class="language-plaintext highlighter-rouge">release</code> branch and back down to <code class="language-plaintext highlighter-rouge">dev</code>.</p>
+
+<p>Once release testing is complete, the release branch can be PRd to <code class="language-plaintext highlighter-rouge">main</code>, which will trigger build &amp; deployment into the production environment.</p>
+
+<p>A bug discovered in production should generate a <code class="language-plaintext highlighter-rouge">hotfix</code> branch, just as a bug discovered in <code class="language-plaintext highlighter-rouge">dev</code> or a <code class="language-plaintext highlighter-rouge">release</code> branch should generate a <code class="language-plaintext highlighter-rouge">bugfix</code>. Repaired code should be PRd to the relevant <code class="language-plaintext highlighter-rouge">release</code> branch for system testing before PR back to <code class="language-plaintext highlighter-rouge">prod</code> and down to <code class="language-plaintext highlighter-rouge">dev</code>.</p>
+
+<h3 id="rollback">Rollback</h3>
+
+<p>Any deployment environment can be rolled back to a previous reference (a branch HEAD, tag, or commit SHA) by manually running the GitHub Actions deploy action in the related branch.</p>
+
+<p class="notice--warning"><strong>A rollback does NOT affect code committed to the related branch!</strong> It only deploys an earlier version of that code into the cloud environment related to the branch.</p>
+
+<p>To roll back a deployment related to any branch:</p>
+
+<ol>
+  <li>
+    <p>In the repository of interest, choose the <em>Actions</em> tab.</p>
+  </li>
+  <li>
+    <p>Choose the <em>Deploy</em> workflow.</p>
+  </li>
+  <li>
+    <p>Run the workflow from the <em>workflow_dispatch</em> trigger.</p>
+  </li>
+  <li>
+    <p>Choose a source branch associated with the target environment. In the example below, code will be deployed to the <code class="language-plaintext highlighter-rouge">release</code> environment.</p>
+  </li>
+  <li>
+    <p>Enter a Git reference for the code to be deployed (the example below rolls the release environment back to version <code class="language-plaintext highlighter-rouge">0.3.4</code>). This can be:</p>
+  </li>
+</ol>
+
+<ul>
+  <li>
+    <p>A branch name (deploys the branch HEAD).</p>
+  </li>
+  <li>
+    <p>A tag (deploys the associated commit).</p>
+  </li>
+  <li>
+    <p>A specific commit’s SHA.</p>
+  </li>
+</ul>
+
+<ol>
+  <li>Run the workflow.</li>
+</ol>
+
+<figure class=""><a href="/assets/images/git-flow-rollback.png" class="image-popup" title="Rollback of the release deployment environment to an earlier version.
+"><img src="/assets/images/git-flow-rollback.png" alt="" /></a><figcaption>
+      <em>Rollback of the <code class="language-plaintext highlighter-rouge">release</code> deployment environment to an earlier version.</em>
+
+    </figcaption></figure>
+
+<h3 id="branch-naming-policy">Branch Naming Policy</h3>
+
+<p>The branch naming policy is enforced by a pre-commit git hook in every code repository.</p>
+
+<p>All branch names must adhere to the following <code class="language-plaintext highlighter-rouge">RegExp</code> pattern:</p>
+
+<p><code class="language-plaintext highlighter-rouge">^(dev|main|preview\/[a-zA-Z0-9]+|(bugfix|feature|hotfix)\/[a-zA-Z]+-[0-9]+[-][-_a-zA-Z0-9]+|release\/[0-9]+\.[0-9]+\.[0-9]+)(-[_a-zA-Z0-9]+)?$</code></p>
+
+<p class="notice--info"><strong>Does the RegExp above seem… <em>primitive?</em></strong> Git bash uses an archaic flavor of <code class="language-plaintext highlighter-rouge">RegExp</code> that does not include common tokens like <code class="language-plaintext highlighter-rouge">\d</code> and <code class="language-plaintext highlighter-rouge">\w</code>!</p>
+
+<p>These are examples of <strong>valid</strong> branch names:</p>
+
+<ul>
+  <li>
+    <p><code class="language-plaintext highlighter-rouge">main</code></p>
+  </li>
+  <li>
+    <p><code class="language-plaintext highlighter-rouge">dev</code></p>
+  </li>
+  <li>
+    <p><code class="language-plaintext highlighter-rouge">preview/bali</code></p>
+  </li>
+  <li>
+    <p><code class="language-plaintext highlighter-rouge">hotfix/WEB-1234-description</code></p>
+  </li>
+  <li>
+    <p><code class="language-plaintext highlighter-rouge">bugfix/web-1234-description</code></p>
+  </li>
+  <li>
+    <p><code class="language-plaintext highlighter-rouge">feature/WEB-1234-description</code></p>
+  </li>
+  <li>
+    <p><code class="language-plaintext highlighter-rouge">release/1.2.3-0</code></p>
+  </li>
+  <li>
+    <p><code class="language-plaintext highlighter-rouge">release/1.2.3</code></p>
+  </li>
+</ul>
+
+<p>These are examples of <strong>invalid</strong> branch names:</p>
+
+<ul>
+  <li>
+    <p><code class="language-plaintext highlighter-rouge">WEB-1234</code> (needs a type tag &amp; description)</p>
+  </li>
+  <li>
+    <p><code class="language-plaintext highlighter-rouge">feature/WEB-1234</code> (needs a description)</p>
+  </li>
+  <li>
+    <p><code class="language-plaintext highlighter-rouge">foo</code> (just wrong)</p>
+  </li>
+  <li>
+    <p><code class="language-plaintext highlighter-rouge">preview</code> (needs a preview designator)</p>
+  </li>
+  <li>
+    <p><code class="language-plaintext highlighter-rouge">release</code> (needs a version number)</p>
+  </li>
+</ul>
+
+<h2 id="follow-the-breadcrumb-trail">Follow The Breadcrumb Trail</h2>
+
+<p>If you read the above document, you probably noticed that it depends critically on a bunch of tools &amp; processes that are mentioned but not fleshed out here. They include:</p>
+
+<ul>
+  <li>
+    <p>A fully configured &amp; integrated Jira instance.</p>
+  </li>
+  <li>
+    <p>A “project CLI” that apparently does some useful stuff.</p>
+  </li>
+  <li>
+    <p>A GitHub Actions workflow that performs all kinds of build &amp; deployment tasks.</p>
+  </li>
+</ul>
+
+<p>The assumption is that these are <em>also</em> fully documented someplace, and that they work together to implement the version control process described above.</p>
+
+<p>This might sound like it’s a trivial point but it isn’t. After all, how do you <em>know</em> what the dependencies of your version control process are if you haven’t written it down?</p>
+
+<p>Once you <em>have</em> written it down, those dependencies are in plain sight, and you can follow the breadcrumb trail to get the <em>rest</em> of your process documented as well!</p>
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+  
+
+
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-tags" aria-hidden="true"></i> Topics: </strong>
+    <span itemprop="keywords">
+    
+      <a href="/topics/agile" class="page__taxonomy-item p-category" rel="tag">agile</a><span class="sep">, </span>
+    
+      <a href="/topics/atlassian" class="page__taxonomy-item p-category" rel="tag">atlassian</a><span class="sep">, </span>
+    
+      <a href="/topics/github" class="page__taxonomy-item p-category" rel="tag">github</a><span class="sep">, </span>
+    
+      <a href="/topics/project-governance" class="page__taxonomy-item p-category" rel="tag">project-governance</a><span class="sep">, </span>
+    
+      <a href="/topics/toolkits" class="page__taxonomy-item p-category" rel="tag">toolkits</a>
+    
+    </span>
+  </p>
+
+
+
+
+        
+
+  <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> Updated:</strong> <time class="dt-published" datetime="2024-11-21T02:10:13+00:00">November 21, 2024</time></p>
+
+      </footer>
+
+      
+        <section class="page__share">
+  
+    <h4 class="page__share-title">Share on</h4>
+  
+
+  <a href="https://twitter.com/intent/tweet?via=karmaniverous&text=Git+Flow+By+Example%3A+Writing+Down+Your+Version+Control+Process%20https%3A%2F%2Fkarmanivero.us%2Ftoolkits%2Fproject-governance%2Fgit-flow-by-example-writing-down-your-version-control-process%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+
+  <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fkarmanivero.us%2Ftoolkits%2Fproject-governance%2Fgit-flow-by-example-writing-down-your-version-control-process%2F" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
+
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=https://karmanivero.us/toolkits/project-governance/git-flow-by-example-writing-down-your-version-control-process/" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
+</section>
+
+
+      
+  <nav class="pagination">
+    
+      <a href="/toolkits/project-governance/a-modern-agile-project-manifesto/" class="pagination--pager" title="A Modern Agile Project Manifesto
+">Previous</a>
+    
+    
+      <a href="/toolkits/project-governance/turning-the-crank-design-as-a-mechanical-process/" class="pagination--pager" title="Turning the Crank: Design as a Mechanical Process
+">Next</a>
+    
+  </nav>
+
+    </div>
+
+    
+  </article>
+
+  
+  
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  
+
+  
+  
+
+  
+  
+
+  
+  <div class='page__related'>
+    
+    <h2 class='page__related-title'>
+      You may also enjoy
+    </h2>
+    <div class='grid__wrapper'>
+
+      
+      
+        
+        
+        
+        
+        
+        
+      
+
+        
+      
+
+        
+        <!-- post_url: /unifying-web-presence-with-github-pages/ -->
+        <!-- normLogCommonTags: 0.0 -->
+        <!-- logAge: 6.001414388020834 -->
+        <!-- relevance: 43999 -->
+
+        
+      
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src="/assets/images/unify-web-presence-square.jpg" alt="">
+      </div>
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/unifying-web-presence-with-github-pages/" rel="permalink">Unifying Web Presence with GitHub Pages
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+      
+      <span class="page__meta-date">
+        <i
+          class="far fa-fw fa-calendar-alt"
+          aria-hidden="true"
+        ></i>
+        
+        <time datetime="2024-09-18T00:00:00+00:00">September 18, 2024</time>
+      </span>
+    
+
+    <span class="page__meta-sep"></span>
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i
+          class="far fa-fw fa-clock"
+          aria-hidden="true"
+        ></i>
+        
+          4
+          minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">Eliminate content collisions with your primary GitHub Pages domain &amp; unify all your GitHub project documentation pages under a single subdomain.
+</p>
+  </article>
+</div>
+
+
+        
+        
+        
+      
+        
+        
+        
+        
+        
+      
+
+        
+      
+
+        
+        <!-- post_url: /karmic-rule-2/ -->
+        <!-- normLogCommonTags: 1.0 -->
+        <!-- logAge: 9.593926798502604 -->
+        <!-- relevance: 43406 -->
+
+        
+      
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src="/assets/images/dharma-wheel.png" alt="">
+      </div>
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/karmic-rule-2/" rel="permalink">Karmic Rule Two
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+      
+      <span class="page__meta-date">
+        <i
+          class="far fa-fw fa-calendar-alt"
+          aria-hidden="true"
+        ></i>
+        
+        <time datetime="2022-08-28T00:00:00+00:00">August 28, 2022</time>
+      </span>
+    
+
+    <span class="page__meta-sep"></span>
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i
+          class="far fa-fw fa-clock"
+          aria-hidden="true"
+        ></i>
+        
+          less than 1
+          minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">Nothing raises issues like contact with reality. – Karmic Rules for Writing Pretty Good Code
+</p>
+  </article>
+</div>
+
+
+        
+        
+        
+      
+        
+        
+        
+        
+        
+      
+
+        
+      
+
+        
+        <!-- post_url: /installing-github-repo-template-updates/ -->
+        <!-- normLogCommonTags: 0.0 -->
+        <!-- logAge: 9.679864298502604 -->
+        <!-- relevance: 40320 -->
+
+        
+      
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src="/assets/images/git-diff-square.png" alt="">
+      </div>
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/installing-github-repo-template-updates/" rel="permalink">Installing GitHub Repo Template Updates
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+      
+      <span class="page__meta-date">
+        <i
+          class="far fa-fw fa-calendar-alt"
+          aria-hidden="true"
+        ></i>
+        
+        <time datetime="2022-07-15T00:00:00+00:00">July 15, 2022</time>
+      </span>
+    
+
+    <span class="page__meta-sep"></span>
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i
+          class="far fa-fw fa-clock"
+          aria-hidden="true"
+        ></i>
+        
+          5
+          minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">Your project depends on a GitHub repo template that has released a new version. How do you integrate the changes?
+</p>
+  </article>
+</div>
+
+
+        
+        
+        
+      
+        
+        
+        
+        
+        
+      
+
+        
+      
+
+        
+        <!-- post_url: /toolkits/ -->
+        <!-- normLogCommonTags: 0.0 -->
+        <!-- logAge: 12.0 -->
+        <!-- relevance: 38000 -->
+
+        
+      
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src="/assets/images/toolkits-square.jpg" alt="">
+      </div>
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/toolkits/" rel="permalink">Toolkits</a>
+      
+    </h2>
+    
+
+
+    <p class="archive__item-excerpt" itemprop="description">Why reinvent the wheel? I’ve been running software projects &amp; putting code into production for nearly 40 years… and I’ve been keeping notes.
+</p>
+  </article>
+</div>
+
+
+        
+        
+        
+      
+    </div>
+  </div>
+
+  
+</div>
+      
+    </div>
+
+    
+      <div class="search-content">
+        <div class="search-content__inner-wrap"><form onsubmit="return googleCustomSearchExecute();" id="cse-search-box-form-id" role="search">
+    <label class="sr-only" for="cse-search-input-box-id">
+      Enter your search term...
+    </label>
+    <input type="search" id="cse-search-input-box-id" class="search-input" tabindex="-1" placeholder="Enter your search term..." />
+  </form>
+  <div id="results" class="results">
+    <gcse:searchresults-only></gcse:searchresults-only>
+  </div></div>
+
+      </div>
+    
+
+    <div id="footer" class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+        <div class="page__footer-follow">
+  
+    <span class="love">Built for you with ❤️ on <a href="/bali/">Bali</a>!</span>
+  
+
+  <ul class="social-icons">
+    
+      <li>
+        <strong>Contact</strong>&nbsp;&nbsp;&nbsp;</li>
+    
+
+    
+      
+        
+          <li>
+            <a href="https://twitter.com/karmaniverous" rel="nofollow noopener noreferrer">
+              <i class="fa-brands fa-x-twitter" aria-hidden="true"></i>
+              </a>
+          </li>
+        
+      
+        
+          <li>
+            <a href="https://techhub.social/@karmaniverous" rel="nofollow noopener noreferrer">
+              <i class="fa-brands fa-mastodon" aria-hidden="true"></i>
+              </a>
+          </li>
+        
+      
+        
+          <li>
+            <a href="https://github.com/karmaniverous" rel="nofollow noopener noreferrer">
+              <i class="fa-brands fa-github" aria-hidden="true"></i>
+              </a>
+          </li>
+        
+      
+        
+          <li>
+            <a href="https://www.linkedin.com/in/jscroft/" rel="nofollow noopener noreferrer">
+              <i class="fa-brands fa-linkedin" aria-hidden="true"></i>
+              </a>
+          </li>
+        
+      
+        
+          <li>
+            <a href="https://wa.me/17737500338" rel="nofollow noopener noreferrer">
+              <i class="fa-brands fa-square-whatsapp" aria-hidden="true"></i>
+              </a>
+          </li>
+        
+      
+        
+          <li>
+            <a href="https://t.me/karmaniverous" rel="nofollow noopener noreferrer">
+              <i class="fa-brands fa-telegram" aria-hidden="true"></i>
+              </a>
+          </li>
+        
+      
+        
+          <li>
+            <a href="https://calendly.com/karmaniverous" rel="nofollow noopener noreferrer">
+              <i class="fa-regular fa-calendar-plus" aria-hidden="true"></i>
+              </a>
+          </li>
+        
+      
+    
+
+    
+      <li>
+        <a href="/feed.xml">
+          <i class="fas fa-fw fa-rss-square" aria-hidden="true"></i>
+           </a>
+      </li>
+    
+  </ul>
+</div>
+
+<div class="page__footer-copyright">&copy; 2024
+  <a href="https://karmanivero.us">some words</a>. Powered by
+  <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a>
+  &amp;
+  <a href="https://mademistakes.com/work/jekyll-themes/minimal-mistakes/" rel="nofollow">Minimal Mistakes</a>.</div>
+      </footer>
+    </div>
+
+    
+  <script src="/assets/js/main.min.js"></script>
+
+
+<script>
+  (function () {
+    var cx = '960ee5d1b2fec4509';
+    var gcse = document.createElement('script');
+    gcse.type = 'text/javascript';
+    gcse.async = true;
+    gcse.src = 'https://cse.google.com/cse.js?cx=' + cx;
+    var s = document.getElementsByTagName('script')[0];
+    s.parentNode.insertBefore(gcse, s);
+  })();
+
+  function googleCustomSearchExecute() {
+    var input = document.getElementById('cse-search-input-box-id');
+    var element = google.search.cse.element.getElement('searchresults-only0');
+    if (input.value == '') {
+      element.clearAllResults();
+    } else {
+      element.execute(input.value);
+    }
+    return false;
+  }
+
+  
+    $(document).ready(function () {
+      $('input#cse-search-input-box-id').on('keyup', function () {
+        googleCustomSearchExecute();
+      });
+    });
+  
+</script>
+
+
+
+
+
+
+  </body>
+</html>

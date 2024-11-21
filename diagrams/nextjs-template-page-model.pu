@@ -1,0 +1,39 @@
+@startuml nextjs-template-page-model
+
+object "[[#application-component Application Component]]" as Application
+note left
+- Next.js root page component at
+  [[https://github.com/karmaniverous/nextjs-template/blob/main/pages/_app.jsx _app.jsx]]
+- Performs server-side redirections.
+- Completes server-side state
+  initialization.
+- Invokes client-side state
+  initialization.
+- Renders page frame.
+end note
+
+object "[[#route-components Route Component]]" as Route
+note left
+- Located within the pages directory.
+- Extracts route variables.
+- Manages route-specific state.
+- Selects & configures page component.
+end note
+
+object "[[#page-components Page Component]]" as Page
+note left
+- Top of in-frame display hierarchy.
+- Abstracts common page elements
+  across routes.
+- Manages page-specific state.
+- Renders page content.
+end note
+
+object "Content Component" as UI
+
+Application "1" o-- "1" Route : prop injection <
+Route "1" o-- "*" Page : configures >
+Page "1" o-- "*" UI : configures >
+Page "1" o-- "*" Page : configures >
+
+@enduml

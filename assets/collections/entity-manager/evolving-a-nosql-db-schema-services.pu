@@ -1,0 +1,31 @@
+@startuml entity-manager-evolving-a-nosql-db-schema-services
+
+package "Beneficiary Service" as beneficiaryService {
+    entity "Beneficiary" as beneficiary 
+}
+
+package "CreditCard Service" as creditCardService {
+    entity "CreditCard" as creditCard 
+}
+
+package "Transaction Service" as transactionService {
+    entity "Transaction" as txn 
+}
+
+package "User Service" as userService #Yellow {
+    entity "Email" as email 
+    entity "User" as user 
+}
+
+beneficiary -{ user
+beneficiary --{ txn
+
+txn }- creditCard
+
+txn }- email
+
+user --{ creditCard
+user -{ email
+user --{ txn
+
+@enduml

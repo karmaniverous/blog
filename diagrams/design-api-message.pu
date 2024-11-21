@@ -1,0 +1,224 @@
+@startuml design-api-message
+
+!include aws.pu
+
+!include AWSPuml/AWSSimplified.puml
+
+left to right direction
+
+AWSCloudGroup(apiMessage, "api-message") {
+    APIGatewayGroup(gateway, "api-message") {
+        APIGatewayEndpointGroup(apiDocOpenapiGet, "doc-openapi-get") {
+            APIGatewayEndpoint(endpointPublicDocOpenapiGet, "public\nendpoint", "")
+        }
+
+        APIGatewayEndpointGroup(apiDocPostmanGet, "doc-postman-get") {
+            APIGatewayEndpoint(endpointPublicDocPostmanGet, "public\nendpoint", "")
+        }
+
+        APIGatewayEndpointGroup(apiMessageGet, "message-get") {
+            APIGatewayEndpoint(endpointCognitoMessageGet, "cognito\nendpoint", "")
+            APIGatewayEndpoint(endpointPrivateMessageGet, "private\nendpoint", "")
+        }
+
+        APIGatewayEndpointGroup(apiMessagePatch, "message-patch") {
+            APIGatewayEndpoint(endpointCognitoMessagePatch, "cognito\nendpoint", "")
+            APIGatewayEndpoint(endpointPrivateMessagePatch, "private\nendpoint", "")
+        }
+
+        APIGatewayEndpointGroup(apiMessageArchivePatch, "message-archive-patch") {
+            APIGatewayEndpoint(endpointCognitoMessageArchivePatch, "cognito\nendpoint", "")
+            APIGatewayEndpoint(endpointPrivateMessageArchivePatch, "private\nendpoint", "")
+        }
+
+        APIGatewayEndpointGroup(apiMessageReadPatch, "message-read-patch") {
+            APIGatewayEndpoint(endpointCognitoMessageReadPatch, "cognito\nendpoint", "")
+            APIGatewayEndpoint(endpointPrivateMessageReadPatch, "private\nendpoint", "")
+        }
+
+        APIGatewayEndpointGroup(apiMessagesGet, "messages-get") {
+            APIGatewayEndpoint(endpointCognitoMessagesGet, "cognito\nendpoint", "")
+            APIGatewayEndpoint(endpointPrivateMessagesGet, "private\nendpoint", "")
+        }
+
+        APIGatewayEndpointGroup(apiMessagePost, "message-post") {
+            APIGatewayEndpoint(endpointCognitoMessagePost, "cognito\nendpoint", "")
+            APIGatewayEndpoint(endpointPrivateMessagePost, "private\nendpoint", "")
+        }
+    }
+
+    ' doc-get handlers
+    LambdaLambdaFunction(lambdaPublicDocOpenapiGet, "doc get openapi\npublic handler", "")
+    endpointPublicDocOpenapiGet --> lambdaPublicDocOpenapiGet
+
+    LambdaLambdaFunction(lambdaPublicDocPostmanGet, "doc get postman\npublic handler", "")
+    endpointPublicDocPostmanGet --> lambdaPublicDocPostmanGet
+
+    ' message-get handlers
+    LambdaLambdaFunction(lambdaCognitoMessageGet, "message get\ncognito handler", "")
+    endpointCognitoMessageGet --> lambdaCognitoMessageGet
+
+    LambdaLambdaFunction(lambdaPrivateMessageGet, "message get\nprivate handler", "")
+    endpointPrivateMessageGet --> lambdaPrivateMessageGet
+
+    interface lambdaMessageGetInterface as " "
+    lambdaCognitoMessageGet --> lambdaMessageGetInterface
+    lambdaPrivateMessageGet --> lambdaMessageGetInterface
+
+    ' message-patch handlers
+    LambdaLambdaFunction(lambdaCognitoMessagePatch, "message patch\ncognito handler", "")
+    endpointCognitoMessagePatch --> lambdaCognitoMessagePatch
+
+    LambdaLambdaFunction(lambdaPrivateMessagePatch, "message patch\nprivate handler", "")
+    endpointPrivateMessagePatch --> lambdaPrivateMessagePatch
+
+    interface lambdaMessagePatchInterface as " "
+    lambdaCognitoMessagePatch --> lambdaMessagePatchInterface
+    lambdaPrivateMessagePatch --> lambdaMessagePatchInterface
+
+    ' message-archive-patch handlers
+    LambdaLambdaFunction(lambdaCognitoMessageArchivePatch, "message archive patch\ncognito handler", "")
+    endpointCognitoMessageArchivePatch --> lambdaCognitoMessageArchivePatch
+
+    LambdaLambdaFunction(lambdaPrivateMessageArchivePatch, "message archive patch\nprivate handler", "")
+    endpointPrivateMessageArchivePatch --> lambdaPrivateMessageArchivePatch
+
+    interface lambdaMessageArchivePatchInterface as " "
+    lambdaCognitoMessageArchivePatch --> lambdaMessageArchivePatchInterface
+    lambdaPrivateMessageArchivePatch --> lambdaMessageArchivePatchInterface
+
+    ' message-read-patch handlers
+    LambdaLambdaFunction(lambdaCognitoMessageReadPatch, "message read patch\ncognito handler", "")
+    endpointCognitoMessageReadPatch --> lambdaCognitoMessageReadPatch
+
+    LambdaLambdaFunction(lambdaPrivateMessageReadPatch, "message read patch\nprivate handler", "")
+    endpointPrivateMessageReadPatch --> lambdaPrivateMessageReadPatch
+
+    interface lambdaMessageReadPatchInterface as " "
+    lambdaCognitoMessageReadPatch --> lambdaMessageReadPatchInterface
+    lambdaPrivateMessageReadPatch --> lambdaMessageReadPatchInterface
+
+    ' messages-get handlers
+    LambdaLambdaFunction(lambdaCognitoMessagesGet, "messages get\ncognito handler", "")
+    endpointCognitoMessagesGet --> lambdaCognitoMessagesGet
+
+    LambdaLambdaFunction(lambdaPrivateMessagesGet, "messages get\nprivate handler", "")
+    endpointPrivateMessagesGet --> lambdaPrivateMessagesGet
+
+    interface lambdaMessagesGetInterface as " "
+    lambdaCognitoMessagesGet --> lambdaMessagesGetInterface
+    lambdaPrivateMessagesGet --> lambdaMessagesGetInterface
+
+    ' message-post handlers
+    LambdaLambdaFunction(lambdaCognitoMessagePost, "message post\ncognito handler", "")
+    endpointCognitoMessagePost --> lambdaCognitoMessagePost
+
+    LambdaLambdaFunction(lambdaPrivateMessagePost, "message post\nprivate handler", "")
+    endpointPrivateMessagePost --> lambdaPrivateMessagePost
+
+    interface lambdaMessagePostInterface as " "
+    lambdaCognitoMessagePost --> lambdaMessagePostInterface
+    lambdaPrivateMessagePost --> lambdaMessagePostInterface
+
+    ' database
+    DynamoDBTable(entityMessage, "message\nentity", "")
+    lambdaMessageGetInterface --> entityMessage
+    lambdaMessagePatchInterface --> entityMessage
+    lambdaMessageArchivePatchInterface --> entityMessage
+    lambdaMessageReadPatchInterface --> entityMessage
+    lambdaMessagesGetInterface --> entityMessage
+
+    StepFunction(stepMessagePost, "message-post", "")
+    lambdaMessagePostInterface --> stepMessagePost
+    stepMessagePost -> entityMessage 
+
+    ' crud
+    DynamoDBStream(streamCrud, "crud\nstream", "")
+    entityMessage --> streamCrud
+
+    EventBridgePipes(bridgeCrud, "crud\nbridge", "")
+    streamCrud --> bridgeCrud
+
+    SimpleNotificationServiceTopic(topicCrud, "crud\ntopic", "")
+    bridgeCrud ---> topicCrud : publishes
+
+    ' email
+    SimpleQueueServiceQueue(queueEmail, "email\nqueue", "")
+    topicCrud --> queueEmail : subscribes
+
+    LambdaLambdaFunction(lambdaEmail, "email\n handler", "")
+    queueEmail --> lambdaEmail
+
+    ' sms
+    SimpleQueueServiceQueue(queueSms, "sms\nqueue", "")
+    topicCrud --> queueSms : subscribes
+
+    LambdaLambdaFunction(lambdaSms, "sms\n handler", "")
+    queueSms --> lambdaSms
+
+    ' push
+    SimpleQueueServiceQueue(queuePush, "push\nqueue", "")
+    topicCrud --> queuePush : subscribes
+
+    LambdaLambdaFunction(lambdaPush, "push\n handler", "")
+    queuePush --> lambdaPush
+}
+
+boundary getApiInterface as "Get API"
+getApiInterface --> endpointPublicDocOpenapiGet
+getApiInterface --> endpointPublicDocPostmanGet
+
+WebAppGroup(webAppGetMessage) {
+    boundary webAppGetMessageInterface as "Get Message"
+    webAppGetMessageInterface --> endpointCognitoMessageGet
+}
+
+WebAppGroup(webAppUpdateMessage) {
+    boundary webAppUpdateMessageInterface as "Update Message"
+    webAppUpdateMessageInterface --> endpointCognitoMessagePatch
+}
+
+WebAppGroup(webAppArchiveMessage) {
+    boundary webAppArchiveMessageInterface as "Archive Message"
+    webAppArchiveMessageInterface --> endpointCognitoMessageArchivePatch
+}
+
+WebAppGroup(webAppReadMessage) {
+    boundary webAppReadMessageInterface as "Read Message"
+    webAppReadMessageInterface --> endpointCognitoMessageReadPatch
+}
+
+WebAppGroup(webAppListMessages) {
+    boundary webAppListMessagesInterface as "List Messages"
+    webAppListMessagesInterface --> endpointCognitoMessagesGet
+}
+
+AWSCloudGroup(apiService, "api-*") {
+    LambdaLambdaFunction(lambdaServiceCrud, "crud\nhandler", "")
+    lambdaServiceCrud --> endpointPrivateMessagePost
+}
+
+WebAppGroup(webAppCreateMessage) {
+    boundary webAppCreateMessageInterface as "Create Message"
+    webAppCreateMessageInterface --> endpointCognitoMessagePost
+}
+
+Email(emailMessagePost, "email\nmessage", "")
+lambdaEmail --> emailMessagePost : send via SES
+
+Mobileclient(smsMessagePost, "sms\nmessage", "")
+lambdaSms --> smsMessagePost : send via SNS
+
+Alert(pushMessagePost, "push\nmessage", "")
+lambdaPush --> pushMessagePost : send via SNS
+
+AWSCloudGroup(apiTemplateService, "api-template") {
+    APIGatewayGroup(apiMessageGateway, "api-template") {
+        APIGatewayEndpointGroup(apiTemplatesGet, "templates-get") {
+            APIGatewayEndpoint(endpointPrivateTemplatesGet, "private\nendpoint", "")
+            stepMessagePost --> endpointPrivateTemplatesGet
+        }
+    }
+}
+
+@enduml

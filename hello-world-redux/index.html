@@ -1,0 +1,1320 @@
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.26.2 by Michael Rose
+  Copyright 2013-2024 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
+-->
+
+<html lang="en-US" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin _includes/seo.html --><title>Hello World! (Redux) - some words</title>
+<meta name="description" content="Rediscovering blogging. Again.">
+
+
+  <meta name="author" content="Jason Williscroft">
+  
+  <meta property="article:author" content="Jason Williscroft">
+  
+
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="en_US">
+<meta property="og:site_name" content="some words">
+<meta property="og:title" content="Hello World! (Redux)">
+<meta property="og:url" content="https://karmanivero.us/hello-world-redux/">
+
+
+  <meta property="og:description" content="Rediscovering blogging. Again.">
+
+
+
+  <meta property="og:image" content="https://karmanivero.us/assets/images/hello-world-redux.png">
+
+
+
+  <meta name="twitter:site" content="@karmaniverous">
+  <meta name="twitter:title" content="Hello World! (Redux)">
+  <meta name="twitter:description" content="Rediscovering blogging. Again.">
+  <meta name="twitter:url" content="https://karmanivero.us/hello-world-redux/">
+
+  
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content="https://karmanivero.us/assets/images/hello-world-redux.png">
+  
+
+  
+
+
+
+  <meta property="article:published_time" content="2024-08-24T00:00:00+00:00">
+
+
+
+
+
+
+<link rel="canonical" href="https://karmanivero.us/hello-world-redux/">
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- end _includes/seo.html -->
+
+
+
+  <link href="/feed.xml" type="application/atom+xml" rel="alternate" title="some words Feed">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script type="text/javascript">
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+  window.enable_copy_code_button = true;
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/assets/css/main.css">
+<link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@latest/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@latest/css/all.min.css"></noscript>
+
+
+
+    <link
+  rel="apple-touch-icon"
+  sizes="180x180"
+  href="/assets/favicon/apple-touch-icon.png" />
+<link
+  rel="icon"
+  type="image/png"
+  sizes="32x32"
+  href="/assets/favicon/favicon-32x32.png" />
+<link
+  rel="icon"
+  type="image/png"
+  sizes="16x16"
+  href="/assets/favicon/favicon-16x16.png" />
+<link rel="manifest" href="/assets/favicon/site.webmanifest" />
+<link
+  rel="mask-icon"
+  href="/assets/favicon/safari-pinned-tab.svg"
+  color="#5bbad5" />
+<link rel="shortcut icon" href="/assets/favicon/favicon.ico" />
+<meta name="msapplication-TileColor" content="#2b5797" />
+<meta name="msapplication-config" content="/assets/favicon/browserconfig.xml" />
+<meta name="theme-color" content="#ffffff" />
+
+
+
+<!-- Mathjax Support -->
+<script
+  type="text/javascript"
+  async
+  src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+  </head>
+
+  <body class="layout--single" dir="ltr">
+    <nav class="skip-links">
+  <ul>
+    <li><a href="#site-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">Skip to footer</a></li>
+  </ul>
+</nav>
+
+    
+
+<div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        
+        <a class="site-title" href="/">
+          some words
+          <span class="site-subtitle">many of them true</span>
+        </a>
+        <ul class="visible-links"><li class="masthead__menu-item">
+              <a
+                href="/projects/"
+                
+                
+              >Projects</a>
+            </li><li class="masthead__menu-item">
+              <a
+                href="/toolkits/"
+                
+                
+              >Toolkits</a>
+            </li><li class="masthead__menu-item">
+              <a
+                href="/bali/"
+                
+                
+              >Bali</a>
+            </li><li class="masthead__menu-item">
+              <a
+                href="/topics/"
+                
+                
+              >Topics</a>
+            </li><li class="masthead__menu-item">
+              <a
+                href="/blog/"
+                
+                
+              >Archive</a>
+            </li></ul>
+        
+        <button class="search__toggle" type="button">
+          <span class="visually-hidden">Toggle search</span>
+          <i class="fas fa-search"></i>
+        </button>
+        
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">Toggle menu</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+    <div class="initial-content">
+      
+
+
+
+
+
+<div id="main" role="main">
+  
+  <div class="sidebar sticky">
+  
+
+
+<div itemscope itemtype="https://schema.org/Person" class="h-card">
+
+  
+    <div class="author__avatar">
+      <a href="https://karmanivero.us/">
+        <img src="/assets/images/bio-photo.jpg" alt="Jason Williscroft" itemprop="image" class="u-photo">
+      </a>
+    </div>
+  
+
+  <div class="author__content">
+    <h3 class="author__name p-name" itemprop="name">
+      <a class="u-url" rel="me" href="https://karmanivero.us/" itemprop="url">Jason Williscroft</a>
+    </h3>
+    
+      <div class="author__bio p-note" itemprop="description">
+        <p><em>resume bullets<br />may read differently at the<br />threshold of heaven</em></p>
+
+      </div>
+    
+  </div>
+
+  <div class="author__urls-wrapper">
+    <button class="btn btn--inverse">Contact</button>
+    <ul class="author__urls social-icons">
+      
+
+      
+        
+          
+            <li><a href="https://twitter.com/karmaniverous" rel="nofollow noopener noreferrer me" itemprop="sameAs"><i class="fa-brands fa-square-x-twitter" aria-hidden="true"></i><span class="label">X</span></a></li>
+          
+        
+          
+            <li><a href="https://techhub.social/@karmaniverous" rel="nofollow noopener noreferrer me" itemprop="sameAs"><i class="fa-brands fa-mastodon" aria-hidden="true"></i><span class="label">Mastodon</span></a></li>
+          
+        
+          
+            <li><a href="https://github.com/karmaniverous" rel="nofollow noopener noreferrer me" itemprop="sameAs"><i class="fa-brands fa-github" aria-hidden="true"></i><span class="label">GitHub</span></a></li>
+          
+        
+          
+            <li><a href="https://www.linkedin.com/in/jscroft/" rel="nofollow noopener noreferrer me" itemprop="sameAs"><i class="fa-brands fa-linkedin" aria-hidden="true"></i><span class="label">LinkedIn</span></a></li>
+          
+        
+          
+            <li><a href="https://wa.me/17737500338" rel="nofollow noopener noreferrer me" itemprop="sameAs"><i class="fa-brands fa-whatsapp" aria-hidden="true"></i><span class="label">WhatsApp</span></a></li>
+          
+        
+          
+            <li><a href="https://t.me/karmaniverous" rel="nofollow noopener noreferrer me" itemprop="sameAs"><i class="fa-brands fa-telegram" aria-hidden="true"></i><span class="label">Telegram</span></a></li>
+          
+        
+          
+            <li><a href="https://calendly.com/karmaniverous" rel="nofollow noopener noreferrer me" itemprop="sameAs"><i class="fa-regular fa-calendar-plus" aria-hidden="true"></i><span class="label">Meet</span></a></li>
+          
+        
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      <!--
+  <li>
+    <a href="http://link-to-whatever-social-network.com/user/" itemprop="sameAs" rel="nofollow noopener noreferrer me">
+      <i class="fas fa-fw" aria-hidden="true"></i> Custom Social Profile Link
+    </a>
+  </li>
+-->
+    </ul>
+  </div>
+</div>
+
+  
+  </div>
+
+
+
+  <article
+    class="page"
+    itemscope
+    itemtype="https://schema.org/CreativeWork"
+    >
+    <meta itemprop="headline" content="Hello World! (Redux)">
+    <meta itemprop="description" content="Rediscovering blogging. Again.">
+    <meta itemprop="datePublished" content="2024-08-24T00:00:00+00:00">
+    
+
+    <div class="page__inner-wrap">
+      
+        <header>
+          <h1
+              id="page-title"
+              class="page__title"
+              itemprop="headline">
+              <a href="https://karmanivero.us/hello-world-redux/" itemprop="url">Hello World! (Redux)
+</a>
+            </h1>
+          
+
+  <p class="page__meta">
+    
+      
+      <span class="page__meta-date">
+        <i
+          class="far fa-calendar-alt"
+          aria-hidden="true"
+        ></i>
+        
+        <time datetime="2024-08-24T00:00:00+00:00">August 24, 2024</time>
+      </span>
+    
+
+    <span class="page__meta-sep"></span>
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i
+          class="far fa-clock"
+          aria-hidden="true"
+        ></i>
+        
+          1
+          minute read
+        
+      </span>
+    
+  </p>
+
+
+        </header>
+      
+
+      <section class="page__content" itemprop="text">
+        
+        <figure class="align-left drop-image">
+    <img src="/assets/images/hello-world-redux.png" />
+</figure>
+
+<p>We’ve been here <a href="/blog/hello-again-world">before</a>.</p>
+
+<p>You know how implementation tends to outstrip documentation. I thought I had the problem licked when I switched to a Jekyll/GitHub Pages blog. Things that are easy tend to be the ones that get done, right?</p>
+
+<p>But there are so MANY platforms. And I really like posting in short form on X. So once I got out of the habit… well, I was out of the habit.</p>
+
+<p>So now we have the lexical equivalent of a fragmented code base: I’ve got SO many projects, with SO much documentation, that even though I really don’t post much in long form any more, I still need a way to bring all that stuff together in one place.</p>
+
+<p>Last week I was patching up my <a href="https://github.com/karmaniverous/npm-package-template-ts">TypeScript NPM Package Template</a> and, while scratching my head over documenting the API, I ran smack into <a href="https://typedoc.org/">TypeDoc</a>. It took a minute to understand that TypeDoc’s output will integrate seamlessly with an existing GitHub Pages domain, <a href="https://karmanivero.us/npm-package-template-ts/">like this</a>.</p>
+
+<p>Yah.</p>
+
+<p>Took another minute to realize I needed to upgrade the <a href="https://github.com/mmistakes/minimal-mistakes">Minimal Mistakes</a> theme running here, and then suddenly I was back in business with a Partfolio page and a new lease on the bloggerverse!</p>
+
+<p>Not that I expect my HUGE audience (hi, Mom!) to pay much attention to any regular posts here. But I’m going to try hard to say important things here FIRST, unless I have a compelling reason not to.</p>
+
+<p>So let’s see where that leads.</p>
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+  
+
+
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-tags" aria-hidden="true"></i> Topics: </strong>
+    <span itemprop="keywords">
+    
+      <a href="/topics/documentation" class="page__taxonomy-item p-category" rel="tag">documentation</a><span class="sep">, </span>
+    
+      <a href="/topics/jekyll" class="page__taxonomy-item p-category" rel="tag">jekyll</a><span class="sep">, </span>
+    
+      <a href="/topics/writing" class="page__taxonomy-item p-category" rel="tag">writing</a>
+    
+    </span>
+  </p>
+
+
+
+
+        
+
+  <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> Updated:</strong> <time class="dt-published" datetime="2024-08-24T00:00:00+00:00">August 24, 2024</time></p>
+
+      </footer>
+
+      
+        <section class="page__share">
+  
+    <h4 class="page__share-title">Share on</h4>
+  
+
+  <a href="https://twitter.com/intent/tweet?via=karmaniverous&text=Hello+World%21+%28Redux%29%20https%3A%2F%2Fkarmanivero.us%2Fhello-world-redux%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+
+  <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fkarmanivero.us%2Fhello-world-redux%2F" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
+
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=https://karmanivero.us/hello-world-redux/" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
+</section>
+
+
+      
+  <nav class="pagination">
+    
+      <a href="/karmic-rule-5/" class="pagination--pager" title="Karmic Rule Five
+">Previous</a>
+    
+    
+      <a href="/tsdoc-plus-typedoc/" class="pagination--pager" title="TSDoc + TypeDoc
+">Next</a>
+    
+  </nav>
+
+    </div>
+
+    
+  </article>
+
+  
+  
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  
+
+  
+  
+
+  
+  
+
+  
+  <div class='page__related'>
+    
+    <h2 class='page__related-title'>
+      You may also enjoy
+    </h2>
+    <div class='grid__wrapper'>
+
+      
+      
+        
+        
+        
+        
+        
+        
+      
+
+        
+      
+
+        
+        <!-- post_url: /related-posts-with-minimal-mistakes/ -->
+        <!-- normLogCommonTags: 0.0 -->
+        <!-- logAge: 2.2726186342592594 -->
+        <!-- relevance: 47727 -->
+
+        
+      
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src="/assets/images/related-posts-square.jpg" alt="">
+      </div>
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/related-posts-with-minimal-mistakes/" rel="permalink">Related Posts With Minimal Mistakes
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+      
+      <span class="page__meta-date">
+        <i
+          class="far fa-fw fa-calendar-alt"
+          aria-hidden="true"
+        ></i>
+        
+        <time datetime="2024-11-16T00:00:00+00:00">November 16, 2024</time>
+      </span>
+    
+
+    <span class="page__meta-sep"></span>
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i
+          class="far fa-fw fa-clock"
+          aria-hidden="true"
+        ></i>
+        
+          12
+          minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">Presenting a radically improved related-posts widget for the Minimal Mistakes Jekyll theme.
+</p>
+  </article>
+</div>
+
+
+        
+        
+        
+      
+        
+        
+        
+        
+        
+      
+
+        
+      
+
+        
+        <!-- post_url: /unifying-web-presence-with-github-pages/ -->
+        <!-- normLogCommonTags: 1.0 -->
+        <!-- logAge: 6.001413664641204 -->
+        <!-- relevance: 46999 -->
+
+        
+      
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src="/assets/images/unify-web-presence-square.jpg" alt="">
+      </div>
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/unifying-web-presence-with-github-pages/" rel="permalink">Unifying Web Presence with GitHub Pages
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+      
+      <span class="page__meta-date">
+        <i
+          class="far fa-fw fa-calendar-alt"
+          aria-hidden="true"
+        ></i>
+        
+        <time datetime="2024-09-18T00:00:00+00:00">September 18, 2024</time>
+      </span>
+    
+
+    <span class="page__meta-sep"></span>
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i
+          class="far fa-fw fa-clock"
+          aria-hidden="true"
+        ></i>
+        
+          4
+          minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">Eliminate content collisions with your primary GitHub Pages domain &amp; unify all your GitHub project documentation pages under a single subdomain.
+</p>
+  </article>
+</div>
+
+
+        
+        
+        
+      
+        
+        
+        
+        
+        
+      
+
+        
+      
+
+        
+        <!-- post_url: /some-words-on-linkedin/ -->
+        <!-- normLogCommonTags: 0.6666666666666666 -->
+        <!-- logAge: 6.251413664641204 -->
+        <!-- relevance: 45749 -->
+
+        
+      
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src="/assets/images/logo-linkedin.png" alt="">
+      </div>
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/some-words-on-linkedin/" rel="permalink">Some Words on LinkedIn
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+      
+      <span class="page__meta-date">
+        <i
+          class="far fa-fw fa-calendar-alt"
+          aria-hidden="true"
+        ></i>
+        
+        <time datetime="2024-09-02T00:00:00+00:00">September 2, 2024</time>
+      </span>
+    
+
+    <span class="page__meta-sep"></span>
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i
+          class="far fa-fw fa-clock"
+          aria-hidden="true"
+        ></i>
+        
+          3
+          minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">Squaring the impossible circle: Where should your content actually live?
+</p>
+  </article>
+</div>
+
+
+        
+        
+        
+      
+        
+        
+        
+        
+        
+      
+
+        
+      
+
+        
+        <!-- post_url: /toolkits/project-governance/design-as-code-a-frictionless-low-level-design-pipeline/ -->
+        <!-- normLogCommonTags: 0.0 -->
+        <!-- logAge: 5.0 -->
+        <!-- relevance: 45000 -->
+
+        
+      
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src="/assets/collections/project-governance/design-as-code-square.jpg" alt="">
+      </div>
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/toolkits/project-governance/design-as-code-a-frictionless-low-level-design-pipeline/" rel="permalink">Design as Code: A Frictionless Low-Level Design Pipeline
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i
+          class="far fa-clock"
+          aria-hidden="true"
+        ></i>
+        
+          22
+          minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">A frictionless low-level design process that integrates with your dev cycle and puts design artifacts at a peer level with the rest of your codebase.
+</p>
+  </article>
+</div>
+
+
+        
+        
+        
+      
+        
+        
+        
+        
+        
+      
+
+        
+      
+
+        
+        <!-- post_url: /composition-in-action-finishing-the-swing/ -->
+        <!-- normLogCommonTags: 0.0 -->
+        <!-- logAge: 5.1278273292824075 -->
+        <!-- relevance: 44872 -->
+
+        
+      
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src="https://github.com/karmaniverous/controlled-proxy/raw/main/assets/controlled-proxy-square.jpg" alt="">
+      </div>
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/composition-in-action-finishing-the-swing/" rel="permalink">Composition in Action: Finishing the Swing
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+      
+      <span class="page__meta-date">
+        <i
+          class="far fa-fw fa-calendar-alt"
+          aria-hidden="true"
+        ></i>
+        
+        <time datetime="2024-10-16T00:00:00+00:00">October 16, 2024</time>
+      </span>
+    
+
+    <span class="page__meta-sep"></span>
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i
+          class="far fa-fw fa-clock"
+          aria-hidden="true"
+        ></i>
+        
+          9
+          minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">In software engineering, what look to be the easy parts often turn out to be the hard parts. If you’re lucky, the reverse is also true, but don’t count on it.
+</p>
+  </article>
+</div>
+
+
+        
+        
+        
+      
+        
+        
+        
+        
+        
+      
+
+        
+      
+
+        
+        <!-- post_url: /mixin-it-up-picking-the-right-problem-to-solve/ -->
+        <!-- normLogCommonTags: 0.0 -->
+        <!-- logAge: 5.2528273292824075 -->
+        <!-- relevance: 44747 -->
+
+        
+      
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src="/assets/images/mixin-it-up-square.jpg" alt="">
+      </div>
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/mixin-it-up-picking-the-right-problem-to-solve/" rel="permalink">Mixin It Up: Picking The Right Problem to Solve
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+      
+      <span class="page__meta-date">
+        <i
+          class="far fa-fw fa-calendar-alt"
+          aria-hidden="true"
+        ></i>
+        
+        <time datetime="2024-10-12T00:00:00+00:00">October 12, 2024</time>
+      </span>
+    
+
+    <span class="page__meta-sep"></span>
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i
+          class="far fa-fw fa-clock"
+          aria-hidden="true"
+        ></i>
+        
+          9
+          minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">Sometimes, when you’re tangled up in a thorny problem, solving it is exactly the wrong answer.
+</p>
+  </article>
+</div>
+
+
+        
+        
+        
+      
+        
+        
+        
+        
+        
+      
+
+        
+      
+
+        
+        <!-- post_url: /code-complete-a-day-in-the-life-of-a-product/ -->
+        <!-- normLogCommonTags: 0.0 -->
+        <!-- logAge: 6.017038664641204 -->
+        <!-- relevance: 43983 -->
+
+        
+      
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src="/assets/images/code-complete-tests.jpg" alt="">
+      </div>
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/code-complete-a-day-in-the-life-of-a-product/" rel="permalink">Code Complete: A Day in the Life of a Product
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+      
+      <span class="page__meta-date">
+        <i
+          class="far fa-fw fa-calendar-alt"
+          aria-hidden="true"
+        ></i>
+        
+        <time datetime="2024-09-17T00:00:00+00:00">September 17, 2024</time>
+      </span>
+    
+
+    <span class="page__meta-sep"></span>
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i
+          class="far fa-fw fa-clock"
+          aria-hidden="true"
+        ></i>
+        
+          8
+          minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">We’re all professionals here, right? And we all know there’s often quite a gap between what gets posted to social media and the reality on the ground.
+</p>
+  </article>
+</div>
+
+
+        
+        
+        
+      
+        
+        
+        
+        
+        
+      
+
+        
+      
+
+        
+        <!-- post_url: /idea-discovery-on-github/ -->
+        <!-- normLogCommonTags: 0.0 -->
+        <!-- logAge: 6.235788664641204 -->
+        <!-- relevance: 43764 -->
+
+        
+      
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src="/assets/images/idea-discovery.jpg" alt="">
+      </div>
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/idea-discovery-on-github/" rel="permalink">Idea Discovery on GitHub
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+      
+      <span class="page__meta-date">
+        <i
+          class="far fa-fw fa-calendar-alt"
+          aria-hidden="true"
+        ></i>
+        
+        <time datetime="2024-09-03T00:00:00+00:00">September 3, 2024</time>
+      </span>
+    
+
+    <span class="page__meta-sep"></span>
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i
+          class="far fa-fw fa-clock"
+          aria-hidden="true"
+        ></i>
+        
+          4
+          minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">Coming up with ideas is easy. Deciding which ones to execute on is HARD. Here’s a kitchen-sink approach using engagement as a metric of market potential.
+</p>
+  </article>
+</div>
+
+
+        
+        
+        
+          
+    </div>
+  </div>
+
+  
+</div>
+      
+    </div>
+
+    
+      <div class="search-content">
+        <div class="search-content__inner-wrap"><form onsubmit="return googleCustomSearchExecute();" id="cse-search-box-form-id" role="search">
+    <label class="sr-only" for="cse-search-input-box-id">
+      Enter your search term...
+    </label>
+    <input type="search" id="cse-search-input-box-id" class="search-input" tabindex="-1" placeholder="Enter your search term..." />
+  </form>
+  <div id="results" class="results">
+    <gcse:searchresults-only></gcse:searchresults-only>
+  </div></div>
+
+      </div>
+    
+
+    <div id="footer" class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+        <div class="page__footer-follow">
+  
+    <span class="love">Built for you with ❤️ on <a href="/bali/">Bali</a>!</span>
+  
+
+  <ul class="social-icons">
+    
+      <li>
+        <strong>Contact</strong>&nbsp;&nbsp;&nbsp;</li>
+    
+
+    
+      
+        
+          <li>
+            <a href="https://twitter.com/karmaniverous" rel="nofollow noopener noreferrer">
+              <i class="fa-brands fa-x-twitter" aria-hidden="true"></i>
+              </a>
+          </li>
+        
+      
+        
+          <li>
+            <a href="https://techhub.social/@karmaniverous" rel="nofollow noopener noreferrer">
+              <i class="fa-brands fa-mastodon" aria-hidden="true"></i>
+              </a>
+          </li>
+        
+      
+        
+          <li>
+            <a href="https://github.com/karmaniverous" rel="nofollow noopener noreferrer">
+              <i class="fa-brands fa-github" aria-hidden="true"></i>
+              </a>
+          </li>
+        
+      
+        
+          <li>
+            <a href="https://www.linkedin.com/in/jscroft/" rel="nofollow noopener noreferrer">
+              <i class="fa-brands fa-linkedin" aria-hidden="true"></i>
+              </a>
+          </li>
+        
+      
+        
+          <li>
+            <a href="https://wa.me/17737500338" rel="nofollow noopener noreferrer">
+              <i class="fa-brands fa-square-whatsapp" aria-hidden="true"></i>
+              </a>
+          </li>
+        
+      
+        
+          <li>
+            <a href="https://t.me/karmaniverous" rel="nofollow noopener noreferrer">
+              <i class="fa-brands fa-telegram" aria-hidden="true"></i>
+              </a>
+          </li>
+        
+      
+        
+          <li>
+            <a href="https://calendly.com/karmaniverous" rel="nofollow noopener noreferrer">
+              <i class="fa-regular fa-calendar-plus" aria-hidden="true"></i>
+              </a>
+          </li>
+        
+      
+    
+
+    
+      <li>
+        <a href="/feed.xml">
+          <i class="fas fa-fw fa-rss-square" aria-hidden="true"></i>
+           </a>
+      </li>
+    
+  </ul>
+</div>
+
+<div class="page__footer-copyright">&copy; 2024
+  <a href="https://karmanivero.us">some words</a>. Powered by
+  <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a>
+  &amp;
+  <a href="https://mademistakes.com/work/jekyll-themes/minimal-mistakes/" rel="nofollow">Minimal Mistakes</a>.</div>
+      </footer>
+    </div>
+
+    
+  <script src="/assets/js/main.min.js"></script>
+
+
+<script>
+  (function () {
+    var cx = '960ee5d1b2fec4509';
+    var gcse = document.createElement('script');
+    gcse.type = 'text/javascript';
+    gcse.async = true;
+    gcse.src = 'https://cse.google.com/cse.js?cx=' + cx;
+    var s = document.getElementsByTagName('script')[0];
+    s.parentNode.insertBefore(gcse, s);
+  })();
+
+  function googleCustomSearchExecute() {
+    var input = document.getElementById('cse-search-input-box-id');
+    var element = google.search.cse.element.getElement('searchresults-only0');
+    if (input.value == '') {
+      element.clearAllResults();
+    } else {
+      element.execute(input.value);
+    }
+    return false;
+  }
+
+  
+    $(document).ready(function () {
+      $('input#cse-search-input-box-id').on('keyup', function () {
+        googleCustomSearchExecute();
+      });
+    });
+  
+</script>
+
+
+
+
+    
+  <script>
+    var disqus_config = function () {
+      this.page.url = "https://karmanivero.us/hello-world-redux/";  /* Replace PAGE_URL with your page's canonical URL variable */
+      this.page.identifier = "/hello-world-redux"; /* Replace PAGE_IDENTIFIER with your page's unique identifier variable */
+    };
+    (function() { /* DON'T EDIT BELOW THIS LINE */
+      var d = document, s = d.createElement('script');
+      s.src = 'https://some-words.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+    })();
+  </script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+
+  
+
+
+
+
+  </body>
+</html>

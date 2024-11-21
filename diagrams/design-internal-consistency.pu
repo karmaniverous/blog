@@ -1,0 +1,28 @@
+@startuml design-internal-consistency
+
+allowmixing
+
+top to bottom direction
+
+skinparam componentStyle rectangle
+
+package "Design Artifact" as artifact #Cyan {
+  component "Drawing" as drawing
+  component "Document" as document
+
+  drawing <--> document: "**//internal//**\n**//consistency//**"
+}
+
+note right of drawing
+  * Visual
+  * Highly Compressed
+  * Clarity ≫ Completeness
+end note
+
+note right of document
+  * Textual
+  * Highly Detailed
+  * Completeness ≫ Clarity
+end note
+
+@enduml

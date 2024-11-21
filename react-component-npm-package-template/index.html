@@ -1,0 +1,1731 @@
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.26.2 by Michael Rose
+  Copyright 2013-2024 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
+-->
+
+<html lang="en-US" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin _includes/seo.html --><title>React Component NPM Package Template - some words</title>
+<meta name="description" content="An ES6 React component NPM package project template featuring front &amp; back end test support, automated API docs, release management &amp; more!">
+
+
+  <meta name="author" content="Jason Williscroft">
+  
+  <meta property="article:author" content="Jason Williscroft">
+  
+
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="en_US">
+<meta property="og:site_name" content="some words">
+<meta property="og:title" content="React Component NPM Package Template">
+<meta property="og:url" content="https://karmanivero.us/react-component-npm-package-template/">
+
+
+  <meta property="og:description" content="An ES6 React component NPM package project template featuring front &amp; back end test support, automated API docs, release management &amp; more!">
+
+
+
+  <meta property="og:image" content="https://karmanivero.us/assets/images/logo-react.png">
+
+
+
+  <meta name="twitter:site" content="@karmaniverous">
+  <meta name="twitter:title" content="React Component NPM Package Template">
+  <meta name="twitter:description" content="An ES6 React component NPM package project template featuring front &amp; back end test support, automated API docs, release management &amp; more!">
+  <meta name="twitter:url" content="https://karmanivero.us/react-component-npm-package-template/">
+
+  
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content="https://karmanivero.us/assets/images/logo-react.png">
+  
+
+  
+
+
+
+  <meta property="article:published_time" content="2022-12-19T00:00:00+00:00">
+
+
+
+
+
+
+<link rel="canonical" href="https://karmanivero.us/react-component-npm-package-template/">
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- end _includes/seo.html -->
+
+
+
+  <link href="/feed.xml" type="application/atom+xml" rel="alternate" title="some words Feed">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script type="text/javascript">
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+  window.enable_copy_code_button = true;
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/assets/css/main.css">
+<link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@latest/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@latest/css/all.min.css"></noscript>
+
+
+
+    <link
+  rel="apple-touch-icon"
+  sizes="180x180"
+  href="/assets/favicon/apple-touch-icon.png" />
+<link
+  rel="icon"
+  type="image/png"
+  sizes="32x32"
+  href="/assets/favicon/favicon-32x32.png" />
+<link
+  rel="icon"
+  type="image/png"
+  sizes="16x16"
+  href="/assets/favicon/favicon-16x16.png" />
+<link rel="manifest" href="/assets/favicon/site.webmanifest" />
+<link
+  rel="mask-icon"
+  href="/assets/favicon/safari-pinned-tab.svg"
+  color="#5bbad5" />
+<link rel="shortcut icon" href="/assets/favicon/favicon.ico" />
+<meta name="msapplication-TileColor" content="#2b5797" />
+<meta name="msapplication-config" content="/assets/favicon/browserconfig.xml" />
+<meta name="theme-color" content="#ffffff" />
+
+
+
+<!-- Mathjax Support -->
+<script
+  type="text/javascript"
+  async
+  src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+  </head>
+
+  <body class="layout--single" dir="ltr">
+    <nav class="skip-links">
+  <ul>
+    <li><a href="#site-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">Skip to footer</a></li>
+  </ul>
+</nav>
+
+    
+
+<div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        
+        <a class="site-title" href="/">
+          some words
+          <span class="site-subtitle">many of them true</span>
+        </a>
+        <ul class="visible-links"><li class="masthead__menu-item">
+              <a
+                href="/projects/"
+                
+                
+              >Projects</a>
+            </li><li class="masthead__menu-item">
+              <a
+                href="/toolkits/"
+                
+                
+              >Toolkits</a>
+            </li><li class="masthead__menu-item">
+              <a
+                href="/bali/"
+                
+                
+              >Bali</a>
+            </li><li class="masthead__menu-item">
+              <a
+                href="/topics/"
+                
+                
+              >Topics</a>
+            </li><li class="masthead__menu-item">
+              <a
+                href="/blog/"
+                
+                
+              >Archive</a>
+            </li></ul>
+        
+        <button class="search__toggle" type="button">
+          <span class="visually-hidden">Toggle search</span>
+          <i class="fas fa-search"></i>
+        </button>
+        
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">Toggle menu</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+    <div class="initial-content">
+      
+
+
+
+
+
+<div id="main" role="main">
+  
+  <div class="sidebar sticky">
+  
+
+
+<div itemscope itemtype="https://schema.org/Person" class="h-card">
+
+  
+    <div class="author__avatar">
+      <a href="https://karmanivero.us/">
+        <img src="/assets/images/bio-photo.jpg" alt="Jason Williscroft" itemprop="image" class="u-photo">
+      </a>
+    </div>
+  
+
+  <div class="author__content">
+    <h3 class="author__name p-name" itemprop="name">
+      <a class="u-url" rel="me" href="https://karmanivero.us/" itemprop="url">Jason Williscroft</a>
+    </h3>
+    
+      <div class="author__bio p-note" itemprop="description">
+        <p><em>resume bullets<br />may read differently at the<br />threshold of heaven</em></p>
+
+      </div>
+    
+  </div>
+
+  <div class="author__urls-wrapper">
+    <button class="btn btn--inverse">Contact</button>
+    <ul class="author__urls social-icons">
+      
+
+      
+        
+          
+            <li><a href="https://twitter.com/karmaniverous" rel="nofollow noopener noreferrer me" itemprop="sameAs"><i class="fa-brands fa-square-x-twitter" aria-hidden="true"></i><span class="label">X</span></a></li>
+          
+        
+          
+            <li><a href="https://techhub.social/@karmaniverous" rel="nofollow noopener noreferrer me" itemprop="sameAs"><i class="fa-brands fa-mastodon" aria-hidden="true"></i><span class="label">Mastodon</span></a></li>
+          
+        
+          
+            <li><a href="https://github.com/karmaniverous" rel="nofollow noopener noreferrer me" itemprop="sameAs"><i class="fa-brands fa-github" aria-hidden="true"></i><span class="label">GitHub</span></a></li>
+          
+        
+          
+            <li><a href="https://www.linkedin.com/in/jscroft/" rel="nofollow noopener noreferrer me" itemprop="sameAs"><i class="fa-brands fa-linkedin" aria-hidden="true"></i><span class="label">LinkedIn</span></a></li>
+          
+        
+          
+            <li><a href="https://wa.me/17737500338" rel="nofollow noopener noreferrer me" itemprop="sameAs"><i class="fa-brands fa-whatsapp" aria-hidden="true"></i><span class="label">WhatsApp</span></a></li>
+          
+        
+          
+            <li><a href="https://t.me/karmaniverous" rel="nofollow noopener noreferrer me" itemprop="sameAs"><i class="fa-brands fa-telegram" aria-hidden="true"></i><span class="label">Telegram</span></a></li>
+          
+        
+          
+            <li><a href="https://calendly.com/karmaniverous" rel="nofollow noopener noreferrer me" itemprop="sameAs"><i class="fa-regular fa-calendar-plus" aria-hidden="true"></i><span class="label">Meet</span></a></li>
+          
+        
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      <!--
+  <li>
+    <a href="http://link-to-whatever-social-network.com/user/" itemprop="sameAs" rel="nofollow noopener noreferrer me">
+      <i class="fas fa-fw" aria-hidden="true"></i> Custom Social Profile Link
+    </a>
+  </li>
+-->
+    </ul>
+  </div>
+</div>
+
+  
+  </div>
+
+
+
+  <article
+    class="page"
+    itemscope
+    itemtype="https://schema.org/CreativeWork"
+    >
+    <meta itemprop="headline" content="React Component NPM Package Template">
+    <meta itemprop="description" content="An ES6 React component NPM package project template featuring front &amp; back end test support, automated API docs, release management &amp; more!">
+    <meta itemprop="datePublished" content="2022-12-19T00:00:00+00:00">
+    
+
+    <div class="page__inner-wrap">
+      
+        <header>
+          <h1
+              id="page-title"
+              class="page__title"
+              itemprop="headline">
+              <a href="https://karmanivero.us/react-component-npm-package-template/" itemprop="url">React Component NPM Package Template
+</a>
+            </h1>
+          
+
+  <p class="page__meta">
+    
+      
+      <span class="page__meta-date">
+        <i
+          class="far fa-calendar-alt"
+          aria-hidden="true"
+        ></i>
+        
+        <time datetime="2022-12-19T00:00:00+00:00">December 19, 2022</time>
+      </span>
+    
+
+    <span class="page__meta-sep"></span>
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i
+          class="far fa-clock"
+          aria-hidden="true"
+        ></i>
+        
+          7
+          minute read
+        
+      </span>
+    
+  </p>
+
+
+        </header>
+      
+
+      <section class="page__content" itemprop="text">
+        
+          <aside class="sidebar__right sticky">
+            <nav class="toc">
+              <header>
+                <h4 class="nav__title">
+                  <i class="fas fa-file-alt"></i>
+                  On this page</h4>
+              </header>
+              <ul class="toc__menu"><li><a href="#setting-up-your-dev-environment">Setting Up Your Dev Environment</a><ul><li><a href="#create-local-environment-variable-file">Create Local Environment Variable File</a></li><li><a href="#connect-to-github">Connect to GitHub</a></li><li><a href="#vulnerabilities">Vulnerabilities</a></li></ul></li><li><a href="#npm-scripts">NPM Scripts</a></li><li><a href="#common-tasks">Common Tasks</a><ul><li><a href="#develop-package-exports">Develop Package Exports</a></li><li><a href="#create--run-unit-tests">Create &amp; Run Unit Tests</a></li><li><a href="#test-your-build">Test Your Build</a><ul><li><a href="#back-end-tests">Back-End Tests</a></li><li><a href="#front-end-tests">Front-End Tests</a></li></ul></li><li><a href="#generate-documentation">Generate Documentation</a></li><li><a href="#integration-test-your-package">Integration-Test Your Package</a></li><li><a href="#create--publish-a-release">Create &amp; Publish a Release</a><ul><li><a href="#package-scope--access">Package Scope &amp; Access</a></li><li><a href="#configuring-packagejson">Configuring package.json</a></li><li><a href="#generating-the-release">Generating the Release</a></li></ul></li><li><a href="#integrate-a-template-update">Integrate a Template Update</a></li></ul></li></ul>
+            </nav>
+          </aside>
+        
+        <figure class="align-left drop-image">
+    <img src="/assets/images/logo-react.png" />
+</figure>
+
+<p>You wrote a sweet React component! Releasing it on <a href="https://www.npmjs.com/">NPM</a>
+seems like the obvious next step. Right?</p>
+
+<p>Try it. Not as easy to do from scratch as you might think.</p>
+
+<p class="notice--warning"><strong>I just completely refactored this template</strong> but haven’t yet updated this documentaion. Everything works beautifully, and for a gist of the changes see the very similar <a href="/blog/npm-package-template">NPM Package Template</a>. I’ll bring this page in sync with the changes soon!</p>
+
+<p>So here’s a plug-and-play
+<a href="https://github.com/karmaniverous/react-component-npm-package-template">react component NPM package template</a>
+that offers the following features:</p>
+
+<ul>
+  <li>
+    <p>Support for the latest ES6 + JSX goodies with
+<a href="https://www.npmjs.com/package/eslint"><code class="language-plaintext highlighter-rouge">eslint</code></a> <em>uber alles</em>.</p>
+  </li>
+  <li>
+    <p>Automated <a href="https://www.npmjs.com/package/lodash"><code class="language-plaintext highlighter-rouge">lodash</code></a> cherry-picking with
+<a href="https://www.npmjs.com/package/babel-plugin-lodash"><code class="language-plaintext highlighter-rouge">babel-plugin-lodash</code></a>.</p>
+  </li>
+  <li>
+    <p>Front &amp; back-end testing with <a href="https://www.npmjs.com/package/mocha"><code class="language-plaintext highlighter-rouge">mocha</code></a>,
+<a href="https://www.npmjs.com/package/chai"><code class="language-plaintext highlighter-rouge">chai</code></a>, and the
+<a href="https://www.npmjs.com/package/@testing-library/react">React Testing Library</a>.
+Includes examples and a sweet testing console!</p>
+  </li>
+  <li>
+    <p>Code formatting at every save &amp; paste with
+<a href="https://www.npmjs.com/package/prettier"><code class="language-plaintext highlighter-rouge">prettier</code></a>.</p>
+  </li>
+  <li>
+    <p>Automated documentation of your API with
+<a href="https://www.npmjs.com/package/jsdoc-to-markdown"><code class="language-plaintext highlighter-rouge">jsdoc-to-markdown</code></a> and
+assembly of your README with
+<a href="https://www.npmjs.com/package/concat-md"><code class="language-plaintext highlighter-rouge">concat-md</code></a>.</p>
+  </li>
+  <li>
+    <p>One-button release to GitHub &amp; publish to NPM with
+<a href="https://www.npmjs.com/package/release-it"><code class="language-plaintext highlighter-rouge">release-it</code></a>.</p>
+  </li>
+</ul>
+
+<p class="text-center"><a href="https://github.com/karmaniverous/react-component-npm-package-template" class="btn btn--info btn--large">See it on GitHub!</a>   <a href="https://github.com/karmaniverous/react-component-npm-package-template/generate" class="btn btn--primary btn--large">Clone the Repo!</a></p>
+
+<p class="notice--info">If you want to create a non-React NPM package, try my regular
+<a href="/blog/npm-package-template">NPM Package Template</a> instead!</p>
+
+<h2 id="setting-up-your-dev-environment">Setting Up Your Dev Environment</h2>
+
+<p><strong>Use <a href="https://code.visualstudio.com/">VS Code</a> as your code editor!</strong> Not an
+absolute requirement, but you’ll be glad you did.</p>
+
+<ol>
+  <li>
+    <p><a href="https://github.com/karmaniverous/npm-package-template/generate">Click here</a>
+to generate a new repository from this template.</p>
+  </li>
+  <li>
+    <p>Clone the new repository to your local machine.</p>
+  </li>
+  <li>
+    <p>VS Code will ask to install a bunch of recommended extensions. Accept all of them. If you miss this prompt, follow these steps:</p>
+
+    <ol>
+      <li>Open the VS Code Extensions tab</li>
+      <li>Enter <code class="language-plaintext highlighter-rouge">@recommended</code> into the search box</li>
+      <li>
+        <p>Click the Download link.</p>
+
+        <figure>
+ <img src="/assets/images/react-component-npm-package-template-extensions.png" style="width: 250px;" />
+</figure>
+      </li>
+    </ol>
+  </li>
+  <li>
+    <p>Zero the package version and install dependencies by running these commands:</p>
+
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>npm version 0.0.0
+npm <span class="nb">install</span>
+</code></pre></div>    </div>
+
+    <p>This may produce an audit report. See <a href="#vulnerabilities">Vulnerabilities</a>
+below for more info.</p>
+  </li>
+  <li>
+    <p>Run your tests from the command line:</p>
+
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>npm run <span class="nb">test</span>
+
+<span class="c"># Component</span>
+<span class="c">#   missing testid</span>
+<span class="c">#     ✔ renders</span>
+<span class="c">#   with testid</span>
+<span class="c">#     ✔ renders</span>
+<span class="c">#     ✔ is unaffected by click</span>
+<span class="c">#</span>
+<span class="c"># 3 passing (99ms)</span>
+</code></pre></div>    </div>
+
+    <p>If you installed the VS Code extensions referenced above, use the <code class="language-plaintext highlighter-rouge">Testing</code>
+panel to visualize &amp; run your unit tests.</p>
+
+    <figure>
+  <a href="/assets/images/react-component-npm-package-template-testing-panel.png">
+   <img src="/assets/images/react-component-npm-package-template-testing-panel.png" />
+  </a>
+ </figure>
+  </li>
+</ol>
+
+<h3 id="create-local-environment-variable-file">Create Local Environment Variable File</h3>
+
+<p>Look for
+<a href="https://github.com/karmaniverous/react-component-npm-package-template/blob/main/.env.local.template"><code class="language-plaintext highlighter-rouge">.env.local.template</code></a>
+in your project directory. Copy this file and remove the <code class="language-plaintext highlighter-rouge">.template</code> extension
+from the copy.</p>
+
+<p class="notice--warning"><strong>Do not simply rename this file!</strong> Anybody who pulls your repo will need this
+template to create the same file in his own local environment.</p>
+
+<h3 id="connect-to-github">Connect to GitHub</h3>
+
+<p>This template supports automated release management with
+<a href="https://github.com/release-it/release-it"><code class="language-plaintext highlighter-rouge">release-it</code></a>.</p>
+
+<p>If you use GitHub, create a
+<a href="https://github.com/settings/tokens/new?scopes=repo&amp;description=release-it">Personal Access Token</a>
+(<code class="language-plaintext highlighter-rouge">release-it</code> only needs “repo” access; no “admin” or other scopes). Add it as
+the value of <code class="language-plaintext highlighter-rouge">GITHUB_TOKEN</code> in <code class="language-plaintext highlighter-rouge">.env.local</code>.</p>
+
+<p>If you use GitLab, follow
+<a href="https://github.com/release-it/release-it#gitlab-releases">these instructions</a>
+and place your token in the same file.</p>
+
+<p>For other release control systems, consult the
+<a href="https://github.com/release-it/release-it#readme"><code class="language-plaintext highlighter-rouge">release-it</code> README</a>.</p>
+
+<p>You can now create a release at GitHub and optionally publish it to NPM with
+this command:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>npm run release
+</code></pre></div></div>
+
+<h3 id="vulnerabilities">Vulnerabilities</h3>
+
+<p>At the time of this writing, running <code class="language-plaintext highlighter-rouge">npm install</code> will generate the following
+vulnerability warning:</p>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>6 vulnerabilities (3 high, 3 critical)
+</code></pre></div></div>
+
+<p>If you run <code class="language-plaintext highlighter-rouge">npm audit</code>, you will find that all of these vulnerabilities relate
+to the following dev dependencies, all of which are to do with docs generation:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>npm list underscore
+
+<span class="c"># @karmaniverous/npm-package-template@0.5.1-0</span>
+<span class="c"># ├─┬ concat-md@0.5.0</span>
+<span class="c"># │ └─┬ doctoc@1.4.0</span>
+<span class="c"># │   └── underscore@1.8.3</span>
+<span class="c"># └─┬ jsdoc-to-markdown@8.0.0</span>
+<span class="c">#   └─┬ jsdoc-api@8.0.0</span>
+<span class="c">#     └─┬ jsdoc@4.0.0</span>
+<span class="c">#       └── underscore@1.13.6</span>
+
+npm list trim
+
+<span class="c"># @karmaniverous/npm-package-template@0.5.1-0</span>
+<span class="c"># └─┬ concat-md@0.5.0</span>
+<span class="c">#   └─┬ doctoc@1.4.0</span>
+<span class="c">#     └─┬ @textlint/markdown-to-ast@6.0.9</span>
+<span class="c">#       └─┬ remark-parse@5.0.0</span>
+<span class="c">#         └── trim@0.0.1</span>
+</code></pre></div></div>
+
+<h2 id="npm-scripts">NPM Scripts</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>Script</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">npm run test</code></td>
+      <td>Runs all unit tests from the command line.</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">npm run build</code></td>
+      <td>Builds the project into the <code class="language-plaintext highlighter-rouge">lib</code> directory.</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">npm run doc</code></td>
+      <td>Builds the README file from the <code class="language-plaintext highlighter-rouge">doc</code> directory.</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">npm run package</code></td>
+      <td>Runs <code class="language-plaintext highlighter-rouge">test</code>, <code class="language-plaintext highlighter-rouge">build</code>, and <code class="language-plaintext highlighter-rouge">doc</code> to exercise your full packaging process.</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">npm run release</code></td>
+      <td>Packages your code, creates a GitHub release, and publishes your code to NPM.</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="common-tasks">Common Tasks</h2>
+
+<h3 id="develop-package-exports">Develop Package Exports</h3>
+
+<p>All custom package code lives in the
+<a href="https://github.com/karmaniverous/react-component-npm-package-template/blob/main/src"><code class="language-plaintext highlighter-rouge">src</code></a>
+directory. Structure the contents of this directory however you like.</p>
+
+<p>All package exports come together in <a href="src/index.jsx"><code class="language-plaintext highlighter-rouge">src/index.jsx</code></a>. You can
+cherry-pick from your own source and organize your exports however you like. You
+can even <a href="https://jamesknelson.com/re-exporting-es6-modules/">re-export</a> imports
+from other packages!</p>
+
+<p class="notice--warning">Do not move or rename <a href="src/index.jsx"><code class="language-plaintext highlighter-rouge">src/index.jsx</code></a> or your build will break.</p>
+
+<h3 id="create--run-unit-tests">Create &amp; Run Unit Tests</h3>
+
+<p>By default, this template supports
+<a href="https://www.npmjs.com/package/mocha"><code class="language-plaintext highlighter-rouge">mocha</code></a> tests using the
+<a href="https://www.npmjs.com/package/chai"><code class="language-plaintext highlighter-rouge">chai</code></a> assertion library. The included
+sample tests express the <a href="https://www.chaijs.com/guide/styles/#should"><code class="language-plaintext highlighter-rouge">should</code></a>
+assertion syntax.</p>
+
+<p>The default configuration will recognize any file as a test file that…</p>
+
+<ul>
+  <li>has <code class="language-plaintext highlighter-rouge">.test.</code> just before its file name extension (i.e. <code class="language-plaintext highlighter-rouge">example.test.js</code>).</li>
+  <li>is not located in the <code class="language-plaintext highlighter-rouge">node_modules</code> or <code class="language-plaintext highlighter-rouge">lib</code> directories.</li>
+</ul>
+
+<p>The sample code packages tests next to the source code they exercise. If you
+prefer to segregate your tests into a directory outside
+<a href="https://github.com/karmaniverous/react-component-npm-package-template/blob/main/src/"><code class="language-plaintext highlighter-rouge">src</code></a>
+(e.g. <code class="language-plaintext highlighter-rouge">test</code>), that will work as well.</p>
+
+<p>Either way, all test files meeting the above conditions will be excluded from
+the build.</p>
+
+<p>To enable <code class="language-plaintext highlighter-rouge">mocha</code>-specific linting in your test files, add the following
+directive at the top of every test file:</p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cm">/* eslint-env mocha */</span>
+</code></pre></div></div>
+
+<p>The recommended
+<a href="https://marketplace.visualstudio.com/items?itemName=hbenl.vscode-mocha-test-adapter">Mocha Test Explorer</a>
+extension will suface all of your tests into a sidebar console, nested to
+reflect your <code class="language-plaintext highlighter-rouge">describe</code> hierarchy. It will also decorate your test source code
+with test running and status reporting controls.</p>
+
+<figure>
+  <img src="/assets/images/react-component-npm-package-template-testing-panel.png" />
+</figure>
+
+<h3 id="test-your-build">Test Your Build</h3>
+
+<h4 id="back-end-tests">Back-End Tests</h4>
+
+<p><code class="language-plaintext highlighter-rouge">TODO</code></p>
+
+<h4 id="front-end-tests">Front-End Tests</h4>
+
+<p>This template supports front-end React component testing using the
+<a href="https://www.npmjs.com/package/@testing-library/react">React Testing Library</a>
+(RTL). This library allows your tests to interact with your component in a
+headless browser environment.</p>
+
+<p>See
+<a href="https://github.com/karmaniverous/react-component-npm-package-template/blob/main/src/Component/Component.test.jsx"><code class="language-plaintext highlighter-rouge">Component.test.jsx</code></a>
+for a simple example, and visit the
+<a href="https://testing-library.com/docs/react-testing-library/intro/">RTL documentation</a>
+for more info!</p>
+
+<h3 id="generate-documentation">Generate Documentation</h3>
+
+<p><code class="language-plaintext highlighter-rouge">TODO</code></p>
+
+<h3 id="integration-test-your-package">Integration-Test Your Package</h3>
+
+<p>A React component only makes sense when embedded in a React application.</p>
+
+<p>To package your code and add it directly to your local development environment
+as a global package, WITHOUT publishing it first to NPM, run these commands:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>npm run package
+npm <span class="nb">link</span>
+</code></pre></div></div>
+
+<p>You can now import your package assets into your React application like this:</p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">import</span> <span class="nx">Component</span> <span class="k">from</span> <span class="dl">"</span><span class="s2">@karmaniverous/react-component-npm-package-template</span><span class="dl">"</span><span class="p">;</span> <span class="c1">// default export</span>
+<span class="k">import</span> <span class="p">{</span> <span class="nx">useComponent</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">"</span><span class="s2">@karmaniverous/react-component-npm-package-template</span><span class="dl">"</span><span class="p">;</span> <span class="c1">// named export</span>
+</code></pre></div></div>
+
+<p>When you’re finished, clean up your global environment by unlinking your
+package:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>npm <span class="nb">unlink</span> <span class="nt">-g</span> @karmaniverous/react-component-npm-package-template
+</code></pre></div></div>
+
+<h3 id="create--publish-a-release">Create &amp; Publish a Release</h3>
+
+<p>Before you can publish a package to <a href="https://www.npmjs.com/">NPM</a>, you’ll need
+to set up an NPM account.</p>
+
+<h4 id="package-scope--access">Package Scope &amp; Access</h4>
+
+<p>Your NPM user name is a <a href="https://docs.npmjs.com/about-scopes"><em>scope</em></a>. If you
+create an organization, its unique organization name is also a scope.</p>
+
+<p><em>Unscoped</em> packages have names like
+<a href="https://www.npmjs.com/package/lodash"><code class="language-plaintext highlighter-rouge">lodash</code></a>. An unscoped package name must
+be unique across NPM.</p>
+
+<p><em>Scoped</em> packages have names like
+<a href="https://www.npmjs.com/package/@karmaniverous/serify-deserify"><code class="language-plaintext highlighter-rouge">@karmaniverous/serify-deserify</code></a>.
+<code class="language-plaintext highlighter-rouge">@karmaniverous</code> in this case is the scope. A scoped package name only needs to
+be unique within its scope.</p>
+
+<p>NPM packages may be <em>public</em> or <em>private</em>. A
+<a href="https://docs.npmjs.com/about-public-packages">public package</a> can be seen and
+used by anyone. A
+<a href="https://www.npmjs.com/package/@karmaniverous/serify-deserify">private package</a>
+can only be seen &amp; used by your collaborators or other users with access to your
+organization scope.</p>
+
+<p>Only scoped packages can be private. Only paid NPM accounts can create private
+packages.</p>
+
+<p>Even if you are only creating public packages, it is a good idea to create
+<em>scoped</em> packages because it groups them logically and gives you much more
+flexibility in naming them.</p>
+
+<p><a href="https://docs.npmjs.com/packages-and-modules/introduction-to-packages-and-modules">Click here</a>
+for more info about NPM package scope &amp; access.</p>
+
+<h4 id="configuring-packagejson">Configuring <code class="language-plaintext highlighter-rouge">package.json</code></h4>
+
+<p>When you publish an NPM package, NPM gets most of its info from your
+<a href="https://github.com/karmaniverous/react-component-npm-package-template/blob/main/package.json"><code class="language-plaintext highlighter-rouge">package.json</code></a>
+file.</p>
+
+<p>Set the following values in
+<a href="https://github.com/karmaniverous/react-component-npm-package-template/blob/main/package.json"><code class="language-plaintext highlighter-rouge">package.json</code></a>,
+using the template file as an example.</p>
+
+<p>This info is critical. You can’t publish your package properly without it:</p>
+
+<ul>
+  <li>
+    <p><code class="language-plaintext highlighter-rouge">name</code> – The desired package name on NPM. Include scope if relevant. See
+<a href="#package-scope--access">Package Scope &amp; Access</a> for more info.</p>
+  </li>
+  <li>
+    <p><code class="language-plaintext highlighter-rouge">version</code> - Your package version. Uses
+<a href="https://www.geeksforgeeks.org/introduction-semantic-versioning/">semantic versioning</a>.
+Set this initially to <code class="language-plaintext highlighter-rouge">0.0.0</code> and the template’s
+<a href="#create--publish-a-release">release process</a> will manage it from there.</p>
+  </li>
+  <li>
+    <p><code class="language-plaintext highlighter-rouge">publishConfig.access</code> - <code class="language-plaintext highlighter-rouge">restricted</code> for private packages, otherwise
+<code class="language-plaintext highlighter-rouge">public</code>. See <a href="#package-scope--access">Package Scope &amp; Access</a> for more info.</p>
+  </li>
+  <li>
+    <p><code class="language-plaintext highlighter-rouge">repository.url</code> - GitHub repository URL.</p>
+  </li>
+</ul>
+
+<p>This info is important but you can always update it in the next release:</p>
+
+<ul>
+  <li>
+    <p><code class="language-plaintext highlighter-rouge">author</code> - Your name, however you’d like it to appear.</p>
+  </li>
+  <li>
+    <p><code class="language-plaintext highlighter-rouge">bugs.url</code> - A URL for users to report bugs. By default, use the
+<a href="https://github.com/karmaniverous/npm-package-template/issues">issues page</a> of
+your GitHub repo.</p>
+  </li>
+  <li>
+    <p><code class="language-plaintext highlighter-rouge">description</code> - A text description of your package. Will be used as the META
+description of your NPM package page, so keep it under 160 chars.</p>
+  </li>
+  <li>
+    <p><code class="language-plaintext highlighter-rouge">homepage</code> - The main web page of your project. By default, use your GitHub
+repo’s
+<a href="https://github.com/karmaniverous/npm-package-template#readme">README link</a>.</p>
+  </li>
+  <li>
+    <p><code class="language-plaintext highlighter-rouge">keywords</code> - An array of strings that will appear as tags on the NPM package
+page.</p>
+  </li>
+  <li>
+    <p><code class="language-plaintext highlighter-rouge">license</code> - The license associated with your package. See this list of
+<a href="https://spdx.org/licenses/">valid license identifiers</a>.</p>
+  </li>
+</ul>
+
+<h4 id="generating-the-release">Generating the Release</h4>
+
+<p>Before you begin, ensure you have committed all changes to your working branch.</p>
+
+<p>Run this command:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>npm run package
+</code></pre></div></div>
+
+<p>This will run all of your tests, generate all of your documentation, and create
+your build. If there are any issues, fix them. If you make any changes, commit
+them.</p>
+
+<p>Now run this command:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>npm run release
+</code></pre></div></div>
+
+<p>This will generate your package <em>again</em>, just to validate there are no more
+changes. You will then be asked to select a release increment. Otherwise accept
+all defaults.</p>
+
+<p>Your release will be generated on GitHub and published to NPM.</p>
+
+<p>Note that if you have configured Two-Factor Authentication at NPM you will be
+asked to enter a One-Time Password (OTP).</p>
+
+<p>Add other <a href="https://github.com/release-it/release-it#readme"><code class="language-plaintext highlighter-rouge">release-it</code></a>
+options after <code class="language-plaintext highlighter-rouge">---</code> (Windows) or <code class="language-plaintext highlighter-rouge">--</code> (Mac/Linux). For example, to specify a
+patch release, and accept all defaults with no user interaction, run this
+command:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Windows only.</span>
+npm run release <span class="nt">---</span> patch <span class="nt">--ci</span>
+
+<span class="c"># Mac/Linux.</span>
+npm run release <span class="nt">--</span> patch <span class="nt">--ci</span>
+</code></pre></div></div>
+
+<p>See the <a href="https://github.com/release-it/release-it#readme"><code class="language-plaintext highlighter-rouge">release-it</code> README</a>
+for more info on available options.</p>
+
+<h3 id="integrate-a-template-update">Integrate a Template Update</h3>
+
+<p>Follow
+<a href="https://karmanivero.us/blog/installing-github-repo-template-updates/">these instructions</a>.</p>
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+  
+
+
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-tags" aria-hidden="true"></i> Topics: </strong>
+    <span itemprop="keywords">
+    
+      <a href="/topics/javascript" class="page__taxonomy-item p-category" rel="tag">javascript</a><span class="sep">, </span>
+    
+      <a href="/topics/npm" class="page__taxonomy-item p-category" rel="tag">npm</a><span class="sep">, </span>
+    
+      <a href="/topics/projects" class="page__taxonomy-item p-category" rel="tag">projects</a><span class="sep">, </span>
+    
+      <a href="/topics/react" class="page__taxonomy-item p-category" rel="tag">react</a><span class="sep">, </span>
+    
+      <a href="/topics/template" class="page__taxonomy-item p-category" rel="tag">template</a>
+    
+    </span>
+  </p>
+
+
+
+
+        
+
+  <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> Updated:</strong> <time class="dt-published" datetime="2022-12-19T00:00:00+00:00">December 19, 2022</time></p>
+
+      </footer>
+
+      
+        <section class="page__share">
+  
+    <h4 class="page__share-title">Share on</h4>
+  
+
+  <a href="https://twitter.com/intent/tweet?via=karmaniverous&text=React+Component+NPM+Package+Template%20https%3A%2F%2Fkarmanivero.us%2Freact-component-npm-package-template%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+
+  <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fkarmanivero.us%2Freact-component-npm-package-template%2F" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
+
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=https://karmanivero.us/react-component-npm-package-template/" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
+</section>
+
+
+      
+  <nav class="pagination">
+    
+      <a href="/npm-package-template/" class="pagination--pager" title="NPM Package Template
+">Previous</a>
+    
+    
+      <a href="/karmic-rule-3/" class="pagination--pager" title="Karmic Rule Three
+">Next</a>
+    
+  </nav>
+
+    </div>
+
+    
+  </article>
+
+  
+  
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  
+
+  
+  
+
+  
+  
+
+  
+  <div class='page__related'>
+    
+    <h2 class='page__related-title'>
+      You may also enjoy
+    </h2>
+    <div class='grid__wrapper'>
+
+      
+      
+        
+        
+        
+        
+        
+        
+      
+
+        
+      
+
+        
+        <!-- post_url: /the-big-miss-turning-lemons-into-lemonade/ -->
+        <!-- normLogCommonTags: 0.5 -->
+        <!-- logAge: 0.090451388888889 -->
+        <!-- relevance: 51410 -->
+
+        
+      
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src="/assets/images/lemons-square.jpg" alt="">
+      </div>
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/the-big-miss-turning-lemons-into-lemonade/" rel="permalink">The Big Miss: Turning Lemons Into Lemonade
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+      
+      <span class="page__meta-date">
+        <i
+          class="far fa-fw fa-calendar-alt"
+          aria-hidden="true"
+        ></i>
+        
+        <time datetime="2024-11-20T00:00:00+00:00">November 20, 2024</time>
+      </span>
+    
+
+    <span class="page__meta-sep"></span>
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i
+          class="far fa-fw fa-clock"
+          aria-hidden="true"
+        ></i>
+        
+          8
+          minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">Today was one of those days when I question my life choices. Watch me dig my way out of a hole with the same shovel I used to dig my way in.
+</p>
+  </article>
+</div>
+
+
+        
+        
+        
+      
+        
+        
+        
+        
+        
+      
+
+        
+      
+
+        
+        <!-- post_url: /projects/entity-manager/sql-vs-nosql/ -->
+        <!-- normLogCommonTags: 0.0 -->
+        <!-- logAge: 5.0 -->
+        <!-- relevance: 45000 -->
+
+        
+      
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src="/assets/collections/entity-manager/sql-vs-nosql-square.jpg" alt="">
+      </div>
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/projects/entity-manager/sql-vs-nosql/" rel="permalink">SQL vs NoSQL
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i
+          class="far fa-clock"
+          aria-hidden="true"
+        ></i>
+        
+          4
+          minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">A well-tuned NoSQL database can outperform an RDBMS by orders of magnitude at scale… but not for free! Entity Manager helps close the gap.
+</p>
+  </article>
+</div>
+
+
+        
+        
+        
+      
+        
+        
+        
+        
+        
+      
+
+        
+      
+
+        
+        <!-- post_url: /projects/entity-manager/intro/ -->
+        <!-- normLogCommonTags: 0.0 -->
+        <!-- logAge: 5.0 -->
+        <!-- relevance: 45000 -->
+
+        
+      
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src="/assets/collections/entity-manager/entity-manager-square.jpg" alt="">
+      </div>
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/projects/entity-manager/intro/" rel="permalink">Meet Entity Manager!
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i
+          class="far fa-clock"
+          aria-hidden="true"
+        ></i>
+        
+          2
+          minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">NoSQL shifts the burden of complexity from the database platform to the developer. Entity Manager sweeps it under the rug!
+</p>
+  </article>
+</div>
+
+
+        
+        
+        
+      
+        
+        
+        
+        
+        
+      
+
+        
+      
+
+        
+        <!-- post_url: /projects/entity-manager/evolving-a-nosql-db-schema/ -->
+        <!-- normLogCommonTags: 0.0 -->
+        <!-- logAge: 5.0 -->
+        <!-- relevance: 45000 -->
+
+        
+      
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src="/assets/collections/entity-manager/evolving-a-nosql-db-schema-square.jpg" alt="">
+      </div>
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/projects/entity-manager/evolving-a-nosql-db-schema/" rel="permalink">Evolving a NoSQL Database Schema
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i
+          class="far fa-clock"
+          aria-hidden="true"
+        ></i>
+        
+          31
+          minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">In a NoSQL environment, Entity Manager organizes the physical distribution of data to support efficient query operations.
+</p>
+  </article>
+</div>
+
+
+        
+        
+        
+      
+        
+        
+        
+        
+        
+      
+
+        
+      
+
+        
+        <!-- post_url: /projects/entity-manager/demo/ -->
+        <!-- normLogCommonTags: 0.0 -->
+        <!-- logAge: 5.0 -->
+        <!-- relevance: 45000 -->
+
+        
+      
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src="/assets/collections/entity-manager/configuration-square.jpg" alt="">
+      </div>
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/projects/entity-manager/demo/" rel="permalink">Entity Manager: A Demonstration
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i
+          class="far fa-clock"
+          aria-hidden="true"
+        ></i>
+        
+          16
+          minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">Presenting a step-by-step Typescript implementation of a realistic data model against DynamoDB, with the help of Entity Manager.
+</p>
+  </article>
+</div>
+
+
+        
+        
+        
+      
+        
+        
+        
+        
+        
+      
+
+        
+      
+
+        
+        <!-- post_url: /projects/entity-manager/configuration/ -->
+        <!-- normLogCommonTags: 0.0 -->
+        <!-- logAge: 5.0 -->
+        <!-- relevance: 45000 -->
+
+        
+      
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src="/assets/collections/entity-manager/configuration-square.jpg" alt="">
+      </div>
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/projects/entity-manager/configuration/" rel="permalink">Entity Manager Configuration
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i
+          class="far fa-clock"
+          aria-hidden="true"
+        ></i>
+        
+          22
+          minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">Entity Manager enables efficient put, get, and query operations across entity relationships, indexes, and sharded partitions in a NoSQL database.
+</p>
+  </article>
+</div>
+
+
+        
+        
+        
+      
+        
+        
+        
+        
+        
+      
+
+        
+      
+
+        
+        <!-- post_url: /composition-in-action-finishing-the-swing/ -->
+        <!-- normLogCommonTags: 0.0 -->
+        <!-- logAge: 5.1278266059027775 -->
+        <!-- relevance: 44872 -->
+
+        
+      
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src="https://github.com/karmaniverous/controlled-proxy/raw/main/assets/controlled-proxy-square.jpg" alt="">
+      </div>
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/composition-in-action-finishing-the-swing/" rel="permalink">Composition in Action: Finishing the Swing
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+      
+      <span class="page__meta-date">
+        <i
+          class="far fa-fw fa-calendar-alt"
+          aria-hidden="true"
+        ></i>
+        
+        <time datetime="2024-10-16T00:00:00+00:00">October 16, 2024</time>
+      </span>
+    
+
+    <span class="page__meta-sep"></span>
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i
+          class="far fa-fw fa-clock"
+          aria-hidden="true"
+        ></i>
+        
+          9
+          minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">In software engineering, what look to be the easy parts often turn out to be the hard parts. If you’re lucky, the reverse is also true, but don’t count on it.
+</p>
+  </article>
+</div>
+
+
+        
+        
+        
+      
+        
+        
+        
+        
+        
+      
+
+        
+      
+
+        
+        <!-- post_url: /mixin-it-up-picking-the-right-problem-to-solve/ -->
+        <!-- normLogCommonTags: 0.0 -->
+        <!-- logAge: 5.2528266059027775 -->
+        <!-- relevance: 44747 -->
+
+        
+      
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src="/assets/images/mixin-it-up-square.jpg" alt="">
+      </div>
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/mixin-it-up-picking-the-right-problem-to-solve/" rel="permalink">Mixin It Up: Picking The Right Problem to Solve
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+      
+      <span class="page__meta-date">
+        <i
+          class="far fa-fw fa-calendar-alt"
+          aria-hidden="true"
+        ></i>
+        
+        <time datetime="2024-10-12T00:00:00+00:00">October 12, 2024</time>
+      </span>
+    
+
+    <span class="page__meta-sep"></span>
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i
+          class="far fa-fw fa-clock"
+          aria-hidden="true"
+        ></i>
+        
+          9
+          minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">Sometimes, when you’re tangled up in a thorny problem, solving it is exactly the wrong answer.
+</p>
+  </article>
+</div>
+
+
+        
+        
+        
+          
+    </div>
+  </div>
+
+  
+</div>
+      
+    </div>
+
+    
+      <div class="search-content">
+        <div class="search-content__inner-wrap"><form onsubmit="return googleCustomSearchExecute();" id="cse-search-box-form-id" role="search">
+    <label class="sr-only" for="cse-search-input-box-id">
+      Enter your search term...
+    </label>
+    <input type="search" id="cse-search-input-box-id" class="search-input" tabindex="-1" placeholder="Enter your search term..." />
+  </form>
+  <div id="results" class="results">
+    <gcse:searchresults-only></gcse:searchresults-only>
+  </div></div>
+
+      </div>
+    
+
+    <div id="footer" class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+        <div class="page__footer-follow">
+  
+    <span class="love">Built for you with ❤️ on <a href="/bali/">Bali</a>!</span>
+  
+
+  <ul class="social-icons">
+    
+      <li>
+        <strong>Contact</strong>&nbsp;&nbsp;&nbsp;</li>
+    
+
+    
+      
+        
+          <li>
+            <a href="https://twitter.com/karmaniverous" rel="nofollow noopener noreferrer">
+              <i class="fa-brands fa-x-twitter" aria-hidden="true"></i>
+              </a>
+          </li>
+        
+      
+        
+          <li>
+            <a href="https://techhub.social/@karmaniverous" rel="nofollow noopener noreferrer">
+              <i class="fa-brands fa-mastodon" aria-hidden="true"></i>
+              </a>
+          </li>
+        
+      
+        
+          <li>
+            <a href="https://github.com/karmaniverous" rel="nofollow noopener noreferrer">
+              <i class="fa-brands fa-github" aria-hidden="true"></i>
+              </a>
+          </li>
+        
+      
+        
+          <li>
+            <a href="https://www.linkedin.com/in/jscroft/" rel="nofollow noopener noreferrer">
+              <i class="fa-brands fa-linkedin" aria-hidden="true"></i>
+              </a>
+          </li>
+        
+      
+        
+          <li>
+            <a href="https://wa.me/17737500338" rel="nofollow noopener noreferrer">
+              <i class="fa-brands fa-square-whatsapp" aria-hidden="true"></i>
+              </a>
+          </li>
+        
+      
+        
+          <li>
+            <a href="https://t.me/karmaniverous" rel="nofollow noopener noreferrer">
+              <i class="fa-brands fa-telegram" aria-hidden="true"></i>
+              </a>
+          </li>
+        
+      
+        
+          <li>
+            <a href="https://calendly.com/karmaniverous" rel="nofollow noopener noreferrer">
+              <i class="fa-regular fa-calendar-plus" aria-hidden="true"></i>
+              </a>
+          </li>
+        
+      
+    
+
+    
+      <li>
+        <a href="/feed.xml">
+          <i class="fas fa-fw fa-rss-square" aria-hidden="true"></i>
+           </a>
+      </li>
+    
+  </ul>
+</div>
+
+<div class="page__footer-copyright">&copy; 2024
+  <a href="https://karmanivero.us">some words</a>. Powered by
+  <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a>
+  &amp;
+  <a href="https://mademistakes.com/work/jekyll-themes/minimal-mistakes/" rel="nofollow">Minimal Mistakes</a>.</div>
+      </footer>
+    </div>
+
+    
+  <script src="/assets/js/main.min.js"></script>
+
+
+<script>
+  (function () {
+    var cx = '960ee5d1b2fec4509';
+    var gcse = document.createElement('script');
+    gcse.type = 'text/javascript';
+    gcse.async = true;
+    gcse.src = 'https://cse.google.com/cse.js?cx=' + cx;
+    var s = document.getElementsByTagName('script')[0];
+    s.parentNode.insertBefore(gcse, s);
+  })();
+
+  function googleCustomSearchExecute() {
+    var input = document.getElementById('cse-search-input-box-id');
+    var element = google.search.cse.element.getElement('searchresults-only0');
+    if (input.value == '') {
+      element.clearAllResults();
+    } else {
+      element.execute(input.value);
+    }
+    return false;
+  }
+
+  
+    $(document).ready(function () {
+      $('input#cse-search-input-box-id').on('keyup', function () {
+        googleCustomSearchExecute();
+      });
+    });
+  
+</script>
+
+
+
+
+    
+  <script>
+    var disqus_config = function () {
+      this.page.url = "https://karmanivero.us/react-component-npm-package-template/";  /* Replace PAGE_URL with your page's canonical URL variable */
+      this.page.identifier = "/react-component-npm-package-template"; /* Replace PAGE_IDENTIFIER with your page's unique identifier variable */
+    };
+    (function() { /* DON'T EDIT BELOW THIS LINE */
+      var d = document, s = d.createElement('script');
+      s.src = 'https://some-words.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+    })();
+  </script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+
+  
+
+
+
+
+  </body>
+</html>

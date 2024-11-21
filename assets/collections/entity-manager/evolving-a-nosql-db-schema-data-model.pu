@@ -1,0 +1,26 @@
+@startuml entity-manager-evolving-a-nosql-db-schema-data-model
+
+skinparam classAttributeIconSize 0
+
+entity "Email" as email {
+    {field} created (number)
+    {field} email (string)
+    {field} userId (string)
+
+}
+
+entity "User" as user {
+    {field} beneficiaryId (string)
+    {field} created (number)
+    {field} firstName (string)
+    {field} firstNameCanonical (string)
+    {field} lastName (string)
+    {field} lastNameCanonical (string)
+    {field} [phone] (string)
+    {field} userId (string)
+    {field} updated (number)
+}
+
+user -{ email
+
+@enduml

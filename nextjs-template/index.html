@@ -1,0 +1,2078 @@
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.26.2 by Michael Rose
+  Copyright 2013-2024 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
+-->
+
+<html lang="en-US" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin _includes/seo.html --><title>Next.js Template - some words</title>
+<meta name="description" content="A sweet Next.js project template. Integrates Redux Toolkit with with test support for Mocha + Chai + React Testing Library and release publishing via release-it.">
+
+
+  <meta name="author" content="Jason Williscroft">
+  
+  <meta property="article:author" content="Jason Williscroft">
+  
+
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="en_US">
+<meta property="og:site_name" content="some words">
+<meta property="og:title" content="Next.js Template">
+<meta property="og:url" content="https://karmanivero.us/nextjs-template/">
+
+
+  <meta property="og:description" content="A sweet Next.js project template. Integrates Redux Toolkit with with test support for Mocha + Chai + React Testing Library and release publishing via release-it.">
+
+
+
+  <meta property="og:image" content="https://karmanivero.us/assets/images/logo-nextjs.png">
+
+
+
+  <meta name="twitter:site" content="@karmaniverous">
+  <meta name="twitter:title" content="Next.js Template">
+  <meta name="twitter:description" content="A sweet Next.js project template. Integrates Redux Toolkit with with test support for Mocha + Chai + React Testing Library and release publishing via release-it.">
+  <meta name="twitter:url" content="https://karmanivero.us/nextjs-template/">
+
+  
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content="https://karmanivero.us/assets/images/logo-nextjs.png">
+  
+
+  
+
+
+
+  <meta property="article:published_time" content="2022-12-29T00:00:00+00:00">
+
+
+
+
+
+
+<link rel="canonical" href="https://karmanivero.us/nextjs-template/">
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- end _includes/seo.html -->
+
+
+
+  <link href="/feed.xml" type="application/atom+xml" rel="alternate" title="some words Feed">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script type="text/javascript">
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+  window.enable_copy_code_button = true;
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/assets/css/main.css">
+<link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@latest/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@latest/css/all.min.css"></noscript>
+
+
+
+    <link
+  rel="apple-touch-icon"
+  sizes="180x180"
+  href="/assets/favicon/apple-touch-icon.png" />
+<link
+  rel="icon"
+  type="image/png"
+  sizes="32x32"
+  href="/assets/favicon/favicon-32x32.png" />
+<link
+  rel="icon"
+  type="image/png"
+  sizes="16x16"
+  href="/assets/favicon/favicon-16x16.png" />
+<link rel="manifest" href="/assets/favicon/site.webmanifest" />
+<link
+  rel="mask-icon"
+  href="/assets/favicon/safari-pinned-tab.svg"
+  color="#5bbad5" />
+<link rel="shortcut icon" href="/assets/favicon/favicon.ico" />
+<meta name="msapplication-TileColor" content="#2b5797" />
+<meta name="msapplication-config" content="/assets/favicon/browserconfig.xml" />
+<meta name="theme-color" content="#ffffff" />
+
+
+
+<!-- Mathjax Support -->
+<script
+  type="text/javascript"
+  async
+  src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+  </head>
+
+  <body class="layout--single" dir="ltr">
+    <nav class="skip-links">
+  <ul>
+    <li><a href="#site-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">Skip to footer</a></li>
+  </ul>
+</nav>
+
+    
+
+<div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        
+        <a class="site-title" href="/">
+          some words
+          <span class="site-subtitle">many of them true</span>
+        </a>
+        <ul class="visible-links"><li class="masthead__menu-item">
+              <a
+                href="/projects/"
+                
+                
+              >Projects</a>
+            </li><li class="masthead__menu-item">
+              <a
+                href="/toolkits/"
+                
+                
+              >Toolkits</a>
+            </li><li class="masthead__menu-item">
+              <a
+                href="/bali/"
+                
+                
+              >Bali</a>
+            </li><li class="masthead__menu-item">
+              <a
+                href="/topics/"
+                
+                
+              >Topics</a>
+            </li><li class="masthead__menu-item">
+              <a
+                href="/blog/"
+                
+                
+              >Archive</a>
+            </li></ul>
+        
+        <button class="search__toggle" type="button">
+          <span class="visually-hidden">Toggle search</span>
+          <i class="fas fa-search"></i>
+        </button>
+        
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">Toggle menu</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+    <div class="initial-content">
+      
+
+
+
+
+
+<div id="main" role="main">
+  
+  <div class="sidebar sticky">
+  
+
+
+<div itemscope itemtype="https://schema.org/Person" class="h-card">
+
+  
+    <div class="author__avatar">
+      <a href="https://karmanivero.us/">
+        <img src="/assets/images/bio-photo.jpg" alt="Jason Williscroft" itemprop="image" class="u-photo">
+      </a>
+    </div>
+  
+
+  <div class="author__content">
+    <h3 class="author__name p-name" itemprop="name">
+      <a class="u-url" rel="me" href="https://karmanivero.us/" itemprop="url">Jason Williscroft</a>
+    </h3>
+    
+      <div class="author__bio p-note" itemprop="description">
+        <p><em>resume bullets<br />may read differently at the<br />threshold of heaven</em></p>
+
+      </div>
+    
+  </div>
+
+  <div class="author__urls-wrapper">
+    <button class="btn btn--inverse">Contact</button>
+    <ul class="author__urls social-icons">
+      
+
+      
+        
+          
+            <li><a href="https://twitter.com/karmaniverous" rel="nofollow noopener noreferrer me" itemprop="sameAs"><i class="fa-brands fa-square-x-twitter" aria-hidden="true"></i><span class="label">X</span></a></li>
+          
+        
+          
+            <li><a href="https://techhub.social/@karmaniverous" rel="nofollow noopener noreferrer me" itemprop="sameAs"><i class="fa-brands fa-mastodon" aria-hidden="true"></i><span class="label">Mastodon</span></a></li>
+          
+        
+          
+            <li><a href="https://github.com/karmaniverous" rel="nofollow noopener noreferrer me" itemprop="sameAs"><i class="fa-brands fa-github" aria-hidden="true"></i><span class="label">GitHub</span></a></li>
+          
+        
+          
+            <li><a href="https://www.linkedin.com/in/jscroft/" rel="nofollow noopener noreferrer me" itemprop="sameAs"><i class="fa-brands fa-linkedin" aria-hidden="true"></i><span class="label">LinkedIn</span></a></li>
+          
+        
+          
+            <li><a href="https://wa.me/17737500338" rel="nofollow noopener noreferrer me" itemprop="sameAs"><i class="fa-brands fa-whatsapp" aria-hidden="true"></i><span class="label">WhatsApp</span></a></li>
+          
+        
+          
+            <li><a href="https://t.me/karmaniverous" rel="nofollow noopener noreferrer me" itemprop="sameAs"><i class="fa-brands fa-telegram" aria-hidden="true"></i><span class="label">Telegram</span></a></li>
+          
+        
+          
+            <li><a href="https://calendly.com/karmaniverous" rel="nofollow noopener noreferrer me" itemprop="sameAs"><i class="fa-regular fa-calendar-plus" aria-hidden="true"></i><span class="label">Meet</span></a></li>
+          
+        
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      <!--
+  <li>
+    <a href="http://link-to-whatever-social-network.com/user/" itemprop="sameAs" rel="nofollow noopener noreferrer me">
+      <i class="fas fa-fw" aria-hidden="true"></i> Custom Social Profile Link
+    </a>
+  </li>
+-->
+    </ul>
+  </div>
+</div>
+
+  
+  </div>
+
+
+
+  <article
+    class="page"
+    itemscope
+    itemtype="https://schema.org/CreativeWork"
+    >
+    <meta itemprop="headline" content="Next.js Template">
+    <meta itemprop="description" content="A sweet Next.js project template. Integrates Redux Toolkit with with test support for Mocha + Chai + React Testing Library and release publishing via release-it.">
+    <meta itemprop="datePublished" content="2022-12-29T00:00:00+00:00">
+    
+
+    <div class="page__inner-wrap">
+      
+        <header>
+          <h1
+              id="page-title"
+              class="page__title"
+              itemprop="headline">
+              <a href="https://karmanivero.us/nextjs-template/" itemprop="url">Next.js Template
+</a>
+            </h1>
+          
+
+  <p class="page__meta">
+    
+      
+      <span class="page__meta-date">
+        <i
+          class="far fa-calendar-alt"
+          aria-hidden="true"
+        ></i>
+        
+        <time datetime="2022-12-29T00:00:00+00:00">December 29, 2022</time>
+      </span>
+    
+
+    <span class="page__meta-sep"></span>
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i
+          class="far fa-clock"
+          aria-hidden="true"
+        ></i>
+        
+          21
+          minute read
+        
+      </span>
+    
+  </p>
+
+
+        </header>
+      
+
+      <section class="page__content" itemprop="text">
+        
+          <aside class="sidebar__right sticky">
+            <nav class="toc">
+              <header>
+                <h4 class="nav__title">
+                  <i class="fas fa-file-alt"></i>
+                  On this page</h4>
+              </header>
+              <ul class="toc__menu"><li><a href="#why">Why?</a></li><li><a href="#setting-up-your-dev-environment">Setting Up Your Dev Environment</a><ul><li><a href="#create-local-environment-variable-files">Create Local Environment Variable Files</a></li><li><a href="#connect-to-github">Connect to GitHub</a></li></ul></li><li><a href="#project-architecture">Project Architecture</a><ul><li><a href="#file-structure">File Structure</a></li><li><a href="#npm-scripts">NPM Scripts</a></li><li><a href="#environment-variables">Environment Variables</a><ul><li><a href="#dotenv-files">dotenv Files</a></li><li><a href="#nextjs-config">Next.js Config</a></li><li><a href="#build-config">Build Config</a></li><li><a href="#dotenv-bottom-line">dotenv Bottom Line</a></li></ul></li><li><a href="#state-model">State Model</a><ul><li><a href="#redux-store">Redux Store</a></li><li><a href="#page-slice">Page Slice</a></li><li><a href="#entity-slice">Entity Slice</a></li></ul></li><li><a href="#user-authentication">User Authentication</a></li><li><a href="#semantic-ui">Semantic UI</a></li><li><a href="#page-model">Page Model</a><ul><li><a href="#application-component">Application Component</a></li><li><a href="#route-components">Route Components</a></li><li><a href="#page-components">Page Components</a></li></ul></li><li><a href="#redirects">Redirects</a><ul><li><a href="#global-redirects">Global Redirects</a></li><li><a href="#back-end-redirects">Back-End Redirects</a></li><li><a href="#front-end-redirects">Front-End Redirects</a></li></ul></li></ul></li><li><a href="#configured-pages">Configured Pages</a><ul><li><a href="#private-page">Private Page</a></li><li><a href="#coming-soon-page">Coming Soon Page</a></li></ul></li><li><a href="#common-tasks">Common Tasks</a><ul><li><a href="#add-a-page">Add a Page</a></li><li><a href="#add-an-api-route">Add an API Route</a></li><li><a href="#create--run-a-local-production-build">Create &amp; Run a Local Production Build</a></li><li><a href="#analyze-your-bundles">Analyze Your Bundles</a></li><li><a href="#create-a-release">Create a Release</a></li><li><a href="#integrate-a-template-update">Integrate a Template Update</a></li></ul></li><li><a href="#faq">FAQ</a><ul><li><a href="#why-are-all-your-tests-jsx-files">Why are all your tests .jsx files?</a></li></ul></li><li><a href="#issues">Issues</a></li></ul>
+            </nav>
+          </aside>
+        
+        <figure class="align-left drop-image">
+    <img src="/assets/images/logo-nextjs.png" />
+</figure>
+
+<p>Getting a <a href="https://nextjs.org/">Next.js</a> application up and running is not a trivial exercise, especially if you want a robust and extensible result that will support a modern development process.</p>
+
+<p>Here’s a plug-and-play <a href="https://github.com/karmaniverous/nextjs-template">Next.js template</a> that offers the following features:</p>
+
+<ul>
+  <li>
+    <p>Tree-shakable support for the latest ES6 goodies with <a href="https://www.npmjs.com/package/eslint"><code class="language-plaintext highlighter-rouge">eslint</code></a> <em>uber alles</em>.</p>
+  </li>
+  <li>
+    <p>User registration &amp; authentication via <a href="https://next-auth.js.org/">NextAuth.js</a>, by default against an <a href="https://docs.aws.amazon.com/cognito/latest/developerguide/cognito-user-identity-pools.html">AWS Cognito User Pool</a> supporting native username/password authentication and one federated identity provider (Google).</p>
+  </li>
+  <li>
+    <p>Support for public &amp; private API endpoints, both local to NextJS and at any <a href="https://aws.amazon.com/api-gateway/">AWS API Gateway</a> secured by the same Cognito User Pool.</p>
+  </li>
+  <li>
+    <p>Configured to act as a front end &amp; authentication client for my <a href="https://github.com/karmaniverous/aws-api-template">AWS API Template</a> on the back end.</p>
+  </li>
+  <li>
+    <p>Fully integrated application state management with the <a href="https://redux-toolkit.js.org/">Redux Toolkit</a>, including support for difficult-to-serialize types like <code class="language-plaintext highlighter-rouge">Date</code> &amp; <code class="language-plaintext highlighter-rouge">BigInt</code>.</p>
+  </li>
+  <li>
+    <p>Responsive UX with <a href="https://react.semantic-ui.com/">Semantic UI React</a> with LESS theme overrides enabled &amp; ready for input!</p>
+  </li>
+  <li>
+    <p>A responsive &amp; attractive sample UI that encapsulates a ton of common use cases into an opinionated architecture and a library of utility components.</p>
+  </li>
+  <li>
+    <p>Automated <a href="https://www.npmjs.com/package/lodash"><code class="language-plaintext highlighter-rouge">lodash</code></a> cherry-picking with <a href="https://www.npmjs.com/package/babel-plugin-lodash"><code class="language-plaintext highlighter-rouge">babel-plugin-lodash</code></a>.</p>
+  </li>
+  <li>
+    <p>Front &amp; back-end testing with <a href="https://www.npmjs.com/package/mocha"><code class="language-plaintext highlighter-rouge">mocha</code></a>, <a href="https://www.npmjs.com/package/chai"><code class="language-plaintext highlighter-rouge">chai</code></a>, and the <a href="https://www.npmjs.com/package/@testing-library/react">React Testing Library</a>. Includes examples and a sweet testing console!</p>
+  </li>
+  <li>
+    <p>Code formatting at every save &amp; paste with <a href="https://www.npmjs.com/package/prettier"><code class="language-plaintext highlighter-rouge">prettier</code></a>.</p>
+  </li>
+  <li>
+    <p>One-button release to GitHub with <a href="https://www.npmjs.com/package/release-it"><code class="language-plaintext highlighter-rouge">release-it</code></a>.</p>
+  </li>
+</ul>
+
+<p class="text-center"><a href="https://github.com/karmaniverous/nextjs-template" class="btn btn--info btn--large">See it on GitHub!</a>   <a href="https://github.com/karmaniverous/nextjs-template/generate" class="btn btn--primary btn--large">Clone the Repo!</a></p>
+
+<p class="notice--warning"><strong>This documentation is incomplete!</strong> You’ll see TODOs below where I’m still working on it, but since the underlying template is <em>very</em> solid I wanted to get it out there sooner rather than later. I’ll get it all done soon. Meanwhile don’t hesitate to <a href="https://github.com/karmaniverous/nextjs-template/issues/new">raise an issue</a> for any questions!</p>
+
+<h2 id="why">Why?</h2>
+
+<p>Deploying a vanilla Next.js application is easy, but getting it to a point where it can support real-world requirements is a challenge. This template solves a lot of initial problems and gets you to a well-scaffolded, responsive web application with support for all the goodies, built-in navigation, and a powerful toolbox to drive future development.</p>
+
+<p>This template is highly opinionated with respect to toolchain. It is <em>hard</em> to get all of these bits to work together. It is <em>way</em> easier to cut out the bits you don’t need than figure out how to slot in the things you do. So that’s what we have here.</p>
+
+<p>Because this is a Next.js template, it works perfectly when deployed to <a href="https://vercel.com/">Vercel</a>. I’ve tried hard to make it host-agnostic, though, and I know for a fact that it works just as well deployed to <a href="https://aws.amazon.com/amplify">AWS Amplify</a>. It should work fine (possibly with some tweaks to the build process) at any host that supports Next.js.</p>
+
+<h2 id="setting-up-your-dev-environment">Setting Up Your Dev Environment</h2>
+
+<p><strong>Use <a href="https://code.visualstudio.com/">VS Code</a> as your code editor!</strong> Not an absolute requirement, but you’ll be glad you did.</p>
+
+<ol>
+  <li>
+    <p><a href="https://github.com/karmaniverous/nextja-template/generate">Click here</a> to generate a new repository from this template.</p>
+  </li>
+  <li>
+    <p>Clone the new repository to your local machine.</p>
+  </li>
+  <li>
+    <p>VS Code will ask to install a bunch of recommended extensions. Accept all of them. If you miss this prompt, follow these steps:</p>
+
+    <ul>
+      <li>Open the VS Code Extensions tab</li>
+      <li>Enter <code class="language-plaintext highlighter-rouge">@recommended</code> into the search box</li>
+      <li>
+        <p>Click the Download link.</p>
+
+        <figure>
+  <a href="/assets/images/npm-package-template-extensions.png">
+    <img src="/assets/images/npm-package-template-extensions.png" style="width: 250px;" />
+  </a>
+ </figure>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <p>Zero the package version and install dependencies by running these commands:</p>
+
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>npm version 0.0.0
+npm <span class="nb">install</span>
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p>Run your tests from the command line:</p>
+
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>npm run <span class="nb">test</span>
+
+<span class="c"># STATE</span>
+<span class="c">#   ENTITY</span>
+<span class="c">#     * validations</span>
+<span class="c">#       ✔ * initializes state</span>
+<span class="c">#     add entities</span>
+<span class="c">#       * validations</span>
+<span class="c">#         ✔ * select all entities</span>
+<span class="c">#         ✔ * select one entity</span>
+<span class="c">#         ✔ * select invalid entity</span>
+<span class="c">#       update entities</span>
+<span class="c">#         validations</span>
+<span class="c">#           ✔ * select all entities</span>
+<span class="c">#       remove entity</span>
+<span class="c">#         validations</span>
+<span class="c">#           ✔ * select all entities</span>
+<span class="c">#</span>
+<span class="c"># back-end test</span>
+<span class="c">#   ✔ passes</span>
+<span class="c">#</span>
+<span class="c"># 7 passing (49ms)</span>
+</code></pre></div>    </div>
+
+    <p>If you installed the VS Code extensions referenced above, use the <code class="language-plaintext highlighter-rouge">Testing</code> panel to visualize &amp; run your unit tests.</p>
+
+    <figure>
+  <a href="/assets/images/nextjs-template-testing-panel.png">
+   <img src="/assets/images/nextjs-template-testing-panel.png" />
+  </a>
+ </figure>
+  </li>
+  <li>
+    <p>Run your Next.js application locally by running:</p>
+
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>npm run dev
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p>Explore the sample application at <a href="http://localhost:3000"><code class="language-plaintext highlighter-rouge">http://localhost:3000</code></a>.</p>
+  </li>
+  <li>
+    <p>When you’re done, return to your terminal and stop the dev server with <code class="language-plaintext highlighter-rouge">Ctrl-C</code>.</p>
+  </li>
+</ol>
+
+<h3 id="create-local-environment-variable-files">Create Local Environment Variable Files</h3>
+
+<p>Look for these files in your project directory:</p>
+
+<ul>
+  <li><a href="https://github.com/karmaniverous/nextjs-template/blob/main/.env.local.template"><code class="language-plaintext highlighter-rouge">.env.local.template</code></a></li>
+  <li><a href="https://github.com/karmaniverous/nextjs-template/blob/main/env/.env.dev.local.template"><code class="language-plaintext highlighter-rouge">env/.env.dev.local.template</code></a></li>
+  <li><a href="https://github.com/karmaniverous/nextjs-template/blob/main/env/.env.test.local.template"><code class="language-plaintext highlighter-rouge">env/.env.test.local.template</code></a></li>
+  <li><a href="https://github.com/karmaniverous/nextjs-template/blob/main/env/.env.prod.local.template"><code class="language-plaintext highlighter-rouge">env/.env.prod.local.template</code></a></li>
+</ul>
+
+<p>Copy each of these files to the same location and remove the <code class="language-plaintext highlighter-rouge">template</code> extension from the copy.</p>
+
+<p><strong>Do not simply rename these files!</strong> Anybody who pulls your repo will need these templates to create the same files in his own local environment.</p>
+
+<p>In the future, this will be accomplished with a single CLI command. (<a href="https://github.com/karmaniverous/nextjs-template/issues/45">#45</a>)</p>
+
+<h3 id="connect-to-github">Connect to GitHub</h3>
+
+<p>This template supports automated release management with <a href="https://github.com/release-it/release-it"><code class="language-plaintext highlighter-rouge">release-it</code></a>.</p>
+
+<p>If you use GitHub, create a <a href="https://github.com/settings/tokens/new?scopes=repo&amp;description=release-it">Personal Access Token</a>
+and add it as the value of <code class="language-plaintext highlighter-rouge">GITHUB_TOKEN</code> in <code class="language-plaintext highlighter-rouge">.env.local</code>.</p>
+
+<p>If you use GitLab, follow <a href="https://github.com/release-it/release-it#gitlab-releases">these instructions</a> and place your token in the same file.</p>
+
+<p>For other release control systems, consult the <a href="https://github.com/release-it/release-it#readme"><code class="language-plaintext highlighter-rouge">release-it</code> README</a>.</p>
+
+<p>You can now publish a release to GitHub with this command:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>npm run release
+</code></pre></div></div>
+
+<h2 id="project-architecture">Project Architecture</h2>
+
+<p>Basic project architecture is driven by the requirements of Next.js.</p>
+
+<p>Next.js exposes a <a href="https://github.com/karmaniverous/nextjs-template/tree/main/pages"><code class="language-plaintext highlighter-rouge">pages</code></a> directory, which contains three categories of file that correspond to application routes.</p>
+
+<ul>
+  <li><a href="https://github.com/karmaniverous/nextjs-template/blob/main/pages/_app.jsx"><code class="language-plaintext highlighter-rouge">_app.jsx</code></a> defines the Application component described in <a href="#page-model">Page Model</a> below. It expresses the “frame” of the application, and all other visible components are injected into it.</li>
+  <li>The <a href="https://github.com/karmaniverous/nextjs-template/tree/main/pages/api"><code class="language-plaintext highlighter-rouge">api</code></a> subdirectory exposes a special category of routes that receive HTTP requests and run on the server side.</li>
+  <li>All other files within the <a href="https://github.com/karmaniverous/nextjs-template/tree/main/pages"><code class="language-plaintext highlighter-rouge">pages</code></a> directory translate to routes visible on the front end.</li>
+</ul>
+
+<p>Paths inside the <a href="https://github.com/karmaniverous/nextjs-template/tree/main/pages"><code class="language-plaintext highlighter-rouge">pages</code></a> directory support a square bracket syntax that translates to route variables available at run time (e.g. <code class="language-plaintext highlighter-rouge">/pages/api/customer/[customerId]/index.jsx</code>).</p>
+
+<p>A key feature is the <a href="#state-model">state layer</a> provided by the <a href="https://redux-toolkit.js.org/">Redux Toolkit</a>. Properly executed, this layer should handle most external requests and manage most state that needs to be passed between React components.</p>
+
+<h3 id="file-structure">File Structure</h3>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Item                                 Description
+---------------------------------------------------------------------------------------------------------
+└─ nextjs-template ................. package root
+   ├─ .babelrc ..................... global Babel config
+   ├─ .env ......................... public global variables
+   ├─ .env.local ................... locally-maintained private global variables
+   ├─ .env.local.template .......... private global variable template
+   ├─ .eslintignore ................ global ESLint ignore file
+   ├─ .eslintrc.json ............... global ESLint config file
+   ├─ .prettierignore .............. global Prettier ignore file
+   ├─ .vscode ...................... VS Code project config
+   │  ├─ extensions.json ........... recommended extensions
+   │  └─ settings.json ............. project settings
+   ├─ amplify.yml .................. AWS Amplify build script
+   ├─ components ................... React components
+   │  ├─ application ............... application-level components
+   │  │  ├─ layout ................. application-level layout components
+   │  │  │  ├─ PageFooter.jsx ...... common page footer
+   │  │  │  └─ PageHeader.jsx ...... common page header
+   │  │  ├─ session ................ application-level session management components
+   │  │  │  ├─ SessionDropdown.jsx . renders session dropdown button
+   │  │  │  ├─ SessionMenuItem.jsx . renders session menu item
+   │  │  │  └─ useSignOut.jsx ...... encapsulates sign-out behavior
+   │  │  ├─ sidebar ................ application-level sidebar components
+   │  │  |  ├─ LinkMenuItem.jsx .... conditionally renders a menu item as an icon link
+   │  │  |  ├─ PageMenuItem.jsx .... renders a state-sensitive menu item targeted at a page
+   │  │  |  ├─ ScrollMenuItem.jsx .. renders a menu item targeted at a scroll location
+   │  │  |  ├─ SidebarButton.jsx ... renders a button that triggers an overlay menu on mobile devices
+   │  │  |  ├─ SidebarItems.jsx .... renders all sidebar items
+   │  │  |  └─ SidebarLinks.jsx .... renders sidebar links repeated in page footer
+   │  │  └─ util ................... application-level utility components
+   │  │     ├─ RenderIf.jsx ........ conditionally renders a component based on current page &amp; auth state
+   │  │     └─ ScrollTarget.jsx .... HOC decorates a component with a smooth-scroll target
+   │  ├─ content ................... content-level components (Page Component children)
+   │  │  ├─ ApiQuery.jsx ........... tests a query (optionally authenticated) &amp; displays result
+   │  │  └─ ApiTest.jsx ............ displays a set of queries
+   │  └─ page ...................... Page Components
+   │     ├─ HomePage.jsx ........... displays ApiTest on a public page
+   │     └─ PrivatePage.jsx ........ displays ApiTest on a private page
+   ├─ env .......................... environment-specific environment variables
+   │  ├─ .env.dev .................. public dev environment variables
+   │  ├─ .env.dev.local ............ locally-maintained private dev environment variables
+   │  ├─ .env.dev.local.template ... private dev environment variable template
+   │  ├─ ... ....................... other environment variables
+   ├─ middleware.js ................ NextAuth.js middleware config
+   ├─ next-env.d.ts ................ Next.js required file
+   ├─ next.config.mjs .............. Next.js configuration
+   ├─ package-lock.json ............ package dependencies (managed by npm)
+   ├─ package.json ................. package config
+   ├─ pages ........................ Next.js page &amp; api routes
+   │  ├─ api ....................... Next.js api routes
+   │  │  ├─ auth ................... NextAuth authentication route
+   │  │     └─ [...nextauth].jsx ... NextAuth.js authentication endpoint
+   │  │  ├─ hello.jsx .............. Sample public api endpoint
+   │  │  └─ private ................ Sample private api route
+   │  │     └─ hello.jsx ........... Sample private api endpoint
+   │  ├─ coming-soon.jsx ........... coming soon route
+   │  ├─ index.jsx ................. public home page route
+   │  ├─ private.jsx ............... sample private page route
+   │  └─ _app.jsx .................. Application component
+   ├─ public ....................... public assets
+   │  └─ images .................... public image assets
+   │     ├─ favicon/ ............... public favicon assets
+   │     └─ logo.png ............... site logo
+   ├─ README.md .................... package README file
+   ├─ semantic-ui .................. Semantic UI custom theme assets
+   │  ├─ site/ ..................... Semantic UI custom theme variables &amp; overrides
+   │  └─ theme.config .............. Semantic UI custom theme config
+   ├─ state ........................ Redux Toolkit state layer
+   │  ├─ entitySlice.mjs ........... Sample Entity state
+   │  ├─ pageSlice.mjs ............. Application page state
+   │  └─ store.mjs ................. Redux Store definition
+   ├─ styles.css ................... misc styles not defined in Semantic UI theme
+   ├─ test ......................... unit tests
+   │  ├─ entity.test.jsx ........... sample Entity state tests
+   │  └─ sample.test.mjs ........... sample unit tests
+   └─ tsconfig.json ................ required file
+</code></pre></div></div>
+
+<h3 id="npm-scripts">NPM Scripts</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th>Script</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">npm run analyze</code></td>
+      <td>Analyze browser &amp; server bundles.</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">npm run analyze:browser</code></td>
+      <td>Analyze browser bundle.</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">npm run analyze:server</code></td>
+      <td>Analyze server bundle.</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">npm run build</code></td>
+      <td>Generate a Next.js production build.</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">npm run dev</code></td>
+      <td>Build &amp; run the Next.js application locally.</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">npm run release</code></td>
+      <td>Run unit tests &amp; production build, then create a new release &amp; publish to GitHub.</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">npm run start</code></td>
+      <td>Build &amp; run the Next.js production build locally.</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">npm run test</code></td>
+      <td>Execute unit tests.</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="environment-variables">Environment Variables</h3>
+
+<p>Next.js has a tortured relationship with environment variables and dotenv files.</p>
+
+<p>Modern software applications are configuration-driven. I ought to be able to deploy the same application into my various testing and production environments, each with a unique set of configurations.</p>
+
+<p>In a rational world, there are four categories of dotenv file:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Scope</th>
+      <th style="text-align: center">Secret?</th>
+      <th>Example</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Application</td>
+      <td style="text-align: center">No</td>
+      <td><code class="language-plaintext highlighter-rouge">.env</code></td>
+    </tr>
+    <tr>
+      <td>Application</td>
+      <td style="text-align: center">Yes</td>
+      <td><code class="language-plaintext highlighter-rouge">.env.local</code></td>
+    </tr>
+    <tr>
+      <td>Environment</td>
+      <td style="text-align: center">No</td>
+      <td><code class="language-plaintext highlighter-rouge">.env.test</code></td>
+    </tr>
+    <tr>
+      <td>Environment</td>
+      <td style="text-align: center">Yes</td>
+      <td><code class="language-plaintext highlighter-rouge">.env.test.local</code></td>
+    </tr>
+  </tbody>
+</table>
+
+<p>The first two are application-wide, but I should be able to create as many versions of the last two as I have environments, and load them appropriately on deployment.</p>
+
+<p>Non-secret files generally get pushed to the code repository, whereas secret files are preserved locally and their contents encoded into each environment’s build pipeline.</p>
+
+<p>The issues:</p>
+
+<ul>
+  <li>
+    <p>Next.js only supports <em>three</em> such environments, which <em>must</em> be named <code class="language-plaintext highlighter-rouge">development</code>, <code class="language-plaintext highlighter-rouge">test</code>, and <code class="language-plaintext highlighter-rouge">production</code>.</p>
+  </li>
+  <li>
+    <p>Next.js doesn’t load these files consistently across environments.</p>
+  </li>
+  <li>
+    <p>Next.js has complex rules around which variables are visible where (server side or in the browser).</p>
+  </li>
+  <li>
+    <p>There is no easy way to get Next.js to load different dotenv files from a different location.</p>
+  </li>
+</ul>
+
+<p>See the <a href="https://nextjs.org/docs/basic-features/environment-variables">Next.js docs</a> for more info. Meanwhile, deployment environments also get a say.</p>
+
+<p>Next.js can only load the files that are actually available to it. On your local development environment, everything will work as expected. <a href="https://vercel.com/solutions/nextjs">Vercel</a> (the native Next.js platform) and <a href="https://docs.amplify.aws/guides/hosting/nextjs/q/platform/js/">AWS Amplify</a> (also an excellent choice) expose different sets of files to the Next.js build engine at different points in the process.</p>
+
+<p>Finally, there is a way to load environment variables directly into Next.js, although doing so exposes ALL such variables to the browser, instead of just the ones with the <code class="language-plaintext highlighter-rouge">NEXT_PUBLIC_</code> prefix.</p>
+
+<p>So it’s a rich tapestry.</p>
+
+<p>This template expresses an approach that offers the following features:</p>
+
+<ul>
+  <li>
+    <p>You can define as many environments as you want and name them however you like.</p>
+  </li>
+  <li>
+    <p>It works in your local dev environment and works well with both Vercel and AWS Amplify.</p>
+  </li>
+  <li>
+    <p>Public variables are consistently visible in the browser when prefixed with <code class="language-plaintext highlighter-rouge">NEXT_PUBLIC_</code>, and private variables are only visible on the server side.</p>
+  </li>
+</ul>
+
+<p>By way of demonstration, this template’s live <a href="https://nextjs-template-dev.karmanivero.us/"><code class="language-plaintext highlighter-rouge">dev</code></a>, <a href="https://nextjs-template-test.karmanivero.us/"><code class="language-plaintext highlighter-rouge">test</code></a>, and <a href="https://nextjs-template.karmanivero.us/"><code class="language-plaintext highlighter-rouge">prod</code></a> demo environments integrate perfectly with my <a href="/blog/aws-api-template">AWS API Template</a>’s corresponding demo environments.</p>
+
+<p>There are three components to this approach:</p>
+
+<ul>
+  <li>dotenv files</li>
+  <li>Next.js config</li>
+  <li>Build config</li>
+</ul>
+
+<h4 id="dotenv-files">dotenv Files</h4>
+
+<p>Application-scoped dotenv files live in the main project directory. There are three of them:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>File</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">.env</code></td>
+      <td>Application settings. Syncs with the code repo.</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">.env.local</code></td>
+      <td>Application secrets. Does <em>not</em> sync with the repo.</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">.env.local.template</code></td>
+      <td>Application secrets template. Syncs with the repo. Copy it the first time you pull the repo to create an application secrets file and populate it to support local testing.</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>Environment-scoped dotenv files live in the <code class="language-plaintext highlighter-rouge">env</code> directory. There is no limit to the number and names of supported environments. Each environment requires three files, e.g. for the <code class="language-plaintext highlighter-rouge">test</code> environment:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>File</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">.env.test</code></td>
+      <td>Environment settings. Syncs with the code repo.</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">.env.test.local</code></td>
+      <td>Environment secrets. Does <em>not</em> sync with the repo.</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">.env.test.local.template</code></td>
+      <td>Environment secrets template. Syncs with the repo. Copy it the first time you pull the repo to create an environment secrets file and populate it to support local testing.</td>
+    </tr>
+  </tbody>
+</table>
+
+<h4 id="nextjs-config">Next.js Config</h4>
+
+<p>The application-scoped dotenv files have names and locations as expected by Next.js.</p>
+
+<p>When running locally, they will be loaded. When deploying remotely as part of a build process, the application secrets will not be available and must be integrated with the build process as described below.</p>
+
+<p>Environment-scoped dotenv files do NOT have names or locations as expected, and Next.js will NOT pick them up. Accordingly, I’ve added code to <a href="https://github.com/karmaniverous/nextjs-template/blob/322e666ea612acd48e8f8a093172486ed2df111c/next.config.mjs#L17-L20"><code class="language-plaintext highlighter-rouge">next.config.mjs</code></a> that loads these files based on an environment token passed into the <code class="language-plaintext highlighter-rouge">ENV</code> variable. So to run Next.js locally using the <code class="language-plaintext highlighter-rouge">test</code> runtime environment, you would run:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>cross-env <span class="nv">ENV</span><span class="o">=</span><span class="nb">test </span>npm run dev
+</code></pre></div></div>
+
+<p>Note that this ALSO loads application secrets, thus exposing them to the browser! This is not a problem because these <code class="language-plaintext highlighter-rouge">.local</code> files are <em>only</em> available locally. Application &amp; environment secrets are loaded differently in the remote build process, and since these files are not present their contents will NOT be exposed to the browser in remote deployments.</p>
+
+<h4 id="build-config">Build Config</h4>
+
+<p>As a general rule, all application and environment secrets must be encoded into any remote build process. Both <a href="https://vercel.com/docs/concepts/projects/environment-variables">Vercel</a> and <a href="https://docs.aws.amazon.com/amplify/latest/userguide/environment-variables.html">AWS Amplify</a> support build-specific environment variables, so each must be configured accordingly.</p>
+
+<p>For Vercel, this is sufficient.</p>
+
+<p>For Amplify, there is an additional problem: the contents of the <code class="language-plaintext highlighter-rouge">env</code> directory are not even available to <a href="https://github.com/karmaniverous/nextjs-template/blob/main/next.config.mjs"><code class="language-plaintext highlighter-rouge">next.config.mjs</code></a>. So I’ve included an <a href="https://github.com/karmaniverous/nextjs-template/blob/main/amplify.yml"><code class="language-plaintext highlighter-rouge">amplify.yml</code></a> build script that merges all available environment variables, secret and otherwise, into the one <code class="language-plaintext highlighter-rouge">.env</code> file that Amplify seems to understand.</p>
+
+<h4 id="dotenv-bottom-line">dotenv Bottom Line</h4>
+
+<p>Follow these rules:</p>
+
+<ul>
+  <li>
+    <p>Use the four types of file as described in <a href="#dotenv-files">dotenv Files</a> above.</p>
+  </li>
+  <li>
+    <p>If you want a variable to be available in the browser, prefix its name with <code class="language-plaintext highlighter-rouge">NEXT_PUBLIC_</code>.</p>
+  </li>
+  <li>
+    <p>Encode all application &amp; environment secrets into your build process.</p>
+  </li>
+  <li>
+    <p>Additionally encode an <code class="language-plaintext highlighter-rouge">ENV</code> variable into your build process that carries your environment token (e.g. <code class="language-plaintext highlighter-rouge">dev</code>, <code class="language-plaintext highlighter-rouge">test</code>, or <code class="language-plaintext highlighter-rouge">prod</code>).</p>
+  </li>
+  <li>
+    <p>If you are deployng to AWS Amplify, and need to add more application or environment secrets, use the pattern in the <a href="https://github.com/karmaniverous/nextjs-template/blob/main/amplify.yml"><code class="language-plaintext highlighter-rouge">amplify.yml</code></a> <code class="language-plaintext highlighter-rouge">preBuild</code> section to integrate your new secrets with the build.</p>
+  </li>
+</ul>
+
+<h3 id="state-model">State Model</h3>
+
+<p>This template relies heavily on the <a href="https://redux-toolkit.js.org/">Redux Toolkit</a> for application state management.</p>
+
+<p>Redux Toolkit is an efficient, highly opinionated wrapper around the very popular <a href="https://redux.js.org/">Redux</a> library. It’s better in every way and is the approach recommended by the Redux team.</p>
+
+<p>Getting Redux Toolkit to play nicely with Next.js is not a trivial exercise and requires making some choices. This template solves those problems in an elegant way.</p>
+
+<p>Redux Toolkit features the <a href="https://redux-toolkit.js.org/api/createEntityAdapter">createEntityAdapter</a> (CRA), which generates a set of prebuilt reducers and selectors for performing CRUD operations on a normalized state structure containing instances of a particular type of data object. <strong>Think of it as a NoSQL database in your Redux state!</strong></p>
+
+<p>The sample front-end application doesn’t leverage CRA. Any significant data-based implementation probbly should, though, so I’ve included a sample <a href="https://github.com/karmaniverous/nextjs-template/tree/main/state/entitySlice.mjs">entity slice</a> in my state model and written <a href="https://github.com/karmaniverous/nextjs-template/tree/main/test/entity.test.jsx">some tests</a> to demonstrate how it works.</p>
+
+<p>The State Model comprises the Redux Store and its component slice definitions, all of which are located in the <a href="https://github.com/karmaniverous/nextjs-template/tree/main/state"><code class="language-plaintext highlighter-rouge">state</code></a> directory.</p>
+
+<h4 id="redux-store">Redux Store</h4>
+
+<p>The Redux Store is located at <a href="https://github.com/karmaniverous/nextjs-template/blob/main/state/store.mjs"><code class="language-plaintext highlighter-rouge">state/store.mjs</code></a>.</p>
+
+<p>The Store brings together slice reducers defined elsewhere in the <a href="https://github.com/karmaniverous/nextjs-template/tree/main/state"><code class="language-plaintext highlighter-rouge">state</code></a> directory. It also adds middleware to the state layer, and applies the <a href="https://github.com/kirill-konshin/next-redux-wrapper"><code class="language-plaintext highlighter-rouge">next-redux-wrapper</code></a> that conforms the Next.js page model to Redux.</p>
+
+<p>Notably the store adds the <a href="https://www.npmjs.com/package/@karmaniverous/serify-deserify"><code class="language-plaintext highlighter-rouge">serify-deserify</code></a> middleware, which resolves some difficulty around persisting complex types in your Redux Store.</p>
+
+<p>This file will normally only require updates under these circumstances:</p>
+
+<ul>
+  <li>
+    <p>If you add a slice to your state layer, import the slice reducer here and add it to the master reducer definition.</p>
+  </li>
+  <li>
+    <p>If you wish to change your Redux middleware configuration or add new middleware, do it here.</p>
+  </li>
+</ul>
+
+<h4 id="page-slice">Page Slice</h4>
+
+<p>The <a href="https://github.com/karmaniverous/nextjs-template/blob/main/state/pageSlice.mjs">Page slice</a> tracks the following broad application states:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>State</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">baseUrl</code></td>
+      <td>This is the application’s base url for the current environment. It is set <a href="https://github.com/karmaniverous/nextjs-template/blob/ff7a223f947b4accbc78cb04936562d38a606974/pages/_app.jsx#L256-L261">here</a> on the server side at initial load and should not need to be set again thereafter.</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">comingSoon</code></td>
+      <td>This reflects the value of the COMING_SOON environment variable (defined in the corresponding <a href="https://github.com/karmaniverous/nextjs-template/tree/main/env"><code class="language-plaintext highlighter-rouge">env</code></a> public file) and is used <a href="https://github.com/karmaniverous/nextjs-template/blob/ff7a223f947b4accbc78cb04936562d38a606974/pages/_app.jsx#L243-L253">here</a> on the server side to redirect the application to the <a href="https://github.com/karmaniverous/nextjs-template/blob/main/pages/coming-soon.jsx"><code class="language-plaintext highlighter-rouge">coming-soon</code></a> route if true. It is also consumed in <a href="https://github.com/karmaniverous/nextjs-template/tree/main/components/application/sidebar">sidebar components</a> to display links as approprate.</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">currentPage</code></td>
+      <td>This enumerated value is defined <a href="https://github.com/karmaniverous/nextjs-template/blob/ff7a223f947b4accbc78cb04936562d38a606974/state/pageSlice.mjs#L5-L8">here</a> and indicates the application’s current page. This value is set directly within a <a href="#page-components">Page Component</a> to identify the current page. To navigate to a different page Instead, use the <a href="https://github.com/karmaniverous/nextjs-template/blob/ff7a223f947b4accbc78cb04936562d38a606974/state/pageSlice.mjs#L62-L72"><code class="language-plaintext highlighter-rouge">resolveRoute</code></a> helper function to get the correct route and pass this value to the <code class="language-plaintext highlighter-rouge">pushRoute</code> state.</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">logoutUrl</code></td>
+      <td>This is derived <a href="https://github.com/karmaniverous/nextjs-template/blob/ff7a223f947b4accbc78cb04936562d38a606974/pages/_app.jsx#L262-L268">here</a> on the server side at initial load based on the environment’s AWS Cognito configuration and is passed to NextAuth.js as appropriate.</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">pushRoute</code></td>
+      <td>A change to this state invokes <a href="https://github.com/karmaniverous/nextjs-template/blob/ff7a223f947b4accbc78cb04936562d38a606974/pages/_app.jsx#L49-L58">this function</a> in <code class="language-plaintext highlighter-rouge">_app.jsx</code> to push the new route, change page state as appropriate, and reset <code class="language-plaintext highlighter-rouge">pushRoute</code>.</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">sidebarVisible</code></td>
+      <td>This controls the visibility of the overlay sidebar at mobile resolutions. It is set by the <a href="https://github.com/karmaniverous/nextjs-template/blob/main/components/application/sidebar/SidebarButton.jsx"><code class="language-plaintext highlighter-rouge">SidebarButton</code></a> component and consumed in <a href="https://github.com/karmaniverous/nextjs-template/blob/main/pages/_app.jsx"><code class="language-plaintext highlighter-rouge">_app.jsx</code></a>.</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">siteName</code></td>
+      <td>This state composes the canonical site name with a token reflecting the environment. It is consumed in the <a href="https://github.com/karmaniverous/nextjs-template/blob/main/components/application/sidebar/SidebarItems.jsx"><code class="language-plaintext highlighter-rouge">SidebarItems</code></a> component and wherever else appropriate.</td>
+    </tr>
+  </tbody>
+</table>
+
+<p><code class="language-plaintext highlighter-rouge">currentPage</code> reflects <em>logical</em> page state, and is intended to be decoupled from the actual route or page component in use. This permits sidebar and related components to reflect current page in a manner that is intuitive to the user.</p>
+
+<p>To add a new value:</p>
+
+<ul>
+  <li>
+    <p>Add a new value to the <a href="https://github.com/karmaniverous/nextjs-template/blob/ff7a223f947b4accbc78cb04936562d38a606974/state/pageSlice.mjs#L5-L8"><code class="language-plaintext highlighter-rouge">PAGES</code></a> enumeration.</p>
+  </li>
+  <li>
+    <p>Update the <a href="https://github.com/karmaniverous/nextjs-template/blob/ff7a223f947b4accbc78cb04936562d38a606974/state/pageSlice.mjs#L62-L72"><code class="language-plaintext highlighter-rouge">resolveRoute</code></a> helper function to map the new value to the appropriate route.</p>
+  </li>
+</ul>
+
+<p class="notice--primary"><a href="https://github.com/karmaniverous/nextjs-template/blob/ff7a223f947b4accbc78cb04936562d38a606974/state/pageSlice.mjs#L62-L72"><code class="language-plaintext highlighter-rouge">resolveRoute</code></a> currently maps routes based solely on a <a href="https://github.com/karmaniverous/nextjs-template/blob/ff7a223f947b4accbc78cb04936562d38a606974/state/pageSlice.mjs#L5-L8"><code class="language-plaintext highlighter-rouge">PAGES</code></a> value. Feel free to add more logic to support more complex behaviors.</p>
+
+<h4 id="entity-slice">Entity Slice</h4>
+
+<p>The <a href="https://github.com/karmaniverous/nextjs-template/blob/main/state/entitySlice.mjs">Entity slice</a> does not participate in the sample application. It is included to illustrate the use of <a href="https://redux-toolkit.js.org/api/createEntityAdapter"><code class="language-plaintext highlighter-rouge">createEntityAdapter</code></a> and related functionality.</p>
+
+<p>See the <a href="https://github.com/karmaniverous/nextjs-template/blob/main/state/entitySlice.mjs">source code</a> and associated <a href="https://github.com/karmaniverous/nextjs-template/blob/main/test/entity.test.jsx">unit tests</a> for more info.</p>
+
+<h3 id="user-authentication">User Authentication</h3>
+
+<p>User authentication is enabled using <a href="https://next-auth.js.org/">NextAuth.js</a> against an <a href="https://docs.aws.amazon.com/cognito/latest/developerguide/cognito-user-identity-pools.html">AWS Cognito User Pool</a>.</p>
+
+<p>For simplicity, we are assuming that the Cognito User Pool has its hosted UI configured. This supports a wide variety of federated login providers, including social logins like Google, Facebook, etc. See my <a href="https://github.com/karmaniverous/aws-api-template">AWS API Template</a> for an example of how to set this up.</p>
+
+<p>NextAuth can secure front-end routes (i.e. pages) and back-end routes (i.e. API endpoints). You can also pass session credentials to other resources secured by the same authentication provider, for example an AWS API Gateway route. See the <a href="https://nextjs-template-preview.karmanivero.us/">demo site</a> for an example of this in action.</p>
+
+<h3 id="semantic-ui">Semantic UI</h3>
+
+<p>This template uses the <a href="https://react.semantic-ui.com/">Semantic UI React</a> component set.</p>
+
+<p>Your starting point is a nice reactive layout with a sticky sidebar that collapses down to a hamburger menu at mobile resolutions. There were some difficulties getting this to work properly with the installed version of Semantic UI; I’ve resolved these and commented those fixes in the code.</p>
+
+<p>The Semantic toolkit is super flexible, so you can easily morph this into whatever layout works for you.</p>
+
+<p>Semantic UI has a fantastic LESS-based theming system. It was a HUGE challenge getting this working properly within the Next.js context. Problem solved, though, so out of the box this template offers full Semantic UI theme support.</p>
+
+<p>All aspects of the site theme can be controlled by modifying the contents of the <a href="https://github.com/karmaniverous/nextjs-template/tree/main/semantic-ui"><code class="language-plaintext highlighter-rouge">semantic-ui</code></a> directory.</p>
+
+<p>Out of the box, this template leverages the Semantic UI <code class="language-plaintext highlighter-rouge">default</code> theme. Switch themes globally or at a component level by modifying <a href="https://github.com/karmaniverous/nextjs-template/tree/main/theme.config"><code class="language-plaintext highlighter-rouge">theme.config</code></a>. Override every conceivable aspect of the current theme, with full access to all related LESS variables, by editing the templates in the <a href="https://github.com/karmaniverous/nextjs-template/tree/main/semantic-ui/site"><code class="language-plaintext highlighter-rouge">site</code></a> directory.</p>
+
+<p>To examine existing themes and borrow their settings as overrides, follow the instructions to <a href="#setting-up-your-dev-environment">set up your dev environment</a> and see the contents of directory <code class="language-plaintext highlighter-rouge">node_modules/semantic-ui-less/themes</code>.</p>
+
+<p><a href="https://semantic-ui.com/usage/theming.html">Click here</a> to learn more about Semantic UI themes.</p>
+
+<h3 id="page-model">Page Model</h3>
+
+<p>This template decouples route components, page components, and page contents. As a result:</p>
+
+<ul>
+  <li>
+    <p>Page components can be reused for similar use cases across multiple route components.</p>
+  </li>
+  <li>
+    <p>Page components can be conditionally displayed or composed with route components or other page components.</p>
+  </li>
+</ul>
+
+<p>This diagram illustrates these relationships:</p>
+
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentStyleType="text/css" height="591px" preserveAspectRatio="none" style="width:546px;height:591px;background:#FFFFFF;" version="1.1" viewBox="0 0 546 591" width="546px" zoomAndPan="magnify"><defs /><g><g id="elem_Application"><rect fill="#F1F1F1" height="37.6094" style="stroke:#181818;stroke-width:0.5;" width="160" x="278.5" y="57.5" /><a href="#application-component" target="_top" title="#application-component" xlink:actuate="onRequest" xlink:href="#application-component" xlink:show="new" xlink:title="#application-component" xlink:type="simple"><text fill="#0000FF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" text-decoration="underline" textLength="146" x="285.5" y="74.0332">Application Component</text></a><line style="stroke:#181818;stroke-width:0.5;" x1="279.5" x2="437.5" y1="79.1094" y2="79.1094" /></g><g id="elem_GMN3"><path d="M21.5,6 L21.5,146.8125 A0,0 0 0 0 21.5,146.8125 L243.5,146.8125 A0,0 0 0 0 243.5,146.8125 L243.5,80.5 L278.25,76.5 L243.5,72.5 L243.5,16 L233.5,6 L21.5,6 A0,0 0 0 0 21.5,6 " fill="#FEFFDD" style="stroke:#181818;stroke-width:0.5;" /><path d="M233.5,6 L233.5,16 L243.5,16 L233.5,6 " fill="#FEFFDD" style="stroke:#181818;stroke-width:0.5;" /><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="190" x="27.5" y="24.4951">- Next.js root page component at</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="8" x="27.5" y="40.8467">&#160;&#160;</text><a href="https://github.com/karmaniverous/nextjs-template/blob/main/pages/_app.jsx" target="_top" title="https://github.com/karmaniverous/nextjs-template/blob/main/pages/_app.jsx" xlink:actuate="onRequest" xlink:href="https://github.com/karmaniverous/nextjs-template/blob/main/pages/_app.jsx" xlink:show="new" xlink:title="https://github.com/karmaniverous/nextjs-template/blob/main/pages/_app.jsx" xlink:type="simple"><text fill="#0000FF" font-family="sans-serif" font-size="13" lengthAdjust="spacing" text-decoration="underline" textLength="49" x="35.5" y="40.8467">_app.jsx</text></a><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="201" x="27.5" y="57.1982">- Performs server-side redirections.</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="169" x="27.5" y="73.5498">- Completes server-side state</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="72" x="35.5" y="89.9014">initialization.</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="147" x="27.5" y="106.2529">- Invokes client-side state</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="72" x="35.5" y="122.6045">initialization.</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="128" x="27.5" y="138.9561">- Renders page frame.</text></g><g id="elem_Route"><rect fill="#F1F1F1" height="37.6094" style="stroke:#181818;stroke-width:0.5;" width="129" x="294" y="243.5" /><a href="#route-components" target="_top" title="#route-components" xlink:actuate="onRequest" xlink:href="#route-components" xlink:show="new" xlink:title="#route-components" xlink:type="simple"><text fill="#0000FF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" text-decoration="underline" textLength="115" x="301" y="260.0332">Route Component</text></a><line style="stroke:#181818;stroke-width:0.5;" x1="295" x2="422" y1="265.1094" y2="265.1094" /></g><g id="elem_GMN7"><path d="M6,225 L6,300.4063 A0,0 0 0 0 6,300.4063 L259,300.4063 A0,0 0 0 0 259,300.4063 L259,266.5 L293.71,262.5 L259,258.5 L259,235 L249,225 L6,225 A0,0 0 0 0 6,225 " fill="#FEFFDD" style="stroke:#181818;stroke-width:0.5;" /><path d="M249,225 L249,235 L259,235 L249,225 " fill="#FEFFDD" style="stroke:#181818;stroke-width:0.5;" /><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="210" x="12" y="243.4951">- Located within the pages directory.</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="148" x="12" y="259.8467">- Extracts route variables.</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="179" x="12" y="276.1982">- Manages route-specific state.</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="232" x="12" y="292.5498">- Selects &amp; configures page component.</text></g><g id="elem_Page"><rect fill="#F1F1F1" height="37.6094" style="stroke:#181818;stroke-width:0.5;" width="124" x="296.5" y="405" /><a href="#page-components" target="_top" title="#page-components" xlink:actuate="onRequest" xlink:href="#page-components" xlink:show="new" xlink:title="#page-components" xlink:type="simple"><text fill="#0000FF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" text-decoration="underline" textLength="110" x="303.5" y="421.5332">Page Component</text></a><line style="stroke:#181818;stroke-width:0.5;" x1="297.5" x2="419.5" y1="426.6094" y2="426.6094" /></g><g id="elem_GMN11"><path d="M33.5,378 L33.5,469.7578 A0,0 0 0 0 33.5,469.7578 L261.5,469.7578 A0,0 0 0 0 261.5,469.7578 L261.5,428 L296.46,424 L261.5,420 L261.5,388 L251.5,378 L33.5,378 A0,0 0 0 0 33.5,378 " fill="#FEFFDD" style="stroke:#181818;stroke-width:0.5;" /><path d="M251.5,378 L251.5,388 L261.5,388 L251.5,378 " fill="#FEFFDD" style="stroke:#181818;stroke-width:0.5;" /><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="199" x="39.5" y="396.4951">- Top of in-frame display hierarchy.</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="207" x="39.5" y="412.8467">- Abstracts common page elements</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="83" x="47.5" y="429.1982">across routes.</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="178" x="39.5" y="445.5498">- Manages page-specific state.</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="139" x="39.5" y="461.9014">- Renders page content.</text></g><g id="elem_UI"><rect fill="#F1F1F1" height="37.6094" style="stroke:#181818;stroke-width:0.5;" width="141" x="288" y="548" /><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="127" x="295" y="564.5332">Content Component</text><line style="stroke:#181818;stroke-width:0.5;" x1="289" x2="428" y1="569.6094" y2="569.6094" /></g><!--reverse link Application to Route--><g id="link_Application_Route"><path codeLine="33" d="M358.5,107.82 C358.5,143.08 358.5,208.05 358.5,243.26 " fill="none" id="Application-backto-Route" style="stroke:#181818;stroke-width:1.0;" /><polygon fill="none" points="358.5,95.82,354.5,101.82,358.5,107.82,362.5,101.82,358.5,95.82" style="stroke:#181818;stroke-width:1.0;" /><polygon fill="#000000" points="363.5,181.1758,360.5611,190.2209,366.4389,190.2209,363.5,181.1758" style="stroke:#000000;stroke-width:1.0;" /><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="77" x="372.5" y="191.4951">prop injection</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="7" x="350.5594" y="116.7571">1</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="7" x="350.4281" y="232.5265">1</text></g><!--reverse link Route to Page--><g id="link_Route_Page"><path codeLine="34" d="M358.5,293.8 C358.5,324.56 358.5,374.29 358.5,404.92 " fill="none" id="Route-backto-Page" style="stroke:#181818;stroke-width:1.0;" /><polygon fill="none" points="358.5,281.8,354.5,287.8,358.5,293.8,362.5,287.8,358.5,281.8" style="stroke:#181818;stroke-width:1.0;" /><polygon fill="#000000" points="363.5,344.1758,366.4389,335.1307,360.5611,335.1307,363.5,344.1758" style="stroke:#000000;stroke-width:1.0;" /><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="59" x="372.5" y="344.4951">configures</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="7" x="350.5594" y="302.7317">1</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="5" x="352.7344" y="394.2355">*</text></g><!--reverse link Page to UI--><g id="link_Page_UI"><path codeLine="35" d="M358.5,455.14 C358.5,482.22 358.5,520.89 358.5,547.93 " fill="none" id="Page-backto-UI" style="stroke:#181818;stroke-width:1.0;" /><polygon fill="none" points="358.5,443.14,354.5,449.14,358.5,455.14,362.5,449.14,358.5,443.14" style="stroke:#181818;stroke-width:1.0;" /><polygon fill="#000000" points="363.5,514.1758,366.4389,505.1307,360.5611,505.1307,363.5,514.1758" style="stroke:#000000;stroke-width:1.0;" /><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="59" x="372.5" y="514.4951">configures</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="7" x="350.5594" y="464.0287">1</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="5" x="352.7344" y="537.2486">*</text></g><!--reverse link Page to Page--><g id="link_Page_Page"><path codeLine="36" d="M432.5391,408.4074 C452.0791,408.6474 455.5,413.75 455.5,424 C455.5,434.25 440.08,439.5 420.54,439.74 " fill="none" id="Page-backto-Page" style="stroke:#181818;stroke-width:1.0;" /><polygon fill="none" points="420.54,408.26,426.4904,412.3334,432.5391,408.4074,426.5887,404.334,420.54,408.26" style="stroke:#181818;stroke-width:1.0;" /><polygon fill="#000000" points="460.5614,429.1754,463.389,420.0949,457.5116,420.1671,460.5614,429.1754" style="stroke:#000000;stroke-width:1.0;" /><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="59" x="474.5" y="429.4951">configures</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="7" x="428.5277" y="402.907">1</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="5" x="428.4058" y="438.2237">*</text></g><!--SRC=[XPF1Rjim38RlUWh20tOOu1Yx1iE0ejWXm3OKtNeAWa5sw9YfB1aYawLx-b5oEzljYfuiaBz8VZ_bK1-n4IYsstTs61mrLYZuiWdz43nwWQif2jTFqTsk0ClpdF5141osOahuZXTP7HbY20A3FI1CzQmOWEss4nbuNLK7akvKhpHVtTlOMqzdZE74bTSQHou5-y5PmQfseQvwIxvA1RdwfUDgZmiy7NOxxNo3iGsnPs2CMgXasYD4t5DKIXsJLofA60u5boeMRQEpaISXw-XFvahwZJ-7UrKtZfJWBVKj-Zr67hdRQ7jS6Gr1CiYOCFcjc8AJqmotAV32v1nTsFirgEUuXz_g7NcG3dCpXX4pn8SqnvUBHDj8sa8gUxQHREqmE_3D-dnX7847RAYbPeHA-H_eC5rzhulpBHrE4VdP8b-1Ig8vqqswz1mf1HT4FyC0eLKposoOWh1k_G4wmcXZqsMWgveVYRH-hyyn3wIJzgcJxi8sCV0Zr08p3_MISh4f1PLNiAx7r8IH8Uusnin_Zk9Z0Q4iytVSv1g6g63aZ-FZWqzcJFoJVYX6WzPpdp-R79kBxZPlIlvNvoy0]--></g></svg>
+
+<h4 id="application-component">Application Component</h4>
+
+<p>The Next.js Application component is located at <a href="https://github.com/karmaniverous/nextjs-template/blob/main/pages/_app.jsx">_app.jsx</a>.</p>
+
+<p>The Application component sets the “frame” of the page. It renders:</p>
+
+<ul>
+  <li>All global <code class="language-plaintext highlighter-rouge">META</code> and <code class="language-plaintext highlighter-rouge">LINK</code> tags.</li>
+  <li>The page header &amp; footer.</li>
+  <li>The page sidebar or sidebar overlay, depending on page resolution.</li>
+</ul>
+
+<p>This component also handles any changes to <code class="language-plaintext highlighter-rouge">pushRoute</code> state (see <a href="#page-slice">Page Slice</a> above for more info).</p>
+
+<p>Additionally, this component’s <a href="https://github.com/karmaniverous/nextjs-template/blob/ff7a223f947b4accbc78cb04936562d38a606974/pages/_app.jsx#L233"><code class="language-plaintext highlighter-rouge">getInitialProps</code></a> function handles any server-side processing required prior to initial page load, including:</p>
+
+<ul>
+  <li>
+    <p>Composing initial client-side state derived from server-side secrets or requiring access to the request object.</p>
+  </li>
+  <li>
+    <p>Performing server-side redirects requiring logic beyond simple route-mapping (e.g. to the <a href="#coming-soon-page">Coming Soon page</a>).</p>
+  </li>
+</ul>
+
+<h4 id="route-components">Route Components</h4>
+
+<p>Route components include all those located within the applications <a href="https://github.com/karmaniverous/nextjs-template/tree/main/pages"><code class="language-plaintext highlighter-rouge">pages</code></a> directory, besides <a href="https://github.com/karmaniverous/nextjs-template/blob/main/pages/_app.jsx">_app.jsx</a>.</p>
+
+<p>These components can exploit <a href="https://nextjs.org/docs/routing/dynamic-routes">Next.js dynamic routing conventions</a> to extract parameters from the requested route.</p>
+
+<p>In principle, route components could display any content. In practice, it is useful to abstract display to Page Components and allow Route Components to focus on:</p>
+
+<ul>
+  <li>
+    <p>Extracting route parameters and setting appropriate state.</p>
+  </li>
+  <li>
+    <p>Determining which <a href="#page-components">Page Components</a> to display and passing appropriate configuration to them.</p>
+  </li>
+</ul>
+
+<h4 id="page-components">Page Components</h4>
+
+<p>The Page Component is the top of the in-frame display hierarchy.</p>
+
+<p>Every Page Component should exploit <a href="https://github.com/karmaniverous/nextjs-template/blob/2b5223e57e53f73532f63819bf835ce2156d69b4/components/page/HomePage.jsx#L23-L26"><code class="language-plaintext highlighter-rouge">setCurrentpage</code></a>.</p>
+
+<p>Beyond this, every Page Component is resonsible for managing its own display and state as with any other React component.</p>
+
+<h3 id="redirects">Redirects</h3>
+
+<p>Out of the box, Next.js supports <a href="https://nextjs.org/docs/api-reference/next.config.js/redirects">fairly robust server-side redirects</a>. But there are always occasions when you need more… either more robust redirect logic on the server side, or a no-hassle mechanism to support redirects on the client side.</p>
+
+<p>This template supports all three.</p>
+
+<h4 id="global-redirects">Global Redirects</h4>
+
+<p>Global redirects in this Next.js template are configured in <a href="https://github.com/karmaniverous/nextjs-template/blob/main/next.config.mjs"><code class="language-plaintext highlighter-rouge">next.config.mjs</code></a>. Note that none of these are configured in this template by default.</p>
+
+<p>Next.js global redirects support all kinds of pattern matching based on the contents the path, query string, request headers, and cookies. See the <a href="https://nextjs.org/docs/api-reference/next.config.js/redirects">Next.js documentation</a> for more info.</p>
+
+<h4 id="back-end-redirects">Back-End Redirects</h4>
+
+<p>There are scenarios where you need more than simple pattern-matching to perform a server-side redirect.</p>
+
+<p>A good example in this template is the <a href="#coming-soon-page">Coming Soon page</a>, where redirects depend on the value of the <code class="language-plaintext highlighter-rouge">COMING_SOON</code> environment variable, whose value may differ from one anvironment to another.</p>
+
+<p>Redirects in this case are performed in the <a href="#application-component">Application component</a>’s <a href="https://github.com/karmaniverous/nextjs-template/blob/ff7a223f947b4accbc78cb04936562d38a606974/pages/_app.jsx#L233"><code class="language-plaintext highlighter-rouge">getInitialProps</code></a> function. On initial load, this function has access to:</p>
+
+<ul>
+  <li>The full request object.</li>
+  <li>Public &amp; private environment variables.</li>
+  <li>The initial Redux state.</li>
+</ul>
+
+<p>Redirect here is performed using the <a href="https://github.com/karmaniverous/nextjs-template/blob/ff7a223f947b4accbc78cb04936562d38a606974/pages/_app.jsx#L223-L231"><code class="language-plaintext highlighter-rouge">redirect</code></a> helper function. See the template’s <a href="https://github.com/karmaniverous/nextjs-template/blob/ff7a223f947b4accbc78cb04936562d38a606974/pages/_app.jsx#L233"><code class="language-plaintext highlighter-rouge">getInitialProps</code></a> function for more info.</p>
+
+<h4 id="front-end-redirects">Front-End Redirects</h4>
+
+<p>Redirects on the front end can be performed directly using <a href="https://nextjs.org/docs/api-reference/next/router"><code class="language-plaintext highlighter-rouge">next/router</code></a>.</p>
+
+<p>A special category is a redirect to any page defined in the <a href="https://github.com/karmaniverous/nextjs-template/blob/ff7a223f947b4accbc78cb04936562d38a606974/state/pageSlice.mjs#L5-L8"><code class="language-plaintext highlighter-rouge">PAGES</code></a> enumeration and supported by the <a href="https://github.com/karmaniverous/nextjs-template/blob/ff7a223f947b4accbc78cb04936562d38a606974/state/pageSlice.mjs#L62-L72"><code class="language-plaintext highlighter-rouge">resolveRoute</code></a> helper function.</p>
+
+<p>In this case, use the <a href="https://github.com/karmaniverous/nextjs-template/blob/ff7a223f947b4accbc78cb04936562d38a606974/state/pageSlice.mjs#L33-L35"><code class="language-plaintext highlighter-rouge">setCurrentpage</code></a> reducer to set the <code class="language-plaintext highlighter-rouge">currentPage</code> state as illustrated <a href="https://github.com/karmaniverous/nextjs-template/blob/2b5223e57e53f73532f63819bf835ce2156d69b4/components/page/HomePage.jsx#L23-L26">here</a>.</p>
+
+<h2 id="configured-pages">Configured Pages</h2>
+
+<p>The template application has three pages configures:</p>
+
+<ul>
+  <li>
+    <p>The <a href="#public-home-page">Public Home Page</a> is visible at the root domain in the <a href="https://nextjs-template-dev.karmanivero.us/"><code class="language-plaintext highlighter-rouge">dev</code></a> and <a href="https://nextjs-template-test.karmanivero.us/"><code class="language-plaintext highlighter-rouge">test</code></a> environments.</p>
+  </li>
+  <li>
+    <p>The <a href="#private-page">Private Page</a> is visible to authenticated users in the <a href="https://nextjs-template-dev.karmanivero.us/"><code class="language-plaintext highlighter-rouge">dev</code></a> and <a href="https://nextjs-template-test.karmanivero.us/"><code class="language-plaintext highlighter-rouge">test</code></a> environments.</p>
+  </li>
+</ul>
+
+<h3 id="private-page">Private Page</h3>
+
+<p>The page at <code class="language-plaintext highlighter-rouge">/private</code> is only visible to authenticated users. This is accomplished by adding the route pattern to the <code class="language-plaintext highlighter-rouge">config</code> variable in <a href="/middleware.js"><code class="language-plaintext highlighter-rouge">middleware.js</code></a>, like this:</p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">export</span> <span class="kd">const</span> <span class="nx">config</span> <span class="o">=</span> <span class="p">{</span> <span class="na">matcher</span><span class="p">:</span> <span class="p">[</span><span class="dl">"</span><span class="s2">/private</span><span class="dl">"</span><span class="p">]</span> <span class="p">};</span>
+</code></pre></div></div>
+
+<p>If an unauthenticated user attempts to access this page, he will be redirected to a login page.</p>
+
+<p>Note that the link to the Private page only appears in the sidebar when the user is authenticated. This is accomplished in <a href="/components/application/sidebar/SidebarItems.jsx"><code class="language-plaintext highlighter-rouge">SidebarItems.jsx</code></a>. Note that <code class="language-plaintext highlighter-rouge">router.push</code> does not support shallow routing to protected pages!</p>
+
+<h3 id="coming-soon-page">Coming Soon Page</h3>
+
+<p>If the following environment variable condition is <code class="language-plaintext highlighter-rouge">true</code>, the application will display a coming soon page:</p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">process</span><span class="p">.</span><span class="nx">env</span><span class="p">.</span><span class="nx">NEXT_PUBLIC_COMING_SOON</span> <span class="o">===</span> <span class="dl">"</span><span class="s2">1</span><span class="dl">"</span> <span class="o">&amp;&amp;</span>
+  <span class="nx">process</span><span class="p">.</span><span class="nx">env</span><span class="p">.</span><span class="nx">NEXT_PUBLIC_VERCEL_ENV</span> <span class="o">!==</span> <span class="dl">"</span><span class="s2">preview</span><span class="dl">"</span><span class="p">;</span>
+</code></pre></div></div>
+
+<p>If it is <code class="language-plaintext highlighter-rouge">false</code>, then the application will display.</p>
+
+<p>In the development environment, both variables may be set explicitly in <code class="language-plaintext highlighter-rouge">.env.development</code>. In deployed environments, they are set explicitly in <code class="language-plaintext highlighter-rouge">.env.production</code> but may be overridden in your deployment pipeline.</p>
+
+<p>If you are hosted at Vercel, the hosting environment will populate the <code class="language-plaintext highlighter-rouge">NEXT_PUBLIC_VERCEL_ENV</code> environment variable to reflect your deployment type. This value will be <code class="language-plaintext highlighter-rouge">production</code> on your production branch and <code class="language-plaintext highlighter-rouge">preview</code> on all other branches.</p>
+
+<h2 id="common-tasks">Common Tasks</h2>
+
+<h3 id="add-a-page">Add a Page</h3>
+
+<p class="notice--primary"><strong>TODO</strong></p>
+
+<h3 id="add-an-api-route">Add an API Route</h3>
+
+<p class="notice--primary"><strong>TODO</strong></p>
+
+<h3 id="create--run-a-local-production-build">Create &amp; Run a Local Production Build</h3>
+
+<p class="notice--primary"><strong>TODO</strong></p>
+
+<h3 id="analyze-your-bundles">Analyze Your Bundles</h3>
+
+<p class="notice--primary"><strong>TODO</strong></p>
+
+<h3 id="create-a-release">Create a Release</h3>
+
+<p class="notice--primary"><strong>TODO</strong></p>
+
+<h3 id="integrate-a-template-update">Integrate a Template Update</h3>
+
+<p>Follow <a href="https://karmanivero.us/blog/installing-github-repo-template-updates/">these instructions</a>.</p>
+
+<h2 id="faq">FAQ</h2>
+
+<h3 id="why-are-all-your-tests-jsx-files">Why are all your tests <code class="language-plaintext highlighter-rouge">.jsx</code> files?</h3>
+
+<p>I know, right? And you’re gonna HATE <a href="https://karmanivero.us/blog/testing-redux-in-nextjs/">the answer</a>.</p>
+
+<h2 id="issues">Issues</h2>
+
+<ul>
+  <li>Authorization fails in local <code class="language-plaintext highlighter-rouge">prod</code> (i.e. <code class="language-plaintext highlighter-rouge">npm run build &amp;&amp; npm run start</code> in your dev environment). This behavior arises from <a href="https://github.com/nextauthjs/next-auth/issues/6229">this NextAuth issue</a>. I’m tracking it actively.</li>
+</ul>
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+  
+
+
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-tags" aria-hidden="true"></i> Topics: </strong>
+    <span itemprop="keywords">
+    
+      <a href="/topics/javascript" class="page__taxonomy-item p-category" rel="tag">javascript</a><span class="sep">, </span>
+    
+      <a href="/topics/nextjs" class="page__taxonomy-item p-category" rel="tag">nextjs</a><span class="sep">, </span>
+    
+      <a href="/topics/projects" class="page__taxonomy-item p-category" rel="tag">projects</a><span class="sep">, </span>
+    
+      <a href="/topics/react" class="page__taxonomy-item p-category" rel="tag">react</a><span class="sep">, </span>
+    
+      <a href="/topics/template" class="page__taxonomy-item p-category" rel="tag">template</a>
+    
+    </span>
+  </p>
+
+
+
+
+        
+
+  <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> Updated:</strong> <time class="dt-published" datetime="2022-12-29T00:00:00+00:00">December 29, 2022</time></p>
+
+      </footer>
+
+      
+        <section class="page__share">
+  
+    <h4 class="page__share-title">Share on</h4>
+  
+
+  <a href="https://twitter.com/intent/tweet?via=karmaniverous&text=Next.js+Template%20https%3A%2F%2Fkarmanivero.us%2Fnextjs-template%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+
+  <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fkarmanivero.us%2Fnextjs-template%2F" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
+
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=https://karmanivero.us/nextjs-template/" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
+</section>
+
+
+      
+  <nav class="pagination">
+    
+      <a href="/aws-api-template/" class="pagination--pager" title="AWS API Template
+">Previous</a>
+    
+    
+      <a href="/dot-code-for-windows/" class="pagination--pager" title="dot-code for Windows
+">Next</a>
+    
+  </nav>
+
+    </div>
+
+    
+  </article>
+
+  
+  
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  
+
+  
+  
+
+  
+  
+
+  
+  <div class='page__related'>
+    
+    <h2 class='page__related-title'>
+      You may also enjoy
+    </h2>
+    <div class='grid__wrapper'>
+
+      
+      
+        
+        
+        
+        
+        
+        
+      
+
+        
+      
+
+        
+        <!-- post_url: /the-big-miss-turning-lemons-into-lemonade/ -->
+        <!-- normLogCommonTags: 0.5 -->
+        <!-- logAge: 0.090462962962963 -->
+        <!-- relevance: 51410 -->
+
+        
+      
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src="/assets/images/lemons-square.jpg" alt="">
+      </div>
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/the-big-miss-turning-lemons-into-lemonade/" rel="permalink">The Big Miss: Turning Lemons Into Lemonade
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+      
+      <span class="page__meta-date">
+        <i
+          class="far fa-fw fa-calendar-alt"
+          aria-hidden="true"
+        ></i>
+        
+        <time datetime="2024-11-20T00:00:00+00:00">November 20, 2024</time>
+      </span>
+    
+
+    <span class="page__meta-sep"></span>
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i
+          class="far fa-fw fa-clock"
+          aria-hidden="true"
+        ></i>
+        
+          8
+          minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">Today was one of those days when I question my life choices. Watch me dig my way out of a hole with the same shovel I used to dig my way in.
+</p>
+  </article>
+</div>
+
+
+        
+        
+        
+      
+        
+        
+        
+        
+        
+      
+
+        
+      
+
+        
+        <!-- post_url: /projects/entity-manager/sql-vs-nosql/ -->
+        <!-- normLogCommonTags: 0.0 -->
+        <!-- logAge: 5.0 -->
+        <!-- relevance: 45000 -->
+
+        
+      
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src="/assets/collections/entity-manager/sql-vs-nosql-square.jpg" alt="">
+      </div>
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/projects/entity-manager/sql-vs-nosql/" rel="permalink">SQL vs NoSQL
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i
+          class="far fa-clock"
+          aria-hidden="true"
+        ></i>
+        
+          4
+          minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">A well-tuned NoSQL database can outperform an RDBMS by orders of magnitude at scale… but not for free! Entity Manager helps close the gap.
+</p>
+  </article>
+</div>
+
+
+        
+        
+        
+      
+        
+        
+        
+        
+        
+      
+
+        
+      
+
+        
+        <!-- post_url: /projects/entity-manager/intro/ -->
+        <!-- normLogCommonTags: 0.0 -->
+        <!-- logAge: 5.0 -->
+        <!-- relevance: 45000 -->
+
+        
+      
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src="/assets/collections/entity-manager/entity-manager-square.jpg" alt="">
+      </div>
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/projects/entity-manager/intro/" rel="permalink">Meet Entity Manager!
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i
+          class="far fa-clock"
+          aria-hidden="true"
+        ></i>
+        
+          2
+          minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">NoSQL shifts the burden of complexity from the database platform to the developer. Entity Manager sweeps it under the rug!
+</p>
+  </article>
+</div>
+
+
+        
+        
+        
+      
+        
+        
+        
+        
+        
+      
+
+        
+      
+
+        
+        <!-- post_url: /projects/entity-manager/evolving-a-nosql-db-schema/ -->
+        <!-- normLogCommonTags: 0.0 -->
+        <!-- logAge: 5.0 -->
+        <!-- relevance: 45000 -->
+
+        
+      
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src="/assets/collections/entity-manager/evolving-a-nosql-db-schema-square.jpg" alt="">
+      </div>
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/projects/entity-manager/evolving-a-nosql-db-schema/" rel="permalink">Evolving a NoSQL Database Schema
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i
+          class="far fa-clock"
+          aria-hidden="true"
+        ></i>
+        
+          31
+          minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">In a NoSQL environment, Entity Manager organizes the physical distribution of data to support efficient query operations.
+</p>
+  </article>
+</div>
+
+
+        
+        
+        
+      
+        
+        
+        
+        
+        
+      
+
+        
+      
+
+        
+        <!-- post_url: /projects/entity-manager/demo/ -->
+        <!-- normLogCommonTags: 0.0 -->
+        <!-- logAge: 5.0 -->
+        <!-- relevance: 45000 -->
+
+        
+      
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src="/assets/collections/entity-manager/configuration-square.jpg" alt="">
+      </div>
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/projects/entity-manager/demo/" rel="permalink">Entity Manager: A Demonstration
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i
+          class="far fa-clock"
+          aria-hidden="true"
+        ></i>
+        
+          16
+          minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">Presenting a step-by-step Typescript implementation of a realistic data model against DynamoDB, with the help of Entity Manager.
+</p>
+  </article>
+</div>
+
+
+        
+        
+        
+      
+        
+        
+        
+        
+        
+      
+
+        
+      
+
+        
+        <!-- post_url: /projects/entity-manager/configuration/ -->
+        <!-- normLogCommonTags: 0.0 -->
+        <!-- logAge: 5.0 -->
+        <!-- relevance: 45000 -->
+
+        
+      
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src="/assets/collections/entity-manager/configuration-square.jpg" alt="">
+      </div>
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/projects/entity-manager/configuration/" rel="permalink">Entity Manager Configuration
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i
+          class="far fa-clock"
+          aria-hidden="true"
+        ></i>
+        
+          22
+          minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">Entity Manager enables efficient put, get, and query operations across entity relationships, indexes, and sharded partitions in a NoSQL database.
+</p>
+  </article>
+</div>
+
+
+        
+        
+        
+      
+        
+        
+        
+        
+        
+      
+
+        
+      
+
+        
+        <!-- post_url: /composition-in-action-finishing-the-swing/ -->
+        <!-- normLogCommonTags: 0.0 -->
+        <!-- logAge: 5.1278269675925925 -->
+        <!-- relevance: 44872 -->
+
+        
+      
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src="https://github.com/karmaniverous/controlled-proxy/raw/main/assets/controlled-proxy-square.jpg" alt="">
+      </div>
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/composition-in-action-finishing-the-swing/" rel="permalink">Composition in Action: Finishing the Swing
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+      
+      <span class="page__meta-date">
+        <i
+          class="far fa-fw fa-calendar-alt"
+          aria-hidden="true"
+        ></i>
+        
+        <time datetime="2024-10-16T00:00:00+00:00">October 16, 2024</time>
+      </span>
+    
+
+    <span class="page__meta-sep"></span>
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i
+          class="far fa-fw fa-clock"
+          aria-hidden="true"
+        ></i>
+        
+          9
+          minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">In software engineering, what look to be the easy parts often turn out to be the hard parts. If you’re lucky, the reverse is also true, but don’t count on it.
+</p>
+  </article>
+</div>
+
+
+        
+        
+        
+      
+        
+        
+        
+        
+        
+      
+
+        
+      
+
+        
+        <!-- post_url: /mixin-it-up-picking-the-right-problem-to-solve/ -->
+        <!-- normLogCommonTags: 0.0 -->
+        <!-- logAge: 5.2528269675925925 -->
+        <!-- relevance: 44747 -->
+
+        
+      
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src="/assets/images/mixin-it-up-square.jpg" alt="">
+      </div>
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/mixin-it-up-picking-the-right-problem-to-solve/" rel="permalink">Mixin It Up: Picking The Right Problem to Solve
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+      
+      <span class="page__meta-date">
+        <i
+          class="far fa-fw fa-calendar-alt"
+          aria-hidden="true"
+        ></i>
+        
+        <time datetime="2024-10-12T00:00:00+00:00">October 12, 2024</time>
+      </span>
+    
+
+    <span class="page__meta-sep"></span>
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i
+          class="far fa-fw fa-clock"
+          aria-hidden="true"
+        ></i>
+        
+          9
+          minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">Sometimes, when you’re tangled up in a thorny problem, solving it is exactly the wrong answer.
+</p>
+  </article>
+</div>
+
+
+        
+        
+        
+          
+    </div>
+  </div>
+
+  
+</div>
+      
+    </div>
+
+    
+      <div class="search-content">
+        <div class="search-content__inner-wrap"><form onsubmit="return googleCustomSearchExecute();" id="cse-search-box-form-id" role="search">
+    <label class="sr-only" for="cse-search-input-box-id">
+      Enter your search term...
+    </label>
+    <input type="search" id="cse-search-input-box-id" class="search-input" tabindex="-1" placeholder="Enter your search term..." />
+  </form>
+  <div id="results" class="results">
+    <gcse:searchresults-only></gcse:searchresults-only>
+  </div></div>
+
+      </div>
+    
+
+    <div id="footer" class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+        <div class="page__footer-follow">
+  
+    <span class="love">Built for you with ❤️ on <a href="/bali/">Bali</a>!</span>
+  
+
+  <ul class="social-icons">
+    
+      <li>
+        <strong>Contact</strong>&nbsp;&nbsp;&nbsp;</li>
+    
+
+    
+      
+        
+          <li>
+            <a href="https://twitter.com/karmaniverous" rel="nofollow noopener noreferrer">
+              <i class="fa-brands fa-x-twitter" aria-hidden="true"></i>
+              </a>
+          </li>
+        
+      
+        
+          <li>
+            <a href="https://techhub.social/@karmaniverous" rel="nofollow noopener noreferrer">
+              <i class="fa-brands fa-mastodon" aria-hidden="true"></i>
+              </a>
+          </li>
+        
+      
+        
+          <li>
+            <a href="https://github.com/karmaniverous" rel="nofollow noopener noreferrer">
+              <i class="fa-brands fa-github" aria-hidden="true"></i>
+              </a>
+          </li>
+        
+      
+        
+          <li>
+            <a href="https://www.linkedin.com/in/jscroft/" rel="nofollow noopener noreferrer">
+              <i class="fa-brands fa-linkedin" aria-hidden="true"></i>
+              </a>
+          </li>
+        
+      
+        
+          <li>
+            <a href="https://wa.me/17737500338" rel="nofollow noopener noreferrer">
+              <i class="fa-brands fa-square-whatsapp" aria-hidden="true"></i>
+              </a>
+          </li>
+        
+      
+        
+          <li>
+            <a href="https://t.me/karmaniverous" rel="nofollow noopener noreferrer">
+              <i class="fa-brands fa-telegram" aria-hidden="true"></i>
+              </a>
+          </li>
+        
+      
+        
+          <li>
+            <a href="https://calendly.com/karmaniverous" rel="nofollow noopener noreferrer">
+              <i class="fa-regular fa-calendar-plus" aria-hidden="true"></i>
+              </a>
+          </li>
+        
+      
+    
+
+    
+      <li>
+        <a href="/feed.xml">
+          <i class="fas fa-fw fa-rss-square" aria-hidden="true"></i>
+           </a>
+      </li>
+    
+  </ul>
+</div>
+
+<div class="page__footer-copyright">&copy; 2024
+  <a href="https://karmanivero.us">some words</a>. Powered by
+  <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a>
+  &amp;
+  <a href="https://mademistakes.com/work/jekyll-themes/minimal-mistakes/" rel="nofollow">Minimal Mistakes</a>.</div>
+      </footer>
+    </div>
+
+    
+  <script src="/assets/js/main.min.js"></script>
+
+
+<script>
+  (function () {
+    var cx = '960ee5d1b2fec4509';
+    var gcse = document.createElement('script');
+    gcse.type = 'text/javascript';
+    gcse.async = true;
+    gcse.src = 'https://cse.google.com/cse.js?cx=' + cx;
+    var s = document.getElementsByTagName('script')[0];
+    s.parentNode.insertBefore(gcse, s);
+  })();
+
+  function googleCustomSearchExecute() {
+    var input = document.getElementById('cse-search-input-box-id');
+    var element = google.search.cse.element.getElement('searchresults-only0');
+    if (input.value == '') {
+      element.clearAllResults();
+    } else {
+      element.execute(input.value);
+    }
+    return false;
+  }
+
+  
+    $(document).ready(function () {
+      $('input#cse-search-input-box-id').on('keyup', function () {
+        googleCustomSearchExecute();
+      });
+    });
+  
+</script>
+
+
+
+
+    
+  <script>
+    var disqus_config = function () {
+      this.page.url = "https://karmanivero.us/nextjs-template/";  /* Replace PAGE_URL with your page's canonical URL variable */
+      this.page.identifier = "/nextjs-template"; /* Replace PAGE_IDENTIFIER with your page's unique identifier variable */
+    };
+    (function() { /* DON'T EDIT BELOW THIS LINE */
+      var d = document, s = d.createElement('script');
+      s.src = 'https://some-words.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+    })();
+  </script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+
+  
+
+
+
+
+  </body>
+</html>

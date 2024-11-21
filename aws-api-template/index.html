@@ -1,0 +1,2161 @@
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.26.2 by Michael Rose
+  Copyright 2013-2024 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
+-->
+
+<html lang="en-US" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin _includes/seo.html --><title>AWS API Template - some words</title>
+<meta name="description" content="Config-driven AWS API ES6 template integrating federated Cognito User Pool authentication and a robust approach to release management.">
+
+
+  <meta name="author" content="Jason Williscroft">
+  
+  <meta property="article:author" content="Jason Williscroft">
+  
+
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="en_US">
+<meta property="og:site_name" content="some words">
+<meta property="og:title" content="AWS API Template">
+<meta property="og:url" content="https://karmanivero.us/aws-api-template/">
+
+
+  <meta property="og:description" content="Config-driven AWS API ES6 template integrating federated Cognito User Pool authentication and a robust approach to release management.">
+
+
+
+  <meta property="og:image" content="https://karmanivero.us/assets/images/logo-aws.png">
+
+
+
+  <meta name="twitter:site" content="@karmaniverous">
+  <meta name="twitter:title" content="AWS API Template">
+  <meta name="twitter:description" content="Config-driven AWS API ES6 template integrating federated Cognito User Pool authentication and a robust approach to release management.">
+  <meta name="twitter:url" content="https://karmanivero.us/aws-api-template/">
+
+  
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content="https://karmanivero.us/assets/images/logo-aws.png">
+  
+
+  
+
+
+
+  <meta property="article:published_time" content="2022-12-29T00:00:00+00:00">
+
+
+
+
+
+
+<link rel="canonical" href="https://karmanivero.us/aws-api-template/">
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- end _includes/seo.html -->
+
+
+
+  <link href="/feed.xml" type="application/atom+xml" rel="alternate" title="some words Feed">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script type="text/javascript">
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+  window.enable_copy_code_button = true;
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/assets/css/main.css">
+<link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@latest/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@latest/css/all.min.css"></noscript>
+
+
+
+    <link
+  rel="apple-touch-icon"
+  sizes="180x180"
+  href="/assets/favicon/apple-touch-icon.png" />
+<link
+  rel="icon"
+  type="image/png"
+  sizes="32x32"
+  href="/assets/favicon/favicon-32x32.png" />
+<link
+  rel="icon"
+  type="image/png"
+  sizes="16x16"
+  href="/assets/favicon/favicon-16x16.png" />
+<link rel="manifest" href="/assets/favicon/site.webmanifest" />
+<link
+  rel="mask-icon"
+  href="/assets/favicon/safari-pinned-tab.svg"
+  color="#5bbad5" />
+<link rel="shortcut icon" href="/assets/favicon/favicon.ico" />
+<meta name="msapplication-TileColor" content="#2b5797" />
+<meta name="msapplication-config" content="/assets/favicon/browserconfig.xml" />
+<meta name="theme-color" content="#ffffff" />
+
+
+
+<!-- Mathjax Support -->
+<script
+  type="text/javascript"
+  async
+  src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+  </head>
+
+  <body class="layout--single" dir="ltr">
+    <nav class="skip-links">
+  <ul>
+    <li><a href="#site-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">Skip to footer</a></li>
+  </ul>
+</nav>
+
+    
+
+<div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        
+        <a class="site-title" href="/">
+          some words
+          <span class="site-subtitle">many of them true</span>
+        </a>
+        <ul class="visible-links"><li class="masthead__menu-item">
+              <a
+                href="/projects/"
+                
+                
+              >Projects</a>
+            </li><li class="masthead__menu-item">
+              <a
+                href="/toolkits/"
+                
+                
+              >Toolkits</a>
+            </li><li class="masthead__menu-item">
+              <a
+                href="/bali/"
+                
+                
+              >Bali</a>
+            </li><li class="masthead__menu-item">
+              <a
+                href="/topics/"
+                
+                
+              >Topics</a>
+            </li><li class="masthead__menu-item">
+              <a
+                href="/blog/"
+                
+                
+              >Archive</a>
+            </li></ul>
+        
+        <button class="search__toggle" type="button">
+          <span class="visually-hidden">Toggle search</span>
+          <i class="fas fa-search"></i>
+        </button>
+        
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">Toggle menu</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+    <div class="initial-content">
+      
+
+
+
+
+
+<div id="main" role="main">
+  
+  <div class="sidebar sticky">
+  
+
+
+<div itemscope itemtype="https://schema.org/Person" class="h-card">
+
+  
+    <div class="author__avatar">
+      <a href="https://karmanivero.us/">
+        <img src="/assets/images/bio-photo.jpg" alt="Jason Williscroft" itemprop="image" class="u-photo">
+      </a>
+    </div>
+  
+
+  <div class="author__content">
+    <h3 class="author__name p-name" itemprop="name">
+      <a class="u-url" rel="me" href="https://karmanivero.us/" itemprop="url">Jason Williscroft</a>
+    </h3>
+    
+      <div class="author__bio p-note" itemprop="description">
+        <p><em>resume bullets<br />may read differently at the<br />threshold of heaven</em></p>
+
+      </div>
+    
+  </div>
+
+  <div class="author__urls-wrapper">
+    <button class="btn btn--inverse">Contact</button>
+    <ul class="author__urls social-icons">
+      
+
+      
+        
+          
+            <li><a href="https://twitter.com/karmaniverous" rel="nofollow noopener noreferrer me" itemprop="sameAs"><i class="fa-brands fa-square-x-twitter" aria-hidden="true"></i><span class="label">X</span></a></li>
+          
+        
+          
+            <li><a href="https://techhub.social/@karmaniverous" rel="nofollow noopener noreferrer me" itemprop="sameAs"><i class="fa-brands fa-mastodon" aria-hidden="true"></i><span class="label">Mastodon</span></a></li>
+          
+        
+          
+            <li><a href="https://github.com/karmaniverous" rel="nofollow noopener noreferrer me" itemprop="sameAs"><i class="fa-brands fa-github" aria-hidden="true"></i><span class="label">GitHub</span></a></li>
+          
+        
+          
+            <li><a href="https://www.linkedin.com/in/jscroft/" rel="nofollow noopener noreferrer me" itemprop="sameAs"><i class="fa-brands fa-linkedin" aria-hidden="true"></i><span class="label">LinkedIn</span></a></li>
+          
+        
+          
+            <li><a href="https://wa.me/17737500338" rel="nofollow noopener noreferrer me" itemprop="sameAs"><i class="fa-brands fa-whatsapp" aria-hidden="true"></i><span class="label">WhatsApp</span></a></li>
+          
+        
+          
+            <li><a href="https://t.me/karmaniverous" rel="nofollow noopener noreferrer me" itemprop="sameAs"><i class="fa-brands fa-telegram" aria-hidden="true"></i><span class="label">Telegram</span></a></li>
+          
+        
+          
+            <li><a href="https://calendly.com/karmaniverous" rel="nofollow noopener noreferrer me" itemprop="sameAs"><i class="fa-regular fa-calendar-plus" aria-hidden="true"></i><span class="label">Meet</span></a></li>
+          
+        
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      <!--
+  <li>
+    <a href="http://link-to-whatever-social-network.com/user/" itemprop="sameAs" rel="nofollow noopener noreferrer me">
+      <i class="fas fa-fw" aria-hidden="true"></i> Custom Social Profile Link
+    </a>
+  </li>
+-->
+    </ul>
+  </div>
+</div>
+
+  
+  </div>
+
+
+
+  <article
+    class="page"
+    itemscope
+    itemtype="https://schema.org/CreativeWork"
+    >
+    <meta itemprop="headline" content="AWS API Template">
+    <meta itemprop="description" content="Config-driven AWS API ES6 template integrating federated Cognito User Pool authentication and a robust approach to release management.">
+    <meta itemprop="datePublished" content="2022-12-29T00:00:00+00:00">
+    
+
+    <div class="page__inner-wrap">
+      
+        <header>
+          <h1
+              id="page-title"
+              class="page__title"
+              itemprop="headline">
+              <a href="https://karmanivero.us/aws-api-template/" itemprop="url">AWS API Template
+</a>
+            </h1>
+          
+
+  <p class="page__meta">
+    
+      
+      <span class="page__meta-date">
+        <i
+          class="far fa-calendar-alt"
+          aria-hidden="true"
+        ></i>
+        
+        <time datetime="2022-12-29T00:00:00+00:00">December 29, 2022</time>
+      </span>
+    
+
+    <span class="page__meta-sep"></span>
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i
+          class="far fa-clock"
+          aria-hidden="true"
+        ></i>
+        
+          25
+          minute read
+        
+      </span>
+    
+  </p>
+
+
+        </header>
+      
+
+      <section class="page__content" itemprop="text">
+        
+          <aside class="sidebar__right sticky">
+            <nav class="toc">
+              <header>
+                <h4 class="nav__title">
+                  <i class="fas fa-file-alt"></i>
+                  On this page</h4>
+              </header>
+              <ul class="toc__menu"><li><a href="#the-tech-stack">The Tech Stack</a><ul><li><a href="#nodejs--es6">Node.js &amp; ES6</a></li><li><a href="#the-serverless-framework">The Serverless Framework</a></li><li><a href="#environments-api-versions-stages--stacks">Environments, API Versions, Stages &amp; Stacks</a></li><li><a href="#project-configuration">Project Configuration</a></li><li><a href="#release-management">Release Management</a></li></ul></li><li><a href="#setting-up-your-dev-environment">Setting Up Your Dev Environment</a><ul><li><a href="#install-applications--global-packages">Install Applications &amp; Global Packages</a></li><li><a href="#create-a-new-github-repository">Create a new GitHub Repository</a></li><li><a href="#clone-the-project-repository">Clone the Project Repository</a></li><li><a href="#vulnerabilities">Vulnerabilities</a></li><li><a href="#create-local-environment-variable-files">Create Local Environment Variable Files</a></li><li><a href="#connect-to-github">Connect to GitHub</a></li><li><a href="#connect-to-aws">Connect to AWS</a></li><li><a href="#test-your-setup">Test Your Setup</a></li></ul></li><li><a href="#deploying-to-aws">Deploying to AWS</a><ul><li><a href="#preparing-aws">Preparing AWS</a></li><li><a href="#manual-deployment">Manual Deployment</a></li><li><a href="#automated-deployment">Automated Deployment</a><ul><li><a href="#creating-your-first-codepipeline">Creating Your First CodePipeline</a><ul><li><a href="#create-a-codebuild-service-role">Create a CodeBuild Service Role</a></li><li><a href="#create-your-pipeline">Create Your Pipeline</a></li></ul></li><li><a href="#creating-your-next-pipeline">Creating Your Next Pipeline</a></li><li><a href="#creating-a-maintenance-pipeline">Creating a Maintenance Pipeline</a></li></ul></li><li><a href="#deleting-a-stack">Deleting a Stack</a></li></ul></li><li><a href="#some-thoughts-about-devops">Some Thoughts About DevOps</a></li><li><a href="#authentication">Authentication</a><ul><li><a href="#backwards-compatibility">Backwards Compatibility</a></li><li><a href="#add-google-authentication">Add Google Authentication</a></li><li><a href="#add-support-for-other-federated-identity-providers">Add Support For Other Federated Identity Providers</a></li></ul></li><li><a href="#endpoints">Endpoints</a></li><li><a href="#issues">Issues</a><ul><li><a href="#secure-certificate">Secure Certificate</a></li><li><a href="#serverlessyml-validation">serverless.yml Validation</a></li><li><a href="#user-accounts">User Accounts</a></li></ul></li></ul>
+            </nav>
+          </aside>
+        
+        <figure class="align-left drop-image">
+    <img src="/assets/images/logo-aws.png" />
+</figure>
+
+<p>Getting your application’s back end up and running on <a href="https://aws.amazon.com/">Amazon Web Services</a> (AWS) is not a trivial exercise, especially if you want a robust and extensible result that will support a modern development process.</p>
+
+<p>Here’s a plug-and-play <a href="https://github.com/karmaniverous/aws-api-template">AWS API template</a> that offers the following features:</p>
+
+<ul>
+  <li>
+    <p>Produces a secure <a href="https://aws.amazon.com/">Amazon Web Services</a> (AWS) API using the <a href="https://www.serverless.com/">Serverless Framework</a>.</p>
+  </li>
+  <li>
+    <p>Features both public and private endpoints.</p>
+  </li>
+  <li>
+    <p>Secured by an <a href="https://docs.aws.amazon.com/cognito/latest/developerguide/cognito-user-identity-pools.html">AWS Cognito User Pool</a> supporting native username/password authentication and one federated identity provider (Google).</p>
+  </li>
+  <li>
+    <p>Configured to act as both the authentication provider and a secure remote API for my <a href="https://github.com/karmaniverous/nextjs-template">Next.js Template</a> on the front end.</p>
+  </li>
+  <li>
+    <p>Efficient and highly configurable. You should be able to get it up and running on your own domain, in your own infrastructure, in just a few minutes with edits to nothing but environment variables.</p>
+  </li>
+  <li>
+    <p>Deployable from the command line to multiple <a href="https://aws.amazon.com/cloudformation/">AWS CloudFormation</a> Stacks, each exposing an independent environment (e.g. <code class="language-plaintext highlighter-rouge">dev</code>, <code class="language-plaintext highlighter-rouge">test</code>, and <code class="language-plaintext highlighter-rouge">prod</code>), with its own authentication provider, at configurable endpoints.</p>
+  </li>
+  <li>
+    <p>Unit testing support with <a href="https://www.npmjs.com/package/mocha"><code class="language-plaintext highlighter-rouge">mocha</code></a> and <a href="https://www.npmjs.com/package/chai"><code class="language-plaintext highlighter-rouge">chai</code></a>. Includes examples and a sweet testing console!</p>
+  </li>
+  <li>
+    <p>Built-in backwards compatibility. Every major release triggers the deployment of an independent Stack on every environment. Share key resources across Stacks so you can bring your users with you across major versions.</p>
+  </li>
+  <li>
+    <p>Automatically build and deploy the relevant Stack following every code push with <a href="https://aws.amazon.com/codepipeline/">AWS CodePipeline</a>. See <a href="#automated-deployment">Automated Deployment</a> below for more info.</p>
+  </li>
+  <li>
+    <p>Code formatting at every save &amp; paste with
+<a href="https://www.npmjs.com/package/prettier"><code class="language-plaintext highlighter-rouge">prettier</code></a>.</p>
+  </li>
+  <li>
+    <p>One-button release to GitHub with
+<a href="https://www.npmjs.com/package/release-it"><code class="language-plaintext highlighter-rouge">release-it</code></a>.</p>
+  </li>
+</ul>
+
+<p class="notice--info">This template’s repo branches are in fact hooked into CodePipeline to support deployments to demo environments. Consequently you will see many references to the <code class="language-plaintext highlighter-rouge">karmanivero.us</code> domain. Obviously, you’ll need to replace these with references to your own domain.</p>
+
+<p class="text-center"><a href="https://github.com/karmaniverous/aws-api-template" class="btn btn--info btn--large">See it on GitHub!</a>   <a href="https://github.com/karmaniverous/aws-api-template/generate" class="btn btn--primary btn--large">Clone the Repo!</a></p>
+
+<h2 id="the-tech-stack">The Tech Stack</h2>
+
+<p>This template represents a specific solution to a bunch of specific problems. It makes a number of highly opinionated choices.</p>
+
+<h3 id="nodejs--es6">Node.js &amp; ES6</h3>
+
+<p>Choose your own poison. I like Javascript.</p>
+
+<p>The <a href="https://aws.amazon.com/lambda/">AWS Lambda</a> execution environment now supports Node <code class="language-plaintext highlighter-rouge">v18</code>, which of course features full native ES6 support. If you are accustomed to building for the lowest common denominator with <a href="https://webpack.js.org/">Webpack</a> &amp; <a href="https://babeljs.io/">Babel</a>, rejoice: it just isn’t necessary here!</p>
+
+<p>This probably makes for a much simpler project structure than you are accustomed to.</p>
+
+<h3 id="the-serverless-framework">The Serverless Framework</h3>
+
+<p>There are many different ways to script the creation of AWS resources.</p>
+
+<p>The <a href="https://aws.amazon.com/cli/">AWS CLI</a> is the gold standard. It’s maximally powerful, but very low level. It’s probably smarter than I am.</p>
+
+<p><a href="https://aws.amazon.com/amplify/">AWS Amplify</a> is new, super powerful, and supported by a great UI. It’s also very HIGH-level and doesn’t yet enjoy broad community support.</p>
+
+<p>The <a href="https://www.serverless.com/">Serverless Framework</a> is a well-supported, open-source wrapper over the AWS CLI. It is opinionated with respect to best practices, offers a ton of plugins, and is accessible to the talented amateur, of which I am one.</p>
+
+<p>There are other choices as well, but we’re using the Serverless Framework here because it seemed like a reasonably safe choice that offers plenty of room to grow.</p>
+
+<p>Worth noting that I tried &amp; rejected these three key Serverless Framework plugins as either inadequate to the task or too unstable to trust:</p>
+
+<ul>
+  <li><a href="https://www.serverless.com/plugins/serverless-certificate-creator"><code class="language-plaintext highlighter-rouge">serverless-certificate-creator</code></a></li>
+  <li><a href="https://www.serverless.com/plugins/serverless-dotenv-plugin"><code class="language-plaintext highlighter-rouge">serverless-dotenv-plugin</code></a></li>
+  <li><a href="https://www.serverless.com/plugins/serverless-plugin-ifelse"><code class="language-plaintext highlighter-rouge">serverless-plugin-ifelse</code></a></li>
+</ul>
+
+<p>The necessary functionality is in the template; I just found better ways of getting there.</p>
+
+<h3 id="environments-api-versions-stages--stacks">Environments, API Versions, Stages &amp; Stacks</h3>
+
+<p><strong>This is important!</strong> This document uses specific terms in specific ways, and it will help if we are all on the same page.</p>
+
+<p>Some key definitions:</p>
+
+<ul>
+  <li>
+    <p>An <strong>Environment</strong> is a logical step in your development process. This template currently supports three environments: <code class="language-plaintext highlighter-rouge">dev</code>, <code class="language-plaintext highlighter-rouge">test</code>, and <code class="language-plaintext highlighter-rouge">prod</code>. See <a href="#some-thoughts-about-devops">Some Thoughts About DevOps</a> below for ideas about how to use these effectively.</p>
+  </li>
+  <li>
+    <p>An <strong>API Version</strong> is a distinct <a href="https://www.geeksforgeeks.org/introduction-semantic-versioning/">major version</a> of your project. Major versions introduce breaking changes, so when you bump your major version, you want to keep your previous versions operating to support backward compatibility. This project defaults in API Version <code class="language-plaintext highlighter-rouge">v0</code>; subsequent values would be <code class="language-plaintext highlighter-rouge">v1</code>, <code class="language-plaintext highlighter-rouge">v2</code>, and so on.</p>
+  </li>
+  <li>
+    <p><strong>Stage</strong> relates specifically to <a href="https://aws.amazon.com/api-gateway/">AWS API Gateway</a>. API Gateway supports multiple “environments” and “versions” (see above) on a single API Gateway instance. We will deploy each environment version to its <em>own</em> API Gateway, so only one Stage each. This is normally a key term in Serverless deployments, but this template handles Stage construction for you, so I’ll try to use this term as little as possible in this document to avoid confusion. Examples of Stages are <code class="language-plaintext highlighter-rouge">aws-api-template-v0-dev</code>, <code class="language-plaintext highlighter-rouge">aws-api-template-v1-prod</code>, and so on.</p>
+  </li>
+  <li>
+    <p>When you deploy a specific API Version into a specific Environment, this template creates a completely independent <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/stacks.html">CloudFormation stack</a>. A <strong>Stack</strong> contains all of the resources associated with that deployment, which may be updated in future deployments to the same Stack. Examples of Stacks are <code class="language-plaintext highlighter-rouge">aws-api-template-v0-dev</code>, <code class="language-plaintext highlighter-rouge">aws-api-template-v1-prod</code>, and so on. Stages and Stacks are PHYSICALLY very different, but LOGICALLY equivalent. To avoid confusion, in this document I will refer to Stacks rather than Stages wherever possible.</p>
+  </li>
+</ul>
+
+<h3 id="project-configuration">Project Configuration</h3>
+
+<p>This template deploys multiple Environments across multiple API Versions in a highly configurable fashion. Both the project as a whole and individual environments include <em>secrets:</em> configurations that need to exist in your dev environment to support local testing and manual deployment, but should NOT be pushed to your code repository.</p>
+
+<p>The key AWS configuration file in the project is <a href="https://github.com/karmaniverous/aws-api-template/blob/main/serverless.yml"><code class="language-plaintext highlighter-rouge">serverless.yml</code></a>. Nominally this file would contain most of this stuff, but I thought it would be a good idea to abstract configuration data away from this highly structured file.</p>
+
+<p>Everybody understands <code class="language-plaintext highlighter-rouge">.env</code> environment variable files, so that seemed to be a great way to go, which is nominally supported by the <a href="https://www.serverless.com/plugins/serverless-dotenv-plugin">Serverless Dotenv Plugin</a>. Unfortunately, I couldn’t get it to work.</p>
+
+<p>So I eliminated this dependency and am relying instead on my own <a href="https://www.npmjs.com/package/@karmaniverous/get-dotenv"><code class="language-plaintext highlighter-rouge">get-dotenv</code></a> package, which adds some handy features to the very robust <a href="https://www.npmjs.com/package/dotenv-cli"><code class="language-plaintext highlighter-rouge">dotenv-cli</code></a> tool, actually does everything the plugin only promises, and works like a charm.</p>
+
+<p>Because of this, you will almost NEVER run <code class="language-plaintext highlighter-rouge">sls</code> directly! Instead, you will preface it with <code class="language-plaintext highlighter-rouge">npx getdotenv</code> and specify your <code class="language-plaintext highlighter-rouge">.env</code> file directories &amp; target environment, like this:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>npx getdotenv <span class="nt">-p</span> ./ ./env <span class="nt">-e</span> dev <span class="nt">--</span> sls deploy <span class="nt">--verbose</span>
+</code></pre></div></div>
+
+<p>… except you wouldn’t do THAT either, because this command is now encapsulated in the package script <code class="language-plaintext highlighter-rouge">npm run deploy</code>.</p>
+
+<p>More info on this in the relevant sections below. Later I will encapsulate this approach and some other useful features into a CLI wrapper for <code class="language-plaintext highlighter-rouge">sls</code>. (<a href="https://github.com/karmaniverous/aws-api-template/issues/10">#10</a>)</p>
+
+<h3 id="release-management">Release Management</h3>
+
+<p>This template supports automated release management with <a href="https://github.com/release-it/release-it"><code class="language-plaintext highlighter-rouge">release-it</code></a>.</p>
+
+<p>Releases are numbered according to <a href="https://www.geeksforgeeks.org/introduction-semantic-versioning/">Semantic Versioning</a>. Every release generates a release page at GitHub with release notes composed of your commit comments since the last release.</p>
+
+<p>In the near future (<a href="https://github.com/karmaniverous/aws-api-template/issues/10">#10</a>), the template will pick up on your major version number to populate API Version, which is a factor driving Stack creation. See <a href="#environments-api-versions-stages--stacks">Environments, API Versions, Stages &amp; Stacks</a> above for more info.</p>
+
+<p>Meanwhile, you’ll need to populate the <code class="language-plaintext highlighter-rouge">API_VERSION</code> environment variable manually in <a href="https://github.com/karmaniverous/aws-api-template/blob/main/.env"><code class="language-plaintext highlighter-rouge">.env</code></a>.</p>
+
+<p>To create a new release, just run this command:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>npm run release
+</code></pre></div></div>
+
+<h2 id="setting-up-your-dev-environment">Setting Up Your Dev Environment</h2>
+
+<p>Use the <a href="https://code.visualstudio.com/">Visual Studio Code</a> IDE in order to leverage relevant extensions. Not an absolute requirement but you’ll be happy if you do.</p>
+
+<p>These instructions are written from the perspective of Windows OS. If you are a Mac or Linux user, you may need to make some adjustments.</p>
+
+<p>They also assume you have local administrator permissions on your development machine.</p>
+
+<h3 id="install-applications--global-packages">Install Applications &amp; Global Packages</h3>
+
+<p>This template is a <a href="https://nodejs.org/en/">Node.js</a> project. Node.js is now in <code class="language-plaintext highlighter-rouge">v19</code>, but the latest <a href="https://aws.amazon.com/lambda/">AWS Lambda</a> Node.js execution environment is <code class="language-plaintext highlighter-rouge">v18</code>. The current Node.js LTS version is <code class="language-plaintext highlighter-rouge">v18.12.1</code>, so we’ll use that one.</p>
+
+<p>Rather than install Node.js directly, it is better to install it &amp; manage versions from the the Node Version Manager (NVM). Follow these instructions to configure your system:</p>
+
+<ol>
+  <li>
+    <p>If you already have Node.js installed on your machine, uninstall it completely and remove all installation files. You can easily use NVM to reinstall &amp; switch between other desired Node versions.</p>
+  </li>
+  <li>
+    <p>Follow <a href="https://www.freecodecamp.org/news/node-version-manager-nvm-install-guide/">these instructions</a> to install NVM on your system. <strong>This is a Windows-specific implementation!</strong> Mac/Linux users, adjust accordingly.</p>
+  </li>
+  <li>
+    <p>Once NVM is installed on your system, open a terminal with <strong>System Admin Permissions</strong> and run the following commands:</p>
+
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># windows only</span>
+Set-ExecutionPolicy <span class="nt">-ExecutionPolicy</span> Unrestricted <span class="nt">-Scope</span> CurrentUser <span class="nt">-Force</span>
+
+<span class="c"># all platforms</span>
+nvm <span class="nb">install </span>18.12.1
+nvm use 18.12.1
+npm <span class="nb">install</span> <span class="nt">-g</span> serverless
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p>Install Git for your operating system from <a href="https://git-scm.com/download">this page</a>.</p>
+  </li>
+  <li>
+    <p>Install Visual Studio Code from <a href="https://code.visualstudio.com/">this page</a>.</p>
+  </li>
+  <li>
+    <p><strong>WINDOWS ONLY:</strong> There is an alias conflict between the <code class="language-plaintext highlighter-rouge">serverless</code> package and the PowerShell <code class="language-plaintext highlighter-rouge">Select-String</code> command.</p>
+
+    <p>To resolve it, open VS Code. In a terminal window, enter <code class="language-plaintext highlighter-rouge">code $profile</code>. A file named <code class="language-plaintext highlighter-rouge">Microsoft.PowerShell_profile.ps1</code> will open in your code editor. Add the following line to this file, then save and close it:</p>
+
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Remove-Item <span class="nb">alias</span>:sls
+</code></pre></div>    </div>
+
+    <p>If you choose not to resolve this, than at any point in these instructions where I use <code class="language-plaintext highlighter-rouge">sls</code>, you should use <code class="language-plaintext highlighter-rouge">serverless</code> instead.</p>
+  </li>
+  <li>
+    <p><strong>Restart your machine.</strong></p>
+  </li>
+</ol>
+
+<h3 id="create-a-new-github-repository">Create a new GitHub Repository</h3>
+
+<p><a href="https://github.com/karmaniverous/aws-api-template/generate">Click here</a> to clone this template into your own GitHub account.</p>
+
+<p><strong>Do you already have a repository based on this template?</strong> No need to do this then.</p>
+
+<h3 id="clone-the-project-repository">Clone the Project Repository</h3>
+
+<p>Navigate your VS Code terminal to the directory you use for code repositories and run this command with appropriate replacements to clone this repo. You may be asked to log into GitHub.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git clone https://github.com/&lt;my-github-account-or-organization-name&gt;/&lt;my-project-name&gt;.git
+</code></pre></div></div>
+
+<p>Open the newly created local repository folder in VS Code.</p>
+
+<p>If this is your first time opening the folder, you should be asked to install recommended VS Code extensions. Install them.</p>
+
+<p>If VS Code didn’t ask, follow these steps to install all workspace-recommended extensions:</p>
+
+<ol>
+  <li>
+    <p>Open the VS Code Extensions tab</p>
+  </li>
+  <li>
+    <p>Enter <code class="language-plaintext highlighter-rouge">@recommended</code> into the search box</p>
+  </li>
+  <li>
+    <p>Click the Download link.</p>
+
+    <figure>
+  <img src="/assets/images/aws-api-template-extensions.png" style="width: 250px;" />
+</figure>
+  </li>
+</ol>
+
+<p>Zero the package version and install dependencies by running these commands:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>npm version 0.0.0
+npm <span class="nb">install</span>
+</code></pre></div></div>
+
+<p>Set the version in <a href="https://github.com/karmaniverous/aws-api-template/blob/main/package.json"><code class="language-plaintext highlighter-rouge">package.json</code></a> to <code class="language-plaintext highlighter-rouge">0.0.0</code>.</p>
+
+<h3 id="vulnerabilities">Vulnerabilities</h3>
+
+<p>At the time of this writing, running <code class="language-plaintext highlighter-rouge">npm install</code> will generate the following
+vulnerability warning:</p>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>6 vulnerabilities (3 high, 3 critical)
+</code></pre></div></div>
+
+<p>If you run <code class="language-plaintext highlighter-rouge">npm audit</code>, you will find that all of these vulnerabilities relate
+to the following dev dependencies, all of which are to do with docs generation:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+<span class="o">&gt;</span> npm list trim
+
+<span class="c"># @karmaniverous/aws-api-template@0.2.1</span>
+<span class="c"># └─┬ concat-md@0.5.0</span>
+<span class="c">#   └─┬ doctoc@1.4.0</span>
+<span class="c">#     └─┬ @textlint/markdown-to-ast@6.0.9</span>
+<span class="c">#       └─┬ remark-parse@5.0.0</span>
+<span class="c">#         └── trim@0.0.1</span>
+
+<span class="o">&gt;</span> npm list underscore
+
+<span class="c"># @karmaniverous/aws-api-template@0.2.1</span>
+<span class="c"># ├─┬ concat-md@0.5.0</span>
+<span class="c"># │ └─┬ doctoc@1.4.0</span>
+<span class="c"># │   └── underscore@1.8.3</span>
+<span class="c"># └─┬ jsdoc-to-markdown@8.0.0</span>
+<span class="c">#   └─┬ jsdoc-api@8.0.0</span>
+<span class="c">#     └─┬ jsdoc@4.0.0</span>
+<span class="c">#       └── underscore@1.13.6</span>
+</code></pre></div></div>
+
+<p class="notice--info">These vulnerable dependencies support the development environment only and will NOT be included in your production code!</p>
+
+<h3 id="create-local-environment-variable-files">Create Local Environment Variable Files</h3>
+
+<p>Look for these files in your project directory:</p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">.env.local.template</code></li>
+  <li><code class="language-plaintext highlighter-rouge">env/.env.dev.local.template</code></li>
+  <li><code class="language-plaintext highlighter-rouge">env/.env.test.local.template</code></li>
+  <li><code class="language-plaintext highlighter-rouge">env/.env.prod.local.template</code></li>
+</ul>
+
+<p>Copy each of these files and remove the <code class="language-plaintext highlighter-rouge">template</code> extension from the copy.</p>
+
+<p><strong>Do not simply rename these files!</strong> Anybody who pulls your repo will need these templates to create the same files in his own local environment.</p>
+
+<p>In the future, this will be accomplished with a single CLI command. (<a href="https://github.com/karmaniverous/aws-api-template/issues/10">#10</a>)</p>
+
+<h3 id="connect-to-github">Connect to GitHub</h3>
+
+<p>This template supports automated release management with <a href="https://github.com/release-it/release-it"><code class="language-plaintext highlighter-rouge">release-it</code></a>.</p>
+
+<p>If you use GitHub, create a <a href="https://github.com/settings/tokens/new?scopes=repo&amp;description=release-it">Personal Access Token</a>
+and add it as the value of <code class="language-plaintext highlighter-rouge">GITHUB_TOKEN</code> in <code class="language-plaintext highlighter-rouge">.env.local</code>.</p>
+
+<p>If you use GitLab, follow <a href="https://github.com/release-it/release-it#gitlab-releases">these instructions</a> and place your token in the same file.</p>
+
+<p>For other release control systems, consult the <a href="https://github.com/release-it/release-it#readme"><code class="language-plaintext highlighter-rouge">release-it</code> README</a>.</p>
+
+<p>You can now publish a release to GitHub with this command:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>npm run release
+</code></pre></div></div>
+
+<h3 id="connect-to-aws">Connect to AWS</h3>
+
+<p>You will need to connect to AWS in order to interact with AWS resources during development.</p>
+
+<p>Generate an Access Key Id and Secret Access Key for either…</p>
+
+<ul>
+  <li>Your AWS Root account (not recommended)</li>
+  <li>An <a href="https://aws.amazon.com/iam/">IAM</a> user with admin permissions (or at least enough to support development)</li>
+</ul>
+
+<p>If you aren’t able to do this, ask your AWS administrator.</p>
+
+<p>Add those two values in the appropriate spots in <code class="language-plaintext highlighter-rouge">.env.local</code>.</p>
+
+<h3 id="test-your-setup">Test Your Setup</h3>
+
+<p>Enter the following command in a terminal window:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>npm run offline
+</code></pre></div></div>
+
+<p>A local server should start with an endpoint at <a href="http://localhost:3000/v0-dev/hello"><code class="language-plaintext highlighter-rouge">http://localhost:3000/v0-dev/hello</code></a>. If you navigate to this endpoint in a browser, you should see a blob of JSON with the message <code class="language-plaintext highlighter-rouge">Hello world!</code></p>
+
+<h2 id="deploying-to-aws">Deploying to AWS</h2>
+
+<p>Every AWS deployment of this project either creates or updates a <a href="#environments-api-versions-stages--stacks">Stack</a>.</p>
+
+<p>Which Stack gets created or updated depends on two factors:</p>
+
+<ul>
+  <li>The <a href="#environments-api-versions-stages--stacks">Environment</a> chosen at deployment time.</li>
+  <li>The <a href="#environments-api-versions-stages--stacks">API Version</a> configured in <a href="https://github.com/karmaniverous/aws-api-template/blob/main/.env"><code class="language-plaintext highlighter-rouge">.env</code></a>.</li>
+</ul>
+
+<p>Each Stack contains all of the AWS resources associated with that deployment, and exposes a unique set of API &amp; authentication endpoints.</p>
+
+<p>The assumption is that these endpoints will map onto a custom domain, so there are some configurations to set and a little work to do in AWS before you can deploy a Stack to AWS.</p>
+
+<h3 id="preparing-aws">Preparing AWS</h3>
+
+<p>Follow these steps to prepare your AWS account to receive your deployment. Where you are asked to set an environment variable in this section, set it at <a href="https://github.com/karmaniverous/aws-api-template/blob/main/.env"><code class="language-plaintext highlighter-rouge">.env</code></a>:</p>
+
+<ol>
+  <li>
+    <p>Choose a name for your service (e.g. <code class="language-plaintext highlighter-rouge">my-aws-api</code>). This will be the root of every resource ID related to your application. It must begin with a letter; contain only ASCII letters, digits, and hyphens; and not end with a hyphen or contain two consecutive hyphens. Enter your service name for environment variable <code class="language-plaintext highlighter-rouge">SERVICE_NAME</code>.</p>
+  </li>
+  <li>
+    <p>Choose a root domain (e.g. <code class="language-plaintext highlighter-rouge">mydomain.com</code>) and host its DNS at <a href="https://aws.amazon.com/route53/">AWS Route53</a>. Enter your root domain for environment variable <code class="language-plaintext highlighter-rouge">ROOT_DOMAIN</code>.</p>
+  </li>
+  <li>
+    <p>Request &amp; validate a certificate from the <a href="https://us-east-1.console.aws.amazon.com/acm">ACM Console</a> that covers domains <code class="language-plaintext highlighter-rouge">&lt;ROOT_DOMAIN&gt;</code> and <code class="language-plaintext highlighter-rouge">*.&lt;ROOT_DOMAIN&gt;</code>. Enter the certificate ARN for environment variable <code class="language-plaintext highlighter-rouge">CERTIFICATE_ARN</code>.</p>
+  </li>
+  <li>
+    <p>Choose an API subdomain (e.g. <code class="language-plaintext highlighter-rouge">api</code>). All of your APIs will be exposed at <code class="language-plaintext highlighter-rouge">&lt;API_SUBDOMAIN&gt;.&lt;ROOT_DOMAIN&gt;</code>. <strong>Double-check your <a href="https://us-east-1.console.aws.amazon.com/route53">Route 53</a> zone file to make sure it isn’t already assigned to some other service!</strong> Enter your API subdomain for environment variable <code class="language-plaintext highlighter-rouge">API_SUBDOMAIN</code>.</p>
+  </li>
+  <li>
+    <p>Choose your <a href="#environments-api-versions-stages--stacks">API Version</a> (e.g. <code class="language-plaintext highlighter-rouge">v0</code>). Enter the appropriate value for environment variable <code class="language-plaintext highlighter-rouge">API_VERSION</code>.</p>
+
+    <p>In the future, this value will be pulled directly from the package version at deploy time. (<a href="https://github.com/karmaniverous/aws-api-template/issues/10">#10</a>)</p>
+  </li>
+  <li>
+    <p>Choose an authorization subdomain token (e.g. <code class="language-plaintext highlighter-rouge">auth</code>). Your authorization endpoints will be at <code class="language-plaintext highlighter-rouge">&lt;AUTH_SUBDOMAIN_TOKEN&gt;-&lt;API_VERSION&gt;[-&lt;non-prod environment&gt;].&lt;ROOT_DOMAIN&gt;</code>. <strong>Double-check your <a href="https://us-east-1.console.aws.amazon.com/route53">Route 53</a> zone file to make sure these aren’t already assigned to some other service!</strong> Enter your authorization subdomain token for environment variable <code class="language-plaintext highlighter-rouge">AUTH_SUBDOMAIN_TOKEN</code>.</p>
+  </li>
+  <li>
+    <p>The template assumes your Cognito Authorization UI will be integrated with a web application at <code class="language-plaintext highlighter-rouge">ROOT_DOMAIN</code> or at subdomains representing either a <code class="language-plaintext highlighter-rouge">prod</code> or a <code class="language-plaintext highlighter-rouge">preview</code> front-end environment (e.g. my <a href="https://github.com/karmaniverous/nextjs-template">Next.js Template</a>).</p>
+
+    <p>Enter appropriate subdomains for environment variables <code class="language-plaintext highlighter-rouge">WEB_SUBDOMAIN_PROD</code> and <code class="language-plaintext highlighter-rouge">WEB_SUBDOMAIN_PREVIEW</code>.</p>
+
+    <p>For local testing, enter the web application’s <code class="language-plaintext highlighter-rouge">localhost</code> port for environment variable <code class="language-plaintext highlighter-rouge">WEB_LOCALHOST_PORT</code>.</p>
+
+    <p>If you’re using a different front-end application, you’ll have to edit <a href="https://github.com/karmaniverous/aws-api-template/blob/main/serverless.yml"><code class="language-plaintext highlighter-rouge">serverless.yml</code></a> accordingly. You can leave this alone for now and the application will still deploy properly!</p>
+  </li>
+  <li>
+    <p>Run the following command to create an API Gateway custom domain at <code class="language-plaintext highlighter-rouge">&lt;API_SUBDOMAIN&gt;.&lt;ROOT_DOMAIN&gt;</code>.</p>
+
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>npx getdotenv <span class="nt">--</span> sls create_domain
+</code></pre></div>    </div>
+  </li>
+</ol>
+
+<p>That’s it. You’re now all set to deploy to any Stage at AWS!</p>
+
+<h3 id="manual-deployment">Manual Deployment</h3>
+
+<p>Run the following command to deploy a <a href="#environments-api-versions-stages--stacks">Stage</a> to <a href="#environments-api-versions-stages--stacks">Environment</a> <code class="language-plaintext highlighter-rouge">&lt;env&gt;</code> (e.g. <code class="language-plaintext highlighter-rouge">dev</code>, <code class="language-plaintext highlighter-rouge">test</code>, or <code class="language-plaintext highlighter-rouge">prod</code>) for the configured <a href="(#environments-api-versions-stages--stacks)">API Version</a>:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>npm run deploy <span class="nt">--</span> <span class="nt">-e</span> &lt;<span class="nb">env </span>token&gt;]
+</code></pre></div></div>
+
+<p>If this is your first time, try deploying to the <code class="language-plaintext highlighter-rouge">dev</code> Environment. In this case, you can just run</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>npm run deploy
+</code></pre></div></div>
+
+<p>Deployments take a few minutes and are differential, so the first one to any Stack will take the longest.</p>
+
+<p>Once your deployment succeeds, your console will display a list of available resources. For example:</p>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>endpoints:
+  GET - https://3akn0sj501.execute-api.us-east-1.amazonaws.com/dev/hello
+  GET - https://3akn0sj501.execute-api.us-east-1.amazonaws.com/dev/secure-hello
+functions:
+  hello: aws-api-template-dev-hello (15 MB)
+  secure-hello: aws-api-template-dev-secure-hello (15 MB)
+Serverless Domain Manager:
+  Domain Name: aws-api-template.karmanivero.us
+  Target Domain: d2jf3xe1z71uro.cloudfront.net
+  Hosted Zone Id: Z2FDTNDATAQYW2
+</code></pre></div></div>
+
+<p>The public base path of your API will depend on your settings, but will look like:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>https://&lt;API_SUBDOMAIN&gt;.&lt;ROOT_DOMAIN&gt;/&lt;API_VERSION&gt;[-&lt;non-prod environment&gt;].&lt;ROOT_DOMAIN&gt;
+</code></pre></div></div>
+
+<p>To test your deployment, open your hello-world public endpoint in a browser, e.g. <a href="https://aws-api-template.karmanivero.us/v0-dev/hello"><code class="language-plaintext highlighter-rouge">https://aws-api-template.karmanivero.us/v0-dev/hello</code></a>. You should see the following content:</p>
+
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Hello world!"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div></div>
+
+<h3 id="automated-deployment">Automated Deployment</h3>
+
+<p>An <a href="https://aws.amazon.com/codepipeline/">AWS CodePipeline</a> watches a code repository branch (e.g. at GitHub). When it detects a change, it…</p>
+
+<ol>
+  <li>Imports the code to an <a href="https://aws.amazon.com/s3/">AWS S3</a> bucket.</li>
+  <li>Launches an <a href="https://aws.amazon.com/codebuild/">AWS CodeBuild</a> project that…
+    <ol>
+      <li>Allocates a virtual machine &amp; imports the code repository.</li>
+      <li>Loads all supporting applications (e.g. the Serverless Framework) and project dependencies.</li>
+      <li>Deploys the <a href="#environments-api-versions-stages--stacks">Stage</a> defined by <code class="language-plaintext highlighter-rouge">API_VERSION</code> and the configured <a href="#environments-api-versions-stages--stacks">Environment</a>, <em>exactly as you would do from your desktop!</em></li>
+      <li>Preserves the logs and deallocates the virtual machine.</li>
+    </ol>
+  </li>
+</ol>
+
+<p>Each CodePipeline is configured to deploy to the Environment corresponding to the branch it watches. For example, the CodePipeline watching the <code class="language-plaintext highlighter-rouge">main</code> branch may be configured to deploy to the <code class="language-plaintext highlighter-rouge">prod</code> Environment. On deployment, the CodePipeline will deploy to the Stack corresponding to its designated Environment and its current API Version. If that Stack does not yet exist, the deployment process will create it.</p>
+
+<p>All related CodePipelines share the same CodeBuild project. Each CodePipeline is configured with environment variables that it injects into the CodeBuild project on deployment. These are the environment designator and environment secrets contained in each <code class="language-plaintext highlighter-rouge">.env.&lt;ENV&gt;.local</code> file, which are blocked by <a href="https://github.com/karmaniverous/aws-api-template/blob/main/.gitignore"><code class="language-plaintext highlighter-rouge">.gitignore</code></a> and are never pushed to the code repository.</p>
+
+<p>The CodeBuild process is driven by <a href="https://github.com/karmaniverous/aws-api-template/blob/main/buildspec.yml"><code class="language-plaintext highlighter-rouge">buildspec.yml</code></a>.</p>
+
+<p>The following sections describe how to set up your CodePipelines at AWS. If you are plugging into an ongoing project, these should already be in place.</p>
+
+<h4 id="creating-your-first-codepipeline">Creating Your First CodePipeline</h4>
+
+<p>Your first pipeline in this project is significant because you will also need to create the associated CodeBuild project and maybe also associated service roles. Let’s tackle all of this in reverse order.</p>
+
+<h5 id="create-a-codebuild-service-role">Create a CodeBuild Service Role</h5>
+
+<p>When you create your CodeBuild project, you have the option of allowing AWS to create &amp; manage associated a service role for you. This can get complicated fast, because you have to trust that AWS will be smart enough to figure out what policies to assign to this role as your project requirements change. If it isn’t, your deployments will fail in ways that are hard to troubleshoot.</p>
+
+<p>Since all of this is purely internal to your AWS account, I suggest you create AWS service role <code class="language-plaintext highlighter-rouge">codebuild-service</code> for the CodeBuild use case. Assign the <code class="language-plaintext highlighter-rouge">AdministratorAccess</code> policy.</p>
+
+<p>Real AWS administrators are probably breaking out into hives right now, but you’ll thank me.</p>
+
+<h5 id="create-your-pipeline">Create Your Pipeline</h5>
+
+<p>If you are building this from scratch, you are probably operating from your <code class="language-plaintext highlighter-rouge">main</code> branch, which you will want to associate with your <code class="language-plaintext highlighter-rouge">prod</code> <a href="#environments-api-versions-stages--stacks">Stage</a>. Let’s proceed on that assumption.</p>
+
+<p><strong>Before you begin…</strong> Your pipeline will pull your repo and start a build as soon as it is created! Commit all of your local changes and push your commits to GitHub.</p>
+
+<p>From your <a href="https://us-east-1.console.aws.amazon.com/codesuite/codepipeline/pipelines">Pipelines Console</a>, create a new pipeline.</p>
+
+<p><strong>Step 1: Choose Pipeline Settings</strong></p>
+
+<ol>
+  <li>
+    <p>Give the pipeline a name that reflects both the service name and the target <a href="#environments-api-versions-stages--stacks">Environment</a>: <code class="language-plaintext highlighter-rouge">&lt;SERVICE_NAME&gt;-&lt;ENV&gt;</code></p>
+  </li>
+  <li>
+    <p>We will allow CodePipeline to create a service role for us, and then we will use it in all future pipelines. The arguments against this for CodeBuild don’t apply here because the CodePipeline role will always need the <em>same</em> access. Call the new role <code class="language-plaintext highlighter-rouge">codepipeline-service</code>.</p>
+  </li>
+  <li>
+    <p>Under Advanced Settings, choose all defaults.</p>
+  </li>
+</ol>
+
+<p><strong>Step 2: Add Source Stage</strong></p>
+
+<p>This is where CodePipeline gets its code. The instructions below assume you use GitHub.</p>
+
+<ol>
+  <li>
+    <p>Choose a provider. If you use GitHub, choose <em>GitHub (Version 2)</em>. Otherwise, work it out.</p>
+  </li>
+  <li>
+    <p>Choose an existing GitHub connection or create a new one. Note that if your code is in an Organization repo, Connections are Organization-specific.</p>
+  </li>
+  <li>
+    <p>Choose your repository &amp; branch. In this example we are using <code class="language-plaintext highlighter-rouge">main</code>.</p>
+  </li>
+  <li>
+    <p>Leave any other defaults &amp; click <em>Next</em>.</p>
+  </li>
+</ol>
+
+<p><strong>Step 3: Add Build Stage</strong></p>
+
+<ol>
+  <li>
+    <p>Choose <em>AWS CodeBuild</em> as your build provider.</p>
+  </li>
+  <li>
+    <p>Since this is our first pipeline for this project, we will need to create a CodeBuild project. Click the <em>Create Project</em> button. A popup will appear and take you to a build project creation dialogue. In this dialogue…</p>
+
+    <ol>
+      <li>
+        <p>Choose a project name that will be consistent across the project: <code class="language-plaintext highlighter-rouge">&lt;SERVICE_NAME&gt;</code></p>
+      </li>
+      <li>
+        <p>Use a Managed Image with the following settings:</p>
+
+        <ul>
+          <li>Operating System: <em>Ubuntu</em></li>
+          <li>Runtime: <em>Standard</em></li>
+          <li>Image: <em>highest version, currently <code class="language-plaintext highlighter-rouge">aws/codebuild/standard:6.0</code></em></li>
+        </ul>
+      </li>
+      <li>
+        <p>Use an existing service role and choose the <code class="language-plaintext highlighter-rouge">codebuild-service</code> role we created earlier.</p>
+      </li>
+      <li>
+        <p>At the bottom of the dialogue, click <em>Continue to CodePipeline</em>.</p>
+      </li>
+    </ol>
+  </li>
+  <li>
+    <p>Back in the CodePipeline window, use the <em>Add environment variable</em> button to add the contents of <code class="language-plaintext highlighter-rouge">.env.&lt;ENV&gt;.local</code>. <strong>These variable names &amp; values are case-sensitive!</strong></p>
+
+    <p>Since this is your first time through, you probably haven’t populated any OAUTH client secrets (e.g. <code class="language-plaintext highlighter-rouge">GOOGLE_CLIENT_SECRET</code>). If so, just add those variables as placeholders. <strong>Note that they may NOT be blank!</strong> If undefined, many of these variables must be populated with <code class="language-plaintext highlighter-rouge">*</code>. See the <code class="language-plaintext highlighter-rouge">.env.&lt;ENV&gt;.local</code> file for specifics.</p>
+  </li>
+  <li>
+    <p>Click <em>Next</em>.</p>
+  </li>
+</ol>
+
+<p><strong>Step 4: Add Deploy Stage</strong></p>
+
+<p>We’re using the Serverless Framework to deploy from <a href="https://github.com/karmaniverous/aws-api-template/blob/main/buildspec.yml"><code class="language-plaintext highlighter-rouge">buildspec.yml</code></a>, so click the <em>Skip deploy stage</em> button &amp; confirm.</p>
+
+<p><strong>Step 5: Review</strong></p>
+
+<p>Review your settings &amp; click <em>Create pipeline</em>. The new pipeline will immediately display a UI, pull your repo, and commence a build.</p>
+
+<h4 id="creating-your-next-pipeline">Creating Your Next Pipeline</h4>
+
+<p>Once you have an operating CodePipeline, creating the next one is easy! Just follow these steps:</p>
+
+<ol>
+  <li>
+    <p>You can deploy to any <a href="#environments-api-versions-stages--stacks">Environment</a> from any branch, but when you create a pipeline you have to choose a specific source branch tand target Environment. Make sure the Environment you choose has corresponsing <code class="language-plaintext highlighter-rouge">.env.&lt;ENV&gt;</code> &amp; <code class="language-plaintext highlighter-rouge">.env.&lt;ENV&gt;.local</code> files in your repository with environment variables correctly populated.</p>
+  </li>
+  <li>
+    <p>Create the new branch (e.g. <code class="language-plaintext highlighter-rouge">dev</code> or <code class="language-plaintext highlighter-rouge">test</code>) and push it to your remote repository.</p>
+  </li>
+  <li>
+    <p>Choose an existing pipeline from the same project on your <a href="https://us-east-1.console.aws.amazon.com/codesuite/codepipeline/pipelines">Pipelines Console</a>, click into it, and click the <em>Clone pipeline</em> button.</p>
+  </li>
+  <li>
+    <p>Choose a pipeline name that follows your established naming pattern: <code class="language-plaintext highlighter-rouge">&lt;SERVICE_NAME&gt;-&lt;ENV&gt;</code></p>
+  </li>
+  <li>
+    <p>Choose an existing service role and pick the CodePipeline service role we created earlier (e.g. <code class="language-plaintext highlighter-rouge">codepipeline-service</code>).</p>
+  </li>
+  <li>
+    <p>Choose all other defaults and click the <em>Clone</em> button.</p>
+  </li>
+  <li>
+    <p>Once the pipeline is created, click the <em>Edit</em> button.</p>
+  </li>
+  <li>
+    <p>Edit the <em>Source</em> pipeline stage, edit the <em>Source</em> action, and change the <em>Branch name</em> to your selected repo branch. Click <em>Done</em> on the popup and the <em>Source</em> pipeline stage.</p>
+  </li>
+  <li>
+    <p>Edit the <em>Build</em> pipeline stage, edit the <em>Build</em> action, and change the environment variable values to match the <code class="language-plaintext highlighter-rouge">.env.&lt;ENV&gt;.local</code> file corresponding to the new pipeline’s target Environment. Click <em>Done</em> on the popup and the <em>Build</em> pipeline stage.</p>
+  </li>
+  <li>
+    <p>Click the <em>Save</em> button to save the pipeline changes and then click the <em>Release change</em> button to run the pipeline in its new configuration. It will pull your code from the new branch and commence a build.</p>
+  </li>
+</ol>
+
+<h4 id="creating-a-maintenance-pipeline">Creating a Maintenance Pipeline</h4>
+
+<p>The next deployment following any <a href="#environments-api-versions-stages--stacks">API Version</a> upgrade will create a new <a href="#environments-api-versions-stages--stacks">Stack</a> reflecting the new API Version. The old stack will still be running: it will simply no longer receive new deployments.</p>
+
+<p>You may wish to continue maintenance development in the old major version to support existing users who have not yet migrated to the new version.</p>
+
+<p>To accomplish this, follow these steps:</p>
+
+<ol>
+  <li>
+    <p><a href="https://github.com/release-it/release-it">release-it</a> creates a GitHub tag at each release. Execute the following commands to pull a <code class="language-plaintext highlighter-rouge">dev</code> branch from that tag and then push it back to GitHub:</p>
+
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git checkout &lt;highest previous major version tag&gt; -b v&lt;previous major version&gt;-dev
+# Ex: git checkout 0.1.2 -b v0-dev
+
+git push
+</code></pre></div>    </div>
+
+    <p>If the previous major version were <code class="language-plaintext highlighter-rouge">0.1.2</code>, this will have created new branch <code class="language-plaintext highlighter-rouge">v0-dev</code> at that tag.</p>
+  </li>
+  <li>
+    <p>Follow the instructions in <a href="#creating-your-next-pipeline">Creating Your Next Pipeline</a> to clone a new CodePipeline and attach it to this branch. Any new deployments on this pipeline will deploy into the previous API Version’s existing <code class="language-plaintext highlighter-rouge">dev</code> Stack.</p>
+  </li>
+  <li>
+    <p>Repeat the previous steps for your other Environments (e.g. <code class="language-plaintext highlighter-rouge">test</code> and <code class="language-plaintext highlighter-rouge">prod</code>).</p>
+  </li>
+</ol>
+
+<p>You can continue to release new versions within this major version. Just don’t advance this branch to a new major version, or you will overwrite your existing next-version stacks!</p>
+
+<p class="notice--primary"><strong>TODO</strong><br /><br />
+Figure out how to prevent this from happening (<a href="https://github.com/karmaniverous/aws-api-template/issues/11">#11</a>).</p>
+
+<h3 id="deleting-a-stack">Deleting a Stack</h3>
+
+<p>Some <a href="#environments-api-versions-stages--stacks">Stack</a> resources have properties that can only be set at create time (e.g. <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cognito-userpool.html#cfn-cognito-userpool-aliasattributes">Cognito User Pool AliasAttributes</a>). If you wish to change such a property, and if you will not unduly impact current users, the easiest option by far is to delete the entire stack and recreate it with the next deployment.</p>
+
+<p>As you change your Stack configuration during the development process, your Stack might also simply become unstable and stop accepting new deployments. Deleting the Stack is often an efficient way to recover from a configuration error and get things moving again.</p>
+
+<p><strong>Use with extreme caution!</strong> Stack deletion will also eliminate all user accounts in the related user pool!</p>
+
+<p>To delete a Stack, follow these instructions:</p>
+
+<ol>
+  <li>
+    <p>Find your API subdomain at <a href="https://us-east-1.console.aws.amazon.com/apigateway/main/publish/domain-names">API Gateway Custom Domains</a>. Delete all API mappings related to the Stack.</p>
+  </li>
+  <li>
+    <p>Find the Stack in the <a href="https://us-east-1.console.aws.amazon.com/cloudformation">CloudFormation console</a> and click through to the Stack detail.</p>
+  </li>
+  <li>
+    <p>Under the Resources tab, find any S3 Buckets and delete their contents.</p>
+  </li>
+  <li>
+    <p>Delete the Stack.</p>
+  </li>
+</ol>
+
+<p class="notice--info"><strong>If you intend to redeploy this stack,</strong> you may need to wait about 20 min for the CNAME records of the deleted stack to flush from DNS. If you redeploy too soon, you may see an error indicaing a DNS conflict.</p>
+
+<p class="notice--primary"><strong>TODO</strong><br /><br />
+Automate this process (<a href="https://github.com/karmaniverous/aws-api-template/issues/10">#10</a>).</p>
+
+<h2 id="some-thoughts-about-devops">Some Thoughts About DevOps</h2>
+
+<p>It’s your project. Do what you want! But if you’re interested, here’s a rational way to go about this…</p>
+
+<ul>
+  <li>
+    <p>During the development process you’re probably working in some feature branch &amp; trying run your project locally. The corresponding command in our case is</p>
+
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>npm run offline
+</code></pre></div>    </div>
+
+    <p>When this fails, you iterate until it doesn’t.</p>
+  </li>
+  <li>
+    <p>Local builds only take you so far, and there are a ton of AWS services that can only exist remotely. So your next step is to try a remote <code class="language-plaintext highlighter-rouge">dev</code> build using</p>
+
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>npm run deploy
+</code></pre></div>    </div>
+
+    <p>If you’ve <a href="#automated-deployment">set up your CodePipelines</a>, the same thing will happen when you merge your feature branch with the <code class="language-plaintext highlighter-rouge">dev</code> branch.</p>
+  </li>
+  <li>
+    <p>This remote build will often fail catastrophically and require you to <a href="#deleting-a-stack">delete the <code class="language-plaintext highlighter-rouge">dev</code> stack</a> &amp; start over. Once it doesn’t—and assuming all your other tests pass—you can <a href="#release-management">create a prerelease</a> and deploy the stable build to your <code class="language-plaintext highlighter-rouge">test</code> Stack for integration testing by merging your <code class="language-plaintext highlighter-rouge">dev</code> branch into <code class="language-plaintext highlighter-rouge">test</code>.</p>
+  </li>
+  <li>
+    <p>Once your integration tests pass, you can <a href="#release-management">create a release</a> and deploy the new feature into production by merging your <code class="language-plaintext highlighter-rouge">test</code> branch into <code class="language-plaintext highlighter-rouge">main</code>.</p>
+  </li>
+  <li>
+    <p>If your new release is a major release, <a href="#creating-a-maintenance-pipeline">create a maintenance pipeline</a> to support maintenance &amp; backward compatibility for the previous major release.</p>
+  </li>
+</ul>
+
+<h2 id="authentication">Authentication</h2>
+
+<p>User authentication is provided by AWS Cognito.</p>
+
+<p>By default, the setup supports sign up &amp; sign in via the Cognito hosted UI. When a user signs up with an email/password combination, AWS will send an email with a code to confirm the email.</p>
+
+<p>The template supports the Google federated identity provider but it is disabled by default. See <a href="#add-google-authentication">Add Google Authentication</a> below for more info.</p>
+
+<h3 id="backwards-compatibility">Backwards Compatibility</h3>
+
+<p>An <a href="#environments-api-versions-stages--stacks">API Version</a> upgrade generates a new <a href="#environments-api-versions-stages--stacks">Stack</a> that includes an independent Cognito User Pool on a unique set of endpoints. You may not want this! If there have been no breaking changes to your User Pool, you probably want to retain the user accounts created in the previous API Version.</p>
+
+<p>To accomplish this, simply add the relevant Cognito User Pool ARN to environment variable <code class="language-plaintext highlighter-rouge">COGNITO_USER_POOL_ARN</code> in file <code class="language-plaintext highlighter-rouge">.env.&lt;ENV&gt;</code>.</p>
+
+<h3 id="add-google-authentication">Add Google Authentication</h3>
+
+<p>AWS Cognito supports a wide variety of federated identity providers. Google is the only one currently supported by this template.</p>
+
+<p>To enable Google authentication, follow these steps:</p>
+
+<ol>
+  <li>
+    <p>Follow the Google-related instructions at <a href="https://docs.aws.amazon.com/cognito/latest/developerguide/cognito-user-pools-social-idp.html">this page</a> to set up a Google OAUTH2 application. Use the following Stage-spacific settings:</p>
+
+    <ul>
+      <li><em>Authorized Javascript Origins:</em> <code class="language-plaintext highlighter-rouge">&lt;AUTH_SUBDOMAIN_TOKEN&gt;-&lt;API_VERSION&gt;[-&lt;non-prod ENV&gt;].&lt;ROOT_DOMAIN&gt;</code></li>
+      <li><em>Authorized Redirect URIs:</em> <code class="language-plaintext highlighter-rouge">&lt;AUTH_SUBDOMAIN_TOKEN&gt;-&lt;API_VERSION&gt;[-&lt;non-prod ENV&gt;].&lt;ROOT_DOMAIN&gt;/oauth2/idpresponse</code></li>
+    </ul>
+  </li>
+  <li>
+    <p>Add the resulting Client ID to environment variable <code class="language-plaintext highlighter-rouge">GOOGLE_CLIENT_ID</code> in file <code class="language-plaintext highlighter-rouge">.env.&lt;ENV&gt;</code></p>
+  </li>
+  <li>
+    <p>Add the resulting Client Secret to environment variable <code class="language-plaintext highlighter-rouge">GOOGLE_CLIENT_SECRET</code> in file <code class="language-plaintext highlighter-rouge">.env.&lt;ENV&gt;.local</code></p>
+  </li>
+  <li>
+    <p>Add the same Client Secret to environment variable <code class="language-plaintext highlighter-rouge">GOOGLE_CLIENT_SECRET</code> in the relevant CodePipeline configuration.</p>
+  </li>
+</ol>
+
+<h3 id="add-support-for-other-federated-identity-providers">Add Support For Other Federated Identity Providers</h3>
+
+<p>If you configure new federated identity providers following the patterns in this template, then they will only be ENABLED when the relevant client ID, client secret, etc. are added to the project configuration.</p>
+
+<p><a href="https://docs.aws.amazon.com/cognito/latest/developerguide/cognito-user-pools-social-idp.html">This page</a> contains instructions for setting up Cognito-compatible OAUTH2 apps at Facebook, Amazon, Google, and Apple.</p>
+
+<p>It is also possible to set up custom OpenId Connect (OIDC) providers which presumably will account for Twitter etc. There is an AWS reference <a href="https://docs.aws.amazon.com/cognito/latest/developerguide/cognito-user-pools-oidc-idp.html">here</a>.</p>
+
+<p>Once you understand the requirements of your new identity provider, follow these steps:</p>
+
+<ol>
+  <li>
+    <p>Add the relevant new non-secret environment variables (e.g. <code class="language-plaintext highlighter-rouge">GOOGLE_CLIENT_ID) to all </code>.env.<ENV>`files. If no value is available, set the value to`\*`</ENV></p>
+  </li>
+  <li>
+    <p>Add the relevant new secret environment variables (e.g. <code class="language-plaintext highlighter-rouge">GOOGLE_CLIENT_SECRET</code>) to all <code class="language-plaintext highlighter-rouge">.env.&lt;ENV&gt;.local</code> files. If no value is available, set the value to <code class="language-plaintext highlighter-rouge">*</code>.</p>
+  </li>
+  <li>
+    <p>Add the same secret environment variables (e.g. <code class="language-plaintext highlighter-rouge">GOOGLE_CLIENT_SECRET</code>) to all <code class="language-plaintext highlighter-rouge">.env.&lt;ENV&gt;.local.template</code> files. Set all values to <code class="language-plaintext highlighter-rouge">*</code>.</p>
+  </li>
+  <li>
+    <p>Add the same secret environment variables (e.g. <code class="language-plaintext highlighter-rouge">GOOGLE_CLIENT_SECRET</code>) to all CodePipelines. If no value is available, set the value to <code class="language-plaintext highlighter-rouge">*</code>.</p>
+  </li>
+  <li>
+    <p>Add a new identity provider Condition in <a href="https://github.com/karmaniverous/aws-api-template/blob/main/serverless.yml"><code class="language-plaintext highlighter-rouge">serverless.yml</code></a>. Its purpose is to test whether the necessary environment variables have been populated to support enabling the identity provider.</p>
+
+    <p>The new condition should be similar to <code class="language-plaintext highlighter-rouge">CreateIdentityProviderGoogle</code> below and reference the new provider’s environment variables:</p>
+
+    <div class="language-yml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">resources</span><span class="pi">:</span>
+<span class="na">Conditions</span><span class="pi">:</span>
+  <span class="na">CreateUserPool</span><span class="pi">:</span> <span class="kt">!Equals</span> <span class="pi">[</span><span class="s2">"</span><span class="s">${env:COGNITO_USER_POOL_ARN}"</span><span class="pi">,</span> <span class="s2">"</span><span class="s">*"</span><span class="pi">]</span>
+  <span class="na">CreateIdentityProviderGoogle</span><span class="pi">:</span> <span class="kt">!And</span>
+    <span class="pi">-</span> <span class="kt">!Condition</span> <span class="s">CreateUserPool</span>
+    <span class="pi">-</span> <span class="kt">!Not</span>
+    <span class="pi">-</span> <span class="kt">!Or</span>
+      <span class="pi">-</span> <span class="kt">!Equals</span> <span class="pi">[</span><span class="s2">"</span><span class="s">${env:GOOGLE_CLIENT_ID}"</span><span class="pi">,</span> <span class="s2">"</span><span class="s">*"</span><span class="pi">]</span>
+      <span class="pi">-</span> <span class="kt">!Equals</span> <span class="pi">[</span><span class="s2">"</span><span class="s">${env:GOOGLE_CLIENT_SECRET}"</span><span class="pi">,</span> <span class="s2">"</span><span class="s">*"</span><span class="pi">]</span>
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p>Create a new User Pool Identity Provider in <a href="https://github.com/karmaniverous/aws-api-template/blob/main/serverless.yml"><code class="language-plaintext highlighter-rouge">serverless.yml</code></a>. It should be similar to the one below but meet the requirements of the new provider:</p>
+
+    <div class="language-yml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">UserPoolIdentityProviderGoogle</span><span class="pi">:</span>
+  <span class="na">Type</span><span class="pi">:</span> <span class="s">AWS::Cognito::UserPoolIdentityProvider</span>
+  <span class="na">Condition</span><span class="pi">:</span> <span class="s">CreateIdentityProviderGoogle</span>
+  <span class="na">Properties</span><span class="pi">:</span>
+    <span class="na">UserPoolId</span><span class="pi">:</span> <span class="kt">!Ref</span> <span class="s">UserPool</span>
+    <span class="na">ProviderName</span><span class="pi">:</span> <span class="s">Google</span>
+    <span class="na">ProviderDetails</span><span class="pi">:</span>
+      <span class="na">client_id</span><span class="pi">:</span> <span class="s2">"</span><span class="s">${env:GOOGLE_CLIENT_ID}"</span>
+      <span class="na">client_secret</span><span class="pi">:</span> <span class="s2">"</span><span class="s">${env:GOOGLE_CLIENT_SECRET}"</span>
+      <span class="na">authorize_scopes</span><span class="pi">:</span> <span class="s2">"</span><span class="s">profile</span><span class="nv"> </span><span class="s">email</span><span class="nv"> </span><span class="s">openid"</span>
+    <span class="na">ProviderType</span><span class="pi">:</span> <span class="s">Google</span>
+    <span class="na">AttributeMapping</span><span class="pi">:</span>
+      <span class="na">email</span><span class="pi">:</span> <span class="s">email</span>
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p>Conditionally reference the new User Pool Identity Provider in <a href="https://github.com/karmaniverous/aws-api-template/blob/main/serverless.yml"><code class="language-plaintext highlighter-rouge">serverless.yml</code></a> under <code class="language-plaintext highlighter-rouge">UserClient.Properties.SupportedIdentityProviders</code>. Reference the new Condition and the new User Pool Identity Provider, similar to how it is done with Google below:</p>
+
+    <div class="language-yml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">SupportedIdentityProviders</span><span class="pi">:</span>
+  <span class="pi">-</span> <span class="s">COGNITO</span>
+  <span class="pi">-</span> <span class="kt">!If</span>
+    <span class="pi">-</span> <span class="s">CreateIdentityProviderGoogle</span>
+    <span class="pi">-</span> <span class="s">Google</span>
+    <span class="pi">-</span> <span class="na">Ref</span><span class="pi">:</span> <span class="s">AWS::NoValue</span>
+</code></pre></div>    </div>
+  </li>
+</ol>
+
+<p>Test your setup by attempting a remote deployment. If your deployment succeeds, you will your provider configured under <em>Federated identity provider sign-in</em> on the relevant User Pool’s <em>Sign-in experience</em> tab at your <a href="https://us-east-1.console.aws.amazon.com/cognito">AWS Cognito Console</a>.</p>
+
+<h2 id="endpoints">Endpoints</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>Endpoint</th>
+      <th>Pattern</th>
+      <th><code class="language-plaintext highlighter-rouge">dev</code> example</th>
+      <th><code class="language-plaintext highlighter-rouge">prod</code> example</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Base API Path</td>
+      <td><code class="language-plaintext highlighter-rouge">https://&lt;API_SUBDOMAIN&gt;.&lt;ROOT_DOMAIN&gt;/API_VERSION[-{non-prod ENV}]</code></td>
+      <td><code class="language-plaintext highlighter-rouge">https://api.mydomain.com/v0-dev/hello</code></td>
+      <td><code class="language-plaintext highlighter-rouge">https://api.mydomain.com/v0/hello</code></td>
+    </tr>
+    <tr>
+      <td>Authorized Javascript Origin</td>
+      <td><code class="language-plaintext highlighter-rouge">&lt;AUTH_SUBDOMAIN_TOKEN&gt;-&lt;API_VERSION&gt;[-&lt;non-prod ENV&gt;].&lt;ROOT_DOMAIN&gt;</code></td>
+      <td><code class="language-plaintext highlighter-rouge">https://auth-v0-dev.mydomain.com</code></td>
+      <td><code class="language-plaintext highlighter-rouge">https://auth-v0.mydomain.com</code></td>
+    </tr>
+    <tr>
+      <td>Authorized Redirect</td>
+      <td><code class="language-plaintext highlighter-rouge">&lt;AUTH_SUBDOMAIN_TOKEN&gt;-&lt;API_VERSION&gt;[-&lt;non-prod ENV&gt;].&lt;ROOT_DOMAIN&gt;/oauth2/idpresponse</code></td>
+      <td><code class="language-plaintext highlighter-rouge">https://auth-v0-dev.mydomain.com/oauth2/idpresponse</code></td>
+      <td><code class="language-plaintext highlighter-rouge">https://auth-v0.mydomain.com/oauth2/idpresponse</code></td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="issues">Issues</h2>
+
+<h3 id="secure-certificate">Secure Certificate</h3>
+
+<p>Normally we would specify a certificate on <code class="language-plaintext highlighter-rouge">karmanivero.us</code> and <code class="language-plaintext highlighter-rouge">*.karmanivero.us</code> using the <a href="https://www.serverless.com/plugins/serverless-certificate-creator"><code class="language-plaintext highlighter-rouge">serverless-certificate-creator</code></a> plugin. The required entry in <code class="language-plaintext highlighter-rouge">serverless.yaml</code> would look like</p>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">custom</span><span class="pi">:</span>
+  <span class="na">customCertificate</span><span class="pi">:</span>
+    <span class="na">certificateName</span><span class="pi">:</span> <span class="s2">"</span><span class="s">karmanivero.us"</span>
+    <span class="na">hostedZoneNames</span><span class="pi">:</span> <span class="s2">"</span><span class="s">karmanivero.us."</span>
+    <span class="na">subjectAlternativeNames</span><span class="pi">:</span>
+      <span class="pi">-</span> <span class="s2">"</span><span class="s">*.karmanivero.us"</span>
+</code></pre></div></div>
+
+<p>The alternative name is currently creating an issue with this. It looks like the plugin is trying to submit duplicate validation records to the zone file, resulting in an error. See <a href="https://github.com/schwamster/serverless-certificate-creator/pull/55">this pull request</a> for more info.</p>
+
+<p>Meanwhile, let’s create &amp; verify the certificate manually using the <a href="https://us-east-1.console.aws.amazon.com/acm/home#/certificates/list">ACM Console</a> and then reference the certificate by ARN in <code class="language-plaintext highlighter-rouge">serverless.yaml</code>.</p>
+
+<h3 id="serverlessyml-validation"><code class="language-plaintext highlighter-rouge">serverless.yml</code> Validation</h3>
+
+<p>There is a conditional function on private API endpoints that selects authentication either by the Cognito User Pool created on the stack or by the ARN passed in via the <code class="language-plaintext highlighter-rouge">COGNITO_USER_POOL_ARN</code> environment variable. It looks like this:</p>
+
+<div class="language-yml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">secure-hello</span><span class="pi">:</span>
+  <span class="na">handler</span><span class="pi">:</span> <span class="s">api/secure/hello.get</span>
+  <span class="na">description</span><span class="pi">:</span> <span class="s">GET /secure-hello</span>
+  <span class="na">events</span><span class="pi">:</span>
+    <span class="pi">-</span> <span class="na">http</span><span class="pi">:</span>
+        <span class="na">path</span><span class="pi">:</span> <span class="s">secure-hello</span>
+        <span class="na">method</span><span class="pi">:</span> <span class="s">get</span>
+        <span class="na">cors</span><span class="pi">:</span> <span class="no">true</span>
+        <span class="na">authorizer</span><span class="pi">:</span>
+        <span class="na">name</span><span class="pi">:</span> <span class="s">UserPoolAuthorizer</span>
+        <span class="na">type</span><span class="pi">:</span> <span class="s">COGNITO_USER_POOLS</span>
+        <span class="c1"># *** CONDITIONAL ***</span>
+        <span class="na">arn</span><span class="pi">:</span> <span class="kt">!If</span>
+          <span class="pi">-</span> <span class="s">CreateUserPool</span>
+          <span class="pi">-</span> <span class="kt">!GetAtt</span> <span class="s">UserPool.Arn</span>
+          <span class="pi">-</span> <span class="s">${env:COGNITO_USER_POOL_ARN}</span>
+        <span class="c1"># *******************</span>
+        <span class="na">claims</span><span class="pi">:</span>
+          <span class="pi">-</span> <span class="s">email</span>
+</code></pre></div></div>
+
+<p>This is perfectly valid and works just fine, but the Serverless Framework issues the following warning on deployment:</p>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Warning: Invalid configuration encountered
+  at 'functions.secure-hello.events.0.http.authorizer.arn': unsupported object format
+
+Learn more about configuration validation here: http://slss.io/configuration-validation
+</code></pre></div></div>
+
+<p>You can ignore this warning and track the issue <a href="https://github.com/serverless/serverless/issues/11611">here</a>.</p>
+
+<h3 id="user-accounts">User Accounts</h3>
+
+<p>As of now, users can create multiple accounts with the same email, but different user names. (<a href="https://github.com/karmaniverous/aws-api-template/issues/12">#12</a>)</p>
+
+<p>Federated identities (i.e. social logins) with the same email also generate new accounts. (<a href="https://github.com/karmaniverous/aws-api-template/issues/13">#13</a>)</p>
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+  
+
+
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-tags" aria-hidden="true"></i> Topics: </strong>
+    <span itemprop="keywords">
+    
+      <a href="/topics/aws" class="page__taxonomy-item p-category" rel="tag">aws</a><span class="sep">, </span>
+    
+      <a href="/topics/javascript" class="page__taxonomy-item p-category" rel="tag">javascript</a><span class="sep">, </span>
+    
+      <a href="/topics/projects" class="page__taxonomy-item p-category" rel="tag">projects</a><span class="sep">, </span>
+    
+      <a href="/topics/serverless" class="page__taxonomy-item p-category" rel="tag">serverless</a><span class="sep">, </span>
+    
+      <a href="/topics/template" class="page__taxonomy-item p-category" rel="tag">template</a>
+    
+    </span>
+  </p>
+
+
+
+
+        
+
+  <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> Updated:</strong> <time class="dt-published" datetime="2022-12-29T00:00:00+00:00">December 29, 2022</time></p>
+
+      </footer>
+
+      
+        <section class="page__share">
+  
+    <h4 class="page__share-title">Share on</h4>
+  
+
+  <a href="https://twitter.com/intent/tweet?via=karmaniverous&text=AWS+API+Template%20https%3A%2F%2Fkarmanivero.us%2Faws-api-template%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+
+  <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fkarmanivero.us%2Faws-api-template%2F" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
+
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=https://karmanivero.us/aws-api-template/" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
+</section>
+
+
+      
+  <nav class="pagination">
+    
+      <a href="/karmic-rule-3/" class="pagination--pager" title="Karmic Rule Three
+">Previous</a>
+    
+    
+      <a href="/nextjs-template/" class="pagination--pager" title="Next.js Template
+">Next</a>
+    
+  </nav>
+
+    </div>
+
+    
+  </article>
+
+  
+  
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  
+
+  
+  
+
+  
+  
+
+  
+  <div class='page__related'>
+    
+    <h2 class='page__related-title'>
+      You may also enjoy
+    </h2>
+    <div class='grid__wrapper'>
+
+      
+      
+        
+        
+        
+        
+        
+        
+      
+
+        
+      
+
+        
+        <!-- post_url: /the-big-miss-turning-lemons-into-lemonade/ -->
+        <!-- normLogCommonTags: 0.6666666666666666 -->
+        <!-- logAge: 0.090462962962963 -->
+        <!-- relevance: 51910 -->
+
+        
+      
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src="/assets/images/lemons-square.jpg" alt="">
+      </div>
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/the-big-miss-turning-lemons-into-lemonade/" rel="permalink">The Big Miss: Turning Lemons Into Lemonade
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+      
+      <span class="page__meta-date">
+        <i
+          class="far fa-fw fa-calendar-alt"
+          aria-hidden="true"
+        ></i>
+        
+        <time datetime="2024-11-20T00:00:00+00:00">November 20, 2024</time>
+      </span>
+    
+
+    <span class="page__meta-sep"></span>
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i
+          class="far fa-fw fa-clock"
+          aria-hidden="true"
+        ></i>
+        
+          8
+          minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">Today was one of those days when I question my life choices. Watch me dig my way out of a hole with the same shovel I used to dig my way in.
+</p>
+  </article>
+</div>
+
+
+        
+        
+        
+      
+        
+        
+        
+        
+        
+      
+
+        
+      
+
+        
+        <!-- post_url: /projects/entity-manager/sql-vs-nosql/ -->
+        <!-- normLogCommonTags: 0.6666666666666666 -->
+        <!-- logAge: 5.0 -->
+        <!-- relevance: 47000 -->
+
+        
+      
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src="/assets/collections/entity-manager/sql-vs-nosql-square.jpg" alt="">
+      </div>
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/projects/entity-manager/sql-vs-nosql/" rel="permalink">SQL vs NoSQL
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i
+          class="far fa-clock"
+          aria-hidden="true"
+        ></i>
+        
+          4
+          minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">A well-tuned NoSQL database can outperform an RDBMS by orders of magnitude at scale… but not for free! Entity Manager helps close the gap.
+</p>
+  </article>
+</div>
+
+
+        
+        
+        
+      
+        
+        
+        
+        
+        
+      
+
+        
+      
+
+        
+        <!-- post_url: /projects/entity-manager/intro/ -->
+        <!-- normLogCommonTags: 0.6666666666666666 -->
+        <!-- logAge: 5.0 -->
+        <!-- relevance: 47000 -->
+
+        
+      
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src="/assets/collections/entity-manager/entity-manager-square.jpg" alt="">
+      </div>
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/projects/entity-manager/intro/" rel="permalink">Meet Entity Manager!
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i
+          class="far fa-clock"
+          aria-hidden="true"
+        ></i>
+        
+          2
+          minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">NoSQL shifts the burden of complexity from the database platform to the developer. Entity Manager sweeps it under the rug!
+</p>
+  </article>
+</div>
+
+
+        
+        
+        
+      
+        
+        
+        
+        
+        
+      
+
+        
+      
+
+        
+        <!-- post_url: /projects/entity-manager/evolving-a-nosql-db-schema/ -->
+        <!-- normLogCommonTags: 0.6666666666666666 -->
+        <!-- logAge: 5.0 -->
+        <!-- relevance: 47000 -->
+
+        
+      
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src="/assets/collections/entity-manager/evolving-a-nosql-db-schema-square.jpg" alt="">
+      </div>
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/projects/entity-manager/evolving-a-nosql-db-schema/" rel="permalink">Evolving a NoSQL Database Schema
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i
+          class="far fa-clock"
+          aria-hidden="true"
+        ></i>
+        
+          31
+          minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">In a NoSQL environment, Entity Manager organizes the physical distribution of data to support efficient query operations.
+</p>
+  </article>
+</div>
+
+
+        
+        
+        
+      
+        
+        
+        
+        
+        
+      
+
+        
+      
+
+        
+        <!-- post_url: /projects/entity-manager/demo/ -->
+        <!-- normLogCommonTags: 0.6666666666666666 -->
+        <!-- logAge: 5.0 -->
+        <!-- relevance: 47000 -->
+
+        
+      
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src="/assets/collections/entity-manager/configuration-square.jpg" alt="">
+      </div>
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/projects/entity-manager/demo/" rel="permalink">Entity Manager: A Demonstration
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i
+          class="far fa-clock"
+          aria-hidden="true"
+        ></i>
+        
+          16
+          minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">Presenting a step-by-step Typescript implementation of a realistic data model against DynamoDB, with the help of Entity Manager.
+</p>
+  </article>
+</div>
+
+
+        
+        
+        
+      
+        
+        
+        
+        
+        
+      
+
+        
+      
+
+        
+        <!-- post_url: /projects/entity-manager/configuration/ -->
+        <!-- normLogCommonTags: 0.6666666666666666 -->
+        <!-- logAge: 5.0 -->
+        <!-- relevance: 47000 -->
+
+        
+      
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src="/assets/collections/entity-manager/configuration-square.jpg" alt="">
+      </div>
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/projects/entity-manager/configuration/" rel="permalink">Entity Manager Configuration
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i
+          class="far fa-clock"
+          aria-hidden="true"
+        ></i>
+        
+          22
+          minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">Entity Manager enables efficient put, get, and query operations across entity relationships, indexes, and sharded partitions in a NoSQL database.
+</p>
+  </article>
+</div>
+
+
+        
+        
+        
+      
+        
+        
+        
+        
+        
+      
+
+        
+      
+
+        
+        <!-- post_url: /code-complete-a-day-in-the-life-of-a-product/ -->
+        <!-- normLogCommonTags: 0.6666666666666666 -->
+        <!-- logAge: 6.017038483796297 -->
+        <!-- relevance: 45983 -->
+
+        
+      
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src="/assets/images/code-complete-tests.jpg" alt="">
+      </div>
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/code-complete-a-day-in-the-life-of-a-product/" rel="permalink">Code Complete: A Day in the Life of a Product
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+      
+      <span class="page__meta-date">
+        <i
+          class="far fa-fw fa-calendar-alt"
+          aria-hidden="true"
+        ></i>
+        
+        <time datetime="2024-09-17T00:00:00+00:00">September 17, 2024</time>
+      </span>
+    
+
+    <span class="page__meta-sep"></span>
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i
+          class="far fa-fw fa-clock"
+          aria-hidden="true"
+        ></i>
+        
+          8
+          minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">We’re all professionals here, right? And we all know there’s often quite a gap between what gets posted to social media and the reality on the ground.
+</p>
+  </article>
+</div>
+
+
+        
+        
+        
+      
+        
+        
+        
+        
+        
+      
+
+        
+      
+
+        
+        <!-- post_url: /mock-db/ -->
+        <!-- normLogCommonTags: 0.6666666666666666 -->
+        <!-- logAge: 6.251413483796296 -->
+        <!-- relevance: 45749 -->
+
+        
+      
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src="/assets/images/logo-mock-db.png" alt="">
+      </div>
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/mock-db/" rel="permalink">mock-db
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+      
+      <span class="page__meta-date">
+        <i
+          class="far fa-fw fa-calendar-alt"
+          aria-hidden="true"
+        ></i>
+        
+        <time datetime="2024-09-02T00:00:00+00:00">September 2, 2024</time>
+      </span>
+    
+
+    <span class="page__meta-sep"></span>
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i
+          class="far fa-fw fa-clock"
+          aria-hidden="true"
+        ></i>
+        
+          1
+          minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">Mock DynamoDB-style query &amp; scan behavior with local JSON data. Or learn to play the guitar, if you think pretty girls REALLY like that kind of thing.
+</p>
+  </article>
+</div>
+
+
+        
+        
+        
+          
+    </div>
+  </div>
+
+  
+</div>
+      
+    </div>
+
+    
+      <div class="search-content">
+        <div class="search-content__inner-wrap"><form onsubmit="return googleCustomSearchExecute();" id="cse-search-box-form-id" role="search">
+    <label class="sr-only" for="cse-search-input-box-id">
+      Enter your search term...
+    </label>
+    <input type="search" id="cse-search-input-box-id" class="search-input" tabindex="-1" placeholder="Enter your search term..." />
+  </form>
+  <div id="results" class="results">
+    <gcse:searchresults-only></gcse:searchresults-only>
+  </div></div>
+
+      </div>
+    
+
+    <div id="footer" class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+        <div class="page__footer-follow">
+  
+    <span class="love">Built for you with ❤️ on <a href="/bali/">Bali</a>!</span>
+  
+
+  <ul class="social-icons">
+    
+      <li>
+        <strong>Contact</strong>&nbsp;&nbsp;&nbsp;</li>
+    
+
+    
+      
+        
+          <li>
+            <a href="https://twitter.com/karmaniverous" rel="nofollow noopener noreferrer">
+              <i class="fa-brands fa-x-twitter" aria-hidden="true"></i>
+              </a>
+          </li>
+        
+      
+        
+          <li>
+            <a href="https://techhub.social/@karmaniverous" rel="nofollow noopener noreferrer">
+              <i class="fa-brands fa-mastodon" aria-hidden="true"></i>
+              </a>
+          </li>
+        
+      
+        
+          <li>
+            <a href="https://github.com/karmaniverous" rel="nofollow noopener noreferrer">
+              <i class="fa-brands fa-github" aria-hidden="true"></i>
+              </a>
+          </li>
+        
+      
+        
+          <li>
+            <a href="https://www.linkedin.com/in/jscroft/" rel="nofollow noopener noreferrer">
+              <i class="fa-brands fa-linkedin" aria-hidden="true"></i>
+              </a>
+          </li>
+        
+      
+        
+          <li>
+            <a href="https://wa.me/17737500338" rel="nofollow noopener noreferrer">
+              <i class="fa-brands fa-square-whatsapp" aria-hidden="true"></i>
+              </a>
+          </li>
+        
+      
+        
+          <li>
+            <a href="https://t.me/karmaniverous" rel="nofollow noopener noreferrer">
+              <i class="fa-brands fa-telegram" aria-hidden="true"></i>
+              </a>
+          </li>
+        
+      
+        
+          <li>
+            <a href="https://calendly.com/karmaniverous" rel="nofollow noopener noreferrer">
+              <i class="fa-regular fa-calendar-plus" aria-hidden="true"></i>
+              </a>
+          </li>
+        
+      
+    
+
+    
+      <li>
+        <a href="/feed.xml">
+          <i class="fas fa-fw fa-rss-square" aria-hidden="true"></i>
+           </a>
+      </li>
+    
+  </ul>
+</div>
+
+<div class="page__footer-copyright">&copy; 2024
+  <a href="https://karmanivero.us">some words</a>. Powered by
+  <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a>
+  &amp;
+  <a href="https://mademistakes.com/work/jekyll-themes/minimal-mistakes/" rel="nofollow">Minimal Mistakes</a>.</div>
+      </footer>
+    </div>
+
+    
+  <script src="/assets/js/main.min.js"></script>
+
+
+<script>
+  (function () {
+    var cx = '960ee5d1b2fec4509';
+    var gcse = document.createElement('script');
+    gcse.type = 'text/javascript';
+    gcse.async = true;
+    gcse.src = 'https://cse.google.com/cse.js?cx=' + cx;
+    var s = document.getElementsByTagName('script')[0];
+    s.parentNode.insertBefore(gcse, s);
+  })();
+
+  function googleCustomSearchExecute() {
+    var input = document.getElementById('cse-search-input-box-id');
+    var element = google.search.cse.element.getElement('searchresults-only0');
+    if (input.value == '') {
+      element.clearAllResults();
+    } else {
+      element.execute(input.value);
+    }
+    return false;
+  }
+
+  
+    $(document).ready(function () {
+      $('input#cse-search-input-box-id').on('keyup', function () {
+        googleCustomSearchExecute();
+      });
+    });
+  
+</script>
+
+
+
+
+    
+  <script>
+    var disqus_config = function () {
+      this.page.url = "https://karmanivero.us/aws-api-template/";  /* Replace PAGE_URL with your page's canonical URL variable */
+      this.page.identifier = "/aws-api-template"; /* Replace PAGE_IDENTIFIER with your page's unique identifier variable */
+    };
+    (function() { /* DON'T EDIT BELOW THIS LINE */
+      var d = document, s = d.createElement('script');
+      s.src = 'https://some-words.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+    })();
+  </script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+
+  
+
+
+
+
+  </body>
+</html>

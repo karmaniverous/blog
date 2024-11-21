@@ -1,0 +1,1339 @@
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.26.2 by Michael Rose
+  Copyright 2013-2024 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
+-->
+
+<html lang="en-US" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin _includes/seo.html --><title>When IntelliSense Fails: How to Avoid TypeScript While Avoiding TypeScript - some words</title>
+<meta name="description" content="Sure you could transpile perfectly good ES6 code into the same thing + TS types. But sweet mother of everything, WHY??">
+
+
+  <meta name="author" content="Jason Williscroft">
+  
+  <meta property="article:author" content="Jason Williscroft">
+  
+
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="en_US">
+<meta property="og:site_name" content="some words">
+<meta property="og:title" content="When IntelliSense Fails: How to Avoid TypeScript While Avoiding TypeScript">
+<meta property="og:url" content="https://karmanivero.us/when-intellisense-fails/">
+
+
+  <meta property="og:description" content="Sure you could transpile perfectly good ES6 code into the same thing + TS types. But sweet mother of everything, WHY??">
+
+
+
+  <meta property="og:image" content="https://karmanivero.us/assets/images/logo-vscode.png">
+
+
+
+  <meta name="twitter:site" content="@karmaniverous">
+  <meta name="twitter:title" content="When IntelliSense Fails: How to Avoid TypeScript While Avoiding TypeScript">
+  <meta name="twitter:description" content="Sure you could transpile perfectly good ES6 code into the same thing + TS types. But sweet mother of everything, WHY??">
+  <meta name="twitter:url" content="https://karmanivero.us/when-intellisense-fails/">
+
+  
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content="https://karmanivero.us/assets/images/logo-vscode.png">
+  
+
+  
+
+
+
+  <meta property="article:published_time" content="2023-01-29T00:00:00+00:00">
+
+
+
+
+
+
+<link rel="canonical" href="https://karmanivero.us/when-intellisense-fails/">
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- end _includes/seo.html -->
+
+
+
+  <link href="/feed.xml" type="application/atom+xml" rel="alternate" title="some words Feed">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script type="text/javascript">
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+  window.enable_copy_code_button = true;
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/assets/css/main.css">
+<link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@latest/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@latest/css/all.min.css"></noscript>
+
+
+
+    <link
+  rel="apple-touch-icon"
+  sizes="180x180"
+  href="/assets/favicon/apple-touch-icon.png" />
+<link
+  rel="icon"
+  type="image/png"
+  sizes="32x32"
+  href="/assets/favicon/favicon-32x32.png" />
+<link
+  rel="icon"
+  type="image/png"
+  sizes="16x16"
+  href="/assets/favicon/favicon-16x16.png" />
+<link rel="manifest" href="/assets/favicon/site.webmanifest" />
+<link
+  rel="mask-icon"
+  href="/assets/favicon/safari-pinned-tab.svg"
+  color="#5bbad5" />
+<link rel="shortcut icon" href="/assets/favicon/favicon.ico" />
+<meta name="msapplication-TileColor" content="#2b5797" />
+<meta name="msapplication-config" content="/assets/favicon/browserconfig.xml" />
+<meta name="theme-color" content="#ffffff" />
+
+
+
+<!-- Mathjax Support -->
+<script
+  type="text/javascript"
+  async
+  src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+  </head>
+
+  <body class="layout--single" dir="ltr">
+    <nav class="skip-links">
+  <ul>
+    <li><a href="#site-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">Skip to footer</a></li>
+  </ul>
+</nav>
+
+    
+
+<div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        
+        <a class="site-title" href="/">
+          some words
+          <span class="site-subtitle">many of them true</span>
+        </a>
+        <ul class="visible-links"><li class="masthead__menu-item">
+              <a
+                href="/projects/"
+                
+                
+              >Projects</a>
+            </li><li class="masthead__menu-item">
+              <a
+                href="/toolkits/"
+                
+                
+              >Toolkits</a>
+            </li><li class="masthead__menu-item">
+              <a
+                href="/bali/"
+                
+                
+              >Bali</a>
+            </li><li class="masthead__menu-item">
+              <a
+                href="/topics/"
+                
+                
+              >Topics</a>
+            </li><li class="masthead__menu-item">
+              <a
+                href="/blog/"
+                
+                
+              >Archive</a>
+            </li></ul>
+        
+        <button class="search__toggle" type="button">
+          <span class="visually-hidden">Toggle search</span>
+          <i class="fas fa-search"></i>
+        </button>
+        
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">Toggle menu</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+    <div class="initial-content">
+      
+
+
+
+
+
+<div id="main" role="main">
+  
+  <div class="sidebar sticky">
+  
+
+
+<div itemscope itemtype="https://schema.org/Person" class="h-card">
+
+  
+    <div class="author__avatar">
+      <a href="https://karmanivero.us/">
+        <img src="/assets/images/bio-photo.jpg" alt="Jason Williscroft" itemprop="image" class="u-photo">
+      </a>
+    </div>
+  
+
+  <div class="author__content">
+    <h3 class="author__name p-name" itemprop="name">
+      <a class="u-url" rel="me" href="https://karmanivero.us/" itemprop="url">Jason Williscroft</a>
+    </h3>
+    
+      <div class="author__bio p-note" itemprop="description">
+        <p><em>resume bullets<br />may read differently at the<br />threshold of heaven</em></p>
+
+      </div>
+    
+  </div>
+
+  <div class="author__urls-wrapper">
+    <button class="btn btn--inverse">Contact</button>
+    <ul class="author__urls social-icons">
+      
+
+      
+        
+          
+            <li><a href="https://twitter.com/karmaniverous" rel="nofollow noopener noreferrer me" itemprop="sameAs"><i class="fa-brands fa-square-x-twitter" aria-hidden="true"></i><span class="label">X</span></a></li>
+          
+        
+          
+            <li><a href="https://techhub.social/@karmaniverous" rel="nofollow noopener noreferrer me" itemprop="sameAs"><i class="fa-brands fa-mastodon" aria-hidden="true"></i><span class="label">Mastodon</span></a></li>
+          
+        
+          
+            <li><a href="https://github.com/karmaniverous" rel="nofollow noopener noreferrer me" itemprop="sameAs"><i class="fa-brands fa-github" aria-hidden="true"></i><span class="label">GitHub</span></a></li>
+          
+        
+          
+            <li><a href="https://www.linkedin.com/in/jscroft/" rel="nofollow noopener noreferrer me" itemprop="sameAs"><i class="fa-brands fa-linkedin" aria-hidden="true"></i><span class="label">LinkedIn</span></a></li>
+          
+        
+          
+            <li><a href="https://wa.me/17737500338" rel="nofollow noopener noreferrer me" itemprop="sameAs"><i class="fa-brands fa-whatsapp" aria-hidden="true"></i><span class="label">WhatsApp</span></a></li>
+          
+        
+          
+            <li><a href="https://t.me/karmaniverous" rel="nofollow noopener noreferrer me" itemprop="sameAs"><i class="fa-brands fa-telegram" aria-hidden="true"></i><span class="label">Telegram</span></a></li>
+          
+        
+          
+            <li><a href="https://calendly.com/karmaniverous" rel="nofollow noopener noreferrer me" itemprop="sameAs"><i class="fa-regular fa-calendar-plus" aria-hidden="true"></i><span class="label">Meet</span></a></li>
+          
+        
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      <!--
+  <li>
+    <a href="http://link-to-whatever-social-network.com/user/" itemprop="sameAs" rel="nofollow noopener noreferrer me">
+      <i class="fas fa-fw" aria-hidden="true"></i> Custom Social Profile Link
+    </a>
+  </li>
+-->
+    </ul>
+  </div>
+</div>
+
+  
+  </div>
+
+
+
+  <article
+    class="page"
+    itemscope
+    itemtype="https://schema.org/CreativeWork"
+    >
+    <meta itemprop="headline" content="When IntelliSense Fails: How to Avoid TypeScript While Avoiding TypeScript">
+    <meta itemprop="description" content="Sure you could transpile perfectly good ES6 code into the same thing + TS types. But sweet mother of everything, WHY??">
+    <meta itemprop="datePublished" content="2023-01-29T00:00:00+00:00">
+    
+
+    <div class="page__inner-wrap">
+      
+        <header>
+          <h1
+              id="page-title"
+              class="page__title"
+              itemprop="headline">
+              <a href="https://karmanivero.us/when-intellisense-fails/" itemprop="url">When IntelliSense Fails: How to Avoid TypeScript While Avoiding TypeScript
+</a>
+            </h1>
+          
+
+  <p class="page__meta">
+    
+      
+      <span class="page__meta-date">
+        <i
+          class="far fa-calendar-alt"
+          aria-hidden="true"
+        ></i>
+        
+        <time datetime="2023-01-29T00:00:00+00:00">January 29, 2023</time>
+      </span>
+    
+
+    <span class="page__meta-sep"></span>
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i
+          class="far fa-clock"
+          aria-hidden="true"
+        ></i>
+        
+          2
+          minute read
+        
+      </span>
+    
+  </p>
+
+
+        </header>
+      
+
+      <section class="page__content" itemprop="text">
+        
+        <figure class="align-left drop-image">
+    <img src="/assets/images/logo-vscode.png" />
+</figure>
+
+<p>The handful of people who actually pay attention to these words may be aware that I maintain a growing list of small GitHub projects that do useful things.</p>
+
+<p>Not trying to be famous; this is all stuff I use in my own projects, and I’ve long since learned that the best way to robustify your code is to let other people see it. See <a href="https://github.com/karmaniverous">my GitHub profile</a> for more info.</p>
+
+<p>So this morning I imported one of my packages into an ES6 project and hit this weird WTF moment: its IntelliSense was broken! The imported function ran just fine, but showed absolutely nothing at the tooltip. All that careful <a href="https://jsdoc.app/">JSDoc</a>: worthless.</p>
+
+<p>Strangely, IntelliSense worked just fine when I altered my import to point at a specific file in <code class="language-plaintext highlighter-rouge">node_modules</code>. Although then the function failed to execute because the specific file wasn’t a designated export of that module.</p>
+
+<p><strong>Smells like a clue, right?</strong></p>
+
+<p>So I started investigating and immediately ran into a few articles and StackOverflow responses like <a href="https://stackoverflow.com/a/74012034/17920604">this one</a>. TL/DR: helpful TypeScript users thoughtfully explain how to augment perfectly functional ES6 code with TypeScript types in order to get VS Code to to the job it ALREADY has enough info to do!</p>
+
+<p>This is the sort of thing that could have me drinking tequila at 10 in the morning.</p>
+
+<p><strong>I rebel!</strong></p>
+
+<p>I am writing JavaScript. I do NOT want to transpile my very sweet ES6 code, already thoughtfully decorated with JSDoc, into the EXACT SAME THING just so my code can be augmented with types in a language I am studiously trying to avoid.</p>
+
+<p>That’s coo-coo.</p>
+
+<p>As far as I am concerned, <strong>my ES6 code IS my ES6 distribution!</strong> I want to point my <code class="language-plaintext highlighter-rouge">package.json</code> <code class="language-plaintext highlighter-rouge">exports['.'].import</code> key at my <code class="language-plaintext highlighter-rouge">lib</code> directory (where my source lives) and have done with it. This should just WORK, and if it doesn’t, then the problem lies with the TOOL and not with my code.</p>
+
+<p>So.</p>
+
+<p>It turns out that doing what I just described, works JUST FINE. All your imports work, all the code runs, all that. The only failure is that IntelliSense breaks in VS CODE.</p>
+
+<p>How come?</p>
+
+<p>Well, clearly VS Code is parsing <code class="language-plaintext highlighter-rouge">package.json</code> to figure out where your typedefs are, and apparently <strong>VS Code has not yet caught up to the new export-mapping syntax!</strong></p>
+
+<p>Take a look at the Node.js <a href="https://nodejs.org/api/packages.html#package-entry-points">package entry points</a> documentation. The <code class="language-plaintext highlighter-rouge">main</code> key still works, and if you use it alongside <code class="language-plaintext highlighter-rouge">exports</code>, Node.js will just ignore it. But VS Code will pick it up and use it to power your IntelliSense!</p>
+
+<p>For example:</p>
+
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
+  </span><span class="err">...</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"exports"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"."</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"import"</span><span class="p">:</span><span class="w"> </span><span class="s2">"./lib/index.js"</span><span class="p">,</span><span class="w"> </span><span class="err">//</span><span class="w"> </span><span class="err">where</span><span class="w"> </span><span class="err">I</span><span class="w"> </span><span class="err">write</span><span class="w"> </span><span class="err">my</span><span class="w"> </span><span class="err">code</span><span class="w">
+      </span><span class="nl">"require"</span><span class="p">:</span><span class="w"> </span><span class="s2">"./dist/default/lib/index.js"</span><span class="w"> </span><span class="err">//</span><span class="w"> </span><span class="err">Babel</span><span class="w"> </span><span class="err">transpiler</span><span class="w"> </span><span class="err">target</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="nl">"main"</span><span class="p">:</span><span class="w"> </span><span class="s2">"./lib/index.js"</span><span class="p">,</span><span class="w"> </span><span class="err">//</span><span class="w"> </span><span class="err">where</span><span class="w"> </span><span class="err">VS</span><span class="w"> </span><span class="err">code</span><span class="w"> </span><span class="err">looks</span><span class="w"> </span><span class="err">for</span><span class="w"> </span><span class="err">IntelliSense</span><span class="w">
+  </span><span class="err">...</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div></div>
+
+<p>This works perfectly! The imported module will expose all your JSDoc to IntelliSense, and now we can all go back to earning a living.</p>
+
+<p>Again, no aspersions cast on you TS-niks! You guys are awesome. I just don’t want to be one of you. 👊</p>
+
+<p><strong>P.S. How did this manage to catch me by surprise?</strong> A few months ago I refactored my templates to use the new <code class="language-plaintext highlighter-rouge">exports</code> key and neglected to test the effect of the change on package imports.</p>
+
+<p>You may point and laugh at your discretion. 🙄</p>
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+  
+
+
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-tags" aria-hidden="true"></i> Topics: </strong>
+    <span itemprop="keywords">
+    
+      <a href="/topics/javascript" class="page__taxonomy-item p-category" rel="tag">javascript</a><span class="sep">, </span>
+    
+      <a href="/topics/tips" class="page__taxonomy-item p-category" rel="tag">tips</a><span class="sep">, </span>
+    
+      <a href="/topics/typescript" class="page__taxonomy-item p-category" rel="tag">typescript</a><span class="sep">, </span>
+    
+      <a href="/topics/vs-code" class="page__taxonomy-item p-category" rel="tag">vs-code</a>
+    
+    </span>
+  </p>
+
+
+
+
+        
+
+  <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> Updated:</strong> <time class="dt-published" datetime="2023-01-29T00:00:00+00:00">January 29, 2023</time></p>
+
+      </footer>
+
+      
+        <section class="page__share">
+  
+    <h4 class="page__share-title">Share on</h4>
+  
+
+  <a href="https://twitter.com/intent/tweet?via=karmaniverous&text=When+IntelliSense+Fails%3A+How+to+Avoid+TypeScript+While+Avoiding+TypeScript%20https%3A%2F%2Fkarmanivero.us%2Fwhen-intellisense-fails%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+
+  <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fkarmanivero.us%2Fwhen-intellisense-fails%2F" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
+
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=https://karmanivero.us/when-intellisense-fails/" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
+</section>
+
+
+      
+  <nav class="pagination">
+    
+      <a href="/karmic-rule-4/" class="pagination--pager" title="Karmic Rule Four
+">Previous</a>
+    
+    
+      <a href="/lodash-nextjs-13-smh/" class="pagination--pager" title="Lodash + Next.js 13 = smh
+">Next</a>
+    
+  </nav>
+
+    </div>
+
+    
+  </article>
+
+  
+  
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  
+
+  
+  
+
+  
+  
+
+  
+  <div class='page__related'>
+    
+    <h2 class='page__related-title'>
+      You may also enjoy
+    </h2>
+    <div class='grid__wrapper'>
+
+      
+      
+        
+        
+        
+        
+        
+        
+      
+
+        
+      
+
+        
+        <!-- post_url: /the-big-miss-turning-lemons-into-lemonade/ -->
+        <!-- normLogCommonTags: 1.0 -->
+        <!-- logAge: 0.090462962962963 -->
+        <!-- relevance: 52910 -->
+
+        
+      
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src="/assets/images/lemons-square.jpg" alt="">
+      </div>
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/the-big-miss-turning-lemons-into-lemonade/" rel="permalink">The Big Miss: Turning Lemons Into Lemonade
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+      
+      <span class="page__meta-date">
+        <i
+          class="far fa-fw fa-calendar-alt"
+          aria-hidden="true"
+        ></i>
+        
+        <time datetime="2024-11-20T00:00:00+00:00">November 20, 2024</time>
+      </span>
+    
+
+    <span class="page__meta-sep"></span>
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i
+          class="far fa-fw fa-clock"
+          aria-hidden="true"
+        ></i>
+        
+          8
+          minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">Today was one of those days when I question my life choices. Watch me dig my way out of a hole with the same shovel I used to dig my way in.
+</p>
+  </article>
+</div>
+
+
+        
+        
+        
+      
+        
+        
+        
+        
+        
+      
+
+        
+      
+
+        
+        <!-- post_url: /using-two-whatsapp-accounts-on-the-same-desktop/ -->
+        <!-- normLogCommonTags: 0.0 -->
+        <!-- logAge: 2.022615740740741 -->
+        <!-- relevance: 47977 -->
+
+        
+      
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src="/assets/images/dual-whatsapp-square.jpg" alt="">
+      </div>
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/using-two-whatsapp-accounts-on-the-same-desktop/" rel="permalink">Using Two WhatsApp Accounts on the Same Desktop
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+      
+      <span class="page__meta-date">
+        <i
+          class="far fa-fw fa-calendar-alt"
+          aria-hidden="true"
+        ></i>
+        
+        <time datetime="2024-11-17T00:00:00+00:00">November 17, 2024</time>
+      </span>
+    
+
+    <span class="page__meta-sep"></span>
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i
+          class="far fa-fw fa-clock"
+          aria-hidden="true"
+        ></i>
+        
+          1
+          minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">Need to use your personal and business WhatsApp accounts at the same time on the same desktop? Here’s how!
+</p>
+  </article>
+</div>
+
+
+        
+        
+        
+      
+        
+        
+        
+        
+        
+      
+
+        
+      
+
+        
+        <!-- post_url: /projects/entity-manager/intro/ -->
+        <!-- normLogCommonTags: 0.0 -->
+        <!-- logAge: 5.0 -->
+        <!-- relevance: 45000 -->
+
+        
+      
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src="/assets/collections/entity-manager/entity-manager-square.jpg" alt="">
+      </div>
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/projects/entity-manager/intro/" rel="permalink">Meet Entity Manager!
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i
+          class="far fa-clock"
+          aria-hidden="true"
+        ></i>
+        
+          2
+          minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">NoSQL shifts the burden of complexity from the database platform to the developer. Entity Manager sweeps it under the rug!
+</p>
+  </article>
+</div>
+
+
+        
+        
+        
+      
+        
+        
+        
+        
+        
+      
+
+        
+      
+
+        
+        <!-- post_url: /projects/entity-manager/demo/ -->
+        <!-- normLogCommonTags: 0.0 -->
+        <!-- logAge: 5.0 -->
+        <!-- relevance: 45000 -->
+
+        
+      
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src="/assets/collections/entity-manager/configuration-square.jpg" alt="">
+      </div>
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/projects/entity-manager/demo/" rel="permalink">Entity Manager: A Demonstration
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i
+          class="far fa-clock"
+          aria-hidden="true"
+        ></i>
+        
+          16
+          minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">Presenting a step-by-step Typescript implementation of a realistic data model against DynamoDB, with the help of Entity Manager.
+</p>
+  </article>
+</div>
+
+
+        
+        
+        
+      
+        
+        
+        
+        
+        
+      
+
+        
+      
+
+        
+        <!-- post_url: /projects/entity-manager/configuration/ -->
+        <!-- normLogCommonTags: 0.0 -->
+        <!-- logAge: 5.0 -->
+        <!-- relevance: 45000 -->
+
+        
+      
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src="/assets/collections/entity-manager/configuration-square.jpg" alt="">
+      </div>
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/projects/entity-manager/configuration/" rel="permalink">Entity Manager Configuration
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i
+          class="far fa-clock"
+          aria-hidden="true"
+        ></i>
+        
+          22
+          minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">Entity Manager enables efficient put, get, and query operations across entity relationships, indexes, and sharded partitions in a NoSQL database.
+</p>
+  </article>
+</div>
+
+
+        
+        
+        
+      
+        
+        
+        
+        
+        
+      
+
+        
+      
+
+        
+        <!-- post_url: /composition-in-action-finishing-the-swing/ -->
+        <!-- normLogCommonTags: 0.0 -->
+        <!-- logAge: 5.1278269675925925 -->
+        <!-- relevance: 44872 -->
+
+        
+      
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src="https://github.com/karmaniverous/controlled-proxy/raw/main/assets/controlled-proxy-square.jpg" alt="">
+      </div>
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/composition-in-action-finishing-the-swing/" rel="permalink">Composition in Action: Finishing the Swing
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+      
+      <span class="page__meta-date">
+        <i
+          class="far fa-fw fa-calendar-alt"
+          aria-hidden="true"
+        ></i>
+        
+        <time datetime="2024-10-16T00:00:00+00:00">October 16, 2024</time>
+      </span>
+    
+
+    <span class="page__meta-sep"></span>
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i
+          class="far fa-fw fa-clock"
+          aria-hidden="true"
+        ></i>
+        
+          9
+          minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">In software engineering, what look to be the easy parts often turn out to be the hard parts. If you’re lucky, the reverse is also true, but don’t count on it.
+</p>
+  </article>
+</div>
+
+
+        
+        
+        
+      
+        
+        
+        
+        
+        
+      
+
+        
+      
+
+        
+        <!-- post_url: /mixin-it-up-picking-the-right-problem-to-solve/ -->
+        <!-- normLogCommonTags: 0.0 -->
+        <!-- logAge: 5.2528269675925925 -->
+        <!-- relevance: 44747 -->
+
+        
+      
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src="/assets/images/mixin-it-up-square.jpg" alt="">
+      </div>
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/mixin-it-up-picking-the-right-problem-to-solve/" rel="permalink">Mixin It Up: Picking The Right Problem to Solve
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+      
+      <span class="page__meta-date">
+        <i
+          class="far fa-fw fa-calendar-alt"
+          aria-hidden="true"
+        ></i>
+        
+        <time datetime="2024-10-12T00:00:00+00:00">October 12, 2024</time>
+      </span>
+    
+
+    <span class="page__meta-sep"></span>
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i
+          class="far fa-fw fa-clock"
+          aria-hidden="true"
+        ></i>
+        
+          9
+          minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">Sometimes, when you’re tangled up in a thorny problem, solving it is exactly the wrong answer.
+</p>
+  </article>
+</div>
+
+
+        
+        
+        
+      
+        
+        
+        
+        
+        
+      
+
+        
+      
+
+        
+        <!-- post_url: /loggable-a-typescript-mixin-for-generic-class-logging/ -->
+        <!-- normLogCommonTags: 0.0 -->
+        <!-- logAge: 5.2840769675925925 -->
+        <!-- relevance: 44716 -->
+
+        
+      
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src="https://raw.githubusercontent.com/karmaniverous/loggable/main/assets/loggable-square.jpg" alt="">
+      </div>
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/loggable-a-typescript-mixin-for-generic-class-logging/" rel="permalink">Loggable: A TypeScript Mixin for Generic Class Logging
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+      
+      <span class="page__meta-date">
+        <i
+          class="far fa-fw fa-calendar-alt"
+          aria-hidden="true"
+        ></i>
+        
+        <time datetime="2024-10-11T00:00:00+00:00">October 11, 2024</time>
+      </span>
+    
+
+    <span class="page__meta-sep"></span>
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i
+          class="far fa-fw fa-clock"
+          aria-hidden="true"
+        ></i>
+        
+          5
+          minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">Logging is an implementation decision that should be deferred as late as possible. Loggable lets you defer it until runtime!
+</p>
+  </article>
+</div>
+
+
+        
+        
+        
+          
+    </div>
+  </div>
+
+  
+</div>
+      
+    </div>
+
+    
+      <div class="search-content">
+        <div class="search-content__inner-wrap"><form onsubmit="return googleCustomSearchExecute();" id="cse-search-box-form-id" role="search">
+    <label class="sr-only" for="cse-search-input-box-id">
+      Enter your search term...
+    </label>
+    <input type="search" id="cse-search-input-box-id" class="search-input" tabindex="-1" placeholder="Enter your search term..." />
+  </form>
+  <div id="results" class="results">
+    <gcse:searchresults-only></gcse:searchresults-only>
+  </div></div>
+
+      </div>
+    
+
+    <div id="footer" class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+        <div class="page__footer-follow">
+  
+    <span class="love">Built for you with ❤️ on <a href="/bali/">Bali</a>!</span>
+  
+
+  <ul class="social-icons">
+    
+      <li>
+        <strong>Contact</strong>&nbsp;&nbsp;&nbsp;</li>
+    
+
+    
+      
+        
+          <li>
+            <a href="https://twitter.com/karmaniverous" rel="nofollow noopener noreferrer">
+              <i class="fa-brands fa-x-twitter" aria-hidden="true"></i>
+              </a>
+          </li>
+        
+      
+        
+          <li>
+            <a href="https://techhub.social/@karmaniverous" rel="nofollow noopener noreferrer">
+              <i class="fa-brands fa-mastodon" aria-hidden="true"></i>
+              </a>
+          </li>
+        
+      
+        
+          <li>
+            <a href="https://github.com/karmaniverous" rel="nofollow noopener noreferrer">
+              <i class="fa-brands fa-github" aria-hidden="true"></i>
+              </a>
+          </li>
+        
+      
+        
+          <li>
+            <a href="https://www.linkedin.com/in/jscroft/" rel="nofollow noopener noreferrer">
+              <i class="fa-brands fa-linkedin" aria-hidden="true"></i>
+              </a>
+          </li>
+        
+      
+        
+          <li>
+            <a href="https://wa.me/17737500338" rel="nofollow noopener noreferrer">
+              <i class="fa-brands fa-square-whatsapp" aria-hidden="true"></i>
+              </a>
+          </li>
+        
+      
+        
+          <li>
+            <a href="https://t.me/karmaniverous" rel="nofollow noopener noreferrer">
+              <i class="fa-brands fa-telegram" aria-hidden="true"></i>
+              </a>
+          </li>
+        
+      
+        
+          <li>
+            <a href="https://calendly.com/karmaniverous" rel="nofollow noopener noreferrer">
+              <i class="fa-regular fa-calendar-plus" aria-hidden="true"></i>
+              </a>
+          </li>
+        
+      
+    
+
+    
+      <li>
+        <a href="/feed.xml">
+          <i class="fas fa-fw fa-rss-square" aria-hidden="true"></i>
+           </a>
+      </li>
+    
+  </ul>
+</div>
+
+<div class="page__footer-copyright">&copy; 2024
+  <a href="https://karmanivero.us">some words</a>. Powered by
+  <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a>
+  &amp;
+  <a href="https://mademistakes.com/work/jekyll-themes/minimal-mistakes/" rel="nofollow">Minimal Mistakes</a>.</div>
+      </footer>
+    </div>
+
+    
+  <script src="/assets/js/main.min.js"></script>
+
+
+<script>
+  (function () {
+    var cx = '960ee5d1b2fec4509';
+    var gcse = document.createElement('script');
+    gcse.type = 'text/javascript';
+    gcse.async = true;
+    gcse.src = 'https://cse.google.com/cse.js?cx=' + cx;
+    var s = document.getElementsByTagName('script')[0];
+    s.parentNode.insertBefore(gcse, s);
+  })();
+
+  function googleCustomSearchExecute() {
+    var input = document.getElementById('cse-search-input-box-id');
+    var element = google.search.cse.element.getElement('searchresults-only0');
+    if (input.value == '') {
+      element.clearAllResults();
+    } else {
+      element.execute(input.value);
+    }
+    return false;
+  }
+
+  
+    $(document).ready(function () {
+      $('input#cse-search-input-box-id').on('keyup', function () {
+        googleCustomSearchExecute();
+      });
+    });
+  
+</script>
+
+
+
+
+    
+  <script>
+    var disqus_config = function () {
+      this.page.url = "https://karmanivero.us/when-intellisense-fails/";  /* Replace PAGE_URL with your page's canonical URL variable */
+      this.page.identifier = "/when-intellisense-fails"; /* Replace PAGE_IDENTIFIER with your page's unique identifier variable */
+    };
+    (function() { /* DON'T EDIT BELOW THIS LINE */
+      var d = document, s = d.createElement('script');
+      s.src = 'https://some-words.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+    })();
+  </script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+
+  
+
+
+
+
+  </body>
+</html>

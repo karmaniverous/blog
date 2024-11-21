@@ -1,0 +1,1443 @@
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.26.2 by Michael Rose
+  Copyright 2013-2024 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
+-->
+
+<html lang="en-US" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin _includes/seo.html --><title>Unexpected Mutations - some words</title>
+<meta name="description" content="An unexpected (and probably unintended) function parameter mutation inside the web3.js library had me questioning my sanity for a couple of hours.">
+
+
+  <meta name="author" content="Jason Williscroft">
+  
+  <meta property="article:author" content="Jason Williscroft">
+  
+
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="en_US">
+<meta property="og:site_name" content="some words">
+<meta property="og:title" content="Unexpected Mutations">
+<meta property="og:url" content="https://karmanivero.us/unexpected-mutations/">
+
+
+  <meta property="og:description" content="An unexpected (and probably unintended) function parameter mutation inside the web3.js library had me questioning my sanity for a couple of hours.">
+
+
+
+  <meta property="og:image" content="https://karmanivero.us/assets/images/logo-web3js.jpg">
+
+
+
+  <meta name="twitter:site" content="@karmaniverous">
+  <meta name="twitter:title" content="Unexpected Mutations">
+  <meta name="twitter:description" content="An unexpected (and probably unintended) function parameter mutation inside the web3.js library had me questioning my sanity for a couple of hours.">
+  <meta name="twitter:url" content="https://karmanivero.us/unexpected-mutations/">
+
+  
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content="https://karmanivero.us/assets/images/logo-web3js.jpg">
+  
+
+  
+
+
+
+  <meta property="article:published_time" content="2022-07-31T00:00:00+00:00">
+
+
+
+
+
+
+<link rel="canonical" href="https://karmanivero.us/unexpected-mutations/">
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- end _includes/seo.html -->
+
+
+
+  <link href="/feed.xml" type="application/atom+xml" rel="alternate" title="some words Feed">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script type="text/javascript">
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+  window.enable_copy_code_button = true;
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/assets/css/main.css">
+<link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@latest/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@latest/css/all.min.css"></noscript>
+
+
+
+    <link
+  rel="apple-touch-icon"
+  sizes="180x180"
+  href="/assets/favicon/apple-touch-icon.png" />
+<link
+  rel="icon"
+  type="image/png"
+  sizes="32x32"
+  href="/assets/favicon/favicon-32x32.png" />
+<link
+  rel="icon"
+  type="image/png"
+  sizes="16x16"
+  href="/assets/favicon/favicon-16x16.png" />
+<link rel="manifest" href="/assets/favicon/site.webmanifest" />
+<link
+  rel="mask-icon"
+  href="/assets/favicon/safari-pinned-tab.svg"
+  color="#5bbad5" />
+<link rel="shortcut icon" href="/assets/favicon/favicon.ico" />
+<meta name="msapplication-TileColor" content="#2b5797" />
+<meta name="msapplication-config" content="/assets/favicon/browserconfig.xml" />
+<meta name="theme-color" content="#ffffff" />
+
+
+
+<!-- Mathjax Support -->
+<script
+  type="text/javascript"
+  async
+  src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+  </head>
+
+  <body class="layout--single" dir="ltr">
+    <nav class="skip-links">
+  <ul>
+    <li><a href="#site-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">Skip to footer</a></li>
+  </ul>
+</nav>
+
+    
+
+<div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        
+        <a class="site-title" href="/">
+          some words
+          <span class="site-subtitle">many of them true</span>
+        </a>
+        <ul class="visible-links"><li class="masthead__menu-item">
+              <a
+                href="/projects/"
+                
+                
+              >Projects</a>
+            </li><li class="masthead__menu-item">
+              <a
+                href="/toolkits/"
+                
+                
+              >Toolkits</a>
+            </li><li class="masthead__menu-item">
+              <a
+                href="/bali/"
+                
+                
+              >Bali</a>
+            </li><li class="masthead__menu-item">
+              <a
+                href="/topics/"
+                
+                
+              >Topics</a>
+            </li><li class="masthead__menu-item">
+              <a
+                href="/blog/"
+                
+                
+              >Archive</a>
+            </li></ul>
+        
+        <button class="search__toggle" type="button">
+          <span class="visually-hidden">Toggle search</span>
+          <i class="fas fa-search"></i>
+        </button>
+        
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">Toggle menu</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+    <div class="initial-content">
+      
+
+
+
+
+
+<div id="main" role="main">
+  
+  <div class="sidebar sticky">
+  
+
+
+<div itemscope itemtype="https://schema.org/Person" class="h-card">
+
+  
+    <div class="author__avatar">
+      <a href="https://karmanivero.us/">
+        <img src="/assets/images/bio-photo.jpg" alt="Jason Williscroft" itemprop="image" class="u-photo">
+      </a>
+    </div>
+  
+
+  <div class="author__content">
+    <h3 class="author__name p-name" itemprop="name">
+      <a class="u-url" rel="me" href="https://karmanivero.us/" itemprop="url">Jason Williscroft</a>
+    </h3>
+    
+      <div class="author__bio p-note" itemprop="description">
+        <p><em>resume bullets<br />may read differently at the<br />threshold of heaven</em></p>
+
+      </div>
+    
+  </div>
+
+  <div class="author__urls-wrapper">
+    <button class="btn btn--inverse">Contact</button>
+    <ul class="author__urls social-icons">
+      
+
+      
+        
+          
+            <li><a href="https://twitter.com/karmaniverous" rel="nofollow noopener noreferrer me" itemprop="sameAs"><i class="fa-brands fa-square-x-twitter" aria-hidden="true"></i><span class="label">X</span></a></li>
+          
+        
+          
+            <li><a href="https://techhub.social/@karmaniverous" rel="nofollow noopener noreferrer me" itemprop="sameAs"><i class="fa-brands fa-mastodon" aria-hidden="true"></i><span class="label">Mastodon</span></a></li>
+          
+        
+          
+            <li><a href="https://github.com/karmaniverous" rel="nofollow noopener noreferrer me" itemprop="sameAs"><i class="fa-brands fa-github" aria-hidden="true"></i><span class="label">GitHub</span></a></li>
+          
+        
+          
+            <li><a href="https://www.linkedin.com/in/jscroft/" rel="nofollow noopener noreferrer me" itemprop="sameAs"><i class="fa-brands fa-linkedin" aria-hidden="true"></i><span class="label">LinkedIn</span></a></li>
+          
+        
+          
+            <li><a href="https://wa.me/17737500338" rel="nofollow noopener noreferrer me" itemprop="sameAs"><i class="fa-brands fa-whatsapp" aria-hidden="true"></i><span class="label">WhatsApp</span></a></li>
+          
+        
+          
+            <li><a href="https://t.me/karmaniverous" rel="nofollow noopener noreferrer me" itemprop="sameAs"><i class="fa-brands fa-telegram" aria-hidden="true"></i><span class="label">Telegram</span></a></li>
+          
+        
+          
+            <li><a href="https://calendly.com/karmaniverous" rel="nofollow noopener noreferrer me" itemprop="sameAs"><i class="fa-regular fa-calendar-plus" aria-hidden="true"></i><span class="label">Meet</span></a></li>
+          
+        
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      <!--
+  <li>
+    <a href="http://link-to-whatever-social-network.com/user/" itemprop="sameAs" rel="nofollow noopener noreferrer me">
+      <i class="fas fa-fw" aria-hidden="true"></i> Custom Social Profile Link
+    </a>
+  </li>
+-->
+    </ul>
+  </div>
+</div>
+
+  
+  </div>
+
+
+
+  <article
+    class="page"
+    itemscope
+    itemtype="https://schema.org/CreativeWork"
+    >
+    <meta itemprop="headline" content="Unexpected Mutations">
+    <meta itemprop="description" content="An unexpected (and probably unintended) function parameter mutation inside the web3.js library had me questioning my sanity for a couple of hours.">
+    <meta itemprop="datePublished" content="2022-07-31T00:00:00+00:00">
+    
+
+    <div class="page__inner-wrap">
+      
+        <header>
+          <h1
+              id="page-title"
+              class="page__title"
+              itemprop="headline">
+              <a href="https://karmanivero.us/unexpected-mutations/" itemprop="url">Unexpected Mutations
+</a>
+            </h1>
+          
+
+  <p class="page__meta">
+    
+      
+      <span class="page__meta-date">
+        <i
+          class="far fa-calendar-alt"
+          aria-hidden="true"
+        ></i>
+        
+        <time datetime="2022-07-31T00:00:00+00:00">July 31, 2022</time>
+      </span>
+    
+
+    <span class="page__meta-sep"></span>
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i
+          class="far fa-clock"
+          aria-hidden="true"
+        ></i>
+        
+          3
+          minute read
+        
+      </span>
+    
+  </p>
+
+
+        </header>
+      
+
+      <section class="page__content" itemprop="text">
+        
+        <figure class="align-left drop-image">
+    <img src="/assets/images/logo-web3js.jpg" />
+</figure>
+
+<p>Today was one of those days.</p>
+
+<p>I’m writing a web3 application on top of
+<a href="https://github.com/ChainSafe/web3.js"><code class="language-plaintext highlighter-rouge">web3.js</code></a>. If you don’t know, <code class="language-plaintext highlighter-rouge">web3</code> is
+one of several libraries out there that help Javascript developers connect to
+and manipulate Ethereum blockchains.</p>
+
+<p>I’m a competent developer, so I’ve written an abstraction layer to simplify
+interaction with my smart contracts. I call the abstraction layer’s nice clean
+API, and the abstraction layer deals with the <code class="language-plaintext highlighter-rouge">web3</code> library.</p>
+
+<p>There are two basic ways ways to invoke a smart contract function. A
+<a href="https://web3js.readthedocs.io/en/v1.2.11/web3-eth-contract.html#methods-mymethod-call"><code class="language-plaintext highlighter-rouge">call</code></a>
+returns a value from the blockchain, and a
+<a href="https://web3js.readthedocs.io/en/v1.2.11/web3-eth-contract.html#methods-mymethod-send"><code class="language-plaintext highlighter-rouge">send</code></a>
+alters data on the blockchain without returning a value. For either invocation,
+<code class="language-plaintext highlighter-rouge">web3</code> takes an <code class="language-plaintext highlighter-rouge">options</code> object as an argument. This object sets the sender
+address, some stuff related to gas fees, and the amount of money you’re sending
+if that’s what your transaction is doing.</p>
+
+<p>Because of <code class="language-plaintext highlighter-rouge">call</code>/<code class="language-plaintext highlighter-rouge">send</code> segregation, you often find yourself invoking several
+functions in series in order to accomplish something useful.</p>
+
+<p>Most of those series are pretty short. But as my application has progressed,
+I’ve reached a point where I need to do quite a bit of stuff on the front end to
+get the application into a state where I can see what I am working on. So I
+decided to create an abstraction layer for my abstraction layer that mocks the
+actions a user takes on the front end. Now I can write scripts that save me a
+ton of pointing and clicking.</p>
+
+<p>Sweet.</p>
+
+<p>Or so I thought… until the scripts started failing for absolutely no obvious
+reason. Under the hood, the scripts are doing the <em>exact same things</em> both my
+unit tests and my actual front end are doing, error free. It took me two hours
+to figure out what these function invocations in my scripts have in common that
+they do <em>not</em> have in common anywhere else. The answer is at once funny and
+irritating as hell.</p>
+
+<p>What they have in common is the <code class="language-plaintext highlighter-rouge">options</code> object.</p>
+
+<p>At the top of each script, I set…</p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">options</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="na">from</span><span class="p">:</span> <span class="nx">web3</span><span class="p">.</span><span class="nx">eth</span><span class="p">.</span><span class="nx">accounts</span><span class="p">.</span><span class="nx">wallet</span><span class="p">[</span><span class="nx">accountIndex</span><span class="p">].</span><span class="nx">address</span><span class="p">,</span>
+<span class="p">};</span>
+</code></pre></div></div>
+
+<p>…and then I use that options object in each contract function invocation in my
+script, like this:</p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// get farm</span>
+<span class="kd">const</span> <span class="nx">farm</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Farm</span><span class="p">(</span><span class="nx">web3</span><span class="p">,</span> <span class="nx">farmAddress</span><span class="p">);</span>
+<span class="kd">const</span> <span class="nx">games</span> <span class="o">=</span> <span class="k">await</span> <span class="nx">farm</span><span class="p">.</span><span class="nx">getGames</span><span class="p">(</span><span class="nx">options</span><span class="p">);</span>
+
+<span class="c1">// get game</span>
+<span class="kd">const</span> <span class="nx">game</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Game</span><span class="p">(</span><span class="nx">web3</span><span class="p">,</span> <span class="nx">games</span><span class="p">[</span><span class="nx">gameIndex</span><span class="p">]);</span>
+<span class="kd">const</span> <span class="p">{</span> <span class="nx">minLockup</span><span class="p">,</span> <span class="nx">minDeposit</span> <span class="p">}</span> <span class="o">=</span> <span class="k">await</span> <span class="nx">game</span><span class="p">.</span><span class="nx">getParams</span><span class="p">(</span><span class="nx">options</span><span class="p">);</span> <span class="c1">// Defined below.</span>
+
+<span class="c1">// deploy deposit</span>
+<span class="kd">const</span> <span class="nx">deposit</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Deposit</span><span class="p">(</span><span class="nx">web3</span><span class="p">);</span>
+<span class="k">await</span> <span class="nx">deposit</span><span class="p">.</span><span class="nx">deploy</span><span class="p">(</span><span class="nx">options</span><span class="p">);</span> <span class="c1">//</span>
+</code></pre></div></div>
+
+<p>Each of the asynchronous lines above is actually a call to my <code class="language-plaintext highlighter-rouge">web3</code> wrapper.
+Here are a couple defined:</p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">Farm</span><span class="p">.</span><span class="nx">getGames</span> <span class="o">=</span> <span class="k">async</span> <span class="p">(</span><span class="nx">options</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="k">return</span> <span class="k">await</span> <span class="k">this</span><span class="p">.</span><span class="nx">contract</span><span class="p">.</span><span class="nx">methods</span><span class="p">.</span><span class="nx">getGames</span><span class="p">().</span><span class="nx">call</span><span class="p">(</span><span class="nx">options</span><span class="p">);</span>
+<span class="p">};</span>
+
+<span class="nx">Game</span><span class="p">.</span><span class="nx">getParams</span> <span class="o">=</span> <span class="k">async</span> <span class="p">(</span><span class="nx">options</span><span class="p">)</span> <span class="o">=&gt;</span>
+  <span class="k">this</span><span class="p">.</span><span class="kd">constructor</span><span class="p">.</span><span class="nx">decodeParams</span><span class="p">(</span>
+    <span class="k">await</span> <span class="k">this</span><span class="p">.</span><span class="nx">contract</span><span class="p">.</span><span class="nx">methods</span><span class="p">.</span><span class="nx">getParams</span><span class="p">().</span><span class="nx">call</span><span class="p">(</span><span class="nx">options</span><span class="p">)</span>
+  <span class="p">);</span>
+</code></pre></div></div>
+
+<p>Not a lot going on here… but this code was working just fine on my front end
+and in my unit tests, and causing an unexplained revert when I deployed the
+<code class="language-plaintext highlighter-rouge">Deposit</code> contract from my script.</p>
+
+<p>Once I realized my script was sharing the <code class="language-plaintext highlighter-rouge">options</code> object between the web3
+invocations, I console logged it after each one. After <code class="language-plaintext highlighter-rouge">farm.getGames</code>, the
+<code class="language-plaintext highlighter-rouge">options</code> object still had the expected value:</p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span>
+  <span class="nl">from</span><span class="p">:</span> <span class="dl">"</span><span class="s2">0xD28D1f59...</span><span class="dl">"</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>But after <code class="language-plaintext highlighter-rouge">game.getParams</code> it looked like this:</p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span>
+  <span class="nl">from</span><span class="p">:</span> <span class="dl">'</span><span class="s1">0xd28d1f59...</span><span class="dl">'</span><span class="p">,</span>
+  <span class="nx">data</span><span class="p">:</span> <span class="dl">'</span><span class="s1">0x5e615a6b</span><span class="dl">'</span><span class="p">,</span>
+  <span class="nx">gasPrice</span><span class="p">:</span> <span class="kc">undefined</span><span class="p">,</span>
+  <span class="nx">gas</span><span class="p">:</span> <span class="kc">undefined</span><span class="p">,</span>
+  <span class="nx">to</span><span class="p">:</span> <span class="dl">'</span><span class="s1">0xb97da33a...</span><span class="dl">'</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>… which, when I passed it to <code class="language-plaintext highlighter-rouge">deposit.deploy</code>, was causing the reversion.</p>
+
+<p>Hence the title of this post. Apparently, <strong><em>the <code class="language-plaintext highlighter-rouge">web3</code> contract methods call
+function is mutating the <code class="language-plaintext highlighter-rouge">options</code> object you pass to it</em></strong>. I never noticed
+that before, because until today I wasn’t reusing the <code class="language-plaintext highlighter-rouge">options</code> object.</p>
+
+<p>That is… <em>weird</em>. Hard to imagine it is by design. But it’s also easy to fix,
+once you know about it. Here’s how I altered my abstraction layer:</p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">Farm</span><span class="p">.</span><span class="nx">getGames</span> <span class="o">=</span> <span class="k">async</span> <span class="p">(</span><span class="nx">options</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="k">return</span> <span class="k">await</span> <span class="k">this</span><span class="p">.</span><span class="nx">contract</span><span class="p">.</span><span class="nx">methods</span>
+    <span class="p">.</span><span class="nx">getGames</span><span class="p">()</span>
+    <span class="p">.</span><span class="nx">call</span><span class="p">({</span> <span class="p">...</span><span class="nx">options</span> <span class="p">});</span>
+<span class="p">};</span>
+
+<span class="nx">Game</span><span class="p">.</span><span class="nx">getParams</span> <span class="o">=</span> <span class="k">async</span> <span class="p">(</span><span class="nx">options</span><span class="p">)</span> <span class="o">=&gt;</span>
+  <span class="k">this</span><span class="p">.</span><span class="kd">constructor</span><span class="p">.</span><span class="nx">decodeParams</span><span class="p">(</span>
+    <span class="k">await</span> <span class="k">this</span><span class="p">.</span><span class="nx">contract</span><span class="p">.</span><span class="nx">methods</span><span class="p">.</span><span class="nx">getParams</span><span class="p">().</span><span class="nx">call</span><span class="p">({</span> <span class="p">...</span><span class="nx">options</span> <span class="p">})</span>
+  <span class="p">);</span>
+</code></pre></div></div>
+
+<p>Now I’m passing a shallow copy of the <code class="language-plaintext highlighter-rouge">options</code> object to <code class="language-plaintext highlighter-rouge">web3</code>, which it can
+mutate all it wants, and I don’t care.</p>
+
+<p>Problem solved!</p>
+
+<p class="notice--info"><strong>Update:</strong> I raised
+<a href="https://github.com/ChainSafe/web3.js/issues/5304">an issue</a> on the <code class="language-plaintext highlighter-rouge">web3</code>
+GitHub project. Interested to see how that goes.</p>
+
+<p class="notice--success"><strong>Closure:</strong> They <a href="https://github.com/ChainSafe/web3.js/issues/5304">fixed it</a>!
+I love it when the system works. 😁</p>
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+  
+
+
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-tags" aria-hidden="true"></i> Topics: </strong>
+    <span itemprop="keywords">
+    
+      <a href="/topics/javascript" class="page__taxonomy-item p-category" rel="tag">javascript</a><span class="sep">, </span>
+    
+      <a href="/topics/web3" class="page__taxonomy-item p-category" rel="tag">web3</a>
+    
+    </span>
+  </p>
+
+
+
+
+        
+
+  <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> Updated:</strong> <time class="dt-published" datetime="2022-07-31T00:00:00+00:00">July 31, 2022</time></p>
+
+      </footer>
+
+      
+        <section class="page__share">
+  
+    <h4 class="page__share-title">Share on</h4>
+  
+
+  <a href="https://twitter.com/intent/tweet?via=karmaniverous&text=Unexpected+Mutations%20https%3A%2F%2Fkarmanivero.us%2Funexpected-mutations%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+
+  <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fkarmanivero.us%2Funexpected-mutations%2F" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
+
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=https://karmanivero.us/unexpected-mutations/" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
+</section>
+
+
+      
+  <nav class="pagination">
+    
+      <a href="/karmic-rule-0/" class="pagination--pager" title="Karmic Rule Zero
+">Previous</a>
+    
+    
+      <a href="/troubleshooting/" class="pagination--pager" title="Karmic Rule One
+">Next</a>
+    
+  </nav>
+
+    </div>
+
+    
+  </article>
+
+  
+  
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  
+
+  
+  
+
+  
+  
+
+  
+  <div class='page__related'>
+    
+    <h2 class='page__related-title'>
+      You may also enjoy
+    </h2>
+    <div class='grid__wrapper'>
+
+      
+      
+        
+        
+        
+        
+        
+        
+      
+
+        
+      
+
+        
+        <!-- post_url: /the-big-miss-turning-lemons-into-lemonade/ -->
+        <!-- normLogCommonTags: 0.0 -->
+        <!-- logAge: 0.090439814814815 -->
+        <!-- relevance: 49910 -->
+
+        
+      
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src="/assets/images/lemons-square.jpg" alt="">
+      </div>
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/the-big-miss-turning-lemons-into-lemonade/" rel="permalink">The Big Miss: Turning Lemons Into Lemonade
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+      
+      <span class="page__meta-date">
+        <i
+          class="far fa-fw fa-calendar-alt"
+          aria-hidden="true"
+        ></i>
+        
+        <time datetime="2024-11-20T00:00:00+00:00">November 20, 2024</time>
+      </span>
+    
+
+    <span class="page__meta-sep"></span>
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i
+          class="far fa-fw fa-clock"
+          aria-hidden="true"
+        ></i>
+        
+          8
+          minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">Today was one of those days when I question my life choices. Watch me dig my way out of a hole with the same shovel I used to dig my way in.
+</p>
+  </article>
+</div>
+
+
+        
+        
+        
+      
+        
+        
+        
+        
+        
+      
+
+        
+      
+
+        
+        <!-- post_url: /lodash-nextjs-13-smh/ -->
+        <!-- normLogCommonTags: 0.0 -->
+        <!-- logAge: 9.26970789026331 -->
+        <!-- relevance: 40730 -->
+
+        
+      
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src="/assets/images/logo-lodash.png" alt="">
+      </div>
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/lodash-nextjs-13-smh/" rel="permalink">Lodash + Next.js 13 = smh
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+      
+      <span class="page__meta-date">
+        <i
+          class="far fa-fw fa-calendar-alt"
+          aria-hidden="true"
+        ></i>
+        
+        <time datetime="2023-02-10T00:00:00+00:00">February 10, 2023</time>
+      </span>
+    
+
+    <span class="page__meta-sep"></span>
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i
+          class="far fa-fw fa-clock"
+          aria-hidden="true"
+        ></i>
+        
+          1
+          minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">Some old carelessness in Lodash plus a stern new outlook in Next.js 13 creates trouble on Edge networks.
+</p>
+  </article>
+</div>
+
+
+        
+        
+        
+      
+        
+        
+        
+        
+        
+      
+
+        
+      
+
+        
+        <!-- post_url: /when-intellisense-fails/ -->
+        <!-- normLogCommonTags: 0.0 -->
+        <!-- logAge: 9.29314539026331 -->
+        <!-- relevance: 40707 -->
+
+        
+      
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src="/assets/images/logo-vscode.png" alt="">
+      </div>
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/when-intellisense-fails/" rel="permalink">When IntelliSense Fails: How to Avoid TypeScript While Avoiding TypeScript
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+      
+      <span class="page__meta-date">
+        <i
+          class="far fa-fw fa-calendar-alt"
+          aria-hidden="true"
+        ></i>
+        
+        <time datetime="2023-01-29T00:00:00+00:00">January 29, 2023</time>
+      </span>
+    
+
+    <span class="page__meta-sep"></span>
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i
+          class="far fa-fw fa-clock"
+          aria-hidden="true"
+        ></i>
+        
+          2
+          minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">Sure you could transpile perfectly good ES6 code into the same thing + TS types. But sweet mother of everything, WHY??
+</p>
+  </article>
+</div>
+
+
+        
+        
+        
+      
+        
+        
+        
+        
+        
+      
+
+        
+      
+
+        
+        <!-- post_url: /nextjs-template/ -->
+        <!-- normLogCommonTags: 0.0 -->
+        <!-- logAge: 9.35369226526331 -->
+        <!-- relevance: 40646 -->
+
+        
+      
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src="/assets/images/logo-nextjs.png" alt="">
+      </div>
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/nextjs-template/" rel="permalink">Next.js Template
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+      
+      <span class="page__meta-date">
+        <i
+          class="far fa-fw fa-calendar-alt"
+          aria-hidden="true"
+        ></i>
+        
+        <time datetime="2022-12-29T00:00:00+00:00">December 29, 2022</time>
+      </span>
+    
+
+    <span class="page__meta-sep"></span>
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i
+          class="far fa-fw fa-clock"
+          aria-hidden="true"
+        ></i>
+        
+          22
+          minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">A sweet Next.js project template. Integrates Redux Toolkit with with test support for Mocha + Chai + React Testing Library and release publishing via release...</p>
+  </article>
+</div>
+
+
+        
+        
+        
+      
+        
+        
+        
+        
+        
+      
+
+        
+      
+
+        
+        <!-- post_url: /aws-api-template/ -->
+        <!-- normLogCommonTags: 0.0 -->
+        <!-- logAge: 9.35369226526331 -->
+        <!-- relevance: 40646 -->
+
+        
+      
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src="/assets/images/logo-aws.png" alt="">
+      </div>
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/aws-api-template/" rel="permalink">AWS API Template
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+      
+      <span class="page__meta-date">
+        <i
+          class="far fa-fw fa-calendar-alt"
+          aria-hidden="true"
+        ></i>
+        
+        <time datetime="2022-12-29T00:00:00+00:00">December 29, 2022</time>
+      </span>
+    
+
+    <span class="page__meta-sep"></span>
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i
+          class="far fa-fw fa-clock"
+          aria-hidden="true"
+        ></i>
+        
+          27
+          minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">Config-driven AWS API ES6 template integrating federated Cognito User Pool authentication and a robust approach to release management.
+</p>
+  </article>
+</div>
+
+
+        
+        
+        
+      
+        
+        
+        
+        
+        
+      
+
+        
+      
+
+        
+        <!-- post_url: /react-component-npm-package-template/ -->
+        <!-- normLogCommonTags: 0.0 -->
+        <!-- logAge: 9.37322351526331 -->
+        <!-- relevance: 40627 -->
+
+        
+      
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src="/assets/images/logo-react.png" alt="">
+      </div>
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/react-component-npm-package-template/" rel="permalink">React Component NPM Package Template
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+      
+      <span class="page__meta-date">
+        <i
+          class="far fa-fw fa-calendar-alt"
+          aria-hidden="true"
+        ></i>
+        
+        <time datetime="2022-12-19T00:00:00+00:00">December 19, 2022</time>
+      </span>
+    
+
+    <span class="page__meta-sep"></span>
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i
+          class="far fa-fw fa-clock"
+          aria-hidden="true"
+        ></i>
+        
+          8
+          minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">An ES6 React component NPM package project template featuring front &amp; back end test support, automated API docs, release management &amp; more!
+</p>
+  </article>
+</div>
+
+
+        
+        
+        
+      
+        
+        
+        
+        
+        
+      
+
+        
+      
+
+        
+        <!-- post_url: /npm-package-template/ -->
+        <!-- normLogCommonTags: 0.0 -->
+        <!-- logAge: 9.37322351526331 -->
+        <!-- relevance: 40627 -->
+
+        
+      
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src="/assets/images/logo-npm.png" alt="">
+      </div>
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/npm-package-template/" rel="permalink">NPM Package Template
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+      
+      <span class="page__meta-date">
+        <i
+          class="far fa-fw fa-calendar-alt"
+          aria-hidden="true"
+        ></i>
+        
+        <time datetime="2022-12-19T00:00:00+00:00">December 19, 2022</time>
+      </span>
+    
+
+    <span class="page__meta-sep"></span>
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i
+          class="far fa-fw fa-clock"
+          aria-hidden="true"
+        ></i>
+        
+          16
+          minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">An ES6 NPM package project template featuring a CLI, test support, automated API docs, release management &amp; more!
+</p>
+  </article>
+</div>
+
+
+        
+        
+        
+      
+        
+        
+        
+        
+        
+      
+
+        
+      
+
+        
+        <!-- post_url: /vercel-preview-branch-weirdness/ -->
+        <!-- normLogCommonTags: 0.0 -->
+        <!-- logAge: 9.63494226526331 -->
+        <!-- relevance: 40365 -->
+
+        
+      
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src="/assets/images/logo-vercel.png" alt="">
+      </div>
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/vercel-preview-branch-weirdness/" rel="permalink">Vercel Preview Branch Weirdness
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+      
+      <span class="page__meta-date">
+        <i
+          class="far fa-fw fa-calendar-alt"
+          aria-hidden="true"
+        ></i>
+        
+        <time datetime="2022-08-07T00:00:00+00:00">August 7, 2022</time>
+      </span>
+    
+
+    <span class="page__meta-sep"></span>
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i
+          class="far fa-fw fa-clock"
+          aria-hidden="true"
+        ></i>
+        
+          3
+          minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">An accidental hosting environment dependency revealed an irritating bug in Vercel’s preview deployment logic.
+</p>
+  </article>
+</div>
+
+
+        
+        
+        
+          
+    </div>
+  </div>
+
+  
+</div>
+      
+    </div>
+
+    
+      <div class="search-content">
+        <div class="search-content__inner-wrap"><form onsubmit="return googleCustomSearchExecute();" id="cse-search-box-form-id" role="search">
+    <label class="sr-only" for="cse-search-input-box-id">
+      Enter your search term...
+    </label>
+    <input type="search" id="cse-search-input-box-id" class="search-input" tabindex="-1" placeholder="Enter your search term..." />
+  </form>
+  <div id="results" class="results">
+    <gcse:searchresults-only></gcse:searchresults-only>
+  </div></div>
+
+      </div>
+    
+
+    <div id="footer" class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+        <div class="page__footer-follow">
+  
+    <span class="love">Built for you with ❤️ on <a href="/bali/">Bali</a>!</span>
+  
+
+  <ul class="social-icons">
+    
+      <li>
+        <strong>Contact</strong>&nbsp;&nbsp;&nbsp;</li>
+    
+
+    
+      
+        
+          <li>
+            <a href="https://twitter.com/karmaniverous" rel="nofollow noopener noreferrer">
+              <i class="fa-brands fa-x-twitter" aria-hidden="true"></i>
+              </a>
+          </li>
+        
+      
+        
+          <li>
+            <a href="https://techhub.social/@karmaniverous" rel="nofollow noopener noreferrer">
+              <i class="fa-brands fa-mastodon" aria-hidden="true"></i>
+              </a>
+          </li>
+        
+      
+        
+          <li>
+            <a href="https://github.com/karmaniverous" rel="nofollow noopener noreferrer">
+              <i class="fa-brands fa-github" aria-hidden="true"></i>
+              </a>
+          </li>
+        
+      
+        
+          <li>
+            <a href="https://www.linkedin.com/in/jscroft/" rel="nofollow noopener noreferrer">
+              <i class="fa-brands fa-linkedin" aria-hidden="true"></i>
+              </a>
+          </li>
+        
+      
+        
+          <li>
+            <a href="https://wa.me/17737500338" rel="nofollow noopener noreferrer">
+              <i class="fa-brands fa-square-whatsapp" aria-hidden="true"></i>
+              </a>
+          </li>
+        
+      
+        
+          <li>
+            <a href="https://t.me/karmaniverous" rel="nofollow noopener noreferrer">
+              <i class="fa-brands fa-telegram" aria-hidden="true"></i>
+              </a>
+          </li>
+        
+      
+        
+          <li>
+            <a href="https://calendly.com/karmaniverous" rel="nofollow noopener noreferrer">
+              <i class="fa-regular fa-calendar-plus" aria-hidden="true"></i>
+              </a>
+          </li>
+        
+      
+    
+
+    
+      <li>
+        <a href="/feed.xml">
+          <i class="fas fa-fw fa-rss-square" aria-hidden="true"></i>
+           </a>
+      </li>
+    
+  </ul>
+</div>
+
+<div class="page__footer-copyright">&copy; 2024
+  <a href="https://karmanivero.us">some words</a>. Powered by
+  <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a>
+  &amp;
+  <a href="https://mademistakes.com/work/jekyll-themes/minimal-mistakes/" rel="nofollow">Minimal Mistakes</a>.</div>
+      </footer>
+    </div>
+
+    
+  <script src="/assets/js/main.min.js"></script>
+
+
+<script>
+  (function () {
+    var cx = '960ee5d1b2fec4509';
+    var gcse = document.createElement('script');
+    gcse.type = 'text/javascript';
+    gcse.async = true;
+    gcse.src = 'https://cse.google.com/cse.js?cx=' + cx;
+    var s = document.getElementsByTagName('script')[0];
+    s.parentNode.insertBefore(gcse, s);
+  })();
+
+  function googleCustomSearchExecute() {
+    var input = document.getElementById('cse-search-input-box-id');
+    var element = google.search.cse.element.getElement('searchresults-only0');
+    if (input.value == '') {
+      element.clearAllResults();
+    } else {
+      element.execute(input.value);
+    }
+    return false;
+  }
+
+  
+    $(document).ready(function () {
+      $('input#cse-search-input-box-id').on('keyup', function () {
+        googleCustomSearchExecute();
+      });
+    });
+  
+</script>
+
+
+
+
+    
+  <script>
+    var disqus_config = function () {
+      this.page.url = "https://karmanivero.us/unexpected-mutations/";  /* Replace PAGE_URL with your page's canonical URL variable */
+      this.page.identifier = "/unexpected-mutations"; /* Replace PAGE_IDENTIFIER with your page's unique identifier variable */
+    };
+    (function() { /* DON'T EDIT BELOW THIS LINE */
+      var d = document, s = d.createElement('script');
+      s.src = 'https://some-words.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+    })();
+  </script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+
+  
+
+
+
+
+  </body>
+</html>

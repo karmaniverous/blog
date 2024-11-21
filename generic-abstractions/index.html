@@ -1,0 +1,1615 @@
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.26.2 by Michael Rose
+  Copyright 2013-2024 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
+-->
+
+<html lang="en-US" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin _includes/seo.html --><title>Generic Abstractions - some words</title>
+<meta name="description" content="Modern software development works just like any other Hero’s Journey: you’ve got to hoof it some ways down the road before you can see very far into the distance.">
+
+
+  <meta name="author" content="Jason Williscroft">
+  
+  <meta property="article:author" content="Jason Williscroft">
+  
+
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="en_US">
+<meta property="og:site_name" content="some words">
+<meta property="og:title" content="Generic Abstractions">
+<meta property="og:url" content="https://karmanivero.us/generic-abstractions/">
+
+
+  <meta property="og:description" content="Modern software development works just like any other Hero’s Journey: you’ve got to hoof it some ways down the road before you can see very far into the distance.">
+
+
+
+  <meta property="og:image" content="https://karmanivero.us/assets/images/generic-abstractions-og.jpg">
+
+
+
+  <meta name="twitter:site" content="@karmaniverous">
+  <meta name="twitter:title" content="Generic Abstractions">
+  <meta name="twitter:description" content="Modern software development works just like any other Hero’s Journey: you’ve got to hoof it some ways down the road before you can see very far into the distance.">
+  <meta name="twitter:url" content="https://karmanivero.us/generic-abstractions/">
+
+  
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content="https://karmanivero.us/assets/images/generic-abstractions-og.jpg">
+  
+
+  
+
+
+
+  <meta property="article:published_time" content="2024-09-06T00:00:00+00:00">
+
+
+
+
+
+
+<link rel="canonical" href="https://karmanivero.us/generic-abstractions/">
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- end _includes/seo.html -->
+
+
+
+  <link href="/feed.xml" type="application/atom+xml" rel="alternate" title="some words Feed">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script type="text/javascript">
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+  window.enable_copy_code_button = true;
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/assets/css/main.css">
+<link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@latest/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@latest/css/all.min.css"></noscript>
+
+
+
+    <link
+  rel="apple-touch-icon"
+  sizes="180x180"
+  href="/assets/favicon/apple-touch-icon.png" />
+<link
+  rel="icon"
+  type="image/png"
+  sizes="32x32"
+  href="/assets/favicon/favicon-32x32.png" />
+<link
+  rel="icon"
+  type="image/png"
+  sizes="16x16"
+  href="/assets/favicon/favicon-16x16.png" />
+<link rel="manifest" href="/assets/favicon/site.webmanifest" />
+<link
+  rel="mask-icon"
+  href="/assets/favicon/safari-pinned-tab.svg"
+  color="#5bbad5" />
+<link rel="shortcut icon" href="/assets/favicon/favicon.ico" />
+<meta name="msapplication-TileColor" content="#2b5797" />
+<meta name="msapplication-config" content="/assets/favicon/browserconfig.xml" />
+<meta name="theme-color" content="#ffffff" />
+
+
+
+<!-- Mathjax Support -->
+<script
+  type="text/javascript"
+  async
+  src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+  </head>
+
+  <body class="layout--single" dir="ltr">
+    <nav class="skip-links">
+  <ul>
+    <li><a href="#site-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">Skip to footer</a></li>
+  </ul>
+</nav>
+
+    
+
+<div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        
+        <a class="site-title" href="/">
+          some words
+          <span class="site-subtitle">many of them true</span>
+        </a>
+        <ul class="visible-links"><li class="masthead__menu-item">
+              <a
+                href="/projects/"
+                
+                
+              >Projects</a>
+            </li><li class="masthead__menu-item">
+              <a
+                href="/toolkits/"
+                
+                
+              >Toolkits</a>
+            </li><li class="masthead__menu-item">
+              <a
+                href="/bali/"
+                
+                
+              >Bali</a>
+            </li><li class="masthead__menu-item">
+              <a
+                href="/topics/"
+                
+                
+              >Topics</a>
+            </li><li class="masthead__menu-item">
+              <a
+                href="/blog/"
+                
+                
+              >Archive</a>
+            </li></ul>
+        
+        <button class="search__toggle" type="button">
+          <span class="visually-hidden">Toggle search</span>
+          <i class="fas fa-search"></i>
+        </button>
+        
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">Toggle menu</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+    <div class="initial-content">
+      
+
+
+
+
+
+<div id="main" role="main">
+  
+  <div class="sidebar sticky">
+  
+
+
+<div itemscope itemtype="https://schema.org/Person" class="h-card">
+
+  
+    <div class="author__avatar">
+      <a href="https://karmanivero.us/">
+        <img src="/assets/images/bio-photo.jpg" alt="Jason Williscroft" itemprop="image" class="u-photo">
+      </a>
+    </div>
+  
+
+  <div class="author__content">
+    <h3 class="author__name p-name" itemprop="name">
+      <a class="u-url" rel="me" href="https://karmanivero.us/" itemprop="url">Jason Williscroft</a>
+    </h3>
+    
+      <div class="author__bio p-note" itemprop="description">
+        <p><em>resume bullets<br />may read differently at the<br />threshold of heaven</em></p>
+
+      </div>
+    
+  </div>
+
+  <div class="author__urls-wrapper">
+    <button class="btn btn--inverse">Contact</button>
+    <ul class="author__urls social-icons">
+      
+
+      
+        
+          
+            <li><a href="https://twitter.com/karmaniverous" rel="nofollow noopener noreferrer me" itemprop="sameAs"><i class="fa-brands fa-square-x-twitter" aria-hidden="true"></i><span class="label">X</span></a></li>
+          
+        
+          
+            <li><a href="https://techhub.social/@karmaniverous" rel="nofollow noopener noreferrer me" itemprop="sameAs"><i class="fa-brands fa-mastodon" aria-hidden="true"></i><span class="label">Mastodon</span></a></li>
+          
+        
+          
+            <li><a href="https://github.com/karmaniverous" rel="nofollow noopener noreferrer me" itemprop="sameAs"><i class="fa-brands fa-github" aria-hidden="true"></i><span class="label">GitHub</span></a></li>
+          
+        
+          
+            <li><a href="https://www.linkedin.com/in/jscroft/" rel="nofollow noopener noreferrer me" itemprop="sameAs"><i class="fa-brands fa-linkedin" aria-hidden="true"></i><span class="label">LinkedIn</span></a></li>
+          
+        
+          
+            <li><a href="https://wa.me/17737500338" rel="nofollow noopener noreferrer me" itemprop="sameAs"><i class="fa-brands fa-whatsapp" aria-hidden="true"></i><span class="label">WhatsApp</span></a></li>
+          
+        
+          
+            <li><a href="https://t.me/karmaniverous" rel="nofollow noopener noreferrer me" itemprop="sameAs"><i class="fa-brands fa-telegram" aria-hidden="true"></i><span class="label">Telegram</span></a></li>
+          
+        
+          
+            <li><a href="https://calendly.com/karmaniverous" rel="nofollow noopener noreferrer me" itemprop="sameAs"><i class="fa-regular fa-calendar-plus" aria-hidden="true"></i><span class="label">Meet</span></a></li>
+          
+        
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      <!--
+  <li>
+    <a href="http://link-to-whatever-social-network.com/user/" itemprop="sameAs" rel="nofollow noopener noreferrer me">
+      <i class="fas fa-fw" aria-hidden="true"></i> Custom Social Profile Link
+    </a>
+  </li>
+-->
+    </ul>
+  </div>
+</div>
+
+  
+  </div>
+
+
+
+  <article
+    class="page"
+    itemscope
+    itemtype="https://schema.org/CreativeWork"
+    >
+    <meta itemprop="headline" content="Generic Abstractions">
+    <meta itemprop="description" content="Modern software development works just like any other Hero’s Journey: you’ve got to hoof it some ways down the road before you can see very far into the distance.">
+    <meta itemprop="datePublished" content="2024-09-06T00:00:00+00:00">
+    
+
+    <div class="page__inner-wrap">
+      
+        <header>
+          <h1
+              id="page-title"
+              class="page__title"
+              itemprop="headline">
+              <a href="https://karmanivero.us/generic-abstractions/" itemprop="url">Generic Abstractions
+</a>
+            </h1>
+          
+
+  <p class="page__meta">
+    
+      
+      <span class="page__meta-date">
+        <i
+          class="far fa-calendar-alt"
+          aria-hidden="true"
+        ></i>
+        
+        <time datetime="2024-09-06T00:00:00+00:00">September 6, 2024</time>
+      </span>
+    
+
+    <span class="page__meta-sep"></span>
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i
+          class="far fa-clock"
+          aria-hidden="true"
+        ></i>
+        
+          14
+          minute read
+        
+      </span>
+    
+  </p>
+
+
+        </header>
+      
+
+      <section class="page__content" itemprop="text">
+        
+          <aside class="sidebar__right sticky">
+            <nav class="toc">
+              <header>
+                <h4 class="nav__title">
+                  <i class="fas fa-file-alt"></i>
+                  On this page</h4>
+              </header>
+              <ul class="toc__menu"><li><a href="#some-context">Some Context</a></li><li><a href="#why-fix-it">Why Fix It?</a></li><li><a href="#abstractions">Abstractions</a></li><li><a href="#genericization">Genericization</a></li><li><a href="#what-thats-it">What… That’s It?</a></li></ul>
+            </nav>
+          </aside>
+        
+        <figure class="align-left drop-image">
+    <img src="/assets/images/generic-abstractions.png" />
+</figure>
+
+<p>A few days ago I <a href="/blog/mock-db/">posted</a> about the genesis of my new <a href="https://github.com/karmaniverous/mock-db"><code class="language-plaintext highlighter-rouge">mock-db</code></a> library, which mocks <a href="https://aws.amazon.com/dynamodb/">DynamoDB</a>-like behavior with local JSON data.</p>
+
+<p>That library is really just a bit player in a larger drama, which is the ongoing refactor from Javascript to Typescript of my <a href="https://github.com/karmaniverous/entity-manager"><code class="language-plaintext highlighter-rouge">entity-manager</code></a> library.</p>
+
+<p class="notice--info">FYI the <code class="language-plaintext highlighter-rouge">entity-manager</code> link above takes you to the PRE-refactor branch!</p>
+
+<p>This widget provides the internal data access layer for all of my <a href="https://www.serverless.com/">Serverless Framework</a> projects, and this refactor will not only make it type-safe, but will incorporate close to two years of lessons learned across well over a dozen backend services.</p>
+
+<p>High stakes.</p>
+
+<p>The release of <code class="language-plaintext highlighter-rouge">mock-db</code> triggered a cascade of activity, and as I look back on the past few days, I see a couple of pretty good answers to the question: <strong><em>What does a senior Typescript developer actually DO all day?</em></strong></p>
+
+<p>So I thought I’d share.</p>
+
+<h2 id="some-context">Some Context</h2>
+
+<p>To understand what I’ve been up to, you need to know a bit about the <code class="language-plaintext highlighter-rouge">entity-manager</code> library and the problem it’s meant to solve.</p>
+
+<p>All of my backend projects are built on the Serverless Framework. For this discussion, the key feature is that all of these projects are <em><a href="https://en.wikipedia.org/wiki/Serverless_computing">serverless</a>:</em> they run on <a href="https://aws.amazon.com/pm/lambda">AWS Lambda</a> instead of some box on a server farm. When I use a database, I use <a href="https://aws.amazon.com/pm/dynamodb">DynamoDB</a>, which is a <a href="https://en.wikipedia.org/wiki/NoSQL">NoSQL database</a> in the AWS cloud that is also serverless.</p>
+
+<p>NoSQL databases are <em>very</em> different from traditional <a href="https://en.wikipedia.org/wiki/Relational_database">relational database</a> systems (aka RDBMS) like <a href="https://en.wikipedia.org/wiki/Microsoft_SQL_Server">SQL Server</a>.</p>
+
+<p>The <em>entities</em> in an RDBMS (like users, orders &amp; invoice) are each represented by a table. You tell the platform what tables you want, what data they contain, and how they relate to one another (this is the <em>schema</em>). Mostly the platform takes care of the messy parts under the hood. You can query the database however you want, and if your schema changes—say, you want to add another table or change a relationship—the platform can easily accommodate that.</p>
+
+<p>That’s the good news. The bad news: <strong>all that flexibility comes at a price</strong>. RDBMS systems are flexible and fast when you just have a few records in the system. But when you scale those records up into the millions, things start slowing down. If you aren’t careful about pulling inactive data out of the system—assuming it <em>has</em> inactive data—your fancy RDBMS can wind up unusably slow.</p>
+
+<p>NoSQL databases like DynamoDB are just the opposite.</p>
+
+<p><strong>NoSQL databases are often characterized as <em>schemaless</em>, but that isn’t really accurate.</strong> Instead, if you want your data to have any structure, it is up to <em>you</em> to encode that structure <em>directly</em> into your data! Rather than interacting with a sophisticated schema layer hiding a bunch of intermediate indexes, you interact <em>directly</em> with your data and a very simple set of indexes.</p>
+
+<p>So from an organizational perspective, NoSQL databases are real monsters if you want any kind of significant structure. But compared to RDBMS systems, their performance at scale is off the hook! <strong>A well-designed NoSQL database will query 100 <em>million</em> records just as fast as it queries 100 <em>thousand</em>.</strong></p>
+
+<p>The problem with <strong><em>encode your schema directly into your data</em></strong> is that it isn’t super obvious how to do that. Concepts like the <a href="https://aws.amazon.com/blogs/compute/creating-a-single-table-design-with-amazon-dynamodb/">DynamoDB single-table design pattern</a> are great in principle, but they’re really hard to implement, and they’re <em>really</em> hard to implement in a <em>consistent</em> fashion across multiple back-end services that each use an independent DynamoDB data store.</p>
+
+<p><code class="language-plaintext highlighter-rouge">entity-manager</code> solves that problem:</p>
+
+<ul>
+  <li>
+    <p>You write a simple configuration object that describes your entities, index keys, and sharding strategy.</p>
+  </li>
+  <li>
+    <p><code class="language-plaintext highlighter-rouge">entity-manager</code> converts that configuration into specially-formatted index properties that support all kinds of secondary indexes and sharding strategies.</p>
+  </li>
+  <li>
+    <p><code class="language-plaintext highlighter-rouge">entity-manager</code> provides a simple wrapper around the AWS SDK that lets you do easy things like get &amp; update records, as well as fantastically hard things like one-shot multi-range, multi-shard, filtered secondary index queries… <em>without having to write a single line of DynamoDB-specific code!</em></p>
+  </li>
+</ul>
+
+<p>So on the one hand <code class="language-plaintext highlighter-rouge">entity-manager</code> provides an opinionated, out-of-the-box answer to the question of how to structure NoSQL data. And on the other hand, it replaces a <em>ton</em> of code with a simple configuration that looks and works consistently across every independent microservice in your entire back end.</p>
+
+<p>Pound for pound, <code class="language-plaintext highlighter-rouge">entity-manager</code> is by far the most successful piece of software I’ve ever written.</p>
+
+<p>So if it ain’t broke…</p>
+
+<h2 id="why-fix-it">Why Fix It?</h2>
+
+<p>Part of the answer can be boiled down to a single word: <em>Typescript</em>.</p>
+
+<p>I picked up Typescript about a year ago after having spent about a gazillion years in the Node.js/Javascript trenches. I was late to the game, and frankly skeptical: I am a <em>very</em> anal coder who writes <em>very</em> tight, well-documented code, and I just didn’t see the point of enforcing <a href="https://en.wikipedia.org/wiki/Type_safety">type safety</a> in code that is just not very likely to suffer from type errors.</p>
+
+<p>Once I actually started <em>using</em> Typescript, I was immediately hooked.</p>
+
+<p>Writing software is often very much about getting a package of data from over <em>here</em> to over <em>there</em>, with some transformations along the way.</p>
+
+<p>If you write software like a grown-up, then to get that thing done, you:</p>
+
+<ul>
+  <li>
+    <p>Write down a description of the thing.</p>
+  </li>
+  <li>
+    <p>Write some code that does the thing.</p>
+  </li>
+  <li>
+    <p>Write some tests that prove the code you wrote actually does the thing you described.</p>
+  </li>
+</ul>
+
+<p>Not strictly in that order.</p>
+
+<p>Now that’s a lot to keep in sync, especially when requirements change. And your requirements (or at least your understanding of them) will <em>always</em> change. So how do you keep track? <strong>When the various facets of your code fall out of sync, how do you actually find out?</strong></p>
+
+<p><em>That</em> is what Typescript is for. When the left hand falls out of sync with the right hand, you know <em>instantly</em>. You don’t have to run a test. You don’t even have to <em>ask</em>. Red squiggles just appear in your IDE, and you <em>know</em>.</p>
+
+<p>By an amazing kind of alchemy, the result of communicating the left hand’s intent to the right hand through consistent typing is almost <em>always</em> better code! And really <em>good</em> Typescript is like magic: once the left hand’s intent is perfectly expressed, the right hand’s code just <em>flows</em>.</p>
+
+<p>So these days, when I write something new, it is <em>always</em> in Typescript. Since Serverless Framework projects are my bread and butter, and since <code class="language-plaintext highlighter-rouge">entity-manager</code> is my go-to data access layer, it just needs to be type-safe so it plays nicely with all my other Typescript goodies.</p>
+
+<p>Oh, the Serverless Framework itself? They <a href="https://www.serverless.com/blog/serverless-framework-v4-general-availability">went Typescript with version 4</a>.</p>
+
+<p>The switch to Typescript has a lot of knock-on effects. For example:</p>
+
+<ul>
+  <li>
+    <p>The Javascript version relies heavily on <a href="https://lodash.com/">Lodash</a>, which doesn’t play super well with Typescript (see <a href="/blog/radash-the-new-lodash/">here</a> for more on that). So the Typescript version of <code class="language-plaintext highlighter-rouge">entity-manager</code> will use <a href="https://github.com/sodiray/radash">Radash</a> instead.</p>
+  </li>
+  <li>
+    <p>The current version of <code class="language-plaintext highlighter-rouge">entity-manager</code> uses a database <a href="https://en.wikipedia.org/wiki/Provider_model">provider model</a>: the library itself is generic with respect to database platform, and then there’s another library that provides the DynamoDB-specific logic. Over a couple of years of development, that line got a little blurred, such that some generic functionality snuck into the DynamoDB provider, and some DynamoDB-specific functionality snuck into the implementations that consume both libraries. The Typescript refactor is a great opportunity to clean that up.</p>
+  </li>
+  <li>
+    <p>Strong typing gives me an opportunity to apply configuration at two distinctly different levels: <em>type</em> configurations, which directly affect developers consuming the libraries while they’re writing code, and <em>runtime</em> configurations, which affect the behavior of the library at runtime. This is a great way to improve the developer experience… and since I’m also the primary <em>consumer</em> of these libraries, that means improving <em>my</em> experience!</p>
+  </li>
+</ul>
+
+<h2 id="abstractions">Abstractions</h2>
+
+<p>A few days ago I found myself mid-swing in the <code class="language-plaintext highlighter-rouge">entity-manager</code> refactor. My strategy was to refactor the entire existing feature set and get all of the existing tests to pass before adding any new features.</p>
+
+<p>I saved the hard part for last: the <code class="language-plaintext highlighter-rouge">query</code> method. This function’s job is to…</p>
+
+<ul>
+  <li>
+    <p>Organize a bunch of query parameters into a valid database query… possibly more than one if the query hits more than one index (<em>match this string against first AND last name</em>).</p>
+  </li>
+  <li>
+    <p>Run the queries simultaneously across every partition shard valid for the query parameters.</p>
+  </li>
+  <li>
+    <p>Assemble the resulting data pages into a single result set &amp; compress the keys for the next “page” of data on each individual query down into a single blob of very high-entropy text.</p>
+  </li>
+</ul>
+
+<p>This method works just fine in production, but its unit test coverage was very thin. No surprise there: the only thing that really behaves like DynamoDB is DynamoDB, and it’s generally poor practice to unit test against a cloud service. But a complete refactor means I can no longer trust that production experience, so time to write better tests.</p>
+
+<p>Meanwhile, remember: <code class="language-plaintext highlighter-rouge">entity-manager</code> is <em>generic</em>. Except for a little leakage, it doesn’t contain <em>any</em> DynamoDB-specific code. So I really didn’t need a DynamoDB clone to test against. I just needed something that behaved <em>enough</em> like DynamoDB to exercise the key features of the <code class="language-plaintext highlighter-rouge">query</code> method.</p>
+
+<p>In practice, it needed to:</p>
+
+<ul>
+  <li>
+    <p>Hold some JSON data.</p>
+  </li>
+  <li>
+    <p>Receive a hash key, a sort key, a filter function, and a page size.</p>
+  </li>
+  <li>
+    <p>Apply those and return a page of data with a key to the next page.</p>
+  </li>
+</ul>
+
+<p>Enter <a href="/blog/mock-db/"><code class="language-plaintext highlighter-rouge">mock-db</code></a>. It took about fifteen minutes of coding to understand that <code class="language-plaintext highlighter-rouge">mock-db</code> was going to be big enough and generally useful enough that it made sense to abstract it out into its own library, and then import it back into <code class="language-plaintext highlighter-rouge">entity-manager</code> as a development dependency. That’s where I wound up this past Monday.</p>
+
+<p>But as soon as I did that, I realized I had a new problem.</p>
+
+<p>Like any other library, <code class="language-plaintext highlighter-rouge">mock-db</code> required unit tests. And, since <code class="language-plaintext highlighter-rouge">mock-db</code> was built to handle the exact same kinds of data sets as <code class="language-plaintext highlighter-rouge">entity-manager</code>, it needed the exact same set of types. Also, they both needed to perform some simple data operations like sorting and de-duping on the same kind of data.</p>
+
+<p>A core principle in software engineering is <em>DRY:</em> <a href="https://en.wikipedia.org/wiki/Don%27t_repeat_yourself"><em>Don’t Repeat Yourself</em></a>. So how do I use the exact same types &amp; functions in two different libraries without repeating myself?</p>
+
+<p>Easy: I created a <em>third</em> library, called <a href="https://github.com/karmaniverous/entity-tools"><code class="language-plaintext highlighter-rouge">entity-tools</code></a>, and made it a dependency of <em>both!</em></p>
+
+<p>Also, a class called <code class="language-plaintext highlighter-rouge">DynamoDbWrapper</code> encapsulates the DynamoDB-specific stuff and injects it into <code class="language-plaintext highlighter-rouge">EntityManager</code>. <code class="language-plaintext highlighter-rouge">DynamoDBWrapper</code> has a unique dependency called <code class="language-plaintext highlighter-rouge">aws-service-search</code> that handles some of that load. But in retrospect it didn’t really make sense for <code class="language-plaintext highlighter-rouge">aws-service-search</code> to be a distinct dependency, so as this work proceeds I’ll be merging it into <code class="language-plaintext highlighter-rouge">DynamoDbWrapper</code> when that class gets its own Typescript refactor in a few weeks.</p>
+
+<p>Put it all together, and here’s the before &amp; after:</p>
+
+<figure class=""><a href="/assets/diagrams/entity-manager-abstractions.png" class="image-popup" title="entity-manager Typescript refactor abstractions
+"><img src="/assets/diagrams/entity-manager-abstractions.png" alt="" /></a><figcaption>
+      <code class="language-plaintext highlighter-rouge">entity-manager</code> Typescript refactor abstractions
+
+    </figcaption></figure>
+
+<p>If you get the sense that I’m sort of going around in circles here, making a modest improvement at each pass: <strong><em>you’re right!</em></strong> Those iterations are the essence of <a href="http://127.0.0.1:4000/blog/a-modern-agile-project-manifesto/">Agile software development</a>, which in the main is the only way to write software that actually works.</p>
+
+<p>In fact, that’s where the <code class="language-plaintext highlighter-rouge">entity-manager</code> package came from in the first place: as soon as I had more than one Serverless Framework project to manage, it became abundantly clear that they all needed to be handling data the same way. Those original projects birthed both <code class="language-plaintext highlighter-rouge">entity-manager</code> and <code class="language-plaintext highlighter-rouge">DynamoDbWrapper</code>.</p>
+
+<p>So the arrows in the diagram above don’t just represent the dependency flow of these components. They also represent the historical decomposition of the work.</p>
+
+<h2 id="genericization">Genericization</h2>
+
+<p>Is that an awful word, or what?</p>
+
+<p>As soon as Typescript enters the picture—stay with me here—everything gets <em>typed</em>.</p>
+
+<p>From a trivial perspective, this means that Typescript will complain if I try to do something dumb like treat a string as an integer. I can kind of cheat, accidentally or on purpose, by using the special-purpose <code class="language-plaintext highlighter-rouge">any</code> type, which means exactly what it implies. But if I’m smart, I’ll set Typescript up to complain when I do <em>that</em>, too. Which leaves me no alternative but to type consistently.</p>
+
+<p>But what does that actually <em>mean</em>?</p>
+
+<p>Say I have a simple type representing a user, which I want to manage in my data store with <code class="language-plaintext highlighter-rouge">entity-manager</code>. I can define that type like this:</p>
+
+<div class="language-ts highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kr">interface</span> <span class="nx">User</span> <span class="p">{</span>
+  <span class="nl">id</span><span class="p">:</span> <span class="kr">number</span><span class="p">;</span>
+  <span class="nl">name</span><span class="p">:</span> <span class="kr">string</span><span class="p">;</span>
+  <span class="nl">optional</span><span class="p">?:</span> <span class="kr">string</span><span class="p">;</span>
+  <span class="nl">data</span><span class="p">:</span> <span class="nx">JsonData</span><span class="p">;</span> <span class="c1">// &lt;-- what is this??</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>Now say I want to create a new instance of <code class="language-plaintext highlighter-rouge">entity-manager</code>. I can write this:</p>
+
+<div class="language-ts highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">entityManager</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">EntityManager</span><span class="p">(</span><span class="nx">config</span><span class="p">);</span>
+</code></pre></div></div>
+
+<p>… where <code class="language-plaintext highlighter-rouge">config</code> is the configuration I use to describe my entities, indexes, and sharding strategy. But hang on… how do I know if my configuration is valid?</p>
+
+<p>For example:</p>
+
+<ul>
+  <li>
+    <p>My database is supposed to handle <code class="language-plaintext highlighter-rouge">User</code> and <code class="language-plaintext highlighter-rouge">Email</code> entities, but in my configuration I have a <code class="language-plaintext highlighter-rouge">Foo</code> entity.</p>
+  </li>
+  <li>
+    <p>DynamoDB can’t handle the <code class="language-plaintext highlighter-rouge">BigInt</code> data type, but I have a <code class="language-plaintext highlighter-rouge">BigInt</code> field in my <code class="language-plaintext highlighter-rouge">User</code> entity.</p>
+  </li>
+  <li>
+    <p>DynamoDB can only build indexes on scalar types like <code class="language-plaintext highlighter-rouge">number</code> and <code class="language-plaintext highlighter-rouge">string</code>, but I tried to create an index on the <code class="language-plaintext highlighter-rouge">data</code> property.</p>
+  </li>
+</ul>
+
+<p>Remember, in Typescript we have two kinds of configuration:</p>
+
+<ul>
+  <li>
+    <p><em>Runtime</em> configuration operates on deployed code and tries to catch my mistakes before they can do any damage.</p>
+  </li>
+  <li>
+    <p><em>Type</em> configuration operates in my development environment to prevent me from making mistakes in the first place.</p>
+  </li>
+</ul>
+
+<p>Guess which kind is preferable.</p>
+
+<p>So when I create a new instance of <code class="language-plaintext highlighter-rouge">EntityManager</code>, Typescript style, I should be able to tell it:</p>
+
+<ul>
+  <li>
+    <p>What entity types it will be expected to manage. <em>Because obviously it won’t always be the same one.</em></p>
+  </li>
+  <li>
+    <p>What building blocks are allowed to comprise those entities. <em>Because I won’t always be working in DynamoDB.</em></p>
+  </li>
+  <li>
+    <p>Which of those building blocks are allowed to be part of an index. <em>Same reason.</em></p>
+  </li>
+</ul>
+
+<p>If I do that right, a couple of things will happen:</p>
+
+<ul>
+  <li>
+    <p>Typescript will catch most of my errors before I ever deploy my code.</p>
+  </li>
+  <li>
+    <p>When I write that configuration object for a specific implementation (say, <code class="language-plaintext highlighter-rouge">User</code>), Typescript will know in advance what to expect. If I make a mistake, I’ll get a red squiggle. But at least as important, once I start typing, Typescript will use those expectations to provide me with <a href="https://code.visualstudio.com/docs/editor/intellisense"><em>intellisense</em> and <em>autocomplete</em></a>: it will anticipate what I am trying to do, put relevant instructions at my fingertips, and finish my typing for me.</p>
+  </li>
+</ul>
+
+<p>That’s worth doing a little work for.</p>
+
+<p>Let’s start with data types allowed by the database. Say I define this type:</p>
+
+<div class="language-ts highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">type</span> <span class="nx">DefaultProperty</span> <span class="o">=</span>
+  <span class="o">|</span> <span class="kr">string</span>
+  <span class="o">|</span> <span class="kr">number</span>
+  <span class="o">|</span> <span class="nx">boolean</span>
+  <span class="o">|</span> <span class="kc">null</span>
+  <span class="o">|</span> <span class="kc">undefined</span>
+  <span class="o">|</span> <span class="p">{</span> <span class="p">[</span><span class="na">key</span><span class="p">:</span> <span class="kr">string</span><span class="p">]:</span> <span class="nx">DefaultProperty</span> <span class="p">}</span> <span class="c1">// JSON objects</span>
+  <span class="o">|</span> <span class="nx">DefaultProperty</span><span class="p">[];</span> <span class="c1">// JSON arrays</span>
+</code></pre></div></div>
+
+<p>This recursive type definition describes a bunch of scalar types, as well as JSON objects and arrays. Now I can alter my <code class="language-plaintext highlighter-rouge">EntityManager</code> class definition so it looks like this:</p>
+
+<div class="language-ts highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">export</span> <span class="kd">class</span> <span class="nx">EntityManager</span><span class="o">&lt;</span><span class="nx">P</span> <span class="o">=</span> <span class="nx">DefaultProperty</span><span class="o">&gt;</span> <span class="p">{</span> <span class="p">...</span> <span class="p">}</span>
+</code></pre></div></div>
+
+<p>Say my database can’t handle structured data like JSON objects and arrays. I can define an appropriate new property type and create a new instance of <code class="language-plaintext highlighter-rouge">EntityManager</code> like this:</p>
+
+<div class="language-ts highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">type</span> <span class="nx">CustomProperty</span> <span class="o">=</span> <span class="kr">string</span> <span class="o">|</span> <span class="kr">number</span> <span class="o">|</span> <span class="nx">boolean</span> <span class="o">|</span> <span class="kc">null</span> <span class="o">|</span> <span class="kc">undefined</span><span class="p">;</span>
+
+<span class="kd">const</span> <span class="nx">entityManager</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">EntityManager</span><span class="o">&lt;</span><span class="nx">CustomProperty</span><span class="o">&gt;</span><span class="p">(</span><span class="nx">config</span><span class="p">);</span>
+</code></pre></div></div>
+
+<p>What you are looking at there is a <em>generic</em> class definition. The <code class="language-plaintext highlighter-rouge">EntityManager</code> class is <em>parameterized</em> by a type <code class="language-plaintext highlighter-rouge">P</code>, which defaults to <code class="language-plaintext highlighter-rouge">DefaultProperty</code>. When I create a new instance of <code class="language-plaintext highlighter-rouge">EntityManager</code>, I can <em>specify</em> the type <code class="language-plaintext highlighter-rouge">P</code> by passing it as a <em>type argument</em> to the class constructor… and, just like magic, Typescript will yell at me if I write code that wouldn’t handle this type properly!</p>
+
+<p>Take this to its logical conclusion, and when you see the full <code class="language-plaintext highlighter-rouge">EntityManager</code> Typescript refactor, creating a new instance will look something like this:</p>
+
+<div class="language-ts highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kr">interface</span> <span class="nx">User</span> <span class="kd">extends</span> <span class="nx">Entity</span> <span class="p">{</span>
+  <span class="nl">userId</span><span class="p">:</span> <span class="kr">number</span><span class="p">;</span>
+  <span class="nl">name</span><span class="p">:</span> <span class="kr">string</span><span class="p">;</span>
+  <span class="nl">optional</span><span class="p">?:</span> <span class="kr">string</span><span class="p">;</span>
+  <span class="nl">data</span><span class="p">:</span> <span class="nx">JsonData</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kr">interface</span> <span class="nx">Email</span> <span class="kd">extends</span> <span class="nx">Entity</span> <span class="p">{</span>
+  <span class="nl">email</span><span class="p">:</span> <span class="kr">string</span><span class="p">;</span>
+  <span class="nl">userId</span><span class="p">:</span> <span class="kr">number</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kr">interface</span> <span class="nx">MyEntityMap</span> <span class="kd">extends</span> <span class="nx">EntityMap</span> <span class="p">{</span>
+  <span class="nl">user</span><span class="p">:</span> <span class="nx">User</span><span class="p">;</span>
+  <span class="nl">email</span><span class="p">:</span> <span class="nx">Email</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>Then I’ll be able to write a config object &amp; define a new instance of <code class="language-plaintext highlighter-rouge">EntityManager</code> like this:</p>
+
+<div class="language-ts highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">config</span><span class="p">:</span> <span class="nx">EntityManagerConfig</span><span class="o">&lt;</span><span class="nx">MyEntityMap</span><span class="o">&gt;</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="na">entities</span><span class="p">:</span> <span class="p">{</span>
+    <span class="na">user</span><span class="p">:</span> <span class="p">{</span>
+      <span class="na">primaryKey</span><span class="p">:</span> <span class="p">[</span><span class="dl">'</span><span class="s1">userId</span><span class="dl">'</span><span class="p">],</span>
+      <span class="na">indexes</span><span class="p">:</span> <span class="p">{</span>
+        <span class="na">name</span><span class="p">:</span> <span class="p">{</span> <span class="dl">'</span><span class="s1">name</span><span class="dl">'</span> <span class="p">},</span>
+        <span class="na">email</span><span class="p">:</span> <span class="p">{</span> <span class="dl">'</span><span class="s1">email</span><span class="dl">'</span> <span class="p">},</span>
+      <span class="p">},</span>
+    <span class="p">},</span>
+    <span class="na">email</span><span class="p">:</span> <span class="p">{</span>
+      <span class="na">primaryKey</span><span class="p">:</span> <span class="p">[</span><span class="dl">'</span><span class="s1">email</span><span class="dl">'</span><span class="p">],</span>
+      <span class="na">indexes</span><span class="p">:</span> <span class="p">{</span>
+        <span class="na">userId</span><span class="p">:</span> <span class="p">{</span> <span class="na">hashKey</span><span class="p">:</span> <span class="dl">'</span><span class="s1">userId</span><span class="dl">'</span> <span class="p">},</span>
+      <span class="p">},</span>
+    <span class="p">},</span>
+  <span class="p">},</span>
+<span class="p">};</span>
+
+<span class="kd">const</span> <span class="nx">entityManager</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">EntityManager</span><span class="p">(</span><span class="nx">config</span><span class="p">);</span>
+</code></pre></div></div>
+
+<p>… and internally the types will just <em>work</em>. The <code class="language-plaintext highlighter-rouge">MyEntityMap</code> type will impose design-time constraints on the <code class="language-plaintext highlighter-rouge">config</code> object and the rest of my code, and prevent me (and other users of <code class="language-plaintext highlighter-rouge">EntityManager</code>) from making expensive mistakes while coding.</p>
+
+<h2 id="what-thats-it">What… That’s It?</h2>
+
+<p>Seems like kind of a ragged ending to a long article, doesn’t it. Know why?</p>
+
+<p>Because <strong>the very act of writing this article sent me into a couple of new directions</strong> that will significantly (and positively!) affect the outcome for <code class="language-plaintext highlighter-rouge">EntityManager</code>.</p>
+
+<p>Remember the question at the top of the article? <em>What the hell do I actually</em> do <em>with my time?</em></p>
+
+<p>Well… <em>this.</em></p>
+
+<p>As I mentioned above, iteration is the heart &amp; soul of modern software development. It works just like any other <a href="https://en.wikipedia.org/wiki/Hero%27s_journey">Hero’s Journey</a>: you’ve got to hoof it some ways down the road before you can see very far into the distance.</p>
+
+<p>More to come. Meanwhile: <strong><em>time to iterate!</em></strong></p>
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+  
+
+
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-tags" aria-hidden="true"></i> Topics: </strong>
+    <span itemprop="keywords">
+    
+      <a href="/topics/entity-manager" class="page__taxonomy-item p-category" rel="tag">entity-manager</a><span class="sep">, </span>
+    
+      <a href="/topics/projects" class="page__taxonomy-item p-category" rel="tag">projects</a><span class="sep">, </span>
+    
+      <a href="/topics/typescript" class="page__taxonomy-item p-category" rel="tag">typescript</a>
+    
+    </span>
+  </p>
+
+
+
+
+        
+
+  <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> Updated:</strong> <time class="dt-published" datetime="2024-09-06T00:00:00+00:00">September 6, 2024</time></p>
+
+      </footer>
+
+      
+        <section class="page__share">
+  
+    <h4 class="page__share-title">Share on</h4>
+  
+
+  <a href="https://twitter.com/intent/tweet?via=karmaniverous&text=Generic+Abstractions%20https%3A%2F%2Fkarmanivero.us%2Fgeneric-abstractions%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+
+  <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fkarmanivero.us%2Fgeneric-abstractions%2F" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
+
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=https://karmanivero.us/generic-abstractions/" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
+</section>
+
+
+      
+  <nav class="pagination">
+    
+      <a href="/radash-the-new-lodash/" class="pagination--pager" title="Radash: The New Lodash
+">Previous</a>
+    
+    
+      <a href="/what-good-looks-like-a-real-world-typescript-refactor/" class="pagination--pager" title="What Good Looks Like: A Real-World Typescript Refactor
+">Next</a>
+    
+  </nav>
+
+    </div>
+
+    
+  </article>
+
+  
+  
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  
+
+  
+  
+
+  
+  
+
+  
+  <div class='page__related'>
+    
+    <h2 class='page__related-title'>
+      You may also enjoy
+    </h2>
+    <div class='grid__wrapper'>
+
+      
+      
+        
+        
+        
+        
+        
+        
+      
+
+        
+      
+
+        
+        <!-- post_url: /the-big-miss-turning-lemons-into-lemonade/ -->
+        <!-- normLogCommonTags: 1.0 -->
+        <!-- logAge: 0.090486111111111 -->
+        <!-- relevance: 52910 -->
+
+        
+      
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src="/assets/images/lemons-square.jpg" alt="">
+      </div>
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/the-big-miss-turning-lemons-into-lemonade/" rel="permalink">The Big Miss: Turning Lemons Into Lemonade
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+      
+      <span class="page__meta-date">
+        <i
+          class="far fa-fw fa-calendar-alt"
+          aria-hidden="true"
+        ></i>
+        
+        <time datetime="2024-11-20T00:00:00+00:00">November 20, 2024</time>
+      </span>
+    
+
+    <span class="page__meta-sep"></span>
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i
+          class="far fa-fw fa-clock"
+          aria-hidden="true"
+        ></i>
+        
+          8
+          minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">Today was one of those days when I question my life choices. Watch me dig my way out of a hole with the same shovel I used to dig my way in.
+</p>
+  </article>
+</div>
+
+
+        
+        
+        
+      
+        
+        
+        
+        
+        
+      
+
+        
+      
+
+        
+        <!-- post_url: /projects/entity-manager/intro/ -->
+        <!-- normLogCommonTags: 1.0 -->
+        <!-- logAge: 5.0 -->
+        <!-- relevance: 48000 -->
+
+        
+      
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src="/assets/collections/entity-manager/entity-manager-square.jpg" alt="">
+      </div>
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/projects/entity-manager/intro/" rel="permalink">Meet Entity Manager!
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i
+          class="far fa-clock"
+          aria-hidden="true"
+        ></i>
+        
+          2
+          minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">NoSQL shifts the burden of complexity from the database platform to the developer. Entity Manager sweeps it under the rug!
+</p>
+  </article>
+</div>
+
+
+        
+        
+        
+      
+        
+        
+        
+        
+        
+      
+
+        
+      
+
+        
+        <!-- post_url: /projects/entity-manager/demo/ -->
+        <!-- normLogCommonTags: 1.0 -->
+        <!-- logAge: 5.0 -->
+        <!-- relevance: 48000 -->
+
+        
+      
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src="/assets/collections/entity-manager/configuration-square.jpg" alt="">
+      </div>
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/projects/entity-manager/demo/" rel="permalink">Entity Manager: A Demonstration
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i
+          class="far fa-clock"
+          aria-hidden="true"
+        ></i>
+        
+          16
+          minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">Presenting a step-by-step Typescript implementation of a realistic data model against DynamoDB, with the help of Entity Manager.
+</p>
+  </article>
+</div>
+
+
+        
+        
+        
+      
+        
+        
+        
+        
+        
+      
+
+        
+      
+
+        
+        <!-- post_url: /projects/entity-manager/configuration/ -->
+        <!-- normLogCommonTags: 1.0 -->
+        <!-- logAge: 5.0 -->
+        <!-- relevance: 48000 -->
+
+        
+      
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src="/assets/collections/entity-manager/configuration-square.jpg" alt="">
+      </div>
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/projects/entity-manager/configuration/" rel="permalink">Entity Manager Configuration
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i
+          class="far fa-clock"
+          aria-hidden="true"
+        ></i>
+        
+          22
+          minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">Entity Manager enables efficient put, get, and query operations across entity relationships, indexes, and sharded partitions in a NoSQL database.
+</p>
+  </article>
+</div>
+
+
+        
+        
+        
+      
+        
+        
+        
+        
+        
+      
+
+        
+      
+
+        
+        <!-- post_url: /composition-in-action-finishing-the-swing/ -->
+        <!-- normLogCommonTags: 1.0 -->
+        <!-- logAge: 5.1278276909722225 -->
+        <!-- relevance: 47872 -->
+
+        
+      
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src="https://github.com/karmaniverous/controlled-proxy/raw/main/assets/controlled-proxy-square.jpg" alt="">
+      </div>
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/composition-in-action-finishing-the-swing/" rel="permalink">Composition in Action: Finishing the Swing
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+      
+      <span class="page__meta-date">
+        <i
+          class="far fa-fw fa-calendar-alt"
+          aria-hidden="true"
+        ></i>
+        
+        <time datetime="2024-10-16T00:00:00+00:00">October 16, 2024</time>
+      </span>
+    
+
+    <span class="page__meta-sep"></span>
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i
+          class="far fa-fw fa-clock"
+          aria-hidden="true"
+        ></i>
+        
+          9
+          minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">In software engineering, what look to be the easy parts often turn out to be the hard parts. If you’re lucky, the reverse is also true, but don’t count on it.
+</p>
+  </article>
+</div>
+
+
+        
+        
+        
+      
+        
+        
+        
+        
+        
+      
+
+        
+      
+
+        
+        <!-- post_url: /mixin-it-up-picking-the-right-problem-to-solve/ -->
+        <!-- normLogCommonTags: 1.0 -->
+        <!-- logAge: 5.2528276909722225 -->
+        <!-- relevance: 47747 -->
+
+        
+      
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src="/assets/images/mixin-it-up-square.jpg" alt="">
+      </div>
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/mixin-it-up-picking-the-right-problem-to-solve/" rel="permalink">Mixin It Up: Picking The Right Problem to Solve
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+      
+      <span class="page__meta-date">
+        <i
+          class="far fa-fw fa-calendar-alt"
+          aria-hidden="true"
+        ></i>
+        
+        <time datetime="2024-10-12T00:00:00+00:00">October 12, 2024</time>
+      </span>
+    
+
+    <span class="page__meta-sep"></span>
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i
+          class="far fa-fw fa-clock"
+          aria-hidden="true"
+        ></i>
+        
+          9
+          minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">Sometimes, when you’re tangled up in a thorny problem, solving it is exactly the wrong answer.
+</p>
+  </article>
+</div>
+
+
+        
+        
+        
+      
+        
+        
+        
+        
+        
+      
+
+        
+      
+
+        
+        <!-- post_url: /loggable-a-typescript-mixin-for-generic-class-logging/ -->
+        <!-- normLogCommonTags: 1.0 -->
+        <!-- logAge: 5.2840776909722225 -->
+        <!-- relevance: 47716 -->
+
+        
+      
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src="https://raw.githubusercontent.com/karmaniverous/loggable/main/assets/loggable-square.jpg" alt="">
+      </div>
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/loggable-a-typescript-mixin-for-generic-class-logging/" rel="permalink">Loggable: A TypeScript Mixin for Generic Class Logging
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+      
+      <span class="page__meta-date">
+        <i
+          class="far fa-fw fa-calendar-alt"
+          aria-hidden="true"
+        ></i>
+        
+        <time datetime="2024-10-11T00:00:00+00:00">October 11, 2024</time>
+      </span>
+    
+
+    <span class="page__meta-sep"></span>
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i
+          class="far fa-fw fa-clock"
+          aria-hidden="true"
+        ></i>
+        
+          5
+          minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">Logging is an implementation decision that should be deferred as late as possible. Loggable lets you defer it until runtime!
+</p>
+  </article>
+</div>
+
+
+        
+        
+        
+      
+        
+        
+        
+        
+        
+      
+
+        
+      
+
+        
+        <!-- post_url: /projects/entity-manager/sql-vs-nosql/ -->
+        <!-- normLogCommonTags: 0.6666666666666666 -->
+        <!-- logAge: 5.0 -->
+        <!-- relevance: 47000 -->
+
+        
+      
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src="/assets/collections/entity-manager/sql-vs-nosql-square.jpg" alt="">
+      </div>
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/projects/entity-manager/sql-vs-nosql/" rel="permalink">SQL vs NoSQL
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i
+          class="far fa-clock"
+          aria-hidden="true"
+        ></i>
+        
+          4
+          minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">A well-tuned NoSQL database can outperform an RDBMS by orders of magnitude at scale… but not for free! Entity Manager helps close the gap.
+</p>
+  </article>
+</div>
+
+
+        
+        
+        
+          
+    </div>
+  </div>
+
+  
+</div>
+      
+    </div>
+
+    
+      <div class="search-content">
+        <div class="search-content__inner-wrap"><form onsubmit="return googleCustomSearchExecute();" id="cse-search-box-form-id" role="search">
+    <label class="sr-only" for="cse-search-input-box-id">
+      Enter your search term...
+    </label>
+    <input type="search" id="cse-search-input-box-id" class="search-input" tabindex="-1" placeholder="Enter your search term..." />
+  </form>
+  <div id="results" class="results">
+    <gcse:searchresults-only></gcse:searchresults-only>
+  </div></div>
+
+      </div>
+    
+
+    <div id="footer" class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+        <div class="page__footer-follow">
+  
+    <span class="love">Built for you with ❤️ on <a href="/bali/">Bali</a>!</span>
+  
+
+  <ul class="social-icons">
+    
+      <li>
+        <strong>Contact</strong>&nbsp;&nbsp;&nbsp;</li>
+    
+
+    
+      
+        
+          <li>
+            <a href="https://twitter.com/karmaniverous" rel="nofollow noopener noreferrer">
+              <i class="fa-brands fa-x-twitter" aria-hidden="true"></i>
+              </a>
+          </li>
+        
+      
+        
+          <li>
+            <a href="https://techhub.social/@karmaniverous" rel="nofollow noopener noreferrer">
+              <i class="fa-brands fa-mastodon" aria-hidden="true"></i>
+              </a>
+          </li>
+        
+      
+        
+          <li>
+            <a href="https://github.com/karmaniverous" rel="nofollow noopener noreferrer">
+              <i class="fa-brands fa-github" aria-hidden="true"></i>
+              </a>
+          </li>
+        
+      
+        
+          <li>
+            <a href="https://www.linkedin.com/in/jscroft/" rel="nofollow noopener noreferrer">
+              <i class="fa-brands fa-linkedin" aria-hidden="true"></i>
+              </a>
+          </li>
+        
+      
+        
+          <li>
+            <a href="https://wa.me/17737500338" rel="nofollow noopener noreferrer">
+              <i class="fa-brands fa-square-whatsapp" aria-hidden="true"></i>
+              </a>
+          </li>
+        
+      
+        
+          <li>
+            <a href="https://t.me/karmaniverous" rel="nofollow noopener noreferrer">
+              <i class="fa-brands fa-telegram" aria-hidden="true"></i>
+              </a>
+          </li>
+        
+      
+        
+          <li>
+            <a href="https://calendly.com/karmaniverous" rel="nofollow noopener noreferrer">
+              <i class="fa-regular fa-calendar-plus" aria-hidden="true"></i>
+              </a>
+          </li>
+        
+      
+    
+
+    
+      <li>
+        <a href="/feed.xml">
+          <i class="fas fa-fw fa-rss-square" aria-hidden="true"></i>
+           </a>
+      </li>
+    
+  </ul>
+</div>
+
+<div class="page__footer-copyright">&copy; 2024
+  <a href="https://karmanivero.us">some words</a>. Powered by
+  <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a>
+  &amp;
+  <a href="https://mademistakes.com/work/jekyll-themes/minimal-mistakes/" rel="nofollow">Minimal Mistakes</a>.</div>
+      </footer>
+    </div>
+
+    
+  <script src="/assets/js/main.min.js"></script>
+
+
+<script>
+  (function () {
+    var cx = '960ee5d1b2fec4509';
+    var gcse = document.createElement('script');
+    gcse.type = 'text/javascript';
+    gcse.async = true;
+    gcse.src = 'https://cse.google.com/cse.js?cx=' + cx;
+    var s = document.getElementsByTagName('script')[0];
+    s.parentNode.insertBefore(gcse, s);
+  })();
+
+  function googleCustomSearchExecute() {
+    var input = document.getElementById('cse-search-input-box-id');
+    var element = google.search.cse.element.getElement('searchresults-only0');
+    if (input.value == '') {
+      element.clearAllResults();
+    } else {
+      element.execute(input.value);
+    }
+    return false;
+  }
+
+  
+    $(document).ready(function () {
+      $('input#cse-search-input-box-id').on('keyup', function () {
+        googleCustomSearchExecute();
+      });
+    });
+  
+</script>
+
+
+
+
+    
+  <script>
+    var disqus_config = function () {
+      this.page.url = "https://karmanivero.us/generic-abstractions/";  /* Replace PAGE_URL with your page's canonical URL variable */
+      this.page.identifier = "/generic-abstractions"; /* Replace PAGE_IDENTIFIER with your page's unique identifier variable */
+    };
+    (function() { /* DON'T EDIT BELOW THIS LINE */
+      var d = document, s = d.createElement('script');
+      s.src = 'https://some-words.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+    })();
+  </script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+
+  
+
+
+
+
+  </body>
+</html>

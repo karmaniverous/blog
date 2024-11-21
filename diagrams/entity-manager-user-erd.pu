@@ -1,0 +1,20 @@
+@startuml entity-manager-user-erd
+
+entity "User" as user {
+    + created: number
+    + firstNameCanonical: string
+    + lastNameCanonical: string
+    - phone: string
+    + updated: number
+    + userId: string
+}
+
+entity "Email" as email {
+    + created: number
+    + email: string
+    + userId: string
+}
+
+user -{ email
+
+@enduml

@@ -1,0 +1,1724 @@
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.10.0">Jekyll</generator><link href="https://karmanivero.us/feed.xml" rel="self" type="application/atom+xml" /><link href="https://karmanivero.us/" rel="alternate" type="text/html" /><updated>2024-11-21T02:10:13+00:00</updated><id>https://karmanivero.us/feed.xml</id><title type="html">some words</title><subtitle>resume bullets / may read differently at the / threshold of heaven</subtitle><author><name>Jason Williscroft</name></author><entry><title type="html">The Big Miss: Turning Lemons Into Lemonade</title><link href="https://karmanivero.us/the-big-miss-turning-lemons-into-lemonade/" rel="alternate" type="text/html" title="The Big Miss: Turning Lemons Into Lemonade" /><published>2024-11-20T00:00:00+00:00</published><updated>2024-11-20T00:00:00+00:00</updated><id>https://karmanivero.us/the-big-miss-turning-lemons-into-lemonade</id><content type="html" xml:base="https://karmanivero.us/the-big-miss-turning-lemons-into-lemonade/"><![CDATA[<figure class="align-left drop-image">
+    <img src="/assets/images/lemons-square.jpg" />
+</figure>
+
+<p>Today was one of those days when I question my life choices. I could have stayed in the freaking Navy.</p>
+
+<p>Tell me if you’ve seen this movie before: You have a tool that works well in production. You embark on a major refactor, and you do it professionally: architecture, design, documentation, and everything tested to the nines. You write a demo that doubles as an integration test, and <strong><em>it blows up like a hair-metal third-encore finale!</em></strong></p>
+
+<p>Moreover, <strong>it invalidates one of your basic architectural premises</strong>, and you realize with a sick jerk that the earlier version—you know, the one that <em>works well in production</em>—has been a shaky house of cards all along.</p>
+
+<p>Ugh.</p>
+
+<h2 id="the-entity-manager-refactor">The Entity Manager Refactor</h2>
+
+<p><a href="/projects/entity-manager/intro/">Entity Manager</a> is a library that takes the ouch out of applying the <a href="https://aws.amazon.com/blogs/compute/creating-a-single-table-design-with-amazon-dynamodb/">single-table design pattern</a> to a <a href="https://en.wikipedia.org/wiki/NoSQL">NoSQL</a> database. I’ve been running Entity Manager across 16 back-end services at <a href="https://veterancrowd.com">VeteranCrowd</a> (ignore the ugly home page, please) for over a year, and it’s <em>awesome</em>.</p>
+
+<p>The production version of Entity Manager is written in Javascript. A few months ago I embarked on a complete rewrite of the library that encapsulates a long list of lessons learned. See <a href="/topics/entity-manager/">this archive</a> for some dispatches from that journey.</p>
+
+<p>The new version is cleaner, faster, and <em>way</em> easier to configure &amp; use. It’s also Typescript from the ground up, and is about as obsessively unit tested as I can make it.</p>
+
+<p>This morning I discovered that the Entity Manager refactor is a <em>solid</em>, relentlessly <em>perfect</em> implementation of <strong>the wrong effing thing!</strong></p>
+
+<h2 id="a-hidden-bombshell">A Hidden Bombshell</h2>
+
+<p>A key Entity Manager feature is behind-the-scenes declarative <a href="https://aws.amazon.com/what-is/database-sharding">partition sharding</a>. There are arguments for and against doing this in <a href="https://aws.amazon.com/pm/dynamodb">DynamoDB</a>, but Entity Manager is a platform-agnostic tool, so sharding is a feature that’s been in there since the beginning.</p>
+
+<p>See <a href="/projects/entity-manager/evolving-a-nosql-db-schema/#shard-keys">this article section</a> for a deep dive into Entity Manager’s sharding strategy, but here’s the TL/DR:</p>
+
+<ul>
+  <li>
+    <p>A NoSQL database record is accessed by its <em>primary key</em>.</p>
+  </li>
+  <li>
+    <p>The primary component has two components: the <em>hash key</em> and the <em>sort key</em>. And you can only have so much stuff with the same hash key in a single table.</p>
+  </li>
+  <li>
+    <p>Entity Manager supports multiple entities on a single table. So it composes the hash key from the entity type and a deterministically calculated <em>shard key</em>. A typical Entity Manager hash key looks like <code class="language-plaintext highlighter-rouge">user!1f</code> or <code class="language-plaintext highlighter-rouge">email!2a</code>.</p>
+  </li>
+  <li>
+    <p>Entity manager supports an evolving sharding scheule, so your data can scale over time. So the inputs to the shard key are the the record’s unique identifier and the record creation date.</p>
+  </li>
+</ul>
+
+<p>In the default case sharding is turned off, and the shard key is an empty string.</p>
+
+<p>Can you see where this is going? 👀 <em>Because I didn’t!</em></p>
+
+<p>The core Entity Manager package (<a href="https://github.com/karmaniverous/entity-manager"><code class="language-plaintext highlighter-rouge">entity-manager</code></a>) is all about manipulating data records to add appropriate generated properties, remove them, and support searching across shards and indexes. It is exhaustively unit-tested, but at no point does it retrieve a record from a database. At its high level of abstraction, the package doesn’t even know what a database <em>is</em>.</p>
+
+<p>One thing it <em>can</em> do: generate a primary key from a sufficiently-populated entity record.</p>
+
+<p>The DynamoDB-specific Entity Manager client package (<a href="https://github.com/karmaniverous/entity-client-dynamodb"><code class="language-plaintext highlighter-rouge">entity-client-dynamodb</code></a>) is all about tying the core package to the DynamoDB SDK. Given enough data—for example, the components of a primary key—it conducts CRUD operations and executes multi-index, cross-shard searches against DynamoDB. And it also works flawlessly.</p>
+
+<p>But in the demo package (<a href="https://github.com/karmaniverous/entity-manager-demo"><code class="language-plaintext highlighter-rouge">entity-manager-demo</code></a>), we actually get to execute a real-world scenario:</p>
+
+<ul>
+  <li>
+    <p>Create a record in a database (which returns a new unique id).</p>
+  </li>
+  <li>
+    <p>Turn around &amp; retrieve the record by its unique id.</p>
+  </li>
+  <li>
+    <p>Update the record, etc…</p>
+  </li>
+</ul>
+
+<p>And that’s where the bomb went off.</p>
+
+<h2 id="the-big-miss">The Big Miss</h2>
+
+<p>Before I can retrieve a record by its unique id, I need to generate the record’s primary key.</p>
+
+<p>Internally, Entity Manager’s primary key generator calculates the record’s shard key… which depends on the record’s creation date. <strong>Which I don’t have yet.</strong></p>
+
+<p>So the primary key generator throws an exception and the <code class="language-plaintext highlighter-rouge">GET</code> fails.</p>
+
+<p>Remember, the previous version has been running flawlessly in sixteen production services for over a year! Only the system hasn’t scaled yet, so <strong>I have sharding turned off in every service.</strong> And, since JavaScript isn’t type-safe and I wasn’t validating the presence of a timestamp at runtime, the code never complained that it was getting an <code class="language-plaintext highlighter-rouge">undefined</code> instead of a <code class="language-plaintext highlighter-rouge">number</code>.</p>
+
+<p>In production, Entity Manager has been returning the right answer every time… <strong><em>but only by accident!</em></strong></p>
+
+<p>Even now, this showed up as a runtime error instead of a type error because (I just checked) the <code class="language-plaintext highlighter-rouge">getPrimaryKey</code> function is <a href="https://github.com/karmaniverous/entity-manager/blob/main/src/EntityManager/getPrimaryKey.ts#L25">expecting the wrong type</a>, incorrect because it is too permissive. But since the refactor is <em>way</em> more obsessive about validating runtime inputs, it caught the missing timestamp <a href="https://github.com/karmaniverous/entity-manager/blob/main/src/EntityManager/updateItemHashKey.ts#L56">here</a> and threw an exception.</p>
+
+<p>In cross-shard searching at scale, the relationship between shard key and record creation date provides a <em>huge</em> advantage, since any search constrained by creation date can naturally constrain the space of shard keys it has to search. Big win.</p>
+
+<p>But the most important operation anybody performs against a database is the retrieval of a single record. And in this case, Entity Manager’s current sharding strategy is <em>fundamentally flawed</em> because it won’t let you retrieve a record by its unique id alone.</p>
+
+<p>Damn.</p>
+
+<h2 id="turning-lemons-into-lemonade">Turning Lemons Into Lemonade</h2>
+
+<p>In the current Entity Manager config object, a given entity’s sharding strategy looks like this:</p>
+
+<div class="language-typescript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">entityManager</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">EntityManager</span><span class="o">&lt;</span><span class="nx">MyConfigMap</span><span class="o">&gt;</span><span class="p">({</span>
+  <span class="na">entities</span><span class="p">:</span> <span class="p">{</span>
+    <span class="na">email</span><span class="p">:</span> <span class="p">{</span>
+      <span class="na">shardBumps</span><span class="p">:</span> <span class="p">[</span>
+        <span class="p">{</span> <span class="na">timestamp</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="na">charBits</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="na">chars</span><span class="p">:</span> <span class="mi">0</span> <span class="p">},</span>
+        <span class="p">{</span> <span class="na">timestamp</span><span class="p">:</span> <span class="mi">1234567890</span><span class="p">,</span> <span class="na">charBits</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span> <span class="na">chars</span><span class="p">:</span> <span class="mi">1</span> <span class="p">},</span>
+      <span class="p">],</span>
+      <span class="na">timestampProperty</span><span class="p">:</span> <span class="dl">"</span><span class="s2">created</span><span class="dl">"</span><span class="p">,</span>
+      <span class="na">uniqueProperty</span><span class="p">:</span> <span class="dl">"</span><span class="s2">email</span><span class="dl">"</span><span class="p">,</span>
+    <span class="p">},</span>
+    <span class="na">user</span><span class="p">:</span> <span class="p">{</span>
+      <span class="na">shardBumps</span><span class="p">:</span> <span class="p">[</span>
+        <span class="p">{</span> <span class="na">timestamp</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="na">charBits</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="na">chars</span><span class="p">:</span> <span class="mi">0</span> <span class="p">},</span>
+        <span class="p">{</span> <span class="na">timestamp</span><span class="p">:</span> <span class="mi">1234567890</span><span class="p">,</span> <span class="na">charBits</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="na">chars</span><span class="p">:</span> <span class="mi">1</span> <span class="p">},</span>
+      <span class="p">],</span>
+      <span class="na">timestampProperty</span><span class="p">:</span> <span class="dl">"</span><span class="s2">created</span><span class="dl">"</span><span class="p">,</span>
+      <span class="na">uniqueProperty</span><span class="p">:</span> <span class="dl">"</span><span class="s2">userId</span><span class="dl">"</span><span class="p">,</span>
+    <span class="p">},</span>
+  <span class="p">},</span>
+<span class="p">});</span>
+</code></pre></div></div>
+
+<p>This means…</p>
+
+<ul>
+  <li>
+    <p>For <code class="language-plaintext highlighter-rouge">email</code> records created before timestamp <code class="language-plaintext highlighter-rouge">1234567890</code>, all records have an empty shard key, so their hash keys are all <code class="language-plaintext highlighter-rouge">email!</code>.</p>
+  </li>
+  <li>
+    <p>For <code class="language-plaintext highlighter-rouge">email</code> records created at and after timestamp <code class="language-plaintext highlighter-rouge">1234567890</code>, records will be distributed across a one-character, two-bit shard key. So each of these records will have one of these four hash keys: <code class="language-plaintext highlighter-rouge">email!0</code>, <code class="language-plaintext highlighter-rouge">email!1</code>, <code class="language-plaintext highlighter-rouge">email!2</code>, or <code class="language-plaintext highlighter-rouge">email!3</code>.</p>
+  </li>
+  <li>
+    <p><code class="language-plaintext highlighter-rouge">user</code> records have the same schedule, but their scheduled bump is to a one-bit character instead of a two-bit character. So each of these records will have one of these two hash keys: <code class="language-plaintext highlighter-rouge">user!0</code> or <code class="language-plaintext highlighter-rouge">user!1</code>.</p>
+  </li>
+</ul>
+
+<p class="notice--info"><strong>Obviously this is a toy scenario.</strong> In the real-world, you’d probably want a deeper shard key. But the principle is the same.</p>
+
+<p>The calling application is responsible for providing the value of the unique property (in this case <code class="language-plaintext highlighter-rouge">email</code> or <code class="language-plaintext highlighter-rouge">userId</code>) that is the other basis (besides creation timestamp) of the shard key hash. And as we discussed above, this timestamp dependency is critical for supporting efficient cross-shard searches.</p>
+
+<p>In some cases there may be no unique id intrinsic to the data. A user record is a good example of this: in our demo app we generate a <a href="https://github.com/ai/nanoid"><code class="language-plaintext highlighter-rouge">nanoid</code></a> for every new user. In other cases, the unique id is a natural part of the data, like an email address. Either way, the resulting value is encoded directly into the record’s range key, like this: <code class="language-plaintext highlighter-rouge">userId#abc123</code>.</p>
+
+<p>But what if we made a slight enhancement to the shard key generation strategy?</p>
+
+<div class="language-typescript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">entityManager</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">EntityManager</span><span class="o">&lt;</span><span class="nx">MyConfigMap</span><span class="o">&gt;</span><span class="p">({</span>
+  <span class="na">entities</span><span class="p">:</span> <span class="p">{</span>
+    <span class="na">email</span><span class="p">:</span> <span class="p">{</span>
+      <span class="na">shardBumps</span><span class="p">:</span> <span class="p">[</span>
+        <span class="p">{</span> <span class="na">timestamp</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="na">charBits</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="na">chars</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="na">rangeKeyLength</span><span class="p">:</span> <span class="mi">21</span> <span class="p">},</span>
+        <span class="p">{</span>
+          <span class="na">timestamp</span><span class="p">:</span> <span class="mi">1234567890</span><span class="p">,</span>
+          <span class="na">charBits</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span>
+          <span class="na">chars</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+          <span class="na">rangeKeyLength</span><span class="p">:</span> <span class="mi">22</span><span class="p">,</span>
+        <span class="p">},</span>
+      <span class="p">],</span>
+      <span class="na">timestampProperty</span><span class="p">:</span> <span class="dl">"</span><span class="s2">created</span><span class="dl">"</span><span class="p">,</span>
+      <span class="na">uniqueProperty</span><span class="p">:</span> <span class="dl">"</span><span class="s2">emailId</span><span class="dl">"</span><span class="p">,</span>
+    <span class="p">},</span>
+    <span class="na">user</span><span class="p">:</span> <span class="p">{</span>
+      <span class="na">shardBumps</span><span class="p">:</span> <span class="p">[</span>
+        <span class="p">{</span> <span class="na">timestamp</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="na">charBits</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="na">chars</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="na">rangeKeyLength</span><span class="p">:</span> <span class="mi">21</span> <span class="p">},</span>
+        <span class="p">{</span>
+          <span class="na">timestamp</span><span class="p">:</span> <span class="mi">1234567890</span><span class="p">,</span>
+          <span class="na">charBits</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span>
+          <span class="na">chars</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+          <span class="na">rangeKeyLength</span><span class="p">:</span> <span class="mi">22</span><span class="p">,</span>
+        <span class="p">},</span>
+      <span class="p">],</span>
+      <span class="na">timestampProperty</span><span class="p">:</span> <span class="dl">"</span><span class="s2">created</span><span class="dl">"</span><span class="p">,</span>
+      <span class="na">uniqueProperty</span><span class="p">:</span> <span class="dl">"</span><span class="s2">userId</span><span class="dl">"</span><span class="p">,</span>
+    <span class="p">},</span>
+  <span class="p">},</span>
+<span class="p">});</span>
+</code></pre></div></div>
+
+<p>Either way, a record’s range key is determined at the point of creation.</p>
+
+<p>But now, instead of encoding the range key as described above, we can generate a random string of a specific length. This length is determined by looking up the record’s creation timestamp in the config and getting <code class="language-plaintext highlighter-rouge">rangeKeyLength</code>.</p>
+
+<p>Previously, the shard key generator determined the bit depth &amp; length of the shard key by looking up some <em>timestamp</em> in the config. This is still possible, for example when generating a shard key space to support cross shard searches.</p>
+
+<p>But now, the shard key generator can <em>also</em> determine the bit depth and length of its shard key by looking up <em>the length of the record’s range key</em> in the config!</p>
+
+<p>In the User case, this means that <code class="language-plaintext highlighter-rouge">userId</code> no longer needs to be generated by the application. It’s generated automatically when keys are added to the data record.</p>
+
+<p>In the Email case, note that we have a new <code class="language-plaintext highlighter-rouge">uniqueProperty</code>: <code class="language-plaintext highlighter-rouge">emailId</code>. <code class="language-plaintext highlighter-rouge">email</code> is still an Email record property, but it no longer participates in key generation.</p>
+
+<p>In fact, any “unique” property specific to the application (like <code class="language-plaintext highlighter-rouge">email</code>) can now be treated just like any non-unique property (like <code class="language-plaintext highlighter-rouge">lastName</code>). If you need to find a record with it, create an index and query it. Entity Manager’s cross-shard queries work just as well either way.</p>
+
+<h2 id="conclusion">Conclusion</h2>
+
+<p>These changes are going to take a little doing to implement, but this mess isn’t half the disaster it looked to be when that first integration test failed this morning.</p>
+
+<p>Quite the opposite:</p>
+
+<ul>
+  <li>
+    <p>We’ve taken unique key generation completely out of the hands of the calling application. One less dependency for sure, and also eliminated the possibility of key collisions due to some weirdness on the epplication end of things.</p>
+  </li>
+  <li>
+    <p>We’ve defused a ticking time bomb that runs across the entire back end of an application I am directly responsible for. That’s a career-bending problem I didn’t even know I had until this morning, and it’s a relief to know it will be accounted for in Entity Manager’s next production release.</p>
+  </li>
+</ul>
+
+<p>I’m not happy about the bug, but I’m <em>thrilled</em> about the fix! So put it all together, and by any standard this is a win.</p>]]></content><author><name>Jason Williscroft</name></author><category term="design" /><category term="dynamodb" /><category term="entity-manager" /><category term="javascript" /><category term="projects" /><category term="troubleshooting" /><category term="typescript" /><summary type="html"><![CDATA[Today was one of those days when I question my life choices. Watch me dig my way out of a hole with the same shovel I used to dig my way in.]]></summary></entry><entry><title type="html">Using Two WhatsApp Accounts on the Same Desktop</title><link href="https://karmanivero.us/using-two-whatsapp-accounts-on-the-same-desktop/" rel="alternate" type="text/html" title="Using Two WhatsApp Accounts on the Same Desktop" /><published>2024-11-17T00:00:00+00:00</published><updated>2024-11-17T00:00:00+00:00</updated><id>https://karmanivero.us/using-two-whatsapp-accounts-on-the-same-desktop</id><content type="html" xml:base="https://karmanivero.us/using-two-whatsapp-accounts-on-the-same-desktop/"><![CDATA[<figure class="align-left drop-image">
+    <img src="/assets/images/dual-whatsapp-square.jpg" />
+</figure>
+
+<p>Here in Indonesia, WhatsApp is the de-facto official phone and messaging system. People use it <em>far</em> more than traditional phone &amp; SMS, and most businesses maintain a WhatsApp account for customer service.</p>
+
+<p>Since I spend so much time in front of my laptop, I make extensive use of the WhatsApp desktop client. Just make sense.</p>
+
+<p class="notice--info"><strong>TL/DR:</strong> WhatsApp publishes a beta Windows desktop client. <a href="https://apps.microsoft.com/detail/9nbdxk71nk08">Download it here</a> and attach it to a second WhatsApp account!</p>
+
+<p>But now that I’m <a href="/betting-on-bali-my-journey-into-the-offshoring-business">launching John Galt Services</a>, I need to maintain a business account. And since I’m deep in the talent-search process, I need to be able to click on a candidate’s phone number in <a href="https://id.jobstreet.com/">JobStreet</a> and have it open in WhatsApp Desktop so I can start a screening conversation.</p>
+
+<p>The challenge is that the WhatsApp desktop client only supports one account at a time! So I had to find a workaround.</p>
+
+<p>One option was to get my Windows system to open up <code class="language-plaintext highlighter-rouge">tel</code> links in WhatsApp Web. But that turned out to be a huge hassle. I could get it to work on <em>my</em> system, no problem, but getting it to work for the rest of my team would quickly turn into an internal tech-support nightmare. So that was a non-starter.</p>
+
+<p>But while I was hacking away at the problem, I ran into an <em>awesome</em> solution that worked instantly, perfectly, and with no fuss. And it’s so simple, I can’t believe I didn’t think of it before.</p>
+
+<p>Here you go: <strong>WhatsApp publishes a beta Windows desktop client!</strong></p>
+
+<p>Just download the <a href="https://apps.microsoft.com/detail/9nbdxk71nk08">WhatsApp Beta</a> app from the Windows Store. You can install &amp; run it right alongside the regular <a href="https://apps.microsoft.com/detail/9nksqgp7f2nh">WhatsApp</a> app. Attach it to a different WhatsApp account, and hey presto: <strong>two WhatsApp accounts on the same desktop!</strong></p>
+
+<p>You’re welcome. 😎</p>
+
+<p class="notice--info">I’m not a Mac user, but <strong>I bet there’s a similar solution for MacOS.</strong> If you know what it is, please share it in the comments!</p>]]></content><author><name>Jason Williscroft</name></author><category term="tips" /><category term="windows" /><summary type="html"><![CDATA[Need to use your personal and business WhatsApp accounts at the same time on the same desktop? Here's how!]]></summary></entry><entry><title type="html">Related Posts With Minimal Mistakes</title><link href="https://karmanivero.us/related-posts-with-minimal-mistakes/" rel="alternate" type="text/html" title="Related Posts With Minimal Mistakes" /><published>2024-11-16T00:00:00+00:00</published><updated>2024-11-16T00:00:00+00:00</updated><id>https://karmanivero.us/related-posts-with-minimal-mistakes</id><content type="html" xml:base="https://karmanivero.us/related-posts-with-minimal-mistakes/"><![CDATA[<figure class="align-left drop-image">
+    <img src="/assets/images/related-posts-square.jpg" />
+</figure>
+
+<p>As I publish more and more content, I am increasingly concerned about connecting the dots between the post you are now reading and other, related posts. Just like every other blog in the world, I use a <em>Related Posts</em> section at the bottom of each page for that purpose.</p>
+
+<p class="notice--info"><strong>TL/DR:</strong> See the list of related posts at the bottom of this page. That’s what we’re building here.</p>
+
+<h2 id="jekyll-in-a-nutshell">Jekyll in a Nutshell</h2>
+
+<p>This site is a <a href="https://jekyllrb.com/">Jekyll</a> instance, based on the very excellent <a href="https://github.com/mmistakes/minimal-mistakes">Minimal Mistakes</a> theme and hosted on <a href="https://pages.github.com/">GitHub Pages</a>. As a matter of expediency, I’m using the <a href="https://mmistakes.github.io/minimal-mistakes/docs/quick-start-guide/#remote-theme-method">remote version</a> of the theme, which reduces the complexity a bit but limits the Jekyll plugins I can use.</p>
+
+<p>Content items in Jekyll break down into two broad categories: <a href="https://jekyllrb.com/docs/pages/">pages</a> and <a href="https://jekyllrb.com/docs/posts/">posts</a>. Pages lay out the broad structure of the site (like your About or Portfolio page, although your Home page can be a special case). Posts are the individual articles you write. Think of a post as <em>dated</em> content, while a page is <em>evergreen</em> content.</p>
+
+<p>Posts are grouped into <a href="https://jekyllrb.com/docs/collections/">collections</a>, each under its own root path. For example, on this site, all blog posts are under the <a href="/blog"><code class="language-plaintext highlighter-rouge">/blog</code></a> path, and the Entity Manager documentation is collected under the <a href="/projects/entity-manager"><code class="language-plaintext highlighter-rouge">/projects/entity-manager</code></a> path. Each collection also defines its own taxonomic &amp; layout defaults, so it’s easy to create a common look and feel for all the posts in a collection.</p>
+
+<p>Jekyll supports the assignment of <a href="https://jekyllrb.com/docs/posts/#tags-and-categories">tags and categories</a> to any post or page. Most themes have special layouts that leverage these taxonomies to create tag and category indexes like <a href="/topics">this one</a>.</p>
+
+<p>Every post or page can have <a href="https://jekyllrb.com/docs/front-matter/">front matter</a>. This is a block of YAML at the top of the file that defines its tags, categories, title, layout, and other metadata, and also sets variables that can be consumed by the theme to do things like toggling the display of a table of contents or—today’s topic—<strong>related content</strong>.</p>
+
+<h2 id="related-content-what-good-looks-like">Related Content: What Good Looks Like</h2>
+
+<p>So when you look for related content at the bottom of a post or page, what should you actually see? Here’s a list of requirements:</p>
+
+<ul>
+  <li>
+    <p>The related content should be <strong>relevant</strong> to the post or page you are reading. We ought to be able to leverage common tags to determine relevance (let’s leave categories out of this discussion; the principle is the same).</p>
+  </li>
+  <li>
+    <p>The related content should be <strong>prioritized</strong>. Content that is newer and/or more relevant should appear higher in the list.</p>
+  </li>
+  <li>
+    <p>The related content should be <strong>limited</strong>. I should only see the top few <em>most</em> relevant items, not every post that shares a tag with the one I’m reading.</p>
+  </li>
+  <li>
+    <p>The related content should be <strong>type-independent</strong>. A page or a post should be able to relate to a another page or a post in a different collection if they have at least one tag in common.</p>
+  </li>
+  <li>
+    <p>The related content should be <strong>rational</strong>. I shouldn’t see hidden posts. Unless this page is a blog post, I shouldn’t see other posts from the same collection. If a post redirects to a page, the redirecting post shouldn’t appear in the list… but if the redirecting post has tags assigned to it, then they should factor into the redirection target’s relevance score!</p>
+  </li>
+</ul>
+
+<h2 id="whats-actually-in-the-box">What’s Actually In The Box</h2>
+
+<p>The good news is that the Minimal Mistakes theme actually has a <a href="https://github.com/mmistakes/minimal-mistakes/blob/master/_includes/page__related.html">related posts include</a> built in. If you set <code class="language-plaintext highlighter-rouge">related_posts: true</code> in your post’s front matter, the include will generate a list of related posts at the bottom of the rendered page.</p>
+
+<p>The bad news is that this widget is pretty basic. All it <em>really</em> does is display the most recent posts in your timeline: the same ones on every page, with no respect to actual relevance.</p>
+
+<p>To the author’s credit, he’s aware of the gap. There’s a <a href="https://github.com/mmistakes/minimal-mistakes/issues/554">closed issue</a> in the Minimal Mistakes repo that addresses the problem, and the author published <a href="https://github.com/mmistakes/minimal-mistakes/issues/554#issuecomment-302143467">a solution</a> that addresses it.</p>
+
+<p>But…</p>
+
+<ul>
+  <li>
+    <p>This solution doesn’t do any of the relevance scoring or sorting described above, and it won’t be included in the official theme due to the author’s concerns about build performance. Which is fair.</p>
+  </li>
+  <li>
+    <p>Relevant posts in this solution are all constrained to the posts collection. It won’t show pages or posts from other collections, and it also won’t filter out redirected posts.</p>
+  </li>
+</ul>
+
+<p>So probably not the solution I’m looking for.</p>
+
+<p class="notice--info"><strong>This file is a <a href="https://shopify.github.io/liquid/">Liquid</a> include!</strong> So anything we build here will be a drop-in replacement for the existing include, also implemented in Liquid.</p>
+
+<p>Let’s get to work.</p>
+
+<h2 id="an-improved-alternative">An Improved Alternative</h2>
+
+<p><a href="https://blog.webjeda.com/jekyll-related-posts/">This post</a> (H/T <a href="https://www.fabriziomusacchio.com/">Fabrizio Musacchio</a> and his excellent <a href="https://www.fabriziomusacchio.com/blog/2021-08-11-Minimal_Mistakes_Cheat_Sheet/">Minimal Mistakes Cheat Sheet</a>) outlines a strategy for scoring related posts based on the number of tags they have in common.</p>
+
+<p>It’s an improvement over the Minimal Mistakes solution, but…</p>
+
+<ul>
+  <li>
+    <p>it isn’t specific to the Minimal Mistakes theme,</p>
+  </li>
+  <li>
+    <p>it still doesn’t support pages or non-blog posts, and</p>
+  </li>
+  <li>
+    <p>it doesn’t factor in recency or redirects.</p>
+  </li>
+</ul>
+
+<p>But it got my creative juices flowing. So yesterday I rolled up my sleeves and went to work.</p>
+
+<h2 id="calculating-relevance">Calculating Relevance</h2>
+
+<p>Let’s say that there are two factors to calculating relevance \(R\):</p>
+
+<ul>
+  <li>
+    <p>The number of tags \(N\) a given post has in common with the current page.</p>
+  </li>
+  <li>
+    <p>The age in days \(A\) of the post.</p>
+  </li>
+</ul>
+
+<p>Let’s take the log of both of these values, since the difference between today’s post and yesterday’s post should count for more than that between a year-old post and one aged a year and a day. Same argument applies for common tag counts.</p>
+
+<p>Let’s use a base-2 log as it will be a little easier to implement in Liquid.</p>
+
+<p>Let’s weight the contribution of \(N\) by \(W_{tags}\), and normalize \(N\) by the maximum number \(N_{max}\) of common tags across all posts so we don’t need to change \(W_{tags}\) as we add new tags to our system.</p>
+
+<p>Then we have:</p>
+
+\[R = W_{tags} \ log_2 \dfrac{N}{N_{max}} - log_2 A\]
+
+<p>Pages don’t have a post date, so calculating their age is problematic. There are plugins that will get the last-modified date of a file, but…</p>
+
+<ul>
+  <li>
+    <p>None of them are white-listed for GitHub Pages, so they won’t work with the remote version of the Minimal Mistakes theme.</p>
+  </li>
+  <li>
+    <p>None of them perform very well anyway.</p>
+  </li>
+  <li>
+    <p>Pages are generally evergreen content, so they <em>should</em> be treated as fairly recent, regardless when last modified.</p>
+  </li>
+</ul>
+
+<p>Easy solution: let’s give all pages a default age of 32 days. That way they’ll have a high calculated relevance, but recent posts can still compete with them on tag relevance.</p>
+
+<p>As calculated above, \(R\) will have a small value in the one-to-two-digit range, centered around zero. To get it to work with a text-based Liquid sort, we’ll need to scale it up, add a big number, and round it off so it has a constant width. We’ll handle that in the code.</p>
+
+<h2 id="liquid-logs">Liquid Logs</h2>
+
+<p>Liquid has no native support for a log function, so let’s get that out of the way first.</p>
+
+<p>There are a couple of different ways to do this, but we’re going to pick an easy, brute-force approach: we’re going to look up the nearest whole-number answers and then interpolate between them. This will be accurate enough for our purposes and will execute very fast, which is good, since we’ll need to do it a <em>lot</em>.</p>
+
+<p>Create this file at <code class="language-plaintext highlighter-rouge">_includes/log2.html</code>:</p>
+
+<div class="language-liquid highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{%</span><span class="w"> </span><span class="nt">assign</span><span class="w"> </span><span class="nv">value</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">include</span><span class="p">.</span><span class="nv">value</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="nf">plus</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="p">%}</span>
+
+<span class="p">{%</span><span class="w"> </span><span class="kr">if</span><span class="w"> </span><span class="nv">value</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="p">%}</span>
+  <span class="p">{{</span><span class="w"> </span><span class="mf">0.0</span><span class="w"> </span><span class="p">}}</span>
+<span class="p">{%</span><span class="w"> </span><span class="kr">elsif</span><span class="w"> </span><span class="nv">value</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="p">%}</span>
+  <span class="p">{{</span><span class="w"> </span><span class="nv">value</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="nf">minus</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="p">}}</span>
+<span class="p">{%</span><span class="w"> </span><span class="kr">elsif</span><span class="w"> </span><span class="nv">value</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="mi">4</span><span class="w"> </span><span class="p">%}</span>
+  <span class="p">{{</span><span class="w"> </span><span class="nv">value</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="nf">minus</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="nf">divided_by</span><span class="p">:</span><span class="w"> </span><span class="mf">2.0</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="nf">plus</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="p">}}</span>
+<span class="p">{%</span><span class="w"> </span><span class="kr">elsif</span><span class="w"> </span><span class="nv">value</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="mi">8</span><span class="w"> </span><span class="p">%}</span>
+  <span class="p">{{</span><span class="w"> </span><span class="nv">value</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="nf">minus</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="nf">divided_by</span><span class="p">:</span><span class="w"> </span><span class="mf">4.0</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="nf">plus</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="p">}}</span>
+<span class="p">{%</span><span class="w"> </span><span class="kr">elsif</span><span class="w"> </span><span class="nv">value</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="mi">16</span><span class="w"> </span><span class="p">%}</span>
+  <span class="p">{{</span><span class="w"> </span><span class="nv">value</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="nf">minus</span><span class="p">:</span><span class="w"> </span><span class="mi">8</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="nf">divided_by</span><span class="p">:</span><span class="w"> </span><span class="mf">8.0</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="nf">plus</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="w"> </span><span class="p">}}</span>
+<span class="p">{%</span><span class="w"> </span><span class="kr">elsif</span><span class="w"> </span><span class="nv">value</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="mi">32</span><span class="w"> </span><span class="p">%}</span>
+  <span class="p">{{</span><span class="w"> </span><span class="nv">value</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="nf">minus</span><span class="p">:</span><span class="w"> </span><span class="mi">16</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="nf">divided_by</span><span class="p">:</span><span class="w"> </span><span class="mf">16.0</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="nf">plus</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span><span class="w"> </span><span class="p">}}</span>
+<span class="p">{%</span><span class="w"> </span><span class="kr">elsif</span><span class="w"> </span><span class="nv">value</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="mi">64</span><span class="w"> </span><span class="p">%}</span>
+  <span class="p">{{</span><span class="w"> </span><span class="nv">value</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="nf">minus</span><span class="p">:</span><span class="w"> </span><span class="mi">32</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="nf">divided_by</span><span class="p">:</span><span class="w"> </span><span class="mf">32.0</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="nf">plus</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="w"> </span><span class="p">}}</span>
+<span class="p">{%</span><span class="w"> </span><span class="kr">elsif</span><span class="w"> </span><span class="nv">value</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="mi">128</span><span class="w"> </span><span class="p">%}</span>
+  <span class="p">{{</span><span class="w"> </span><span class="nv">value</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="nf">minus</span><span class="p">:</span><span class="w"> </span><span class="mi">64</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="nf">divided_by</span><span class="p">:</span><span class="w"> </span><span class="mf">64.0</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="nf">plus</span><span class="p">:</span><span class="w"> </span><span class="mi">6</span><span class="w"> </span><span class="p">}}</span>
+<span class="p">{%</span><span class="w"> </span><span class="kr">elsif</span><span class="w"> </span><span class="nv">value</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="mi">256</span><span class="w"> </span><span class="p">%}</span>
+  <span class="p">{{</span><span class="w"> </span><span class="nv">value</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="nf">minus</span><span class="p">:</span><span class="w"> </span><span class="mi">128</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="nf">divided_by</span><span class="p">:</span><span class="w"> </span><span class="mf">128.0</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="nf">plus</span><span class="p">:</span><span class="w"> </span><span class="mi">7</span><span class="w"> </span><span class="p">}}</span>
+<span class="p">{%</span><span class="w"> </span><span class="kr">elsif</span><span class="w"> </span><span class="nv">value</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="mi">512</span><span class="w"> </span><span class="p">%}</span>
+  <span class="p">{{</span><span class="w"> </span><span class="nv">value</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="nf">minus</span><span class="p">:</span><span class="w"> </span><span class="mi">256</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="nf">divided_by</span><span class="p">:</span><span class="w"> </span><span class="mf">256.0</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="nf">plus</span><span class="p">:</span><span class="w"> </span><span class="mi">8</span><span class="w"> </span><span class="p">}}</span>
+<span class="p">{%</span><span class="w"> </span><span class="kr">elsif</span><span class="w"> </span><span class="nv">value</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="mi">1024</span><span class="w"> </span><span class="p">%}</span>
+  <span class="p">{{</span><span class="w"> </span><span class="nv">value</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="nf">minus</span><span class="p">:</span><span class="w"> </span><span class="mi">512</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="nf">divided_by</span><span class="p">:</span><span class="w"> </span><span class="mf">512.0</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="nf">plus</span><span class="p">:</span><span class="w"> </span><span class="mi">9</span><span class="w"> </span><span class="p">}}</span>
+<span class="p">{%</span><span class="w"> </span><span class="kr">elsif</span><span class="w"> </span><span class="nv">value</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="mi">2048</span><span class="w"> </span><span class="p">%}</span>
+  <span class="p">{{</span><span class="w"> </span><span class="nv">value</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="nf">minus</span><span class="p">:</span><span class="w"> </span><span class="mi">1024</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="nf">divided_by</span><span class="p">:</span><span class="w"> </span><span class="mf">1024.0</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="nf">plus</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="w"> </span><span class="p">}}</span>
+<span class="p">{%</span><span class="w"> </span><span class="kr">elsif</span><span class="w"> </span><span class="nv">value</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="mi">4096</span><span class="w"> </span><span class="p">%}</span>
+  <span class="p">{{</span><span class="w"> </span><span class="nv">value</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="nf">minus</span><span class="p">:</span><span class="w"> </span><span class="mi">2048</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="nf">divided_by</span><span class="p">:</span><span class="w"> </span><span class="mf">2048.0</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="nf">plus</span><span class="p">:</span><span class="w"> </span><span class="mi">11</span><span class="w"> </span><span class="p">}}</span>
+<span class="p">{%</span><span class="w"> </span><span class="kr">else</span><span class="w"> </span><span class="p">%}</span>
+  <span class="p">{{</span><span class="w"> </span><span class="mf">12.0</span><span class="w"> </span><span class="p">}}</span>
+<span class="p">{%</span><span class="w"> </span><span class="kr">endif</span><span class="w"> </span><span class="p">%}</span>
+</code></pre></div></div>
+
+<p>This will support meaningful relevance calculations for posts with up to 4,096 common tags and ages up to over 11 years. If you need more than that, you can add more <code class="language-plaintext highlighter-rouge">elsif</code> blocks.</p>
+
+<p>To use this include, we’ll need to capture its output like this:</p>
+
+<div class="language-liquid highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{%</span><span class="w"> </span><span class="nt">comment</span><span class="w"> </span><span class="p">%}</span><span class="c"> Assume ageInDays has some numerical value. </span><span class="p">{%</span><span class="w"> </span><span class="nt">endcomment</span><span class="w"> </span><span class="p">%}</span>
+<span class="p">{%</span><span class="w"> </span><span class="nt">capture</span><span class="w"> </span><span class="nv">logAge</span><span class="w"> </span><span class="p">%}</span>
+  <span class="p">{%</span><span class="w"> </span><span class="nt">include</span><span class="w"> </span>log2.html<span class="w"> </span><span class="na">value</span><span class="o">=</span><span class="nv">ageInDays</span><span class="w"> </span><span class="p">%}</span>
+<span class="p">{%</span><span class="w"> </span><span class="nt">endcapture</span><span class="w"> </span><span class="p">%}</span>
+
+<span class="p">{%</span><span class="w"> </span><span class="nt">comment</span><span class="w"> </span><span class="p">%}</span><span class="c"> Convert the resulting string back to a number. </span><span class="p">{%</span><span class="w"> </span><span class="nt">endcomment</span><span class="w"> </span><span class="p">%}</span>
+<span class="p">{%</span><span class="w"> </span><span class="nt">assign</span><span class="w"> </span><span class="nv">logAge</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">logAge</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="nf">times</span><span class="p">:</span><span class="w"> </span><span class="mf">1.0</span><span class="w"> </span><span class="p">%}</span>\
+</code></pre></div></div>
+
+<p>And yes, I am fully aware of how ugly that is. That’s Liquid for you! 🤷‍♂️</p>
+
+<h2 id="putting-it-all-together">Putting It All Together</h2>
+
+<p>Here is the replacement for <a href="https://github.com/mmistakes/minimal-mistakes/blob/master/_includes/page__related.html"><code class="language-plaintext highlighter-rouge">page__related.html</code></a> that implements everything described in <a href="#calculating-relevance">Calculating Relevance</a> above.</p>
+
+<p>See the comments inline for details. Again, my apologies for the awkward layout &amp; syntax… even Shopify’s own code formatter can only do so much with Liquid!</p>
+
+<p>Also note the constants at the top of the script. You can adjust these to suit your own needs.</p>
+
+<div class="language-liquid highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{%</span><span class="w"> </span><span class="nt">comment</span><span class="w"> </span><span class="p">%}</span><span class="c"> Minimum number of tags a page needs in common with this one to be related. </span><span class="p">{%</span><span class="w"> </span><span class="nt">endcomment</span><span class="w"> </span><span class="p">%}</span>
+<span class="p">{%</span><span class="w"> </span><span class="nt">assign</span><span class="w"> </span><span class="nv">minCommonTags</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="p">%}</span>
+
+<span class="p">{%</span><span class="w"> </span><span class="nt">comment</span><span class="w"> </span><span class="p">%}</span><span class="c"> Relative weight given to common tags over post recency. </span><span class="p">{%</span><span class="w"> </span><span class="nt">endcomment</span><span class="w"> </span><span class="p">%}</span>
+<span class="p">{%</span><span class="w"> </span><span class="nt">assign</span><span class="w"> </span><span class="nv">commonTagsWeight</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">3</span><span class="w"> </span><span class="p">%}</span>
+
+<span class="p">{%</span><span class="w"> </span><span class="nt">comment</span><span class="w"> </span><span class="p">%}</span><span class="c"> Pages don't have a post date. This is their default age (common tags will boost their relevance). </span><span class="p">{%</span><span class="w"> </span><span class="nt">endcomment</span><span class="w"> </span><span class="p">%}</span>
+<span class="p">{%</span><span class="w"> </span><span class="nt">assign</span><span class="w"> </span><span class="nv">defaultAge</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">32</span><span class="w"> </span><span class="p">%}</span>
+
+<span class="p">{%</span><span class="w"> </span><span class="nt">comment</span><span class="w"> </span><span class="p">%}</span><span class="c"> Maximum number of related pages to display. </span><span class="p">{%</span><span class="w"> </span><span class="nt">endcomment</span><span class="w"> </span><span class="p">%}</span>
+<span class="p">{%</span><span class="w"> </span><span class="nt">assign</span><span class="w"> </span><span class="nv">maxRelated</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">8</span><span class="w"> </span><span class="p">%}</span>
+
+<span class="p">{%</span><span class="w"> </span><span class="nt">comment</span><span class="w"> </span><span class="p">%}</span><span class="c"> Get all pages &amp; collection posts (including blog posts) that are not from the current page's collection unless it is a blog post. </span><span class="p">{%</span><span class="w"> </span><span class="nt">endcomment</span><span class="w"> </span><span class="p">%}</span>
+<span class="p">{%</span><span class="w"> </span><span class="nt">assign</span><span class="w"> </span><span class="nv">posts</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">site</span><span class="p">.</span><span class="nv">pages</span><span class="w"> </span><span class="p">%}</span>
+<span class="p">{%</span><span class="w"> </span><span class="nt">for</span><span class="w"> </span><span class="nv">collection</span><span class="w"> </span><span class="nt">in</span><span class="w"> </span><span class="nv">site.collections</span><span class="w"> </span><span class="p">%}</span>
+  <span class="p">{%</span><span class="w"> </span><span class="nt">assign</span><span class="w"> </span><span class="nv">pageCollection</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">collection</span><span class="p">.</span><span class="nv">docs</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="nf">where</span><span class="p">:</span><span class="w"> </span><span class="s1">'url'</span><span class="p">,</span><span class="w"> </span><span class="nv">page</span><span class="p">.</span><span class="nv">url</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="nf">size</span><span class="w"> </span><span class="p">%}</span>
+  <span class="p">{%</span><span class="w"> </span><span class="kr">unless</span><span class="w"> </span><span class="nv">pageCollection</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="ow">and</span><span class="w"> </span><span class="nv">collection</span><span class="p">.</span><span class="nv">label</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="s1">'posts'</span><span class="w"> </span><span class="p">%}</span>
+    <span class="p">{%</span><span class="w"> </span><span class="nt">assign</span><span class="w"> </span><span class="nv">posts</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">posts</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="nf">concat</span><span class="p">:</span><span class="w"> </span><span class="nv">collection</span><span class="p">.</span><span class="nv">docs</span><span class="w"> </span><span class="p">%}</span>
+  <span class="p">{%</span><span class="w"> </span><span class="kr">endunless</span><span class="w"> </span><span class="p">%}{%</span><span class="w"> </span><span class="nt">endfor</span><span class="w"> </span><span class="p">%}</span>
+
+<span class="p">{%</span><span class="w"> </span><span class="nt">comment</span><span class="w"> </span><span class="p">%}</span><span class="c"> We're going to log-scale &amp; normalize the common tag count, so we need to track its max value. </span><span class="p">{%</span><span class="w"> </span><span class="nt">endcomment</span><span class="w"> </span><span class="p">%}</span>
+<span class="p">{%</span><span class="w"> </span><span class="nt">assign</span><span class="w"> </span><span class="nv">maxLogCommonTags</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="p">%}</span>
+
+<span class="p">{%</span><span class="w"> </span><span class="nt">comment</span><span class="w"> </span><span class="p">%}</span><span class="c"> Iterate over these comparison pages &amp; capture the relevant ones. </span><span class="p">{%</span><span class="w"> </span><span class="nt">endcomment</span><span class="w"> </span><span class="p">%}</span>
+<span class="p">{%</span><span class="w"> </span><span class="nt">assign</span><span class="w"> </span><span class="nv">relevantPosts</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">""</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="nf">split</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="w"> </span><span class="p">%}{%</span><span class="w"> </span><span class="nt">assign</span><span class="w"> </span><span class="nv">now</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">'now'</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="nf">date</span><span class="p">:</span><span class="w"> </span><span class="s1">'%s'</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="nf">plus</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="p">%}</span>
+<span class="p">{%</span><span class="w"> </span><span class="nt">for</span><span class="w"> </span><span class="nv">post</span><span class="w"> </span><span class="nt">in</span><span class="w"> </span><span class="nv">posts</span><span class="w"> </span><span class="p">%}</span>
+  <span class="p">{%</span><span class="w"> </span><span class="nt">comment</span><span class="w"> </span><span class="p">%}</span><span class="c"> Ignore the current page, hidden pages &amp; redirects. </span><span class="p">{%</span><span class="w"> </span><span class="nt">endcomment</span><span class="w"> </span><span class="p">%}</span>
+  <span class="p">{%</span><span class="w"> </span><span class="kr">unless</span><span class="w"> </span><span class="nv">post</span><span class="p">.</span><span class="nv">url</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="nv">page</span><span class="p">.</span><span class="nv">url</span><span class="w"> </span><span class="ow">or</span><span class="w"> </span><span class="nv">post</span><span class="p">.</span><span class="nv">hidden</span><span class="w"> </span><span class="ow">or</span><span class="w"> </span><span class="nv">post</span><span class="p">.</span><span class="nv">redirect_to</span><span class="w"> </span><span class="p">%}</span>
+    <span class="p">{%</span><span class="w"> </span><span class="nt">comment</span><span class="w"> </span><span class="p">%}</span><span class="c"> Create a list of tags on the comparison page. </span><span class="p">{%</span><span class="w"> </span><span class="nt">endcomment</span><span class="w"> </span><span class="p">%}</span>
+  <span class="p">{%</span><span class="w"> </span><span class="nt">assign</span><span class="w"> </span><span class="nv">tags</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">post</span><span class="p">.</span><span class="nv">tags</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="nf">uniq</span><span class="w"> </span><span class="p">%}</span>
+
+    <span class="p">{%</span><span class="w"> </span><span class="nt">comment</span><span class="w"> </span><span class="p">%}</span><span class="c"> If some post redirected to this page, include its tags too. </span><span class="p">{%</span><span class="w"> </span><span class="nt">endcomment</span><span class="w"> </span><span class="p">%}</span>
+    <span class="p">{%</span><span class="w"> </span><span class="nt">assign</span><span class="w"> </span><span class="nv">sourcePost</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">posts</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="nf">where</span><span class="p">:</span><span class="w"> </span><span class="s1">'redirect_to'</span><span class="p">,</span><span class="w"> </span><span class="nv">post</span><span class="p">.</span><span class="nv">url</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="nf">first</span><span class="w"> </span><span class="p">%}</span>
+    <span class="p">{%</span><span class="w"> </span><span class="kr">if</span><span class="w"> </span><span class="nv">sourcePost</span><span class="w"> </span><span class="p">%}</span>
+      <span class="p">{%</span><span class="w"> </span><span class="nt">assign</span><span class="w"> </span><span class="nv">tags</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">tags</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="nf">concat</span><span class="p">:</span><span class="w"> </span><span class="nv">sourcePost</span><span class="p">.</span><span class="nv">tags</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="nf">uniq</span><span class="w"> </span><span class="p">%}</span>
+  <span class="p">{%</span><span class="w"> </span><span class="kr">endif</span><span class="w"> </span><span class="p">%}</span>
+
+    <span class="p">{%</span><span class="w"> </span><span class="nt">comment</span><span class="w"> </span><span class="p">%}</span><span class="c"> Count the tags the comparison page has in common with this page. </span><span class="p">{%</span><span class="w"> </span><span class="nt">endcomment</span><span class="w"> </span><span class="p">%}</span>
+    <span class="p">{%</span><span class="w"> </span><span class="nt">assign</span><span class="w"> </span><span class="nv">commonTags</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="p">%}</span>
+    <span class="p">{%</span><span class="w"> </span><span class="nt">for</span><span class="w"> </span><span class="nv">tag</span><span class="w"> </span><span class="nt">in</span><span class="w"> </span><span class="nv">tags</span><span class="w"> </span><span class="p">%}</span>
+      <span class="p">{%</span><span class="w"> </span><span class="kr">if</span><span class="w"> </span><span class="nv">page</span><span class="p">.</span><span class="nv">tags</span><span class="w"> </span><span class="ow">contains</span><span class="w"> </span><span class="nv">tag</span><span class="w"> </span><span class="p">%}</span>
+        <span class="p">{%</span><span class="w"> </span><span class="nt">assign</span><span class="w"> </span><span class="nv">commonTags</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">commonTags</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="nf">plus</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="p">%}</span>
+      <span class="p">{%</span><span class="w"> </span><span class="kr">endif</span><span class="w"> </span><span class="p">%}</span>
+    <span class="p">{%</span><span class="w"> </span><span class="nt">endfor</span><span class="w"> </span><span class="p">%}</span>
+
+    <span class="p">{%</span><span class="w"> </span><span class="nt">comment</span><span class="w"> </span><span class="p">%}</span><span class="c"> Ignore comparison pages without enough common tags. </span><span class="p">{%</span><span class="w"> </span><span class="nt">endcomment</span><span class="w"> </span><span class="p">%}</span>
+    <span class="p">{%</span><span class="w"> </span><span class="kr">if</span><span class="w"> </span><span class="nv">commonTags</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="nv">minCommonTags</span><span class="w"> </span><span class="p">%}</span>
+      <span class="p">{%</span><span class="w"> </span><span class="nt">comment</span><span class="w"> </span><span class="p">%}</span><span class="c"> Log-scale the common tag count &amp; update the max value. </span><span class="p">{%</span><span class="w"> </span><span class="nt">endcomment</span><span class="w"> </span><span class="p">%}</span>
+      <span class="p">{%</span><span class="w"> </span><span class="nt">capture</span><span class="w"> </span><span class="nv">logCommonTags</span><span class="w"> </span><span class="p">%}</span>
+        <span class="p">{%</span><span class="w"> </span><span class="nt">include</span><span class="w"> </span>log2.html<span class="w"> </span><span class="na">value</span><span class="o">=</span><span class="nv">commonTags</span><span class="w"> </span><span class="p">%}</span>
+    <span class="p">{%</span><span class="w"> </span><span class="nt">endcapture</span><span class="w"> </span><span class="p">%}</span>
+      <span class="p">{%</span><span class="w"> </span><span class="nt">assign</span><span class="w"> </span><span class="nv">logCommonTags</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">logCommonTags</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="nf">times</span><span class="p">:</span><span class="w"> </span><span class="mf">1.0</span><span class="w"> </span><span class="p">%}</span>
+      <span class="p">{%</span><span class="w"> </span><span class="kr">if</span><span class="w"> </span><span class="nv">logCommonTags</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="nv">maxLogCommonTags</span><span class="w"> </span><span class="p">%}</span>
+        <span class="p">{%</span><span class="w"> </span><span class="nt">assign</span><span class="w"> </span><span class="nv">maxLogCommonTags</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">logCommonTags</span><span class="w"> </span><span class="p">%}</span>
+    <span class="p">{%</span><span class="w"> </span><span class="kr">endif</span><span class="w"> </span><span class="p">%}</span>
+
+      <span class="p">{%</span><span class="w"> </span><span class="nt">comment</span><span class="w"> </span><span class="p">%}</span><span class="c"> Create a reference array with the comparison page url &amp; log-scaled common tag count. </span><span class="p">{%</span><span class="w"> </span><span class="nt">endcomment</span><span class="w"> </span><span class="p">%}</span>
+      <span class="p">{%</span><span class="w"> </span><span class="nt">assign</span><span class="w"> </span><span class="nv">post_data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">""</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="nf">split</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="w"> </span><span class="p">%}</span>
+      <span class="p">{%</span><span class="w"> </span><span class="nt">assign</span><span class="w"> </span><span class="nv">post_data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">post_data</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="nf">push</span><span class="p">:</span><span class="w"> </span><span class="nv">post</span><span class="p">.</span><span class="nv">url</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="nf">push</span><span class="p">:</span><span class="w"> </span><span class="nv">logCommonTags</span><span class="w"> </span><span class="p">%}</span>
+      <span class="p">{%</span><span class="w"> </span><span class="nt">assign</span><span class="w"> </span><span class="nv">relevantPosts</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">relevantPosts</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="nf">push</span><span class="p">:</span><span class="w"> </span><span class="nv">post_data</span><span class="w"> </span><span class="p">%}</span>
+    <span class="p">{%</span><span class="w"> </span><span class="kr">endif</span><span class="w"> </span><span class="p">%}</span>
+  <span class="p">{%</span><span class="w"> </span><span class="kr">endunless</span><span class="w"> </span><span class="p">%}</span>
+<span class="p">{%</span><span class="w"> </span><span class="nt">endfor</span><span class="w"> </span><span class="p">%}</span>
+
+<span class="p">{%</span><span class="w"> </span><span class="nt">comment</span><span class="w"> </span><span class="p">%}</span><span class="c"> If no comparison pages had enough tags, stop. </span><span class="p">{%</span><span class="w"> </span><span class="nt">endcomment</span><span class="w"> </span><span class="p">%}</span>
+<span class="p">{%</span><span class="w"> </span><span class="kr">if</span><span class="w"> </span><span class="nv">relevantPosts</span><span class="p">.</span><span class="nf">size</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="p">%}</span>
+  <span class="p">{%</span><span class="w"> </span><span class="nt">comment</span><span class="w"> </span><span class="p">%}</span><span class="c"> Initialize an array for scored posts. </span><span class="p">{%</span><span class="w"> </span><span class="nt">endcomment</span><span class="w"> </span><span class="p">%}</span>
+  <span class="p">{%</span><span class="w"> </span><span class="nt">assign</span><span class="w"> </span><span class="nv">scoredPosts</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">""</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="nf">split</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="w"> </span><span class="p">%}</span>
+
+  <span class="p">{%</span><span class="w"> </span><span class="nt">comment</span><span class="w"> </span><span class="p">%}</span><span class="c"> Iterate over the reference array. </span><span class="p">{%</span><span class="w"> </span><span class="nt">endcomment</span><span class="w"> </span><span class="p">%}</span>
+  <span class="p">{%</span><span class="w"> </span><span class="nt">for</span><span class="w"> </span><span class="nv">item</span><span class="w"> </span><span class="nt">in</span><span class="w"> </span><span class="nv">relevantPosts</span><span class="w"> </span><span class="p">%}</span>
+    <span class="p">{%</span><span class="w"> </span><span class="nt">comment</span><span class="w"> </span><span class="p">%}</span><span class="c"> Extract the data. </span><span class="p">{%</span><span class="w"> </span><span class="nt">endcomment</span><span class="w"> </span><span class="p">%}</span>
+    <span class="p">{%</span><span class="w"> </span><span class="nt">assign</span><span class="w"> </span><span class="nv">post_url</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">item</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="w"> </span><span class="p">%}</span>
+  <span class="p">{%</span><span class="w"> </span><span class="nt">assign</span><span class="w"> </span><span class="nv">logCommonTags</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">item</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="nf">plus</span><span class="p">:</span><span class="w"> </span><span class="mf">0.0</span><span class="w"> </span><span class="p">%}</span>
+
+    <span class="p">{%</span><span class="w"> </span><span class="nt">comment</span><span class="w"> </span><span class="p">%}</span><span class="c"> Normalize the log-scaled common tag counts. </span><span class="p">{%</span><span class="w"> </span><span class="nt">endcomment</span><span class="w"> </span><span class="p">%}</span>
+  <span class="p">{%</span><span class="w"> </span><span class="nt">assign</span><span class="w"> </span><span class="nv">normLogCommonTags</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">logCommonTags</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="nf">divided_by</span><span class="p">:</span><span class="w"> </span><span class="nv">maxLogCommonTags</span><span class="w"> </span><span class="p">%}</span>
+
+    <span class="p">{%</span><span class="w"> </span><span class="nt">comment</span><span class="w"> </span><span class="p">%}</span><span class="c"> Go get the post record. </span><span class="p">{%</span><span class="w"> </span><span class="nt">endcomment</span><span class="w"> </span><span class="p">%}</span>
+  <span class="p">{%</span><span class="w"> </span><span class="nt">assign</span><span class="w"> </span><span class="nv">post</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">posts</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="nf">where</span><span class="p">:</span><span class="w"> </span><span class="s2">"url"</span><span class="p">,</span><span class="w"> </span><span class="nv">post_url</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="nf">first</span><span class="w"> </span><span class="p">%}</span>
+
+    <span class="p">{%</span><span class="w"> </span><span class="nt">comment</span><span class="w"> </span><span class="p">%}</span><span class="c"> Calculate the comparison page's age in days, applying the default when needed. </span><span class="p">{%</span><span class="w"> </span><span class="nt">endcomment</span><span class="w"> </span><span class="p">%}</span>
+    <span class="p">{%</span><span class="w"> </span><span class="nt">assign</span><span class="w"> </span><span class="nv">postDate</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">post</span><span class="p">.</span><span class="nv">date</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="nf">date</span><span class="p">:</span><span class="w"> </span><span class="s1">'%s'</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="nf">plus</span><span class="p">:</span><span class="w"> </span><span class="mf">0.0</span><span class="w"> </span><span class="p">%}</span>
+    <span class="p">{%</span><span class="w"> </span><span class="nt">assign</span><span class="w"> </span><span class="nv">ageInSeconds</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">now</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="nf">minus</span><span class="p">:</span><span class="w"> </span><span class="nv">postDate</span><span class="w"> </span><span class="p">%}</span>
+    <span class="p">{%</span><span class="w"> </span><span class="kr">if</span><span class="w"> </span><span class="nv">ageInSeconds</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">60</span><span class="w"> </span><span class="p">%}</span>
+      <span class="p">{%</span><span class="w"> </span><span class="nt">assign</span><span class="w"> </span><span class="nv">ageInDays</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">defaultAge</span><span class="w"> </span><span class="p">%}</span>
+    <span class="p">{%</span><span class="w"> </span><span class="kr">else</span><span class="w"> </span><span class="p">%}</span>
+      <span class="p">{%</span><span class="w"> </span><span class="nt">assign</span><span class="w"> </span><span class="nv">ageInDays</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">ageInSeconds</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="nf">divided_by</span><span class="p">:</span><span class="w"> </span><span class="mf">86400.0</span><span class="w"> </span><span class="p">%}</span>
+    <span class="p">{%</span><span class="w"> </span><span class="kr">endif</span><span class="w"> </span><span class="p">%}</span>
+
+    <span class="p">{%</span><span class="w"> </span><span class="nt">comment</span><span class="w"> </span><span class="p">%}</span><span class="c"> Log-scale the comparison page age. </span><span class="p">{%</span><span class="w"> </span><span class="nt">endcomment</span><span class="w"> </span><span class="p">%}</span>
+    <span class="p">{%</span><span class="w"> </span><span class="nt">capture</span><span class="w"> </span><span class="nv">logAge</span><span class="w"> </span><span class="p">%}</span>
+        <span class="p">{%</span><span class="w"> </span><span class="nt">include</span><span class="w"> </span>log2.html<span class="w"> </span><span class="na">value</span><span class="o">=</span><span class="nv">ageInDays</span><span class="w"> </span><span class="p">%}</span>
+    <span class="p">{%</span><span class="w"> </span><span class="nt">endcapture</span><span class="w"> </span><span class="p">%}</span>
+  <span class="p">{%</span><span class="w"> </span><span class="nt">assign</span><span class="w"> </span><span class="nv">logAge</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">logAge</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="nf">times</span><span class="p">:</span><span class="w"> </span><span class="mf">1.0</span><span class="w"> </span><span class="p">%}</span>
+
+    <span class="p">{%</span><span class="w"> </span><span class="nt">comment</span><span class="w"> </span><span class="p">%}</span><span class="c"> Calculate the relevance score. </span><span class="p">{%</span><span class="w"> </span><span class="nt">endcomment</span><span class="w"> </span><span class="p">%}</span>
+  <span class="p">{%</span><span class="w"> </span><span class="nt">assign</span><span class="w"> </span><span class="nv">relevance</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">normLogCommonTags</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="nf">times</span><span class="p">:</span><span class="w"> </span><span class="nv">commonTagsWeight</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="nf">minus</span><span class="p">:</span><span class="w"> </span><span class="nv">logAge</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="nf">times</span><span class="p">:</span><span class="w"> </span><span class="mi">1000</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="nf">plus</span><span class="p">:</span><span class="w"> </span><span class="mi">50000</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="nf">round</span><span class="w"> </span><span class="p">%}</span>
+
+    <span class="p">{%</span><span class="w"> </span><span class="nt">comment</span><span class="w"> </span><span class="p">%}</span><span class="c"> Encode the data in a sortable format &amp; push it to our scored posts array. </span><span class="p">{%</span><span class="w"> </span><span class="nt">endcomment</span><span class="w"> </span><span class="p">%}</span>
+    <span class="p">{%</span><span class="w"> </span><span class="nt">assign</span><span class="w"> </span><span class="nv">sort_key</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">relevance</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="nf">append</span><span class="p">:</span><span class="w"> </span><span class="s2">"|"</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="nf">append</span><span class="p">:</span><span class="w"> </span><span class="nv">post_url</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="nf">append</span><span class="p">:</span><span class="w"> </span><span class="s2">"|"</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="nf">append</span><span class="p">:</span><span class="w"> </span><span class="nv">normLogCommonTags</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="nf">append</span><span class="p">:</span><span class="w"> </span><span class="s2">"|"</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="nf">append</span><span class="p">:</span><span class="w"> </span><span class="nv">logAge</span><span class="w"> </span><span class="p">%}</span>
+    <span class="p">{%</span><span class="w"> </span><span class="nt">assign</span><span class="w"> </span><span class="nv">scoredPosts</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">scoredPosts</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="nf">push</span><span class="p">:</span><span class="w"> </span><span class="nv">sort_key</span><span class="w"> </span><span class="p">%}</span>
+<span class="p">{%</span><span class="w"> </span><span class="nt">endfor</span><span class="w"> </span><span class="p">%}</span>
+
+  <span class="p">{%</span><span class="w"> </span><span class="nt">comment</span><span class="w"> </span><span class="p">%}</span><span class="c"> Sort the scored posts. </span><span class="p">{%</span><span class="w"> </span><span class="nt">endcomment</span><span class="w"> </span><span class="p">%}</span>
+  <span class="p">{%</span><span class="w"> </span><span class="nt">assign</span><span class="w"> </span><span class="nv">sorted_relevance_scores</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">scoredPosts</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="nf">sort</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="nf">reverse</span><span class="w"> </span><span class="p">%}</span>
+
+  <span class="p">{%</span><span class="w"> </span><span class="nt">comment</span><span class="w"> </span><span class="p">%}</span><span class="c"> Render the related-page HTML wrapper. </span><span class="p">{%</span><span class="w"> </span><span class="nt">endcomment</span><span class="w"> </span><span class="p">%}</span>
+  &lt;div class='page__related'&gt;
+    <span class="p">{%</span><span class="w"> </span><span class="nt">include</span><span class="w"> </span>before-related.html<span class="w"> </span><span class="p">%}</span>
+    &lt;h2 class='page__related-title'&gt;
+      <span class="p">{{</span><span class="w"> </span><span class="nv">site</span><span class="p">.</span><span class="nv">data</span><span class="p">[</span><span class="s1">'ui-text'</span><span class="p">][</span><span class="nv">site</span><span class="p">.</span><span class="nv">locale</span><span class="p">].</span><span class="nv">related_label</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="nf">default</span><span class="p">:</span><span class="w"> </span><span class="s1">'You May Also Enjoy'</span><span class="w"> </span><span class="p">}}</span>
+    &lt;/h2&gt;
+    &lt;div class='grid__wrapper'&gt;
+
+      <span class="p">{%</span><span class="w"> </span><span class="nt">comment</span><span class="w"> </span><span class="p">%}</span><span class="c"> Create a counter &amp; iterate over the sorted array. </span><span class="p">{%</span><span class="w"> </span><span class="nt">endcomment</span><span class="w"> </span><span class="p">%}</span>
+      <span class="p">{%</span><span class="w"> </span><span class="nt">assign</span><span class="w"> </span><span class="nv">maxRelatedCounter</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="p">%}</span>
+        <span class="p">{%</span><span class="w"> </span><span class="nt">for</span><span class="w"> </span><span class="nv">item</span><span class="w"> </span><span class="nt">in</span><span class="w"> </span><span class="nv">sorted_relevance_scores</span><span class="w"> </span><span class="p">%}</span>
+        <span class="p">{%</span><span class="w"> </span><span class="nt">comment</span><span class="w"> </span><span class="p">%}</span><span class="c"> Extract the data from the array. </span><span class="p">{%</span><span class="w"> </span><span class="nt">endcomment</span><span class="w"> </span><span class="p">%}</span>
+        <span class="p">{%</span><span class="w"> </span><span class="nt">assign</span><span class="w"> </span><span class="nv">parts</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">item</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="nf">split</span><span class="p">:</span><span class="w"> </span><span class="s2">"|"</span><span class="w"> </span><span class="p">%}</span>
+        <span class="p">{%</span><span class="w"> </span><span class="nt">assign</span><span class="w"> </span><span class="nv">relevance</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">parts</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="w"> </span><span class="p">%}</span>
+        <span class="p">{%</span><span class="w"> </span><span class="nt">assign</span><span class="w"> </span><span class="nv">post_url</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">parts</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="w"> </span><span class="p">%}</span>
+        <span class="p">{%</span><span class="w"> </span><span class="nt">assign</span><span class="w"> </span><span class="nv">normLogCommonTags</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">parts</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="w"> </span><span class="p">%}</span>
+      <span class="p">{%</span><span class="w"> </span><span class="nt">assign</span><span class="w"> </span><span class="nv">logAge</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">parts</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span><span class="w"> </span><span class="p">%}</span>
+
+        <span class="p">{%</span><span class="w"> </span><span class="nt">comment</span><span class="w"> </span><span class="p">%}</span><span class="c"> Go get the post data. </span><span class="p">{%</span><span class="w"> </span><span class="nt">endcomment</span><span class="w"> </span><span class="p">%}</span>
+      <span class="p">{%</span><span class="w"> </span><span class="nt">assign</span><span class="w"> </span><span class="nv">post</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">posts</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="nf">where</span><span class="p">:</span><span class="w"> </span><span class="s2">"url"</span><span class="p">,</span><span class="w"> </span><span class="nv">post_url</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="nf">first</span><span class="w"> </span><span class="p">%}</span>
+
+        <span class="p">{%</span><span class="w"> </span><span class="nt">comment</span><span class="w"> </span><span class="p">%}</span><span class="c"> Render some gelpful comments. </span><span class="p">{%</span><span class="w"> </span><span class="nt">endcomment</span><span class="w"> </span><span class="p">%}</span>
+        &lt;!-- post_url: <span class="p">{{</span><span class="w"> </span><span class="nv">post_url</span><span class="w"> </span><span class="p">}}</span> --&gt;
+        &lt;!-- normLogCommonTags: <span class="p">{{</span><span class="w"> </span><span class="nv">normLogCommonTags</span><span class="w"> </span><span class="p">}}</span> --&gt;
+        &lt;!-- logAge: <span class="p">{{</span><span class="w"> </span><span class="nv">logAge</span><span class="w"> </span><span class="p">}}</span> --&gt;
+        &lt;!-- relevance: <span class="p">{{</span><span class="w"> </span><span class="nv">relevance</span><span class="w"> </span><span class="p">}}</span> --&gt;
+
+        <span class="p">{%</span><span class="w"> </span><span class="nt">comment</span><span class="w"> </span><span class="p">%}</span><span class="c"> Render the actual page link. </span><span class="p">{%</span><span class="w"> </span><span class="nt">endcomment</span><span class="w"> </span><span class="p">%}</span>
+      <span class="p">{%</span><span class="w"> </span><span class="nt">include</span><span class="w"> </span>archive-single.html<span class="w"> </span><span class="na">type</span><span class="o">=</span><span class="s2">"grid"</span><span class="w"> </span><span class="p">%}</span>
+
+        <span class="p">{%</span><span class="w"> </span><span class="nt">comment</span><span class="w"> </span><span class="p">%}</span><span class="c"> Update the counter &amp; break if we're done. </span><span class="p">{%</span><span class="w"> </span><span class="nt">endcomment</span><span class="w"> </span><span class="p">%}</span>
+        <span class="p">{%</span><span class="w"> </span><span class="nt">assign</span><span class="w"> </span><span class="nv">maxRelatedCounter</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">maxRelatedCounter</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="nf">plus</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="p">%}</span>
+        <span class="p">{%</span><span class="w"> </span><span class="kr">if</span><span class="w"> </span><span class="nv">maxRelatedCounter</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="nv">maxRelated</span><span class="w"> </span><span class="p">%}</span>
+          <span class="p">{%</span><span class="w"> </span><span class="nt">break</span><span class="w"> </span><span class="p">%}</span>
+        <span class="p">{%</span><span class="w"> </span><span class="kr">endif</span><span class="w"> </span><span class="p">%}</span>
+      <span class="p">{%</span><span class="w"> </span><span class="nt">endfor</span><span class="w"> </span><span class="p">%}</span>
+    &lt;/div&gt;
+  &lt;/div&gt;
+<span class="p">{%</span><span class="w"> </span><span class="kr">endif</span><span class="w"> </span><span class="p">%}</span>
+</code></pre></div></div>
+
+<h2 id="cleaning-up">Cleaning Up</h2>
+
+<p>The updated <code class="language-plaintext highlighter-rouge">page__related.html</code> widget presented above will give you a super relevant list of related posts &amp; pages at the bottom of any post or page on your Minimal Mistakes site… <em>assuming that post or page actually displays the widget!</em></p>
+
+<p>Whether that widget is actually displayed is controlled by your layout file. For example, this page uses a <code class="language-plaintext highlighter-rouge">single</code> layout, which is implemented at <a href="https://github.com/mmistakes/minimal-mistakes/blob/master/_layouts/single.html"><code class="language-plaintext highlighter-rouge">/layouts/single.html</code></a>.</p>
+
+<p>Right at the bottom of that file, you’ll see this block of code:</p>
+
+<div class="language-liquid highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{%</span><span class="w"> </span><span class="nt">comment</span><span class="w"> </span><span class="p">%}</span><span class="c">&lt;!-- only show related on a post page when `related: true` --&gt;</span><span class="p">{%</span><span class="w"> </span><span class="nt">endcomment</span><span class="w"> </span><span class="p">%}</span>
+<span class="p">{%</span><span class="w"> </span><span class="kr">if</span><span class="w"> </span><span class="nv">page</span><span class="p">.</span><span class="nv">id</span><span class="w"> </span><span class="ow">and</span><span class="w"> </span><span class="nv">page</span><span class="p">.</span><span class="nv">related</span><span class="w"> </span><span class="ow">and</span><span class="w"> </span><span class="nv">site</span><span class="p">.</span><span class="nv">related_posts</span><span class="p">.</span><span class="nf">size</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="p">%}</span>
+  <span class="p">{%</span><span class="w"> </span><span class="nt">include</span><span class="w"> </span>page__related.html<span class="w"> </span><span class="na">posts</span><span class="o">=</span>site.related_posts<span class="w"> </span><span class="p">%}</span>
+<span class="p">{%</span><span class="w"> </span><span class="nt">comment</span><span class="w"> </span><span class="p">%}</span><span class="c">&lt;!-- otherwise show recent posts if no related when `related: true` --&gt;</span><span class="p">{%</span><span class="w"> </span><span class="nt">endcomment</span><span class="w"> </span><span class="p">%}</span>
+<span class="p">{%</span><span class="w"> </span><span class="kr">elsif</span><span class="w"> </span><span class="nv">page</span><span class="p">.</span><span class="nv">id</span><span class="w"> </span><span class="ow">and</span><span class="w"> </span><span class="nv">page</span><span class="p">.</span><span class="nv">related</span><span class="w"> </span><span class="p">%}</span>
+  <span class="p">{%</span><span class="w"> </span><span class="nt">include</span><span class="w"> </span>page__related.html<span class="w"> </span><span class="na">posts</span><span class="o">=</span>site.posts<span class="w"> </span><span class="p">%}</span>
+<span class="p">{%</span><span class="w"> </span><span class="kr">endif</span><span class="w"> </span><span class="p">%}</span>
+</code></pre></div></div>
+
+<p>A couple of issues here:</p>
+
+<ul>
+  <li>
+    <p><code class="language-plaintext highlighter-rouge">page.id</code> only has a value on posts, not pages. So including <code class="language-plaintext highlighter-rouge">page.id</code> in these conditionals turns related-posts display off on pages, even when you’ve set <code class="language-plaintext highlighter-rouge">related: true</code> in the front matter.</p>
+  </li>
+  <li>
+    <p>The <code class="language-plaintext highlighter-rouge">site.related_posts</code> array allows you to explicitly set related posts for all pages. If you’re doing that, you don’t need this widget.</p>
+  </li>
+  <li>
+    <p>The old widget accepts an array of posts as an argument: either <code class="language-plaintext highlighter-rouge">site.related_posts</code> (see above) or <code class="language-plaintext highlighter-rouge">site.posts</code>, which contains ONLY blog posts, not pages or posts from other collections. The new widget doesn’t take any inputs.</p>
+  </li>
+</ul>
+
+<p>So in <a href="https://github.com/mmistakes/minimal-mistakes/blob/master/_layouts/single.html"><code class="language-plaintext highlighter-rouge">single.html</code></a> and any other layout file where you see this code, replace it with this:</p>
+
+<div class="language-liquid highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="p">{%</span><span class="w"> </span><span class="nt">comment</span><span class="w"> </span><span class="p">%}</span><span class="c">&lt;!-- only show related when `related: true` --&gt;</span><span class="p">{%</span><span class="w"> </span><span class="nt">endcomment</span><span class="w"> </span><span class="p">%}</span>
+  <span class="p">{%</span><span class="w"> </span><span class="kr">if</span><span class="w"> </span><span class="nv">page</span><span class="p">.</span><span class="nv">related</span><span class="w"> </span><span class="p">%}</span>
+    <span class="p">{%</span><span class="w"> </span><span class="nt">include</span><span class="w"> </span>page__related.html<span class="w"> </span><span class="p">%}</span>
+  <span class="p">{%</span><span class="w"> </span><span class="kr">endif</span><span class="w"> </span><span class="p">%}</span>
+</code></pre></div></div>
+
+<p>Easy peasy! Now you can add <code class="language-plaintext highlighter-rouge">related: true</code> to the front matter of any post or page, and the new widget will display a list of related content at the bottom of the page, <strong>as long as…</strong></p>
+
+<ul>
+  <li>
+    <p>you’ve added at least one tag to the post or page, and</p>
+  </li>
+  <li>
+    <p>some other post or page has the same tag, and</p>
+  </li>
+  <li>
+    <p>if it’s a post, it isn’t in the same collection as the page you are editing.</p>
+  </li>
+</ul>
+
+<p class="notice--warning">As you do this, you are likely to discover that many of your pages and collection posts don’t have their <code class="language-plaintext highlighter-rouge">teaser</code> image or <code class="language-plaintext highlighter-rouge">excerpt</code> properties set. Add these to improve their look in the related posts widget!</p>
+
+<h2 id="conclusion">Conclusion</h2>
+
+<p>The related-posts widget implemented in the code above should satisfy a pretty broad swathe of use cases. Murphy’s law says yours is an exception. 🤣</p>
+
+<p>If it is, just have a close look at the code. The math is the math, so any customizations will likely be in the logic that selects which posts and pages to evaluate for relevance.</p>
+
+<p>The code that accomplishes this is ugly (thanks Liquid!) but not unclear. So go nuts, and feel free to drop me a comment if you run into any trouble!</p>]]></content><author><name>Jason Williscroft</name></author><category term="jekyll" /><summary type="html"><![CDATA[Presenting a radically improved related-posts widget for the Minimal Mistakes Jekyll theme.]]></summary></entry><entry><title type="html">Betting on Bali: My Journey Into the Offshoring Business</title><link href="https://karmanivero.us/betting-on-bali-my-journey-into-the-offshoring-business/" rel="alternate" type="text/html" title="Betting on Bali: My Journey Into the Offshoring Business" /><published>2024-10-23T00:00:00+00:00</published><updated>2024-10-23T00:00:00+00:00</updated><id>https://karmanivero.us/betting-on-bali-my-journey-into-the-offshoring-business</id><content type="html" xml:base="https://karmanivero.us/betting-on-bali-my-journey-into-the-offshoring-business/"><![CDATA[<figure class="align-left drop-image">
+    <img src="/assets/images/betting-on-bali-square.jpg" />
+</figure>
+
+<p>I’ve lived on the island of Bali in Indonesia for the past five years. I do business locally, I speak <a href="https://en.wikipedia.org/wiki/Indonesian_language">Bahasa Indonesia</a>, and I’ve come to call this island my home.</p>
+
+<p>Foreigners are nominally welcome to live in Indonesia, but they are much <em>more</em> welcome when they contribute meaningfully to the Indonesian economy and the lives of local people. <strong>John Galt Services</strong> (no website yet, it’s <em>that</em> new!) is a startup that deploys young, tech-savvy Indonesians remotely to augment your customer service or tech-support operation.</p>
+
+<p>In other words: <strong>I’m laying down a <em>big</em> bet on Bali!</strong> 🚀</p>
+
+<p>Let me share the evidence that has inspired me to take this personal and professional leap. Maybe it will inspire you to jump in with me!</p>
+
+<h2 id="english">English</h2>
+
+<p>I’m a senior software engineer, and I get involved in all kinds of techie social events here on Bali. I’m into crypto, and I spend my days in one of the big Canggu co-working spaces.</p>
+
+<p>Every day as I make my rounds I meet young Indonesian technology and business professionals. And I’ve lost count of how many times I’ve commented on how amazingly well somebody speaks English… <em>only to learn they’ve never traveled outside Indonesia!</em></p>
+
+<p>Bali’s thriving tourism industry has created a strong incentive among locals to learn English and practice it regularly. <strong>The cool Indonesian kids sitting in Pererenan cafes speak English with one another.</strong></p>
+
+<figure class=""><a href="/assets/images/betting-on-bali-pererenan.jpg" class="image-popup" title="Cool kids in Pererenan.
+"><img src="/assets/images/betting-on-bali-pererenan.jpg" alt="" /></a><figcaption>
+      <em>Cool kids in Pererenan.</em>
+
+    </figcaption></figure>
+
+<p>According to the <a href="https://www.ef.com/assetscdn/WIBIwq6RdJvcD9bc8RMd/cefcom-epi-site/reports/2022/ef-epi-2022-english.pdf">EF English Proficiency Index 2022</a>, Indonesia ranks moderately globally, but my impression is that <em>most</em> of that English proficiency in Indonesia lives right here on Bali.</p>
+
+<h2 id="technical-expertise">Technical Expertise</h2>
+
+<p>The rise of the <a href="https://en.wikipedia.org/wiki/Digital_nomad">digital nomad</a> subculture has fostered a tech-savvy environment on Bali.</p>
+
+<p>Co-working spaces like <a href="https://tropicalnomadcoworking.com/">Tropical Nomad</a> (where I’m sitting right now) and <a href="https://bworkbali.com/">BWork Bali</a> offer training programs and networking opportunities that attract a ton of locals. Indonesian universities like <a href="https://www.unud.ac.id/en/">Udayana University</a> produce graduates proficient in software development and familiar with Customer Relationship Management (CRM) systems and help desk software.</p>
+
+<p>Moreover, according to the <a href="https://jakartaglobe.id/tech/indonesias-digital-talent-pool-grows-significantly-under-jokowis-leadership">Indonesia Digital Talent Report 2022</a>, there has been a significant increase in the number of tech graduates and professionals in Indonesia, and Bali’s a major contributor due to its growing tech community.</p>
+
+<h2 id="work-ethic">Work Ethic</h2>
+
+<p>As you get to know Indonesians, one thing you can’t miss is their exceptional work ethic. Working overtime is the <em>rule</em> here, not the exception. The Indonesians I know seem to thrive on positive feedback, and they’re willing to go the extra mile to get it.</p>
+
+<p>People here still live pretty close to the land. Virtually every tech worker and business professional you meet on Bali spent some part of his childhood working in a rice field or on a fishing boat. For the most part, their parents or grandparents were full-time farmers and fishermen.</p>
+
+<p>This heritage is <em>real</em>, and it hasn’t gone away: there’s a group of people harvesting a rice field 100 meters from where I sit typing <em>right this instant</em>.</p>
+
+<p>So when an Indonesian rolls up his sleeves to go to work… he <em>means</em> it.</p>
+
+<figure class=""><a href="/assets/images/betting-on-bali-rice-farming.jpg" class="image-popup" title="No easy day: rice farming on Bali.
+"><img src="/assets/images/betting-on-bali-rice-farming.jpg" alt="" /></a><figcaption>
+      <em>No easy day: rice farming on Bali.</em>
+
+    </figcaption></figure>
+
+<p>This hardworking attitude translates into a high level of dedication in professional roles. Employers can expect an Indonesian team to be not only technically proficient, but also aware of how their work is perceived and eager to earn the praise of their customers.</p>
+
+<h2 id="teamwork">Teamwork</h2>
+
+<p>Indonesian culture places a high value on collectivism and community. Go to any restaurant and privately hand a tip to your server: it winds up in the communal tip jar—<em>no exceptions!</em>— and everybody gets a share.</p>
+
+<p>In the workplace, this translates to <strong>exceptional, natural teamwork</strong>.</p>
+
+<p>Employees in Indonesia support one another, share knowledge freely, and <a href="https://www.hofstede-insights.com/country-comparison/indonesia/">work collaboratively towards common goals</a>. This collective spirit fosters a positive work environment where team members are motivated not just by individual success but by the success of the entire team.</p>
+
+<h2 id="service">Service</h2>
+
+<p>On Bali, hospitality is a virtue.</p>
+
+<p>The island relies heavily on tourism, which contributes <a href="http://www.disparda.baliprov.go.id/en">over 60% of its GDP</a>. This is not an accident: <a href="https://www.taracousineau.com/social-emotional-intelligence-what-a-village-in-bali-can-teach-us/">kindness to strangers</a> was a key part of Balinese culture long before the island became a tourist hub.</p>
+
+<p>Beyond being a very nice place to live, Bali is also a playground for the very young and the very rich: a crowd not noted for their humility. Which is to say that I regularly witness acts of kindness and tolerance on the part of Balinese service workers under conditions that would try the patience of the Buddha.</p>
+
+<figure class=""><a href="/assets/images/betting-on-bali-influencers.jpg" class="image-popup" title="“Influencer” paying his respects to a Balinese family temple.
+"><img src="/assets/images/betting-on-bali-influencers.jpg" alt="" /></a><figcaption>
+      <em>“Influencer” paying his respects to a Balinese family temple.</em>
+
+    </figcaption></figure>
+
+<p>These folks can handle your most challenging customers with grace. No sweat.</p>
+
+<h2 id="loyalty">Loyalty</h2>
+
+<p>Beyond a natural talent for service, Indonesian employees respond enthusiastically to fair and supportive work environments.</p>
+
+<p>When a foreign visitor leaves a Bali restaurant without paying (which happens, sadly), most restaurants here will stick the server with the bill… which could easily amount to a week’s wages or more. The same dynamic often plays out in professional environments, where employees are penalized for mistakes they really <em>need</em> to make in order to learn.</p>
+
+<p>Even in a strong service culture like Bali’s, this creates a pretty oppressive work environment that can leave employees unwilling to take risks to serve their customers.</p>
+
+<p>At <strong>John Galt Services</strong> we take the approach more common in the West: <em>we expect our employees to make mistakes as part of the learning process!</em> The risk is ours, not theirs, and we evaluate them on how well they learn and improve.</p>
+
+<p>It’s hard to overstate just how much Indonesian employees appreciate this approach, once they come to believe we actually mean it. So <strong>don’t expect much turnover on your Indonesian team!</strong></p>
+
+<h2 id="infrastructure">Infrastructure</h2>
+
+<p>Bali boasts a robust technological infrastructure.</p>
+
+<p>Indonesia in general averages fixed internet speeds <a href="https://www.speedtest.net/global-index/indonesia#fixed">around 30 Mbps</a>, and urban areas on Bali like Denpasar and Kuta routinely post speeds twice as high. This is more than sufficient for customer service and tech support operations.</p>
+
+<p>The Indonesian government’s <a href="https://www.kominfo.go.id/">Palapa Ring Project</a> aims to improve internet connectivity across the archipelago, including Bali. This commitment to infrastructure supports the viability of offshoring operations here.</p>
+
+<h2 id="time-zone">Time Zone</h2>
+
+<p>Bali time offers significant operational advantages.</p>
+
+<p>The island is in the GMT+8 time zone year-round: 12 or 13 hours ahead of the U.S. East Coast (depending on daylight savings). While your U.S. team is offline overnight, your Bali team can handle new customer inquiries and finish the swing on daytime work items.</p>
+
+<p>Bali’s time zone aligns perfectly with business hours in major markets like Singapore, Hong Kong, and Sydney. If you have customers in the Asia-Pacific region, your Bali team can provide real-time support during your customers’ business day.</p>
+
+<h2 id="seamless-integration">Seamless Integration</h2>
+
+<p>To your customers, your Bali team members are indistinguishable from your internal staff.</p>
+
+<p>They learn your products and services with your training materials and programs, so they speak your language to your customers. By adopting your tools and communication platforms, your Bali team seamlessly integrates into your existing service architecture.</p>
+
+<p>Whatever performance metrics you already use to evaluate your service operation, adopting those metrics is our first priority when integrating with your team.</p>
+
+<p>This ensures that your Bali team’s goals align perfectly with your own. It’s also of great interest to your Bali team on a personal level, since <strong>they earn sizable bonus payments</strong> when they consistently land in the top 20% of your team, according to <em>your</em> metrics!</p>
+
+<h2 id="data-security">Data Security</h2>
+
+<p>When you outsource services halfway around the world, data security is a top concern.</p>
+
+<p>We follow our customers’ data security measures and guidelines, using your tools and protocols to ensure compliance. This includes:</p>
+
+<ul>
+  <li>
+    <p><strong>Global Standards:</strong> We adhere to GDPR, CCPA, and other relevant regulations according to your own requirements.</p>
+  </li>
+  <li>
+    <p><strong>Secure Systems:</strong> We use VPNs, encryption, and secure servers in line with your own security infrastructure.</p>
+  </li>
+</ul>
+
+<p>By aligning our data security practices with yours, we protect sensitive information just like you do, providing consistency your compliance team will appreciate and protecting the trust you have earned from your customers.</p>
+
+<h2 id="trusted-local-partnerships">Trusted Local Partnerships</h2>
+
+<p>After five years doing business on Bali—much of that in Bahasa Indonesia—I am <em>not</em> prepared to say I understand either the complexities of Indonesian regulations or the nuances of Indonesian and Balinese culture! <strong>But I’m a lot closer than you are.</strong></p>
+
+<p>Most importantly, I have a local network of trusted friends and business partners who <em>do</em> understand these things, and are happy to help me navigate them.</p>
+
+<p>This is important, because my business is <em>your</em> business! And Bali is my home. So we’re going to…</p>
+
+<ul>
+  <li>
+    <p>Ensure all services we perform on your behalf comply with Indonesian law.</p>
+  </li>
+  <li>
+    <p>Make sure you have the right staff, with the right skills and training, in place when you need them.</p>
+  </li>
+  <li>
+    <p>Bridge any gaps between your existing workforce and your Bali team so they can all pull hard in the same direction.</p>
+  </li>
+</ul>
+
+<figure class=""><a href="/assets/images/betting-on-bali-business.jpg" class="image-popup" title="Doing business on Bali.
+"><img src="/assets/images/betting-on-bali-business.jpg" alt="" /></a><figcaption>
+      <em>Doing business on Bali.</em>
+
+    </figcaption></figure>
+
+<p>We believe that happy employees lead to happy customers. We provide a supportive and growth-oriented work environment, and our emphasis on learning from mistakes empowers our staff to put the needs of your customers first.</p>
+
+<p>As a result, expect your Bali team’s strong work ethic, technical proficiency, and service-oriented mindset to help you deliver exceptional customer experiences!</p>
+
+<h2 id="flexibility--scalability">Flexibility &amp; Scalability</h2>
+
+<p>Different business face different challenges.</p>
+
+<p>Small businesses and startups need the ability to work small and scale rapidly while controlling costs. Established businesses need flexibility with an eye on the bottom line.</p>
+
+<p>Our Bali offshoring solution offers:</p>
+
+<ul>
+  <li>
+    <p><strong>Half-time support.</strong> Onboard resources in half-time increments, so you only pay for the bandwidth you need.</p>
+  </li>
+  <li>
+    <p><strong>Waivable onboarding fee.</strong> Make an annual commitment to a full-time resource, and we’ll assume the cost of finding, hiring, and training that resource.</p>
+  </li>
+  <li>
+    <p><strong>There when you need us!</strong> Indonesian staff on Bali observe Hindu holidays like <a href="https://en.wikipedia.org/wiki/Nyepi">Nyepi</a> and Muslim ones like <a href="https://en.wikipedia.org/wiki/Eid_al-Fitr">Eid al-Fitr</a>, which typically don’t overlap with Western or East Asian holidays. So your Bali customer support team remains operational during times like Christmas or Lunar New Year, ensuring uninterrupted service at no additional cost.</p>
+  </li>
+</ul>
+
+<h2 id="the-numbers">The Numbers</h2>
+
+<p>If your company offers complex technical products, you are likely employing highly skilled customer service or tech support agents in the 90th percentile of the pay scale. <a href="https://www.bls.gov/oes/current/oes434051.htm">According to the U.S. Bureau of Labor Statistics</a>, the top 10% of customer service representatives in the U.S. earn over $61,000 annually in wages alone.</p>
+
+<p>According to the <a href="https://www.sba.gov/blog/how-much-does-employee-cost-you">U.S. Small Business administration</a>, once you factor in taxes and benefits this translates to a total cost per employee between $76,250 and $85,400. For a training- and management-intensive role like customer service or tech support, the high end of this range is probably the most accurate.</p>
+
+<h3 id="domestic-onshoring">Domestic Onshoring</h3>
+
+<p>Many businesses in high-cost U.S. regions now <a href="https://www.freedomgpt.com/wiki/onshoring"><em>onshore</em></a> support operations by sending them to lower-cost areas of the country.</p>
+
+<p>Given our focus on technical products and services, this may bring the resulting annual wage down to the national customer-service median of about $40,000, resulting in a total annual employment cost between $50,000 and $56,000. Again, the high end of this range is probably the best estimate.</p>
+
+<p>That’s a 34% improvement over baseline: not too shabby.</p>
+
+<h3 id="offshoring-to-bali">Offshoring to Bali</h3>
+
+<p>John Galt’s most advantageous payment terms offer a fully-trained, closely-managed, well-equipped full-time support resource for a <strong>total cost of $48,000 per year</strong>.</p>
+
+<p>This represents a 14% price advantage over the domestic onshoring scenario described above, and <strong>a whopping 44% savings over what you are probably paying right now!</strong></p>
+
+<p>Other options are available, including half-time resources and quarterly or monthly payment terms. This gives you the ability to <strong>limit your offshoring commitment</strong> and <strong>scale your support team</strong> based on actual demand without unnecessary overhead.</p>
+
+<p>Here’s a summary of John Galt’s pricing structure:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Resource</th>
+      <th>Full-Time</th>
+      <th>Half-Time</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Paid Annually</td>
+      <td>$4,000/month<br /><em>$48,000/year</em></td>
+      <td>$2,500/month<br /><em>$30,000/year</em></td>
+    </tr>
+    <tr>
+      <td>Paid Quarterly</td>
+      <td>$4,500/month<br /><em>$54,000/year</em></td>
+      <td>$2,750/month<br /><em>$33,000/year</em></td>
+    </tr>
+    <tr>
+      <td>Paid Monthly</td>
+      <td>$5,000/month<br /><em>$60,000/year</em></td>
+      <td>$3,000/month<br /><em>$36,000/year</em></td>
+    </tr>
+  </tbody>
+</table>
+
+<p class="notice--info"><strong>We also charge an onboarding fee, equivalent to one month’s payment, at contract initiation for a new resource.</strong> This fee is waived for annual contracts including at least one full-time resource.</p>
+
+<h2 id="why-im-taking-this-risk">Why I’m Taking This Risk</h2>
+
+<p>On paper, Indonesia is one of the world’s richest countries. They export mineral oils, palm oil, paper goods, coffee, cocoa, textiles, rubber, electronics, natural gas… the list just goes on and on. Everybody in the world uses <em>something</em> from Indonesia, pretty much every day.</p>
+
+<p>In the last five years, I’ve come to understand that <strong>the <em>least</em> appreciated resource in Indonesia is <em>the Indonesian people</em></strong>, and very specifically the kind of young, technically-minded Indonesian professional who winds up on Bali.</p>
+
+<p>These kids are just awesome.</p>
+
+<figure class=""><a href="/assets/images/betting-on-bali-your-team.jpg" class="image-popup" title="Your Bali team!
+"><img src="/assets/images/betting-on-bali-your-team.jpg" alt="" /></a><figcaption>
+      <em>Your Bali team!</em>
+
+    </figcaption></figure>
+
+<p>So on the one hand, <strong>John Galt Services</strong> is my bid to make a solid contribution to the local economy that justifies my <em>KITAS</em>, which is the piece of paper that allows me to live here.</p>
+
+<p>But on the other hand, John Galt is kind of a ringer. A rigged bet. An insider trade. Because apparently I’ve figured something out that not too many people know, and I’m willing to stake my resources and reputation on it:</p>
+
+<blockquote>
+  <p>Young Indonesian technical professionals are best deal in the world for customer service and tech support.</p>
+</blockquote>
+
+<h2 id="an-invitation">An Invitation</h2>
+
+<p>Partnering with a startup always involves an element of risk.</p>
+
+<p>The argument I’ve made above in favor of offshoring your support needs to Bali is the same one I’ve made to <em>myself</em> in favor of hanging out my shingle and offering to support those needs.</p>
+
+<p>I found the argument compelling, so here we are. Maybe you do, too.</p>
+
+<p><strong><em>If so: <a href="https://calendly.com/karmaniverous">let’s talk</a>!</em></strong></p>]]></content><author><name>Jason Williscroft</name></author><category term="bali" /><category term="offshoring" /><summary type="html"><![CDATA[I’m laying down a big bet on Bali! Let me share the evidence that has inspired me to take this leap. Maybe it will inspire you to jump in with me!]]></summary></entry><entry><title type="html">Design as Code: A Frictionless Low-Level Design Pipeline</title><link href="https://karmanivero.us/design-as-code-a-frictionless-low-level-design-pipeline/" rel="alternate" type="text/html" title="Design as Code: A Frictionless Low-Level Design Pipeline" /><published>2024-10-21T00:00:00+00:00</published><updated>2024-10-21T00:00:00+00:00</updated><id>https://karmanivero.us/design-as-code-a-frictionless-low-level-design-pipeline</id><content type="html" xml:base="https://karmanivero.us/design-as-code-a-frictionless-low-level-design-pipeline/"><![CDATA[]]></content><author><name>Jason Williscroft</name></author><category term="agile" /><category term="design" /><category term="documentation" /><category term="project-governance" /><category term="toolkits" /><summary type="html"><![CDATA[A frictionless low-level design process that integrates with your dev cycle and puts design artifacts at a peer level with the rest of your codebase.]]></summary></entry><entry><title type="html">Turning the Crank: Design as a Mechanical Process</title><link href="https://karmanivero.us/turning-the-crank-design-as-a-mechanical-process/" rel="alternate" type="text/html" title="Turning the Crank: Design as a Mechanical Process" /><published>2024-10-18T00:00:00+00:00</published><updated>2024-10-18T00:00:00+00:00</updated><id>https://karmanivero.us/turning-the-crank-design-as-a-mechanical-process</id><content type="html" xml:base="https://karmanivero.us/turning-the-crank-design-as-a-mechanical-process/"><![CDATA[]]></content><author><name>Jason Williscroft</name></author><category term="agile" /><category term="design" /><category term="project-governance" /><category term="toolkits" /><summary type="html"><![CDATA[What a good design artifact looks like, what they're actually for, and how to use them efficiently to achieve a better outcome for your project.]]></summary></entry><entry><title type="html">Git Flow By Example: Writing Down Your Version Control Process</title><link href="https://karmanivero.us/git-flow-by-example-writing-down-your-version-control-process/" rel="alternate" type="text/html" title="Git Flow By Example: Writing Down Your Version Control Process" /><published>2024-10-17T00:00:00+00:00</published><updated>2024-10-17T00:00:00+00:00</updated><id>https://karmanivero.us/git-flow-by-example-writing-down-your-version-control-process</id><content type="html" xml:base="https://karmanivero.us/git-flow-by-example-writing-down-your-version-control-process/"><![CDATA[]]></content><author><name>Jason Williscroft</name></author><category term="agile" /><category term="atlassian" /><category term="github" /><category term="project-governance" /><category term="toolkits" /><summary type="html"><![CDATA[If you haven’t written down your project’s version control process in all its unique glory, then you don’t have one!]]></summary></entry><entry><title type="html">Composition in Action: Finishing the Swing</title><link href="https://karmanivero.us/composition-in-action-finishing-the-swing/" rel="alternate" type="text/html" title="Composition in Action: Finishing the Swing" /><published>2024-10-16T00:00:00+00:00</published><updated>2024-10-16T00:00:00+00:00</updated><id>https://karmanivero.us/composition-in-action-finishing-the-swing</id><content type="html" xml:base="https://karmanivero.us/composition-in-action-finishing-the-swing/"><![CDATA[<figure class="align-left drop-image">
+    <img src="https://github.com/karmaniverous/controlled-proxy/raw/main/assets/controlled-proxy-square.jpg" />
+</figure>
+
+<p>In software engineering, what look to be the easy parts often turn out to be the hard parts. If you’re lucky, the reverse is also true, but don’t count on it. 🤣</p>
+
+<p>This has certainly been the case with the Typescript refactor of <a href="https://github.com/karmaniverous/entity-manager"><code class="language-plaintext highlighter-rouge">entity-manager</code></a>, which I proclaimed <a href="https://karmanivero.us/blog/code-complete-a-day-in-the-life-of-a-product/">largely code complete</a>, oh, about a month ago. The job since then was supposed to be largely about documentation, testing, and encapsulating key <a href="https://en.wikipedia.org/wiki/Cross-cutting_concern">cross-cutting concerns</a> like injectable logging.</p>
+
+<p>Well, if you’ve been following along, <strong>you know that plan blew up in my face</strong>.</p>
+
+<div class="notice--info">
+  <p><strong>This article turned out to be the last of a three-part series!</strong> Here they are in sequence:</p>
+
+  <ol>
+    <li><a href="/blog/loggable-a-typescript-mixin-for-generic-class-logging">Loggable: A TypeScript Mixin for Generic Class Logging</a></li>
+
+    <li><a href="/blog/mixin-it-up-picking-the-right-problem-to-solve">Mixin It Up: Picking the Right Problem to Solve</a></li>
+
+    <li><strong>Composition in Action: Finishing the Swing</strong> (you are here)</li>
+
+  </ol>
+</div>
+
+<p>First I thought I’d encapsulate logging, batching, and related services in some reusable base classes.</p>
+
+<p>This led me head-first into Typescript’s single-inheritance constraint, whereupon I decided to <a href="/blog/loggable-a-typescript-mixin-for-generic-class-logging/">implement these services as mixins</a>.</p>
+
+<p>That produced the<a href="https://github.com/karmaniverous/loggable"> <code class="language-plaintext highlighter-rouge">loggable</code></a> library, and seemed to work nicely… until I looked at my generated documentation and realized that <a href="/blog/mixin-it-up-picking-the-right-problem-to-solve/">TypeDoc doesn’t know what to to with a mixin</a>. Plus the patterns I’d need to <em>consume</em> those mixins were exceedingly ugly. Not a good sign.</p>
+
+<p>But if you click that last link, you’ll also see that I read this result as a strong argument favoring <a href="https://en.wikipedia.org/wiki/Composition_over_inheritance"><em>Composition over Inheritance</em></a>, which is one of those core engineering principles I so often wish I’d been paying attention to all along.</p>
+
+<blockquote>
+  <p><strong>Epiphany #1:</strong> We thought we were solving an <em>inheritance</em> problem, but we’re really solving a <em>composition</em> problem!</p>
+</blockquote>
+
+<p>Now I’m an old guy, which means that pattern-recognition is more of a thing for me than for a younger engineer. It ain’t magic: I’ve just probably seen a lot more patterns than you have.</p>
+
+<p>So here’s a rule of thumb that works pretty well for me: <strong>Things get easier and more generic when I’m on the right path!</strong></p>
+
+<p>Case in point: once I decided that composition was the <em>only</em> way I was going to approach the <code class="language-plaintext highlighter-rouge">loggable</code> problem, the solution fell right into my lap.</p>
+
+<p>And it’s <em>awesome</em>.</p>
+
+<h2 id="logging-requirements">Logging Requirements</h2>
+
+<p>Let’s forget about the <code class="language-plaintext highlighter-rouge">batchable</code> stuff and focus strictly on <code class="language-plaintext highlighter-rouge">loggable</code>. As a recap from previous articles, here’s what we are trying to accomplish.</p>
+
+<p>Say we want to write a widget that does some internal logging. Then…</p>
+
+<ul>
+  <li>
+    <p><strong>Inside our widget, the logger should behave in a familiar way.</strong> So we should be able to cherry-pick the behavior we want from some default logger (e.g. <code class="language-plaintext highlighter-rouge">console</code>).</p>
+  </li>
+  <li>
+    <p><strong>We <em>don’t</em> want to have to specify the <em>actual</em> logger our widget uses until runtime.</strong> So we should be able to inject it from the outside, and as long as we inject a logger that’s compatible with the bits we were using on the inside, it should work.</p>
+  </li>
+  <li>
+    <p><strong>We <em>don’t</em> want to have to wait until runtime to discover we’ve passed our widget an inadequate logger.</strong> So the whole thing should be <a href="https://clouddevs.com/typescript/type-safety/">type-safe</a>, and an incompatible logger should throw a compile-time Typescript error.</p>
+  </li>
+  <li>
+    <p><strong>If our widget depends on other widgets that also log, it should be able to pass its logger on to them.</strong> So this injectability characteristic should be commutative.</p>
+  </li>
+  <li>
+    <p><strong>We want to be able to alter the behavior of the logger from <em>outside</em> our widget, for example to turn off annoying internal debug logging but leave error logging intact, <em>without</em> affecting external logging.</strong> So the <em>logger</em> and the associated <em>configuration</em> should be distinct. I should be able to pass the same logger around with different configurations in different places.</p>
+  </li>
+  <li>
+    <p><strong>Logging engines are expensive, so whichever one we are using, we never want to have more than one of them.</strong> So I should pass my logger around <em>by reference</em>, and I should <em>definitely</em> not be creating any clones of the thing, whether deep or shallow!</p>
+  </li>
+</ul>
+
+<p>On the face of it, that seems like a tall order. But there’s something interesting about that list of requirements, and I wonder if you picked up on it.</p>
+
+<p>Give up? <strong>Except for the examples I gave, <em>none</em> of those requirements are intrinsically specific to logging!</strong> They could just as usefully apply to <em>any</em> injected dependency.</p>
+
+<blockquote>
+  <p><strong>Epiphany #2:</strong> We’re not solving a <em>logging</em> problem. We’re solving a <em>dependency injection</em> problem!</p>
+</blockquote>
+
+<p>Groovy.</p>
+
+<p>And once you start digging around for approaches to dependency injection via composition in Javascript, it won’t be too long until you run into the <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Proxy">Proxy object</a>.</p>
+
+<h2 id="the-proxy-object">The Proxy Object</h2>
+
+<p>A Javascript Proxy object enables you to create a proxy for another object, which can intercept and redefine fundamental operations for that object.</p>
+
+<p>To illustrate, say you tried to run this code:</p>
+
+<div class="language-ts highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">console</span><span class="p">.</span><span class="nx">foo</span><span class="p">(</span><span class="dl">'</span><span class="s1">bar); &lt;== oops!
+</span></code></pre></div></div>
+
+<p>You’d get a <code class="language-plaintext highlighter-rouge">TypeError</code> because <code class="language-plaintext highlighter-rouge">console</code> doesn’t have a <code class="language-plaintext highlighter-rouge">foo</code> method. But what if you could intercept that call and do something else with it?</p>
+
+<div class="language-ts highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">consoleProxy</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">Proxy</span><span class="p">(</span><span class="nx">console</span><span class="p">,</span> <span class="p">{</span>
+  <span class="na">get</span><span class="p">:</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">target</span><span class="p">,</span> <span class="nx">prop</span><span class="p">,</span> <span class="nx">receiver</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nx">prop</span> <span class="k">in</span> <span class="nx">target</span><span class="p">)</span> <span class="p">{</span>
+      <span class="k">return</span> <span class="nx">target</span><span class="p">[</span><span class="nx">prop</span><span class="p">];</span>
+    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+      <span class="k">return</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span>
+          <span class="s2">`You tried to call </span><span class="p">${</span><span class="nx">prop</span><span class="p">}</span><span class="s2"> on console, but it doesn't exist!`</span>
+        <span class="p">);</span>
+      <span class="p">};</span>
+    <span class="p">}</span>
+  <span class="p">},</span>
+<span class="p">});</span>
+</code></pre></div></div>
+
+<p>Now if you run the same code:</p>
+
+<div class="language-ts highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">consoleProxy</span><span class="p">.</span><span class="nx">foo</span><span class="p">(</span><span class="dl">'</span><span class="s1">bar);
+// You tried to call foo on console, but it doesn</span><span class="dl">'</span><span class="nx">t</span> <span class="nx">exist</span><span class="o">!</span>
+</code></pre></div></div>
+
+<p><strong><em>How cool is that??</em></strong></p>
+
+<p>You can think of a Proxy object as a kind of <em>middleware</em> that sits between your code and the object you’re trying to interact with. It can intercept and modify the behavior of that object in all sorts of ways.</p>
+
+<p>And here’s an important point: the Proxy object <em>does not care</em> what kind of object it proxies! It will expose whatever features the underlying object has, with whatever modifications and extensions you care to make.</p>
+
+<p>So how does this help us with our dependency injection problem?</p>
+
+<blockquote>
+  <p><strong>Epiphany #3:</strong> A Proxy object is a universal dependency injector!</p>
+</blockquote>
+
+<h2 id="solving-the-problem-from-both-ends">Solving The Problem From Both Ends</h2>
+
+<p>We have two key requirements that are kind of opposed to one another:</p>
+
+<ul>
+  <li>
+    <p>From the <em>inside</em>, our logger should appear exactly the way we want it to, but…</p>
+  </li>
+  <li>
+    <p>From the <em>outside</em>, it should be whatever we inject. As long as it’s compatible.</p>
+  </li>
+</ul>
+
+<p>So here’s a strategy:</p>
+
+<ol>
+  <li>
+    <p><strong>Make our widget require an injected dependency (like a proxied logger) with a particular shape</strong>, and complain if we give it something different.</p>
+  </li>
+  <li>
+    <p><strong>Create a function that proxies a dependency (like a logger)</strong>, tries to cram it into some shape alongside a control configuration, and complains if the dependency won’t fit.</p>
+  </li>
+  <li>
+    <p><strong>Introduce the proxied dependency to our widget</strong>. if they get along, then the widget will play with its internal proxy, and the proxy will play with the external dependency.</p>
+  </li>
+</ol>
+
+<p>Still groovy! And, although the application I had in mind was logging, this thing would work for <em>any</em> injectable dependency!</p>
+
+<p>All I had to do was build it.</p>
+
+<h2 id="introducing-controlledproxy">Introducing <code class="language-plaintext highlighter-rouge">controlledProxy</code></h2>
+
+<p><code class="language-plaintext highlighter-rouge">controlledProxy</code> allows the behavior of any object to be modified &amp; controlled non-destructively at runtime. It’s a <strong>universal dependency injector</strong> that can be used to solve a wide variety of problems.</p>
+
+<figure class=""><a href="https://github.com/karmaniverous/controlled-proxy/raw/main/assets/controlled-proxy.png" class="image-popup" title="controlledProxy in a nutshell.
+"><img src="https://github.com/karmaniverous/controlled-proxy/raw/main/assets/controlled-proxy.png" alt="" /></a><figcaption>
+      <em><code class="language-plaintext highlighter-rouge">controlledProxy</code> in a nutshell.</em>
+
+    </figcaption></figure>
+
+<div class="button-row--left">
+    <a href="https://docs.karmanivero.us/controlled-proxy/" class="btn btn--info btn--large">API Docs</a>
+
+    <a href="https://github.com/karmaniverous/controlled-proxy" class="btn btn--primary btn--large"><i class="fa-brands fa-github fa-2xl"></i></a>
+
+    <a href="https://www.npmjs.com/package/@karmaniverous/controlled-proxy" class="btn btn--primary btn--large"><i class="fa-brands fa-npm fa-2xl"></i></a>
+
+</div>
+
+<h3 id="installation">Installation</h3>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>npm <span class="nb">install</span> @karmaniverous/controlled-proxy
+</code></pre></div></div>
+
+<h3 id="basic-usage">Basic Usage</h3>
+
+<p>The <code class="language-plaintext highlighter-rouge">controlledProxy</code> function creates a type-safe proxy of any <code class="language-plaintext highlighter-rouge">object</code>.</p>
+
+<p>The <a href="https://docs.karmanivero.us/controlled-proxy/interfaces/controlled_proxy.ControlledProxyOptions.html"><code class="language-plaintext highlighter-rouge">options</code></a> parameter is an object with the following properties:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Property</th>
+      <th>Type</th>
+      <th>Default</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">defaultControls</code></td>
+      <td><code class="language-plaintext highlighter-rouge">Record&lt;PropertyKey, boolean&gt;</code></td>
+      <td><code class="language-plaintext highlighter-rouge">{}</code></td>
+      <td>A map of controlled property keys to boolean values. When this value is <code class="language-plaintext highlighter-rouge">true</code> or the property is uncontrolled, the property will behave normally. When this value is false, the property will execute the disabled member handler or return <code class="language-plaintext highlighter-rouge">undefined</code>.</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">defaultDisabled-MemberHandler</code></td>
+      <td><a href="https://docs.karmanivero.us/controlled-proxy/types/controlled_proxy.DisabledMemberHandler.html"><code class="language-plaintext highlighter-rouge">DisabledMemberHandler</code></a></td>
+      <td><code class="language-plaintext highlighter-rouge">() =&gt; undefined</code></td>
+      <td>A function that is called when a disabled controlled property is accessed.</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">target</code></td>
+      <td><code class="language-plaintext highlighter-rouge">object</code></td>
+      <td><em>required</em></td>
+      <td>The object to proxy.</td>
+    </tr>
+  </tbody>
+</table>
+
+<div class="language-ts highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">import</span> <span class="p">{</span> <span class="nx">controlledProxy</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">"</span><span class="s2">@karmaniverous/controlled-proxy</span><span class="dl">"</span><span class="p">;</span>
+
+<span class="c1">// Create a controlled console logger. Info messages are disabled by default.</span>
+<span class="kd">const</span> <span class="nx">controlledConsoleLogger</span> <span class="o">=</span> <span class="nx">controlledProxy</span><span class="p">({</span>
+  <span class="na">defaultControls</span><span class="p">:</span> <span class="p">{</span> <span class="na">debug</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span> <span class="na">info</span><span class="p">:</span> <span class="kc">false</span> <span class="p">},</span>
+  <span class="na">target</span><span class="p">:</span> <span class="nx">console</span><span class="p">,</span>
+<span class="p">});</span>
+
+<span class="c1">// Log messages.</span>
+<span class="nx">controlledConsoleLogger</span><span class="p">.</span><span class="nx">debug</span><span class="p">(</span><span class="dl">"</span><span class="s2">debug log</span><span class="dl">"</span><span class="p">);</span>
+<span class="nx">controlledConsoleLogger</span><span class="p">.</span><span class="nx">info</span><span class="p">(</span><span class="dl">"</span><span class="s2">info log</span><span class="dl">"</span><span class="p">);</span>
+<span class="c1">// &gt; debug log</span>
+</code></pre></div></div>
+
+<h3 id="runtime-control">Runtime Control</h3>
+
+<p>The proxy object has two special properties, keyed with symbols that can be imported from the package:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Property</th>
+      <th>Type</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">[controlProp]</code></td>
+      <td><code class="language-plaintext highlighter-rouge">Record&lt;PropertyKey, boolean&gt;</code></td>
+      <td>A map of controlled property keys to boolean values. When this value is <code class="language-plaintext highlighter-rouge">true</code> or the property is uncontrolled, the property will behave normally. When this value is false, the property will execute the disabled member handler or return <code class="language-plaintext highlighter-rouge">undefined</code>.</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">[disabledMember-HandlerProp]</code></td>
+      <td><a href="https://docs.karmanivero.us/controlled-proxy/types/controlled_proxy.DisabledMemberHandler.html"><code class="language-plaintext highlighter-rouge">DisabledMemberHandler</code></a></td>
+      <td>A function that is called when a disabled controlled property is accessed. Defaults to <code class="language-plaintext highlighter-rouge">() =&gt; undefined</code>.</td>
+    </tr>
+  </tbody>
+</table>
+
+<div class="language-ts highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">import</span> <span class="p">{</span>
+  <span class="nx">controlledProxy</span><span class="p">,</span>
+  <span class="nx">controlProp</span><span class="p">,</span>
+  <span class="nx">disabledMemberHandlerProp</span><span class="p">,</span>
+<span class="p">}</span> <span class="k">from</span> <span class="dl">"</span><span class="s2">@karmaniverous/controlled-proxy</span><span class="dl">"</span><span class="p">;</span>
+
+<span class="c1">// Create a controlled console logger. Info messages are disabled by default.</span>
+<span class="kd">const</span> <span class="nx">controlledConsoleLogger</span> <span class="o">=</span> <span class="nx">controlledProxy</span><span class="p">({</span>
+  <span class="na">defaultControls</span><span class="p">:</span> <span class="p">{</span> <span class="na">debug</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span> <span class="na">info</span><span class="p">:</span> <span class="kc">false</span> <span class="p">},</span>
+  <span class="na">target</span><span class="p">:</span> <span class="nx">console</span><span class="p">,</span>
+<span class="p">});</span>
+
+<span class="c1">// Disable debug messages &amp; enable info messages at runtime.</span>
+<span class="nx">controlledConsoleLogger</span><span class="p">[</span><span class="nx">controlProp</span><span class="p">].</span><span class="nx">debug</span> <span class="o">=</span> <span class="kc">false</span><span class="p">;</span>
+<span class="nx">controlledConsoleLogger</span><span class="p">[</span><span class="nx">controlProp</span><span class="p">].</span><span class="nx">info</span> <span class="o">=</span> <span class="kc">true</span><span class="p">;</span>
+
+<span class="c1">// Log messages.</span>
+<span class="nx">controlledConsoleLogger</span><span class="p">.</span><span class="nx">debug</span><span class="p">(</span><span class="dl">"</span><span class="s2">debug log</span><span class="dl">"</span><span class="p">);</span>
+<span class="nx">controlledConsoleLogger</span><span class="p">.</span><span class="nx">info</span><span class="p">(</span><span class="dl">"</span><span class="s2">info log</span><span class="dl">"</span><span class="p">);</span>
+<span class="c1">// &gt; info log</span>
+
+<span class="c1">// Change the disabled member handler.</span>
+<span class="nx">controlledConsoleLogger</span><span class="p">[</span><span class="nx">disabledMemberHandlerProp</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span>
+  <span class="nx">target</span><span class="p">:</span> <span class="nx">Console</span><span class="p">,</span>
+  <span class="nx">prop</span><span class="p">:</span> <span class="nx">PropertyKey</span>
+<span class="p">)</span> <span class="o">=&gt;</span> <span class="nx">target</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">`Accessed disabled member: </span><span class="p">${</span><span class="nx">prop</span><span class="p">.</span><span class="nx">toString</span><span class="p">()}</span><span class="s2">`</span><span class="p">);</span>
+
+<span class="c1">// Log messages again.</span>
+<span class="nx">controlledConsoleLogger</span><span class="p">.</span><span class="nx">debug</span><span class="p">(</span><span class="dl">"</span><span class="s2">debug log</span><span class="dl">"</span><span class="p">);</span>
+<span class="nx">controlledConsoleLogger</span><span class="p">.</span><span class="nx">info</span><span class="p">(</span><span class="dl">"</span><span class="s2">info log</span><span class="dl">"</span><span class="p">);</span>
+<span class="c1">// &gt; Accessed disabled member: debug</span>
+<span class="c1">// &gt; info log</span>
+</code></pre></div></div>
+
+<h3 id="proxy-injection">Proxy Injection</h3>
+
+<p>Here’s an example of the real power of the library: <strong>let’s inject a controlled proxy into a class!</strong></p>
+
+<div class="language-ts highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">import</span> <span class="p">{</span>
+  <span class="nx">controlledProxy</span><span class="p">,</span>
+  <span class="nx">controlProp</span><span class="p">,</span>
+<span class="p">}</span> <span class="k">from</span> <span class="dl">"</span><span class="s2">@karmaniverous/controlled-proxy</span><span class="dl">"</span><span class="p">;</span>
+
+<span class="c1">// Create a class that accepts a proxied logger as a constructor argument.</span>
+<span class="kd">class</span> <span class="nx">MyClass</span> <span class="p">{</span>
+  <span class="c1">// Proxied logger must be compatible with console.debug &amp; console.info.</span>
+  <span class="kd">constructor</span><span class="p">(</span><span class="k">private</span> <span class="nx">logger</span><span class="p">:</span> <span class="nb">Pick</span><span class="o">&lt;</span><span class="nx">Console</span><span class="p">,</span> <span class="dl">"</span><span class="s2">debug</span><span class="dl">"</span> <span class="o">|</span> <span class="dl">"</span><span class="s2">info</span><span class="dl">"</span><span class="o">&gt;</span><span class="p">)</span> <span class="p">{}</span>
+
+  <span class="c1">// Exercise the proxied logger.</span>
+  <span class="nx">myMethod</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">logger</span><span class="p">.</span><span class="nx">debug</span><span class="p">(</span><span class="dl">"</span><span class="s2">debug log</span><span class="dl">"</span><span class="p">);</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">logger</span><span class="p">.</span><span class="nx">info</span><span class="p">(</span><span class="dl">"</span><span class="s2">info log</span><span class="dl">"</span><span class="p">);</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="c1">// Create a controlled console logger, with all messages enabled by default</span>
+<span class="c1">// and a custom disabled member handler.</span>
+<span class="kd">const</span> <span class="nx">controlledConsoleLogger</span> <span class="o">=</span> <span class="nx">controlledProxy</span><span class="p">({</span>
+  <span class="na">defaultControls</span><span class="p">:</span> <span class="p">{</span> <span class="na">debug</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span> <span class="na">info</span><span class="p">:</span> <span class="kc">true</span> <span class="p">},</span>
+  <span class="na">defaultDisabledMemberHandler</span><span class="p">:</span> <span class="p">(</span>
+    <span class="na">target</span><span class="p">:</span> <span class="nx">Console</span><span class="p">,</span>
+    <span class="na">prop</span><span class="p">:</span> <span class="nx">PropertyKey</span>
+  <span class="p">)</span> <span class="o">=&gt;</span> <span class="nx">target</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">`Accessed disabled member: </span><span class="p">${</span><span class="nx">prop</span><span class="p">.</span><span class="nx">toString</span><span class="p">()}</span><span class="s2">`</span><span class="p">),</span>
+  <span class="na">target</span><span class="p">:</span> <span class="nx">console</span><span class="p">,</span>
+<span class="p">});</span>
+
+<span class="c1">// Instantiate the class with the controlled console logger.</span>
+<span class="kd">const</span> <span class="nx">myConsoleInstance</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">MyClass</span><span class="p">(</span><span class="nx">controlledConsoleLogger</span><span class="p">);</span>
+
+<span class="c1">// Disable console debug messages at runtime.</span>
+<span class="nx">controlledConsoleLogger</span><span class="p">[</span><span class="nx">controlProp</span><span class="p">].</span><span class="nx">debug</span> <span class="o">=</span> <span class="kc">false</span><span class="p">;</span>
+
+<span class="c1">// Exercise the proxied console logger from within the class.</span>
+<span class="nx">myConsoleInstance</span><span class="p">.</span><span class="nx">myMethod</span><span class="p">();</span>
+<span class="c1">// &gt; Accessed disabled member: debug</span>
+<span class="c1">// &gt; info log</span>
+
+<span class="c1">// Create an equivalent controlled winston logger, with all messages enabled by</span>
+<span class="c1">// default and a custom disabled member handler.</span>
+<span class="k">import</span> <span class="p">{</span> <span class="nx">createLogger</span><span class="p">,</span> <span class="kd">type</span> <span class="nx">Logger</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">"</span><span class="s2">winston</span><span class="dl">"</span><span class="p">;</span>
+
+<span class="kd">const</span> <span class="nx">controlledWinstonLogger</span> <span class="o">=</span> <span class="nx">controlledProxy</span><span class="p">({</span>
+  <span class="na">defaultControls</span><span class="p">:</span> <span class="p">{</span> <span class="na">debug</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span> <span class="na">info</span><span class="p">:</span> <span class="kc">true</span> <span class="p">},</span>
+  <span class="na">defaultDisabledMemberHandler</span><span class="p">:</span> <span class="p">(</span>
+    <span class="na">target</span><span class="p">:</span> <span class="nx">Logger</span><span class="p">,</span>
+    <span class="na">prop</span><span class="p">:</span> <span class="nx">PropertyKey</span>
+  <span class="p">)</span> <span class="o">=&gt;</span>
+    <span class="nx">target</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span>
+      <span class="dl">"</span><span class="s2">warn</span><span class="dl">"</span><span class="p">,</span>
+      <span class="s2">`Accessed disabled member: </span><span class="p">${</span><span class="nx">prop</span><span class="p">.</span><span class="nx">toString</span><span class="p">()}</span><span class="s2">`</span>
+    <span class="p">),</span>
+  <span class="na">target</span><span class="p">:</span> <span class="nx">createLogger</span><span class="p">(),</span>
+<span class="p">});</span>
+
+<span class="c1">// Instantiate the class again with the controlled winston logger.</span>
+<span class="kd">const</span> <span class="nx">myWinstonInstance</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">MyClass</span><span class="p">(</span><span class="nx">controlledWinstonLogger</span><span class="p">);</span>
+
+<span class="c1">// Disable winston debug messages at runtime.</span>
+<span class="nx">controlledWinstonLogger</span><span class="p">[</span><span class="nx">controlProp</span><span class="p">].</span><span class="nx">debug</span> <span class="o">=</span> <span class="kc">false</span><span class="p">;</span>
+
+<span class="c1">// Exercise the proxied winston logger from within the class.</span>
+<span class="nx">myWinstonInstance</span><span class="p">.</span><span class="nx">myMethod</span><span class="p">();</span>
+<span class="c1">// &gt; [winston] { "level":"warn", "message":"Accessed disabled member: debug" }</span>
+<span class="c1">// &gt; [winston] { "level":"info", "message":"info log" }</span>
+</code></pre></div></div>
+
+<h2 id="conclusion">Conclusion</h2>
+
+<p>It’s fun to show off work you’re proud of, and <code class="language-plaintext highlighter-rouge">controlledProxy</code> is no exception. It’s a neat solution to a deceptively hard problem, and I hope it gets some traction out there.</p>
+
+<p>It also solves my <em>own</em> hard problem, which is cool… all the other dependency injectors I found out there carried far more dependency baggage than I cared to inherit, and this widget feels like it strikes a nice balance.</p>
+
+<p>But that’s not why we’re here, is it?</p>
+
+<p>I hope the three articles in this series have served as a useful illustration of how real software gets done:</p>
+
+<ul>
+  <li>
+    <p><a href="/blog/loggable-a-typescript-mixin-for-generic-class-logging">This one</a> shows that even a VERY experienced engineer can get seduced away from core engineering principles by a shiny new toy,</p>
+  </li>
+  <li>
+    <p><a href="/blog/mixin-it-up-picking-the-right-problem-to-solve">This one</a> shows how to use those same principles to think yourself back on track,</p>
+  </li>
+  <li>
+    <p>And the one you’re reading now shows what you can do with those principles once you’ve got them well in hand.</p>
+  </li>
+</ul>
+
+<p>Do good work! 🚀</p>]]></content><author><name>Jason Williscroft</name></author><category term="design" /><category term="documentation" /><category term="entity-manager" /><category term="logging" /><category term="principles" /><category term="projects" /><category term="typescript" /><summary type="html"><![CDATA[In software engineering, what look to be the easy parts often turn out to be the hard parts. If you're lucky, the reverse is also true, but don't count on it.]]></summary></entry><entry><title type="html">Mixin It Up: Picking The Right Problem to Solve</title><link href="https://karmanivero.us/mixin-it-up-picking-the-right-problem-to-solve/" rel="alternate" type="text/html" title="Mixin It Up: Picking The Right Problem to Solve" /><published>2024-10-12T00:00:00+00:00</published><updated>2024-10-12T00:00:00+00:00</updated><id>https://karmanivero.us/mixin-it-up-picking-the-right-problem-to-solve</id><content type="html" xml:base="https://karmanivero.us/mixin-it-up-picking-the-right-problem-to-solve/"><![CDATA[<figure class="align-left drop-image">
+    <img src="/assets/images/mixin-it-up-square.jpg" />
+</figure>
+
+<p>A couple of days ago I posted about my new <a href="https://github.com/karmaniverous/loggable">Loggable</a> mixin, which makes it easy to inject an external logger into your Typescript classes at runtime.</p>
+
+<p>I had a date with a pretty girl that night and was in a bit of a hurry to get the thing posted, so it wasn’t until the next day when I was preparing to release the related <a href="https://github.com/karmaniverous/batchable">Batchable</a> mixin that I realized I had a problem.</p>
+
+<p>One of the things I love about Typescript is that it is very easy to close the gap between <em>good</em> code and <em>self-documenting</em> code.</p>
+
+<p><strong>Sounds deep, right?</strong> So what does that actually mean?</p>
+
+<blockquote>
+  <p><strong>TL/DR:</strong> Facing a really thorny problem? Sometimes it just means you’ve thrown yourself into a briar patch.</p>
+</blockquote>
+
+<div class="notice--info">
+  <p><strong>This article turned out to be the second of a three-part series!</strong> Here they are in sequence:</p>
+
+  <ol>
+    <li><a href="/blog/loggable-a-typescript-mixin-for-generic-class-logging">Loggable: A TypeScript Mixin for Generic Class Logging</a></li>
+
+    <li><strong>Mixin It Up: Picking the Right Problem to Solve</strong> (you are here)</li>
+
+    <li><a href="/blog/composition-in-action-finishing-the-swing">Composition in Action: Finishing the Swing</a></li>
+
+  </ol>
+</div>
+
+<h2 id="what-is-good-code">What is Good Code?</h2>
+
+<p>Well, clearly, at a minimum good code fulfills requirements: it does what it was meant to do.</p>
+
+<p>But every grown-up developer knows there is more to it than that. <strong><em>Really</em> good code is more than just a dropped plate of spaghetti that happens to stick to the wall.</strong> It also meets a coherent set of engineering principles, like:</p>
+
+<ul>
+  <li><a href="https://en.wikipedia.org/wiki/SOLID"><strong>SOLID</strong></a> - Single Responsibility, Open/Closed, Liskov Substitution, Interface Segregation, Dependency Inversion</li>
+  <li><a href="https://en.wikipedia.org/wiki/Don%27t_repeat_yourself"><strong>DRY</strong></a> - Don’t Repeat Yourself</li>
+  <li><a href="https://en.wikipedia.org/wiki/KISS_principle"><strong>KISS</strong></a> - Keep It Simple, Stupid</li>
+  <li><a href="https://en.wikipedia.org/wiki/You_aren%27t_gonna_need_it"><strong>YAGNI</strong></a> - You Ain’t Gonna Need It (so don’t write it)</li>
+  <li><a href="https://en.wikipedia.org/wiki/Law_of_Demeter"><strong>Law of Demeter</strong></a> - Only talk to your immediate friends</li>
+  <li><a href="https://en.wikipedia.org/wiki/Composition_over_inheritance"><strong>Composition over Inheritance</strong></a> - Prefer composition to inheritance</li>
+</ul>
+
+<p>Good code encapsulates the understanding that <strong>the work is not done</strong>: <em>my</em> good code will eventually have to talk to <em>your</em> good code, and it behooves us both to make that conversation as easy as possible.</p>
+
+<h2 id="what-is-self-documenting-code">What is Self-Documenting Code?</h2>
+
+<p>The trivially naive view of self-documenting code is that it is code so clear and well-organized that it doesn’t need comments.</p>
+
+<blockquote>
+  <p>Pro tip: adhering strictly to this view is a great way to get yourself fired. <strong>Especially by me.</strong></p>
+</blockquote>
+
+<p>In the real world we all use advanced IDEs like Visual Studio Code, which do neat things like show you a snippet of useful documentation when you’re about to invoke a function. Partly that happens automagically thanks to type inference (unless you’re using Javascript, in which case 🤷‍♂️), but many of the more useful bits (like what is this parameter actually <em>for</em>) only show up because you put them there on purpose.</p>
+
+<p>In Typescript, this means you took the trouble to document your code with structured <a href="https://tsdoc.org/">TSDoc</a> comments. In Javascript, you took a lot <em>more</em> trouble to do the same thing with <a href="https://jsdoc.app/">JSDoc</a>. Either way, your code doesn’t just speak to other developers. It speaks to your <em>tools</em>.</p>
+
+<p>Here’s an example, an interface declaration from <a href="https://github.com/karmaniverous/loggable"><code class="language-plaintext highlighter-rouge">Loggable</code></a> tarted up with TSDoc:</p>
+
+<div class="language-ts highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cm">/**
+ * Loggable options.
+ */</span>
+<span class="k">export</span> <span class="kr">interface</span> <span class="nx">LoggableOptions</span> <span class="p">{</span>
+  <span class="cm">/** Identifies logger endpoints disabled when `enableAll !== true`. */</span>
+  <span class="nl">disabled</span><span class="p">:</span> <span class="kr">string</span><span class="p">[];</span>
+
+  <span class="cm">/** Enables all logger endpoints when `true`. */</span>
+  <span class="nl">enableAll</span><span class="p">:</span> <span class="nx">boolean</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>Here’s what I see when I hover over one of those properties elsewhere in my code:</p>
+
+<figure class=""><a href="/assets/images/mixin-it-up-intellisense.png" class="image-popup" title="TSDoc-driven intellisense.
+"><img src="/assets/images/mixin-it-up-intellisense.png" alt="" /></a><figcaption>
+      <em>TSDoc-driven intellisense.</em>
+
+    </figcaption></figure>
+
+<p>So far, par for the course.</p>
+
+<p>But the beauty of living here in the future is that, you’ve taken the trouble to make your documentation accessible to your tools, your options are only limited by your tools… and your toolbox is expanding by the day!</p>
+
+<p>For example, all of my Typescript projects use <a href="https://typedoc.org/">TypeDoc</a>, which can read my TSDoc comments and automagically generate API documentation for my project. Here’s <a href="https://docs.karmanivero.us/loggable/interfaces/loggable.LoggableOptions.html">the page</a> generated by the interface declaration above:</p>
+
+<figure class=""><a href="/assets/images/mixin-it-up-tsdoc.png" class="image-popup" title="TypeDoc API documentation.
+"><img src="/assets/images/mixin-it-up-tsdoc.png" alt="" /></a><figcaption>
+      <em>TypeDoc API documentation.</em>
+
+    </figcaption></figure>
+
+<p>So with regard to the naive view proposed above: of <em>course</em> your code should be well-organized and clear. That doesn’t mean you should skip the comments. It just means that your comments should be attached to something worth documenting.</p>
+
+<p><em>Self-documenting</em> code, on the other hand, is another animal entirely.</p>
+
+<blockquote>
+  <p>Self-documenting code is code that can participate actively in its own documentation!</p>
+</blockquote>
+
+<p>Now <em>that</em> is deep.</p>
+
+<h2 id="a-brief-detour-into-mixins">A Brief Detour into Mixins</h2>
+
+<p>If you recall, we started this conversation because I ran into some documentation-related problem with my Batchable mixin implementation. But wait… what exactly is a <em>mixin</em>?</p>
+
+<p>Before we dig into the actual problem, let’s take a moment to understand the distinction between a <strong>mixin</strong> and a <strong>class</strong>.</p>
+
+<p>A <a href="https://www.typescriptlang.org/docs/handbook/2/classes.html">Typescript class</a> is a way to encapsulate a complex set of behaviors and data into a single, reusable unit. The Typescript version adheres pretty faithfully to the Object-Oriented Programming (OOP) paradigm, with the caveat that “class” inheritance in Typescript is really <a href="https://en.wikipedia.org/wiki/Object-oriented_programming#Prototype-based">prototype-based</a>.</p>
+
+<p>Compared to a more “pure” OOP language like Ruby or (shaddap haters) C++, a key constraint imposed by Typescript’s prototype-inheritance model is <em>single inheritance</em>. This means that a class can only inherit from one other class, as opposed to the <em>multiple inheritance</em> allowed in those other languages.</p>
+
+<p>For example, let’s say I have a <code class="language-plaintext highlighter-rouge">Loggable</code> class that knows how to log to an external logging system, and a <code class="language-plaintext highlighter-rouge">Batchable</code> class that knows how to batch &amp; throttle data operations against an API. In a pure OOP language like Ruby, I could create an <code class="language-plaintext highlighter-rouge">EntityManager</code> class that inherits from both <code class="language-plaintext highlighter-rouge">Loggable</code> and <code class="language-plaintext highlighter-rouge">Batchable</code>, and get the combined functionality of both.</p>
+
+<figure class=""><img src="/assets/diagrams/mixin-it-up-multiple-inheritance.png" alt="" /><figcaption>
+      <em>Multiple inheritance in pure OOP languages.</em>
+
+    </figcaption></figure>
+
+<p>In Typescript, I can’t do that. I can only inherit from a <em>single</em> class, so I have to find some way to…</p>
+
+<ul>
+  <li>
+    <p>Preserve the useful isolation of distinct packages of functionality into the <code class="language-plaintext highlighter-rouge">Loggable</code> and <code class="language-plaintext highlighter-rouge">Batchable</code> classes.</p>
+  </li>
+  <li>
+    <p>Combine them into a <em>single</em> class that <code class="language-plaintext highlighter-rouge">EntityManager</code> can inherit.</p>
+  </li>
+</ul>
+
+<p>This is where <a href="https://medium.com/@saif.adnan/typescript-mixin-ee962be3224d"><strong>mixins</strong></a> come in.</p>
+
+<p>A <em>mixin</em> is a <strong>function</strong> that takes a <strong>class</strong> as an argument and returns a <strong>new class</strong> that combines the functionality of the original class with the functionality of the mixin. In the degenerate case, a mixin takes an empty class as its argument and returns a new class that exhibits <em>only</em> the mixin functionality.</p>
+
+<p>Here’s what the same scenario looks like using mixins instead of multiple inheritance:</p>
+
+<figure class=""><a href="/assets/diagrams/mixin-it-up-single-inheritance.png" class="image-popup" title="Single inheritance with mixins in Typescript.
+"><img src="/assets/diagrams/mixin-it-up-single-inheritance.png" alt="" /></a><figcaption>
+      <em>Single inheritance with mixins in Typescript.</em>
+
+    </figcaption></figure>
+
+<p>The salient point here is that when I made the decision to implement <code class="language-plaintext highlighter-rouge">Loggable</code> and <code class="language-plaintext highlighter-rouge">Batchable</code> as mixins, the things that I published were no longer <em>classes</em>, but <em>functions</em>.</p>
+
+<h2 id="the-problem">The Problem</h2>
+
+<p>We’ve already established that tools like TypeDoc can activate the capacity of self-documenting code to do really useful things like automagically generate complex API documentation.</p>
+
+<p>Could I do this by hand? Sure… but it’s such a pain that I probably wouldn’t bother. And even if I did, I’d only do it once. As soon as I made a change to the code, the documentation would be out of sync, and the cost of keeping the documentation in sync with the code would be so high that I wouldn’t do it for long.</p>
+
+<p>This prompts an observation so obvious that it’s easy to overlook: the most valuable tools come with a built-in set of constraints. In other words, <strong>the more I like what TypeDoc does with my code, more important it is to stick to code TypeDoc can actually digest.</strong></p>
+
+<p>So what’s the problem?</p>
+
+<p>To make any use of a Typescript class, I need to know a great deal about its internal structure. Therefore, TypeDoc takes great pains to document the properties, methods, and types related to any class.</p>
+
+<p>For example, here’s the top of the <code class="language-plaintext highlighter-rouge">EntityManager</code> class page generated by TypeDoc:</p>
+
+<figure class=""><a href="/assets/images/mixin-it-up-entity-manager-class.png" class="image-popup" title="TypeDoc API documentation for the EntityManager class.
+"><img src="/assets/images/mixin-it-up-entity-manager-class.png" alt="" /></a><figcaption>
+      <em>TypeDoc API documentation for the <code class="language-plaintext highlighter-rouge">EntityManager</code> class.</em>
+
+    </figcaption></figure>
+
+<p>But a mixin is not a class. It’s a <em>function</em> that returns a class. And TypeDoc treats functions very differently: you get the function signature and any extra documentation you might have added at the top of the function, but that’s it.</p>
+
+<p>Period.</p>
+
+<p>Here’s the top of the current <code class="language-plaintext highlighter-rouge">Loggable</code> mixin function page generated by TypeDoc:</p>
+
+<figure class=""><a href="/assets/images/mixin-it-up-loggable-mixin.png" class="image-popup" title="TypeDoc API documentation for the Loggable mixin function.
+"><img src="/assets/images/mixin-it-up-loggable-mixin.png" alt="" /></a><figcaption>
+      <em>TypeDoc API documentation for the <code class="language-plaintext highlighter-rouge">Loggable</code> mixin function.</em>
+
+    </figcaption></figure>
+
+<p><strong>Half of what the user actually cares about is completely missing:</strong> the <code class="language-plaintext highlighter-rouge">logger</code> and <code class="language-plaintext highlighter-rouge">loggableOptions</code> properties generated on the <code class="language-plaintext highlighter-rouge">Base</code> class by the mixin. Without this information, the documentation is incomplete and the mixin is effectively useless to anybody but yours truly.</p>
+
+<p>So, mixins… sweet implementation pattern, for sure. But given a mixin’s dual nature as both a function and a class, how can we make sure that the documentation generated by TypeDoc is complete?</p>
+
+<h2 id="the-problem-behind-the-problem">The Problem Behind the Problem</h2>
+
+<p>So far, I’ve presented this problem from a very particular perspective: <em>I have good reasons to do an advanced thing and am running up against the constraints of my toolbox</em>.</p>
+
+<p>But <a href="#what-is-good-code">way up at the top of this article</a>, we articulated a list of engineering principles that good code should adhere to. And one of those principles was <a href="https://en.wikipedia.org/wiki/Composition_over_inheritance"><strong>Composition over Inheritance</strong></a>.</p>
+
+<p>Ring a bell?</p>
+
+<p>Recall that the entire topic of mixins is only relevant because I wanted to overcome Typescript’s multiple-inheritance constraint and inherit functionality in a single class from both <code class="language-plaintext highlighter-rouge">Loggable</code> and <code class="language-plaintext highlighter-rouge">Batchable</code>. Mixins are definitely one answer… but, as the discussion above shows, they bring their own set of problems along for the ride.</p>
+
+<p><strong>So what if we shouldn’t even be having this discussion?</strong></p>
+
+<p>What if core engineering principles <em>really matter?</em> In that case, the compounding difficulties imposed by the mixin solution aren’t just a deeper set of problems to be solved. They’re a <a href="https://en.wikipedia.org/wiki/Design_smell"><em>design smell</em></a>, and stand as <strong>clear evidence that I’m barking up the wrong tree!</strong></p>
+
+<p>Mixins solve an <em>inheritance</em> problem. If I can figure out how to convert my inheritance problem into a <em>composition</em> problem, I won’t have <em>solved</em> my mixin documentation problem…</p>
+
+<p>I’ll have <em>eliminated</em> it.</p>
+
+<h2 id="the-composition-solution">The Composition Solution</h2>
+
+<p>If extreme difficulty can be a sign that you’re on the wrong track, then what about the reverse?</p>
+
+<p>Watch this:</p>
+
+<ul>
+  <li>
+    <p>The <code class="language-plaintext highlighter-rouge">Loggable</code> mixin generates a class with the <code class="language-plaintext highlighter-rouge">loggableOptions</code> and <code class="language-plaintext highlighter-rouge">logger</code> properties. <em>So rip the class out of its mixin function and publish it as a standalone class.</em></p>
+  </li>
+  <li>
+    <p>The <code class="language-plaintext highlighter-rouge">Batchable</code> mixin generates a class with the <code class="language-plaintext highlighter-rouge">batchableOptions</code> property and the <code class="language-plaintext highlighter-rouge">processBatch</code> method. <em>So rip the class out of the mixin function and publish it as a standalone class.</em></p>
+  </li>
+  <li>
+    <p><em>Pass an instance of each class as a constructor argument, store it as an instance property, and reference it on any class where it’s needed.</em></p>
+  </li>
+  <li>
+    <p>TypeDoc will document the properties and methods of the <code class="language-plaintext highlighter-rouge">Loggable</code> and <code class="language-plaintext highlighter-rouge">Batchable</code> classes as it would any other class. <em>Nothing to see here, move along.</em></p>
+  </li>
+</ul>
+
+<p>That’s it. <strong>That’s the whole solution.</strong></p>
+
+<p>Here’s what the combined implementation looks like now:</p>
+
+<figure class=""><img src="/assets/diagrams/mixin-it-up-composition.png" alt="" /><figcaption>
+      <em>Composition over inheritance!</em>
+
+    </figcaption></figure>
+
+<p>… at least it will once I’ve finished pushing things around this week.</p>
+
+<h2 id="cue-the-music">Cue The Music</h2>
+
+<p>So what’s the takeaway here?</p>
+
+<blockquote>
+  <p><strong>Sometimes, when you’re tangled up in a thorny problem, solving it is exactly the wrong answer.</strong></p>
+</blockquote>
+
+<p>Instead, take a step back and ask yourself if you’re even solving the right problem.</p>
+
+<p>By revisiting core engineering principles like <em>Composition over Inheritance</em>, we can eliminate unnecessary complexity and arrive at cleaner, more maintainable solutions.</p>
+
+<p>In other words, <strong>instead of hacking your way through the briar patch, spread your wings and fly!</strong></p>]]></content><author><name>Jason Williscroft</name></author><category term="design" /><category term="documentation" /><category term="entity-manager" /><category term="logging" /><category term="principles" /><category term="projects" /><category term="typescript" /><summary type="html"><![CDATA[Sometimes, when you’re tangled up in a thorny problem, solving it is exactly the wrong answer.]]></summary></entry><entry><title type="html">Loggable: A TypeScript Mixin for Generic Class Logging</title><link href="https://karmanivero.us/loggable-a-typescript-mixin-for-generic-class-logging/" rel="alternate" type="text/html" title="Loggable: A TypeScript Mixin for Generic Class Logging" /><published>2024-10-11T00:00:00+00:00</published><updated>2024-10-11T00:00:00+00:00</updated><id>https://karmanivero.us/loggable-a-typescript-mixin-for-generic-class-logging</id><content type="html" xml:base="https://karmanivero.us/loggable-a-typescript-mixin-for-generic-class-logging/"><![CDATA[<figure class="align-left drop-image">
+    <img src="https://raw.githubusercontent.com/karmaniverous/loggable/main/assets/loggable-square.jpg" />
+</figure>
+
+<p>Logging is an implementation decision that should be deferred as late as possible.</p>
+
+<p>When you are writing a Typescript or Javascript class, the <a href="https://github.com/karmaniverous/loggable"><code class="language-plaintext highlighter-rouge">Loggable</code></a> <a href="https://medium.com/@saif.adnan/typescript-mixin-ee962be3224d">mixin</a> permits the consumer of your class to:</p>
+
+<ul>
+  <li>
+    <p>Inject a preferred logging system into your class, so the logs generated by your class will be consistent with those generated by the rest of the application.</p>
+  </li>
+  <li>
+    <p>Decide at runtime what level of logging your class should produce.</p>
+  </li>
+</ul>
+
+<div class="button-row--left">
+    <a href="https://docs.karmanivero.us/loggable/" class="btn btn--info btn--large">API Docs</a>
+
+    <a href="https://github.com/karmaniverous/loggable" class="btn btn--primary btn--large"><i class="fa-brands fa-github fa-2xl"></i></a>
+
+    <a href="https://www.npmjs.com/package/@karmaniverous/loggable" class="btn btn--primary btn--large"><i class="fa-brands fa-npm fa-2xl"></i></a>
+
+</div>
+
+<div class="notice--info">
+  <p><strong>This article turned out to be the first of a three-part series!</strong> Here they are in sequence:</p>
+
+  <ol>
+    <li><strong>Loggable: A TypeScript Mixin for Generic Class Logging</strong> (you are here)</li>
+
+    <li><a href="/blog/mixin-it-up-picking-the-right-problem-to-solve">Mixin It Up: Picking the Right Problem to Solve</a></li>
+
+    <li><a href="/blog/composition-in-action-finishing-the-swing">Composition in Action: Finishing the Swing</a></li>
+
+  </ol>
+</div>
+
+<h2 id="why">Why?</h2>
+
+<p>If you’ve been following along, you will recall that I’m engaged in a Typescript refactor and major upgrade of my <a href="https://github.com/karmaniverous/entity-manager"><code class="language-plaintext highlighter-rouge">entity-manager</code></a> library.</p>
+
+<p>This library performs a <em>lot</em> of console logging, most of which is intended to support the development process. If you’re an <code class="language-plaintext highlighter-rouge">entity-manager</code> <em>user</em>, you don’t want to see that stuff, as it injects a great deal of unnecessary noise into the logging signal of your own application…</p>
+
+<p><em><strong>…until you do!</strong></em></p>
+
+<p>On the one hand, when things in the application go wrong, that internal logging can provide really helpful clues about what’s going on. On the other hand, you <em>really</em> want to be able to turn it off again when you’re done!</p>
+
+<p>Also: <em>what logger are you using?</em> Internally, <code class="language-plaintext highlighter-rouge">entity-manager</code> logs to <code class="language-plaintext highlighter-rouge">console</code>. But what if the external application logs to an S3 bucket via a <a href="https://github.com/winstonjs/winston">Winston</a> transport? If <code class="language-plaintext highlighter-rouge">entity-manager</code>’s internal logs don’t land alongside the rest of the application’s logs, they’re probably not worth the hassle.</p>
+
+<p>As it stands, <code class="language-plaintext highlighter-rouge">entity-manager</code> solves the signal-to-noise problem in a spectacularly ugly fashion: during the build process, a <a href="https://www.npmjs.com/package/@rollup/plugin-strip">Rollup plugin</a> just plain strips out all the internal logging.</p>
+
+<p>This entirely eliminates the option of turning the logging back on when needed, which isn’t good. Worse, it means that the production build is just that little bit more <em>different</em> from the source code I actually tested!</p>
+
+<p>Either way, it’s a terrible solution.</p>
+
+<h2 id="a-loggable-base-class">A Loggable Base Class?</h2>
+
+<p><code class="language-plaintext highlighter-rouge">entity-manager</code> is not the only library of mine with this logging problem; not even the only one within the <code class="language-plaintext highlighter-rouge">entity-manager</code> ecosystem. So as a first cut at the solution, I thought I’d create a <code class="language-plaintext highlighter-rouge">Loggable</code> base class that could be configured with an injected external logger like <code class="language-plaintext highlighter-rouge">winston</code>, and then inherit from it any class requiring logging services.</p>
+
+<p>But as soon as I had that thought, I realized that my code often uses <em>other</em> somewhat generic features that could <em>also</em> benefit from inclusion in a base class! For example: <code class="language-plaintext highlighter-rouge">entity-manager</code>’s custom DynamoDB client has a number of methods that perform batched, throttled operations against the database, and the batching-and-throttling logic is easily encapsulated into a class method.</p>
+
+<p>The problem is that some classes need logging, some need batching, and some need both. If I were writing C++, the answer would be to use multiple inheritance, but <strong>Typescript doesn’t support that!</strong></p>
+
+<h2 id="a-loggable-mixin">A Loggable Mixin!</h2>
+
+<p>A <a href="https://medium.com/@saif.adnan/typescript-mixin-ee962be3224d"><strong>mixin</strong></a> is a function that takes a class as an argument and returns another class. These are a very popular hack in the Typescript/Javascript world.</p>
+
+<p>For example, the <a href="https://github.com/karmaniverous/loggable"><code class="language-plaintext highlighter-rouge">Loggable</code></a> mixin takes the following arguments:</p>
+
+<ul>
+  <li>
+    <p>Some other class, or an empty class if you want to keep things simple.</p>
+  </li>
+  <li>
+    <p>A <code class="language-plaintext highlighter-rouge">logger</code> object like <code class="language-plaintext highlighter-rouge">console</code> or <code class="language-plaintext highlighter-rouge">winston</code>.</p>
+  </li>
+  <li>
+    <p>An <code class="language-plaintext highlighter-rouge">options</code> object that let the developer disable specific <code class="language-plaintext highlighter-rouge">logger</code> endpoints (or enable all of them). The <code class="language-plaintext highlighter-rouge">Loggable</code> mixin injects a <code class="language-plaintext highlighter-rouge">logger</code> property into the target class, and provides a <code class="language-plaintext highlighter-rouge">log</code> method that can be used to log messages at different levels.</p>
+  </li>
+</ul>
+
+<p>The return value is the original class… only it’s tarted up with an internal logger and some controls. So if I derive my class from <code class="language-plaintext highlighter-rouge">Loggable</code>, then inside my class I can write <code class="language-plaintext highlighter-rouge">this.logger.debug('debug message')</code> and the message will be logged to <code class="language-plaintext highlighter-rouge">console</code>, <code class="language-plaintext highlighter-rouge">winston</code>, or to whatever logger object I injected when I created my class… or not at all if I’ve disabled debug messages!</p>
+
+<p>And here’s the best part…</p>
+
+<p>Say I my class also needs batching functionality and I’ve created a <code class="language-plaintext highlighter-rouge">Batchable</code> mixin. Then I can do this:</p>
+
+<div class="language-ts highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">class</span> <span class="nx">MyClass</span> <span class="kd">extends</span> <span class="nx">Loggable</span><span class="p">(</span><span class="nx">Batchable</span><span class="p">())</span> <span class="p">{</span>
+  <span class="c1">// class definition</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>…and, like magic, <code class="language-plaintext highlighter-rouge">MyClass</code> will have both logging and batching functionality, even though Typescript only allows <em>single</em> inheritance!</p>
+
+<h2 id="installation">Installation</h2>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>npm i @karmaniverous/loggable
+</code></pre></div></div>
+
+<h2 id="default-use-case">Default Use Case</h2>
+
+<p>By default, <a href="https://docs.karmanivero.us/loggable/functions/loggable.Loggable.html"><code class="language-plaintext highlighter-rouge">Loggable</code></a> uses the <code class="language-plaintext highlighter-rouge">console</code> logger and disables <code class="language-plaintext highlighter-rouge">debug</code> logs.</p>
+
+<div class="language-ts highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">import</span> <span class="p">{</span> <span class="nx">Loggable</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">"</span><span class="s2">@karmaniverous/loggable</span><span class="dl">"</span><span class="p">;</span>
+
+<span class="c1">// Defaults to console logger &amp; disables debug logs.</span>
+<span class="kd">class</span> <span class="nx">MyClass</span> <span class="kd">extends</span> <span class="nx">Loggable</span><span class="p">()</span> <span class="p">{</span>
+  <span class="nx">myMethod</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">logger</span><span class="p">.</span><span class="nx">debug</span><span class="p">(</span><span class="dl">"</span><span class="s2">debug log</span><span class="dl">"</span><span class="p">);</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">logger</span><span class="p">.</span><span class="nx">info</span><span class="p">(</span><span class="dl">"</span><span class="s2">info log</span><span class="dl">"</span><span class="p">);</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="kd">const</span> <span class="nx">myInstance</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">MyClass</span><span class="p">();</span>
+
+<span class="c1">// By default, disables debug logs.</span>
+<span class="nx">myInstance</span><span class="p">.</span><span class="nx">myMethod</span><span class="p">();</span>
+<span class="c1">// info log</span>
+
+<span class="c1">// Change disabled logger endpoints on the fly.</span>
+<span class="nx">myInstance</span><span class="p">.</span><span class="nx">loggableOptions</span><span class="p">.</span><span class="nx">disabled</span> <span class="o">=</span> <span class="p">[</span><span class="dl">"</span><span class="s2">info</span><span class="dl">"</span><span class="p">];</span>
+<span class="nx">myInstance</span><span class="p">.</span><span class="nx">myMethod</span><span class="p">();</span>
+<span class="c1">// debug log</span>
+
+<span class="c1">// Use the instance logger directly.</span>
+<span class="nx">myInstance</span><span class="p">.</span><span class="nx">logger</span><span class="p">.</span><span class="nx">debug</span><span class="p">(</span><span class="dl">"</span><span class="s2">debug log</span><span class="dl">"</span><span class="p">);</span>
+<span class="nx">myInstance</span><span class="p">.</span><span class="nx">logger</span><span class="p">.</span><span class="nx">info</span><span class="p">(</span><span class="dl">"</span><span class="s2">info log</span><span class="dl">"</span><span class="p">);</span>
+<span class="c1">// debug log</span>
+
+<span class="c1">// Set `enableAll` to `true` to ignore disabled endpoints.</span>
+<span class="nx">myInstance</span><span class="p">.</span><span class="nx">loggableOptions</span><span class="p">.</span><span class="nx">enableAll</span> <span class="o">=</span> <span class="kc">true</span><span class="p">;</span>
+<span class="nx">myInstance</span><span class="p">.</span><span class="nx">myMethod</span><span class="p">();</span>
+<span class="c1">// debug log</span>
+<span class="c1">// info log</span>
+</code></pre></div></div>
+
+<h2 id="custom-base-class-logger--options">Custom Base Class, Logger &amp; Options</h2>
+
+<p>You can inject a custom logger into a custom base class with custom options.</p>
+
+<div class="language-ts highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">import</span> <span class="p">{</span> <span class="nx">Loggable</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">"</span><span class="s2">@karmaniverous/loggable</span><span class="dl">"</span><span class="p">;</span>
+<span class="k">import</span> <span class="nx">winston</span> <span class="k">from</span> <span class="dl">"</span><span class="s2">winston</span><span class="dl">"</span><span class="p">;</span>
+
+<span class="kd">class</span> <span class="nx">MyBaseClass</span> <span class="p">{</span>
+  <span class="k">protected</span> <span class="nx">repeat</span><span class="p">(</span><span class="nx">message</span><span class="p">:</span> <span class="kr">string</span><span class="p">,</span> <span class="nx">times</span><span class="p">:</span> <span class="kr">number</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="nb">Array</span><span class="p">.</span><span class="k">from</span><span class="p">({</span> <span class="na">length</span><span class="p">:</span> <span class="nx">times</span> <span class="p">})</span>
+      <span class="p">.</span><span class="nx">map</span><span class="p">(()</span> <span class="o">=&gt;</span> <span class="nx">message</span><span class="p">)</span>
+      <span class="p">.</span><span class="nx">join</span><span class="p">(</span><span class="dl">"</span><span class="s2"> </span><span class="dl">"</span><span class="p">);</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="c1">// Custom base class, logger &amp; options.</span>
+<span class="kd">class</span> <span class="nx">MyClass</span> <span class="kd">extends</span> <span class="nx">Loggable</span><span class="p">(</span><span class="nx">MyBaseClass</span><span class="p">,</span> <span class="nx">winston</span><span class="p">,</span> <span class="p">{</span>
+  <span class="na">disabled</span><span class="p">:</span> <span class="p">[</span><span class="dl">"</span><span class="s2">debug</span><span class="dl">"</span><span class="p">,</span> <span class="dl">"</span><span class="s2">info</span><span class="dl">"</span><span class="p">],</span>
+<span class="p">})</span> <span class="p">{</span>
+  <span class="nx">myMethod</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">logger</span><span class="p">.</span><span class="nx">debug</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">repeat</span><span class="p">(</span><span class="dl">"</span><span class="s2">debug log</span><span class="dl">"</span><span class="p">,</span> <span class="mi">2</span><span class="p">));</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">logger</span><span class="p">.</span><span class="nx">info</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">repeat</span><span class="p">(</span><span class="dl">"</span><span class="s2">info log</span><span class="dl">"</span><span class="p">,</span> <span class="mi">2</span><span class="p">));</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">logger</span><span class="p">.</span><span class="nx">error</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">repeat</span><span class="p">(</span><span class="dl">"</span><span class="s2">error log</span><span class="dl">"</span><span class="p">,</span> <span class="mi">2</span><span class="p">));</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="kd">const</span> <span class="nx">myInstance</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">MyClass</span><span class="p">();</span>
+
+<span class="nx">myInstance</span><span class="p">.</span><span class="nx">myMethod</span><span class="p">();</span>
+<span class="c1">// error log error log &lt;-- winston logger!</span>
+</code></pre></div></div>
+
+<h2 id="generic-logger--options">Generic Logger &amp; Options</h2>
+
+<p>You can create a generic class that <em>also</em> defers the choice of logger and options!</p>
+
+<div class="language-ts highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">import</span> <span class="p">{</span> <span class="nx">Loggable</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">"</span><span class="s2">@karmaniverous/loggable</span><span class="dl">"</span><span class="p">;</span>
+<span class="k">import</span> <span class="nx">winston</span> <span class="k">from</span> <span class="dl">"</span><span class="s2">winston</span><span class="dl">"</span><span class="p">;</span>
+
+<span class="c1">// This function returns an anonymous class that extends Loggable.</span>
+<span class="kd">function</span> <span class="nx">MyGenericClass</span><span class="o">&lt;</span><span class="nx">Logger</span> <span class="o">=</span> <span class="nx">Console</span><span class="o">&gt;</span><span class="p">(</span>
+  <span class="nx">logger</span><span class="p">:</span> <span class="nx">Logger</span> <span class="o">=</span> <span class="nx">console</span> <span class="k">as</span> <span class="nx">Logger</span><span class="p">,</span>
+  <span class="nx">options</span><span class="p">?:</span> <span class="nx">LoggableOptions</span> <span class="c1">// Use Loggable's default options if none provided.</span>
+<span class="p">)</span> <span class="p">{</span>
+  <span class="c1">// The anonymous class extends Loggable with the provided logger &amp; options.</span>
+  <span class="k">return</span> <span class="kd">class</span> <span class="kd">extends</span> <span class="nx">Loggable</span><span class="p">(</span><span class="kc">undefined</span><span class="p">,</span> <span class="nx">logger</span><span class="p">,</span> <span class="nx">options</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">myMethod</span><span class="p">()</span> <span class="p">{</span>
+      <span class="k">this</span><span class="p">.</span><span class="nx">logger</span><span class="p">.</span><span class="nx">debug</span><span class="p">(</span><span class="dl">"</span><span class="s2">debug log</span><span class="dl">"</span><span class="p">);</span>
+      <span class="k">this</span><span class="p">.</span><span class="nx">logger</span><span class="p">.</span><span class="nx">info</span><span class="p">(</span><span class="dl">"</span><span class="s2">info log</span><span class="dl">"</span><span class="p">);</span>
+      <span class="k">this</span><span class="p">.</span><span class="nx">logger</span><span class="p">.</span><span class="nx">error</span><span class="p">(</span><span class="dl">"</span><span class="s2">error log</span><span class="dl">"</span><span class="p">);</span>
+    <span class="p">}</span>
+  <span class="p">};</span>
+<span class="p">}</span>
+
+<span class="c1">// Generate a winston-logged version of my class...</span>
+<span class="kd">const</span> <span class="nx">MyWinstonLoggedClass</span> <span class="o">=</span> <span class="nx">MyGenericClass</span><span class="p">(</span><span class="nx">winston</span><span class="p">,</span> <span class="p">{</span>
+  <span class="na">disabled</span><span class="p">:</span> <span class="p">[</span><span class="dl">"</span><span class="s2">debug</span><span class="dl">"</span><span class="p">,</span> <span class="dl">"</span><span class="s2">info</span><span class="dl">"</span><span class="p">],</span>
+<span class="p">});</span>
+
+<span class="c1">// ...and instantiate it.</span>
+<span class="kd">const</span> <span class="nx">myInstance</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">MyWinstonLoggedClass</span><span class="p">();</span>
+
+<span class="nx">myInstance</span><span class="p">.</span><span class="nx">myMethod</span><span class="p">();</span>
+<span class="c1">// error log &lt;-- winston logger!</span>
+</code></pre></div></div>
+
+<p>One potential gotcha here: <code class="language-plaintext highlighter-rouge">this.logger</code> will support whatever methods the provided logger has.</p>
+
+<p>If you provide a logger that doesn’t have a <code class="language-plaintext highlighter-rouge">debug</code> method, for example, you will get a runtime error when you try to call <code class="language-plaintext highlighter-rouge">this.logger.debug</code>. So be sure to stick to commonly supported logger method names like <code class="language-plaintext highlighter-rouge">debug</code>, <code class="language-plaintext highlighter-rouge">info</code>, and <code class="language-plaintext highlighter-rouge">error</code>!</p>]]></content><author><name>Jason Williscroft</name></author><category term="design" /><category term="entity-manager" /><category term="logging" /><category term="projects" /><category term="typescript" /><summary type="html"><![CDATA[Logging is an implementation decision that should be deferred as late as possible. Loggable lets you defer it until runtime!]]></summary></entry></feed>

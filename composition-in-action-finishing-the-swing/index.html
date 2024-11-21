@@ -1,0 +1,1675 @@
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.26.2 by Michael Rose
+  Copyright 2013-2024 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
+-->
+
+<html lang="en-US" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin _includes/seo.html --><title>Composition in Action: Finishing the Swing - some words</title>
+<meta name="description" content="In software engineering, what look to be the easy parts often turn out to be the hard parts. If you’re lucky, the reverse is also true, but don’t count on it.">
+
+
+  <meta name="author" content="Jason Williscroft">
+  
+  <meta property="article:author" content="Jason Williscroft">
+  
+
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="en_US">
+<meta property="og:site_name" content="some words">
+<meta property="og:title" content="Composition in Action: Finishing the Swing">
+<meta property="og:url" content="https://karmanivero.us/composition-in-action-finishing-the-swing/">
+
+
+  <meta property="og:description" content="In software engineering, what look to be the easy parts often turn out to be the hard parts. If you’re lucky, the reverse is also true, but don’t count on it.">
+
+
+
+  <meta property="og:image" content="https://github.com/karmaniverous/controlled-proxy/raw/main/assets/controlled-proxy-banner.jpg">
+
+
+
+  <meta name="twitter:site" content="@karmaniverous">
+  <meta name="twitter:title" content="Composition in Action: Finishing the Swing">
+  <meta name="twitter:description" content="In software engineering, what look to be the easy parts often turn out to be the hard parts. If you’re lucky, the reverse is also true, but don’t count on it.">
+  <meta name="twitter:url" content="https://karmanivero.us/composition-in-action-finishing-the-swing/">
+
+  
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content="https://github.com/karmaniverous/controlled-proxy/raw/main/assets/controlled-proxy-banner.jpg">
+  
+
+  
+
+
+
+  <meta property="article:published_time" content="2024-10-16T00:00:00+00:00">
+
+
+
+
+
+
+<link rel="canonical" href="https://karmanivero.us/composition-in-action-finishing-the-swing/">
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- end _includes/seo.html -->
+
+
+
+  <link href="/feed.xml" type="application/atom+xml" rel="alternate" title="some words Feed">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script type="text/javascript">
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+  window.enable_copy_code_button = true;
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/assets/css/main.css">
+<link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@latest/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@latest/css/all.min.css"></noscript>
+
+
+
+    <link
+  rel="apple-touch-icon"
+  sizes="180x180"
+  href="/assets/favicon/apple-touch-icon.png" />
+<link
+  rel="icon"
+  type="image/png"
+  sizes="32x32"
+  href="/assets/favicon/favicon-32x32.png" />
+<link
+  rel="icon"
+  type="image/png"
+  sizes="16x16"
+  href="/assets/favicon/favicon-16x16.png" />
+<link rel="manifest" href="/assets/favicon/site.webmanifest" />
+<link
+  rel="mask-icon"
+  href="/assets/favicon/safari-pinned-tab.svg"
+  color="#5bbad5" />
+<link rel="shortcut icon" href="/assets/favicon/favicon.ico" />
+<meta name="msapplication-TileColor" content="#2b5797" />
+<meta name="msapplication-config" content="/assets/favicon/browserconfig.xml" />
+<meta name="theme-color" content="#ffffff" />
+
+
+
+<!-- Mathjax Support -->
+<script
+  type="text/javascript"
+  async
+  src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+  </head>
+
+  <body class="layout--single" dir="ltr">
+    <nav class="skip-links">
+  <ul>
+    <li><a href="#site-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">Skip to footer</a></li>
+  </ul>
+</nav>
+
+    
+
+<div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        
+        <a class="site-title" href="/">
+          some words
+          <span class="site-subtitle">many of them true</span>
+        </a>
+        <ul class="visible-links"><li class="masthead__menu-item">
+              <a
+                href="/projects/"
+                
+                
+              >Projects</a>
+            </li><li class="masthead__menu-item">
+              <a
+                href="/toolkits/"
+                
+                
+              >Toolkits</a>
+            </li><li class="masthead__menu-item">
+              <a
+                href="/bali/"
+                
+                
+              >Bali</a>
+            </li><li class="masthead__menu-item">
+              <a
+                href="/topics/"
+                
+                
+              >Topics</a>
+            </li><li class="masthead__menu-item">
+              <a
+                href="/blog/"
+                
+                
+              >Archive</a>
+            </li></ul>
+        
+        <button class="search__toggle" type="button">
+          <span class="visually-hidden">Toggle search</span>
+          <i class="fas fa-search"></i>
+        </button>
+        
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">Toggle menu</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+    <div class="initial-content">
+      
+
+
+
+
+
+<div id="main" role="main">
+  
+  <div class="sidebar sticky">
+  
+
+
+<div itemscope itemtype="https://schema.org/Person" class="h-card">
+
+  
+    <div class="author__avatar">
+      <a href="https://karmanivero.us/">
+        <img src="/assets/images/bio-photo.jpg" alt="Jason Williscroft" itemprop="image" class="u-photo">
+      </a>
+    </div>
+  
+
+  <div class="author__content">
+    <h3 class="author__name p-name" itemprop="name">
+      <a class="u-url" rel="me" href="https://karmanivero.us/" itemprop="url">Jason Williscroft</a>
+    </h3>
+    
+      <div class="author__bio p-note" itemprop="description">
+        <p><em>resume bullets<br />may read differently at the<br />threshold of heaven</em></p>
+
+      </div>
+    
+  </div>
+
+  <div class="author__urls-wrapper">
+    <button class="btn btn--inverse">Contact</button>
+    <ul class="author__urls social-icons">
+      
+
+      
+        
+          
+            <li><a href="https://twitter.com/karmaniverous" rel="nofollow noopener noreferrer me" itemprop="sameAs"><i class="fa-brands fa-square-x-twitter" aria-hidden="true"></i><span class="label">X</span></a></li>
+          
+        
+          
+            <li><a href="https://techhub.social/@karmaniverous" rel="nofollow noopener noreferrer me" itemprop="sameAs"><i class="fa-brands fa-mastodon" aria-hidden="true"></i><span class="label">Mastodon</span></a></li>
+          
+        
+          
+            <li><a href="https://github.com/karmaniverous" rel="nofollow noopener noreferrer me" itemprop="sameAs"><i class="fa-brands fa-github" aria-hidden="true"></i><span class="label">GitHub</span></a></li>
+          
+        
+          
+            <li><a href="https://www.linkedin.com/in/jscroft/" rel="nofollow noopener noreferrer me" itemprop="sameAs"><i class="fa-brands fa-linkedin" aria-hidden="true"></i><span class="label">LinkedIn</span></a></li>
+          
+        
+          
+            <li><a href="https://wa.me/17737500338" rel="nofollow noopener noreferrer me" itemprop="sameAs"><i class="fa-brands fa-whatsapp" aria-hidden="true"></i><span class="label">WhatsApp</span></a></li>
+          
+        
+          
+            <li><a href="https://t.me/karmaniverous" rel="nofollow noopener noreferrer me" itemprop="sameAs"><i class="fa-brands fa-telegram" aria-hidden="true"></i><span class="label">Telegram</span></a></li>
+          
+        
+          
+            <li><a href="https://calendly.com/karmaniverous" rel="nofollow noopener noreferrer me" itemprop="sameAs"><i class="fa-regular fa-calendar-plus" aria-hidden="true"></i><span class="label">Meet</span></a></li>
+          
+        
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      <!--
+  <li>
+    <a href="http://link-to-whatever-social-network.com/user/" itemprop="sameAs" rel="nofollow noopener noreferrer me">
+      <i class="fas fa-fw" aria-hidden="true"></i> Custom Social Profile Link
+    </a>
+  </li>
+-->
+    </ul>
+  </div>
+</div>
+
+  
+  </div>
+
+
+
+  <article
+    class="page"
+    itemscope
+    itemtype="https://schema.org/CreativeWork"
+    >
+    <meta itemprop="headline" content="Composition in Action: Finishing the Swing">
+    <meta itemprop="description" content="In software engineering, what look to be the easy parts often turn out to be the hard parts. If you’re lucky, the reverse is also true, but don’t count on it.">
+    <meta itemprop="datePublished" content="2024-10-16T00:00:00+00:00">
+    
+
+    <div class="page__inner-wrap">
+      
+        <header>
+          <h1
+              id="page-title"
+              class="page__title"
+              itemprop="headline">
+              <a href="https://karmanivero.us/composition-in-action-finishing-the-swing/" itemprop="url">Composition in Action: Finishing the Swing
+</a>
+            </h1>
+          
+
+  <p class="page__meta">
+    
+      
+      <span class="page__meta-date">
+        <i
+          class="far fa-calendar-alt"
+          aria-hidden="true"
+        ></i>
+        
+        <time datetime="2024-10-16T00:00:00+00:00">October 16, 2024</time>
+      </span>
+    
+
+    <span class="page__meta-sep"></span>
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i
+          class="far fa-clock"
+          aria-hidden="true"
+        ></i>
+        
+          9
+          minute read
+        
+      </span>
+    
+  </p>
+
+
+        </header>
+      
+
+      <section class="page__content" itemprop="text">
+        
+          <aside class="sidebar__right sticky">
+            <nav class="toc">
+              <header>
+                <h4 class="nav__title">
+                  <i class="fas fa-file-alt"></i>
+                  On this page</h4>
+              </header>
+              <ul class="toc__menu"><li><a href="#logging-requirements">Logging Requirements</a></li><li><a href="#the-proxy-object">The Proxy Object</a></li><li><a href="#solving-the-problem-from-both-ends">Solving The Problem From Both Ends</a></li><li><a href="#introducing-controlledproxy">Introducing controlledProxy</a><ul><li><a href="#installation">Installation</a></li><li><a href="#basic-usage">Basic Usage</a></li><li><a href="#runtime-control">Runtime Control</a></li><li><a href="#proxy-injection">Proxy Injection</a></li></ul></li><li><a href="#conclusion">Conclusion</a></li></ul>
+            </nav>
+          </aside>
+        
+        <figure class="align-left drop-image">
+    <img src="https://github.com/karmaniverous/controlled-proxy/raw/main/assets/controlled-proxy-square.jpg" />
+</figure>
+
+<p>In software engineering, what look to be the easy parts often turn out to be the hard parts. If you’re lucky, the reverse is also true, but don’t count on it. 🤣</p>
+
+<p>This has certainly been the case with the Typescript refactor of <a href="https://github.com/karmaniverous/entity-manager"><code class="language-plaintext highlighter-rouge">entity-manager</code></a>, which I proclaimed <a href="https://karmanivero.us/blog/code-complete-a-day-in-the-life-of-a-product/">largely code complete</a>, oh, about a month ago. The job since then was supposed to be largely about documentation, testing, and encapsulating key <a href="https://en.wikipedia.org/wiki/Cross-cutting_concern">cross-cutting concerns</a> like injectable logging.</p>
+
+<p>Well, if you’ve been following along, <strong>you know that plan blew up in my face</strong>.</p>
+
+<div class="notice--info">
+  <p><strong>This article turned out to be the last of a three-part series!</strong> Here they are in sequence:</p>
+
+  <ol>
+    <li><a href="/blog/loggable-a-typescript-mixin-for-generic-class-logging">Loggable: A TypeScript Mixin for Generic Class Logging</a></li>
+
+    <li><a href="/blog/mixin-it-up-picking-the-right-problem-to-solve">Mixin It Up: Picking the Right Problem to Solve</a></li>
+
+    <li><strong>Composition in Action: Finishing the Swing</strong> (you are here)</li>
+
+  </ol>
+</div>
+
+<p>First I thought I’d encapsulate logging, batching, and related services in some reusable base classes.</p>
+
+<p>This led me head-first into Typescript’s single-inheritance constraint, whereupon I decided to <a href="/blog/loggable-a-typescript-mixin-for-generic-class-logging/">implement these services as mixins</a>.</p>
+
+<p>That produced the<a href="https://github.com/karmaniverous/loggable"> <code class="language-plaintext highlighter-rouge">loggable</code></a> library, and seemed to work nicely… until I looked at my generated documentation and realized that <a href="/blog/mixin-it-up-picking-the-right-problem-to-solve/">TypeDoc doesn’t know what to to with a mixin</a>. Plus the patterns I’d need to <em>consume</em> those mixins were exceedingly ugly. Not a good sign.</p>
+
+<p>But if you click that last link, you’ll also see that I read this result as a strong argument favoring <a href="https://en.wikipedia.org/wiki/Composition_over_inheritance"><em>Composition over Inheritance</em></a>, which is one of those core engineering principles I so often wish I’d been paying attention to all along.</p>
+
+<blockquote>
+  <p><strong>Epiphany #1:</strong> We thought we were solving an <em>inheritance</em> problem, but we’re really solving a <em>composition</em> problem!</p>
+</blockquote>
+
+<p>Now I’m an old guy, which means that pattern-recognition is more of a thing for me than for a younger engineer. It ain’t magic: I’ve just probably seen a lot more patterns than you have.</p>
+
+<p>So here’s a rule of thumb that works pretty well for me: <strong>Things get easier and more generic when I’m on the right path!</strong></p>
+
+<p>Case in point: once I decided that composition was the <em>only</em> way I was going to approach the <code class="language-plaintext highlighter-rouge">loggable</code> problem, the solution fell right into my lap.</p>
+
+<p>And it’s <em>awesome</em>.</p>
+
+<h2 id="logging-requirements">Logging Requirements</h2>
+
+<p>Let’s forget about the <code class="language-plaintext highlighter-rouge">batchable</code> stuff and focus strictly on <code class="language-plaintext highlighter-rouge">loggable</code>. As a recap from previous articles, here’s what we are trying to accomplish.</p>
+
+<p>Say we want to write a widget that does some internal logging. Then…</p>
+
+<ul>
+  <li>
+    <p><strong>Inside our widget, the logger should behave in a familiar way.</strong> So we should be able to cherry-pick the behavior we want from some default logger (e.g. <code class="language-plaintext highlighter-rouge">console</code>).</p>
+  </li>
+  <li>
+    <p><strong>We <em>don’t</em> want to have to specify the <em>actual</em> logger our widget uses until runtime.</strong> So we should be able to inject it from the outside, and as long as we inject a logger that’s compatible with the bits we were using on the inside, it should work.</p>
+  </li>
+  <li>
+    <p><strong>We <em>don’t</em> want to have to wait until runtime to discover we’ve passed our widget an inadequate logger.</strong> So the whole thing should be <a href="https://clouddevs.com/typescript/type-safety/">type-safe</a>, and an incompatible logger should throw a compile-time Typescript error.</p>
+  </li>
+  <li>
+    <p><strong>If our widget depends on other widgets that also log, it should be able to pass its logger on to them.</strong> So this injectability characteristic should be commutative.</p>
+  </li>
+  <li>
+    <p><strong>We want to be able to alter the behavior of the logger from <em>outside</em> our widget, for example to turn off annoying internal debug logging but leave error logging intact, <em>without</em> affecting external logging.</strong> So the <em>logger</em> and the associated <em>configuration</em> should be distinct. I should be able to pass the same logger around with different configurations in different places.</p>
+  </li>
+  <li>
+    <p><strong>Logging engines are expensive, so whichever one we are using, we never want to have more than one of them.</strong> So I should pass my logger around <em>by reference</em>, and I should <em>definitely</em> not be creating any clones of the thing, whether deep or shallow!</p>
+  </li>
+</ul>
+
+<p>On the face of it, that seems like a tall order. But there’s something interesting about that list of requirements, and I wonder if you picked up on it.</p>
+
+<p>Give up? <strong>Except for the examples I gave, <em>none</em> of those requirements are intrinsically specific to logging!</strong> They could just as usefully apply to <em>any</em> injected dependency.</p>
+
+<blockquote>
+  <p><strong>Epiphany #2:</strong> We’re not solving a <em>logging</em> problem. We’re solving a <em>dependency injection</em> problem!</p>
+</blockquote>
+
+<p>Groovy.</p>
+
+<p>And once you start digging around for approaches to dependency injection via composition in Javascript, it won’t be too long until you run into the <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Proxy">Proxy object</a>.</p>
+
+<h2 id="the-proxy-object">The Proxy Object</h2>
+
+<p>A Javascript Proxy object enables you to create a proxy for another object, which can intercept and redefine fundamental operations for that object.</p>
+
+<p>To illustrate, say you tried to run this code:</p>
+
+<div class="language-ts highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">console</span><span class="p">.</span><span class="nx">foo</span><span class="p">(</span><span class="dl">'</span><span class="s1">bar); &lt;== oops!
+</span></code></pre></div></div>
+
+<p>You’d get a <code class="language-plaintext highlighter-rouge">TypeError</code> because <code class="language-plaintext highlighter-rouge">console</code> doesn’t have a <code class="language-plaintext highlighter-rouge">foo</code> method. But what if you could intercept that call and do something else with it?</p>
+
+<div class="language-ts highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">consoleProxy</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">Proxy</span><span class="p">(</span><span class="nx">console</span><span class="p">,</span> <span class="p">{</span>
+  <span class="na">get</span><span class="p">:</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">target</span><span class="p">,</span> <span class="nx">prop</span><span class="p">,</span> <span class="nx">receiver</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nx">prop</span> <span class="k">in</span> <span class="nx">target</span><span class="p">)</span> <span class="p">{</span>
+      <span class="k">return</span> <span class="nx">target</span><span class="p">[</span><span class="nx">prop</span><span class="p">];</span>
+    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+      <span class="k">return</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span>
+          <span class="s2">`You tried to call </span><span class="p">${</span><span class="nx">prop</span><span class="p">}</span><span class="s2"> on console, but it doesn't exist!`</span>
+        <span class="p">);</span>
+      <span class="p">};</span>
+    <span class="p">}</span>
+  <span class="p">},</span>
+<span class="p">});</span>
+</code></pre></div></div>
+
+<p>Now if you run the same code:</p>
+
+<div class="language-ts highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">consoleProxy</span><span class="p">.</span><span class="nx">foo</span><span class="p">(</span><span class="dl">'</span><span class="s1">bar);
+// You tried to call foo on console, but it doesn</span><span class="dl">'</span><span class="nx">t</span> <span class="nx">exist</span><span class="o">!</span>
+</code></pre></div></div>
+
+<p><strong><em>How cool is that??</em></strong></p>
+
+<p>You can think of a Proxy object as a kind of <em>middleware</em> that sits between your code and the object you’re trying to interact with. It can intercept and modify the behavior of that object in all sorts of ways.</p>
+
+<p>And here’s an important point: the Proxy object <em>does not care</em> what kind of object it proxies! It will expose whatever features the underlying object has, with whatever modifications and extensions you care to make.</p>
+
+<p>So how does this help us with our dependency injection problem?</p>
+
+<blockquote>
+  <p><strong>Epiphany #3:</strong> A Proxy object is a universal dependency injector!</p>
+</blockquote>
+
+<h2 id="solving-the-problem-from-both-ends">Solving The Problem From Both Ends</h2>
+
+<p>We have two key requirements that are kind of opposed to one another:</p>
+
+<ul>
+  <li>
+    <p>From the <em>inside</em>, our logger should appear exactly the way we want it to, but…</p>
+  </li>
+  <li>
+    <p>From the <em>outside</em>, it should be whatever we inject. As long as it’s compatible.</p>
+  </li>
+</ul>
+
+<p>So here’s a strategy:</p>
+
+<ol>
+  <li>
+    <p><strong>Make our widget require an injected dependency (like a proxied logger) with a particular shape</strong>, and complain if we give it something different.</p>
+  </li>
+  <li>
+    <p><strong>Create a function that proxies a dependency (like a logger)</strong>, tries to cram it into some shape alongside a control configuration, and complains if the dependency won’t fit.</p>
+  </li>
+  <li>
+    <p><strong>Introduce the proxied dependency to our widget</strong>. if they get along, then the widget will play with its internal proxy, and the proxy will play with the external dependency.</p>
+  </li>
+</ol>
+
+<p>Still groovy! And, although the application I had in mind was logging, this thing would work for <em>any</em> injectable dependency!</p>
+
+<p>All I had to do was build it.</p>
+
+<h2 id="introducing-controlledproxy">Introducing <code class="language-plaintext highlighter-rouge">controlledProxy</code></h2>
+
+<p><code class="language-plaintext highlighter-rouge">controlledProxy</code> allows the behavior of any object to be modified &amp; controlled non-destructively at runtime. It’s a <strong>universal dependency injector</strong> that can be used to solve a wide variety of problems.</p>
+
+<figure class=""><a href="https://github.com/karmaniverous/controlled-proxy/raw/main/assets/controlled-proxy.png" class="image-popup" title="controlledProxy in a nutshell.
+"><img src="https://github.com/karmaniverous/controlled-proxy/raw/main/assets/controlled-proxy.png" alt="" /></a><figcaption>
+      <em><code class="language-plaintext highlighter-rouge">controlledProxy</code> in a nutshell.</em>
+
+    </figcaption></figure>
+
+<div class="button-row--left">
+    <a href="https://docs.karmanivero.us/controlled-proxy/" class="btn btn--info btn--large">API Docs</a>
+
+    <a href="https://github.com/karmaniverous/controlled-proxy" class="btn btn--primary btn--large"><i class="fa-brands fa-github fa-2xl"></i></a>
+
+    <a href="https://www.npmjs.com/package/@karmaniverous/controlled-proxy" class="btn btn--primary btn--large"><i class="fa-brands fa-npm fa-2xl"></i></a>
+
+</div>
+
+<h3 id="installation">Installation</h3>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>npm <span class="nb">install</span> @karmaniverous/controlled-proxy
+</code></pre></div></div>
+
+<h3 id="basic-usage">Basic Usage</h3>
+
+<p>The <code class="language-plaintext highlighter-rouge">controlledProxy</code> function creates a type-safe proxy of any <code class="language-plaintext highlighter-rouge">object</code>.</p>
+
+<p>The <a href="https://docs.karmanivero.us/controlled-proxy/interfaces/controlled_proxy.ControlledProxyOptions.html"><code class="language-plaintext highlighter-rouge">options</code></a> parameter is an object with the following properties:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Property</th>
+      <th>Type</th>
+      <th>Default</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">defaultControls</code></td>
+      <td><code class="language-plaintext highlighter-rouge">Record&lt;PropertyKey, boolean&gt;</code></td>
+      <td><code class="language-plaintext highlighter-rouge">{}</code></td>
+      <td>A map of controlled property keys to boolean values. When this value is <code class="language-plaintext highlighter-rouge">true</code> or the property is uncontrolled, the property will behave normally. When this value is false, the property will execute the disabled member handler or return <code class="language-plaintext highlighter-rouge">undefined</code>.</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">defaultDisabled-MemberHandler</code></td>
+      <td><a href="https://docs.karmanivero.us/controlled-proxy/types/controlled_proxy.DisabledMemberHandler.html"><code class="language-plaintext highlighter-rouge">DisabledMemberHandler</code></a></td>
+      <td><code class="language-plaintext highlighter-rouge">() =&gt; undefined</code></td>
+      <td>A function that is called when a disabled controlled property is accessed.</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">target</code></td>
+      <td><code class="language-plaintext highlighter-rouge">object</code></td>
+      <td><em>required</em></td>
+      <td>The object to proxy.</td>
+    </tr>
+  </tbody>
+</table>
+
+<div class="language-ts highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">import</span> <span class="p">{</span> <span class="nx">controlledProxy</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">"</span><span class="s2">@karmaniverous/controlled-proxy</span><span class="dl">"</span><span class="p">;</span>
+
+<span class="c1">// Create a controlled console logger. Info messages are disabled by default.</span>
+<span class="kd">const</span> <span class="nx">controlledConsoleLogger</span> <span class="o">=</span> <span class="nx">controlledProxy</span><span class="p">({</span>
+  <span class="na">defaultControls</span><span class="p">:</span> <span class="p">{</span> <span class="na">debug</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span> <span class="na">info</span><span class="p">:</span> <span class="kc">false</span> <span class="p">},</span>
+  <span class="na">target</span><span class="p">:</span> <span class="nx">console</span><span class="p">,</span>
+<span class="p">});</span>
+
+<span class="c1">// Log messages.</span>
+<span class="nx">controlledConsoleLogger</span><span class="p">.</span><span class="nx">debug</span><span class="p">(</span><span class="dl">"</span><span class="s2">debug log</span><span class="dl">"</span><span class="p">);</span>
+<span class="nx">controlledConsoleLogger</span><span class="p">.</span><span class="nx">info</span><span class="p">(</span><span class="dl">"</span><span class="s2">info log</span><span class="dl">"</span><span class="p">);</span>
+<span class="c1">// &gt; debug log</span>
+</code></pre></div></div>
+
+<h3 id="runtime-control">Runtime Control</h3>
+
+<p>The proxy object has two special properties, keyed with symbols that can be imported from the package:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Property</th>
+      <th>Type</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">[controlProp]</code></td>
+      <td><code class="language-plaintext highlighter-rouge">Record&lt;PropertyKey, boolean&gt;</code></td>
+      <td>A map of controlled property keys to boolean values. When this value is <code class="language-plaintext highlighter-rouge">true</code> or the property is uncontrolled, the property will behave normally. When this value is false, the property will execute the disabled member handler or return <code class="language-plaintext highlighter-rouge">undefined</code>.</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">[disabledMember-HandlerProp]</code></td>
+      <td><a href="https://docs.karmanivero.us/controlled-proxy/types/controlled_proxy.DisabledMemberHandler.html"><code class="language-plaintext highlighter-rouge">DisabledMemberHandler</code></a></td>
+      <td>A function that is called when a disabled controlled property is accessed. Defaults to <code class="language-plaintext highlighter-rouge">() =&gt; undefined</code>.</td>
+    </tr>
+  </tbody>
+</table>
+
+<div class="language-ts highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">import</span> <span class="p">{</span>
+  <span class="nx">controlledProxy</span><span class="p">,</span>
+  <span class="nx">controlProp</span><span class="p">,</span>
+  <span class="nx">disabledMemberHandlerProp</span><span class="p">,</span>
+<span class="p">}</span> <span class="k">from</span> <span class="dl">"</span><span class="s2">@karmaniverous/controlled-proxy</span><span class="dl">"</span><span class="p">;</span>
+
+<span class="c1">// Create a controlled console logger. Info messages are disabled by default.</span>
+<span class="kd">const</span> <span class="nx">controlledConsoleLogger</span> <span class="o">=</span> <span class="nx">controlledProxy</span><span class="p">({</span>
+  <span class="na">defaultControls</span><span class="p">:</span> <span class="p">{</span> <span class="na">debug</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span> <span class="na">info</span><span class="p">:</span> <span class="kc">false</span> <span class="p">},</span>
+  <span class="na">target</span><span class="p">:</span> <span class="nx">console</span><span class="p">,</span>
+<span class="p">});</span>
+
+<span class="c1">// Disable debug messages &amp; enable info messages at runtime.</span>
+<span class="nx">controlledConsoleLogger</span><span class="p">[</span><span class="nx">controlProp</span><span class="p">].</span><span class="nx">debug</span> <span class="o">=</span> <span class="kc">false</span><span class="p">;</span>
+<span class="nx">controlledConsoleLogger</span><span class="p">[</span><span class="nx">controlProp</span><span class="p">].</span><span class="nx">info</span> <span class="o">=</span> <span class="kc">true</span><span class="p">;</span>
+
+<span class="c1">// Log messages.</span>
+<span class="nx">controlledConsoleLogger</span><span class="p">.</span><span class="nx">debug</span><span class="p">(</span><span class="dl">"</span><span class="s2">debug log</span><span class="dl">"</span><span class="p">);</span>
+<span class="nx">controlledConsoleLogger</span><span class="p">.</span><span class="nx">info</span><span class="p">(</span><span class="dl">"</span><span class="s2">info log</span><span class="dl">"</span><span class="p">);</span>
+<span class="c1">// &gt; info log</span>
+
+<span class="c1">// Change the disabled member handler.</span>
+<span class="nx">controlledConsoleLogger</span><span class="p">[</span><span class="nx">disabledMemberHandlerProp</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span>
+  <span class="nx">target</span><span class="p">:</span> <span class="nx">Console</span><span class="p">,</span>
+  <span class="nx">prop</span><span class="p">:</span> <span class="nx">PropertyKey</span>
+<span class="p">)</span> <span class="o">=&gt;</span> <span class="nx">target</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">`Accessed disabled member: </span><span class="p">${</span><span class="nx">prop</span><span class="p">.</span><span class="nx">toString</span><span class="p">()}</span><span class="s2">`</span><span class="p">);</span>
+
+<span class="c1">// Log messages again.</span>
+<span class="nx">controlledConsoleLogger</span><span class="p">.</span><span class="nx">debug</span><span class="p">(</span><span class="dl">"</span><span class="s2">debug log</span><span class="dl">"</span><span class="p">);</span>
+<span class="nx">controlledConsoleLogger</span><span class="p">.</span><span class="nx">info</span><span class="p">(</span><span class="dl">"</span><span class="s2">info log</span><span class="dl">"</span><span class="p">);</span>
+<span class="c1">// &gt; Accessed disabled member: debug</span>
+<span class="c1">// &gt; info log</span>
+</code></pre></div></div>
+
+<h3 id="proxy-injection">Proxy Injection</h3>
+
+<p>Here’s an example of the real power of the library: <strong>let’s inject a controlled proxy into a class!</strong></p>
+
+<div class="language-ts highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">import</span> <span class="p">{</span>
+  <span class="nx">controlledProxy</span><span class="p">,</span>
+  <span class="nx">controlProp</span><span class="p">,</span>
+<span class="p">}</span> <span class="k">from</span> <span class="dl">"</span><span class="s2">@karmaniverous/controlled-proxy</span><span class="dl">"</span><span class="p">;</span>
+
+<span class="c1">// Create a class that accepts a proxied logger as a constructor argument.</span>
+<span class="kd">class</span> <span class="nx">MyClass</span> <span class="p">{</span>
+  <span class="c1">// Proxied logger must be compatible with console.debug &amp; console.info.</span>
+  <span class="kd">constructor</span><span class="p">(</span><span class="k">private</span> <span class="nx">logger</span><span class="p">:</span> <span class="nb">Pick</span><span class="o">&lt;</span><span class="nx">Console</span><span class="p">,</span> <span class="dl">"</span><span class="s2">debug</span><span class="dl">"</span> <span class="o">|</span> <span class="dl">"</span><span class="s2">info</span><span class="dl">"</span><span class="o">&gt;</span><span class="p">)</span> <span class="p">{}</span>
+
+  <span class="c1">// Exercise the proxied logger.</span>
+  <span class="nx">myMethod</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">logger</span><span class="p">.</span><span class="nx">debug</span><span class="p">(</span><span class="dl">"</span><span class="s2">debug log</span><span class="dl">"</span><span class="p">);</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">logger</span><span class="p">.</span><span class="nx">info</span><span class="p">(</span><span class="dl">"</span><span class="s2">info log</span><span class="dl">"</span><span class="p">);</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="c1">// Create a controlled console logger, with all messages enabled by default</span>
+<span class="c1">// and a custom disabled member handler.</span>
+<span class="kd">const</span> <span class="nx">controlledConsoleLogger</span> <span class="o">=</span> <span class="nx">controlledProxy</span><span class="p">({</span>
+  <span class="na">defaultControls</span><span class="p">:</span> <span class="p">{</span> <span class="na">debug</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span> <span class="na">info</span><span class="p">:</span> <span class="kc">true</span> <span class="p">},</span>
+  <span class="na">defaultDisabledMemberHandler</span><span class="p">:</span> <span class="p">(</span>
+    <span class="na">target</span><span class="p">:</span> <span class="nx">Console</span><span class="p">,</span>
+    <span class="na">prop</span><span class="p">:</span> <span class="nx">PropertyKey</span>
+  <span class="p">)</span> <span class="o">=&gt;</span> <span class="nx">target</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">`Accessed disabled member: </span><span class="p">${</span><span class="nx">prop</span><span class="p">.</span><span class="nx">toString</span><span class="p">()}</span><span class="s2">`</span><span class="p">),</span>
+  <span class="na">target</span><span class="p">:</span> <span class="nx">console</span><span class="p">,</span>
+<span class="p">});</span>
+
+<span class="c1">// Instantiate the class with the controlled console logger.</span>
+<span class="kd">const</span> <span class="nx">myConsoleInstance</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">MyClass</span><span class="p">(</span><span class="nx">controlledConsoleLogger</span><span class="p">);</span>
+
+<span class="c1">// Disable console debug messages at runtime.</span>
+<span class="nx">controlledConsoleLogger</span><span class="p">[</span><span class="nx">controlProp</span><span class="p">].</span><span class="nx">debug</span> <span class="o">=</span> <span class="kc">false</span><span class="p">;</span>
+
+<span class="c1">// Exercise the proxied console logger from within the class.</span>
+<span class="nx">myConsoleInstance</span><span class="p">.</span><span class="nx">myMethod</span><span class="p">();</span>
+<span class="c1">// &gt; Accessed disabled member: debug</span>
+<span class="c1">// &gt; info log</span>
+
+<span class="c1">// Create an equivalent controlled winston logger, with all messages enabled by</span>
+<span class="c1">// default and a custom disabled member handler.</span>
+<span class="k">import</span> <span class="p">{</span> <span class="nx">createLogger</span><span class="p">,</span> <span class="kd">type</span> <span class="nx">Logger</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">"</span><span class="s2">winston</span><span class="dl">"</span><span class="p">;</span>
+
+<span class="kd">const</span> <span class="nx">controlledWinstonLogger</span> <span class="o">=</span> <span class="nx">controlledProxy</span><span class="p">({</span>
+  <span class="na">defaultControls</span><span class="p">:</span> <span class="p">{</span> <span class="na">debug</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span> <span class="na">info</span><span class="p">:</span> <span class="kc">true</span> <span class="p">},</span>
+  <span class="na">defaultDisabledMemberHandler</span><span class="p">:</span> <span class="p">(</span>
+    <span class="na">target</span><span class="p">:</span> <span class="nx">Logger</span><span class="p">,</span>
+    <span class="na">prop</span><span class="p">:</span> <span class="nx">PropertyKey</span>
+  <span class="p">)</span> <span class="o">=&gt;</span>
+    <span class="nx">target</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span>
+      <span class="dl">"</span><span class="s2">warn</span><span class="dl">"</span><span class="p">,</span>
+      <span class="s2">`Accessed disabled member: </span><span class="p">${</span><span class="nx">prop</span><span class="p">.</span><span class="nx">toString</span><span class="p">()}</span><span class="s2">`</span>
+    <span class="p">),</span>
+  <span class="na">target</span><span class="p">:</span> <span class="nx">createLogger</span><span class="p">(),</span>
+<span class="p">});</span>
+
+<span class="c1">// Instantiate the class again with the controlled winston logger.</span>
+<span class="kd">const</span> <span class="nx">myWinstonInstance</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">MyClass</span><span class="p">(</span><span class="nx">controlledWinstonLogger</span><span class="p">);</span>
+
+<span class="c1">// Disable winston debug messages at runtime.</span>
+<span class="nx">controlledWinstonLogger</span><span class="p">[</span><span class="nx">controlProp</span><span class="p">].</span><span class="nx">debug</span> <span class="o">=</span> <span class="kc">false</span><span class="p">;</span>
+
+<span class="c1">// Exercise the proxied winston logger from within the class.</span>
+<span class="nx">myWinstonInstance</span><span class="p">.</span><span class="nx">myMethod</span><span class="p">();</span>
+<span class="c1">// &gt; [winston] { "level":"warn", "message":"Accessed disabled member: debug" }</span>
+<span class="c1">// &gt; [winston] { "level":"info", "message":"info log" }</span>
+</code></pre></div></div>
+
+<h2 id="conclusion">Conclusion</h2>
+
+<p>It’s fun to show off work you’re proud of, and <code class="language-plaintext highlighter-rouge">controlledProxy</code> is no exception. It’s a neat solution to a deceptively hard problem, and I hope it gets some traction out there.</p>
+
+<p>It also solves my <em>own</em> hard problem, which is cool… all the other dependency injectors I found out there carried far more dependency baggage than I cared to inherit, and this widget feels like it strikes a nice balance.</p>
+
+<p>But that’s not why we’re here, is it?</p>
+
+<p>I hope the three articles in this series have served as a useful illustration of how real software gets done:</p>
+
+<ul>
+  <li>
+    <p><a href="/blog/loggable-a-typescript-mixin-for-generic-class-logging">This one</a> shows that even a VERY experienced engineer can get seduced away from core engineering principles by a shiny new toy,</p>
+  </li>
+  <li>
+    <p><a href="/blog/mixin-it-up-picking-the-right-problem-to-solve">This one</a> shows how to use those same principles to think yourself back on track,</p>
+  </li>
+  <li>
+    <p>And the one you’re reading now shows what you can do with those principles once you’ve got them well in hand.</p>
+  </li>
+</ul>
+
+<p>Do good work! 🚀</p>
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+  
+
+
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-tags" aria-hidden="true"></i> Topics: </strong>
+    <span itemprop="keywords">
+    
+      <a href="/topics/design" class="page__taxonomy-item p-category" rel="tag">design</a><span class="sep">, </span>
+    
+      <a href="/topics/documentation" class="page__taxonomy-item p-category" rel="tag">documentation</a><span class="sep">, </span>
+    
+      <a href="/topics/entity-manager" class="page__taxonomy-item p-category" rel="tag">entity-manager</a><span class="sep">, </span>
+    
+      <a href="/topics/logging" class="page__taxonomy-item p-category" rel="tag">logging</a><span class="sep">, </span>
+    
+      <a href="/topics/principles" class="page__taxonomy-item p-category" rel="tag">principles</a><span class="sep">, </span>
+    
+      <a href="/topics/projects" class="page__taxonomy-item p-category" rel="tag">projects</a><span class="sep">, </span>
+    
+      <a href="/topics/typescript" class="page__taxonomy-item p-category" rel="tag">typescript</a>
+    
+    </span>
+  </p>
+
+
+
+
+        
+
+  <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> Updated:</strong> <time class="dt-published" datetime="2024-10-16T00:00:00+00:00">October 16, 2024</time></p>
+
+      </footer>
+
+      
+        <section class="page__share">
+  
+    <h4 class="page__share-title">Share on</h4>
+  
+
+  <a href="https://twitter.com/intent/tweet?via=karmaniverous&text=Composition+in+Action%3A+Finishing+the+Swing%20https%3A%2F%2Fkarmanivero.us%2Fcomposition-in-action-finishing-the-swing%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+
+  <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fkarmanivero.us%2Fcomposition-in-action-finishing-the-swing%2F" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
+
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=https://karmanivero.us/composition-in-action-finishing-the-swing/" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
+</section>
+
+
+      
+  <nav class="pagination">
+    
+      <a href="/mixin-it-up-picking-the-right-problem-to-solve/" class="pagination--pager" title="Mixin It Up: Picking The Right Problem to Solve
+">Previous</a>
+    
+    
+      <a href="/git-flow-by-example-writing-down-your-version-control-process/" class="pagination--pager" title="Git Flow By Example: Writing Down Your Version Control Process
+">Next</a>
+    
+  </nav>
+
+    </div>
+
+    
+  </article>
+
+  
+  
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  
+
+  
+  
+
+  
+  
+
+  
+  <div class='page__related'>
+    
+    <h2 class='page__related-title'>
+      You may also enjoy
+    </h2>
+    <div class='grid__wrapper'>
+
+      
+      
+        
+        
+        
+        
+        
+        
+      
+
+        
+      
+
+        
+        <!-- post_url: /the-big-miss-turning-lemons-into-lemonade/ -->
+        <!-- normLogCommonTags: 0.7272727272727273 -->
+        <!-- logAge: 0.090497685185185 -->
+        <!-- relevance: 52091 -->
+
+        
+      
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src="/assets/images/lemons-square.jpg" alt="">
+      </div>
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/the-big-miss-turning-lemons-into-lemonade/" rel="permalink">The Big Miss: Turning Lemons Into Lemonade
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+      
+      <span class="page__meta-date">
+        <i
+          class="far fa-fw fa-calendar-alt"
+          aria-hidden="true"
+        ></i>
+        
+        <time datetime="2024-11-20T00:00:00+00:00">November 20, 2024</time>
+      </span>
+    
+
+    <span class="page__meta-sep"></span>
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i
+          class="far fa-fw fa-clock"
+          aria-hidden="true"
+        ></i>
+        
+          8
+          minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">Today was one of those days when I question my life choices. Watch me dig my way out of a hole with the same shovel I used to dig my way in.
+</p>
+  </article>
+</div>
+
+
+        
+        
+        
+      
+        
+        
+        
+        
+        
+      
+
+        
+      
+
+        
+        <!-- post_url: /mixin-it-up-picking-the-right-problem-to-solve/ -->
+        <!-- normLogCommonTags: 1.0 -->
+        <!-- logAge: 5.252828052662037 -->
+        <!-- relevance: 47747 -->
+
+        
+      
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src="/assets/images/mixin-it-up-square.jpg" alt="">
+      </div>
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/mixin-it-up-picking-the-right-problem-to-solve/" rel="permalink">Mixin It Up: Picking The Right Problem to Solve
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+      
+      <span class="page__meta-date">
+        <i
+          class="far fa-fw fa-calendar-alt"
+          aria-hidden="true"
+        ></i>
+        
+        <time datetime="2024-10-12T00:00:00+00:00">October 12, 2024</time>
+      </span>
+    
+
+    <span class="page__meta-sep"></span>
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i
+          class="far fa-fw fa-clock"
+          aria-hidden="true"
+        ></i>
+        
+          9
+          minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">Sometimes, when you’re tangled up in a thorny problem, solving it is exactly the wrong answer.
+</p>
+  </article>
+</div>
+
+
+        
+        
+        
+      
+        
+        
+        
+        
+        
+      
+
+        
+      
+
+        
+        <!-- post_url: /projects/entity-manager/demo/ -->
+        <!-- normLogCommonTags: 0.7272727272727273 -->
+        <!-- logAge: 5.0 -->
+        <!-- relevance: 47182 -->
+
+        
+      
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src="/assets/collections/entity-manager/configuration-square.jpg" alt="">
+      </div>
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/projects/entity-manager/demo/" rel="permalink">Entity Manager: A Demonstration
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i
+          class="far fa-clock"
+          aria-hidden="true"
+        ></i>
+        
+          16
+          minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">Presenting a step-by-step Typescript implementation of a realistic data model against DynamoDB, with the help of Entity Manager.
+</p>
+  </article>
+</div>
+
+
+        
+        
+        
+      
+        
+        
+        
+        
+        
+      
+
+        
+      
+
+        
+        <!-- post_url: /loggable-a-typescript-mixin-for-generic-class-logging/ -->
+        <!-- normLogCommonTags: 0.8181818181818182 -->
+        <!-- logAge: 5.284078052662037 -->
+        <!-- relevance: 47170 -->
+
+        
+      
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src="https://raw.githubusercontent.com/karmaniverous/loggable/main/assets/loggable-square.jpg" alt="">
+      </div>
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/loggable-a-typescript-mixin-for-generic-class-logging/" rel="permalink">Loggable: A TypeScript Mixin for Generic Class Logging
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+      
+      <span class="page__meta-date">
+        <i
+          class="far fa-fw fa-calendar-alt"
+          aria-hidden="true"
+        ></i>
+        
+        <time datetime="2024-10-11T00:00:00+00:00">October 11, 2024</time>
+      </span>
+    
+
+    <span class="page__meta-sep"></span>
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i
+          class="far fa-fw fa-clock"
+          aria-hidden="true"
+        ></i>
+        
+          5
+          minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">Logging is an implementation decision that should be deferred as late as possible. Loggable lets you defer it until runtime!
+</p>
+  </article>
+</div>
+
+
+        
+        
+        
+      
+        
+        
+        
+        
+        
+      
+
+        
+      
+
+        
+        <!-- post_url: /projects/entity-manager/intro/ -->
+        <!-- normLogCommonTags: 0.5454545454545454 -->
+        <!-- logAge: 5.0 -->
+        <!-- relevance: 46636 -->
+
+        
+      
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src="/assets/collections/entity-manager/entity-manager-square.jpg" alt="">
+      </div>
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/projects/entity-manager/intro/" rel="permalink">Meet Entity Manager!
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i
+          class="far fa-clock"
+          aria-hidden="true"
+        ></i>
+        
+          2
+          minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">NoSQL shifts the burden of complexity from the database platform to the developer. Entity Manager sweeps it under the rug!
+</p>
+  </article>
+</div>
+
+
+        
+        
+        
+      
+        
+        
+        
+        
+        
+      
+
+        
+      
+
+        
+        <!-- post_url: /projects/entity-manager/configuration/ -->
+        <!-- normLogCommonTags: 0.5454545454545454 -->
+        <!-- logAge: 5.0 -->
+        <!-- relevance: 46636 -->
+
+        
+      
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src="/assets/collections/entity-manager/configuration-square.jpg" alt="">
+      </div>
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/projects/entity-manager/configuration/" rel="permalink">Entity Manager Configuration
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i
+          class="far fa-clock"
+          aria-hidden="true"
+        ></i>
+        
+          22
+          minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">Entity Manager enables efficient put, get, and query operations across entity relationships, indexes, and sharded partitions in a NoSQL database.
+</p>
+  </article>
+</div>
+
+
+        
+        
+        
+      
+        
+        
+        
+        
+        
+      
+
+        
+      
+
+        
+        <!-- post_url: /code-complete-a-day-in-the-life-of-a-product/ -->
+        <!-- normLogCommonTags: 0.8181818181818182 -->
+        <!-- logAge: 6.017039026331019 -->
+        <!-- relevance: 46438 -->
+
+        
+      
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src="/assets/images/code-complete-tests.jpg" alt="">
+      </div>
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/code-complete-a-day-in-the-life-of-a-product/" rel="permalink">Code Complete: A Day in the Life of a Product
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+      
+      <span class="page__meta-date">
+        <i
+          class="far fa-fw fa-calendar-alt"
+          aria-hidden="true"
+        ></i>
+        
+        <time datetime="2024-09-17T00:00:00+00:00">September 17, 2024</time>
+      </span>
+    
+
+    <span class="page__meta-sep"></span>
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i
+          class="far fa-fw fa-clock"
+          aria-hidden="true"
+        ></i>
+        
+          8
+          minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">We’re all professionals here, right? And we all know there’s often quite a gap between what gets posted to social media and the reality on the ground.
+</p>
+  </article>
+</div>
+
+
+        
+        
+        
+      
+        
+        
+        
+        
+        
+      
+
+        
+      
+
+        
+        <!-- post_url: /toolkits/project-governance/design-as-code-a-frictionless-low-level-design-pipeline/ -->
+        <!-- normLogCommonTags: 0.36363636363636365 -->
+        <!-- logAge: 5.0 -->
+        <!-- relevance: 46091 -->
+
+        
+      
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src="/assets/collections/project-governance/design-as-code-square.jpg" alt="">
+      </div>
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/toolkits/project-governance/design-as-code-a-frictionless-low-level-design-pipeline/" rel="permalink">Design as Code: A Frictionless Low-Level Design Pipeline
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i
+          class="far fa-clock"
+          aria-hidden="true"
+        ></i>
+        
+          22
+          minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">A frictionless low-level design process that integrates with your dev cycle and puts design artifacts at a peer level with the rest of your codebase.
+</p>
+  </article>
+</div>
+
+
+        
+        
+        
+          
+    </div>
+  </div>
+
+  
+</div>
+      
+    </div>
+
+    
+      <div class="search-content">
+        <div class="search-content__inner-wrap"><form onsubmit="return googleCustomSearchExecute();" id="cse-search-box-form-id" role="search">
+    <label class="sr-only" for="cse-search-input-box-id">
+      Enter your search term...
+    </label>
+    <input type="search" id="cse-search-input-box-id" class="search-input" tabindex="-1" placeholder="Enter your search term..." />
+  </form>
+  <div id="results" class="results">
+    <gcse:searchresults-only></gcse:searchresults-only>
+  </div></div>
+
+      </div>
+    
+
+    <div id="footer" class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+        <div class="page__footer-follow">
+  
+    <span class="love">Built for you with ❤️ on <a href="/bali/">Bali</a>!</span>
+  
+
+  <ul class="social-icons">
+    
+      <li>
+        <strong>Contact</strong>&nbsp;&nbsp;&nbsp;</li>
+    
+
+    
+      
+        
+          <li>
+            <a href="https://twitter.com/karmaniverous" rel="nofollow noopener noreferrer">
+              <i class="fa-brands fa-x-twitter" aria-hidden="true"></i>
+              </a>
+          </li>
+        
+      
+        
+          <li>
+            <a href="https://techhub.social/@karmaniverous" rel="nofollow noopener noreferrer">
+              <i class="fa-brands fa-mastodon" aria-hidden="true"></i>
+              </a>
+          </li>
+        
+      
+        
+          <li>
+            <a href="https://github.com/karmaniverous" rel="nofollow noopener noreferrer">
+              <i class="fa-brands fa-github" aria-hidden="true"></i>
+              </a>
+          </li>
+        
+      
+        
+          <li>
+            <a href="https://www.linkedin.com/in/jscroft/" rel="nofollow noopener noreferrer">
+              <i class="fa-brands fa-linkedin" aria-hidden="true"></i>
+              </a>
+          </li>
+        
+      
+        
+          <li>
+            <a href="https://wa.me/17737500338" rel="nofollow noopener noreferrer">
+              <i class="fa-brands fa-square-whatsapp" aria-hidden="true"></i>
+              </a>
+          </li>
+        
+      
+        
+          <li>
+            <a href="https://t.me/karmaniverous" rel="nofollow noopener noreferrer">
+              <i class="fa-brands fa-telegram" aria-hidden="true"></i>
+              </a>
+          </li>
+        
+      
+        
+          <li>
+            <a href="https://calendly.com/karmaniverous" rel="nofollow noopener noreferrer">
+              <i class="fa-regular fa-calendar-plus" aria-hidden="true"></i>
+              </a>
+          </li>
+        
+      
+    
+
+    
+      <li>
+        <a href="/feed.xml">
+          <i class="fas fa-fw fa-rss-square" aria-hidden="true"></i>
+           </a>
+      </li>
+    
+  </ul>
+</div>
+
+<div class="page__footer-copyright">&copy; 2024
+  <a href="https://karmanivero.us">some words</a>. Powered by
+  <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a>
+  &amp;
+  <a href="https://mademistakes.com/work/jekyll-themes/minimal-mistakes/" rel="nofollow">Minimal Mistakes</a>.</div>
+      </footer>
+    </div>
+
+    
+  <script src="/assets/js/main.min.js"></script>
+
+
+<script>
+  (function () {
+    var cx = '960ee5d1b2fec4509';
+    var gcse = document.createElement('script');
+    gcse.type = 'text/javascript';
+    gcse.async = true;
+    gcse.src = 'https://cse.google.com/cse.js?cx=' + cx;
+    var s = document.getElementsByTagName('script')[0];
+    s.parentNode.insertBefore(gcse, s);
+  })();
+
+  function googleCustomSearchExecute() {
+    var input = document.getElementById('cse-search-input-box-id');
+    var element = google.search.cse.element.getElement('searchresults-only0');
+    if (input.value == '') {
+      element.clearAllResults();
+    } else {
+      element.execute(input.value);
+    }
+    return false;
+  }
+
+  
+    $(document).ready(function () {
+      $('input#cse-search-input-box-id').on('keyup', function () {
+        googleCustomSearchExecute();
+      });
+    });
+  
+</script>
+
+
+
+
+    
+  <script>
+    var disqus_config = function () {
+      this.page.url = "https://karmanivero.us/composition-in-action-finishing-the-swing/";  /* Replace PAGE_URL with your page's canonical URL variable */
+      this.page.identifier = "/composition-in-action-finishing-the-swing"; /* Replace PAGE_IDENTIFIER with your page's unique identifier variable */
+    };
+    (function() { /* DON'T EDIT BELOW THIS LINE */
+      var d = document, s = d.createElement('script');
+      s.src = 'https://some-words.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+    })();
+  </script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+
+  
+
+
+
+
+  </body>
+</html>

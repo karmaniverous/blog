@@ -1,0 +1,1394 @@
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.26.2 by Michael Rose
+  Copyright 2013-2024 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
+-->
+
+<html lang="en-US" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin _includes/seo.html --><title>SQL vs NoSQL - some words</title>
+<meta name="description" content="A well-tuned NoSQL database can outperform an RDBMS by orders of magnitude at scale… but not for free! Entity Manager helps close the gap.">
+
+
+  <meta name="author" content="Jason Williscroft">
+  
+  <meta property="article:author" content="Jason Williscroft">
+  
+
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="en_US">
+<meta property="og:site_name" content="some words">
+<meta property="og:title" content="SQL vs NoSQL">
+<meta property="og:url" content="https://karmanivero.us/projects/entity-manager/sql-vs-nosql/">
+
+
+  <meta property="og:description" content="A well-tuned NoSQL database can outperform an RDBMS by orders of magnitude at scale… but not for free! Entity Manager helps close the gap.">
+
+
+
+  <meta property="og:image" content="https://karmanivero.us/assets/collections/entity-manager/sql-vs-nosql-banner.jpg">
+
+
+
+  <meta name="twitter:site" content="@karmaniverous">
+  <meta name="twitter:title" content="SQL vs NoSQL">
+  <meta name="twitter:description" content="A well-tuned NoSQL database can outperform an RDBMS by orders of magnitude at scale… but not for free! Entity Manager helps close the gap.">
+  <meta name="twitter:url" content="https://karmanivero.us/projects/entity-manager/sql-vs-nosql/">
+
+  
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content="https://karmanivero.us/assets/collections/entity-manager/sql-vs-nosql-banner.jpg">
+  
+
+  
+
+
+
+  <meta property="article:published_time" content="2024-11-21T02:10:13+00:00">
+
+
+
+
+
+
+<link rel="canonical" href="https://karmanivero.us/projects/entity-manager/sql-vs-nosql/">
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- end _includes/seo.html -->
+
+
+
+  <link href="/feed.xml" type="application/atom+xml" rel="alternate" title="some words Feed">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script type="text/javascript">
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+  window.enable_copy_code_button = true;
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/assets/css/main.css">
+<link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@latest/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@latest/css/all.min.css"></noscript>
+
+
+
+    <link
+  rel="apple-touch-icon"
+  sizes="180x180"
+  href="/assets/favicon/apple-touch-icon.png" />
+<link
+  rel="icon"
+  type="image/png"
+  sizes="32x32"
+  href="/assets/favicon/favicon-32x32.png" />
+<link
+  rel="icon"
+  type="image/png"
+  sizes="16x16"
+  href="/assets/favicon/favicon-16x16.png" />
+<link rel="manifest" href="/assets/favicon/site.webmanifest" />
+<link
+  rel="mask-icon"
+  href="/assets/favicon/safari-pinned-tab.svg"
+  color="#5bbad5" />
+<link rel="shortcut icon" href="/assets/favicon/favicon.ico" />
+<meta name="msapplication-TileColor" content="#2b5797" />
+<meta name="msapplication-config" content="/assets/favicon/browserconfig.xml" />
+<meta name="theme-color" content="#ffffff" />
+
+
+
+<!-- Mathjax Support -->
+<script
+  type="text/javascript"
+  async
+  src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+  </head>
+
+  <body class="layout--single" dir="ltr">
+    <nav class="skip-links">
+  <ul>
+    <li><a href="#site-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">Skip to footer</a></li>
+  </ul>
+</nav>
+
+    
+
+<div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        
+        <a class="site-title" href="/">
+          some words
+          <span class="site-subtitle">many of them true</span>
+        </a>
+        <ul class="visible-links"><li class="masthead__menu-item">
+              <a
+                href="/projects/"
+                
+                
+              >Projects</a>
+            </li><li class="masthead__menu-item">
+              <a
+                href="/toolkits/"
+                
+                
+              >Toolkits</a>
+            </li><li class="masthead__menu-item">
+              <a
+                href="/bali/"
+                
+                
+              >Bali</a>
+            </li><li class="masthead__menu-item">
+              <a
+                href="/topics/"
+                
+                
+              >Topics</a>
+            </li><li class="masthead__menu-item">
+              <a
+                href="/blog/"
+                
+                
+              >Archive</a>
+            </li></ul>
+        
+        <button class="search__toggle" type="button">
+          <span class="visually-hidden">Toggle search</span>
+          <i class="fas fa-search"></i>
+        </button>
+        
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">Toggle menu</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+    <div class="initial-content">
+      
+  
+
+
+
+
+
+
+
+<div class="page__hero--overlay" style=" background-image: linear-gradient(rgba(32, 0, 32, 0.6), rgba(32, 0, 32, 0.6)), url('/assets/collections/entity-manager/sql-vs-nosql-banner-half.jpg');">
+  
+    <div class="wrapper">
+      <h1
+        id="page-title"
+        class="page__title"
+        itemprop="headline">
+        
+          SQL vs NoSQL
+
+        
+      </h1>
+      
+        <p class="page__lead">A well-tuned NoSQL database can outperform an RDBMS by orders of magnitude at scale… but not for free! <strong>Entity Manager</strong> helps close the gap.
+</p>
+      
+      
+      
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i
+          class="far fa-clock"
+          aria-hidden="true"
+        ></i>
+        
+          4
+          minute read
+        
+      </span>
+    
+  </p>
+
+
+      
+    </div>
+  
+  
+    <span class="page__hero-caption"><a href="/projects/entity-manager/"><strong>Entity Manager</strong> project documentation</a>
+</span>
+  
+</div>
+
+
+
+
+
+
+<div id="main" role="main">
+  
+  <div class="sidebar sticky">
+  
+  
+    
+      
+      
+      
+      
+    
+    
+      <nav class="nav__list">
+  
+  <input id="ac-toc" name="accordion-toc" type="checkbox" />
+  <label for="ac-toc">Toggle menu</label>
+  <ul class="nav__items">
+    
+      
+      
+        <li>
+          
+            <span class="nav__sub-title">Entity Manager</span>
+          
+
+          
+          <ul>
+            
+              <li><a href="/projects/entity-manager/intro/">Introduction</a></li>
+            
+              <li><a href="/projects/entity-manager/sql-vs-nosql/" class="active">SQL vs NoSQL</a></li>
+            
+              <li><a href="/projects/entity-manager/evolving-a-nosql-db-schema/">Evolving a NoSQL DB Schema</a></li>
+            
+          </ul>
+          
+        </li>
+      
+        <li>
+          
+            <span class="nav__sub-title">Usage</span>
+          
+
+          
+          <ul>
+            
+              <li><a href="/projects/entity-manager/demo/">Demo</a></li>
+            
+              <li><a href="/projects/entity-manager/configuration/">Configuration</a></li>
+            
+          </ul>
+          
+        </li>
+      
+        <li>
+          
+            <span class="nav__sub-title">Packages</span>
+          
+
+          
+          <ul>
+            
+              <li><a href="/projects/entity-manager/intro/#entity-manager"><code>entity-manager</code></a></li>
+            
+              <li><a href="/projects/entity-manager/intro/#entity-manager-demo"><code>entity-manager-demo</code></a></li>
+            
+              <li><a href="/projects/entity-manager/intro/#entity-client-dynamodb"><code>entity-client-dynamodb</code></a></li>
+            
+              <li><a href="/projects/entity-manager/intro/#entity-tools"><code>entity-tools</code></a></li>
+            
+              <li><a href="/projects/entity-manager/intro/#mock-db"><code>mock-db</code></a></li>
+            
+          </ul>
+          
+        </li>
+      
+    
+  </ul>
+</nav>
+
+    
+  
+  </div>
+
+
+
+  <article
+    class="page"
+    itemscope
+    itemtype="https://schema.org/CreativeWork"
+    >
+    <meta itemprop="headline" content="SQL vs NoSQL">
+    <meta itemprop="description" content="A well-tuned NoSQL database can outperform an RDBMS by orders of magnitude at scale… but not for free! Entity Manager helps close the gap.">
+    <meta itemprop="datePublished" content="2024-11-21T02:10:13+00:00">
+    
+
+    <div class="page__inner-wrap">
+      
+
+      <section class="page__content" itemprop="text">
+        
+          <aside class="sidebar__right sticky">
+            <nav class="toc">
+              <header>
+                <h4 class="nav__title">
+                  <i class="fas fa-file-alt"></i>
+                  On this page</h4>
+              </header>
+              <ul class="toc__menu"><li><a href="#schema-abstraction">Schema Abstraction</a></li><li><a href="#query-abstraction">Query Abstraction</a></li><li><a href="#closing-the-gap">Closing the Gap</a></li></ul>
+            </nav>
+          </aside>
+        
+        <figure class="align-left drop-image">
+    <img src="/assets/collections/entity-manager/sql-vs-nosql-square.jpg" />
+</figure>
+
+<p>Traditional <a href="https://en.wikipedia.org/wiki/Relational_database">Relational Database Management Systems</a> like <a href="https://www.mysql.com/">MySQL</a> and <a href="https://www.microsoft.com/en-us/sql-server">SQL Server</a> provide a high degree of flexibility in specifying data schemas and querying data. These advantages come at the cost of performance at scale.</p>
+
+<p><a href="https://en.wikipedia.org/wiki/NoSQL">NoSQL</a> databases like <a href="https://aws.amazon.com/dynamodb/">DynamoDB</a> and <a href="https://www.mongodb.com/">MongoDB</a> lack the helpful abstractions of RDBMS and require close attention to low-level details like indexing and partitioning to achieve high performance… but <strong>a well-tuned NoSQL database can outperform an RDBMS by orders of magnitude at scale</strong>.</p>
+
+<blockquote>
+  <p><strong>Entity Manager</strong> lets a developer achieve the scalability &amp; performance of a NoSQL database with much of the flexibility &amp; ease of use of a traditional RDBMS.</p>
+</blockquote>
+
+<p><strong>Entity Manager</strong> is a type-safe <a href="https://npmjs.com/karmaniverous/entity-manager">NPM package</a> that supports opinionated schema implementation and high-performance, low-code query on NoSQL database platforms like DynamoDB.</p>
+
+<p class="notice--warning"><strong>Entity Manager is still under construction!</strong> I’m wrapping up the Typescript refactor &amp; writing the demo &amp; documentation, so we should be ready for production in a few weeks. Meanwhile, please feel free to <a href="https://github.com/karmaniverous/entity-manager/discussions/">reach out</a> with any questions or feedback!</p>
+
+<h2 id="schema-abstraction">Schema Abstraction</h2>
+
+<p>A <a href="https://en.wikipedia.org/wiki/Database_schema">database schema</a> specifies what kinds of data live in a database, how different data entities are related to one another, and how the data should be indexed for efficient update &amp; query.</p>
+
+<p>Database schemas can be specified at different levels of abstraction:</p>
+
+<ul>
+  <li>
+    <p><strong>High-level schemas</strong> employ symbolic tools like <a href="https://en.wikipedia.org/wiki/Entity%E2%80%93relationship_model">Entity-Relationship Models</a> and are largely platform-independent.</p>
+  </li>
+  <li>
+    <p><strong>Low-level schemas</strong> specify the exact data types and constraints for each table property or index element and are highly platform-specific.</p>
+  </li>
+</ul>
+
+<p>An RDBMS allows a developer to specify a database schema largely at a high level. The database engine parses the developer’s schema and implements it at a low level automatically. RDBMS engines can easily accommodate schema changes, even with data in production.</p>
+
+<p>NoSQL databases offer no such intermediate layer. A developer must:</p>
+
+<ul>
+  <li>
+    <p>anticipate likely data query patterns,</p>
+  </li>
+  <li>
+    <p>create a platform-specific indexing &amp; partitioning strategy to support those patterns, and</p>
+  </li>
+  <li>
+    <p>support this indexing strategy by augmenting application data with specially structured data elements.</p>
+  </li>
+</ul>
+
+<p>Changes to schema or index requirements require a structural refactor of this approach, plus migration &amp; transformation of existing data to match the new schema. This is an <strong>expensive and risky</strong> operation on production data.</p>
+
+<blockquote>
+  <p><strong>Entity Manager</strong> combines a simple configuration with an opinionated process to realize the developer’s high-level schema requirements as low-level data elements.</p>
+</blockquote>
+
+<p>Since the generation of structured data elements is deterministic and reversible, Entity Manager supports <strong>safe migration of data across schema changes.</strong></p>
+
+<h2 id="query-abstraction">Query Abstraction</h2>
+
+<p>Abstract query languages like <a href="https://en.wikipedia.org/wiki/SQL">SQL</a> allow an RBDMS developer to interact with the database using high-level constructs. The database engine translates such high-level queries into low-level operations that it can optimize over time by generating intermediate indexes that cache low-level query results.</p>
+
+<p>Whether an RDBMS developer is querying a hundred records on a single table, or a hundred million records across a dozen table partitions, the developer’s query is the same. The query engine handles the complexity under the hood and stitches the result together for the developer’s convenience.</p>
+
+<p><strong>NoSQL databases offer no such abstractions.</strong></p>
+
+<p>NoSQL queries must be adapted to the exact structures being queried. Since queries are constrained to a single data partition and index, significant queries must often be invoked in parallel across multiple partitions and indexes.</p>
+
+<p>As an application scales, the developer must design an efficient partitioning &amp; sharding strategy that:</p>
+
+<ul>
+  <li>
+    <p>supports all anticipated query patterns, and</p>
+  </li>
+  <li>
+    <p>balances performance with the hard constraints imposed by the database engine, and</p>
+  </li>
+  <li>
+    <p>can be queried efficiently by the application.</p>
+  </li>
+</ul>
+
+<p><strong>Entity Manager</strong> imposes <strong>an opinionated data partitioning &amp; sharding strategy</strong> on <em>every</em> data entity, leaving the developer to specify only the scaling <em>schedule</em> for each entity.</p>
+
+<p>When it’s time to query the data, <strong>Entity Manager</strong> reduces the problem of writing complex partitioned data queries to the composition of a simple query on one index over a single partition.</p>
+
+<p>Based on the developer’s schema configuration and query parameters, <strong>Entity Manager</strong> will:</p>
+
+<ul>
+  <li>
+    <p>rehydrate any previously returned page key to extract the correct starting point for each element of the query, and</p>
+  </li>
+  <li>
+    <p>spawn throttled, parallel queries against each relevant partition &amp; index, and</p>
+  </li>
+  <li>
+    <p>return a combined, deduped, sorted result set along with an efficiently dehydrated page key for the next query.</p>
+  </li>
+</ul>
+
+<blockquote>
+  <p><strong>Entity Manager</strong> completely decouples the way NoSQL data is queried from the way it is scaled.</p>
+</blockquote>
+
+<h2 id="closing-the-gap">Closing the Gap</h2>
+
+<p>RDBMS systems have been around for a long time. These platforms are mature, and there is a vast ecosystem of tools and libraries that support them. They offer natural abstractions that make them easy to learn, efficient to implement, and safe to maintain in production.</p>
+
+<p>NoSQL databases are relatively new. They offer high performance at scale, but they require a developer to understand and exploit low-level details like indexing and partitioning to achieve that performance. They offer no natural abstractions to help a developer manage the complexity of these details.</p>
+
+<p>A NoSQL database is often <em>not</em> the right choice. But when it is, these two outcomes happen more often than they should:</p>
+
+<ul>
+  <li>
+    <p><strong>Developers will choose an RDBMS anyway</strong>, trading a perception of safety against performance at scale. The end result is often a risky and expensive rebuild in the future as the application scales.</p>
+  </li>
+  <li>
+    <p><strong>Developers will choose NoSQL but implement it wrong</strong>, by avoiding strong patterns like the <a href="https://aws.amazon.com/blogs/compute/creating-a-single-table-design-with-amazon-dynamodb/">single-table design pattern</a> out of fear of the resulting complexity. The end result is often the worst of both worlds: complexity <em>and</em> poor performance at scale.</p>
+  </li>
+</ul>
+
+<p><strong>Entity Manager</strong> helps close this gap by encapsulating much of the complexity of a NoSQL implementation. This allows a developer to achieve the scalability &amp; performance of a NoSQL database with a level of flexibility and safety approaching that of a traditional RDBMS.</p>
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+  
+
+
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-tags" aria-hidden="true"></i> Topics: </strong>
+    <span itemprop="keywords">
+    
+      <a href="/topics/aws" class="page__taxonomy-item p-category" rel="tag">aws</a><span class="sep">, </span>
+    
+      <a href="/topics/dynamodb" class="page__taxonomy-item p-category" rel="tag">dynamodb</a><span class="sep">, </span>
+    
+      <a href="/topics/entity-manager" class="page__taxonomy-item p-category" rel="tag">entity-manager</a><span class="sep">, </span>
+    
+      <a href="/topics/nosql" class="page__taxonomy-item p-category" rel="tag">nosql</a><span class="sep">, </span>
+    
+      <a href="/topics/projects" class="page__taxonomy-item p-category" rel="tag">projects</a>
+    
+    </span>
+  </p>
+
+
+
+
+        
+
+  <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> Updated:</strong> <time class="dt-published" datetime="2024-11-21T02:10:13+00:00">November 21, 2024</time></p>
+
+      </footer>
+
+      
+        <section class="page__share">
+  
+    <h4 class="page__share-title">Share on</h4>
+  
+
+  <a href="https://twitter.com/intent/tweet?via=karmaniverous&text=SQL+vs+NoSQL%20https%3A%2F%2Fkarmanivero.us%2Fprojects%2Fentity-manager%2Fsql-vs-nosql%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+
+  <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fkarmanivero.us%2Fprojects%2Fentity-manager%2Fsql-vs-nosql%2F" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
+
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=https://karmanivero.us/projects/entity-manager/sql-vs-nosql/" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
+</section>
+
+
+      
+  <nav class="pagination">
+    
+      <a href="/projects/entity-manager/intro/" class="pagination--pager" title="Meet Entity Manager!
+">Previous</a>
+    
+    
+      <a href="/projects/entity-manager/evolving-a-nosql-db-schema/" class="pagination--pager" title="Evolving a NoSQL Database Schema
+">Next</a>
+    
+  </nav>
+
+    </div>
+
+    
+  </article>
+
+  
+  
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  
+
+  
+  
+
+  
+  
+
+  
+  <div class='page__related'>
+    
+    <h2 class='page__related-title'>
+      You may also enjoy
+    </h2>
+    <div class='grid__wrapper'>
+
+      
+      
+        
+        
+        
+        
+        
+        
+      
+
+        
+      
+
+        
+        <!-- post_url: /the-big-miss-turning-lemons-into-lemonade/ -->
+        <!-- normLogCommonTags: 0.75 -->
+        <!-- logAge: 0.0905092592592593 -->
+        <!-- relevance: 52159 -->
+
+        
+      
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src="/assets/images/lemons-square.jpg" alt="">
+      </div>
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/the-big-miss-turning-lemons-into-lemonade/" rel="permalink">The Big Miss: Turning Lemons Into Lemonade
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+      
+      <span class="page__meta-date">
+        <i
+          class="far fa-fw fa-calendar-alt"
+          aria-hidden="true"
+        ></i>
+        
+        <time datetime="2024-11-20T00:00:00+00:00">November 20, 2024</time>
+      </span>
+    
+
+    <span class="page__meta-sep"></span>
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i
+          class="far fa-fw fa-clock"
+          aria-hidden="true"
+        ></i>
+        
+          8
+          minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">Today was one of those days when I question my life choices. Watch me dig my way out of a hole with the same shovel I used to dig my way in.
+</p>
+  </article>
+</div>
+
+
+        
+        
+        
+      
+        
+        
+        
+        
+        
+      
+
+        
+      
+
+        
+        <!-- post_url: /code-complete-a-day-in-the-life-of-a-product/ -->
+        <!-- normLogCommonTags: 1.0 -->
+        <!-- logAge: 6.017039207175926 -->
+        <!-- relevance: 46983 -->
+
+        
+      
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src="/assets/images/code-complete-tests.jpg" alt="">
+      </div>
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/code-complete-a-day-in-the-life-of-a-product/" rel="permalink">Code Complete: A Day in the Life of a Product
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+      
+      <span class="page__meta-date">
+        <i
+          class="far fa-fw fa-calendar-alt"
+          aria-hidden="true"
+        ></i>
+        
+        <time datetime="2024-09-17T00:00:00+00:00">September 17, 2024</time>
+      </span>
+    
+
+    <span class="page__meta-sep"></span>
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i
+          class="far fa-fw fa-clock"
+          aria-hidden="true"
+        ></i>
+        
+          8
+          minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">We’re all professionals here, right? And we all know there’s often quite a gap between what gets posted to social media and the reality on the ground.
+</p>
+  </article>
+</div>
+
+
+        
+        
+        
+      
+        
+        
+        
+        
+        
+      
+
+        
+      
+
+        
+        <!-- post_url: /mock-db/ -->
+        <!-- normLogCommonTags: 1.0 -->
+        <!-- logAge: 6.251414207175926 -->
+        <!-- relevance: 46749 -->
+
+        
+      
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src="/assets/images/logo-mock-db.png" alt="">
+      </div>
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/mock-db/" rel="permalink">mock-db
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+      
+      <span class="page__meta-date">
+        <i
+          class="far fa-fw fa-calendar-alt"
+          aria-hidden="true"
+        ></i>
+        
+        <time datetime="2024-09-02T00:00:00+00:00">September 2, 2024</time>
+      </span>
+    
+
+    <span class="page__meta-sep"></span>
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i
+          class="far fa-fw fa-clock"
+          aria-hidden="true"
+        ></i>
+        
+          1
+          minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">Mock DynamoDB-style query &amp; scan behavior with local JSON data. Or learn to play the guitar, if you think pretty girls REALLY like that kind of thing.
+</p>
+  </article>
+</div>
+
+
+        
+        
+        
+      
+        
+        
+        
+        
+        
+      
+
+        
+      
+
+        
+        <!-- post_url: /composition-in-action-finishing-the-swing/ -->
+        <!-- normLogCommonTags: 0.5 -->
+        <!-- logAge: 5.1278284143518515 -->
+        <!-- relevance: 46372 -->
+
+        
+      
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src="https://github.com/karmaniverous/controlled-proxy/raw/main/assets/controlled-proxy-square.jpg" alt="">
+      </div>
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/composition-in-action-finishing-the-swing/" rel="permalink">Composition in Action: Finishing the Swing
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+      
+      <span class="page__meta-date">
+        <i
+          class="far fa-fw fa-calendar-alt"
+          aria-hidden="true"
+        ></i>
+        
+        <time datetime="2024-10-16T00:00:00+00:00">October 16, 2024</time>
+      </span>
+    
+
+    <span class="page__meta-sep"></span>
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i
+          class="far fa-fw fa-clock"
+          aria-hidden="true"
+        ></i>
+        
+          9
+          minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">In software engineering, what look to be the easy parts often turn out to be the hard parts. If you’re lucky, the reverse is also true, but don’t count on it.
+</p>
+  </article>
+</div>
+
+
+        
+        
+        
+      
+        
+        
+        
+        
+        
+      
+
+        
+      
+
+        
+        <!-- post_url: /mixin-it-up-picking-the-right-problem-to-solve/ -->
+        <!-- normLogCommonTags: 0.5 -->
+        <!-- logAge: 5.2528284143518515 -->
+        <!-- relevance: 46247 -->
+
+        
+      
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src="/assets/images/mixin-it-up-square.jpg" alt="">
+      </div>
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/mixin-it-up-picking-the-right-problem-to-solve/" rel="permalink">Mixin It Up: Picking The Right Problem to Solve
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+      
+      <span class="page__meta-date">
+        <i
+          class="far fa-fw fa-calendar-alt"
+          aria-hidden="true"
+        ></i>
+        
+        <time datetime="2024-10-12T00:00:00+00:00">October 12, 2024</time>
+      </span>
+    
+
+    <span class="page__meta-sep"></span>
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i
+          class="far fa-fw fa-clock"
+          aria-hidden="true"
+        ></i>
+        
+          9
+          minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">Sometimes, when you’re tangled up in a thorny problem, solving it is exactly the wrong answer.
+</p>
+  </article>
+</div>
+
+
+        
+        
+        
+      
+        
+        
+        
+        
+        
+      
+
+        
+      
+
+        
+        <!-- post_url: /loggable-a-typescript-mixin-for-generic-class-logging/ -->
+        <!-- normLogCommonTags: 0.5 -->
+        <!-- logAge: 5.2840784143518515 -->
+        <!-- relevance: 46216 -->
+
+        
+      
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src="https://raw.githubusercontent.com/karmaniverous/loggable/main/assets/loggable-square.jpg" alt="">
+      </div>
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/loggable-a-typescript-mixin-for-generic-class-logging/" rel="permalink">Loggable: A TypeScript Mixin for Generic Class Logging
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+      
+      <span class="page__meta-date">
+        <i
+          class="far fa-fw fa-calendar-alt"
+          aria-hidden="true"
+        ></i>
+        
+        <time datetime="2024-10-11T00:00:00+00:00">October 11, 2024</time>
+      </span>
+    
+
+    <span class="page__meta-sep"></span>
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i
+          class="far fa-fw fa-clock"
+          aria-hidden="true"
+        ></i>
+        
+          5
+          minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">Logging is an implementation decision that should be deferred as late as possible. Loggable lets you defer it until runtime!
+</p>
+  </article>
+</div>
+
+
+        
+        
+        
+      
+        
+        
+        
+        
+        
+      
+
+        
+      
+
+        
+        <!-- post_url: /what-good-looks-like-a-real-world-typescript-refactor/ -->
+        <!-- normLogCommonTags: 0.5 -->
+        <!-- logAge: 6.188914207175926 -->
+        <!-- relevance: 45311 -->
+
+        
+      
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src="/assets/images/what-good-looks-like-square.jpg" alt="">
+      </div>
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/what-good-looks-like-a-real-world-typescript-refactor/" rel="permalink">What Good Looks Like: A Real-World Typescript Refactor
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+      
+      <span class="page__meta-date">
+        <i
+          class="far fa-fw fa-calendar-alt"
+          aria-hidden="true"
+        ></i>
+        
+        <time datetime="2024-09-06T00:00:00+00:00">September 6, 2024</time>
+      </span>
+    
+
+    <span class="page__meta-sep"></span>
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i
+          class="far fa-fw fa-clock"
+          aria-hidden="true"
+        ></i>
+        
+          6
+          minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">Watch a complex Javascript configuration object collapse into declarative goodness thanks to type safety, abstraction, and generic design.
+</p>
+  </article>
+</div>
+
+
+        
+        
+        
+      
+        
+        
+        
+        
+        
+      
+
+        
+      
+
+        
+        <!-- post_url: /generic-abstractions/ -->
+        <!-- normLogCommonTags: 0.5 -->
+        <!-- logAge: 6.188914207175926 -->
+        <!-- relevance: 45311 -->
+
+        
+      
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src="/assets/images/generic-abstractions.png" alt="">
+      </div>
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/generic-abstractions/" rel="permalink">Generic Abstractions
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+      
+      <span class="page__meta-date">
+        <i
+          class="far fa-fw fa-calendar-alt"
+          aria-hidden="true"
+        ></i>
+        
+        <time datetime="2024-09-06T00:00:00+00:00">September 6, 2024</time>
+      </span>
+    
+
+    <span class="page__meta-sep"></span>
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i
+          class="far fa-fw fa-clock"
+          aria-hidden="true"
+        ></i>
+        
+          14
+          minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">Modern software development works just like any other Hero’s Journey: you’ve got to hoof it some ways down the road before you can see very far into the dist...</p>
+  </article>
+</div>
+
+
+        
+        
+        
+          
+    </div>
+  </div>
+
+  
+</div>
+      
+    </div>
+
+    
+      <div class="search-content">
+        <div class="search-content__inner-wrap"><form onsubmit="return googleCustomSearchExecute();" id="cse-search-box-form-id" role="search">
+    <label class="sr-only" for="cse-search-input-box-id">
+      Enter your search term...
+    </label>
+    <input type="search" id="cse-search-input-box-id" class="search-input" tabindex="-1" placeholder="Enter your search term..." />
+  </form>
+  <div id="results" class="results">
+    <gcse:searchresults-only></gcse:searchresults-only>
+  </div></div>
+
+      </div>
+    
+
+    <div id="footer" class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+        <div class="page__footer-follow">
+  
+    <span class="love">Built for you with ❤️ on <a href="/bali/">Bali</a>!</span>
+  
+
+  <ul class="social-icons">
+    
+      <li>
+        <strong>Contact</strong>&nbsp;&nbsp;&nbsp;</li>
+    
+
+    
+      
+        
+          <li>
+            <a href="https://twitter.com/karmaniverous" rel="nofollow noopener noreferrer">
+              <i class="fa-brands fa-x-twitter" aria-hidden="true"></i>
+              </a>
+          </li>
+        
+      
+        
+          <li>
+            <a href="https://techhub.social/@karmaniverous" rel="nofollow noopener noreferrer">
+              <i class="fa-brands fa-mastodon" aria-hidden="true"></i>
+              </a>
+          </li>
+        
+      
+        
+          <li>
+            <a href="https://github.com/karmaniverous" rel="nofollow noopener noreferrer">
+              <i class="fa-brands fa-github" aria-hidden="true"></i>
+              </a>
+          </li>
+        
+      
+        
+          <li>
+            <a href="https://www.linkedin.com/in/jscroft/" rel="nofollow noopener noreferrer">
+              <i class="fa-brands fa-linkedin" aria-hidden="true"></i>
+              </a>
+          </li>
+        
+      
+        
+          <li>
+            <a href="https://wa.me/17737500338" rel="nofollow noopener noreferrer">
+              <i class="fa-brands fa-square-whatsapp" aria-hidden="true"></i>
+              </a>
+          </li>
+        
+      
+        
+          <li>
+            <a href="https://t.me/karmaniverous" rel="nofollow noopener noreferrer">
+              <i class="fa-brands fa-telegram" aria-hidden="true"></i>
+              </a>
+          </li>
+        
+      
+        
+          <li>
+            <a href="https://calendly.com/karmaniverous" rel="nofollow noopener noreferrer">
+              <i class="fa-regular fa-calendar-plus" aria-hidden="true"></i>
+              </a>
+          </li>
+        
+      
+    
+
+    
+      <li>
+        <a href="/feed.xml">
+          <i class="fas fa-fw fa-rss-square" aria-hidden="true"></i>
+           </a>
+      </li>
+    
+  </ul>
+</div>
+
+<div class="page__footer-copyright">&copy; 2024
+  <a href="https://karmanivero.us">some words</a>. Powered by
+  <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a>
+  &amp;
+  <a href="https://mademistakes.com/work/jekyll-themes/minimal-mistakes/" rel="nofollow">Minimal Mistakes</a>.</div>
+      </footer>
+    </div>
+
+    
+  <script src="/assets/js/main.min.js"></script>
+
+
+<script>
+  (function () {
+    var cx = '960ee5d1b2fec4509';
+    var gcse = document.createElement('script');
+    gcse.type = 'text/javascript';
+    gcse.async = true;
+    gcse.src = 'https://cse.google.com/cse.js?cx=' + cx;
+    var s = document.getElementsByTagName('script')[0];
+    s.parentNode.insertBefore(gcse, s);
+  })();
+
+  function googleCustomSearchExecute() {
+    var input = document.getElementById('cse-search-input-box-id');
+    var element = google.search.cse.element.getElement('searchresults-only0');
+    if (input.value == '') {
+      element.clearAllResults();
+    } else {
+      element.execute(input.value);
+    }
+    return false;
+  }
+
+  
+    $(document).ready(function () {
+      $('input#cse-search-input-box-id').on('keyup', function () {
+        googleCustomSearchExecute();
+      });
+    });
+  
+</script>
+
+
+
+
+
+
+  </body>
+</html>

@@ -1,0 +1,1573 @@
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.26.2 by Michael Rose
+  Copyright 2013-2024 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
+-->
+
+<html lang="en-US" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin _includes/seo.html --><title>What Good Looks Like: A Real-World Typescript Refactor - some words</title>
+<meta name="description" content="Watch a complex Javascript configuration object collapse into declarative goodness thanks to type safety, abstraction, and generic design.">
+
+
+  <meta name="author" content="Jason Williscroft">
+  
+  <meta property="article:author" content="Jason Williscroft">
+  
+
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="en_US">
+<meta property="og:site_name" content="some words">
+<meta property="og:title" content="What Good Looks Like: A Real-World Typescript Refactor">
+<meta property="og:url" content="https://karmanivero.us/what-good-looks-like-a-real-world-typescript-refactor/">
+
+
+  <meta property="og:description" content="Watch a complex Javascript configuration object collapse into declarative goodness thanks to type safety, abstraction, and generic design.">
+
+
+
+  <meta property="og:image" content="https://karmanivero.us/assets/images/what-good-looks-like-banner.jpg">
+
+
+
+  <meta name="twitter:site" content="@karmaniverous">
+  <meta name="twitter:title" content="What Good Looks Like: A Real-World Typescript Refactor">
+  <meta name="twitter:description" content="Watch a complex Javascript configuration object collapse into declarative goodness thanks to type safety, abstraction, and generic design.">
+  <meta name="twitter:url" content="https://karmanivero.us/what-good-looks-like-a-real-world-typescript-refactor/">
+
+  
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content="https://karmanivero.us/assets/images/what-good-looks-like-banner.jpg">
+  
+
+  
+
+
+
+  <meta property="article:published_time" content="2024-09-06T00:00:00+00:00">
+
+
+
+
+
+
+<link rel="canonical" href="https://karmanivero.us/what-good-looks-like-a-real-world-typescript-refactor/">
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- end _includes/seo.html -->
+
+
+
+  <link href="/feed.xml" type="application/atom+xml" rel="alternate" title="some words Feed">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script type="text/javascript">
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+  window.enable_copy_code_button = true;
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/assets/css/main.css">
+<link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@latest/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@latest/css/all.min.css"></noscript>
+
+
+
+    <link
+  rel="apple-touch-icon"
+  sizes="180x180"
+  href="/assets/favicon/apple-touch-icon.png" />
+<link
+  rel="icon"
+  type="image/png"
+  sizes="32x32"
+  href="/assets/favicon/favicon-32x32.png" />
+<link
+  rel="icon"
+  type="image/png"
+  sizes="16x16"
+  href="/assets/favicon/favicon-16x16.png" />
+<link rel="manifest" href="/assets/favicon/site.webmanifest" />
+<link
+  rel="mask-icon"
+  href="/assets/favicon/safari-pinned-tab.svg"
+  color="#5bbad5" />
+<link rel="shortcut icon" href="/assets/favicon/favicon.ico" />
+<meta name="msapplication-TileColor" content="#2b5797" />
+<meta name="msapplication-config" content="/assets/favicon/browserconfig.xml" />
+<meta name="theme-color" content="#ffffff" />
+
+
+
+<!-- Mathjax Support -->
+<script
+  type="text/javascript"
+  async
+  src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+  </head>
+
+  <body class="layout--single" dir="ltr">
+    <nav class="skip-links">
+  <ul>
+    <li><a href="#site-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">Skip to footer</a></li>
+  </ul>
+</nav>
+
+    
+
+<div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        
+        <a class="site-title" href="/">
+          some words
+          <span class="site-subtitle">many of them true</span>
+        </a>
+        <ul class="visible-links"><li class="masthead__menu-item">
+              <a
+                href="/projects/"
+                
+                
+              >Projects</a>
+            </li><li class="masthead__menu-item">
+              <a
+                href="/toolkits/"
+                
+                
+              >Toolkits</a>
+            </li><li class="masthead__menu-item">
+              <a
+                href="/bali/"
+                
+                
+              >Bali</a>
+            </li><li class="masthead__menu-item">
+              <a
+                href="/topics/"
+                
+                
+              >Topics</a>
+            </li><li class="masthead__menu-item">
+              <a
+                href="/blog/"
+                
+                
+              >Archive</a>
+            </li></ul>
+        
+        <button class="search__toggle" type="button">
+          <span class="visually-hidden">Toggle search</span>
+          <i class="fas fa-search"></i>
+        </button>
+        
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">Toggle menu</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+    <div class="initial-content">
+      
+
+
+
+
+
+<div id="main" role="main">
+  
+  <div class="sidebar sticky">
+  
+
+
+<div itemscope itemtype="https://schema.org/Person" class="h-card">
+
+  
+    <div class="author__avatar">
+      <a href="https://karmanivero.us/">
+        <img src="/assets/images/bio-photo.jpg" alt="Jason Williscroft" itemprop="image" class="u-photo">
+      </a>
+    </div>
+  
+
+  <div class="author__content">
+    <h3 class="author__name p-name" itemprop="name">
+      <a class="u-url" rel="me" href="https://karmanivero.us/" itemprop="url">Jason Williscroft</a>
+    </h3>
+    
+      <div class="author__bio p-note" itemprop="description">
+        <p><em>resume bullets<br />may read differently at the<br />threshold of heaven</em></p>
+
+      </div>
+    
+  </div>
+
+  <div class="author__urls-wrapper">
+    <button class="btn btn--inverse">Contact</button>
+    <ul class="author__urls social-icons">
+      
+
+      
+        
+          
+            <li><a href="https://twitter.com/karmaniverous" rel="nofollow noopener noreferrer me" itemprop="sameAs"><i class="fa-brands fa-square-x-twitter" aria-hidden="true"></i><span class="label">X</span></a></li>
+          
+        
+          
+            <li><a href="https://techhub.social/@karmaniverous" rel="nofollow noopener noreferrer me" itemprop="sameAs"><i class="fa-brands fa-mastodon" aria-hidden="true"></i><span class="label">Mastodon</span></a></li>
+          
+        
+          
+            <li><a href="https://github.com/karmaniverous" rel="nofollow noopener noreferrer me" itemprop="sameAs"><i class="fa-brands fa-github" aria-hidden="true"></i><span class="label">GitHub</span></a></li>
+          
+        
+          
+            <li><a href="https://www.linkedin.com/in/jscroft/" rel="nofollow noopener noreferrer me" itemprop="sameAs"><i class="fa-brands fa-linkedin" aria-hidden="true"></i><span class="label">LinkedIn</span></a></li>
+          
+        
+          
+            <li><a href="https://wa.me/17737500338" rel="nofollow noopener noreferrer me" itemprop="sameAs"><i class="fa-brands fa-whatsapp" aria-hidden="true"></i><span class="label">WhatsApp</span></a></li>
+          
+        
+          
+            <li><a href="https://t.me/karmaniverous" rel="nofollow noopener noreferrer me" itemprop="sameAs"><i class="fa-brands fa-telegram" aria-hidden="true"></i><span class="label">Telegram</span></a></li>
+          
+        
+          
+            <li><a href="https://calendly.com/karmaniverous" rel="nofollow noopener noreferrer me" itemprop="sameAs"><i class="fa-regular fa-calendar-plus" aria-hidden="true"></i><span class="label">Meet</span></a></li>
+          
+        
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      <!--
+  <li>
+    <a href="http://link-to-whatever-social-network.com/user/" itemprop="sameAs" rel="nofollow noopener noreferrer me">
+      <i class="fas fa-fw" aria-hidden="true"></i> Custom Social Profile Link
+    </a>
+  </li>
+-->
+    </ul>
+  </div>
+</div>
+
+  
+  </div>
+
+
+
+  <article
+    class="page"
+    itemscope
+    itemtype="https://schema.org/CreativeWork"
+    >
+    <meta itemprop="headline" content="What Good Looks Like: A Real-World Typescript Refactor">
+    <meta itemprop="description" content="Watch a complex Javascript configuration object collapse into declarative goodness thanks to type safety, abstraction, and generic design.">
+    <meta itemprop="datePublished" content="2024-09-06T00:00:00+00:00">
+    
+
+    <div class="page__inner-wrap">
+      
+        <header>
+          <h1
+              id="page-title"
+              class="page__title"
+              itemprop="headline">
+              <a href="https://karmanivero.us/what-good-looks-like-a-real-world-typescript-refactor/" itemprop="url">What Good Looks Like: A Real-World Typescript Refactor
+</a>
+            </h1>
+          
+
+  <p class="page__meta">
+    
+      
+      <span class="page__meta-date">
+        <i
+          class="far fa-calendar-alt"
+          aria-hidden="true"
+        ></i>
+        
+        <time datetime="2024-09-06T00:00:00+00:00">September 6, 2024</time>
+      </span>
+    
+
+    <span class="page__meta-sep"></span>
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i
+          class="far fa-clock"
+          aria-hidden="true"
+        ></i>
+        
+          6
+          minute read
+        
+      </span>
+    
+  </p>
+
+
+        </header>
+      
+
+      <section class="page__content" itemprop="text">
+        
+          <aside class="sidebar__right sticky">
+            <nav class="toc">
+              <header>
+                <h4 class="nav__title">
+                  <i class="fas fa-file-alt"></i>
+                  On this page</h4>
+              </header>
+              <ul class="toc__menu"><li><a href="#a-scenario">A Scenario</a></li><li><a href="#baseline-state">Baseline State</a></li><li><a href="#the-new-approach">The New Approach</a></li><li><a href="#next-steps">Next Steps</a></li></ul>
+            </nav>
+          </aside>
+        
+        <figure class="align-left drop-image">
+    <img src="/assets/images/what-good-looks-like-square.jpg" />
+</figure>
+
+<p>Yesterday I posted <a href="/blog/generic-abstractions">a bit of a screed</a> about iteration and the use of abstraction &amp; generic design.</p>
+
+<p>I left the ending a little ragged, as the act of writing it had focused my thoughts and opened up an avenue of approach to a solution. Which was really the point of writing the thing in the first place.</p>
+
+<p>In the last 24 hours, the solution has crystallized into a radical new configuration. I’d like to share this with you, because <em>this</em> is really the living example of all the theory I was spouting yesterday.</p>
+
+<p class="notice--info"><strong>Don’t be afraid to read this!</strong> It won’t be that long, and I’ll keep it accessible to non-developers.</p>
+
+<h2 id="a-scenario">A Scenario</h2>
+
+<p>As I discussed in detail yesterday, I’m working on a Typescript refactor of my <a href="https://github.com/karmaniverous/entity-manager">entity-manager</a> library. This widget is intended to take most of the pain out of operating at scale with <a href="https://aws.amazon.com/dynamodb/">DynamoDB</a> and other <a href="https://en.wikipedia.org/wiki/NoSQL">NoSQL databases</a> in the presence of a rich data model.</p>
+
+<p>To accomplish this, <code class="language-plaintext highlighter-rouge">entity-manager</code> takes a (relatively) simple configuration object as input and uses it to do all kinds of fiddly things to get the database to behave.</p>
+
+<p>A picture is worth a thousand words, so let’s take as our example a back-end service that manages users and their email addresses. This diagram represents those two entities and the relationship between them, along with some critical properties:</p>
+
+<figure class=""><img src="/assets/diagrams/entity-manager-user-erd.png" alt="" /><figcaption>
+      User service entity relationships
+
+    </figcaption></figure>
+
+<p>Here’s what I need from this service:</p>
+
+<ul>
+  <li>
+    <p>One User can have many Emails.</p>
+  </li>
+  <li>
+    <p>I can get a User record by <code class="language-plaintext highlighter-rouge">userId</code> and search for Users by <code class="language-plaintext highlighter-rouge">created</code>, <code class="language-plaintext highlighter-rouge">firstNameCanonical</code>, <code class="language-plaintext highlighter-rouge">lastNameCanonical</code>, <code class="language-plaintext highlighter-rouge">phone</code> &amp; <code class="language-plaintext highlighter-rouge">updated</code>.</p>
+  </li>
+  <li>
+    <p>I can get an Email record by <code class="language-plaintext highlighter-rouge">email</code> and search for emails by <code class="language-plaintext highlighter-rouge">created</code> &amp; <code class="language-plaintext highlighter-rouge">userId</code>.</p>
+  </li>
+</ul>
+
+<p>Moreover, since this service is currently in production, so far as the database is concerned the refactor must exactly mimic existing behavior.</p>
+
+<h2 id="baseline-state">Baseline State</h2>
+
+<p>The <code class="language-plaintext highlighter-rouge">entity-manager</code> configuration object is everything, since the whole point of the library is to hide everything else from the developer.</p>
+
+<p>So if using <code class="language-plaintext highlighter-rouge">entity-manager</code> is easy, it’s because the config object is simple and straightforward. And if it’s hard, it’s because the config object is complex and a pain in the butt to manage.</p>
+
+<p>Here’s the config object for the actual production service described above. <strong>Don’t sweat the code if you aren’t a developer!</strong> I’m just showing it to you for a sense of scale.</p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">entityConfig</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="na">entities</span><span class="p">:</span> <span class="p">{</span>
+    <span class="na">email</span><span class="p">:</span> <span class="p">{</span>
+      <span class="na">defaultLimit</span><span class="p">:</span> <span class="mi">10</span><span class="p">,</span>
+      <span class="na">defaultPageSize</span><span class="p">:</span> <span class="mi">10</span><span class="p">,</span>
+      <span class="na">indexes</span><span class="p">:</span> <span class="p">{</span>
+        <span class="na">userId</span><span class="p">:</span> <span class="p">[</span><span class="dl">"</span><span class="s2">entityPK</span><span class="dl">"</span><span class="p">,</span> <span class="dl">"</span><span class="s2">entitySK</span><span class="dl">"</span><span class="p">,</span> <span class="dl">"</span><span class="s2">userId</span><span class="dl">"</span><span class="p">],</span>
+      <span class="p">},</span>
+      <span class="na">keys</span><span class="p">:</span> <span class="p">{</span>
+        <span class="na">entityPK</span><span class="p">:</span> <span class="p">{</span>
+          <span class="na">encode</span><span class="p">:</span> <span class="p">({</span> <span class="nx">entityToken</span> <span class="o">=</span> <span class="dl">"</span><span class="s2">email</span><span class="dl">"</span><span class="p">,</span> <span class="nx">shardId</span> <span class="p">})</span> <span class="o">=&gt;</span>
+            <span class="s2">`</span><span class="p">${</span><span class="nx">entityToken</span><span class="p">}</span><span class="s2">!</span><span class="p">${</span><span class="nx">sn2e</span><span class="s2">`</span><span class="p">${</span><span class="nx">shardId</span><span class="p">}</span><span class="s2">`</span><span class="p">}</span><span class="s2">`</span><span class="p">,</span>
+          <span class="na">decode</span><span class="p">:</span> <span class="p">(</span><span class="nx">value</span><span class="p">)</span> <span class="o">=&gt;</span>
+            <span class="nx">value</span><span class="p">.</span><span class="nx">match</span><span class="p">(</span><span class="sr">/^</span><span class="se">(?&lt;</span><span class="sr">entityToken&gt;.*</span><span class="se">)</span><span class="sr">!</span><span class="se">(?&lt;</span><span class="sr">shardId&gt;.*</span><span class="se">)</span><span class="sr">$/</span><span class="p">)</span>
+              <span class="p">?.</span><span class="nx">groups</span><span class="p">,</span>
+        <span class="p">},</span>
+
+        <span class="na">entitySK</span><span class="p">:</span> <span class="p">{</span>
+          <span class="na">encode</span><span class="p">:</span> <span class="p">({</span> <span class="nx">email</span> <span class="p">})</span> <span class="o">=&gt;</span> <span class="nx">sn2u</span><span class="s2">`email#</span><span class="p">${</span><span class="nx">email</span><span class="p">}</span><span class="s2">`</span><span class="p">,</span>
+          <span class="na">decode</span><span class="p">:</span> <span class="p">(</span><span class="nx">value</span><span class="p">)</span> <span class="o">=&gt;</span>
+            <span class="nx">value</span><span class="p">.</span><span class="nx">match</span><span class="p">(</span><span class="sr">/^email#</span><span class="se">(?&lt;</span><span class="sr">email&gt;.*</span><span class="se">)</span><span class="sr">$/</span><span class="p">)?.</span><span class="nx">groups</span><span class="p">,</span>
+        <span class="p">},</span>
+
+        <span class="na">userId</span><span class="p">:</span> <span class="p">{</span>
+          <span class="na">encode</span><span class="p">:</span> <span class="p">({</span> <span class="nx">userId</span> <span class="p">})</span> <span class="o">=&gt;</span> <span class="nx">userId</span><span class="p">,</span>
+          <span class="na">decode</span><span class="p">:</span> <span class="p">(</span><span class="nx">value</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">({</span> <span class="na">userId</span><span class="p">:</span> <span class="nx">value</span> <span class="p">}),</span>
+          <span class="na">retain</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+        <span class="p">},</span>
+      <span class="p">},</span>
+      <span class="na">sharding</span><span class="p">:</span> <span class="p">{</span>
+        <span class="na">entityKey</span><span class="p">:</span> <span class="p">({</span> <span class="nx">email</span> <span class="p">})</span> <span class="o">=&gt;</span> <span class="nx">email</span><span class="p">,</span>
+        <span class="na">timestamp</span><span class="p">:</span> <span class="p">({</span> <span class="nx">created</span> <span class="p">})</span> <span class="o">=&gt;</span> <span class="nx">created</span><span class="p">,</span>
+      <span class="p">},</span>
+    <span class="p">},</span>
+    <span class="na">user</span><span class="p">:</span> <span class="p">{</span>
+      <span class="na">defaultLimit</span><span class="p">:</span> <span class="mi">10</span><span class="p">,</span>
+      <span class="na">defaultPageSize</span><span class="p">:</span> <span class="mi">10</span><span class="p">,</span>
+      <span class="na">indexes</span><span class="p">:</span> <span class="p">{</span>
+        <span class="na">created</span><span class="p">:</span> <span class="p">[</span><span class="dl">"</span><span class="s2">entityPK</span><span class="dl">"</span><span class="p">,</span> <span class="dl">"</span><span class="s2">entitySK</span><span class="dl">"</span><span class="p">,</span> <span class="dl">"</span><span class="s2">created</span><span class="dl">"</span><span class="p">],</span>
+        <span class="na">firstName</span><span class="p">:</span> <span class="p">[</span><span class="dl">"</span><span class="s2">entityPK</span><span class="dl">"</span><span class="p">,</span> <span class="dl">"</span><span class="s2">entitySK</span><span class="dl">"</span><span class="p">,</span> <span class="dl">"</span><span class="s2">firstNameSK</span><span class="dl">"</span><span class="p">],</span>
+        <span class="na">lastName</span><span class="p">:</span> <span class="p">[</span><span class="dl">"</span><span class="s2">entityPK</span><span class="dl">"</span><span class="p">,</span> <span class="dl">"</span><span class="s2">entitySK</span><span class="dl">"</span><span class="p">,</span> <span class="dl">"</span><span class="s2">lastNameSK</span><span class="dl">"</span><span class="p">],</span>
+        <span class="na">phone</span><span class="p">:</span> <span class="p">[</span><span class="dl">"</span><span class="s2">entityPK</span><span class="dl">"</span><span class="p">,</span> <span class="dl">"</span><span class="s2">entitySK</span><span class="dl">"</span><span class="p">,</span> <span class="dl">"</span><span class="s2">phone</span><span class="dl">"</span><span class="p">],</span>
+        <span class="na">updated</span><span class="p">:</span> <span class="p">[</span><span class="dl">"</span><span class="s2">entityPK</span><span class="dl">"</span><span class="p">,</span> <span class="dl">"</span><span class="s2">entitySK</span><span class="dl">"</span><span class="p">,</span> <span class="dl">"</span><span class="s2">updated</span><span class="dl">"</span><span class="p">],</span>
+      <span class="p">},</span>
+      <span class="na">keys</span><span class="p">:</span> <span class="p">{</span>
+        <span class="na">entityPK</span><span class="p">:</span> <span class="p">{</span>
+          <span class="na">encode</span><span class="p">:</span> <span class="p">({</span> <span class="nx">entityToken</span> <span class="o">=</span> <span class="dl">"</span><span class="s2">user</span><span class="dl">"</span><span class="p">,</span> <span class="nx">shardId</span> <span class="p">})</span> <span class="o">=&gt;</span>
+            <span class="s2">`</span><span class="p">${</span><span class="nx">entityToken</span><span class="p">}</span><span class="s2">!</span><span class="p">${</span><span class="nx">sn2e</span><span class="s2">`</span><span class="p">${</span><span class="nx">shardId</span><span class="p">}</span><span class="s2">`</span><span class="p">}</span><span class="s2">`</span><span class="p">,</span>
+          <span class="na">decode</span><span class="p">:</span> <span class="p">(</span><span class="nx">value</span><span class="p">)</span> <span class="o">=&gt;</span>
+            <span class="nx">value</span><span class="p">.</span><span class="nx">match</span><span class="p">(</span><span class="sr">/^</span><span class="se">(?&lt;</span><span class="sr">entityToken&gt;.*</span><span class="se">)</span><span class="sr">!</span><span class="se">(?&lt;</span><span class="sr">shardId&gt;.*</span><span class="se">)</span><span class="sr">$/</span><span class="p">)</span>
+              <span class="p">?.</span><span class="nx">groups</span><span class="p">,</span>
+        <span class="p">},</span>
+
+        <span class="na">entitySK</span><span class="p">:</span> <span class="p">{</span>
+          <span class="na">encode</span><span class="p">:</span> <span class="p">({</span> <span class="nx">userId</span> <span class="p">})</span> <span class="o">=&gt;</span> <span class="nx">sn2u</span><span class="s2">`userId#</span><span class="p">${</span><span class="nx">userId</span><span class="p">}</span><span class="s2">`</span><span class="p">,</span>
+          <span class="na">decode</span><span class="p">:</span> <span class="p">(</span><span class="nx">value</span><span class="p">)</span> <span class="o">=&gt;</span>
+            <span class="nx">value</span><span class="p">.</span><span class="nx">match</span><span class="p">(</span><span class="sr">/^userId#</span><span class="se">(?&lt;</span><span class="sr">userId&gt;.*</span><span class="se">)</span><span class="sr">$/</span><span class="p">)?.</span><span class="nx">groups</span><span class="p">,</span>
+        <span class="p">},</span>
+
+        <span class="na">created</span><span class="p">:</span> <span class="p">{</span>
+          <span class="na">encode</span><span class="p">:</span> <span class="p">({</span> <span class="nx">created</span> <span class="p">})</span> <span class="o">=&gt;</span> <span class="nb">Number</span><span class="p">(</span><span class="nx">created</span><span class="p">),</span>
+          <span class="na">decode</span><span class="p">:</span> <span class="p">(</span><span class="nx">value</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">({</span> <span class="na">created</span><span class="p">:</span> <span class="nx">value</span><span class="p">.</span><span class="nx">toString</span><span class="p">()</span> <span class="p">}),</span>
+          <span class="na">retain</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+        <span class="p">},</span>
+
+        <span class="na">firstNameSK</span><span class="p">:</span> <span class="p">{</span>
+          <span class="na">encode</span><span class="p">:</span> <span class="p">({</span> <span class="nx">firstNameCanonical</span><span class="p">,</span> <span class="nx">lastNameCanonical</span> <span class="p">})</span> <span class="o">=&gt;</span>
+            <span class="nx">sn2u</span><span class="s2">`firstNameCanonical#</span><span class="p">${</span><span class="nx">firstNameCanonical</span><span class="p">}${</span><span class="nx">sn2e</span><span class="s2">`|lastNameCanonical#</span><span class="p">${</span><span class="nx">lastNameCanonical</span><span class="p">}</span><span class="s2">`</span><span class="p">}</span><span class="s2">`</span><span class="p">,</span>
+          <span class="na">decode</span><span class="p">:</span> <span class="p">(</span><span class="nx">value</span><span class="p">)</span> <span class="o">=&gt;</span>
+            <span class="nx">value</span><span class="p">.</span><span class="nx">match</span><span class="p">(</span>
+              <span class="sr">/^firstNameCanonical#</span><span class="se">(?&lt;</span><span class="sr">firstNameCanonical&gt;.*</span><span class="se">?)(?:\|</span><span class="sr">lastNameCanonical#</span><span class="se">(?&lt;</span><span class="sr">lastNameCanonical&gt;.*</span><span class="se">))?</span><span class="sr">$/</span>
+            <span class="p">)?.</span><span class="nx">groups</span><span class="p">,</span>
+        <span class="p">},</span>
+
+        <span class="na">lastNameSK</span><span class="p">:</span> <span class="p">{</span>
+          <span class="na">encode</span><span class="p">:</span> <span class="p">({</span> <span class="nx">lastNameCanonical</span><span class="p">,</span> <span class="nx">firstNameCanonical</span> <span class="p">})</span> <span class="o">=&gt;</span>
+            <span class="nx">sn2u</span><span class="s2">`lastNameCanonical#</span><span class="p">${</span><span class="nx">lastNameCanonical</span><span class="p">}${</span><span class="nx">sn2e</span><span class="s2">`|firstNameCanonical#</span><span class="p">${</span><span class="nx">firstNameCanonical</span><span class="p">}</span><span class="s2">`</span><span class="p">}</span><span class="s2">`</span><span class="p">,</span>
+          <span class="na">decode</span><span class="p">:</span> <span class="p">(</span><span class="nx">value</span><span class="p">)</span> <span class="o">=&gt;</span>
+            <span class="nx">value</span><span class="p">.</span><span class="nx">match</span><span class="p">(</span>
+              <span class="sr">/^lastNameCanonical#</span><span class="se">(?&lt;</span><span class="sr">lastNameCanonical&gt;.*</span><span class="se">?)(?:\|</span><span class="sr">firstNameCanonical#</span><span class="se">(?&lt;</span><span class="sr">firstNameCanonical&gt;.*</span><span class="se">))?</span><span class="sr">$/</span>
+            <span class="p">)?.</span><span class="nx">groups</span><span class="p">,</span>
+        <span class="p">},</span>
+
+        <span class="na">phone</span><span class="p">:</span> <span class="p">{</span>
+          <span class="na">encode</span><span class="p">:</span> <span class="p">({</span> <span class="nx">phone</span> <span class="p">})</span> <span class="o">=&gt;</span> <span class="nx">phone</span><span class="p">,</span>
+          <span class="na">decode</span><span class="p">:</span> <span class="p">(</span><span class="nx">value</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">({</span> <span class="na">phone</span><span class="p">:</span> <span class="nx">value</span> <span class="p">}),</span>
+          <span class="na">retain</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+        <span class="p">},</span>
+
+        <span class="na">updated</span><span class="p">:</span> <span class="p">{</span>
+          <span class="na">encode</span><span class="p">:</span> <span class="p">({</span> <span class="nx">updated</span> <span class="p">})</span> <span class="o">=&gt;</span> <span class="nb">Number</span><span class="p">(</span><span class="nx">updated</span><span class="p">),</span>
+          <span class="na">decode</span><span class="p">:</span> <span class="p">(</span><span class="nx">value</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">({</span> <span class="na">updated</span><span class="p">:</span> <span class="nx">value</span><span class="p">.</span><span class="nx">toString</span><span class="p">()</span> <span class="p">}),</span>
+          <span class="na">retain</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+        <span class="p">},</span>
+      <span class="p">},</span>
+      <span class="na">sharding</span><span class="p">:</span> <span class="p">{</span>
+        <span class="na">entityKey</span><span class="p">:</span> <span class="p">({</span> <span class="nx">userId</span> <span class="p">})</span> <span class="o">=&gt;</span> <span class="nx">userId</span><span class="p">,</span>
+        <span class="na">timestamp</span><span class="p">:</span> <span class="p">({</span> <span class="nx">created</span> <span class="p">})</span> <span class="o">=&gt;</span> <span class="nx">created</span><span class="p">,</span>
+      <span class="p">},</span>
+    <span class="p">},</span>
+  <span class="p">},</span>
+  <span class="na">shardKeyToken</span><span class="p">:</span> <span class="dl">"</span><span class="s2">shardId</span><span class="dl">"</span><span class="p">,</span>
+<span class="p">};</span>
+</code></pre></div></div>
+
+<p>Couple of points worth noting here…</p>
+
+<ul>
+  <li>
+    <p><strong>This thing is pretty big and complex!</strong> To represent the two related entities &amp; indexing requirements described <a href="#a-scenario">above</a>, it needed just exactly 100 lines of code.</p>
+  </li>
+  <li>
+    <p><strong>This is Javascript, not Typescript!</strong> This complex config object has to be <em>exactly right</em>, and without the <a href="https://clouddevs.com/typescript/type-safety">type safety</a> Typescript provides, the developer is on his own to discover &amp; fix any config errors. I should know: I <em>designed</em> this thing and I screw it up regularly. 🙄</p>
+  </li>
+  <li>
+    <p><strong>There’s a lot of logic here!</strong> But if you examine all those <code class="language-plaintext highlighter-rouge">encode</code> and <code class="language-plaintext highlighter-rouge">decode</code> functions, even across services, they all seem to operate the same way. That’s an opportunity for abstraction.</p>
+  </li>
+</ul>
+
+<h2 id="the-new-approach">The New Approach</h2>
+
+<p>Remember, this is a Typescript refactor. That means we’re going to bring typing info into the mix alongside the actual configuration object.</p>
+
+<p>Here are the types that a developer would define to drive the new User service config object:</p>
+
+<div class="language-ts highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kr">interface</span> <span class="nx">User</span> <span class="p">{</span>
+  <span class="nl">created</span><span class="p">:</span> <span class="kr">number</span><span class="p">;</span>
+  <span class="nl">firstNameCanonical</span><span class="p">:</span> <span class="kr">string</span><span class="p">;</span>
+  <span class="nl">firstNameRK</span><span class="p">:</span> <span class="nx">never</span><span class="p">;</span>
+  <span class="nl">lastNameCanonical</span><span class="p">:</span> <span class="kr">string</span><span class="p">;</span>
+  <span class="nl">lastNameRK</span><span class="p">:</span> <span class="nx">never</span><span class="p">;</span>
+  <span class="nl">phone</span><span class="p">:</span> <span class="kr">string</span><span class="p">;</span>
+  <span class="nl">updated</span><span class="p">:</span> <span class="kr">number</span><span class="p">;</span>
+  <span class="nl">userId</span><span class="p">:</span> <span class="kr">string</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kr">interface</span> <span class="nx">Email</span> <span class="p">{</span>
+  <span class="nl">created</span><span class="p">:</span> <span class="kr">number</span><span class="p">;</span>
+  <span class="nl">email</span><span class="p">:</span> <span class="kr">string</span><span class="p">;</span>
+  <span class="nl">userId</span><span class="p">:</span> <span class="kr">string</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kr">interface</span> <span class="nx">EntityMap</span> <span class="p">{</span>
+  <span class="nl">user</span><span class="p">:</span> <span class="nx">User</span><span class="p">;</span>
+  <span class="nl">email</span><span class="p">:</span> <span class="nx">Email</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>The <code class="language-plaintext highlighter-rouge">User</code> &amp; <code class="language-plaintext highlighter-rouge">Email</code> interfaces describe the entities themselves, in a way that is useful to drive <code class="language-plaintext highlighter-rouge">entity-manager</code> and also wherever else those entities show up in the code. Note that we’ve used the special <code class="language-plaintext highlighter-rouge">never</code> type to indicate properties the developer should not populate directly because <code class="language-plaintext highlighter-rouge">entity-manager</code> is going to generate them for us.</p>
+
+<p><code class="language-plaintext highlighter-rouge">EntityMap</code> tells <code class="language-plaintext highlighter-rouge">entity-manager</code> which parts of the configuration object will be associated with which entities.</p>
+
+<p>Here’s the actual config object:</p>
+
+<div class="language-ts highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">export</span> <span class="kd">const</span> <span class="nx">config</span><span class="p">:</span> <span class="nx">Config</span><span class="o">&lt;</span><span class="nx">EntityMap</span><span class="p">,</span> <span class="dl">"</span><span class="s2">entityPK</span><span class="dl">"</span><span class="p">,</span> <span class="dl">"</span><span class="s2">entitySK</span><span class="dl">"</span><span class="o">&gt;</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="na">entities</span><span class="p">:</span> <span class="p">{</span>
+    <span class="na">user</span><span class="p">:</span> <span class="p">{</span>
+      <span class="na">indexes</span><span class="p">:</span> <span class="p">{</span>
+        <span class="na">created</span><span class="p">:</span> <span class="p">[</span><span class="dl">"</span><span class="s2">entityPK</span><span class="dl">"</span><span class="p">,</span> <span class="dl">"</span><span class="s2">entitySK</span><span class="dl">"</span><span class="p">,</span> <span class="dl">"</span><span class="s2">created</span><span class="dl">"</span><span class="p">],</span>
+        <span class="na">firstName</span><span class="p">:</span> <span class="p">[</span><span class="dl">"</span><span class="s2">entityPK</span><span class="dl">"</span><span class="p">,</span> <span class="dl">"</span><span class="s2">entitySK</span><span class="dl">"</span><span class="p">,</span> <span class="dl">"</span><span class="s2">firstNameRK</span><span class="dl">"</span><span class="p">],</span>
+        <span class="na">lastName</span><span class="p">:</span> <span class="p">[</span><span class="dl">"</span><span class="s2">entityPK</span><span class="dl">"</span><span class="p">,</span> <span class="dl">"</span><span class="s2">entitySK</span><span class="dl">"</span><span class="p">,</span> <span class="dl">"</span><span class="s2">lastNameRK</span><span class="dl">"</span><span class="p">],</span>
+        <span class="na">phone</span><span class="p">:</span> <span class="p">[</span><span class="dl">"</span><span class="s2">entityPK</span><span class="dl">"</span><span class="p">,</span> <span class="dl">"</span><span class="s2">entitySK</span><span class="dl">"</span><span class="p">,</span> <span class="dl">"</span><span class="s2">phone</span><span class="dl">"</span><span class="p">],</span>
+        <span class="na">updated</span><span class="p">:</span> <span class="p">[</span><span class="dl">"</span><span class="s2">entityPK</span><span class="dl">"</span><span class="p">,</span> <span class="dl">"</span><span class="s2">entitySK</span><span class="dl">"</span><span class="p">,</span> <span class="dl">"</span><span class="s2">updated</span><span class="dl">"</span><span class="p">],</span>
+      <span class="p">},</span>
+      <span class="na">generated</span><span class="p">:</span> <span class="p">{</span>
+        <span class="na">firstNameRK</span><span class="p">:</span> <span class="p">{</span>
+          <span class="na">elements</span><span class="p">:</span> <span class="p">[</span><span class="dl">"</span><span class="s2">firstNameCanonical</span><span class="dl">"</span><span class="p">,</span> <span class="dl">"</span><span class="s2">lastNameCanonical</span><span class="dl">"</span><span class="p">],</span>
+        <span class="p">},</span>
+        <span class="na">lastNameRK</span><span class="p">:</span> <span class="p">{</span>
+          <span class="na">elements</span><span class="p">:</span> <span class="p">[</span><span class="dl">"</span><span class="s2">lastNameCanonical</span><span class="dl">"</span><span class="p">,</span> <span class="dl">"</span><span class="s2">firstNameCanonical</span><span class="dl">"</span><span class="p">],</span>
+        <span class="p">},</span>
+      <span class="p">},</span>
+      <span class="na">timestampProperty</span><span class="p">:</span> <span class="dl">"</span><span class="s2">created</span><span class="dl">"</span><span class="p">,</span>
+      <span class="na">uniqueProperty</span><span class="p">:</span> <span class="dl">"</span><span class="s2">userId</span><span class="dl">"</span><span class="p">,</span>
+    <span class="p">},</span>
+    <span class="na">email</span><span class="p">:</span> <span class="p">{</span>
+      <span class="na">indexes</span><span class="p">:</span> <span class="p">{</span>
+        <span class="na">userId</span><span class="p">:</span> <span class="p">[</span><span class="dl">"</span><span class="s2">entityPK</span><span class="dl">"</span><span class="p">,</span> <span class="dl">"</span><span class="s2">entitySK</span><span class="dl">"</span><span class="p">,</span> <span class="dl">"</span><span class="s2">userId</span><span class="dl">"</span><span class="p">],</span>
+      <span class="p">},</span>
+      <span class="na">timestampProperty</span><span class="p">:</span> <span class="dl">"</span><span class="s2">created</span><span class="dl">"</span><span class="p">,</span>
+      <span class="na">uniqueProperty</span><span class="p">:</span> <span class="dl">"</span><span class="s2">email</span><span class="dl">"</span><span class="p">,</span>
+    <span class="p">},</span>
+  <span class="p">},</span>
+  <span class="na">hashKey</span><span class="p">:</span> <span class="dl">"</span><span class="s2">entityPK</span><span class="dl">"</span><span class="p">,</span>
+  <span class="na">uniqueKey</span><span class="p">:</span> <span class="dl">"</span><span class="s2">entitySK</span><span class="dl">"</span><span class="p">,</span>
+<span class="p">};</span>
+</code></pre></div></div>
+
+<p>If you’re counting, that’s just 32 lines… <strong>a two-thirds reduction in size!</strong> And there is <em>no</em> persnickety functional logic, because all that stuff will now be generated by <code class="language-plaintext highlighter-rouge">entity-manager</code> based on the content of the config object.</p>
+
+<p>Moreover, thanks to type safety, <strong>it’s almost impossible to screw this up!</strong></p>
+
+<p>Typescript will alert the developer immediately if he…</p>
+
+<ul>
+  <li>
+    <p>Fails to add an entity specified in the <code class="language-plaintext highlighter-rouge">EntityMap</code> interface, or adds an entity <em>not</em> specified there.</p>
+  </li>
+  <li>
+    <p>Specifies an entity index component that doesn’t exist on the relevant entity with either a <code class="language-plaintext highlighter-rouge">number</code>, <code class="language-plaintext highlighter-rouge">string</code>, or <code class="language-plaintext highlighter-rouge">never</code> type.</p>
+  </li>
+  <li>
+    <p>Specifies a generated property that doesn’t exist on the relevant entity with a <code class="language-plaintext highlighter-rouge">never</code> type.</p>
+  </li>
+  <li>
+    <p>Specifies a generated property component that doesn’t exist on the relevant entity <em>without</em> a <code class="language-plaintext highlighter-rouge">never</code> type.</p>
+  </li>
+  <li>
+    <p>Specifies an entity <code class="language-plaintext highlighter-rouge">timestampProperty</code> that doesn’t exist on the relevant entity or doesn’t have a <code class="language-plaintext highlighter-rouge">number</code> type.</p>
+  </li>
+  <li>
+    <p>Specifies an entity <code class="language-plaintext highlighter-rouge">uniqueProperty</code> that doesn’t exist on the relevant entity or doesn’t have a <code class="language-plaintext highlighter-rouge">number</code> or <code class="language-plaintext highlighter-rouge">string</code> type.</p>
+  </li>
+  <li>
+    <p>Fails to specify exactly the right <code class="language-plaintext highlighter-rouge">hashKey</code> and <code class="language-plaintext highlighter-rouge">uniqueKey</code> properties.</p>
+  </li>
+  <li>
+    <p>Manually populates a value on a <code class="language-plaintext highlighter-rouge">User</code> or <code class="language-plaintext highlighter-rouge">Email</code> entity <em>anywhere else in his code</em> that <code class="language-plaintext highlighter-rouge">entity-manager</code> is supposed to generate for us.</p>
+  </li>
+</ul>
+
+<p><strong>This, my friends, is what <em>good</em> looks like.</strong></p>
+
+<h2 id="next-steps">Next Steps</h2>
+
+<p>There’s still a lot of work to be done!</p>
+
+<p>My last iteration of <code class="language-plaintext highlighter-rouge">entity-manager</code> was type-safe but assumed it was going to receive something very similar to the old config object. The job now is to add the logic that will generate the missing bits from the new config according to the rules I’ve discovered over two years of operating with the Javascript version of the library.</p>
+
+<p>That said: the path forward from here is very clear.</p>
+
+<p>Stay tuned!</p>
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+  
+
+
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-tags" aria-hidden="true"></i> Topics: </strong>
+    <span itemprop="keywords">
+    
+      <a href="/topics/design" class="page__taxonomy-item p-category" rel="tag">design</a><span class="sep">, </span>
+    
+      <a href="/topics/entity-manager" class="page__taxonomy-item p-category" rel="tag">entity-manager</a><span class="sep">, </span>
+    
+      <a href="/topics/projects" class="page__taxonomy-item p-category" rel="tag">projects</a><span class="sep">, </span>
+    
+      <a href="/topics/typescript" class="page__taxonomy-item p-category" rel="tag">typescript</a>
+    
+    </span>
+  </p>
+
+
+
+
+        
+
+  <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> Updated:</strong> <time class="dt-published" datetime="2024-09-06T00:00:00+00:00">September 6, 2024</time></p>
+
+      </footer>
+
+      
+        <section class="page__share">
+  
+    <h4 class="page__share-title">Share on</h4>
+  
+
+  <a href="https://twitter.com/intent/tweet?via=karmaniverous&text=What+Good+Looks+Like%3A+A+Real-World+Typescript+Refactor%20https%3A%2F%2Fkarmanivero.us%2Fwhat-good-looks-like-a-real-world-typescript-refactor%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+
+  <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fkarmanivero.us%2Fwhat-good-looks-like-a-real-world-typescript-refactor%2F" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
+
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=https://karmanivero.us/what-good-looks-like-a-real-world-typescript-refactor/" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
+</section>
+
+
+      
+  <nav class="pagination">
+    
+      <a href="/generic-abstractions/" class="pagination--pager" title="Generic Abstractions
+">Previous</a>
+    
+    
+      <a href="/code-complete-a-day-in-the-life-of-a-product/" class="pagination--pager" title="Code Complete: A Day in the Life of a Product
+">Next</a>
+    
+  </nav>
+
+    </div>
+
+    
+  </article>
+
+  
+  
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  
+
+  
+  
+
+  
+  
+
+  
+  <div class='page__related'>
+    
+    <h2 class='page__related-title'>
+      You may also enjoy
+    </h2>
+    <div class='grid__wrapper'>
+
+      
+      
+        
+        
+        
+        
+        
+        
+      
+
+        
+      
+
+        
+        <!-- post_url: /the-big-miss-turning-lemons-into-lemonade/ -->
+        <!-- normLogCommonTags: 1.0 -->
+        <!-- logAge: 0.090486111111111 -->
+        <!-- relevance: 52910 -->
+
+        
+      
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src="/assets/images/lemons-square.jpg" alt="">
+      </div>
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/the-big-miss-turning-lemons-into-lemonade/" rel="permalink">The Big Miss: Turning Lemons Into Lemonade
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+      
+      <span class="page__meta-date">
+        <i
+          class="far fa-fw fa-calendar-alt"
+          aria-hidden="true"
+        ></i>
+        
+        <time datetime="2024-11-20T00:00:00+00:00">November 20, 2024</time>
+      </span>
+    
+
+    <span class="page__meta-sep"></span>
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i
+          class="far fa-fw fa-clock"
+          aria-hidden="true"
+        ></i>
+        
+          8
+          minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">Today was one of those days when I question my life choices. Watch me dig my way out of a hole with the same shovel I used to dig my way in.
+</p>
+  </article>
+</div>
+
+
+        
+        
+        
+      
+        
+        
+        
+        
+        
+      
+
+        
+      
+
+        
+        <!-- post_url: /composition-in-action-finishing-the-swing/ -->
+        <!-- normLogCommonTags: 1.0 -->
+        <!-- logAge: 5.1278276909722225 -->
+        <!-- relevance: 47872 -->
+
+        
+      
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src="https://github.com/karmaniverous/controlled-proxy/raw/main/assets/controlled-proxy-square.jpg" alt="">
+      </div>
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/composition-in-action-finishing-the-swing/" rel="permalink">Composition in Action: Finishing the Swing
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+      
+      <span class="page__meta-date">
+        <i
+          class="far fa-fw fa-calendar-alt"
+          aria-hidden="true"
+        ></i>
+        
+        <time datetime="2024-10-16T00:00:00+00:00">October 16, 2024</time>
+      </span>
+    
+
+    <span class="page__meta-sep"></span>
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i
+          class="far fa-fw fa-clock"
+          aria-hidden="true"
+        ></i>
+        
+          9
+          minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">In software engineering, what look to be the easy parts often turn out to be the hard parts. If you’re lucky, the reverse is also true, but don’t count on it.
+</p>
+  </article>
+</div>
+
+
+        
+        
+        
+      
+        
+        
+        
+        
+        
+      
+
+        
+      
+
+        
+        <!-- post_url: /mixin-it-up-picking-the-right-problem-to-solve/ -->
+        <!-- normLogCommonTags: 1.0 -->
+        <!-- logAge: 5.2528276909722225 -->
+        <!-- relevance: 47747 -->
+
+        
+      
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src="/assets/images/mixin-it-up-square.jpg" alt="">
+      </div>
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/mixin-it-up-picking-the-right-problem-to-solve/" rel="permalink">Mixin It Up: Picking The Right Problem to Solve
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+      
+      <span class="page__meta-date">
+        <i
+          class="far fa-fw fa-calendar-alt"
+          aria-hidden="true"
+        ></i>
+        
+        <time datetime="2024-10-12T00:00:00+00:00">October 12, 2024</time>
+      </span>
+    
+
+    <span class="page__meta-sep"></span>
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i
+          class="far fa-fw fa-clock"
+          aria-hidden="true"
+        ></i>
+        
+          9
+          minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">Sometimes, when you’re tangled up in a thorny problem, solving it is exactly the wrong answer.
+</p>
+  </article>
+</div>
+
+
+        
+        
+        
+      
+        
+        
+        
+        
+        
+      
+
+        
+      
+
+        
+        <!-- post_url: /loggable-a-typescript-mixin-for-generic-class-logging/ -->
+        <!-- normLogCommonTags: 1.0 -->
+        <!-- logAge: 5.2840776909722225 -->
+        <!-- relevance: 47716 -->
+
+        
+      
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src="https://raw.githubusercontent.com/karmaniverous/loggable/main/assets/loggable-square.jpg" alt="">
+      </div>
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/loggable-a-typescript-mixin-for-generic-class-logging/" rel="permalink">Loggable: A TypeScript Mixin for Generic Class Logging
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+      
+      <span class="page__meta-date">
+        <i
+          class="far fa-fw fa-calendar-alt"
+          aria-hidden="true"
+        ></i>
+        
+        <time datetime="2024-10-11T00:00:00+00:00">October 11, 2024</time>
+      </span>
+    
+
+    <span class="page__meta-sep"></span>
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i
+          class="far fa-fw fa-clock"
+          aria-hidden="true"
+        ></i>
+        
+          5
+          minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">Logging is an implementation decision that should be deferred as late as possible. Loggable lets you defer it until runtime!
+</p>
+  </article>
+</div>
+
+
+        
+        
+        
+      
+        
+        
+        
+        
+        
+      
+
+        
+      
+
+        
+        <!-- post_url: /projects/entity-manager/intro/ -->
+        <!-- normLogCommonTags: 0.75 -->
+        <!-- logAge: 5.0 -->
+        <!-- relevance: 47250 -->
+
+        
+      
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src="/assets/collections/entity-manager/entity-manager-square.jpg" alt="">
+      </div>
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/projects/entity-manager/intro/" rel="permalink">Meet Entity Manager!
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i
+          class="far fa-clock"
+          aria-hidden="true"
+        ></i>
+        
+          2
+          minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">NoSQL shifts the burden of complexity from the database platform to the developer. Entity Manager sweeps it under the rug!
+</p>
+  </article>
+</div>
+
+
+        
+        
+        
+      
+        
+        
+        
+        
+        
+      
+
+        
+      
+
+        
+        <!-- post_url: /projects/entity-manager/demo/ -->
+        <!-- normLogCommonTags: 0.75 -->
+        <!-- logAge: 5.0 -->
+        <!-- relevance: 47250 -->
+
+        
+      
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src="/assets/collections/entity-manager/configuration-square.jpg" alt="">
+      </div>
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/projects/entity-manager/demo/" rel="permalink">Entity Manager: A Demonstration
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i
+          class="far fa-clock"
+          aria-hidden="true"
+        ></i>
+        
+          16
+          minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">Presenting a step-by-step Typescript implementation of a realistic data model against DynamoDB, with the help of Entity Manager.
+</p>
+  </article>
+</div>
+
+
+        
+        
+        
+      
+        
+        
+        
+        
+        
+      
+
+        
+      
+
+        
+        <!-- post_url: /projects/entity-manager/configuration/ -->
+        <!-- normLogCommonTags: 0.75 -->
+        <!-- logAge: 5.0 -->
+        <!-- relevance: 47250 -->
+
+        
+      
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src="/assets/collections/entity-manager/configuration-square.jpg" alt="">
+      </div>
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/projects/entity-manager/configuration/" rel="permalink">Entity Manager Configuration
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i
+          class="far fa-clock"
+          aria-hidden="true"
+        ></i>
+        
+          22
+          minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">Entity Manager enables efficient put, get, and query operations across entity relationships, indexes, and sharded partitions in a NoSQL database.
+</p>
+  </article>
+</div>
+
+
+        
+        
+        
+      
+        
+        
+        
+        
+        
+      
+
+        
+      
+
+        
+        <!-- post_url: /code-complete-a-day-in-the-life-of-a-product/ -->
+        <!-- normLogCommonTags: 1.0 -->
+        <!-- logAge: 6.017038845486111 -->
+        <!-- relevance: 46983 -->
+
+        
+      
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src="/assets/images/code-complete-tests.jpg" alt="">
+      </div>
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/code-complete-a-day-in-the-life-of-a-product/" rel="permalink">Code Complete: A Day in the Life of a Product
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+      
+      <span class="page__meta-date">
+        <i
+          class="far fa-fw fa-calendar-alt"
+          aria-hidden="true"
+        ></i>
+        
+        <time datetime="2024-09-17T00:00:00+00:00">September 17, 2024</time>
+      </span>
+    
+
+    <span class="page__meta-sep"></span>
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i
+          class="far fa-fw fa-clock"
+          aria-hidden="true"
+        ></i>
+        
+          8
+          minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">We’re all professionals here, right? And we all know there’s often quite a gap between what gets posted to social media and the reality on the ground.
+</p>
+  </article>
+</div>
+
+
+        
+        
+        
+          
+    </div>
+  </div>
+
+  
+</div>
+      
+    </div>
+
+    
+      <div class="search-content">
+        <div class="search-content__inner-wrap"><form onsubmit="return googleCustomSearchExecute();" id="cse-search-box-form-id" role="search">
+    <label class="sr-only" for="cse-search-input-box-id">
+      Enter your search term...
+    </label>
+    <input type="search" id="cse-search-input-box-id" class="search-input" tabindex="-1" placeholder="Enter your search term..." />
+  </form>
+  <div id="results" class="results">
+    <gcse:searchresults-only></gcse:searchresults-only>
+  </div></div>
+
+      </div>
+    
+
+    <div id="footer" class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+        <div class="page__footer-follow">
+  
+    <span class="love">Built for you with ❤️ on <a href="/bali/">Bali</a>!</span>
+  
+
+  <ul class="social-icons">
+    
+      <li>
+        <strong>Contact</strong>&nbsp;&nbsp;&nbsp;</li>
+    
+
+    
+      
+        
+          <li>
+            <a href="https://twitter.com/karmaniverous" rel="nofollow noopener noreferrer">
+              <i class="fa-brands fa-x-twitter" aria-hidden="true"></i>
+              </a>
+          </li>
+        
+      
+        
+          <li>
+            <a href="https://techhub.social/@karmaniverous" rel="nofollow noopener noreferrer">
+              <i class="fa-brands fa-mastodon" aria-hidden="true"></i>
+              </a>
+          </li>
+        
+      
+        
+          <li>
+            <a href="https://github.com/karmaniverous" rel="nofollow noopener noreferrer">
+              <i class="fa-brands fa-github" aria-hidden="true"></i>
+              </a>
+          </li>
+        
+      
+        
+          <li>
+            <a href="https://www.linkedin.com/in/jscroft/" rel="nofollow noopener noreferrer">
+              <i class="fa-brands fa-linkedin" aria-hidden="true"></i>
+              </a>
+          </li>
+        
+      
+        
+          <li>
+            <a href="https://wa.me/17737500338" rel="nofollow noopener noreferrer">
+              <i class="fa-brands fa-square-whatsapp" aria-hidden="true"></i>
+              </a>
+          </li>
+        
+      
+        
+          <li>
+            <a href="https://t.me/karmaniverous" rel="nofollow noopener noreferrer">
+              <i class="fa-brands fa-telegram" aria-hidden="true"></i>
+              </a>
+          </li>
+        
+      
+        
+          <li>
+            <a href="https://calendly.com/karmaniverous" rel="nofollow noopener noreferrer">
+              <i class="fa-regular fa-calendar-plus" aria-hidden="true"></i>
+              </a>
+          </li>
+        
+      
+    
+
+    
+      <li>
+        <a href="/feed.xml">
+          <i class="fas fa-fw fa-rss-square" aria-hidden="true"></i>
+           </a>
+      </li>
+    
+  </ul>
+</div>
+
+<div class="page__footer-copyright">&copy; 2024
+  <a href="https://karmanivero.us">some words</a>. Powered by
+  <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a>
+  &amp;
+  <a href="https://mademistakes.com/work/jekyll-themes/minimal-mistakes/" rel="nofollow">Minimal Mistakes</a>.</div>
+      </footer>
+    </div>
+
+    
+  <script src="/assets/js/main.min.js"></script>
+
+
+<script>
+  (function () {
+    var cx = '960ee5d1b2fec4509';
+    var gcse = document.createElement('script');
+    gcse.type = 'text/javascript';
+    gcse.async = true;
+    gcse.src = 'https://cse.google.com/cse.js?cx=' + cx;
+    var s = document.getElementsByTagName('script')[0];
+    s.parentNode.insertBefore(gcse, s);
+  })();
+
+  function googleCustomSearchExecute() {
+    var input = document.getElementById('cse-search-input-box-id');
+    var element = google.search.cse.element.getElement('searchresults-only0');
+    if (input.value == '') {
+      element.clearAllResults();
+    } else {
+      element.execute(input.value);
+    }
+    return false;
+  }
+
+  
+    $(document).ready(function () {
+      $('input#cse-search-input-box-id').on('keyup', function () {
+        googleCustomSearchExecute();
+      });
+    });
+  
+</script>
+
+
+
+
+    
+  <script>
+    var disqus_config = function () {
+      this.page.url = "https://karmanivero.us/what-good-looks-like-a-real-world-typescript-refactor/";  /* Replace PAGE_URL with your page's canonical URL variable */
+      this.page.identifier = "/what-good-looks-like-a-real-world-typescript-refactor"; /* Replace PAGE_IDENTIFIER with your page's unique identifier variable */
+    };
+    (function() { /* DON'T EDIT BELOW THIS LINE */
+      var d = document, s = d.createElement('script');
+      s.src = 'https://some-words.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+    })();
+  </script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+
+  
+
+
+
+
+  </body>
+</html>

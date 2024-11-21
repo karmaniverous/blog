@@ -1,0 +1,1962 @@
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.26.2 by Michael Rose
+  Copyright 2013-2024 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
+-->
+
+<html lang="en-US" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin _includes/seo.html --><title>Design as Code: A Frictionless Low-Level Design Pipeline - some words</title>
+<meta name="description" content="A frictionless low-level design process that integrates with your dev cycle and puts design artifacts at a peer level with the rest of your codebase.">
+
+
+  <meta name="author" content="Jason Williscroft">
+  
+  <meta property="article:author" content="Jason Williscroft">
+  
+
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="en_US">
+<meta property="og:site_name" content="some words">
+<meta property="og:title" content="Design as Code: A Frictionless Low-Level Design Pipeline">
+<meta property="og:url" content="https://karmanivero.us/toolkits/project-governance/design-as-code-a-frictionless-low-level-design-pipeline/">
+
+
+  <meta property="og:description" content="A frictionless low-level design process that integrates with your dev cycle and puts design artifacts at a peer level with the rest of your codebase.">
+
+
+
+  <meta property="og:image" content="https://karmanivero.us/assets/collections/project-governance/design-as-code-banner.jpg">
+
+
+
+  <meta name="twitter:site" content="@karmaniverous">
+  <meta name="twitter:title" content="Design as Code: A Frictionless Low-Level Design Pipeline">
+  <meta name="twitter:description" content="A frictionless low-level design process that integrates with your dev cycle and puts design artifacts at a peer level with the rest of your codebase.">
+  <meta name="twitter:url" content="https://karmanivero.us/toolkits/project-governance/design-as-code-a-frictionless-low-level-design-pipeline/">
+
+  
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content="https://karmanivero.us/assets/collections/project-governance/design-as-code-banner.jpg">
+  
+
+  
+
+
+
+  <meta property="article:published_time" content="2024-11-21T02:10:13+00:00">
+
+
+
+
+
+
+<link rel="canonical" href="https://karmanivero.us/toolkits/project-governance/design-as-code-a-frictionless-low-level-design-pipeline/">
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- end _includes/seo.html -->
+
+
+
+  <link href="/feed.xml" type="application/atom+xml" rel="alternate" title="some words Feed">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script type="text/javascript">
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+  window.enable_copy_code_button = true;
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/assets/css/main.css">
+<link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@latest/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@latest/css/all.min.css"></noscript>
+
+
+
+    <link
+  rel="apple-touch-icon"
+  sizes="180x180"
+  href="/assets/favicon/apple-touch-icon.png" />
+<link
+  rel="icon"
+  type="image/png"
+  sizes="32x32"
+  href="/assets/favicon/favicon-32x32.png" />
+<link
+  rel="icon"
+  type="image/png"
+  sizes="16x16"
+  href="/assets/favicon/favicon-16x16.png" />
+<link rel="manifest" href="/assets/favicon/site.webmanifest" />
+<link
+  rel="mask-icon"
+  href="/assets/favicon/safari-pinned-tab.svg"
+  color="#5bbad5" />
+<link rel="shortcut icon" href="/assets/favicon/favicon.ico" />
+<meta name="msapplication-TileColor" content="#2b5797" />
+<meta name="msapplication-config" content="/assets/favicon/browserconfig.xml" />
+<meta name="theme-color" content="#ffffff" />
+
+
+  <link
+    rel="stylesheet"
+    type="text/css"
+    href="/assets/swagger/swagger-ui.css">
+  <script src="/assets/swagger/swagger-ui-bundle.js"></script>
+  <script src="/assets/swagger/swagger-ui-standalone-preset.js"></script>
+
+
+<!-- Mathjax Support -->
+<script
+  type="text/javascript"
+  async
+  src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+  </head>
+
+  <body class="layout--single" dir="ltr">
+    <nav class="skip-links">
+  <ul>
+    <li><a href="#site-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">Skip to footer</a></li>
+  </ul>
+</nav>
+
+    
+
+<div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        
+        <a class="site-title" href="/">
+          some words
+          <span class="site-subtitle">many of them true</span>
+        </a>
+        <ul class="visible-links"><li class="masthead__menu-item">
+              <a
+                href="/projects/"
+                
+                
+              >Projects</a>
+            </li><li class="masthead__menu-item">
+              <a
+                href="/toolkits/"
+                
+                
+              >Toolkits</a>
+            </li><li class="masthead__menu-item">
+              <a
+                href="/bali/"
+                
+                
+              >Bali</a>
+            </li><li class="masthead__menu-item">
+              <a
+                href="/topics/"
+                
+                
+              >Topics</a>
+            </li><li class="masthead__menu-item">
+              <a
+                href="/blog/"
+                
+                
+              >Archive</a>
+            </li></ul>
+        
+        <button class="search__toggle" type="button">
+          <span class="visually-hidden">Toggle search</span>
+          <i class="fas fa-search"></i>
+        </button>
+        
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">Toggle menu</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+    <div class="initial-content">
+      
+  
+
+
+
+
+
+
+
+<div class="page__hero--overlay" style=" background-image: linear-gradient(rgba(32, 0, 32, 0.6), rgba(32, 0, 32, 0.6)), url('/assets/collections/project-governance/design-as-code-banner.jpg');">
+  
+    <div class="wrapper">
+      <h1
+        id="page-title"
+        class="page__title"
+        itemprop="headline">
+        
+          Design as Code: A Frictionless Low-Level Design Pipeline
+
+        
+      </h1>
+      
+        <p class="page__lead">A frictionless low-level design process that integrates with your dev cycle and puts design artifacts at a peer level with the rest of your codebase.
+</p>
+      
+      
+      
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i
+          class="far fa-clock"
+          aria-hidden="true"
+        ></i>
+        
+          21
+          minute read
+        
+      </span>
+    
+  </p>
+
+
+      
+        <p>
+          
+            <a href="https://x.com/karmaniverous" class="btn btn--light-outline btn--large"><i class="fa-brands fa-x-twitter fa-2xl"></i></a>
+          
+            <a href="https://techhub.social/@karmaniverous" class="btn btn--light-outline btn--large"><i class="fa-brands fa-mastodon fa-2xl"></i></a>
+          
+            <a href="https://www.linkedin.com/in/jscroft" class="btn btn--light-outline btn--large"><i class="fa-brands fa-linkedin-in fa-2xl"></i></a>
+          
+            <a href="https://wa.me/17737500338" class="btn btn--light-outline btn--large"><i class="fa-brands fa-whatsapp fa-2xl"></i></a>
+          
+            <a href="https://t.me/karmaniverous" class="btn btn--light-outline btn--large"><i class="fa-brands fa-telegram fa-2xl"></i></a>
+          
+            <a href="https://calendly.com/karmaniverous" class="btn btn--light-outline btn--large"><i class="fa-regular fa-calendar-plus fa-2xl"></i></a>
+          
+        </p>
+      
+    </div>
+  
+  
+    <span class="page__hero-caption">Got questions or feedback? Contact me at one of the links on this page!
+</span>
+  
+</div>
+
+
+
+
+
+
+<div id="main" role="main">
+  
+  <div class="sidebar sticky">
+  
+  
+    
+      
+      
+      
+      
+    
+    
+      <nav class="nav__list">
+  
+  <input id="ac-toc" name="accordion-toc" type="checkbox" />
+  <label for="ac-toc">Toggle menu</label>
+  <ul class="nav__items">
+    
+      
+      
+        <li>
+          
+            <span class="nav__sub-title">Project Governance Toolkit</span>
+          
+
+          
+          <ul>
+            
+              <li><a href="/toolkits/project-governance/intro/">Introduction</a></li>
+            
+              <li><a href="/toolkits/project-governance/a-modern-agile-project-manifesto/">Agile Manifesto</a></li>
+            
+              <li><a href="/toolkits/project-governance/git-flow-by-example-writing-down-your-version-control-process/">Git Flow By Example</a></li>
+            
+              <li><a href="/toolkits/project-governance/turning-the-crank-design-as-a-mechanical-process/">Design as a Mechanical Process</a></li>
+            
+              <li><a href="/toolkits/project-governance/design-as-code-a-frictionless-low-level-design-pipeline/" class="active">Design As Code</a></li>
+            
+          </ul>
+          
+        </li>
+      
+    
+  </ul>
+</nav>
+
+    
+  
+  </div>
+
+
+
+  <article
+    class="page"
+    itemscope
+    itemtype="https://schema.org/CreativeWork"
+    >
+    <meta itemprop="headline" content="Design as Code: A Frictionless Low-Level Design Pipeline">
+    <meta itemprop="description" content="A frictionless low-level design process that integrates with your dev cycle and puts design artifacts at a peer level with the rest of your codebase.">
+    <meta itemprop="datePublished" content="2024-11-21T02:10:13+00:00">
+    
+
+    <div class="page__inner-wrap">
+      
+
+      <section class="page__content" itemprop="text">
+        
+          <aside class="sidebar__right sticky">
+            <nav class="toc">
+              <header>
+                <h4 class="nav__title">
+                  <i class="fas fa-file-alt"></i>
+                  On this page</h4>
+              </header>
+              <ul class="toc__menu"><li><a href="#an-example-by-negation">An Example By Negation</a></li><li><a href="#design-artifacts-redux">Design Artifacts Redux</a><ul><li><a href="#an-aside-the-design-backlog">An Aside: The Design Backlog</a></li></ul></li><li><a href="#a-thousand-lines">A Thousand Lines</a></li><li><a href="#low-level-design-for-real">Low-Level Design For Real</a></li><li><a href="#api-message-design-artifact">api-message Design Artifact</a><ul><li><a href="#processes">Processes</a><ul><li><a href="#message-posting">Message Posting</a></li></ul></li><li><a href="#entities">Entities</a><ul><li><a href="#message">Message</a></li></ul></li><li><a href="#openapi">OpenAPI</a></li></ul></li><li><a href="#design-as-code">Design As Code</a><ul><li><a href="#high-touch-high-cost">High Touch: High Cost</a></li><li><a href="#gearing-for-speed">Gearing for Speed</a></li><li><a href="#the-design-pipeline">The Design Pipeline</a></li></ul></li><li><a href="#conclusion">Conclusion</a></li></ul>
+            </nav>
+          </aside>
+        
+        <figure class="align-left drop-image">
+    <img src="/assets/collections/project-governance/design-as-code-square.jpg" />
+</figure>
+
+<p>A client of mine is building a web application that features a complex data model, supported by a collection of APIs. My client has asked me to review their design &amp; development processes and help them achieve a better outcome for the project.</p>
+
+<p>As part of the discovery process, I asked the tech lead to show me a design artifact describing one of their APIs.</p>
+
+<h2 id="an-example-by-negation">An Example By Negation</h2>
+
+<p>For the uninitiated: an <a href="https://en.wikipedia.org/wiki/API">Application Programming Interface</a> (API) is a set of rules and protocols that allow one component of a software application to interact with other internal components or with another application. In the hierarchy of abstractions leading from an application’s business requirements to its implementation in code, an API design sits right in the middle:</p>
+
+<figure class=""><a href="/assets/diagrams/design-abstraction-hierarchy-api.png" class="image-popup" title="API designs in a typical application design hierarchy.
+"><img src="/assets/diagrams/design-abstraction-hierarchy-api.png" alt="" /></a><figcaption>
+      <em>API designs in a typical application design hierarchy.</em>
+
+    </figcaption></figure>
+
+<p>Back to my story…</p>
+
+<p>It took a couple of minutes to clarify my request with my client’s tech lead. But after some internal discussion, one of his developers shared his screen and brought up the <a href="https://swagger.io/specification/">OpenAPI specification</a> for the API in question.</p>
+
+<p>If you’ve never seen an OpenAPI (a.k.a. Swagger) spec, here’s an example:</p>
+
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"swagger"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2.0"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"info"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"version"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1.0.0"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Swagger Petstore"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"A sample API that uses a petstore as an example to demonstrate features in the swagger-2.0 specification"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"termsOfService"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://swagger.io/terms/"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"contact"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Swagger API Team"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="nl">"license"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"MIT"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="nl">"host"</span><span class="p">:</span><span class="w"> </span><span class="s2">"petstore.swagger.io"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"basePath"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/api"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"schemes"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="s2">"http"</span><span class="w">
+  </span><span class="p">],</span><span class="w">
+  </span><span class="nl">"consumes"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="s2">"application/json"</span><span class="w">
+  </span><span class="p">],</span><span class="w">
+  </span><span class="nl">"produces"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="s2">"application/json"</span><span class="w">
+  </span><span class="p">],</span><span class="w">
+  </span><span class="nl">"paths"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"/pets"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"get"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Returns all pets from the system that the user has access to"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"operationId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"findPets"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"produces"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+          </span><span class="s2">"application/json"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"application/xml"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"text/xml"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"text/html"</span><span class="w">
+        </span><span class="p">],</span><span class="w">
+        </span><span class="err">...</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="err">...</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="err">...</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="err">...</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div></div>
+
+<p>… only theirs went on vertically for <strong>about a thousand lines</strong>.</p>
+
+<blockquote>
+  <p>A thousand-line JSON Swagger specification is not an API design artifact!</p>
+</blockquote>
+
+<p>In this article, we will discuss:</p>
+
+<ul>
+  <li>
+    <p>exactly <em>why</em> a thousand-line JSON Swagger specification is not an API design artifact, and</p>
+  </li>
+  <li>
+    <p>what design artifacts describing APIs and other technical abstractions actually <em>should</em> look like (at least if you want to get any use out of them), and</p>
+  </li>
+  <li>
+    <p>how to produce, maintain, and use these low-level design artifacts efficiently to achieve a better outcome for your project.</p>
+  </li>
+</ul>
+
+<h2 id="design-artifacts-redux">Design Artifacts Redux</h2>
+
+<p>In a <a href="/toolkits/project-governance/turning-the-crank-design-as-a-mechanical-process">previous article</a> I went into some detail regarding the theory and application of artifacts in a “mechanical” design process.</p>
+
+<p>I described a <a href="/toolkits/project-governance/turning-the-crank-design-as-a-mechanical-process#completeness"><em>complete design artifact</em></a> as a matched pair of work items:</p>
+
+<ul>
+  <li>
+    <p>a <em>drawing</em> that represents an aspect of design visually, trading off detail for clarity, and</p>
+  </li>
+  <li>
+    <p>a <em>document</em> that unpacks the the drawing in detail and identifies concerns to be addressed at lower levels of design.</p>
+  </li>
+</ul>
+
+<p>Beyond providing a useful balance of clarity and detail, this double presentation constitutes a source of <a href="/toolkits/project-governance/turning-the-crank-design-as-a-mechanical-process#internal-consistency"><em>internal consistency</em></a> that can be used to validate the design artifact against error.</p>
+
+<figure class=""><img src="/assets/diagrams/design-internal-consistency.png" alt="" /><figcaption>
+      <em>Design artifact with internal consistency.</em>
+
+    </figcaption></figure>
+
+<p>I also described an <a href="/toolkits/project-governance/turning-the-crank-design-as-a-mechanical-process#external-consistency"><em>external consistency</em></a> between design artifacts at different levels of abstraction:</p>
+
+<ul>
+  <li>
+    <p>Documents at a <strong>higher level</strong> of abstraction raise issues that should be accounted for by some drawing at a lower level of abstraction (or, at the lowest level, by the actual implementation).</p>
+  </li>
+  <li>
+    <p>Every element in a <strong>lower-level</strong> drawing should account for some issue raised in a higher-level document, and every such issue should be accounted for.</p>
+  </li>
+</ul>
+
+<figure class=""><img src="/assets/diagrams/design-external-consistency.png" alt="" /><figcaption>
+      <em>Design artifacts with external consistency.</em>
+
+    </figcaption></figure>
+
+<p>Taken together, these two forms of design consistency lend themselves to <a href="/toolkits/project-governance/turning-the-crank-design-as-a-mechanical-process#iterate">an iterative process</a> that should be familiar to every Agile practitioner: grooming the <strong><em>design backlog</em></strong>.</p>
+
+<h3 id="an-aside-the-design-backlog">An Aside: The Design Backlog</h3>
+
+<p><a href="/toolkits/project-governance/a-modern-agile-project-manifesto#backlog-grooming">Backlog Grooming</a> is an essential part of the Agile cycle.</p>
+
+<p>It’s also a lot of work! Most projects schedule backlog grooming weekly at least. It’s a 1-2 hour meeting where participants pull a pile of issues out of the project backlog and…</p>
+
+<ul>
+  <li>
+    <p><strong>Assign every Issue to the correct project Phase.</strong> Is it in scope for the current Phase? If not, let’s drop it in the right bucket &amp; forget about it for now.</p>
+  </li>
+  <li>
+    <p><strong>Size every Issue.</strong> How much work will an Issue take to resolve?</p>
+  </li>
+  <li>
+    <p><strong>Prioritize every Issue.</strong> Which are the most important?</p>
+  </li>
+  <li>
+    <p><strong>Sequence every Issue.</strong> What order must they be completed in to account for dependency?</p>
+  </li>
+  <li>
+    <p><strong>Identify blockers.</strong> What’s standing in the way of completing this Issue?</p>
+  </li>
+  <li>
+    <p><strong>Decompose complex Issues.</strong> How can we break big Issues into bite-sized pieces?</p>
+  </li>
+  <li>
+    <p><strong>Fix the easy stuff on the spot, and create new tickets to account for the hard stuff</strong>, so somebody can be assigned to do the work required to flesh those tickets out.</p>
+  </li>
+</ul>
+
+<p>With all that already in play, the last thing any Scrum Master wants is to find he has to groom <em>another</em> backlog.</p>
+
+<p><strong>Not the idea!</strong> <em>Everybody take a breath.</em></p>
+
+<blockquote>
+  <p>In a healthy Agile project, there is only ever one backlog!</p>
+</blockquote>
+
+<p>This only makes sense. You have <em>one</em> team, focused on producing <em>one</em> body of work. Your backlog is simply the pile of stuff that hasn’t been done yet. As we saw above, an essential part of the backlog grooming job is breaking the complex bits of stuff down into simpler stuff, and a single backlog makes it <em>much</em> easer to <a href="/toolkits/project-governance/a-modern-agile-project-manifesto#issue-links">maintain a trace</a> on which bits came from which other bits. <em>Life is hard enough.</em></p>
+
+<p>And yet… there are different kinds of stuff, aren’t there?</p>
+
+<p>In <a href="/toolkits/project-governance/a-modern-agile-project-manifesto"><em>A Modern Agile Project Manifesto</em></a> I proposed a breakdown of the various <a href="/toolkits/project-governance/a-modern-agile-project-manifesto#jira-issues">issue types</a> available to a project. I did this within the context of a <a href="https://www.atlassian.com/software/jira">Jira</a> implementation, but that’s really beside the point.</p>
+
+<p>The lessons here are:</p>
+
+<ul>
+  <li>
+    <p><strong>You should differentiate your backlog into different issue types.</strong> Odds are you already do this, but those distinctions should be explicit and well-understood by the team. In other words: <em>write them down!</em></p>
+  </li>
+  <li>
+    <p><strong>Design issues are a distinct type.</strong> In the article linked above, these would fall under the <em>Question</em> issue type, but it doesn’t matter what you call them as long as they get their own, focused attention. Which leads us to…</p>
+  </li>
+  <li>
+    <p><strong>Groom each issue type separately!</strong> Well… sort of.</p>
+  </li>
+</ul>
+
+<p>That last point is the important one. We’ve beaten the design horse half to death in recent weeks, and if you’ve noticed any consistent theme it should be this one:</p>
+
+<blockquote>
+  <p>Design is not the same thing as implementation.</p>
+</blockquote>
+
+<p>Humans are bad at multi-tasking, so <em>stop</em>. If you have a two-hour backlog grooming meeting every week, simply splitting it up into two meetings—one focused on design and the other on implementation—will make <em>both</em> meetings more focused, more productive, and <em>much</em> more effective in terms of project outcome!</p>
+
+<p>Stories &amp; Bugs are both arguably about implementation. What about Epics &amp; Tasks?</p>
+
+<p><strong>Epics</strong> are admittedly weird. Let’s revisit the definition of an Epic from <a href="/toolkits/project-governance/a-modern-agile-project-manifesto"><em>A Modern Agile Project Manifesto</em></a>:</p>
+
+<blockquote>
+  <p>An Epic represents a very high-level grouping of other issues. Other issues should come out of the Backlog and be resolved in a single Sprint. If they can’t be, then they should be broken down until they can.<br /><br />
+Epics endure across several Sprints, and generally represent a project phase with respect to a broad area of functionality. Epics can be organized into a Roadmap expressing the Project’s long-term plan.<br /><br />
+Most Epics are never resolved, because the functionality they represent is always subject to future development. If not, an Epic is resolved when all the issues it contains are either resolved or moved to another Epic.</p>
+</blockquote>
+
+<p>This suggests that an Epic can be used as a container of both design-related issues (Questions) <em>and</em> implementation-related issues (Stories &amp; Bugs). This would place the Epic firmly on the <em>design</em> end of the project hierarchy, and so Epics should be groomed in the same meeting as other design-related issues.</p>
+
+<p>If you define Epics differently, you might come to a different conclusion. The important thing is to <em>have the definition that leads to the conclusion</em>.</p>
+
+<p><strong>Tasks</strong> fall into a different category. They tend to be procedural in nature, more focused on project management than product development. I like to isolate task grooming from design and implementation, both to keep the focus tight and to make sure the actual business of the project gets the attention it deserves.</p>
+
+<p>A 30-min weekly grooming of the task list is usually sufficient for my projects.</p>
+
+<p>One more very important point:</p>
+
+<blockquote>
+  <p>Backlog grooming is not sprint planning!</p>
+</blockquote>
+
+<p>When grooming your backlog, focus is a virtue. When planning a sprint, you need to be able to see the <em>whole</em> backlog, so work can be assigned <em>across</em> the different issue types! If you ever wondered just why those two tasks are handled in separate meetings, now you know.</p>
+
+<h2 id="a-thousand-lines">A Thousand Lines</h2>
+
+<p>By now it should be crystal clear just why that thousand-line Swagger specification I described <a href="#an-example-by-negation">above</a> is not an API design artifact: because, even under the most generous assumptions, <strong>it’s not quite half of one!</strong></p>
+
+<p>Within the framework we’ve developed here, a complete design artifact has two parts:</p>
+
+<ul>
+  <li>
+    <p><strong>a drawing</strong> that represents an aspect of design visually, trading off detail for clarity, and</p>
+  </li>
+  <li>
+    <p><strong>a document</strong> that unpacks the drawing in detail and identifies concerns to be addressed at lower levels of design.</p>
+  </li>
+</ul>
+
+<p>Clearly the Swagger specification does not include a drawing.</p>
+
+<p>More generally, as it represents a low-level technical abstraction (an API), we would expect this design artifact to articulate its relationships to:</p>
+
+<ul>
+  <li>
+    <p><strong>implemented code</strong> - Presumably each endpoint in the Swagger specification is implemented somewhere in the codebase. <em>But where?</em></p>
+  </li>
+  <li>
+    <p><strong>other technical abstractions</strong> - Does this API call other APIs? Is it called by other APIs? Does it interact with any external services? Does it leverage shared project resources (e.g. classes, libraries, etc.) that encapsulate common functionality? <em>The Swagger specification doesn’t say.</em></p>
+  </li>
+</ul>
+
+<p>It is fair to observe that <em>none of these details actually belong in a Swagger specification!</em> A Swagger specification is a <em>contract</em> between the API and its consumers, and as such it should be focused on the <em>interface</em> of the API, not its implementation nor its relationship with those consumers.</p>
+
+<p><strong>Being a design artifact is not what a Swagger specification is actually <em>for</em>.</strong></p>
+
+<p>You might argue that a Swagger spec should be included as part of a design artifact’s document, but consider these points:</p>
+
+<ul>
+  <li>
+    <p>A Swagger spec has a very persnickety format that is best generated by a machine.</p>
+  </li>
+  <li>
+    <p>Even a very simple Swagger spec is very hard for human beings to read.</p>
+  </li>
+</ul>
+
+<p>This is why Swagger specs are usually generated from code comments or other machine-readable sources. They are not intended to written by humans, and they are <em>certainly</em> not intended to be <em>read</em> by humans.</p>
+
+<p>You might also argue that a simple HTML plugin can turn a complex Swagger specification document into a very pretty documentation UI like this one:</p>
+
+<figure class=""><a href="/assets/collections/project-governance/design-swagger-ui.jpg" class="image-popup" title="Swagger document UI plugin.
+"><img src="/assets/collections/project-governance/design-swagger-ui.jpg" alt="" /></a><figcaption>
+      <em>Swagger document UI plugin.</em>
+
+    </figcaption></figure>
+
+<p><em>That’s as good as a design drawing, right?</em> <strong>No, it isn’t.</strong></p>
+
+<p>As a piece of documentation, this widget offers a <em>huge</em> improvement over the raw Swagger spec! But the information it presents is still strictly limited to the interface contract laid out in the underlying JSON document. It tells us nothing about how this API relates to other technical abstractions in the project, nor to the project’s implementation in code.</p>
+
+<p>The Swagger UI is no more a <em>design drawing</em> than is the Swagger spec itself.</p>
+
+<p class="notice--info"><strong>I do in fact include the Swagger UI in every API design artifact!</strong> But not as a <em>drawing</em>. It’s part of the <em>document</em> associated with the design artifact, and I include it because it is an attractive and efficient way to document the relationship between the design artifact and its implementation.</p>
+
+<p>So there’s the big reveal regarding the thousand-line Swagger specification presented as a design artifact by my client’s tech team: it was almost certainly generated with some kind of automation from code that had <em>already</em> been implemented, and was <strong>no more an deliberate artifact of design than I am my own grandfather</strong>.</p>
+
+<blockquote>
+  <p>For many teams, the first step toward improving their design process is admitting they don’t have one.</p>
+</blockquote>
+
+<h2 id="low-level-design-for-real">Low-Level Design For Real</h2>
+
+<p>In another article we explored <a href="http://localhost:4000/toolkits/project-governance/turning-the-crank-design-as-a-mechanical-process/#a-redacted-example">an example of high-level design</a> from the <a href="https://veterancrowd.com">VeteranCrowd</a> project. We immediately had to deal with the following reality:</p>
+
+<blockquote>
+  <p>Really useful design artifacts are specific to the problem they’re solving, and proprietary to the organization that’s solving it!</p>
+</blockquote>
+
+<p>In that case, it meant we had to do some pretty heavy redaction in order to protect the client’s interests.</p>
+
+<p>In this case, we’re a bit more fortunate: because VeteranCrowd’s <a href="https://en.wikipedia.org/wiki/Microservices">microservice architecture</a> is extremely distributed, some of its services are considerably more generic than others. For our example—and with VeteranCrowd’s blessing—we will choose the <code class="language-plaintext highlighter-rouge">api-message</code> service, which their application uses to compose and send templated messages to users and is about as generic as it gets.</p>
+
+<p><em>No secrets here!</em></p>
+
+<p>The <code class="language-plaintext highlighter-rouge">api-message</code> service is implemented as an <a href="https://aws.amazon.com/cloudformation/">AWS CloudFormation</a> stack using the <a href="https://www.serverless.com/">Serverless Framework</a> (a design pattern addressed in detail in higher-level design artifacts) Despite its hyper-generic nature, the service offers the following interesting features, all of which are detailed in the design artifact below, both in the drawing and its associated document:</p>
+
+<ul>
+  <li>
+    <p>An <a href="https://aws.amazon.com/api-gateway/">Amazon API Gateway</a>-mediated RESTful API that exposes public endpoints, private endpoints secured with API keys (for inter-API communication), and another set of private endpoints secured by <a href="https://aws.amazon.com/pm/cognito">Amazon Cognito</a> that are used by the application’s front end.</p>
+  </li>
+  <li>
+    <p>A layer of <a href="https://aws.amazon.com/lambda/">AWS Lambda</a> functions that validate &amp; conform API requests and generate responses.</p>
+  </li>
+  <li>
+    <p>An AWS DynamoDB table for data storage, with entity management and scalability supported by <a href="https://github.com/karmaniverous/entity-manager"><code class="language-plaintext highlighter-rouge">entity-manager</code></a>.</p>
+  </li>
+  <li>
+    <p>Message delivery via email &amp; SMS provided by <a href="https://aws.amazon.com/pinpoint/">Amazon Pinpoint</a>.</p>
+  </li>
+</ul>
+
+<p>The <code class="language-plaintext highlighter-rouge">api-message</code> service handles message-generating events raised by most of the other 15 services currently running in the VeteranCrowd back end, and it calls the <code class="language-plaintext highlighter-rouge">aws-template</code> service (not detailed here) in order to generate message content based on these events.</p>
+
+<p class="notice--info"><strong>Look for comments like these</strong> on the design artifact below to learn more about specific features! Also look for links to <a href="https://plantuml.com/">PlantUML</a> source code in diagram captions. We’ll discuss PlantUML in a later section!</p>
+
+<blockquote>
+  <p>I’ll also call out key principles like this.</p>
+</blockquote>
+
+<p>One last point before we dive into the design artifact: <strong>what I am showing you below is a preserved snapshot of a <em>live</em> artifact!</strong></p>
+
+<p>Since the project’s requirements and implementation are in a constant state of flux, <em>all</em> of our design artifacts (including this one!) will have points where they are incomplete, internally inconsistent, or out of sync with other design documents and the implementation. This is par for the course!</p>
+
+<p>The purpose of the design process is create a structured framework where we can…</p>
+
+<ul>
+  <li>
+    <p><strong>detect</strong> these issues,</p>
+  </li>
+  <li>
+    <p><strong>capture</strong> them in our backlog,</p>
+  </li>
+  <li>
+    <p><strong>prioritize</strong> and <strong>schedule</strong> them in our grooming process, and</p>
+  </li>
+  <li>
+    <p><strong>resolve</strong> them in a way that brings our implementation fully in line with the requirements of our business.</p>
+  </li>
+</ul>
+
+<p>That’s the job! Let’s get to it.</p>
+
+<h2 id="api-message-design-artifact"><code class="language-plaintext highlighter-rouge">api-message</code> Design Artifact</h2>
+
+<p class="notice--info"><strong>A design drawing should fit on a single page!</strong> That means different things on different platforms. On this one, I had to link to a full-page view that permits zooming in a desktop browser. But no matter what: if you <em>can’t</em> fit your design drawing on a single page, that’s a design smell! Raise your design to a higher level of abstraction, and create more detailed designs at a lower level.</p>
+
+<blockquote>
+  <p>If your design diagram is too big to handle, your design is too complex to implement.</p>
+</blockquote>
+
+<figure class=""><img src="/assets/diagrams/design-api-message.png" alt="" /><figcaption>
+      <em><code class="language-plaintext highlighter-rouge">api-message</code> design • <a href="/assets/diagrams/design-api-message.png" target="_blank">full-page view</a> • <a href="https://github.com/karmaniverous/blog/blob/main/diagrams/design-api-message.pu">PlantUML Source</a></em>
+
+    </figcaption></figure>
+
+<p class="notice--info"><strong>Use a consistent visual language across all design artifacts!</strong> In VeteranCrowd API designs, API internals are inside the gray box. Inbound calls come from the left, and outbound calls go to the right wherever possible. Calls to other VC APIs present the same convention an abbreviated form (see the <code class="language-plaintext highlighter-rouge">api-template</code> call at the bottom). This makes it easy to orient to a design at a glance.</p>
+
+<blockquote>
+  <p>A consistent &amp; coherent design language promotes a consistent &amp; coherent implementation.</p>
+</blockquote>
+
+<h3 id="processes">Processes</h3>
+
+<p class="notice--info"><strong>Sometimes a document needs a drawing!</strong> The purpose of a design artifact’s <em>document</em> is to unpack the relationships &amp; issues identified in its <em>drawing</em>. Where words are required, use them. When a diagram serves the purpose better, use a diagram instead! At the end of the day, the goal of the document is to complete the picture presented by the drawing in as clear a manner as possible.</p>
+
+<h4 id="message-posting">Message Posting</h4>
+
+<p>This process ends with the creation of Message records in the database, targeted at their respective recipients. Each record will feature a <code class="language-plaintext highlighter-rouge">targets</code> array indicating external delivery channels selected according to User preferences.</p>
+
+<p>A separate process will pick up on these record insertions and route traffic to external channels as appropriate.</p>
+
+<figure class=""><img src="/assets/diagrams/design-message-post.png" alt="" /><figcaption>
+      <em>Message Posting sequence • <a href="/assets/diagrams/design-message-post.png" target="_blank">full-page view</a> • <a href="https://github.com/karmaniverous/blog/blob/main/diagrams/design-message-post.pu">PlantUML Source</a></em>
+
+    </figcaption></figure>
+
+<h3 id="entities">Entities</h3>
+
+<p class="notice--info"><strong>Relationships matter!</strong> This API happens to manage a single entity in its data store. Otherwise this would be a great spot for an <a href="https://en.wikipedia.org/wiki/Entity%E2%80%93relationship_model">Entity Relationship Diagram</a>. Still not a ridiculous idea, since Message entities relate to external entities in other services. I’ll add a note to our <a href="#an-aside-the-design-backlog">design backlog</a>. See how that works? 🤣</p>
+
+<h4 id="message">Message</h4>
+
+<table>
+  <thead>
+    <tr>
+      <th>Property</th>
+      <th>Category</th>
+      <th>Type</th>
+      <th>Notes</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">[archived]</code></td>
+      <td>system</td>
+      <td><code class="language-plaintext highlighter-rouge">number</code></td>
+      <td>Archived timestamp in millis.</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">[bodyHtml]</code></td>
+      <td>content</td>
+      <td><code class="language-plaintext highlighter-rouge">string</code></td>
+      <td>HTML message body: <br />- Email<br />- Application inbox</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">[bodyText]</code></td>
+      <td>content</td>
+      <td><code class="language-plaintext highlighter-rouge">string</code></td>
+      <td>Text message body.<br />- Email</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">created</code></td>
+      <td>system</td>
+      <td><code class="language-plaintext highlighter-rouge">number</code></td>
+      <td>Message created timestamp in millis.</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">[distId]</code></td>
+      <td>related</td>
+      <td><code class="language-plaintext highlighter-rouge">string</code></td>
+      <td>Id related to <code class="language-plaintext highlighter-rouge">distToken</code>. Not valid for <code class="language-plaintext highlighter-rouge">applicationManager</code>.</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">[distToken]</code></td>
+      <td>related</td>
+      <td><code class="language-plaintext highlighter-rouge">string</code></td>
+      <td>Message distribution token. Enum:<br />- <code class="language-plaintext highlighter-rouge">applicationManager</code><br />- <code class="language-plaintext highlighter-rouge">beneficiaryManager</code><br />- <code class="language-plaintext highlighter-rouge">groupManager</code><br />- <code class="language-plaintext highlighter-rouge">groupMember</code><br />- <code class="language-plaintext highlighter-rouge">merchantManager</code></td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">messageId</code></td>
+      <td>related</td>
+      <td><code class="language-plaintext highlighter-rouge">string</code></td>
+      <td>Unique Message identifier.</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">[read] </code></td>
+      <td>system</td>
+      <td><code class="language-plaintext highlighter-rouge">number</code></td>
+      <td>Read timestamp in millis.</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">[subject]</code></td>
+      <td>content</td>
+      <td><code class="language-plaintext highlighter-rouge">string</code></td>
+      <td>Text message subject.<br />- Email<br />- Application inbox</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">[summary]</code></td>
+      <td>string</td>
+      <td>Text message summary.<br />- SMS<br />- Push notification</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">targets</code></td>
+      <td>related</td>
+      <td><code class="language-plaintext highlighter-rouge">array</code></td>
+      <td>JSON object identifying specific delivery targets:<br />- <code class="language-plaintext highlighter-rouge">email</code><br />- <code class="language-plaintext highlighter-rouge">sms</code></td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">templateId</code></td>
+      <td>related</td>
+      <td><code class="language-plaintext highlighter-rouge">string</code></td>
+      <td>Related Template identifier.</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">updated</code></td>
+      <td>system</td>
+      <td><code class="language-plaintext highlighter-rouge">number</code></td>
+      <td>Message updated timestamp in millis.</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">updater</code></td>
+      <td>system</td>
+      <td><code class="language-plaintext highlighter-rouge">string</code></td>
+      <td><code class="language-plaintext highlighter-rouge">userId</code> of last updater.</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">userId</code></td>
+      <td>related</td>
+      <td><code class="language-plaintext highlighter-rouge">string</code></td>
+      <td><code class="language-plaintext highlighter-rouge">userId</code> of recipient.</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="openapi">OpenAPI</h3>
+
+<p class="notice--info">As we discussed above, this service’s OpenAPI spec is a technical artifact of implementation, not a design element. But putting it here makes it easy to check the <a href="/toolkits/project-governance/turning-the-crank-design-as-a-mechanical-process#external-consistency"><em>external consistency</em></a> of the design with implementation during design reviews!</p>
+
+<blockquote>
+  <p>Good design supports efficient validation of internal and external consistency.</p>
+</blockquote>
+
+<p><a href="https://api.veterancrowd.com/message-v0/doc/openapi">JSON</a></p>
+
+<div id="swagger_"></div>
+
+<script>
+window.addEventListener('load', function() {
+  const ui = SwaggerUIBundle({
+    url: 'https://api.veterancrowd.com/message-v0/doc/openapi?includeTags=Public~Cognito~Private',
+    dom_id: '#swagger_',
+    presets: [
+      SwaggerUIBundle.presets.apis,
+      SwaggerUIStandalonePreset
+    ]
+  })
+
+  window['swagger_'] = ui
+});
+</script>
+
+<h2 id="design-as-code">Design As Code</h2>
+
+<p>A basic principle of economics is that the more expensive anything is, the less of it you get. There’s no such thing in life as a free lunch.</p>
+
+<blockquote>
+  <p>As in life, so in design!</p>
+</blockquote>
+
+<p>In <a href="(/toolkits/project-governance/turning-the-crank-design-as-a-mechanical-process)"><em>Turning the Crank</em></a>, I showed you a few very fancy high-level design diagrams like this one:</p>
+
+<figure class=""><a href="/assets/images/architecture-vc-business-process.png" class="image-popup" title="VeteranCrowd core business process.
+"><img src="/assets/images/architecture-vc-business-process.png" alt="" /></a><figcaption>
+      <em>VeteranCrowd core business process.</em>
+
+    </figcaption></figure>
+
+<p>I created this diagram and the other high-level artifacts in that article with <a href="https://www.lucidchart.com/">LucidChart</a>. LucidChart is a <em>great</em> tool for creating all sorts of production-quality diagrams, and I highly recommend that you use it <strong><em>as seldom as you can possibly get away with!</em></strong></p>
+
+<h3 id="high-touch-high-cost">High Touch: High Cost</h3>
+
+<p>As we observed in that article, high-level design is generally a business-facing activity. The entities described in high-level design artifacts are business entities, and the language used is a business language. Most critically, the <em>audience</em> for high-level design artifacts is generally a <em>business audience!</em></p>
+
+<p>A business audience is a different breed from a technical audience. They care about substance… but they tend to be <em>far</em> more sensitive to presentation and production qualities than the average bunch of coders. Business audiences want to see pretty pictures that tell a story.</p>
+
+<blockquote>
+  <p>The audience for high-level design artifacts is a business audience.</p>
+</blockquote>
+
+<p>Moreover, we observed in that article that <strong>in a healthy project, the design artifacts <em>are</em> the project documentation.</strong></p>
+
+<p>At a low level, this means that great design artifacts describing technical abstractions make great technical documentation for a technical audience. At a high level, your business-facing design artifacts are likely to find their way in front of senior leadership, business partners, and prospective investors.</p>
+
+<p>For that kind of audience, a certain degree of polish is worth the effort. And the good news is that your high-level business processes and relationships will change <em>much</em> more slowly than your low-level technical abstractions… so even though creating and editing fancy diagrams with tools like LucidChart is a pain in the behind, you won’t need to do it <em>that</em> often.</p>
+
+<h3 id="gearing-for-speed">Gearing for Speed</h3>
+
+<p>Low level design is <em>very</em> different.</p>
+
+<p>For one thing, there’s a <em>lot</em> more of it. In a typical project, you might have a dozen or so high-level design artifacts, but <em>hundreds</em> of low-level design artifacts… none of which are of any real use to you if they fall very far out of sync.</p>
+
+<p>Also, the farther you descend the ladder of abstraction, the more often things change. Nothing influences a design quite like another pair of eyeballs, and once you commit to visual design artifacts and regular design reviews, you’re going to get a <em>lot</em> of eyeballs on your work. Expect your design repository to evolve, and <em>fast!</em></p>
+
+<blockquote>
+  <p>Nothing influences a design quite like another pair of eyeballs.</p>
+</blockquote>
+
+<p>But here’s the good news: unlike high-level design artifacts, the audience for your low-level design artifacts is a <em>technical</em> one. They will care far more about the <em>substance</em> of your design than they will about its production qualities.</p>
+
+<p>In fact, just the reverse is true. It’s neat to see a design laid out in a diagram one can grasp at a glance… but to see that diagram change regularly in response to feedback is downright <em>impressive!</em> It means your team can reliably catch mistakes in design review <em>before</em> they hit the codebase, and before anybody has to burn the midnight oil coding the wrong components.</p>
+
+<p>So your design process is in place, and your technical audience is chomping at the bit to iterate on your design artifacts… and <strong>the entire program will come crashing to a halt</strong> if you can’t pump new design drawings out as fast as your team can review them.</p>
+
+<blockquote>
+  <p>In low-level design, pretty is optional, but speed is essential!</p>
+</blockquote>
+
+<p>So let’s talk about your design pipeline.</p>
+
+<h3 id="the-design-pipeline">The Design Pipeline</h3>
+
+<p>Scratch a typical software project’s design repository, and for every diagram you find you’ll see a dozen spreadsheets and a hundred text-based documents.</p>
+
+<p>And why not? Economics strikes again: <strong>typing is easy and cheap, so you get a lot more of it</strong>.</p>
+
+<blockquote>
+  <p>If you want your team to produce as many design drawings as text documents, you need to make drawing as easy as typing.</p>
+</blockquote>
+
+<p>What would that look like? An ideal pipeline for text-based drawings might look something like this:</p>
+
+<ul>
+  <li>
+    <p>Most technical drawings are some combination of boxes, arrows, and containers. I should be able to compose a drawing like this in a text editor with a simple markup language.</p>
+  </li>
+  <li>
+    <p>The markup language should natively handle commonly-understood symbology (like UML), but I should be able to extend it with domain-specific symbols as needed (like the AWS pallette in the <a href="#api-message-design-artifact"><code class="language-plaintext highlighter-rouge">api-message</code> design artifact</a> above).</p>
+  </li>
+  <li>
+    <p>I shouldn’t have to concern myself with the layout of the drawing. The drawing tool should handle that for me.</p>
+  </li>
+  <li>
+    <p>I should be able to render my drawing on the fly and export it to a variety of image formats.</p>
+  </li>
+  <li>
+    <p>I should be able to store my drawing in a version-controlled repository and track changes to it over time.</p>
+  </li>
+  <li>
+    <p>I should be able to link my drawing to other design artifacts, and to other artifacts in the project repository.</p>
+  </li>
+</ul>
+
+<p>Sounds reasonable, right? That’s <a href="https://plantuml.com/">PlantUML</a> in a nutshell.</p>
+
+<p>Here’s an example. Remember this diagram?</p>
+
+<figure class=""><img src="/assets/diagrams/design-external-consistency.png" alt="" /><figcaption>
+      <em>Design artifacts with external consistency.</em>
+
+    </figcaption></figure>
+
+<p>Here’s the PlantUML source code that generated it:</p>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>@startuml design-external-consistency
+
+allowmixing
+skinparam componentStyle rectangle
+
+package "High-Level Artifact" as artifactHigh #LightCyan {
+  component "Drawing" as drawingHigh
+  component "Document" as documentHigh
+
+  drawingHigh &lt;--&gt; documentHigh
+}
+
+note bottom of documentHigh
+  All issues raised
+  are addressed in some
+  lower-level drawing.
+end note
+
+package "Low-Level Artifacts" as artifactLow #Cyan {
+  component "Drawing" as drawingLow
+  component "Document" as documentLow
+
+  drawingLow &lt;--&gt; documentLow
+}
+
+note top of drawingLow
+  Every element addresses
+  an issue raised in the
+  higher-level document.
+end note
+
+documentHigh &lt;-&gt; drawingLow: "**//external consistency//**"
+
+@enduml
+</code></pre></div></div>
+
+<p>If you use Visual Studio Code and GitHub, setting up a PlantUML pipeline is very straightforward:</p>
+
+<ol>
+  <li>
+    <p><a href="https://plantuml.com/starting">Install PlantUML locally</a> (you’ll get faster rendering than with the remote service)</p>
+  </li>
+  <li>
+    <p>Install the <a href="https://marketplace.visualstudio.com/items?itemName=jebbs.plantuml">PlantUML extension</a> for Visual Studio Code and add the extension to the recommended extensions for all your code repositories.</p>
+  </li>
+  <li>
+    <p>Standardize your repository structure for diagrams. I keep diagram source files in a <code class="language-plaintext highlighter-rouge">diagrams</code> directory at the root of the repository, and render all diagram image files to an <code class="language-plaintext highlighter-rouge">assets</code> directory. Memorialize these decisions in your standard repository settings.</p>
+  </li>
+  <li>
+    <p>Keep low level design artifacts in the same repository that implements them. Compose your design artifacts in Markdown, directly linking to rendered PlantUML images where needed.</p>
+  </li>
+  <li>
+    <p>Use a tool like <a href="https://typedoc.org/">TypeDoc</a> to assemble your design artifacts along with related documentation into a browsable site that is updated automatically every time you run a build. If you use <a href="https://www.atlassian.com/">Atlassian</a>, <a href="https://www.atlassian.com/software/confluence">Confluence</a> also works well for that purpose.</p>
+  </li>
+</ol>
+
+<p>At the end of the day, the goal is to frame each of your design artifacts <em>once</em>. After the first render, the only changes you should ever have to make are substantive changes to design drawings and document content. The rendering pipeline should handle the rest.</p>
+
+<p>What you have now is <strong><em>Design as Code:</em></strong> a frictionless design process that is fully integrated with your development cycle and places design artifacts at a peer level with the rest of your codebase.</p>
+
+<h2 id="conclusion">Conclusion</h2>
+
+<p>Design isn’t just a template we pull off a shelf. It’s the guarantee that the product you put into production is the one your business actually needs.</p>
+
+<p>Design is a process that creates and maintains a chain of continuity down a ladder of abstraction that connects the needs of the business, expressed in business language and concepts, to the implementation of those needs in code.</p>
+
+<p>Some of that code runs web servers, and some of it draws pictures. Choose your own adventure.</p>
+
+<p>Design is <em>expressed</em> in a set of complete and consistent design artifacts, and those artifacts have value. But it is the process that <em>creates</em> those artifacts, and the disciplined team culture that runs the process, that are the true technical assets of the business.</p>
+
+<p>In the end, every project team’s goal is to deliver a great product that can serve today’s business needs with room to spare for whatever tomorrow brings. That means doing some hard things, and design is one of them… unless it isn’t.</p>
+
+<p>After all, isn’t that what engineers do? We make hard things like launching rockets and drawing design diagrams as easy as pushing buttons or… <em>typing</em>.</p>
+
+<p>Do good work! 🚀</p>
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+  
+
+
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-tags" aria-hidden="true"></i> Topics: </strong>
+    <span itemprop="keywords">
+    
+      <a href="/topics/agile" class="page__taxonomy-item p-category" rel="tag">agile</a><span class="sep">, </span>
+    
+      <a href="/topics/design" class="page__taxonomy-item p-category" rel="tag">design</a><span class="sep">, </span>
+    
+      <a href="/topics/documentation" class="page__taxonomy-item p-category" rel="tag">documentation</a><span class="sep">, </span>
+    
+      <a href="/topics/project-governance" class="page__taxonomy-item p-category" rel="tag">project-governance</a><span class="sep">, </span>
+    
+      <a href="/topics/toolkits" class="page__taxonomy-item p-category" rel="tag">toolkits</a>
+    
+    </span>
+  </p>
+
+
+
+
+        
+
+  <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> Updated:</strong> <time class="dt-published" datetime="2024-11-21T02:10:13+00:00">November 21, 2024</time></p>
+
+      </footer>
+
+      
+        <section class="page__share">
+  
+    <h4 class="page__share-title">Share on</h4>
+  
+
+  <a href="https://twitter.com/intent/tweet?via=karmaniverous&text=Design+as+Code%3A+A+Frictionless+Low-Level+Design+Pipeline%20https%3A%2F%2Fkarmanivero.us%2Ftoolkits%2Fproject-governance%2Fdesign-as-code-a-frictionless-low-level-design-pipeline%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+
+  <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fkarmanivero.us%2Ftoolkits%2Fproject-governance%2Fdesign-as-code-a-frictionless-low-level-design-pipeline%2F" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
+
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=https://karmanivero.us/toolkits/project-governance/design-as-code-a-frictionless-low-level-design-pipeline/" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
+</section>
+
+
+      
+  <nav class="pagination">
+    
+      <a href="/toolkits/project-governance/turning-the-crank-design-as-a-mechanical-process/" class="pagination--pager" title="Turning the Crank: Design as a Mechanical Process
+">Previous</a>
+    
+    
+      <a href="#" class="pagination--pager disabled">Next</a>
+    
+  </nav>
+
+    </div>
+
+    
+  </article>
+
+  
+  
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  
+
+  
+  
+
+  
+  
+
+  
+  <div class='page__related'>
+    
+    <h2 class='page__related-title'>
+      You may also enjoy
+    </h2>
+    <div class='grid__wrapper'>
+
+      
+      
+        
+        
+        
+        
+        
+        
+      
+
+        
+      
+
+        
+        <!-- post_url: /the-big-miss-turning-lemons-into-lemonade/ -->
+        <!-- normLogCommonTags: 0.0 -->
+        <!-- logAge: 0.0905208333333334 -->
+        <!-- relevance: 49909 -->
+
+        
+      
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src="/assets/images/lemons-square.jpg" alt="">
+      </div>
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/the-big-miss-turning-lemons-into-lemonade/" rel="permalink">The Big Miss: Turning Lemons Into Lemonade
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+      
+      <span class="page__meta-date">
+        <i
+          class="far fa-fw fa-calendar-alt"
+          aria-hidden="true"
+        ></i>
+        
+        <time datetime="2024-11-20T00:00:00+00:00">November 20, 2024</time>
+      </span>
+    
+
+    <span class="page__meta-sep"></span>
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i
+          class="far fa-fw fa-clock"
+          aria-hidden="true"
+        ></i>
+        
+          8
+          minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">Today was one of those days when I question my life choices. Watch me dig my way out of a hole with the same shovel I used to dig my way in.
+</p>
+  </article>
+</div>
+
+
+        
+        
+        
+      
+        
+        
+        
+        
+        
+      
+
+        
+      
+
+        
+        <!-- post_url: /composition-in-action-finishing-the-swing/ -->
+        <!-- normLogCommonTags: 1.0 -->
+        <!-- logAge: 5.1278287760416665 -->
+        <!-- relevance: 47872 -->
+
+        
+      
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src="https://github.com/karmaniverous/controlled-proxy/raw/main/assets/controlled-proxy-square.jpg" alt="">
+      </div>
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/composition-in-action-finishing-the-swing/" rel="permalink">Composition in Action: Finishing the Swing
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+      
+      <span class="page__meta-date">
+        <i
+          class="far fa-fw fa-calendar-alt"
+          aria-hidden="true"
+        ></i>
+        
+        <time datetime="2024-10-16T00:00:00+00:00">October 16, 2024</time>
+      </span>
+    
+
+    <span class="page__meta-sep"></span>
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i
+          class="far fa-fw fa-clock"
+          aria-hidden="true"
+        ></i>
+        
+          9
+          minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">In software engineering, what look to be the easy parts often turn out to be the hard parts. If you’re lucky, the reverse is also true, but don’t count on it.
+</p>
+  </article>
+</div>
+
+
+        
+        
+        
+      
+        
+        
+        
+        
+        
+      
+
+        
+      
+
+        
+        <!-- post_url: /mixin-it-up-picking-the-right-problem-to-solve/ -->
+        <!-- normLogCommonTags: 1.0 -->
+        <!-- logAge: 5.2528287760416665 -->
+        <!-- relevance: 47747 -->
+
+        
+      
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src="/assets/images/mixin-it-up-square.jpg" alt="">
+      </div>
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/mixin-it-up-picking-the-right-problem-to-solve/" rel="permalink">Mixin It Up: Picking The Right Problem to Solve
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+      
+      <span class="page__meta-date">
+        <i
+          class="far fa-fw fa-calendar-alt"
+          aria-hidden="true"
+        ></i>
+        
+        <time datetime="2024-10-12T00:00:00+00:00">October 12, 2024</time>
+      </span>
+    
+
+    <span class="page__meta-sep"></span>
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i
+          class="far fa-fw fa-clock"
+          aria-hidden="true"
+        ></i>
+        
+          9
+          minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">Sometimes, when you’re tangled up in a thorny problem, solving it is exactly the wrong answer.
+</p>
+  </article>
+</div>
+
+
+        
+        
+        
+      
+        
+        
+        
+        
+        
+      
+
+        
+      
+
+        
+        <!-- post_url: /code-complete-a-day-in-the-life-of-a-product/ -->
+        <!-- normLogCommonTags: 1.0 -->
+        <!-- logAge: 6.017039388020834 -->
+        <!-- relevance: 46983 -->
+
+        
+      
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src="/assets/images/code-complete-tests.jpg" alt="">
+      </div>
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/code-complete-a-day-in-the-life-of-a-product/" rel="permalink">Code Complete: A Day in the Life of a Product
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+      
+      <span class="page__meta-date">
+        <i
+          class="far fa-fw fa-calendar-alt"
+          aria-hidden="true"
+        ></i>
+        
+        <time datetime="2024-09-17T00:00:00+00:00">September 17, 2024</time>
+      </span>
+    
+
+    <span class="page__meta-sep"></span>
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i
+          class="far fa-fw fa-clock"
+          aria-hidden="true"
+        ></i>
+        
+          8
+          minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">We’re all professionals here, right? And we all know there’s often quite a gap between what gets posted to social media and the reality on the ground.
+</p>
+  </article>
+</div>
+
+
+        
+        
+        
+      
+        
+        
+        
+        
+        
+      
+
+        
+      
+
+        
+        <!-- post_url: /loggable-a-typescript-mixin-for-generic-class-logging/ -->
+        <!-- normLogCommonTags: 0.0 -->
+        <!-- logAge: 5.2840787760416665 -->
+        <!-- relevance: 44716 -->
+
+        
+      
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src="https://raw.githubusercontent.com/karmaniverous/loggable/main/assets/loggable-square.jpg" alt="">
+      </div>
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/loggable-a-typescript-mixin-for-generic-class-logging/" rel="permalink">Loggable: A TypeScript Mixin for Generic Class Logging
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+      
+      <span class="page__meta-date">
+        <i
+          class="far fa-fw fa-calendar-alt"
+          aria-hidden="true"
+        ></i>
+        
+        <time datetime="2024-10-11T00:00:00+00:00">October 11, 2024</time>
+      </span>
+    
+
+    <span class="page__meta-sep"></span>
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i
+          class="far fa-fw fa-clock"
+          aria-hidden="true"
+        ></i>
+        
+          5
+          minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">Logging is an implementation decision that should be deferred as late as possible. Loggable lets you defer it until runtime!
+</p>
+  </article>
+</div>
+
+
+        
+        
+        
+      
+        
+        
+        
+        
+        
+      
+
+        
+      
+
+        
+        <!-- post_url: /unifying-web-presence-with-github-pages/ -->
+        <!-- normLogCommonTags: 0.0 -->
+        <!-- logAge: 6.001414388020834 -->
+        <!-- relevance: 43999 -->
+
+        
+      
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src="/assets/images/unify-web-presence-square.jpg" alt="">
+      </div>
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/unifying-web-presence-with-github-pages/" rel="permalink">Unifying Web Presence with GitHub Pages
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+      
+      <span class="page__meta-date">
+        <i
+          class="far fa-fw fa-calendar-alt"
+          aria-hidden="true"
+        ></i>
+        
+        <time datetime="2024-09-18T00:00:00+00:00">September 18, 2024</time>
+      </span>
+    
+
+    <span class="page__meta-sep"></span>
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i
+          class="far fa-fw fa-clock"
+          aria-hidden="true"
+        ></i>
+        
+          4
+          minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">Eliminate content collisions with your primary GitHub Pages domain &amp; unify all your GitHub project documentation pages under a single subdomain.
+</p>
+  </article>
+</div>
+
+
+        
+        
+        
+      
+        
+        
+        
+        
+        
+      
+
+        
+      
+
+        
+        <!-- post_url: /what-good-looks-like-a-real-world-typescript-refactor/ -->
+        <!-- normLogCommonTags: 0.0 -->
+        <!-- logAge: 6.188914388020834 -->
+        <!-- relevance: 43811 -->
+
+        
+      
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src="/assets/images/what-good-looks-like-square.jpg" alt="">
+      </div>
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/what-good-looks-like-a-real-world-typescript-refactor/" rel="permalink">What Good Looks Like: A Real-World Typescript Refactor
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+      
+      <span class="page__meta-date">
+        <i
+          class="far fa-fw fa-calendar-alt"
+          aria-hidden="true"
+        ></i>
+        
+        <time datetime="2024-09-06T00:00:00+00:00">September 6, 2024</time>
+      </span>
+    
+
+    <span class="page__meta-sep"></span>
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i
+          class="far fa-fw fa-clock"
+          aria-hidden="true"
+        ></i>
+        
+          6
+          minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">Watch a complex Javascript configuration object collapse into declarative goodness thanks to type safety, abstraction, and generic design.
+</p>
+  </article>
+</div>
+
+
+        
+        
+        
+      
+        
+        
+        
+        
+        
+      
+
+        
+      
+
+        
+        <!-- post_url: /tsdoc-plus-typedoc/ -->
+        <!-- normLogCommonTags: 0.0 -->
+        <!-- logAge: 6.376414388020834 -->
+        <!-- relevance: 43624 -->
+
+        
+      
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src="/assets/images/tsdoc-plus-typedoc.png" alt="">
+      </div>
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/tsdoc-plus-typedoc/" rel="permalink">TSDoc + TypeDoc
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+      
+      <span class="page__meta-date">
+        <i
+          class="far fa-fw fa-calendar-alt"
+          aria-hidden="true"
+        ></i>
+        
+        <time datetime="2024-08-25T00:00:00+00:00">August 25, 2024</time>
+      </span>
+    
+
+    <span class="page__meta-sep"></span>
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i
+          class="far fa-fw fa-clock"
+          aria-hidden="true"
+        ></i>
+        
+          1
+          minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">Mastering the obvious, one lexical standard at a time.
+</p>
+  </article>
+</div>
+
+
+        
+        
+        
+          
+    </div>
+  </div>
+
+  
+</div>
+      
+    </div>
+
+    
+      <div class="search-content">
+        <div class="search-content__inner-wrap"><form onsubmit="return googleCustomSearchExecute();" id="cse-search-box-form-id" role="search">
+    <label class="sr-only" for="cse-search-input-box-id">
+      Enter your search term...
+    </label>
+    <input type="search" id="cse-search-input-box-id" class="search-input" tabindex="-1" placeholder="Enter your search term..." />
+  </form>
+  <div id="results" class="results">
+    <gcse:searchresults-only></gcse:searchresults-only>
+  </div></div>
+
+      </div>
+    
+
+    <div id="footer" class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+        <div class="page__footer-follow">
+  
+    <span class="love">Built for you with ❤️ on <a href="/bali/">Bali</a>!</span>
+  
+
+  <ul class="social-icons">
+    
+      <li>
+        <strong>Contact</strong>&nbsp;&nbsp;&nbsp;</li>
+    
+
+    
+      
+        
+          <li>
+            <a href="https://twitter.com/karmaniverous" rel="nofollow noopener noreferrer">
+              <i class="fa-brands fa-x-twitter" aria-hidden="true"></i>
+              </a>
+          </li>
+        
+      
+        
+          <li>
+            <a href="https://techhub.social/@karmaniverous" rel="nofollow noopener noreferrer">
+              <i class="fa-brands fa-mastodon" aria-hidden="true"></i>
+              </a>
+          </li>
+        
+      
+        
+          <li>
+            <a href="https://github.com/karmaniverous" rel="nofollow noopener noreferrer">
+              <i class="fa-brands fa-github" aria-hidden="true"></i>
+              </a>
+          </li>
+        
+      
+        
+          <li>
+            <a href="https://www.linkedin.com/in/jscroft/" rel="nofollow noopener noreferrer">
+              <i class="fa-brands fa-linkedin" aria-hidden="true"></i>
+              </a>
+          </li>
+        
+      
+        
+          <li>
+            <a href="https://wa.me/17737500338" rel="nofollow noopener noreferrer">
+              <i class="fa-brands fa-square-whatsapp" aria-hidden="true"></i>
+              </a>
+          </li>
+        
+      
+        
+          <li>
+            <a href="https://t.me/karmaniverous" rel="nofollow noopener noreferrer">
+              <i class="fa-brands fa-telegram" aria-hidden="true"></i>
+              </a>
+          </li>
+        
+      
+        
+          <li>
+            <a href="https://calendly.com/karmaniverous" rel="nofollow noopener noreferrer">
+              <i class="fa-regular fa-calendar-plus" aria-hidden="true"></i>
+              </a>
+          </li>
+        
+      
+    
+
+    
+      <li>
+        <a href="/feed.xml">
+          <i class="fas fa-fw fa-rss-square" aria-hidden="true"></i>
+           </a>
+      </li>
+    
+  </ul>
+</div>
+
+<div class="page__footer-copyright">&copy; 2024
+  <a href="https://karmanivero.us">some words</a>. Powered by
+  <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a>
+  &amp;
+  <a href="https://mademistakes.com/work/jekyll-themes/minimal-mistakes/" rel="nofollow">Minimal Mistakes</a>.</div>
+      </footer>
+    </div>
+
+    
+  <script src="/assets/js/main.min.js"></script>
+
+
+<script>
+  (function () {
+    var cx = '960ee5d1b2fec4509';
+    var gcse = document.createElement('script');
+    gcse.type = 'text/javascript';
+    gcse.async = true;
+    gcse.src = 'https://cse.google.com/cse.js?cx=' + cx;
+    var s = document.getElementsByTagName('script')[0];
+    s.parentNode.insertBefore(gcse, s);
+  })();
+
+  function googleCustomSearchExecute() {
+    var input = document.getElementById('cse-search-input-box-id');
+    var element = google.search.cse.element.getElement('searchresults-only0');
+    if (input.value == '') {
+      element.clearAllResults();
+    } else {
+      element.execute(input.value);
+    }
+    return false;
+  }
+
+  
+    $(document).ready(function () {
+      $('input#cse-search-input-box-id').on('keyup', function () {
+        googleCustomSearchExecute();
+      });
+    });
+  
+</script>
+
+
+
+
+
+
+  </body>
+</html>

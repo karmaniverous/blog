@@ -1,0 +1,2216 @@
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.26.2 by Michael Rose
+  Copyright 2013-2024 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
+-->
+
+<html lang="en-US" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin _includes/seo.html --><title>Entity Manager Configuration - some words</title>
+<meta name="description" content="Entity Manager enables efficient put, get, and query operations across entity relationships, indexes, and sharded partitions in a NoSQL database.">
+
+
+  <meta name="author" content="Jason Williscroft">
+  
+  <meta property="article:author" content="Jason Williscroft">
+  
+
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="en_US">
+<meta property="og:site_name" content="some words">
+<meta property="og:title" content="Entity Manager Configuration">
+<meta property="og:url" content="https://karmanivero.us/projects/entity-manager/configuration/">
+
+
+  <meta property="og:description" content="Entity Manager enables efficient put, get, and query operations across entity relationships, indexes, and sharded partitions in a NoSQL database.">
+
+
+
+  <meta property="og:image" content="https://karmanivero.us/assets/collections/entity-manager/configuration-banner.jpg">
+
+
+
+  <meta name="twitter:site" content="@karmaniverous">
+  <meta name="twitter:title" content="Entity Manager Configuration">
+  <meta name="twitter:description" content="Entity Manager enables efficient put, get, and query operations across entity relationships, indexes, and sharded partitions in a NoSQL database.">
+  <meta name="twitter:url" content="https://karmanivero.us/projects/entity-manager/configuration/">
+
+  
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content="https://karmanivero.us/assets/collections/entity-manager/configuration-banner.jpg">
+  
+
+  
+
+
+
+  <meta property="article:published_time" content="2024-11-21T02:10:13+00:00">
+
+
+
+
+
+
+<link rel="canonical" href="https://karmanivero.us/projects/entity-manager/configuration/">
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- end _includes/seo.html -->
+
+
+
+  <link href="/feed.xml" type="application/atom+xml" rel="alternate" title="some words Feed">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script type="text/javascript">
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+  window.enable_copy_code_button = true;
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/assets/css/main.css">
+<link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@latest/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@latest/css/all.min.css"></noscript>
+
+
+
+    <link
+  rel="apple-touch-icon"
+  sizes="180x180"
+  href="/assets/favicon/apple-touch-icon.png" />
+<link
+  rel="icon"
+  type="image/png"
+  sizes="32x32"
+  href="/assets/favicon/favicon-32x32.png" />
+<link
+  rel="icon"
+  type="image/png"
+  sizes="16x16"
+  href="/assets/favicon/favicon-16x16.png" />
+<link rel="manifest" href="/assets/favicon/site.webmanifest" />
+<link
+  rel="mask-icon"
+  href="/assets/favicon/safari-pinned-tab.svg"
+  color="#5bbad5" />
+<link rel="shortcut icon" href="/assets/favicon/favicon.ico" />
+<meta name="msapplication-TileColor" content="#2b5797" />
+<meta name="msapplication-config" content="/assets/favicon/browserconfig.xml" />
+<meta name="theme-color" content="#ffffff" />
+
+
+
+<!-- Mathjax Support -->
+<script
+  type="text/javascript"
+  async
+  src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+  </head>
+
+  <body class="layout--single" dir="ltr">
+    <nav class="skip-links">
+  <ul>
+    <li><a href="#site-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">Skip to footer</a></li>
+  </ul>
+</nav>
+
+    
+
+<div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        
+        <a class="site-title" href="/">
+          some words
+          <span class="site-subtitle">many of them true</span>
+        </a>
+        <ul class="visible-links"><li class="masthead__menu-item">
+              <a
+                href="/projects/"
+                
+                
+              >Projects</a>
+            </li><li class="masthead__menu-item">
+              <a
+                href="/toolkits/"
+                
+                
+              >Toolkits</a>
+            </li><li class="masthead__menu-item">
+              <a
+                href="/bali/"
+                
+                
+              >Bali</a>
+            </li><li class="masthead__menu-item">
+              <a
+                href="/topics/"
+                
+                
+              >Topics</a>
+            </li><li class="masthead__menu-item">
+              <a
+                href="/blog/"
+                
+                
+              >Archive</a>
+            </li></ul>
+        
+        <button class="search__toggle" type="button">
+          <span class="visually-hidden">Toggle search</span>
+          <i class="fas fa-search"></i>
+        </button>
+        
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">Toggle menu</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+    <div class="initial-content">
+      
+  
+
+
+
+
+
+
+
+<div class="page__hero--overlay" style=" background-image: linear-gradient(rgba(32, 0, 32, 0.6), rgba(32, 0, 32, 0.6)), url('/assets/collections/entity-manager/configuration-banner-half.jpg');">
+  
+    <div class="wrapper">
+      <h1
+        id="page-title"
+        class="page__title"
+        itemprop="headline">
+        
+          Entity Manager Configuration
+
+        
+      </h1>
+      
+        <p class="page__lead">Entity Manager enables efficient put, get, and query operations across entity relationships, indexes, and sharded partitions in a NoSQL database.
+</p>
+      
+      
+        <div class="page__lead under_construction">
+          <div>🚧</div>
+          <div>UNDER CONSTRUCTION</div>
+          <div>🚧</div>
+        </div>
+      
+      
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i
+          class="far fa-clock"
+          aria-hidden="true"
+        ></i>
+        
+          21
+          minute read
+        
+      </span>
+    
+  </p>
+
+
+      
+    </div>
+  
+  
+    <span class="page__hero-caption"><a href="/projects/entity-manager/"><strong>Entity Manager</strong> project documentation</a>
+</span>
+  
+</div>
+
+
+
+
+
+
+<div id="main" role="main">
+  
+  <div class="sidebar sticky">
+  
+  
+    
+      
+      
+      
+      
+    
+    
+      <nav class="nav__list">
+  
+  <input id="ac-toc" name="accordion-toc" type="checkbox" />
+  <label for="ac-toc">Toggle menu</label>
+  <ul class="nav__items">
+    
+      
+      
+        <li>
+          
+            <span class="nav__sub-title">Entity Manager</span>
+          
+
+          
+          <ul>
+            
+              <li><a href="/projects/entity-manager/intro/">Introduction</a></li>
+            
+              <li><a href="/projects/entity-manager/sql-vs-nosql/">SQL vs NoSQL</a></li>
+            
+              <li><a href="/projects/entity-manager/evolving-a-nosql-db-schema/">Evolving a NoSQL DB Schema</a></li>
+            
+          </ul>
+          
+        </li>
+      
+        <li>
+          
+            <span class="nav__sub-title">Usage</span>
+          
+
+          
+          <ul>
+            
+              <li><a href="/projects/entity-manager/demo/">Demo</a></li>
+            
+              <li><a href="/projects/entity-manager/configuration/" class="active">Configuration</a></li>
+            
+          </ul>
+          
+        </li>
+      
+        <li>
+          
+            <span class="nav__sub-title">Packages</span>
+          
+
+          
+          <ul>
+            
+              <li><a href="/projects/entity-manager/intro/#entity-manager"><code>entity-manager</code></a></li>
+            
+              <li><a href="/projects/entity-manager/intro/#entity-manager-demo"><code>entity-manager-demo</code></a></li>
+            
+              <li><a href="/projects/entity-manager/intro/#entity-client-dynamodb"><code>entity-client-dynamodb</code></a></li>
+            
+              <li><a href="/projects/entity-manager/intro/#entity-tools"><code>entity-tools</code></a></li>
+            
+              <li><a href="/projects/entity-manager/intro/#mock-db"><code>mock-db</code></a></li>
+            
+          </ul>
+          
+        </li>
+      
+    
+  </ul>
+</nav>
+
+    
+  
+  </div>
+
+
+
+  <article
+    class="page"
+    itemscope
+    itemtype="https://schema.org/CreativeWork"
+    >
+    <meta itemprop="headline" content="Entity Manager Configuration">
+    <meta itemprop="description" content="Entity Manager enables efficient put, get, and query operations across entity relationships, indexes, and sharded partitions in a NoSQL database.">
+    <meta itemprop="datePublished" content="2024-11-21T02:10:13+00:00">
+    
+
+    <div class="page__inner-wrap">
+      
+
+      <section class="page__content" itemprop="text">
+        
+          <aside class="sidebar__right sticky">
+            <nav class="toc">
+              <header>
+                <h4 class="nav__title">
+                  <i class="fas fa-file-alt"></i>
+                  On this page</h4>
+              </header>
+              <ul class="toc__menu"><li><a href="#generated-properties--transcodes">Generated Properties &amp; Transcodes</a><ul><li><a href="#transcodes">Transcodes</a></li><li><a href="#the-transcodemap-type">The TranscodeMap Type</a></li><li><a href="#custom-transcodes">Custom Transcodes</a></li></ul></li><li><a href="#the-entity-type">The Entity Type</a></li><li><a href="#the-entitymap-type">The EntityMap Type</a></li><li><a href="#the-config-type">The Config Type</a><ul><li><a href="#type-parameters--global-keys">Type Parameters &amp; Global Keys</a></li><li><a href="#entity-configurations">Entity Configurations</a><ul><li><a href="#query-limits">Query Limits</a></li><li><a href="#indexes">Indexes</a></li><li><a href="#generated-properties">Generated Properties</a></li><li><a href="#element-transcodes">Element Transcodes</a></li><li><a href="#sharding-strategy">Sharding Strategy</a></li></ul></li><li><a href="#delimiters">Delimiters</a></li><li><a href="#config-transcodes">Config Transcodes</a></li><li><a href="#runtime-validation">Runtime Validation</a></li></ul></li><li><a href="#the-itemmap-type">The ItemMap Type</a></li><li><a href="#javascript">Javascript</a></li></ul>
+            </nav>
+          </aside>
+        
+        <figure class="align-left drop-image">
+    <img src="/assets/collections/entity-manager/configuration-square.jpg" />
+</figure>
+
+<p><strong>Entity Manager</strong> is a highly generic tool that enables efficient put, get, and query operations across many entity relationships, indexes, and sharded partitions.</p>
+
+<p><strong>Entity Manager</strong> was designed to operate within the context of AWS <a href="https://aws.amazon.com/dynamodb/">DynamoDB</a>, but should work equally well with any sufficiently similar <a href="https://en.wikipedia.org/wiki/NoSQL">NoSQL</a> platform.</p>
+
+<p class="notice--warning"><strong>This page is under construction!</strong> The Typescript refactor is nearly complete, and I’m busy building the demo &amp; syncing up this documentation. Please check back soon for updates and <a href="https://github.com/karmaniverous/entity-manager/discussions">drop me a note</a> with any questions or ideas!.</p>
+
+<p>To accomplish this, <strong>Entity Manager</strong> needs to know:</p>
+
+<ul>
+  <li>
+    <p>Which data types are indexable on your data platform, and how to represent those types within a compound index.</p>
+  </li>
+  <li>
+    <p>Your entities, their properties and related types, and which properties will be generated by <strong>Entity Manager</strong>.</p>
+  </li>
+  <li>
+    <p>The structures of your generated properties and indexes.</p>
+  </li>
+  <li>
+    <p>Your partition sharding strategy for each entity.</p>
+  </li>
+</ul>
+
+<p class="notice--info"><strong>This documentation takes a <em>Typescript-first</em> approach!</strong> All discussions &amp; code examples will assume you are using Typescript, and we will call out Javascript-specific considerations where appropriate.</p>
+
+<h2 id="generated-properties--transcodes">Generated Properties &amp; Transcodes</h2>
+
+<p>As discussed in detail in <a href="/projects/entity-manager/evolving-a-nosql-db-schema/">Evolving a NoSQL Database Schema</a>, <strong>Entity Manager</strong> indexes are supported by special <em>generated properties</em>.</p>
+
+<p>Generated properties always have a <code class="language-plaintext highlighter-rouge">string</code> type. Within the <strong>Entity Manager</strong> config object, an entity generated property is specified by a simple array of its component property names. These components can be any non-generated property of the same entity, so long as that property is supported by a <em>transcode</em>.</p>
+
+<h3 id="transcodes">Transcodes</h3>
+
+<p>A <em>transcode</em> is a pair of functions that convert a property value to and from a <code class="language-plaintext highlighter-rouge">string</code> type, such that the resulting strings are guaranteed to sort in the same order as the original values.</p>
+
+<p class="notice--info">Transcodes and related mechanisms are actually defined in the <a href="https://github.com/karmaniverous/entity-tools"><code class="language-plaintext highlighter-rouge">@karmaniverous/entity-tools</code></a> package, which is a dependency of both <strong>Entity Manager</strong> and the <a href="https://github.com/karmaniverous/mock-db"><code class="language-plaintext highlighter-rouge">@karmaniverous/mock-db</code></a> package used to test <strong>Entity Manager</strong>. For developer convenience these are re-exported from the <a href="https://github.com/karmaniverous/entity-manager"><code class="language-plaintext highlighter-rouge">@karmaniverous/entity-manager</code></a> package.</p>
+
+<p>For example, here is the definition of the <code class="language-plaintext highlighter-rouge">timestamp</code> transcode, one of the default transcodes provided by <code class="language-plaintext highlighter-rouge">entity-tools</code>:</p>
+
+<div class="language-ts highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">import</span> <span class="p">{</span> <span class="nx">isInt</span><span class="p">,</span> <span class="nx">isString</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">radash</span><span class="dl">'</span><span class="p">;</span>
+
+<span class="k">import</span> <span class="p">{</span> <span class="kd">type</span> <span class="nx">DefaultTranscodeMap</span><span class="p">,</span> <span class="kd">type</span> <span class="nx">Transcodes</span> <span class="p">}</span> <span class="k">from</span> <span class="s2">`@karmaniverous/entity-manager`</span><span class="p">;</span>
+
+<span class="kd">const</span> <span class="nx">defaultTranscodes</span><span class="p">:</span> <span class="nx">Transcodes</span><span class="o">&lt;</span><span class="nx">DefaultTranscodeMap</span><span class="o">&gt;</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="p">...,</span> <span class="c1">// other transcodes</span>
+
+  <span class="na">timestamp</span><span class="p">:</span> <span class="p">{</span>
+    <span class="na">encode</span><span class="p">:</span> <span class="p">(</span><span class="nx">value</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+      <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">isInt</span><span class="p">(</span><span class="nx">value</span><span class="p">)</span> <span class="o">||</span> <span class="nx">value</span> <span class="o">&lt;</span> <span class="mi">0</span> <span class="o">||</span> <span class="nx">value</span> <span class="o">&gt;</span> <span class="mi">9999999999999</span><span class="p">)</span>
+        <span class="k">throw</span> <span class="k">new</span> <span class="nb">Error</span><span class="p">(</span><span class="dl">'</span><span class="s1">invalid timestamp</span><span class="dl">'</span><span class="p">);</span>
+
+      <span class="k">return</span> <span class="nx">value</span><span class="p">.</span><span class="nx">toString</span><span class="p">().</span><span class="nx">padStart</span><span class="p">(</span><span class="mi">13</span><span class="p">,</span> <span class="dl">'</span><span class="s1">0</span><span class="dl">'</span><span class="p">);</span>
+    <span class="p">},</span>
+    <span class="na">decode</span><span class="p">:</span> <span class="p">(</span><span class="nx">value</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+      <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">isString</span><span class="p">(</span><span class="nx">value</span><span class="p">)</span> <span class="o">||</span> <span class="o">!</span><span class="sr">/^</span><span class="se">[</span><span class="sr">0-9</span><span class="se">]{13}</span><span class="sr">$/</span><span class="p">.</span><span class="nx">test</span><span class="p">(</span><span class="nx">value</span><span class="p">))</span>
+        <span class="k">throw</span> <span class="k">new</span> <span class="nb">Error</span><span class="p">(</span><span class="dl">'</span><span class="s1">invalid encoded timestamp</span><span class="dl">'</span><span class="p">);</span>
+
+      <span class="k">return</span> <span class="nb">Number</span><span class="p">(</span><span class="nx">value</span><span class="p">);</span>
+    <span class="p">},</span>
+  <span class="p">},</span>
+<span class="p">};</span>
+</code></pre></div></div>
+
+<p class="notice--info"><a href="https://github.com/sodiray/radash"><code class="language-plaintext highlighter-rouge">radash</code></a> is a key <strong>Entity Manager</strong> dependency, which provides a set of type-safe utility functions for working with data.</p>
+
+<p>The purpose of this transcode is to convert a Unix timestamp (which is always a 13-digit integer) into a 13-character numerical string and back. The transcode’s <code class="language-plaintext highlighter-rouge">encode</code> and <code class="language-plaintext highlighter-rouge">decode</code> functions contain some type validation to catch invalid values in either direction.</p>
+
+<p><code class="language-plaintext highlighter-rouge">timestamp</code> is a simple case: because a Unix timestamp is an unsigned integer and always has the same length, its string representation will always sort properly.</p>
+
+<p><code class="language-plaintext highlighter-rouge">fix6</code> is another default transcode that presents a more complex case: it handles a signed, fixed-point number with 6 decimal places.</p>
+
+<div class="language-ts highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">import</span> <span class="p">{</span> <span class="nx">isNumber</span><span class="p">,</span> <span class="nx">isString</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">radash</span><span class="dl">'</span><span class="p">;</span>
+
+<span class="k">import</span> <span class="p">{</span> <span class="kd">type</span> <span class="nx">DefaultTranscodeMap</span><span class="p">,</span> <span class="kd">type</span> <span class="nx">Transcodes</span> <span class="p">}</span> <span class="k">from</span> <span class="s2">`@karmaniverous/entity-manager`</span><span class="p">;</span>
+
+<span class="kd">const</span> <span class="nx">defaultTranscodes</span><span class="p">:</span> <span class="nx">Transcodes</span><span class="o">&lt;</span><span class="nx">DefaultTranscodeMap</span><span class="o">&gt;</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="p">...,</span> <span class="c1">// other transcodes</span>
+
+  <span class="na">fix6</span><span class="p">:</span> <span class="p">{</span>
+    <span class="na">encode</span><span class="p">:</span> <span class="p">(</span><span class="nx">value</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+      <span class="k">if</span> <span class="p">(</span>
+        <span class="o">!</span><span class="nx">isNumber</span><span class="p">(</span><span class="nx">value</span><span class="p">)</span> <span class="o">||</span>
+        <span class="nx">value</span> <span class="o">&gt;</span> <span class="nb">Number</span><span class="p">.</span><span class="nx">MAX_SAFE_INTEGER</span> <span class="o">/</span> <span class="mi">1000000</span> <span class="o">||</span>
+        <span class="nx">value</span> <span class="o">&lt;</span> <span class="nb">Number</span><span class="p">.</span><span class="nx">MIN_SAFE_INTEGER</span> <span class="o">/</span> <span class="mi">1000000</span>
+      <span class="p">)</span>
+        <span class="k">throw</span> <span class="k">new</span> <span class="nb">Error</span><span class="p">(</span><span class="dl">'</span><span class="s1">invalid fix6</span><span class="dl">'</span><span class="p">);</span>
+
+      <span class="kd">const</span> <span class="p">[</span><span class="nx">prefix</span><span class="p">,</span> <span class="nx">abs</span><span class="p">]</span> <span class="o">=</span> <span class="nx">value</span> <span class="o">&lt;</span> <span class="mi">0</span> <span class="p">?</span> <span class="p">[</span><span class="dl">'</span><span class="s1">n</span><span class="dl">'</span><span class="p">,</span> <span class="o">-</span><span class="nx">value</span><span class="p">]</span> <span class="p">:</span> <span class="p">[</span><span class="dl">'</span><span class="s1">p</span><span class="dl">'</span><span class="p">,</span> <span class="nx">value</span><span class="p">];</span>
+
+      <span class="k">return</span> <span class="s2">`</span><span class="p">${</span><span class="nx">prefix</span><span class="p">}${</span><span class="nx">abs</span><span class="p">.</span><span class="nx">toFixed</span><span class="p">(</span><span class="mi">6</span><span class="p">).</span><span class="nx">padStart</span><span class="p">(</span><span class="mi">17</span><span class="p">,</span> <span class="dl">'</span><span class="s1">0</span><span class="dl">'</span><span class="p">)}</span><span class="s2">`</span><span class="p">;</span>
+    <span class="p">},</span>
+    <span class="na">decode</span><span class="p">:</span> <span class="p">(</span><span class="nx">value</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+      <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">isString</span><span class="p">(</span><span class="nx">value</span><span class="p">)</span> <span class="o">||</span> <span class="o">!</span><span class="sr">/^</span><span class="se">[</span><span class="sr">np</span><span class="se">][</span><span class="sr">0-9</span><span class="se">]{10}\.[</span><span class="sr">0-9</span><span class="se">]{6}</span><span class="sr">$/</span><span class="p">.</span><span class="nx">test</span><span class="p">(</span><span class="nx">value</span><span class="p">))</span>
+        <span class="k">throw</span> <span class="k">new</span> <span class="nb">Error</span><span class="p">(</span><span class="dl">'</span><span class="s1">invalid encoded fix6</span><span class="dl">'</span><span class="p">);</span>
+
+      <span class="k">return</span> <span class="p">(</span><span class="nx">value</span><span class="p">.</span><span class="nx">startsWith</span><span class="p">(</span><span class="dl">'</span><span class="s1">n</span><span class="dl">'</span><span class="p">)</span> <span class="p">?</span> <span class="o">-</span><span class="mi">1</span> <span class="p">:</span> <span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="nb">Number</span><span class="p">(</span><span class="nx">value</span><span class="p">.</span><span class="nx">slice</span><span class="p">(</span><span class="mi">1</span><span class="p">));</span>
+    <span class="p">},</span>
+  <span class="p">},</span>
+  <span class="p">...,</span> <span class="c1">// other transcodes</span>
+<span class="p">};</span>
+</code></pre></div></div>
+
+<p><code class="language-plaintext highlighter-rouge">fix6</code> uses the following techniques to meet transcode requirements:</p>
+
+<ul>
+  <li>
+    <p>range checking (not required for <code class="language-plaintext highlighter-rouge">timestamp</code> because Unix timestamps are always positive and have a fixed length), and</p>
+  </li>
+  <li>
+    <p>sign handling (prefixes positive numbers with <code class="language-plaintext highlighter-rouge">p</code> and negative numbers with <code class="language-plaintext highlighter-rouge">n</code> to ensure proper alpha sort), and</p>
+  </li>
+  <li>
+    <p>zero-padding of small values (again to ensure proper alpha sort).</p>
+  </li>
+</ul>
+
+<p><strong>Entity Manager</strong> offers the following set of default transcodes:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Transcode</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">bigint20</code></td>
+      <td>BigInt value with a maximum of 20 digits</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">boolean</code></td>
+      <td>boolean value</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">fix6</code></td>
+      <td>signed, fixed-point number with 6 decimal places</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">int</code></td>
+      <td>signed integer</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">string</code></td>
+      <td>string value</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">timestamp</code></td>
+      <td>Unix timestamp</td>
+    </tr>
+  </tbody>
+</table>
+
+<p><a href="https://github.com/karmaniverous/entity-tools/blob/main/src/defaultTranscodes.ts">Click here</a> to review these default transcode definitions.</p>
+
+<p>Note that, like the <a href="https://github.com/karmaniverous/entity-tools/blob/main/src/defaultTranscodes.ts"><code class="language-plaintext highlighter-rouge">defaultTranscodes</code></a> object (which defines multiple transcodes), each example transcode object above has a type of <a href="https://docs.karmanivero.us/entity-manager/types/entity_manager.Transcodes-1.html"><code class="language-plaintext highlighter-rouge">Transcodes</code></a>. This special type ensures that the defined object…</p>
+
+<ul>
+  <li>
+    <p>has the correct keys (the transcode names), and</p>
+  </li>
+  <li>
+    <p>defines a correctly-typed <code class="language-plaintext highlighter-rouge">encode</code> and <code class="language-plaintext highlighter-rouge">decode</code> function for each key.</p>
+  </li>
+</ul>
+
+<p>This is guaranteed by the <code class="language-plaintext highlighter-rouge">Transcodes</code> type’s single type parameter, which is a <a href="https://docs.karmanivero.us/entity-manager/types/entity_manager.TranscodeMap.html"><code class="language-plaintext highlighter-rouge">TranscodeMap</code></a>.</p>
+
+<h3 id="the-transcodemap-type">The <code class="language-plaintext highlighter-rouge">TranscodeMap</code> Type</h3>
+
+<p>A <code class="language-plaintext highlighter-rouge">TranscodeMap</code> is a simple Record type that defines:</p>
+
+<ul>
+  <li>
+    <p>the name of each transcode, and</p>
+  </li>
+  <li>
+    <p>the type each transcode encodes into or decodes from a string value.</p>
+  </li>
+</ul>
+
+<p>For example, here is the definition of the <a href="https://docs.karmanivero.us/entity-manager/interfaces/entity_manager.DefaultTranscodeMap.html"><code class="language-plaintext highlighter-rouge">DefaultTranscodeMap</code></a> type, which drives the <a href="https://docs.karmanivero.us/entity-manager/variables/entity_manager.defaultTranscodes.html"><code class="language-plaintext highlighter-rouge">defaultTranscodes</code></a> object:</p>
+
+<div class="language-ts highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">import</span> <span class="p">{</span> <span class="kd">type</span> <span class="nx">TranscodeMap</span> <span class="p">}</span> <span class="k">from</span> <span class="s2">`@karmaniverous/entity-manager`</span><span class="p">;</span>
+
+<span class="kr">interface</span> <span class="nx">DefaultTranscodeMap</span> <span class="kd">extends</span> <span class="nx">TranscodeMap</span> <span class="p">{</span>
+  <span class="nl">bigint20</span><span class="p">:</span> <span class="nx">bigint</span><span class="p">;</span>
+  <span class="nl">boolean</span><span class="p">:</span> <span class="nx">boolean</span><span class="p">;</span>
+  <span class="nl">fix6</span><span class="p">:</span> <span class="kr">number</span><span class="p">;</span>
+  <span class="nl">int</span><span class="p">:</span> <span class="kr">number</span><span class="p">;</span>
+  <span class="nl">string</span><span class="p">:</span> <span class="kr">string</span><span class="p">;</span>
+  <span class="nl">timestamp</span><span class="p">:</span> <span class="kr">number</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>An object of type <code class="language-plaintext highlighter-rouge">Transcodes&lt;DefaultTranscodeMap&gt;</code> <em>must</em>…</p>
+
+<ul>
+  <li>
+    <p>have the same keys as <code class="language-plaintext highlighter-rouge">DefaultTranscodeMap</code> (these are the transcode names), and</p>
+  </li>
+  <li>
+    <p>provide an <code class="language-plaintext highlighter-rouge">encode</code> function that converts a value of the corresponding type to a string, and</p>
+  </li>
+  <li>
+    <p>provide a <code class="language-plaintext highlighter-rouge">decode</code> function that converts a string to a value of the corresponding type.</p>
+  </li>
+</ul>
+
+<p>If any of these conditions are not met, TypeScript will throw a type error.</p>
+
+<p>If you are only using <strong>Entity Manager</strong>’s default transcodes, you can skip the next section. But if you have reason to define your own transcodes, read on!</p>
+
+<h3 id="custom-transcodes">Custom Transcodes</h3>
+
+<p>Let’s say you are building a high-precision navigation application.</p>
+
+<p>Latitide &amp; longitide values require three digits to the left of the decimal point, so a 64-bit signed <code class="language-plaintext highlighter-rouge">number</code> leaves room for 13 digits of decimal precision. You will want to define a custom transcode for this data type. Let’s extend the existing transcode naming convention and call this transcode <code class="language-plaintext highlighter-rouge">fix13</code>.</p>
+
+<p>The first step in defining <code class="language-plaintext highlighter-rouge">fix13</code> will be to extend <code class="language-plaintext highlighter-rouge">DefaultTranscodeMap</code>:</p>
+
+<div class="language-ts highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">import</span> <span class="p">{</span> <span class="kd">type</span> <span class="nx">DefaultTranscodeMap</span> <span class="p">}</span> <span class="k">from</span> <span class="s2">`@karmaniverous/entity-manager`</span><span class="p">;</span>
+
+<span class="kr">interface</span> <span class="nx">MyTranscodeMap</span> <span class="kd">extends</span> <span class="nx">DefaultTranscodeMap</span> <span class="p">{</span>
+  <span class="nl">fix13</span><span class="p">:</span> <span class="kr">number</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>Next, you can define a new transcodes object that includes <code class="language-plaintext highlighter-rouge">fix13</code>, using the <code class="language-plaintext highlighter-rouge">fix8</code> transcode definition as a template:</p>
+
+<div class="language-ts highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">import</span> <span class="p">{</span> <span class="nx">isNumber</span><span class="p">,</span> <span class="nx">isString</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">radash</span><span class="dl">'</span><span class="p">;</span>
+
+<span class="k">import</span> <span class="p">{</span> <span class="nx">defaultTranscodes</span><span class="p">,</span> <span class="kd">type</span> <span class="nx">Transcodes</span> <span class="p">}</span> <span class="k">from</span> <span class="s2">`@karmaniverous/entity-manager`</span><span class="p">;</span>
+
+<span class="kd">const</span> <span class="nx">myTranscodes</span><span class="p">:</span> <span class="nx">Transcodes</span><span class="o">&lt;</span><span class="nx">MyTranscodeMap</span><span class="o">&gt;</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="p">...</span><span class="nx">defaultTranscodes</span><span class="p">,</span> <span class="c1">// reuse default transcodes</span>
+
+  <span class="na">fix13</span><span class="p">:</span> <span class="p">{</span>
+    <span class="na">encode</span><span class="p">:</span> <span class="p">(</span><span class="nx">value</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+      <span class="k">if</span> <span class="p">(</span>
+        <span class="o">!</span><span class="nx">isNumber</span><span class="p">(</span><span class="nx">value</span><span class="p">)</span> <span class="o">||</span>
+        <span class="nx">value</span> <span class="o">&gt;</span> <span class="nb">Number</span><span class="p">.</span><span class="nx">MAX_SAFE_INTEGER</span> <span class="o">/</span> <span class="mi">10000000000000</span> <span class="o">||</span>
+        <span class="nx">value</span> <span class="o">&lt;</span> <span class="nb">Number</span><span class="p">.</span><span class="nx">MIN_SAFE_INTEGER</span> <span class="o">/</span> <span class="mi">10000000000000</span>
+      <span class="p">)</span>
+        <span class="k">throw</span> <span class="k">new</span> <span class="nb">Error</span><span class="p">(</span><span class="dl">'</span><span class="s1">invalid fix13</span><span class="dl">'</span><span class="p">);</span>
+
+      <span class="kd">const</span> <span class="p">[</span><span class="nx">prefix</span><span class="p">,</span> <span class="nx">abs</span><span class="p">]</span> <span class="o">=</span> <span class="nx">value</span> <span class="o">&lt;</span> <span class="mi">0</span> <span class="p">?</span> <span class="p">[</span><span class="dl">'</span><span class="s1">n</span><span class="dl">'</span><span class="p">,</span> <span class="o">-</span><span class="nx">value</span><span class="p">]</span> <span class="p">:</span> <span class="p">[</span><span class="dl">'</span><span class="s1">p</span><span class="dl">'</span><span class="p">,</span> <span class="nx">value</span><span class="p">];</span>
+
+      <span class="k">return</span> <span class="s2">`</span><span class="p">${</span><span class="nx">prefix</span><span class="p">}${</span><span class="nx">abs</span><span class="p">.</span><span class="nx">toFixed</span><span class="p">(</span><span class="mi">13</span><span class="p">).</span><span class="nx">padStart</span><span class="p">(</span><span class="mi">17</span><span class="p">,</span> <span class="dl">'</span><span class="s1">0</span><span class="dl">'</span><span class="p">)}</span><span class="s2">`</span><span class="p">;</span>
+    <span class="p">},</span>
+    <span class="na">decode</span><span class="p">:</span> <span class="p">(</span><span class="nx">value</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+      <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">isString</span><span class="p">(</span><span class="nx">value</span><span class="p">)</span> <span class="o">||</span> <span class="o">!</span><span class="sr">/^</span><span class="se">[</span><span class="sr">np</span><span class="se">][</span><span class="sr">0-9</span><span class="se">]{3}\.[</span><span class="sr">0-9</span><span class="se">]{13}</span><span class="sr">$/</span><span class="p">.</span><span class="nx">test</span><span class="p">(</span><span class="nx">value</span><span class="p">))</span>
+        <span class="k">throw</span> <span class="k">new</span> <span class="nb">Error</span><span class="p">(</span><span class="dl">'</span><span class="s1">invalid encoded fix13</span><span class="dl">'</span><span class="p">);</span>
+
+      <span class="k">return</span> <span class="p">(</span><span class="nx">value</span><span class="p">.</span><span class="nx">startsWith</span><span class="p">(</span><span class="dl">'</span><span class="s1">n</span><span class="dl">'</span><span class="p">)</span> <span class="p">?</span> <span class="o">-</span><span class="mi">1</span> <span class="p">:</span> <span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="nb">Number</span><span class="p">(</span><span class="nx">value</span><span class="p">.</span><span class="nx">slice</span><span class="p">(</span><span class="mi">1</span><span class="p">));</span>
+    <span class="p">},</span>
+  <span class="p">},</span>
+<span class="p">};</span>
+</code></pre></div></div>
+
+<h2 id="the-entity-type">The <code class="language-plaintext highlighter-rouge">Entity</code> Type</h2>
+
+<p>The <a href="https://docs.karmanivero.us/entity-manager/types/entity_manager.Entity.html"><code class="language-plaintext highlighter-rouge">Entity</code></a> type is a simple Record type that defines the properties of an entity. A type extending the <code class="language-plaintext highlighter-rouge">Entity</code> type should follow these conventions:</p>
+
+<ul>
+  <li>
+    <p>Each key is a property name. All Entity properties should be represented, including generated properties and those with complex types.</p>
+  </li>
+  <li>
+    <p>All generated properties should have a type of <code class="language-plaintext highlighter-rouge">never</code>.</p>
+  </li>
+</ul>
+
+<p>For example, here are the definitions of the <code class="language-plaintext highlighter-rouge">Email</code> and <code class="language-plaintext highlighter-rouge">User</code> types discussed in <a href="/projects/entity-manager/evolving-a-nosql-db-schema/">Evolving a NoSQL Database Schema</a>:</p>
+
+<div class="language-ts highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">import</span> <span class="p">{</span> <span class="kd">type</span> <span class="nx">Entity</span> <span class="p">}</span> <span class="k">from</span> <span class="s2">`@karmaniverous/entity-manager`</span><span class="p">;</span>
+
+<span class="kr">interface</span> <span class="nx">Email</span> <span class="kd">extends</span> <span class="nx">Entity</span> <span class="p">{</span>
+  <span class="nl">created</span><span class="p">:</span> <span class="kr">number</span><span class="p">;</span>
+  <span class="nl">email</span><span class="p">:</span> <span class="kr">string</span><span class="p">;</span>
+  <span class="nl">userId</span><span class="p">:</span> <span class="kr">string</span><span class="p">;</span>
+
+  <span class="c1">// generated properties</span>
+  <span class="nl">userHashKey</span><span class="p">:</span> <span class="nx">never</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kr">interface</span> <span class="nx">User</span> <span class="kd">extends</span> <span class="nx">Entity</span> <span class="p">{</span>
+  <span class="nl">beneficiaryId</span><span class="p">:</span> <span class="kr">string</span><span class="p">;</span>
+  <span class="nl">created</span><span class="p">:</span> <span class="kr">number</span><span class="p">;</span>
+  <span class="nl">firstName</span><span class="p">:</span> <span class="kr">string</span><span class="p">;</span>
+  <span class="nl">firstNameCanonical</span><span class="p">:</span> <span class="kr">string</span><span class="p">;</span>
+  <span class="nl">lastName</span><span class="p">:</span> <span class="kr">string</span><span class="p">;</span>
+  <span class="nl">lastNameCanonical</span><span class="p">:</span> <span class="kr">string</span><span class="p">;</span>
+  <span class="nl">phone</span><span class="p">?:</span> <span class="kr">string</span><span class="p">;</span>
+  <span class="nl">updated</span><span class="p">:</span> <span class="kr">number</span><span class="p">;</span>
+  <span class="nl">userId</span><span class="p">:</span> <span class="kr">string</span><span class="p">;</span>
+
+  <span class="c1">// generated properties</span>
+  <span class="nl">firstNameRangeKey</span><span class="p">:</span> <span class="nx">never</span><span class="p">;</span>
+  <span class="nl">lastNameRangeKey</span><span class="p">:</span> <span class="nx">never</span><span class="p">;</span>
+  <span class="nl">userBeneficiaryHashKey</span><span class="p">:</span> <span class="nx">never</span><span class="p">;</span>
+  <span class="nl">userHashKey</span><span class="p">:</span> <span class="nx">never</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<h2 id="the-entitymap-type">The <code class="language-plaintext highlighter-rouge">EntityMap</code> Type</h2>
+
+<p>The <a href="https://docs.karmanivero.us/entity-manager/types/entity_manager.EntityMap.html"><code class="language-plaintext highlighter-rouge">EntityMap</code></a> type is a simple Record type that defines the entities in your data model and assigns their respective <code class="language-plaintext highlighter-rouge">Entity</code> types. An <code class="language-plaintext highlighter-rouge">EntityMap</code> type should follow these conventions:</p>
+
+<ul>
+  <li>
+    <p>Each key is the token by which an Entity will be referenced throughout your configuration. All entities should be represented.</p>
+  </li>
+  <li>
+    <p>Each property type is the corresponding <code class="language-plaintext highlighter-rouge">Entity</code> type.</p>
+  </li>
+</ul>
+
+<p>For example, the following <code class="language-plaintext highlighter-rouge">MyEntityMap</code> type would support the User service table discussed in <a href="/projects/entity-manager/evolving-a-nosql-db-schema/">Evolving a NoSQL Database Schema</a>, which includes the <code class="language-plaintext highlighter-rouge">Email</code> and <code class="language-plaintext highlighter-rouge">User</code> entities:</p>
+
+<div class="language-ts highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">import</span> <span class="p">{</span> <span class="kd">type</span> <span class="nx">EntityMap</span> <span class="p">}</span> <span class="k">from</span> <span class="s2">`@karmaniverous/entity-manager`</span><span class="p">;</span>
+
+<span class="kr">interface</span> <span class="nx">MyEntityMap</span> <span class="kd">extends</span> <span class="nx">EntityMap</span> <span class="p">{</span>
+  <span class="nl">email</span><span class="p">:</span> <span class="nx">Email</span><span class="p">;</span>
+  <span class="nl">user</span><span class="p">:</span> <span class="nx">User</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<h2 id="the-config-type">The Config Type</h2>
+
+<p>The <a href="https://docs.karmanivero.us/entity-manager/classes/entity_manager.EntityManager.html"><code class="language-plaintext highlighter-rouge">EntityManager</code></a> class constructor takes a single argument of the <a href="https://docs.karmanivero.us/entity-manager/types/entity_manager.Config.html"><code class="language-plaintext highlighter-rouge">Config</code></a> type.</p>
+
+<p><code class="language-plaintext highlighter-rouge">Config</code> is a highly complex type, which encapsulates numerous rules whose net effect is to prevent the developer from creating an invalid <strong>Entity Manager</strong> configuration.</p>
+
+<p>This section will cover each element of the <code class="language-plaintext highlighter-rouge">Config</code> type in depth. First, though, here is an example <code class="language-plaintext highlighter-rouge">Config</code> object that…</p>
+
+<ul>
+  <li>
+    <p>implements the example summarized at the end of <a href="/projects/entity-manager/evolving-a-nosql-db-schema/#recap">Evolving a NoSQL Database Schema</a>, and</p>
+  </li>
+  <li>
+    <p>for clarity, expresses and identifies all default values (normally default values can be omitted).</p>
+  </li>
+</ul>
+
+<div class="language-ts highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">import</span> <span class="p">{</span>
+  <span class="nx">defaultTranscodes</span><span class="p">,</span>
+  <span class="kd">type</span> <span class="nx">Config</span><span class="p">,</span>
+  <span class="kd">type</span> <span class="nx">DefaultTranscodeMap</span>
+<span class="p">}</span> <span class="k">from</span> <span class="s2">`@karmaniverous/entity-manager`</span><span class="p">;</span>
+
+<span class="kd">const</span> <span class="nx">config</span><span class="p">:</span> <span class="nx">Config</span><span class="o">&lt;</span>
+  <span class="nx">MyEntityMap</span><span class="p">,</span>
+  <span class="dl">'</span><span class="s1">hashKey</span><span class="dl">'</span><span class="p">,</span>           <span class="c1">// default value</span>
+  <span class="dl">'</span><span class="s1">rangeKey</span><span class="dl">'</span><span class="p">,</span>          <span class="c1">// default value</span>
+  <span class="nx">DefaultTranscodeMap</span><span class="p">,</span> <span class="c1">// default value</span>
+<span class="o">&gt;</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="c1">// Common hash &amp; range key properties for all entities. Must</span>
+  <span class="c1">// exactly match HashKey &amp; RangeKey type params.</span>
+  <span class="na">hashKey</span><span class="p">:</span> <span class="dl">'</span><span class="s1">hashKey</span><span class="dl">'</span><span class="p">,</span>            <span class="c1">// default value</span>
+  <span class="na">rangeKey</span><span class="p">:</span> <span class="dl">'</span><span class="s1">rangeKey</span><span class="dl">'</span><span class="p">,</span>          <span class="c1">// default value</span>
+
+  <span class="c1">// Delimiters for generated properties &amp; shard keys. Generated</span>
+  <span class="c1">// property elements should not contain these characters!</span>
+  <span class="na">generatedKeyDelimiter</span><span class="p">:</span> <span class="dl">'</span><span class="s1">|</span><span class="dl">'</span><span class="p">,</span>    <span class="c1">// default value</span>
+  <span class="na">generatedValueDelimiter</span><span class="p">:</span> <span class="dl">'</span><span class="s1">#</span><span class="dl">'</span><span class="p">,</span>  <span class="c1">// default value</span>
+  <span class="na">shardKeyDelimiter</span><span class="p">:</span> <span class="dl">'</span><span class="s1">!</span><span class="dl">'</span><span class="p">,</span>        <span class="c1">// default value</span>
+
+  <span class="c1">// Maximum number of shard queries executed in parallel.</span>
+  <span class="na">throttle</span><span class="p">:</span> <span class="mi">10</span><span class="p">,</span>                  <span class="c1">// default value</span>
+
+  <span class="c1">// Transcode functions for generated properties &amp; page keys.</span>
+  <span class="na">transcodes</span><span class="p">:</span> <span class="nx">defaultTranscodes</span><span class="p">,</span> <span class="c1">// default value</span>
+
+  <span class="c1">// Entity-specific configs. Keys must exactly match those of</span>
+  <span class="c1">// MyEntityMap.</span>
+  <span class="na">entities</span><span class="p">:</span> <span class="p">{</span>
+    <span class="c1">// Email entity config.</span>
+    <span class="na">email</span><span class="p">:</span> <span class="p">{</span>
+      <span class="c1">// Source property for the Email entity's hash key.</span>
+      <span class="na">uniqueProperty</span><span class="p">:</span> <span class="dl">'</span><span class="s1">email</span><span class="dl">'</span><span class="p">,</span>
+
+      <span class="c1">// Source property for timestamp used to calculate Email</span>
+      <span class="c1">// shard key.</span>
+      <span class="na">timestampProperty</span><span class="p">:</span> <span class="dl">'</span><span class="s1">created</span><span class="dl">'</span><span class="p">,</span>
+
+      <span class="c1">// Default shard bump schedule if not specified. All hash</span>
+      <span class="c1">// keys will have a zero-length shard key and be effectively</span>
+      <span class="c1">// unsharded.</span>
+      <span class="na">shardBumps</span><span class="p">:</span> <span class="p">[</span>
+        <span class="p">{</span> <span class="na">charBits</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="na">chars</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="na">timestamp</span><span class="p">:</span> <span class="mi">0</span> <span class="p">},</span>
+      <span class="p">],</span>
+
+      <span class="c1">// Email entity generated properties. These keys must match</span>
+      <span class="c1">// the ones with never types in the Email interface defined</span>
+      <span class="c1">// above, and are marked with a ⚙️ in the table design.</span>
+      <span class="na">generated</span><span class="p">:</span> <span class="p">{</span>
+        <span class="na">userHashKey</span><span class="p">:</span> <span class="p">{</span>
+          <span class="c1">// When true, if any element is undefined or null, the</span>
+          <span class="c1">// generated property will be undefined. When false,</span>
+          <span class="c1">// undefined or null elements will be rendered as an</span>
+          <span class="c1">// empty string.</span>
+          <span class="na">atomic</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+
+          <span class="c1">// Elements of the generated property. These MUST be</span>
+          <span class="c1">// ungenerated properties (i.e. not marked with never</span>
+          <span class="c1">// in the Email interface) and MUST be included in the</span>
+          <span class="c1">// entityTranscodes object below. Elements are applied</span>
+          <span class="c1">// in order.</span>
+          <span class="na">elements</span><span class="p">:</span> <span class="p">[</span><span class="dl">'</span><span class="s1">userId</span><span class="dl">'</span><span class="p">],</span>
+
+          <span class="c1">// When this value is true, the generated property will</span>
+          <span class="c1">// be sharded.</span>
+          <span class="na">sharded</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+        <span class="p">},</span>
+      <span class="p">},</span>
+
+      <span class="c1">// Indexes for the Email entity as specified in the index</span>
+      <span class="c1">// design.</span>
+      <span class="na">indexes</span><span class="p">:</span> <span class="p">{</span>
+        <span class="c1">// An index hashKey must be either the global hash key or a</span>
+        <span class="c1">// sharded generated property. Its rangeKey must be either</span>
+        <span class="c1">// the global range key, an ungenerated scalar property, or</span>
+        <span class="c1">// an unsharded generated property. Any ungenerated</span>
+        <span class="c1">// properties used MUST be included in the entityTranscodes</span>
+        <span class="c1">// object below.</span>
+        <span class="na">created</span><span class="p">:</span> <span class="p">{</span> <span class="na">hashKey</span><span class="p">:</span> <span class="dl">'</span><span class="s1">hashKey</span><span class="dl">'</span><span class="p">,</span> <span class="na">rangeKey</span><span class="p">:</span> <span class="dl">'</span><span class="s1">created</span><span class="dl">'</span> <span class="p">},</span>
+        <span class="na">userCreated</span><span class="p">:</span> <span class="p">{</span> <span class="na">hashKey</span><span class="p">:</span> <span class="dl">'</span><span class="s1">userHashKey</span><span class="dl">'</span><span class="p">,</span> <span class="na">rangeKey</span><span class="p">:</span> <span class="dl">'</span><span class="s1">created</span><span class="dl">'</span> <span class="p">},</span>
+      <span class="p">},</span>
+
+      <span class="c1">// Transcodes for ungenerated properties used as generated</span>
+      <span class="c1">// property elements or index components. Transcode values</span>
+      <span class="c1">// must be valid config transcodes object keys. Since this</span>
+      <span class="c1">// config does not define a transcodes object it uses</span>
+      <span class="c1">// defaultTranscodes exported by @karmaniverous/entity-tools.</span>
+      <span class="na">elementTranscodes</span><span class="p">:</span> <span class="p">{</span>
+        <span class="na">created</span><span class="p">:</span> <span class="dl">'</span><span class="s1">timestamp</span><span class="dl">'</span><span class="p">,</span>
+        <span class="na">userId</span><span class="p">:</span> <span class="dl">'</span><span class="s1">string</span><span class="dl">'</span><span class="p">,</span>
+      <span class="p">},</span>
+    <span class="p">},</span>
+    <span class="c1">// User entity config.</span>
+    <span class="na">user</span><span class="p">:</span> <span class="p">{</span>
+      <span class="na">uniqueProperty</span><span class="p">:</span> <span class="dl">'</span><span class="s1">userId</span><span class="dl">'</span><span class="p">,</span>
+      <span class="na">timestampProperty</span><span class="p">:</span> <span class="dl">'</span><span class="s1">created</span><span class="dl">'</span><span class="p">,</span>
+
+      <span class="c1">// User entity's shard bump schedule. Hash keys created</span>
+      <span class="c1">// before the timestamp are unsharded (1 possible shard key).</span>
+      <span class="c1">// Hash keys created afterward have a 1-char, 2-bit shard key</span>
+      <span class="c1">// (4 possible shard keys).</span>
+      <span class="na">shardBumps</span><span class="p">:</span> <span class="p">[{</span> <span class="na">timestamp</span><span class="p">:</span> <span class="mi">1730617827000</span><span class="p">,</span> <span class="na">charBits</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span> <span class="na">chars</span><span class="p">:</span> <span class="mi">1</span> <span class="p">}],</span>
+
+      <span class="na">generated</span><span class="p">:</span> <span class="p">{</span>
+        <span class="na">firstNameRangeKey</span><span class="p">:</span> <span class="p">{</span>
+          <span class="na">elements</span><span class="p">:</span> <span class="p">[</span><span class="dl">'</span><span class="s1">firstNameCanonical</span><span class="dl">'</span><span class="p">,</span> <span class="dl">'</span><span class="s1">lastNameCanonical</span><span class="dl">'</span><span class="p">,</span> <span class="dl">'</span><span class="s1">created</span><span class="dl">'</span><span class="p">],</span>
+        <span class="p">},</span>
+        <span class="na">lastNameRangeKey</span><span class="p">:</span> <span class="p">{</span>
+          <span class="na">elements</span><span class="p">:</span> <span class="p">[</span><span class="dl">'</span><span class="s1">lastNameCanonical</span><span class="dl">'</span><span class="p">,</span> <span class="dl">'</span><span class="s1">firstNameCanonical</span><span class="dl">'</span><span class="p">,</span> <span class="dl">'</span><span class="s1">created</span><span class="dl">'</span><span class="p">],</span>
+        <span class="p">},</span>
+        <span class="na">userBeneficiaryHashKey</span><span class="p">:</span> <span class="p">{</span>
+          <span class="na">atomic</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+          <span class="na">elements</span><span class="p">:</span> <span class="p">[</span><span class="dl">'</span><span class="s1">beneficiaryId</span><span class="dl">'</span><span class="p">],</span>
+          <span class="na">sharded</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+        <span class="p">},</span>
+        <span class="na">userHashKey</span><span class="p">:</span> <span class="p">{</span>
+          <span class="na">atomic</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+          <span class="na">elements</span><span class="p">:</span> <span class="p">[</span><span class="dl">'</span><span class="s1">userId</span><span class="dl">'</span><span class="p">],</span>
+          <span class="na">sharded</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+        <span class="p">},</span>
+      <span class="p">},</span>
+      <span class="na">indexes</span><span class="p">:</span> <span class="p">{</span>
+        <span class="na">created</span><span class="p">:</span> <span class="p">{</span> <span class="na">hashKey</span><span class="p">:</span> <span class="dl">'</span><span class="s1">hashKey</span><span class="dl">'</span><span class="p">,</span> <span class="na">rangeKey</span><span class="p">:</span> <span class="dl">'</span><span class="s1">created</span><span class="dl">'</span> <span class="p">},</span>
+        <span class="na">firstName</span><span class="p">:</span> <span class="p">{</span> <span class="na">hashKey</span><span class="p">:</span> <span class="dl">'</span><span class="s1">hashKey</span><span class="dl">'</span><span class="p">,</span> <span class="na">rangeKey</span><span class="p">:</span> <span class="dl">'</span><span class="s1">firstNameRangeKey</span><span class="dl">'</span> <span class="p">},</span>
+        <span class="na">lastName</span><span class="p">:</span> <span class="p">{</span> <span class="na">hashKey</span><span class="p">:</span> <span class="dl">'</span><span class="s1">hashKey</span><span class="dl">'</span><span class="p">,</span> <span class="na">rangeKey</span><span class="p">:</span> <span class="dl">'</span><span class="s1">lastNameRangeKey</span><span class="dl">'</span> <span class="p">},</span>
+        <span class="na">phone</span><span class="p">:</span> <span class="p">{</span> <span class="na">hashKey</span><span class="p">:</span> <span class="dl">'</span><span class="s1">hashKey</span><span class="dl">'</span><span class="p">,</span> <span class="na">rangeKey</span><span class="p">:</span> <span class="dl">'</span><span class="s1">phone</span><span class="dl">'</span> <span class="p">},</span>
+        <span class="na">updated</span><span class="p">:</span> <span class="p">{</span> <span class="na">hashKey</span><span class="p">:</span> <span class="dl">'</span><span class="s1">hashKey</span><span class="dl">'</span><span class="p">,</span> <span class="na">rangeKey</span><span class="p">:</span> <span class="dl">'</span><span class="s1">updated</span><span class="dl">'</span> <span class="p">},</span>
+        <span class="na">userBeneficiaryCreated</span><span class="p">:</span> <span class="p">{</span>
+          <span class="na">hashKey</span><span class="p">:</span> <span class="dl">'</span><span class="s1">userBeneficiaryHashKey</span><span class="dl">'</span><span class="p">,</span>
+          <span class="na">rangeKey</span><span class="p">:</span> <span class="dl">'</span><span class="s1">created</span><span class="dl">'</span><span class="p">,</span>
+        <span class="p">},</span>
+        <span class="na">userBeneficiaryFirstName</span><span class="p">:</span> <span class="p">{</span>
+          <span class="na">hashKey</span><span class="p">:</span> <span class="dl">'</span><span class="s1">userBeneficiaryHashKey</span><span class="dl">'</span><span class="p">,</span>
+          <span class="na">rangeKey</span><span class="p">:</span> <span class="dl">'</span><span class="s1">firstNameRangeKey</span><span class="dl">'</span><span class="p">,</span>
+        <span class="p">},</span>
+        <span class="na">userBeneficiaryLastName</span><span class="p">:</span> <span class="p">{</span>
+          <span class="na">hashKey</span><span class="p">:</span> <span class="dl">'</span><span class="s1">userBeneficiaryHashKey</span><span class="dl">'</span><span class="p">,</span>
+          <span class="na">rangeKey</span><span class="p">:</span> <span class="dl">'</span><span class="s1">lastNameRangeKey</span><span class="dl">'</span><span class="p">,</span>
+        <span class="p">},</span>
+        <span class="na">userBeneficiaryPhone</span><span class="p">:</span> <span class="p">{</span>
+          <span class="na">hashKey</span><span class="p">:</span> <span class="dl">'</span><span class="s1">userBeneficiaryHashKey</span><span class="dl">'</span><span class="p">,</span>
+          <span class="na">rangeKey</span><span class="p">:</span> <span class="dl">'</span><span class="s1">phone</span><span class="dl">'</span><span class="p">,</span>
+        <span class="p">},</span>
+        <span class="na">userBeneficiaryUpdated</span><span class="p">:</span> <span class="p">{</span>
+          <span class="na">hashKey</span><span class="p">:</span> <span class="dl">'</span><span class="s1">userBeneficiaryHashKey</span><span class="dl">'</span><span class="p">,</span>
+          <span class="na">rangeKey</span><span class="p">:</span> <span class="dl">'</span><span class="s1">updated</span><span class="dl">'</span><span class="p">,</span>
+        <span class="p">},</span>
+      <span class="p">},</span>
+      <span class="na">elementTranscodes</span><span class="p">:</span> <span class="p">{</span>
+        <span class="na">beneficiaryId</span><span class="p">:</span> <span class="dl">'</span><span class="s1">string</span><span class="dl">'</span><span class="p">,</span>
+        <span class="na">created</span><span class="p">:</span> <span class="dl">'</span><span class="s1">timestamp</span><span class="dl">'</span><span class="p">,</span>
+        <span class="na">firstNameCanonical</span><span class="p">:</span> <span class="dl">'</span><span class="s1">string</span><span class="dl">'</span><span class="p">,</span>
+        <span class="na">lastNameCanonical</span><span class="p">:</span> <span class="dl">'</span><span class="s1">string</span><span class="dl">'</span><span class="p">,</span>
+        <span class="na">phone</span><span class="p">:</span> <span class="dl">'</span><span class="s1">string</span><span class="dl">'</span><span class="p">,</span>
+        <span class="na">updated</span><span class="p">:</span> <span class="dl">'</span><span class="s1">timestamp</span><span class="dl">'</span><span class="p">,</span>
+        <span class="na">userId</span><span class="p">:</span> <span class="dl">'</span><span class="s1">string</span><span class="dl">'</span><span class="p">,</span>
+      <span class="p">},</span>
+    <span class="p">},</span>
+  <span class="p">},</span>
+<span class="p">};</span>
+</code></pre></div></div>
+
+<h3 id="type-parameters--global-keys">Type Parameters &amp; Global Keys</h3>
+
+<p>Together with its intrinsic shape, the <code class="language-plaintext highlighter-rouge">Config</code> type’s four type parameters work together to determine what constitutes a valid <code class="language-plaintext highlighter-rouge">Config</code> object.</p>
+
+<p>We’ll go into some detail about each in the following sections, but here they are in brief:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Parameter</th>
+      <th>Type</th>
+      <th>Default</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">M</code></td>
+      <td><a href="#the-entitymap-type"><code class="language-plaintext highlighter-rouge">EntityMap</code></a></td>
+      <td>-</td>
+      <td>The map of entities in your data model</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">HashKey</code></td>
+      <td><code class="language-plaintext highlighter-rouge">string</code></td>
+      <td><code class="language-plaintext highlighter-rouge">'hashKey'</code></td>
+      <td>The hash key property name shared across all entities</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">RangeKey</code></td>
+      <td><code class="language-plaintext highlighter-rouge">string</code></td>
+      <td><code class="language-plaintext highlighter-rouge">'rangeKey'</code></td>
+      <td>The range key property name shared across all entities</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">T</code></td>
+      <td><a href="#the-transcodemap-type"><code class="language-plaintext highlighter-rouge">TranscodeMap</code></a></td>
+      <td><code class="language-plaintext highlighter-rouge">DefaultTranscodeMap</code></td>
+      <td>The map of transcodes used in your configuration</td>
+    </tr>
+  </tbody>
+</table>
+
+<p class="notice--info">In a simple <strong>Entity Manager</strong> configuration restricted to default transcodes, only the first type parameter is required!</p>
+
+<p>The Config object also contains the <code class="language-plaintext highlighter-rouge">hashKey</code> and <code class="language-plaintext highlighter-rouge">rangeKey</code> properties, whose values must exactly match those of the <code class="language-plaintext highlighter-rouge">HashKey</code> and <code class="language-plaintext highlighter-rouge">RangeKey</code> type parameters, respectively. This is an unavoidable redundancy: while the type parameters help ensure a valid Entity Manager configuration, the corresponding config properties play an important role at runtime.</p>
+
+<p class="notice--warning"><strong>The property names specified in <code class="language-plaintext highlighter-rouge">hashKey</code> and <code class="language-plaintext highlighter-rouge">rangeKey</code> must not conflict with any entity property name in the <code class="language-plaintext highlighter-rouge">M</code> type parameter.</strong> If they do, TypeScript will throw a type error.</p>
+
+<h3 id="entity-configurations">Entity Configurations</h3>
+
+<p>The <code class="language-plaintext highlighter-rouge">entities</code> property of the <code class="language-plaintext highlighter-rouge">Config</code> object is a Record-type object whose keys exactly match the keys of the <code class="language-plaintext highlighter-rouge">M</code> type parameter, i.e. the configuration’s <code class="language-plaintext highlighter-rouge">EntityMap</code>. Missing or extra keys will cause a type error.</p>
+
+<p>The value associated with each key is the configuration object for that entity. The following sections describe the properties of that object.</p>
+
+<h4 id="query-limits">Query Limits</h4>
+
+<p>As described <a href="/projects/entity-manager/evolving-a-nosql-db-schema/#cross-shard-querying">here</a>, a key <strong>Entity Manager</strong> feature is that it simplifies complex, cross-shard, multi-index search operations by automatically decomposing these into a batch of single-shard, single-index queries that are conducted in parallel.</p>
+
+<p>Within this context, <code class="language-plaintext highlighter-rouge">pageSize</code> indicates the maximum number of items per data page returned by one of these simplified internal queries, and <code class="language-plaintext highlighter-rouge">limit</code> indicates the minimum paging threshold of the combined result.</p>
+
+<p>Subject to implementation requirements, <code class="language-plaintext highlighter-rouge">pageSize</code> and <code class="language-plaintext highlighter-rouge">limit</code> can be set on an individual query. Failing that, their default values for a given entity are set here. If one of these values is <em>not</em> set in the config object, its value defaults to <code class="language-plaintext highlighter-rouge">10</code>.</p>
+
+<p><code class="language-plaintext highlighter-rouge">throttle</code> is the maximum number of queries that can be conducted in parallel. If not set in the config object, its value defaults to <code class="language-plaintext highlighter-rouge">10</code>.</p>
+
+<h4 id="indexes">Indexes</h4>
+
+<p>The <code class="language-plaintext highlighter-rouge">indexes</code> configuration defines the indexes associated with the entity. This configuration serves several purposes:</p>
+
+<ul>
+  <li>
+    <p>Permits dehydration &amp; rehydration of page keys in support of cross-shard, multi-index query operations.</p>
+  </li>
+  <li>
+    <p>Permits automatic generation of platform-specific data definitions, for example DynamoDB table definitions via the <a href="https://docs.karmanivero.us/entity-client-dynamodb/functions/index.generateTableDefinition.html"><code class="language-plaintext highlighter-rouge">generateTableDefinition</code></a> in the <a href="https://github.com/karmaniverous/entity-client-dynamodb"><code class="language-plaintext highlighter-rouge">entity-client-dynamodb</code></a> package.</p>
+  </li>
+</ul>
+
+<p>In the future, we will exploit this configuration at the command line to generate platform-specific data definitions, e.g. the CloudFormation specification of a DynamoDB table.</p>
+
+<p>For now, these indexes are used to specify managed queries and to dehydrate &amp; rehydrate the associated page key maps.</p>
+
+<p>The <code class="language-plaintext highlighter-rouge">indexes</code> property is an object whose keys are the index names, and whose values are objects with the following properties:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Property</th>
+      <th>Type</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">hashKey</code></td>
+      <td><a href="https://docs.karmanivero.us/entity-manager/types/entity_manager.ConfigEntityIndexComponent.html"><code class="language-plaintext highlighter-rouge">ConfigEntityIndexComponent</code></a></td>
+      <td>The hash key component of the index. Must be either the global hash key or a <strong>sharded</strong> generated property.</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">rangeKey</code></td>
+      <td><a href="https://docs.karmanivero.us/entity-manager/types/entity_manager.ConfigEntityIndexComponent.html"><code class="language-plaintext highlighter-rouge">ConfigEntityIndexComponent</code></a></td>
+      <td>The range key component of the index. Must be either the global range key, a scalar ungenerated property, or an <strong>unsharded</strong> generated property.</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">[projections]</code></td>
+      <td><code class="language-plaintext highlighter-rouge">string[]</code></td>
+      <td>Properties to project from the index, including those not otherwise part of the configuration. May not include the global or index hash or range key. If omitted, all properties will be projected.</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>See <a href="/projects/entity-manager/evolving-a-nosql-db-schema/#indexes">here</a> for a discussion of special index structure considerations within the DynamoDB context.</p>
+
+<h4 id="generated-properties">Generated Properties</h4>
+
+<p>The <code class="language-plaintext highlighter-rouge">generated</code> configuration defines each of an entity’s generated properties, which are indicated in the entity’s entry in the config’s <code class="language-plaintext highlighter-rouge">M</code> (<code class="language-plaintext highlighter-rouge">EntityMap</code>) type parameter by a <code class="language-plaintext highlighter-rouge">never</code> type.</p>
+
+<p><em>All</em> such properties must be represented by a key in the <code class="language-plaintext highlighter-rouge">generated</code> object. If any are missing, or if any extra keys are present, TypeScript will throw a type error.</p>
+
+<p>The value associated with each key is a configuration object that defines the generated property’s structure. This object has the following properties:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Property</th>
+      <th>Type</th>
+      <th>Default</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">atomic</code></td>
+      <td><code class="language-plaintext highlighter-rouge">boolean</code></td>
+      <td><code class="language-plaintext highlighter-rouge">false</code></td>
+      <td>If <code class="language-plaintext highlighter-rouge">true</code>, any missing component results in an <code class="language-plaintext highlighter-rouge">undefined</code> generated value. If <code class="language-plaintext highlighter-rouge">false</code>, missing components are rendered as an empty string.</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">components</code></td>
+      <td><code class="language-plaintext highlighter-rouge">string[]</code></td>
+      <td> </td>
+      <td>An array of ungenerated property names that will be used to generate the property. Order matters, and only properties defined in <a href="#element-transcodes"><code class="language-plaintext highlighter-rouge">Element Transcodes</code></a> may be used!</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">sharded</code></td>
+      <td><code class="language-plaintext highlighter-rouge">boolean</code></td>
+      <td><code class="language-plaintext highlighter-rouge">false</code></td>
+      <td>If <code class="language-plaintext highlighter-rouge">true</code>, the generated property will be sharded. If <code class="language-plaintext highlighter-rouge">false</code>, it will not.</td>
+    </tr>
+  </tbody>
+</table>
+
+<h4 id="element-transcodes">Element Transcodes</h4>
+
+<p>The <code class="language-plaintext highlighter-rouge">elementTranscodes</code> configuration determines:</p>
+
+<ul>
+  <li>
+    <p>which of an entity’s properties can be used as an element of an index or a generated property, and</p>
+  </li>
+  <li>
+    <p>which transcode should be used to encode that property from its native type to a string, and decode it from a string back to its native type.</p>
+  </li>
+</ul>
+
+<p>The <code class="language-plaintext highlighter-rouge">elementTranscodes</code> property is a Record-type object whose keys are each a property name of the entity, and whose values are the transcode to be associated with that property. It must follow these rules:</p>
+
+<ul>
+  <li>
+    <p>Each key must be a property name of the entity.</p>
+  </li>
+  <li>
+    <p>The entity property type of a given key (as expressed in the config’s <code class="language-plaintext highlighter-rouge">M</code> type parameter) must match the transcode type of the corresponding value (as expressed in the config’s <code class="language-plaintext highlighter-rouge">T</code> type parameter).</p>
+  </li>
+</ul>
+
+<p>In other words, every <code class="language-plaintext highlighter-rouge">elementTranscodes</code> property must NOT be a <a href="#generated-properties">generated property</a>, and either…</p>
+
+<ul>
+  <li>
+    <p>An element of a <a href="#generated-properties">generated property</a>, or</p>
+  </li>
+  <li>
+    <p>An index component.</p>
+  </li>
+</ul>
+
+<p>In practice, the best way to determine which properties should be included in <code class="language-plaintext highlighter-rouge">elementTranscodes</code> is to create your generated properties &amp; indexes first. Your <code class="language-plaintext highlighter-rouge">elementTranscodes</code> will be:</p>
+
+<ul>
+  <li>
+    <p>All <a href="#generated-properties">generated property</a> components, and</p>
+  </li>
+  <li>
+    <p>All <em>ungenerated</em> index components.</p>
+  </li>
+</ul>
+
+<p>These rules will be validated at runtime when you parse your configuration object. See <a href="#the-config-type">above</a> for examples.</p>
+
+<h4 id="sharding-strategy">Sharding Strategy</h4>
+
+<p>This configuration defines the sharding strategy for the entity. See <a href="/projects/entity-manager/evolving-a-nosql-db-schema/#shard-keys">here</a> for an introduction to the rationale behind sharding and structure of a shard key.</p>
+
+<p>Every record created by <strong>Entity Manager</strong> will have a shard key embedded in its hash key. By default, this shard key is an empty string, resulting in a single data partition across the entity.</p>
+
+<p>A record’s shard key is assigned at the time of record creation and does not change for the life of the record. Its value is determined by the following entity configurations:</p>
+
+<ul>
+  <li>
+    <p><code class="language-plaintext highlighter-rouge">shardBumps</code> is an array of objects that defines a sharding schedule: how the number of partition shards scales over time.</p>
+  </li>
+  <li>
+    <p><code class="language-plaintext highlighter-rouge">timestampProperty</code> is the name of the entity property that will be used to determine which specific shard bump applies to a given record. This in turn determines the number of available shards at that point in time and the length of the shard key. The record’s creation timestamp is the best choice for this property.</p>
+  </li>
+  <li>
+    <p><code class="language-plaintext highlighter-rouge">uniqueProperty</code> is the name of the entity property that will be hashed in order to determine the shard key for the record. It should be the record’s unique identifier.</p>
+  </li>
+</ul>
+
+<p>The entity properties named in <code class="language-plaintext highlighter-rouge">timestampProperty</code> and <code class="language-plaintext highlighter-rouge">uniqueProperty</code> should be populated on all records for all entities represented by the configuration.</p>
+
+<p>A shardBump object has the following properties:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Property</th>
+      <th>Type</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">charBits</code></td>
+      <td><code class="language-plaintext highlighter-rouge">number</code></td>
+      <td>The number of bits to use for the shard key.</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">chars</code></td>
+      <td><code class="language-plaintext highlighter-rouge">number</code></td>
+      <td>The number of characters to use for the shard key.</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">timestamp</code></td>
+      <td><code class="language-plaintext highlighter-rouge">number</code></td>
+      <td>The timestamp at which this shard bump takes effect.</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>If no <code class="language-plaintext highlighter-rouge">shardBumps</code> are defined for an entity, its shardBumps property will default to the following value:</p>
+
+<div class="language-ts highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">[{</span> <span class="na">charBits</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="na">chars</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="na">timestamp</span><span class="p">:</span> <span class="mi">0</span> <span class="p">}];</span>
+</code></pre></div></div>
+
+<p>The effect of this is an empty shard key and a single data partition for all records.</p>
+
+<p>If <code class="language-plaintext highlighter-rouge">shardBumps</code> are defined but contains no record with a zero <code class="language-plaintext highlighter-rouge">timestamp</code> value, the above value will be prepended to the array. In any case, the array will be sorted by <code class="language-plaintext highlighter-rouge">timestamp</code> value on parsing.</p>
+
+<p><code class="language-plaintext highlighter-rouge">shardBumps</code> must obey the following rules:</p>
+
+<ul>
+  <li>
+    <p><code class="language-plaintext highlighter-rouge">chars</code> must be a non-negative integer valued from <code class="language-plaintext highlighter-rouge">0</code> to <code class="language-plaintext highlighter-rouge">40</code> inclusive. Its value must increase monotonically with <code class="language-plaintext highlighter-rouge">timestamp</code>.</p>
+  </li>
+  <li>
+    <p><code class="language-plaintext highlighter-rouge">charBits</code> must be an integer valued from <code class="language-plaintext highlighter-rouge">1</code> to <code class="language-plaintext highlighter-rouge">5</code> inclusive.</p>
+  </li>
+  <li>
+    <p><code class="language-plaintext highlighter-rouge">timestamp</code> must be a non-negative integer, and duplicate <code class="language-plaintext highlighter-rouge">timestamp</code> values are not allowed.</p>
+  </li>
+</ul>
+
+<p>For any <code class="language-plaintext highlighter-rouge">shardBump</code>, the number of available shards is given by <code class="language-plaintext highlighter-rouge">chars * (2 ** charBits)</code>. At the outer limit, this works out to 26,241 shards across all time, or a total of over 656 million records even at the maximum DynamoDB record size of 400 KB. Most implementations should <em>not</em> approach this limit, as querying this many shards in parallel is bound to impact performance, but it should be plain that the design is scalable enough for any application.</p>
+
+<p>Queries that include a date range may cross <code class="language-plaintext highlighter-rouge">shardBump</code> boundaries, in which case all relevant shards will be searched. The default case is <em>no</em> timestamp constraint, meaning that all shards up to and including the current <code class="language-plaintext highlighter-rouge">shardBump</code> will be searched.</p>
+
+<p>This design permits a staged scaling strategy. When the number of records for a given entity is low, it makes sense to have only one shard. As the number of records increases, the number of shards can be increased in a controlled manner.</p>
+
+<p>So long as a new <code class="language-plaintext highlighter-rouge">shardBump</code> is only added with a <em>future</em> timestamp, your sharding strategy can be scaled gracefully, with no interruptions and without any need to migrate data following shard bumps.</p>
+
+<h3 id="delimiters">Delimiters</h3>
+
+<p>The Entity Manager config defines the following special characters as delimiters, to be used when composing generated property values, including the global <code class="language-plaintext highlighter-rouge">hashKey</code> and <code class="language-plaintext highlighter-rouge">rangeKey</code>:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Property</th>
+      <th>Type</th>
+      <th>Default</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">generatedKeyDelimiter</code></td>
+      <td><code class="language-plaintext highlighter-rouge">string</code></td>
+      <td><code class="language-plaintext highlighter-rouge">'│'</code></td>
+      <td>Separates key-value pairs in a generated property.</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">generatedValueDelimiter</code></td>
+      <td><code class="language-plaintext highlighter-rouge">string</code></td>
+      <td><code class="language-plaintext highlighter-rouge">'#'</code></td>
+      <td>Separates key from value in a generated property key-value pair.</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">shardKeyDelimiter</code></td>
+      <td><code class="language-plaintext highlighter-rouge">string</code></td>
+      <td><code class="language-plaintext highlighter-rouge">'!'</code></td>
+      <td>Separates entity token from shard key in a sharded generated property.</td>
+    </tr>
+  </tbody>
+</table>
+
+<p class="notice--warning"><strong>An entity property used as a generated property element or an index component should <em>never</em> contain any of these delimiter characters!</strong> If this is unavoidable, use these configurations to define an alternate delimiter that will not collide with your entity data.</p>
+
+<h3 id="config-transcodes">Config Transcodes</h3>
+
+<p>The <code class="language-plaintext highlighter-rouge">transcodes</code> configuration property has a type of <code class="language-plaintext highlighter-rouge">Transcodes&lt;T&gt;</code>, where <code class="language-plaintext highlighter-rouge">T</code> is the <code class="language-plaintext highlighter-rouge">TranscodeMap</code> type parameter of the <code class="language-plaintext highlighter-rouge">Config</code> type.</p>
+
+<p>By default, <code class="language-plaintext highlighter-rouge">T</code> is <code class="language-plaintext highlighter-rouge">DefaultTranscodeMap</code> and <code class="language-plaintext highlighter-rouge">transcodes</code> is <code class="language-plaintext highlighter-rouge">defaultTranscodes</code>. See <a href="#custom-transcodes">Custom Transcodes</a> to learn how to define custom transcodes for your configuration.</p>
+
+<p class="notice--warning"><strong><code class="language-plaintext highlighter-rouge">T</code> and the <code class="language-plaintext highlighter-rouge">transcodes</code> property must be compatible or Typescript will throw a type error!</strong> In general this means that if you customize one, you must customize the other. The exception is that you are free to override existing default transcodes so long as you maintain the existing type signatures.</p>
+
+<h3 id="runtime-validation">Runtime Validation</h3>
+
+<p>Typescript will enforce the structure of your <code class="language-plaintext highlighter-rouge">Config</code> object at compile time. This will largely keep you out of trouble, but there are some validity checks than can <em>only</em> be performed at runtime (e.g. validating that an entity’s <code class="language-plaintext highlighter-rouge">shardBumps.chars</code> value increases monotonically with <code class="language-plaintext highlighter-rouge">timestamp</code>).</p>
+
+<p>Also, some developers will choose to write their code in Javascript and will not be able to leverage compile-time validation at all.</p>
+
+<p>To satisfy both of these cases, the <code class="language-plaintext highlighter-rouge">EntityManager</code> constructor leverages <a href="https://zod.dev/"><code class="language-plaintext highlighter-rouge">zod</code></a> to validate the <code class="language-plaintext highlighter-rouge">Config</code> object at runtime. If the object is invalid, the constructor will throw an error with a detailed message explaining the problem.</p>
+
+<h2 id="the-itemmap-type">The <code class="language-plaintext highlighter-rouge">ItemMap</code> Type</h2>
+
+<p>The <a href="#the-entity-type"><code class="language-plaintext highlighter-rouge">Entity</code></a> and <a href="#the-entitymap-type"><code class="language-plaintext highlighter-rouge">EntityMap</code></a> types described above effectively help you define the structure of your data model.</p>
+
+<p>Unfortunately, your <code class="language-plaintext highlighter-rouge">Entity</code> types are not suitable for representing actual data objects in your application because:</p>
+
+<ul>
+  <li>
+    <p>they use the convention of identifying generated properties with a <code class="language-plaintext highlighter-rouge">never</code> type, and</p>
+  </li>
+  <li>
+    <p>they do <em>not</em> include the <code class="language-plaintext highlighter-rouge">hashKey</code> and <code class="language-plaintext highlighter-rouge">rangeKey</code> properties identified elsewhere in your config.</p>
+  </li>
+</ul>
+
+<p>The <a href="https://docs.karmanivero.us/entity-manager/types/entity_manager.ItemMap.html"><code class="language-plaintext highlighter-rouge">ItemMap</code></a> type takes the same type arguments as your <code class="language-plaintext highlighter-rouge">Config</code> object (except for the final <code class="language-plaintext highlighter-rouge">TranscodeMap</code> argument, which is not relevant), and returns a type that looks just like your <code class="language-plaintext highlighter-rouge">EntityMap</code> except that:</p>
+
+<ul>
+  <li>
+    <p>all generated properties initially typed as <code class="language-plaintext highlighter-rouge">never</code> are replaced with <code class="language-plaintext highlighter-rouge">string</code> types, and</p>
+  </li>
+  <li>
+    <p><code class="language-plaintext highlighter-rouge">string</code>-valued hash and range key properties are added with names specified in the <code class="language-plaintext highlighter-rouge">HashKey</code> and <code class="language-plaintext highlighter-rouge">RangeKey</code> type parameters, respectively.</p>
+  </li>
+</ul>
+
+<p>Here is an example of how to exploit the <code class="language-plaintext highlighter-rouge">ItemMap</code> type within the context of the <code class="language-plaintext highlighter-rouge">MyEntityMap</code> type defined <a href="#the-entitymap-type">above</a>:</p>
+
+<div class="language-ts highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">type</span> <span class="nx">MyItemMap</span> <span class="o">=</span> <span class="nx">ItemMap</span><span class="o">&lt;</span><span class="nx">MyEntityMap</span><span class="p">,</span> <span class="dl">"</span><span class="s2">hashKey</span><span class="dl">"</span><span class="p">,</span> <span class="dl">"</span><span class="s2">rangeKey</span><span class="dl">"</span><span class="o">&gt;</span><span class="p">;</span>
+
+<span class="kd">type</span> <span class="nx">EmailItem</span> <span class="o">=</span> <span class="nx">MyItemMap</span><span class="p">[</span><span class="dl">"</span><span class="s2">email</span><span class="dl">"</span><span class="p">];</span>
+<span class="c1">// {</span>
+<span class="c1">//   created: number;</span>
+<span class="c1">//   email: string;</span>
+<span class="c1">//   userId: string;</span>
+<span class="c1">//   hashKey: string;</span>
+<span class="c1">//   rangeKey: string;</span>
+<span class="c1">//   userHashKey: string;</span>
+<span class="c1">// }</span>
+
+<span class="kd">type</span> <span class="nx">UserItem</span> <span class="o">=</span> <span class="nx">MyItemMap</span><span class="p">[</span><span class="dl">"</span><span class="s2">user</span><span class="dl">"</span><span class="p">];</span>
+<span class="c1">// {</span>
+<span class="c1">//   beneficiaryId: string;</span>
+<span class="c1">//   created: number;</span>
+<span class="c1">//   firstName: string;</span>
+<span class="c1">//   firstNameCanonical: string;</span>
+<span class="c1">//   lastName: string;</span>
+<span class="c1">//   lastNameCanonical: string;</span>
+<span class="c1">//   phone?: string;</span>
+<span class="c1">//   updated: number;</span>
+<span class="c1">//   userId: string;</span>
+<span class="c1">//   firstNameRangeKey: string;</span>
+<span class="c1">//   hashKey: string;</span>
+<span class="c1">//   lastNameRangeKey: string;</span>
+<span class="c1">//   rangeKey: string;</span>
+<span class="c1">//   userBeneficiaryHashKey: string;</span>
+<span class="c1">//   userHashKey: string;</span>
+<span class="c1">// }</span>
+</code></pre></div></div>
+
+<h2 id="javascript">Javascript</h2>
+
+<p>If you are working in Javascript, you can still use <strong>Entity Manager</strong>! Just be aware that you will not benefit from the compile-time validation that Typescript provides.</p>
+
+<p>When defining <a href="#custom-transcodes">custom transcodes</a>, you will do so without reference to types, so the example above would look like this:</p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">import</span> <span class="p">{</span> <span class="nx">defaultTranscodes</span> <span class="p">}</span> <span class="k">from</span> <span class="s2">`@karmaniverous/entity-manager`</span><span class="p">;</span>
+
+<span class="kd">const</span> <span class="nx">myTranscodes</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="p">...</span><span class="nx">defaultTranscodes</span><span class="p">,</span> <span class="c1">// reuse default transcodes</span>
+
+  <span class="na">fix13</span><span class="p">:</span> <span class="p">{</span> <span class="cm">/* same as above */</span> <span class="p">},</span>
+<span class="p">};</span>
+</code></pre></div></div>
+
+<p>Your <a href="#the-config-type">configuration object</a> will also be identical to the Typescript version, but without the type annotations:</p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">import</span> <span class="p">{</span> <span class="nx">defaultTranscodes</span> <span class="p">}</span> <span class="k">from</span> <span class="s2">`@karmaniverous/entity-manager`</span><span class="p">;</span>
+
+<span class="kd">const</span> <span class="nx">config</span> <span class="o">=</span> <span class="p">{</span> <span class="cm">/* same as above */</span> <span class="p">};</span>
+</code></pre></div></div>
+
+<p>The <a href="https://docs.karmanivero.us/entity-manager/classes/entity_manager.EntityManager.html#constructor"><code class="language-plaintext highlighter-rouge">EntityManager</code> constructor</a> will still validate your configuration at runtime, so you can be confident that it is correct before proceeding.</p>
+
+<p>Having said that: if you are working in Javascript, you should <em>really</em> consider switching to Typescript! The benefits are enormous, and the learning curve is not as steep as you might think.</p>
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+  
+
+
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-tags" aria-hidden="true"></i> Topics: </strong>
+    <span itemprop="keywords">
+    
+      <a href="/topics/aws" class="page__taxonomy-item p-category" rel="tag">aws</a><span class="sep">, </span>
+    
+      <a href="/topics/dynamodb" class="page__taxonomy-item p-category" rel="tag">dynamodb</a><span class="sep">, </span>
+    
+      <a href="/topics/entity-manager" class="page__taxonomy-item p-category" rel="tag">entity-manager</a><span class="sep">, </span>
+    
+      <a href="/topics/nosql" class="page__taxonomy-item p-category" rel="tag">nosql</a><span class="sep">, </span>
+    
+      <a href="/topics/projects" class="page__taxonomy-item p-category" rel="tag">projects</a><span class="sep">, </span>
+    
+      <a href="/topics/typescript" class="page__taxonomy-item p-category" rel="tag">typescript</a>
+    
+    </span>
+  </p>
+
+
+
+
+        
+
+  <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> Updated:</strong> <time class="dt-published" datetime="2024-11-21T02:10:13+00:00">November 21, 2024</time></p>
+
+      </footer>
+
+      
+        <section class="page__share">
+  
+    <h4 class="page__share-title">Share on</h4>
+  
+
+  <a href="https://twitter.com/intent/tweet?via=karmaniverous&text=Entity+Manager+Configuration%20https%3A%2F%2Fkarmanivero.us%2Fprojects%2Fentity-manager%2Fconfiguration%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+
+  <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fkarmanivero.us%2Fprojects%2Fentity-manager%2Fconfiguration%2F" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
+
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=https://karmanivero.us/projects/entity-manager/configuration/" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
+</section>
+
+
+      
+  <nav class="pagination">
+    
+      <a href="/projects/entity-manager/demo/" class="pagination--pager" title="Entity Manager: A Demonstration
+">Previous</a>
+    
+    
+      <a href="#" class="pagination--pager disabled">Next</a>
+    
+  </nav>
+
+    </div>
+
+    
+  </article>
+
+  
+  
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  
+
+  
+  
+
+  
+  
+
+  
+  <div class='page__related'>
+    
+    <h2 class='page__related-title'>
+      You may also enjoy
+    </h2>
+    <div class='grid__wrapper'>
+
+      
+      
+        
+        
+        
+        
+        
+        
+      
+
+        
+      
+
+        
+        <!-- post_url: /the-big-miss-turning-lemons-into-lemonade/ -->
+        <!-- normLogCommonTags: 0.8888888888888888 -->
+        <!-- logAge: 0.0905092592592593 -->
+        <!-- relevance: 52576 -->
+
+        
+      
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src="/assets/images/lemons-square.jpg" alt="">
+      </div>
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/the-big-miss-turning-lemons-into-lemonade/" rel="permalink">The Big Miss: Turning Lemons Into Lemonade
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+      
+      <span class="page__meta-date">
+        <i
+          class="far fa-fw fa-calendar-alt"
+          aria-hidden="true"
+        ></i>
+        
+        <time datetime="2024-11-20T00:00:00+00:00">November 20, 2024</time>
+      </span>
+    
+
+    <span class="page__meta-sep"></span>
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i
+          class="far fa-fw fa-clock"
+          aria-hidden="true"
+        ></i>
+        
+          8
+          minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">Today was one of those days when I question my life choices. Watch me dig my way out of a hole with the same shovel I used to dig my way in.
+</p>
+  </article>
+</div>
+
+
+        
+        
+        
+      
+        
+        
+        
+        
+        
+      
+
+        
+      
+
+        
+        <!-- post_url: /code-complete-a-day-in-the-life-of-a-product/ -->
+        <!-- normLogCommonTags: 1.0 -->
+        <!-- logAge: 6.017039207175926 -->
+        <!-- relevance: 46983 -->
+
+        
+      
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src="/assets/images/code-complete-tests.jpg" alt="">
+      </div>
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/code-complete-a-day-in-the-life-of-a-product/" rel="permalink">Code Complete: A Day in the Life of a Product
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+      
+      <span class="page__meta-date">
+        <i
+          class="far fa-fw fa-calendar-alt"
+          aria-hidden="true"
+        ></i>
+        
+        <time datetime="2024-09-17T00:00:00+00:00">September 17, 2024</time>
+      </span>
+    
+
+    <span class="page__meta-sep"></span>
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i
+          class="far fa-fw fa-clock"
+          aria-hidden="true"
+        ></i>
+        
+          8
+          minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">We’re all professionals here, right? And we all know there’s often quite a gap between what gets posted to social media and the reality on the ground.
+</p>
+  </article>
+</div>
+
+
+        
+        
+        
+      
+        
+        
+        
+        
+        
+      
+
+        
+      
+
+        
+        <!-- post_url: /composition-in-action-finishing-the-swing/ -->
+        <!-- normLogCommonTags: 0.6666666666666666 -->
+        <!-- logAge: 5.1278284143518515 -->
+        <!-- relevance: 46872 -->
+
+        
+      
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src="https://github.com/karmaniverous/controlled-proxy/raw/main/assets/controlled-proxy-square.jpg" alt="">
+      </div>
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/composition-in-action-finishing-the-swing/" rel="permalink">Composition in Action: Finishing the Swing
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+      
+      <span class="page__meta-date">
+        <i
+          class="far fa-fw fa-calendar-alt"
+          aria-hidden="true"
+        ></i>
+        
+        <time datetime="2024-10-16T00:00:00+00:00">October 16, 2024</time>
+      </span>
+    
+
+    <span class="page__meta-sep"></span>
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i
+          class="far fa-fw fa-clock"
+          aria-hidden="true"
+        ></i>
+        
+          9
+          minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">In software engineering, what look to be the easy parts often turn out to be the hard parts. If you’re lucky, the reverse is also true, but don’t count on it.
+</p>
+  </article>
+</div>
+
+
+        
+        
+        
+      
+        
+        
+        
+        
+        
+      
+
+        
+      
+
+        
+        <!-- post_url: /mock-db/ -->
+        <!-- normLogCommonTags: 1.0 -->
+        <!-- logAge: 6.251414207175926 -->
+        <!-- relevance: 46749 -->
+
+        
+      
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src="/assets/images/logo-mock-db.png" alt="">
+      </div>
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/mock-db/" rel="permalink">mock-db
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+      
+      <span class="page__meta-date">
+        <i
+          class="far fa-fw fa-calendar-alt"
+          aria-hidden="true"
+        ></i>
+        
+        <time datetime="2024-09-02T00:00:00+00:00">September 2, 2024</time>
+      </span>
+    
+
+    <span class="page__meta-sep"></span>
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i
+          class="far fa-fw fa-clock"
+          aria-hidden="true"
+        ></i>
+        
+          1
+          minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">Mock DynamoDB-style query &amp; scan behavior with local JSON data. Or learn to play the guitar, if you think pretty girls REALLY like that kind of thing.
+</p>
+  </article>
+</div>
+
+
+        
+        
+        
+      
+        
+        
+        
+        
+        
+      
+
+        
+      
+
+        
+        <!-- post_url: /mixin-it-up-picking-the-right-problem-to-solve/ -->
+        <!-- normLogCommonTags: 0.6666666666666666 -->
+        <!-- logAge: 5.2528284143518515 -->
+        <!-- relevance: 46747 -->
+
+        
+      
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src="/assets/images/mixin-it-up-square.jpg" alt="">
+      </div>
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/mixin-it-up-picking-the-right-problem-to-solve/" rel="permalink">Mixin It Up: Picking The Right Problem to Solve
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+      
+      <span class="page__meta-date">
+        <i
+          class="far fa-fw fa-calendar-alt"
+          aria-hidden="true"
+        ></i>
+        
+        <time datetime="2024-10-12T00:00:00+00:00">October 12, 2024</time>
+      </span>
+    
+
+    <span class="page__meta-sep"></span>
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i
+          class="far fa-fw fa-clock"
+          aria-hidden="true"
+        ></i>
+        
+          9
+          minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">Sometimes, when you’re tangled up in a thorny problem, solving it is exactly the wrong answer.
+</p>
+  </article>
+</div>
+
+
+        
+        
+        
+      
+        
+        
+        
+        
+        
+      
+
+        
+      
+
+        
+        <!-- post_url: /loggable-a-typescript-mixin-for-generic-class-logging/ -->
+        <!-- normLogCommonTags: 0.6666666666666666 -->
+        <!-- logAge: 5.2840784143518515 -->
+        <!-- relevance: 46716 -->
+
+        
+      
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src="https://raw.githubusercontent.com/karmaniverous/loggable/main/assets/loggable-square.jpg" alt="">
+      </div>
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/loggable-a-typescript-mixin-for-generic-class-logging/" rel="permalink">Loggable: A TypeScript Mixin for Generic Class Logging
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+      
+      <span class="page__meta-date">
+        <i
+          class="far fa-fw fa-calendar-alt"
+          aria-hidden="true"
+        ></i>
+        
+        <time datetime="2024-10-11T00:00:00+00:00">October 11, 2024</time>
+      </span>
+    
+
+    <span class="page__meta-sep"></span>
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i
+          class="far fa-fw fa-clock"
+          aria-hidden="true"
+        ></i>
+        
+          5
+          minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">Logging is an implementation decision that should be deferred as late as possible. Loggable lets you defer it until runtime!
+</p>
+  </article>
+</div>
+
+
+        
+        
+        
+      
+        
+        
+        
+        
+        
+      
+
+        
+      
+
+        
+        <!-- post_url: /what-good-looks-like-a-real-world-typescript-refactor/ -->
+        <!-- normLogCommonTags: 0.6666666666666666 -->
+        <!-- logAge: 6.188914207175926 -->
+        <!-- relevance: 45811 -->
+
+        
+      
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src="/assets/images/what-good-looks-like-square.jpg" alt="">
+      </div>
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/what-good-looks-like-a-real-world-typescript-refactor/" rel="permalink">What Good Looks Like: A Real-World Typescript Refactor
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+      
+      <span class="page__meta-date">
+        <i
+          class="far fa-fw fa-calendar-alt"
+          aria-hidden="true"
+        ></i>
+        
+        <time datetime="2024-09-06T00:00:00+00:00">September 6, 2024</time>
+      </span>
+    
+
+    <span class="page__meta-sep"></span>
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i
+          class="far fa-fw fa-clock"
+          aria-hidden="true"
+        ></i>
+        
+          6
+          minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">Watch a complex Javascript configuration object collapse into declarative goodness thanks to type safety, abstraction, and generic design.
+</p>
+  </article>
+</div>
+
+
+        
+        
+        
+      
+        
+        
+        
+        
+        
+      
+
+        
+      
+
+        
+        <!-- post_url: /generic-abstractions/ -->
+        <!-- normLogCommonTags: 0.6666666666666666 -->
+        <!-- logAge: 6.188914207175926 -->
+        <!-- relevance: 45811 -->
+
+        
+      
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src="/assets/images/generic-abstractions.png" alt="">
+      </div>
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/generic-abstractions/" rel="permalink">Generic Abstractions
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+      
+      <span class="page__meta-date">
+        <i
+          class="far fa-fw fa-calendar-alt"
+          aria-hidden="true"
+        ></i>
+        
+        <time datetime="2024-09-06T00:00:00+00:00">September 6, 2024</time>
+      </span>
+    
+
+    <span class="page__meta-sep"></span>
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i
+          class="far fa-fw fa-clock"
+          aria-hidden="true"
+        ></i>
+        
+          14
+          minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">Modern software development works just like any other Hero’s Journey: you’ve got to hoof it some ways down the road before you can see very far into the dist...</p>
+  </article>
+</div>
+
+
+        
+        
+        
+          
+    </div>
+  </div>
+
+  
+</div>
+      
+    </div>
+
+    
+      <div class="search-content">
+        <div class="search-content__inner-wrap"><form onsubmit="return googleCustomSearchExecute();" id="cse-search-box-form-id" role="search">
+    <label class="sr-only" for="cse-search-input-box-id">
+      Enter your search term...
+    </label>
+    <input type="search" id="cse-search-input-box-id" class="search-input" tabindex="-1" placeholder="Enter your search term..." />
+  </form>
+  <div id="results" class="results">
+    <gcse:searchresults-only></gcse:searchresults-only>
+  </div></div>
+
+      </div>
+    
+
+    <div id="footer" class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+        <div class="page__footer-follow">
+  
+    <span class="love">Built for you with ❤️ on <a href="/bali/">Bali</a>!</span>
+  
+
+  <ul class="social-icons">
+    
+      <li>
+        <strong>Contact</strong>&nbsp;&nbsp;&nbsp;</li>
+    
+
+    
+      
+        
+          <li>
+            <a href="https://twitter.com/karmaniverous" rel="nofollow noopener noreferrer">
+              <i class="fa-brands fa-x-twitter" aria-hidden="true"></i>
+              </a>
+          </li>
+        
+      
+        
+          <li>
+            <a href="https://techhub.social/@karmaniverous" rel="nofollow noopener noreferrer">
+              <i class="fa-brands fa-mastodon" aria-hidden="true"></i>
+              </a>
+          </li>
+        
+      
+        
+          <li>
+            <a href="https://github.com/karmaniverous" rel="nofollow noopener noreferrer">
+              <i class="fa-brands fa-github" aria-hidden="true"></i>
+              </a>
+          </li>
+        
+      
+        
+          <li>
+            <a href="https://www.linkedin.com/in/jscroft/" rel="nofollow noopener noreferrer">
+              <i class="fa-brands fa-linkedin" aria-hidden="true"></i>
+              </a>
+          </li>
+        
+      
+        
+          <li>
+            <a href="https://wa.me/17737500338" rel="nofollow noopener noreferrer">
+              <i class="fa-brands fa-square-whatsapp" aria-hidden="true"></i>
+              </a>
+          </li>
+        
+      
+        
+          <li>
+            <a href="https://t.me/karmaniverous" rel="nofollow noopener noreferrer">
+              <i class="fa-brands fa-telegram" aria-hidden="true"></i>
+              </a>
+          </li>
+        
+      
+        
+          <li>
+            <a href="https://calendly.com/karmaniverous" rel="nofollow noopener noreferrer">
+              <i class="fa-regular fa-calendar-plus" aria-hidden="true"></i>
+              </a>
+          </li>
+        
+      
+    
+
+    
+      <li>
+        <a href="/feed.xml">
+          <i class="fas fa-fw fa-rss-square" aria-hidden="true"></i>
+           </a>
+      </li>
+    
+  </ul>
+</div>
+
+<div class="page__footer-copyright">&copy; 2024
+  <a href="https://karmanivero.us">some words</a>. Powered by
+  <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a>
+  &amp;
+  <a href="https://mademistakes.com/work/jekyll-themes/minimal-mistakes/" rel="nofollow">Minimal Mistakes</a>.</div>
+      </footer>
+    </div>
+
+    
+  <script src="/assets/js/main.min.js"></script>
+
+
+<script>
+  (function () {
+    var cx = '960ee5d1b2fec4509';
+    var gcse = document.createElement('script');
+    gcse.type = 'text/javascript';
+    gcse.async = true;
+    gcse.src = 'https://cse.google.com/cse.js?cx=' + cx;
+    var s = document.getElementsByTagName('script')[0];
+    s.parentNode.insertBefore(gcse, s);
+  })();
+
+  function googleCustomSearchExecute() {
+    var input = document.getElementById('cse-search-input-box-id');
+    var element = google.search.cse.element.getElement('searchresults-only0');
+    if (input.value == '') {
+      element.clearAllResults();
+    } else {
+      element.execute(input.value);
+    }
+    return false;
+  }
+
+  
+    $(document).ready(function () {
+      $('input#cse-search-input-box-id').on('keyup', function () {
+        googleCustomSearchExecute();
+      });
+    });
+  
+</script>
+
+
+
+
+
+
+  </body>
+</html>
