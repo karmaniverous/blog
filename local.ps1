@@ -1,1 +1,1 @@
-bundle exec jekyll serve --incremental --livereload --drafts
+bundle exec jekyll serve --incremental --livereload --drafts --port 4000
