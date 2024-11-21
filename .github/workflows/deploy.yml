@@ -6,5 +6,5 @@ on:
       - main
 
 jobs:
-  deploy:
+  build-and-deploy:
     uses: karmaniverous/gha-workflows/.github/workflows/jekyll-deploy.yml@main
