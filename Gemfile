@@ -1,6 +1,21 @@
 source "https://rubygems.org"
 
-gem "github-pages", group: :jekyll_plugins
-gem "jekyll-archives", group: :jekyll_plugins
-gem "jekyll-include-cache", group: :jekyll_plugins
-gem 'jekyll-redirect-from'
+gem "minimal-mistakes-jekyll", "~> 4.26.0"
+
+gem "base64"
+gem "bigdecimal"
+gem "csv"
+gem "faraday-retry"
+gem 'jekyll-sass-converter', '~> 2.2'
+gem 'wdm', '>= 0.1.0' if Gem.win_platform?
+
+group :jekyll_plugins do
+    gem "jekyll-archives"
+    gem "jekyll-feed"
+    gem "jekyll-gist"
+    gem "jekyll-include-cache"
+    gem "jekyll-paginate"
+    gem "jekyll-redirect-from"
+    gem "jekyll-sitemap"
+    gem "kramdown-parser-gfm"
+end
