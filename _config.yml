@@ -381,3 +381,7 @@ collections:
   project-governance:
     output: true
     permalink: toolkits/:collection/:path/
+
+after_footer_scripts:
+  - "/assets/js/jquery.greedy-navigation.js"
+  - "https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML"
